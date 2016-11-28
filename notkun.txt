@@ -1,6 +1,6 @@
-#Uppsening á forriti
+# Uppsening á forriti
 
-##Setjum upp notkun, klasa og aðrar upplýsingar.
+## Setjum upp notkun, klasa og aðrar upplýsingar.
 
 Verkefnalýsing
 * (10%) Notandi skal geta skráð þekktar persónur úr sögu tölvunarfræðinnar. Að lágmarki skal vera hægt að skrá eftirfarandi gögn um sérhverja persónu: nafn, kyn, fæðingarár og dánarár (ef við á).
