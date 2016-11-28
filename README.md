@@ -1,3 +1,4 @@
-# verklegt_1
+﻿# verklegt_1
 
 Helga er að prufa
+Ketill er að prufa
