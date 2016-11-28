@@ -17,7 +17,7 @@ public:
     //Fyrsta breyta er val um hvernig skuli raða, listi skipanna fylgir falli. Tekur einnig inn vectoranna fjóra
     void sort(string choice, vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
 
-    //
+    //Tekur inn það sem leita skal að ásamt vectorunum 4 sem koma til með að geyma breyturnar
     void search(string query, vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
 
 
