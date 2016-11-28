@@ -11,10 +11,13 @@ class Service
 public:
     Service();
 
+    //Tekur inn nafn, aldur, fæðingar- og dánarár ásamt samsvarandi vectorum
     void addPerson(string name, string sex, int birthYear, int deathYear, vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
 
+    //Fyrsta breyta er val um hvernig skuli raða, listi skipanna fylgir falli. Tekur einnig inn vectoranna fjóra
     void sort(string choice, vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
 
+    //
     void search(string query, vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
 
 
