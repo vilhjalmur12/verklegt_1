@@ -24,11 +24,9 @@ public:
 
 private:
     string fixString(string before);
-    string removeSpaces(string before);
     bool addName(string name, vector<string>& names);
     bool addSex(string sex, vector<string>& sexes);
-    bool addBirthYear(int birthYear, vector<int>& birthYears);
-    bool addDeathYear(int deathYear, vector<int>& deathYears, int birthYear);
+    bool addYears(int birthYear, int deathYear, vector<int>& birthYears, vector<int>& deathYears);
 
     void sortByNameAscending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
     void sortByNameDesending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
