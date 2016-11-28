@@ -3,6 +3,8 @@
 
 #include <string>
 #include <vector>
+#include <regex>
+#include <iostream>
 
 using namespace std;
 
@@ -20,18 +22,13 @@ public:
     //Tekur inn það sem leita skal að ásamt vectorunum 4 sem koma til með að geyma breyturnar
     void search(string query, vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
 
-
-
 private:
-    /* ------------------Optional foll fyrir add person fallid--------------------------
-
-    void addName(string name, vector<string>& names);
-    void addSex(string sex, vector<string>& sexes);
-    void addBirthYear(int birthYear, vector<int>& birthYears);
-    void addDeathYear(int deathYear, vector<int>& deathYears, int birthYear);
-
-    */
-
+    string fixString(string before);
+    string removeSpaces(string before);
+    bool addName(string name, vector<string>& names);
+    bool addSex(string sex, vector<string>& sexes);
+    bool addBirthYear(int birthYear, vector<int>& birthYears);
+    bool addDeathYear(int deathYear, vector<int>& deathYears, int birthYear);
 
     void sortByNameAscending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
     void sortByNameDesending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
@@ -41,8 +38,6 @@ private:
     void sortByBirthDescending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
     void sortByDeathAscending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
     void sortByDeathDescending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
-
-
 
 };
 
