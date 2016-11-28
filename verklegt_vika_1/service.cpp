@@ -10,6 +10,7 @@ Service::Service()
 
 }
 
+//Stillir fyrsta staf hvers ords storan og hina litla
 string Service::fixString(string before)
 {
     char a = before.at(0);
@@ -34,7 +35,15 @@ bool Service::addName(string name, vector<string> &names)
 {
     name = fixString(name);
 
+    //Athugar hvort takn seu til stadar sem ekki eru stafir
+    //Tharf ad laga svo ad bil seu leyfd
     bool containsDigits = !regex_match(name, regex("^[A-Za-z]+$"));
+
+    for(int i = 0; i < names.size(); i++)
+    {
+        if(names[i] == name)
+            return false;
+    }
 
     if (containsDigits)
         return false;
@@ -57,11 +66,13 @@ bool Service::addSex(string sex, vector<string> &sexes)
 
 bool Service::addYears(int birthYear, int deathYear, vector<int> &birthYears, vector<int> &deathYears)
 {
+    //Pointer heldur utan um nuverandi ar -1900
     time_t t = time(NULL);
     tm* timePtr = localtime(&t);
 
     if(deathYear < birthYear)
         return false;
+    //pointer + 1900 == nuverandi ar
     if(birthYear > timePtr->tm_year + 1900 || deathYear > > timePtr->tm_year + 1900)
         return false;
     else
@@ -72,8 +83,11 @@ bool Service::addYears(int birthYear, int deathYear, vector<int> &birthYears, ve
     return true;
 }
 
+
+//Temp cout setningar fyrir villur, finna leið til að láta skilaboð berast til console
 void Service::addPerson(string name, string sex, int birthYear, int deathYear, vector<string> &names, vector<string> &sexes, vector<int> &birthYears, vector<int> &deathYears)
 {
+    // Fallið skilar false ef inntak inniheldur tölu eða er nú þegar til
     if(!addName(name, names))
     {
         cout << "Invalid Name!";
@@ -86,7 +100,11 @@ void Service::addPerson(string name, string sex, int birthYear, int deathYear, v
         return;
     }
 
-
+    if(!addYears(birthYear, deathYear, birthYears, deathYears))
+    {
+        cout << "Invalid Dates!";
+        return;
+    }
 
 }
 
