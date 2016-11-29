@@ -21,6 +21,8 @@ public:
     void writeData ();
     int dataSearch (string tmp);
     int dataSearch (int tmp);
+    void pushData (vector<string> name, vector<string> gender, vector<int> DOB, vector<int> DOD);
+    void pullData (vector<string> &name, vector<string> &gender, vector<int> &DOB, vector<int> &DOD);
 
     // tvö prufuföll - við skulum sjá til þess að færa þessi út úr klasanum fyrir skil
     void testData ();

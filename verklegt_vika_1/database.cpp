@@ -143,3 +143,29 @@ void database::printSearch (int id)
     cout << tempName[id] << "\t" << tempSex[id] << "\t" << tempDOB[id] << "\t" << tempDOD[id] << endl;
 
 }
+
+
+void database::pushData (vector<string> name, vector<string> gender, vector<int> DOB, vector<int> DOD)
+{
+    tempName.clear();
+    tempSex.clear();
+    tempDOD.clear();
+    tempDOB.clear();
+
+    tempName = name;
+    tempSex = gender;
+    tempDOB = DOB;
+    tempDOD = DOD;
+}
+
+void database::pullData (vector<string> &name, vector<string> &gender, vector<int> &DOB, vector<int> &DOD)
+{
+    name = tempName;
+    gender = tempSex;
+    DOB = tempDOB;
+    DOD = tempDOD;
+}
+
+
+
+
