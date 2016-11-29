@@ -1,6 +1,7 @@
 #include "service.h"
 #include <algorithm>
 #include <ctime>
+#include "scientists.h"
 
 using namespace std;
 
@@ -158,15 +159,17 @@ void Service::sortByNameDesending(vector<string>& names, vector<string>& sexes, 
     }
 }
 
-void Service::sortBySexF(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears)
+void Service::sortBySexF(vector<Scientists>& scientists)
 {
-    for(int i = 0; i < names.size(); i++)
+    Scientists s = scientists[0];
+
+    for(unsigned int i = 0; i < scientists.size(); i++)
     {
-        if(sexes[i] == "f" || sexes[i] == "F")
+        if(s.sex == "Female")
         {
-            string tmp = sexes[i];
-            sexes[i] = sexes[i + 1];
-            sexes[i+1] = tmp;
+            Scientists tmp = scientists[i];
+            scientists[i] = scientists[i + 1];
+            scientists[i+1] = tmp;
         }
     }
 }
