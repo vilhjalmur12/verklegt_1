@@ -1,5 +1,5 @@
-#include "service.h"
 #include "database.h"
+#include "service.h"
 #include <algorithm>
 #include <ctime>
 
@@ -111,6 +111,7 @@ void Service::addPerson(string name, string sex, int birthYear, int deathYear)
 
 vector<Scientist> Service::getScientists(string choice)
 {
+    
     if (choice == "na")
         sortByNameAscending();
     if (choice == "nd")
@@ -128,15 +129,15 @@ vector<Scientist> Service::getScientists(string choice)
     if (choice == "dd")
         sortByDeathDescending();
 
-    return _scientists;
+return _scientists;
 }
 
 
-/**************************************************
+/***********************************************
  *                                                *
  *             Struct til að sortera              *
  *                                                *
-*///***********************************************
+************************************************/
 
 struct nameAscending
 {
@@ -193,7 +194,7 @@ void Service::sortByNameAscending()
 void Service::sortByNameDesending()
 {
     nameDescending nd;
-    sort(_scientists.begin(), _scientists.end(), na);
+    sort(_scientists.begin(), _scientists.end(), nd);
 }
 
 void Service::sortBySexF()
