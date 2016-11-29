@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Console.h"
-
+#include <string>
 using namespace std;
 
 int main()
@@ -12,7 +12,7 @@ int main()
     console.viewOrInsert(); //her kemur valmynd um hvort vid viljum skoda lista eda setja inn i hann
     choice_made = console.choice(); //her er gildid sem segir okkur hvad vid viljum gera med char
     console.choiceMade(choice_made);
-    console.sorting();
+
 
 
     // TODO:

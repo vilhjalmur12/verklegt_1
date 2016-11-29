@@ -2,7 +2,7 @@
 #define CONSOLE_H
 
 using namespace std;
-
+#include <string>
 
 class Console
 {
@@ -13,7 +13,9 @@ class Console
         void viewOrInsert(); //print out choice menu for viewing or inserting
         char choice(); //make choice
         void choiceMade(char choice_made);
-        void sorting();
+        void sorting_menu();
+        string stringChoice();
+
     protected:
     private:
 };
