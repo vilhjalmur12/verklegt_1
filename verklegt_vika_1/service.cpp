@@ -56,13 +56,13 @@ bool Service::addSex(string& sex)
     if(sex == "M")
     {
         sex = "Male";
-        return true
+        return true;
     }
 
     if(sex == "F")
     {
         sex = "Female";
-        return true
+        return true;
     }
 
     return false;

@@ -7,10 +7,7 @@ using namespace std;
 
 class Console
 {
-<<<<<<< HEAD
 
-=======
->>>>>>> 79e483dac04668ddd3fea04865910b095e296630
 public:
     Console();
     virtual ~Console();
@@ -32,10 +29,7 @@ public:
 
 private:
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 79e483dac04668ddd3fea04865910b095e296630
 };
 
 #endif // CONSOLE_H
