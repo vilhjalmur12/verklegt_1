@@ -38,11 +38,11 @@ bool Service::addName(string name)
 
     //Athugar hvort takn seu til stadar sem ekki eru stafir
     //Tharf ad laga svo ad bil seu leyfd
-    bool containsDigits = !regex_match(name, regex("^[A-Za-z]+$"));
+    bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]+([A-Za-z]+[ ])*+$"));
 
-    for(int i = 0; i < names.size(); i++)
+    for(unsigned int i = 0; i < _scientists.size(); i++)
     {
-        if(names[i] == name)
+        if(_scientists[i].getName() == name)
             return false;
     }
 
@@ -71,7 +71,7 @@ bool Service::addYears(int birthYear, int deathYear)
     if(deathYear < birthYear)
         return false;
     //pointer + 1900 == nuverandi ar
-    if(birthYear > timePtr->tm_year + 1900 || deathYear > > timePtr->tm_year + 1900)
+    if(birthYear > timePtr->tm_year + 1900 || deathYear > timePtr->tm_year + 1900)
         return false;
 
     return true;
@@ -82,51 +82,63 @@ bool Service::addYears(int birthYear, int deathYear)
 void Service::addPerson(string name, string sex, int birthYear, int deathYear)
 {
     // Fallið skilar false ef inntak inniheldur óþekktan staf eða er nú þegar til
-    if(!addName(name, names))
+    if(!addName(name))
     {
         cout << "Invalid Name!";
         return;
     }
 
-    if(!addSex(sex, sexes))
+    if(!addSex(sex))
     {
         cout << "Invalid Sex!";
         return;
     }
 
-    if(!addYears(birthYear, deathYear, birthYears, deathYears))
+    if(!addYears(birthYear, deathYear))
     {
         cout << "Invalid Dates!";
         return;
     }
+
     Scientist tempScientist(name, sex, birthYear, deathYear);
     _scientists.push_back(tempScientist);
 }
 
-void Service::getScientists(string choice)
+vector<Scientist> Service::getScientists(string choice)
 {
     if (choice == "na")
-        sortByNameAscending(names, sexes, birthYears, deathYears);
+        sortByNameAscending();
+    /*
     if (choice == "nd")
-        sortByNameDesending(names, sexes, birthYears, deathYears);
+        sortByNameDesending();
     if (choice == "gf")
-        sortBySexF(names, sexes, birthYears, deathYears);
+        sortBySexF();
     if (choice == "gm")
-        sortbySexM(names, sexes, birthYears, deathYears);
+        sortbySexM();
     if (choice == "ba")
-        sortByBirthAscending(names, sexes, birthYears, deathYears);
+        sortByBirthAscending();
     if (choice == "bd")
-        sortByBirthDescending(names, sexes, birthYears, deathYears);
+        sortByBirthDescending();
     if (choice == "da")
-        sortByDeathAscending(names, sexes, birthYears, deathYears);
+        sortByDeathAscending();
     if (choice == "dd")
-        sortByDeathDescending(names, sexes, birthYears, deathYears);
+        sortByDeathDescending();
+    */
+
+    return _scientists;
 }
 
-void Service::switchPerson(index1, index2)
+struct nameAscending {
+  bool operator() (Scientist i, Scientist j) { return (i.getName()<j.getName());}
+};
+
+void Service::sortByNameAscending()
 {
-
+    nameAscending na;
+    sort(_scientists.begin(), _scientists.end(), na);
 }
+
+
 
 
 

@@ -20,7 +20,7 @@ public:
     void addPerson(string name, string sex, int birthYear, int deathYear);
 
     //Fyrsta breyta er val um hvernig skuli raða
-    void getScientists(string choice);
+    vector<Scientist> getScientists(string choice);
 
     void search(string query);
 
@@ -31,8 +31,6 @@ private:
     bool addName(string name);
     bool addSex(string sex);
     bool addYears(int birthYear, int deathYear);
-
-    void switchPerson(int index1, int index2);
 
     void sortByNameAscending();
     void sortByNameDesending();

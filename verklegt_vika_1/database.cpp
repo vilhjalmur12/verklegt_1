@@ -117,6 +117,38 @@ int database::dataSearch (int tmp)
     return id;
 }
 
+/*
+int database::dataSearch()
+{
+    int id = -1;
+
+    if (string::npos != temp.find_first_of("0123456789")) // Strengur af tölustöfum ?
+    {
+        int year = atoi(temp.c_str()); // String í int
+
+        for (int i = 0; i < tempName.size(); i++)
+        {
+            if (year == tempDOD[i] || year == tempDOB[i])
+            {
+                id = i;
+            }
+        }
+    }
+    else
+    {
+        for (int i = 0; i < tempName.size(); i++)
+        {
+            if (temp == tempName[i])
+            {
+                id = i;
+            }
+        }
+    }
+
+    return id;
+}
+*/
+
 /****************************************************************************
                         TEST FÖLL
  Þessi föll hjálpa okkur að prufa og prenta vectora. Við eyðum eða færum þessi
