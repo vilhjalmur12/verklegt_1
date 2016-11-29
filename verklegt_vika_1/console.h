@@ -7,6 +7,10 @@ using namespace std;
 
 class Console
 {
+<<<<<<< HEAD
+
+=======
+>>>>>>> 349820dde31e44c6b51edc7c6823075ae524df07
 public:
     Console();
     virtual ~Console();
@@ -22,12 +26,17 @@ public:
 
     //string str = stringChoice();
 
-    //void dataWriteError ();  // villi: error output fyrir database
+    void dataWriteError ();  // villi: error output fyrir database
+    void dataSearchNotFound ();
 
 
 protected:
 private:
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 349820dde31e44c6b51edc7c6823075ae524df07
 };
 
 #endif // CONSOLE_H
