@@ -11,12 +11,8 @@ public:
     Scientist();
     Scientist(string name, string sex, int YOB, int YOD);
     void pushScientist(string name, string sex, int DOB, int DOD);
-    
-    string getName();
-
 
     string getName() const
-
     {
         return _name;
     }
