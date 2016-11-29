@@ -1,10 +1,13 @@
 #include <iostream>
 #include "Console.h"
+#include "database.h"
 #include <string>
 using namespace std;
 
 int main()
 {
+    database data;
+    
     char choice_made;
 
     Console console;
