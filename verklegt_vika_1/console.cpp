@@ -140,11 +140,33 @@ void Console::viewDisplay()
     //displayFræðina();
 }
 
+<<<<<<< HEAD
 /*void Console::dataWriteError ()
+=======
+void Console::run()
+{
+    welcome();
+    
+    char arg;
+    
+    while (arg != 'q')
+    {
+        <#statements#>
+    }
+    
+    
+}
+/**********************************************************
+                    ERRORS
+ **********************************************************/
+
+void Console::dataWriteError ()
+>>>>>>> 5e0ed330bddd229a3c616b4d3d6f8c208f8a4a68
 {
     cout << "No database found!" << endl;
 }*/
 
+<<<<<<< HEAD
 void Console::sorting(string str)
 {
     if (str == "na")
@@ -192,3 +214,10 @@ void Console::sorting(string str)
         cout << "Enter valid command" << endl;
     }
 }
+=======
+void Console::dataSearchNotFound ()
+{
+    cout << "No items found" << endl;
+}
+/**********************************************************/
+>>>>>>> 5e0ed330bddd229a3c616b4d3d6f8c208f8a4a68

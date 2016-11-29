@@ -1,11 +1,14 @@
 #include "database.h"
+#include "console.h"
 #include <iostream>
+#include "scientist.h"
 #include <vector>
 #include <fstream>
 
 using namespace std;
 
 database::database () {}
+database::~database () {}
 
 /****************************************************************************
                 getData
@@ -31,6 +34,10 @@ void database::getData ()
     {
         dataInput >> name >> sex >> DOB >> DOD;
         
+        decryptData(name);
+        decryptData(sex);
+        decryptData(DOB);
+        decryptData(DOD);
         
         tempName.push_back(name);
         tempSex.push_back(sex);
@@ -62,9 +69,13 @@ void database::writeData ()
     for (int i = 0; i < tempName.size(); i++)
     {
         name = tempName[i];
+        encryptData(name);
         sex = tempSex[i];
+        encryptData(sex);
         DOB = tempDOB[i];
+        encryptData(DOB);
         DOD = tempDOD[i];
+        encryptData(DOD);
 
         dataOutput << name << "\t" << sex << "\t" << DOD << "\t" << DOB << endl;
     }
@@ -105,6 +116,38 @@ int database::dataSearch (int tmp)
     }
     return id;
 }
+
+/*
+int database::dataSearch()
+{
+    int id = -1;
+
+    if (string::npos != temp.find_first_of("0123456789")) // Strengur af tölustöfum ?
+    {
+        int year = atoi(temp.c_str()); // String í int
+
+        for (int i = 0; i < tempName.size(); i++)
+        {
+            if (year == tempDOD[i] || year == tempDOB[i])
+            {
+                id = i;
+            }
+        }
+    }
+    else
+    {
+        for (int i = 0; i < tempName.size(); i++)
+        {
+            if (temp == tempName[i])
+            {
+                id = i;
+            }
+        }
+    }
+
+    return id;
+}
+*/
 
 /****************************************************************************
                         TEST FÖLL
@@ -170,12 +213,27 @@ void database::pushData (vector<string> name, vector<string> gender, vector<int>
     tempDOD = DOD;
 }
 
-void database::pullData (vector<string> &name, vector<string> &gender, vector<int> &DOB, vector<int> &DOD)
+vector<Scientist> database::pullData ()
 {
-    name = tempName;
-    gender = tempSex;
-    DOB = tempDOB;
-    DOD = tempDOD;
+    vector<Scientist> A;
+    Scientist tmp;
+    string name, gender;
+    int DOB, DOD;
+    
+    for (int i = 0; i < 4; i++)
+    {
+        name = tempName[i];
+        gender = tempSex[i];
+        DOB = tempDOB[i];
+        DOD = tempDOD[i];
+        
+        tmp.pushScientist(name, gender, DOB, DOD);
+        
+        A.push_back(tmp);
+        
+    }
+    
+    return A;
 }
 
 /*************************************************************
