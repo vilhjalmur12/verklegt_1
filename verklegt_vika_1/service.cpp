@@ -193,7 +193,7 @@ void Service::sortByNameAscending()
 void Service::sortByNameDesending()
 {
     nameDescending nd;
-    sort(_scientists.begin(), _scientists.end(), na);
+    sort(_scientists.begin(), _scientists.end(), nd);
 }
 
 void Service::sortBySexF()
