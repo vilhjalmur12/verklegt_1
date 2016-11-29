@@ -135,7 +135,18 @@ void Service::sortByNameAscending()
     sort(_scientists.begin(), _scientists.end(), nameAscending);
 }
 
+struct birthAscending{
+    bool operator() (Scientist i, Scientist j) { return (i.getYearOfBirth()<j.getYearOfBirth());}
+};
 
+void sortByBirthAscending()
+{
+    sort(_scientists.begin(), _scientists.end()+4, birthAscending);
+}
+
+void sortByBirthDescending();
+void sortByDeathAscending();
+void sortByDeathDescending();
 
 
 
