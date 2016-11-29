@@ -70,20 +70,26 @@ void Console::choiceMade(char choice_made)
     {
         cout << "insert" << endl;;
 
+        cout << "Enter name: " << endl;
+        //cin << name;
+        cout << "Enter gender: " << endl;
+        //cin >> gender;
+        cout << "Enter year of birth: " << endl;
+        //cin >> yob;
+        cout << "Enter year of death (if it applys): " << endl;
+        //cin >> yod;
+
         /*
-         string name;
-         char sex;
-         int birthYear;
-         int deathYear;
-         cin >> name;
-         cin >> sex;
-         cin >> birthYear;
-         cin >> deathYear;
+        string name;
+        char sex;
+        int birthYear;
+        int deathYear;
+        cin >> name;
+        cin >> sex;
+        cin >> birthYear;
+        cin >> deathYear;
 
-         banna að sleppa nafni, kyni og fæðingarári en má sleppa dánarári (ekki allir dánir)?
-         ekki leyfa fæðingarári að vera á eftir dánarári
-
-         */
+        */
     }
 
     else
