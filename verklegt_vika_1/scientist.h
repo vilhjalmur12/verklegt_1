@@ -9,25 +9,28 @@ public:
     Scientist();
     Scientist(string name, string sex, int YOB, int YOD);
 
-    string getName()
+    string getName() const
     {
         return _name;
     }
 
-    string getSex()
+    string getSex() const
     {
         return _sex;
     }
 
-    int getYearOfBirth()
+    int getYearOfBirth() const
     {
         return _yearOfBirth;
     }
 
-    int getYearOfDeath()
+    int getYearOfDeath() const
     {
         return _yearOfDeath;
     }
+
+    //Prentar út allar uppl um vísindamann í eina línu (aðskilið af tab-keypress)
+    friend ostream& operator << (ostream& out, Scientist sc);
 
 
 private:

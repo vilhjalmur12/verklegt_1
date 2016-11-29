@@ -38,7 +38,7 @@ bool Service::addName(string name)
 
     //Athugar hvort takn seu til stadar sem ekki eru stafir
     //Tharf ad laga svo ad bil seu leyfd
-    bool containsDigits = !regex_match(name, regex("^[A-Za-z]+$"));
+    bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]+([A-Za-z]+[ ])*+$"));
 
     for(int i = 0; i < names.size(); i++)
     {
@@ -106,27 +106,36 @@ void Service::addPerson(string name, string sex, int birthYear, int deathYear)
 void Service::getScientists(string choice)
 {
     if (choice == "na")
-        sortByNameAscending(names, sexes, birthYears, deathYears);
+        sortByNameAscending();
     if (choice == "nd")
-        sortByNameDesending(names, sexes, birthYears, deathYears);
+        sortByNameDesending();
     if (choice == "gf")
-        sortBySexF(names, sexes, birthYears, deathYears);
+        sortBySexF();
     if (choice == "gm")
-        sortbySexM(names, sexes, birthYears, deathYears);
+        sortbySexM();
     if (choice == "ba")
-        sortByBirthAscending(names, sexes, birthYears, deathYears);
+        sortByBirthAscending();
     if (choice == "bd")
-        sortByBirthDescending(names, sexes, birthYears, deathYears);
+        sortByBirthDescending();
     if (choice == "da")
-        sortByDeathAscending(names, sexes, birthYears, deathYears);
+        sortByDeathAscending();
     if (choice == "dd")
-        sortByDeathDescending(names, sexes, birthYears, deathYears);
+        sortByDeathDescending();
 }
 
-void Service::switchPerson(index1, index2)
+struct nameAscending {
+  bool operator() (Scientist i, Scientist j) { return (i.getName()<j.getName());}
+};
+
+
+
+
+void Service::sortByNameAscending()
 {
-
+    sort(_scientists.begin(), _scientists.end(), nameAscending);
 }
+
+
 
 
 
