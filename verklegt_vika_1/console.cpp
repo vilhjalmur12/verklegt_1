@@ -49,18 +49,11 @@ string Console::stringChoice()
     return str;
 }
 
-
-void Console::choiceMade(char choice_made)
+void Console::choiceMade(char choice_made, string str)
 {
     if (choice_made == 'v')
     {
-        string str;
-        sorting_menu();
-        stringChoice();
-        cout << str << endl;
-
-        //displayFræðina();
-        //Setja hérna hvernig hægt er setja upp listann og kannski leita?
+        viewDisplay();
     }
 
     else if (choice_made == 'i')
@@ -125,4 +118,14 @@ void Console::sorting_menu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::viewDisplay()
+{
+    string str;
+    sorting_menu();
+    stringChoice();
+    cout << str << endl;
+
+    //displayFræðina();
+    //Setja hérna hvernig hægt er setja upp listann og kannski leita?
+}
 
