@@ -102,6 +102,8 @@ void Service::addPerson(string name, string sex, int birthYear, int deathYear)
 
     Scientist tempScientist(name, sex, birthYear, deathYear);
     _scientists.push_back(tempScientist);
+
+   // database.pushData(tempScientist);
 }
 
 vector<Scientist> Service::getScientists(string choice)
@@ -138,7 +140,18 @@ void Service::sortByNameAscending()
     sort(_scientists.begin(), _scientists.end(), na);
 }
 
+struct birthAscending{
+    bool operator() (Scientist i, Scientist j) { return (i.getYearOfBirth()<j.getYearOfBirth());}
+};
 
+void sortByBirthAscending()
+{
+    sort(_scientists.begin(), _scientists.end()+4, birthAscending);
+}
+
+void sortByBirthDescending();
+void sortByDeathAscending();
+void sortByDeathDescending();
 
 
 
