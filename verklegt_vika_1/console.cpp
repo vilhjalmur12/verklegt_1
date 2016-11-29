@@ -1,6 +1,7 @@
 #include "Console.h"
 #include <iostream>
 #include <string>
+#include <limits>
 
 
 Console::Console()
@@ -18,8 +19,16 @@ void Console::welcome()
     cout << "-----------------------------------------" << endl;
     cout << "|                                       |" << endl;
     cout << "|          Welcome to Database          |" << endl;
+    cout << "|        Press enter to continue        |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
+}
+
+void Console::toContinue()
+{
+
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+
 }
 
 void Console::viewOrInsert()
@@ -44,12 +53,12 @@ char Console::choice()
 string Console::stringChoice()
 {
     string str;
-    cin >> str;//getline(cin, str);
+    cin >> str;
 
     return str;
 }
 
-void Console::choiceMade(char choice_made, string str)
+void Console::choiceMade(char choice_made)
 {
     if (choice_made == 'v')
     {
