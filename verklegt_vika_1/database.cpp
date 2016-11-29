@@ -25,6 +25,8 @@ void database::getData ()
     for (int i = 0; i < 4; i++)
     {
         dataInput >> name >> sex >> DOB >> DOD;
+        
+        
         tempName.push_back(name);
         tempSex.push_back(sex);
         tempDOB.push_back(DOB);

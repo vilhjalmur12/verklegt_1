@@ -1,4 +1,5 @@
 #include "service.h"
+#include "database.h"
 #include <algorithm>
 #include <ctime>
 

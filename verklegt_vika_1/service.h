@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <regex>
+#include "database.h"
 #include <iostream>
 
 using namespace std;
