@@ -40,6 +40,7 @@ char Console::choice()
     return choice_made;
 }
 
+
 void Console::choiceMade(char choice_made)
 {
     if (choice_made == 'v')
@@ -74,7 +75,7 @@ void Console::choiceMade(char choice_made)
     {
         cout << "Please enter a valid *** " << endl;
     }
-
+}
 
 
     /*void Console::displayFræðinga()
@@ -94,9 +95,8 @@ void Console::choiceMade(char choice_made)
 
     }*/
 
-}
 
-void Console::
+void Console::sorting()
 {
     cout << "-----------------------------------------" << endl;
     cout << "|                Sorting                |" << endl;
@@ -112,3 +112,5 @@ void Console::
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
+
+
