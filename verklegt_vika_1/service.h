@@ -20,7 +20,7 @@ public:
     void addPerson(string name, string sex, int birthYear, int deathYear);
 
     //Fyrsta breyta er val um hvernig skuli raða
-    vector<Scientist> getScientists(string choice) const;
+    vector<Scientist> getScientists(string choice);
 
     void search(string query);
 
