@@ -145,17 +145,8 @@ void Console::viewDisplay()
     string str;
     sorting_menu();
 
-    //stringChoice();
-
-    //return str;
-
     //displayFræðina();
 }
-
-/*void Console::dataWriteError ()
-{
-    cout << "No database found!" << endl;
-}*/
 
 void Console::sorting(string str)
 {
