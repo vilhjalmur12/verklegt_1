@@ -32,7 +32,7 @@ string Service::fixString(string before)
     return before;
 }
 
-bool Service::addName(string name, vector<string> &names)
+bool Service::addName(string name)
 {
     name = fixString(name);
 
@@ -48,24 +48,21 @@ bool Service::addName(string name, vector<string> &names)
 
     if (containsDigits)
         return false;
-    else names.push_back(name);
 
     return true;
 }
 
-bool Service::addSex(string sex, vector<string> &sexes)
+bool Service::addSex(string sex)
 {
     sex = fixString(sex);
 
     if(sex != "Male" && sex != "Female")
         return false;
 
-    else sexes.push_back(sex);
-
     return true;
 }
 
-bool Service::addYears(int birthYear, int deathYear, vector<int> &birthYears, vector<int> &deathYears)
+bool Service::addYears(int birthYear, int deathYear)
 {
     //Pointer heldur utan um nuverandi ar -1900
     time_t t = time(NULL);
@@ -76,40 +73,37 @@ bool Service::addYears(int birthYear, int deathYear, vector<int> &birthYears, ve
     //pointer + 1900 == nuverandi ar
     if(birthYear > timePtr->tm_year + 1900 || deathYear > > timePtr->tm_year + 1900)
         return false;
-    else
-    {
-        birthYears.push_back(birthYear);
-        deathYears.push_back(birthYear);
-    }
+
     return true;
 }
 
 
 //Temp cout setningar fyrir villur, finna leið til að láta skilaboð berast til console
-void Service::addPerson(string name, string sex, int birthYear, int deathYear, vector<string> &names, vector<string> &sexes, vector<int> &birthYears, vector<int> &deathYears)
+void Service::addPerson(string name, string sex, int birthYear, int deathYear)
 {
-    // Fallið skilar false ef inntak inniheldur tölu eða er nú þegar til
+    // Fallið skilar false ef inntak inniheldur óþekktan staf eða er nú þegar til
     if(!addName(name, names))
     {
         cout << "Invalid Name!";
         return;
     }
-    // Skilar false ef eitthvað fer úrskeiðis
+
     if(!addSex(sex, sexes))
     {
         cout << "Invalid Sex!";
         return;
     }
-    // Skilar false ef eitthvað fere úrskeiðis
+
     if(!addYears(birthYear, deathYear, birthYears, deathYears))
     {
         cout << "Invalid Dates!";
         return;
     }
-
+    Scientist tempScientist(name, sex, birthYear, deathYear);
+    _scientists.push_back(tempScientist);
 }
 
-void Service::getScientists(string choice, vector<string> &names, vector<string> &sexes, vector<int> &birthYears, vector<int> &deathYears)
+void Service::getScientists(string choice)
 {
     if (choice == "na")
         sortByNameAscending(names, sexes, birthYears, deathYears);
@@ -129,12 +123,26 @@ void Service::getScientists(string choice, vector<string> &names, vector<string>
         sortByDeathDescending(names, sexes, birthYears, deathYears);
 }
 
-void Service::switchPerson(index1, index2, vector<string> &names, vector<string> &sexes, vector<int> &birthYears, vector<int> &deathYears)
+void Service::switchPerson(index1, index2)
+{
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Erum her med allan listann i mismunandi butum. Nofnin, kynid, o.s.frv...
-
-void Service::sortByNameAscending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears)
+/*
+void Service::sortByNameAscending()
 {
     // Skoda betur hjemme
     for(int i = 0; i < names.size(); i++)
@@ -147,7 +155,7 @@ void Service::sortByNameAscending(vector<string>& names, vector<string>& sexes, 
 
 }
 
-void Service::sortByNameDesending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears)
+void Service::sortByNameDesending()
 {
     for(int i = 0; i < names.size() - 1; i++)
     {
@@ -155,7 +163,7 @@ void Service::sortByNameDesending(vector<string>& names, vector<string>& sexes, 
     }
 }
 
-void Service::sortBySexF(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears)
+void Service::sortBySexF()
 {
     for(int i = 0; i < names.size(); i++)
     {
@@ -167,9 +175,4 @@ void Service::sortBySexF(vector<string>& names, vector<string>& sexes, vector<in
         }
     }
 }
-
-//void Service::sortbySexM(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
-//void Service::sortByBirthAscending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
-//void Service::sortByBirthDescending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
-//void Service::sortByDeathAscending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
-//void Service::sortByDeathDescending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
+*/
