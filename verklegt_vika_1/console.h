@@ -1,5 +1,5 @@
-#ifndef CONSOLE_HPP
-#define CONSOLE_HPP
+#ifndef CONSOLE_H
+#define CONSOLE_H
 
 #include <string>
 
@@ -7,7 +7,10 @@ using namespace std;
 
 class Console
 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 349820dde31e44c6b51edc7c6823075ae524df07
 public:
     Console();
     virtual ~Console();
@@ -30,7 +33,10 @@ public:
 protected:
 private:
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 349820dde31e44c6b51edc7c6823075ae524df07
 };
 
 #endif // CONSOLE_H
