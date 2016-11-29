@@ -31,7 +31,7 @@ string Service::fixString(string before)
     return before;
 }
 
-bool Service::addName(string name)
+bool Service::addName(string& name)
 {
     name = fixString(name);
 
@@ -56,13 +56,13 @@ bool Service::addSex(string& sex)
     if(sex == "M")
     {
         sex = "Male";
-        return true
+        return true;
     }
 
     if(sex == "F")
     {
         sex = "Female";
-        return true
+        return true;
     }
 
     return false;
