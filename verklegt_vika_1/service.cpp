@@ -109,7 +109,7 @@ void Service::addPerson(string name, string sex, int birthYear, int deathYear, v
 
 }
 
-void Service::sort(string choice, vector<string> &names, vector<string> &sexes, vector<int> &birthYears, vector<int> &deathYears)
+void Service::getScientists(string choice, vector<string> &names, vector<string> &sexes, vector<int> &birthYears, vector<int> &deathYears)
 {
     if (choice == "na")
         sortByNameAscending(names, sexes, birthYears, deathYears);
