@@ -44,12 +44,12 @@ char Console::choice()
 string Console::stringChoice()
 {
     string str;
-    cin >> str;//getline(cin, str);
+    cin >> str; //getline(cin, str);
 
     return str;
 }
 
-void Console::choiceMade(char choice_made, string str)
+void Console::choiceMade(char choice_made)
 {
     if (choice_made == 'v')
     {

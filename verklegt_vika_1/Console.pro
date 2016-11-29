@@ -10,7 +10,9 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    console.cpp
+    console.cpp \
+    database.cpp
 
 HEADERS += \
-    console.h
+    console.h \
+    database.h
