@@ -166,6 +166,19 @@ void database::pullData (vector<string> &name, vector<string> &gender, vector<in
     DOD = tempDOD;
 }
 
+void database::encryptData ()
+{
+    char encryptionKey = 'x';
+    for (int i = 0; i < n.size(); i++)
+    n[i] ^= encryptionKey;
+}
+
+void database::decryptData ()
+{
+    char decryptionKey = 'x';
+    for (int i = 0; i < n.size(); i++)
+    n[i] ^= decryptionKey;
+}
 
 
 
