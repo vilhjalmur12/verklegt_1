@@ -93,13 +93,13 @@ void Service::addPerson(string name, string sex, int birthYear, int deathYear, v
         cout << "Invalid Name!";
         return;
     }
-
+    // Skilar false ef eitthvað fer úrskeiðis
     if(!addSex(sex, sexes))
     {
         cout << "Invalid Sex!";
         return;
     }
-
+    // Skilar false ef eitthvað fere úrskeiðis
     if(!addYears(birthYear, deathYear, birthYears, deathYears))
     {
         cout << "Invalid Dates!";
@@ -107,6 +107,28 @@ void Service::addPerson(string name, string sex, int birthYear, int deathYear, v
     }
 
 }
+
+void Service::sort(string choice, vector<string> &names, vector<string> &sexes, vector<int> &birthYears, vector<int> &deathYears)
+{
+    if (choice == "n a")
+        sortByNameAscending(names, sexes, birthYears, deathYears);
+    if (choice == "n d")
+        sortByNameDesending(names, sexes, birthYears, deathYears);
+    if (choice == "s f")
+        sortBySexF(names, sexes, birthYears, deathYears);
+    if (choice == "s m")
+        sortbySexM(names, sexes, birthYears, deathYears);
+    if (choice == "b a")
+        sortByBirthAscending(names, sexes, birthYears, deathYears);
+    if (choice == "b d")
+        sortByBirthDescending(names, sexes, birthYears, deathYears);
+    if (choice == "d a")
+        sortByDeathAscending(names, sexes, birthYears, deathYears);
+    if (choice == "d d")
+        sortByDeathDescending(names, sexes, birthYears, deathYears);
+}
+
+
 
 // Erum her med allan listann i mismunandi butum. Nofnin, kynid, o.s.frv...
 
