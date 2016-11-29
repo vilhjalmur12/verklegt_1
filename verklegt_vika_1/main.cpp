@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Console.h"
+#include "database.h"
 
 using namespace std;
 
