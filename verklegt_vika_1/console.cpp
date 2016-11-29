@@ -138,3 +138,8 @@ void Console::viewDisplay()
     //Setja hérna hvernig hægt er setja upp listann og kannski leita?
 }
 
+void Console::dataWriteError ()
+{
+    cout << "No database found!" << endl;
+}
+

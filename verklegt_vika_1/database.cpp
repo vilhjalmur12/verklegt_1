@@ -25,6 +25,8 @@ void database::getData ()
     for (int i = 0; i < 4; i++)
     {
         dataInput >> name >> sex >> DOB >> DOD;
+        
+        
         tempName.push_back(name);
         tempSex.push_back(sex);
         tempDOB.push_back(DOB);
@@ -166,18 +168,35 @@ void database::pullData (vector<string> &name, vector<string> &gender, vector<in
     DOD = tempDOD;
 }
 
-void database::encryptData ()
+/*************************************************************
+                    Encryptions
+ 
+ *************************************************************/
+
+void database::encryptData (string &n)
 {
     char encryptionKey = 'x';
     for (int i = 0; i < n.size(); i++)
     n[i] ^= encryptionKey;
 }
 
-void database::decryptData ()
+void database::encryptData (int &n)
+{
+    char encryptionKey = 'x';
+        n ^= encryptionKey;
+}
+
+void database::decryptData (string &n)
 {
     char decryptionKey = 'x';
     for (int i = 0; i < n.size(); i++)
     n[i] ^= decryptionKey;
+}
+
+void database::decryptData (int &n)
+{
+    char decryptionKey = 'x';
+        n ^= decryptionKey;
 }
 
 
