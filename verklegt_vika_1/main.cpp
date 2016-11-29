@@ -5,10 +5,13 @@ using namespace std;
 
 int main()
 {
-    //char x;
+    char choice_made;
+
     Console console;
     console.welcome();
     console.viewOrInsert();
+    console.choice();
+    console.choiceMade(choice_made);
     //console.displayFræðinga();
 
     return 0;

@@ -12,7 +12,8 @@ public:
     virtual ~Console();
     void welcome(); //print out welcome note
     void viewOrInsert(); //print out choice menu for viewing or inserting
-    //char choice(char x);
+    char choice();
+    void choiceMade(char choice_made);
     //void displayFræðinga();
 private:
 };

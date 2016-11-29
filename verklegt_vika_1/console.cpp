@@ -14,7 +14,6 @@ Console::~Console()
 
 void Console::welcome()
 {
-
     cout << "-----------------------------------------" << endl;
     cout << "|                                       |" << endl;
     cout << "|          Welcome to Database          |" << endl;
@@ -24,7 +23,6 @@ void Console::welcome()
 
 void Console::viewOrInsert()
 {
-
     cout << "-----------------------------------------" << endl;
     cout << "|                                       |" << endl;
     cout << "|           Choose procedure:           |" << endl;
@@ -32,21 +30,29 @@ void Console::viewOrInsert()
     cout << "|          i - for insertion            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
+}
 
-    char x = ' ';
-    cin >> x;
+char Console::choice()
+{
+    char choice_made;
+    cin >> choice_made;
 
-    if (x == 'v')
+    return choice_made;
+}
+
+void Console::choiceMade(char choice_made)
+{
+    if (choice_made == 'v')
     {
-        cout << "view";
+        cout << "view" << endl;;
 
         //displayFræðina();
         //Setja hérna hvernig hægt er setja upp listann og kannski leita?
     }
 
-    else if (x == 'i')
+    else if (choice_made == 'i')
     {
-        cout << "insert";
+        cout << "insert" << endl;;
 
         /*
          string name;
@@ -88,15 +94,21 @@ void Console::viewOrInsert()
 
     }*/
 
+}
 
-
-
-/*char Console::choice(char x)
+void Console::
 {
-    cin >> x;
-
-    cout << x;
-
-}*/
-
+    cout << "-----------------------------------------" << endl;
+    cout << "|                Sorting                |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|     Name ascending - na               |" << endl;
+    cout << "|     Name descending - nd              |" << endl;
+    cout << "|     Gender female - gf                |" << endl;
+    cout << "|     Gender male - gm                  |" << endl;
+    cout << "|     Birth year ascending - ba         |" << endl;
+    cout << "|     Birth year descending - bd        |" << endl;
+    cout << "|     Death year ascending - da         |" << endl;
+    cout << "|     Death year descending - dd        |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
 }
