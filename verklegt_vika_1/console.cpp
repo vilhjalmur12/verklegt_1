@@ -138,8 +138,30 @@ void Console::viewDisplay()
     //Setja hérna hvernig hægt er setja upp listann og kannski leita?
 }
 
+void Console::run()
+{
+    welcome();
+    
+    char arg;
+    
+    while (arg != 'q')
+    {
+        <#statements#>
+    }
+    
+    
+}
+/**********************************************************
+                    ERRORS
+ **********************************************************/
+
 void Console::dataWriteError ()
 {
     cout << "No database found!" << endl;
 }
 
+void Console::dataSearchNotFound ()
+{
+    cout << "No items found" << endl;
+}
+/**********************************************************/
