@@ -5,10 +5,9 @@
 
 using namespace std;
 
-Service::Service()
-{
+Service::Service() { }
 
-}
+Service::~Service(){ }
 
 //Stillir fyrsta staf hvers ords storan og hina litla
 string Service::fixString(string before)

@@ -3,10 +3,8 @@
 
 using namespace std;
 
-Scientist::Scientist()
-{
+Scientist::Scientist() { }
 
-}
 
 Scientist::Scientist(string name, string sex, int YOB, int YOD)
 {
