@@ -68,7 +68,7 @@ void database::writeData ()
         exit(1);
     }
     
-    for (int i = 0; i < tempName.size(); i++)
+    for (unsigned int i = 0; i < tempName.size(); i++)
     {
         name = tempName[i];
         encryptData(name);
@@ -95,7 +95,7 @@ int database::dataSearch (string tmp)
     int id = 0;
 
 
-    for (int i = 0; i < tempName.size(); i++)
+    for (unsigned int i = 0; i < tempName.size(); i++)
     {
         if (tmp == tempName[i])
         {
@@ -109,7 +109,7 @@ int database::dataSearch (int tmp)
 {
     int id = 100;
 
-    for (int i = 0; i < tempName.size(); i++)
+    for (unsigned int i = 0; i < tempName.size(); i++)
     {
         if (tmp == tempDOD[i] || tmp == tempDOB[i])
         {
@@ -188,7 +188,7 @@ void database::testData ()
 void database::dataPrint ()
 {
     cout << "You selected\n";
-    for (int i = 0; i < tempName.size(); i++)
+    for (unsigned int i = 0; i < tempName.size(); i++)
     {
         cout << tempName[i] << "\t" << tempSex[i] << "\t" << tempDOB[i] << "\t" << tempDOD[i] << endl;
     }
@@ -247,7 +247,7 @@ vector<Scientist> database::pullData ()
 void database::encryptData (string &n)
 {
     char encryptionKey = 'x';
-    for (int i = 0; i < n.size(); i++)
+    for (unsigned int i = 0; i < n.size(); i++)
     n[i] ^= encryptionKey;
 }
 
@@ -260,7 +260,7 @@ void database::encryptData (int &n)
 void database::decryptData (string &n)
 {
     char decryptionKey = 'x';
-    for (int i = 0; i < n.size(); i++)
+    for (unsigned int i = 0; i < n.size(); i++)
     n[i] ^= decryptionKey;
 }
 

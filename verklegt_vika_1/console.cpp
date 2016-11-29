@@ -37,6 +37,7 @@ void Console::viewOrInsert()
     cout << "|           Choose procedure:           |" << endl;
     cout << "|            v - for viewing            |" << endl;
     cout << "|           i - for insertion           |" << endl;
+    cout << "|           s - for searching           |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
@@ -70,20 +71,31 @@ void Console::choiceMade(char choice_made)
     {
         cout << "insert" << endl;;
 
+        cout << "Enter name: " << endl;
+        //cin << name;
+        cout << "Enter gender: " << endl;
+        //cin >> gender;
+        cout << "Enter year of birth: " << endl;
+        //cin >> yob;
+        cout << "Enter year of death (if it applys): " << endl;
+        //cin >> yod;
+
         /*
-         string name;
-         char sex;
-         int birthYear;
-         int deathYear;
-         cin >> name;
-         cin >> sex;
-         cin >> birthYear;
-         cin >> deathYear;
+        string name;
+        char sex;
+        int birthYear;
+        int deathYear;
+        cin >> name;
+        cin >> sex;
+        cin >> birthYear;
+        cin >> deathYear;
 
-         banna að sleppa nafni, kyni og fæðingarári en má sleppa dánarári (ekki allir dánir)?
-         ekki leyfa fæðingarári að vera á eftir dánarári
+        */
+    }
 
-         */
+    else if (choice_made == 's')
+    {
+        cout << "Search" << endl;
     }
 
     else
@@ -133,17 +145,8 @@ void Console::viewDisplay()
     string str;
     sorting_menu();
 
-    //stringChoice();
-
-    //return str;
-
     //displayFræðina();
 }
-
-/*void Console::dataWriteError ()
-{
-    cout << "No database found!" << endl;
-}*/
 
 void Console::sorting(string str)
 {
