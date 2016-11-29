@@ -106,29 +106,34 @@ void Service::addPerson(string name, string sex, int birthYear, int deathYear, v
         return;
     }
 
+
+
 }
 
 void Service::sort(string choice, vector<string> &names, vector<string> &sexes, vector<int> &birthYears, vector<int> &deathYears)
 {
-    if (choice == "n a")
+    if (choice == "na")
         sortByNameAscending(names, sexes, birthYears, deathYears);
-    if (choice == "n d")
+    if (choice == "nd")
         sortByNameDesending(names, sexes, birthYears, deathYears);
-    if (choice == "s f")
+    if (choice == "gf")
         sortBySexF(names, sexes, birthYears, deathYears);
-    if (choice == "s m")
+    if (choice == "gm")
         sortbySexM(names, sexes, birthYears, deathYears);
-    if (choice == "b a")
+    if (choice == "ba")
         sortByBirthAscending(names, sexes, birthYears, deathYears);
-    if (choice == "b d")
+    if (choice == "bd")
         sortByBirthDescending(names, sexes, birthYears, deathYears);
-    if (choice == "d a")
+    if (choice == "da")
         sortByDeathAscending(names, sexes, birthYears, deathYears);
-    if (choice == "d d")
+    if (choice == "dd")
         sortByDeathDescending(names, sexes, birthYears, deathYears);
 }
 
+void Service::switchPerson(int index1, int index2, vector<string> &names, vector<string> &sexes, vector<int> &birthYears, vector<int> &deathYears)
+{
 
+}
 
 // Erum her med allan listann i mismunandi butum. Nofnin, kynid, o.s.frv...
 
@@ -145,7 +150,13 @@ void Service::sortByNameAscending(vector<string>& names, vector<string>& sexes, 
 
 }
 
-//void Service::sortByNameDesending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
+void Service::sortByNameDesending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears)
+{
+    for(int i = 0; i < names.size() - 1; i++)
+    {
+
+    }
+}
 
 void Service::sortBySexF(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears)
 {

@@ -28,6 +28,8 @@ private:
     bool addSex(string sex, vector<string>& sexes);
     bool addYears(int birthYear, int deathYear, vector<int>& birthYears, vector<int>& deathYears);
 
+    void switchPerson(int index1, int index2, vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
+
     void sortByNameAscending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
     void sortByNameDesending(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
     void sortBySexF(vector<string>& names, vector<string>& sexes, vector<int>& birthYears, vector<int>& deathYears);
