@@ -44,7 +44,7 @@ char Console::choice()
 string Console::stringChoice()
 {
     string str;
-    getline(cin, str);
+    cin >> str;//getline(cin, str);
 
     return str;
 }
