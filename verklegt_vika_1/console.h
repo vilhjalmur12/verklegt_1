@@ -12,9 +12,10 @@ class Console
         void welcome(); //print out welcome note
         void viewOrInsert(); //print out choice menu for viewing or inserting
         char choice(); //make choice
-        void choiceMade(char choice_made);
-        void sorting_menu();
-        string stringChoice();
+        void choiceMade(char choice_made, string str);
+        void sorting_menu(); //print out the sorting menu
+        string stringChoice(); //here you choose what kind of sorting you want to do
+        void viewDisplay(); //prints out the list and sorting
 
     protected:
     private:
