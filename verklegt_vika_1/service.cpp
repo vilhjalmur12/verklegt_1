@@ -102,6 +102,8 @@ void Service::addPerson(string name, string sex, int birthYear, int deathYear)
 
     Scientist tempScientist(name, sex, birthYear, deathYear);
     _scientists.push_back(tempScientist);
+
+   // database.pushData(tempScientist);
 }
 
 vector<Scientist> Service::getScientists(string choice)
