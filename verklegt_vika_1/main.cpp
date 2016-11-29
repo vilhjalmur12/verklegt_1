@@ -2,6 +2,7 @@
 #include "Console.h"
 #include "database.h"
 #include <string>
+#include "database.h"
 using namespace std;
 
 int main()

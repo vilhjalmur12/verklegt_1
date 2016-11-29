@@ -63,6 +63,7 @@ void Console::choiceMade(char choice_made)
     if (choice_made == 'v')
     {
         viewDisplay();
+
     }
 
     else if (choice_made == 'i')
