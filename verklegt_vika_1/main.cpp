@@ -1,8 +1,15 @@
-#include <QCoreApplication>
-/// Gedveikt, segir Sandra Daddaraaaaaa
-int main(int argc, char *argv[])
-{
-    QCoreApplication a(argc, argv);
+#include <iostream>
+#include "Console.h"
 
-    return a.exec();
+using namespace std;
+
+int main()
+{
+    //char x;
+    Console console;
+    console.welcome();
+    console.viewOrInsert();
+    //console.displayFræðinga();
+
+    return 0;
 }
