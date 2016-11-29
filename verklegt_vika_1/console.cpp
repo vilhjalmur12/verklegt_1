@@ -32,11 +32,21 @@ void Console::viewOrInsert()
     cout << "|          i - for insertion            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
+}
 
-    char x = ' ';
-    cin >> x;
+char Console::choice()
+{
 
-    if (x == 'v')
+    char choice_made;
+    cin >> choice_made;
+
+    return choice_made;
+
+}
+
+void Console::choiceMade(char choice_made)
+{
+    if (choice_made == 'v')
     {
         cout << "view";
 
@@ -44,7 +54,7 @@ void Console::viewOrInsert()
         //Setja hérna hvernig hægt er setja upp listann og kannski leita?
     }
 
-    else if (x == 'i')
+    else if (choice_made == 'i')
     {
         cout << "insert";
 
@@ -68,7 +78,7 @@ void Console::viewOrInsert()
     {
         cout << "Please enter a valid *** " << endl;
     }
-
+}
 
 
     /*void Console::displayFræðinga()
@@ -99,4 +109,4 @@ void Console::viewOrInsert()
 
 }*/
 
-}
+
