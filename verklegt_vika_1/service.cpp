@@ -93,21 +93,20 @@ void Service::addPerson(string name, string sex, int birthYear, int deathYear, v
         cout << "Invalid Name!";
         return;
     }
+
     // Skilar false ef eitthvað fer úrskeiðis
     if(!addSex(sex, sexes))
     {
         cout << "Invalid Sex!";
         return;
     }
+
     // Skilar false ef eitthvað fere úrskeiðis
     if(!addYears(birthYear, deathYear, birthYears, deathYears))
     {
         cout << "Invalid Dates!";
         return;
     }
-
-
-
 }
 
 void Service::sort(string choice, vector<string> &names, vector<string> &sexes, vector<int> &birthYears, vector<int> &deathYears)
