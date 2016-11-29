@@ -11,8 +11,10 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     service.cpp \
-    database.cpp
+    database.cpp \
+    console.cpp
 
 HEADERS += \
     service.h \
-    database.h
+    database.h \
+    console.h
