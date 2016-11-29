@@ -37,6 +37,7 @@ void Console::viewOrInsert()
     cout << "|           Choose procedure:           |" << endl;
     cout << "|            v - for viewing            |" << endl;
     cout << "|           i - for insertion           |" << endl;
+    cout << "|           s - for searching           |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
@@ -90,6 +91,11 @@ void Console::choiceMade(char choice_made)
         cin >> deathYear;
 
         */
+    }
+
+    else if (choice_made == 's')
+    {
+        cout << "Search" << endl;
     }
 
     else
