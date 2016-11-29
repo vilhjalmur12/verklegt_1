@@ -206,13 +206,13 @@ void Console::sorting(string str)
 
 
 }
-
+*/
 
 /**********************************************************
                     ERRORS
  **********************************************************/
 
-/*void Console::dataWriteError ()
+void Console::dataWriteError ()
 {
     cout << "No database found!" << endl;
 }
