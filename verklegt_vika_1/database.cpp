@@ -60,10 +60,44 @@ void database::writeData ()
     dataOutput.close();
 }
 
+/****************************************************************************
+                        dataSearch
+    Leitarvél sem tekur inn streng sem leitað er í nafna vector og skilar
+    út í hvaða staki hann var. Hægt að nota tölu sem identifier í hina vectora
+ ****************************************************************************/
+int database::dataSearch (string tmp)
+{
+    int id = 100;
+
+
+    for (int i = 0; i < tempName.size(); i++)
+    {
+        if (tmp == tempName[i])
+        {
+            id = i;
+        }
+    }
+    return id;
+}
+
+int database::dataSearch (int tmp)
+{
+    int id = 100;
+
+    for (int i = 0; i < tempName.size(); i++)
+    {
+        if (tmp == tempDOD[i] || tmp == tempDOB[i])
+        {
+            id = i;
+        }
+    }
+    return id;
+}
 
 /****************************************************************************
                         TEST FÖLL
- Þessi föll hjálpa okkur að prufa og prenta vectora
+ Þessi föll hjálpa okkur að prufa og prenta vectora. Við eyðum eða færum þessi
+ föll út úr klasanum fyrir skil.
     testData
     dataPrint
  ****************************************************************************/
@@ -101,4 +135,11 @@ void database::dataPrint ()
     {
         cout << tempName[i] << "\t" << tempSex[i] << "\t" << tempDOB[i] << "\t" << tempDOD[i] << endl;
     }
+}
+
+void database::printSearch (int id)
+{
+    cout << "fannst eftirfarandi: \n";
+    cout << tempName[id] << "\t" << tempSex[id] << "\t" << tempDOB[id] << "\t" << tempDOD[id] << endl;
+
 }

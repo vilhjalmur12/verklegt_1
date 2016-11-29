@@ -19,10 +19,13 @@ private:
 public:
     void getData ();
     void writeData ();
+    int dataSearch (string tmp);
+    int dataSearch (int tmp);
 
-    // tvö prufuföll
+    // tvö prufuföll - við skulum sjá til þess að færa þessi út úr klasanum fyrir skil
     void testData ();
     void dataPrint ();
+    void printSearch (int id);
 
 };
 
