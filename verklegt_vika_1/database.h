@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <vector>
+#include "console.h"
 #include <fstream>
 
 using namespace std;
@@ -15,6 +16,8 @@ private:
     vector<string> tempSex;
     vector<int> tempDOB;
     vector<int> tempDOD;
+    
+    Console output;
 
 public:
     database ();

@@ -16,6 +16,7 @@ class Console
         void sorting_menu(); //print out the sorting menu
         string stringChoice(); //here you choose what kind of sorting you want to do
         void viewDisplay(); //prints out the list and sorting
+        void dataWriteError ();  // villi: error output fyrir database
 
     protected:
     private:
