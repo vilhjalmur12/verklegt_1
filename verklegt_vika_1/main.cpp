@@ -1,14 +1,15 @@
 #include <iostream>
-#include "Console.h"
-#include "database.h"
+#include "console.h"
+
 #include <string>
 using namespace std;
 
 int main()
 {
-    database data;
-    
+    //database data;
+
     char choice_made;
+    //string str;
 
     Console console;
     console.welcome();
@@ -17,6 +18,7 @@ int main()
     choice_made = console.choice(); //her er gildid sem segir okkur hvad vid viljum gera med char
     console.choiceMade(choice_made);
 
+    //console.sorting(str);
 
 
     // TODO:

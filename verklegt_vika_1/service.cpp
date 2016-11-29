@@ -110,7 +110,7 @@ vector<Scientist> Service::getScientists(string choice)
 {
     if (choice == "na")
         sortByNameAscending();
-    /*
+/*
     if (choice == "nd")
         sortByNameDesending();
     if (choice == "gf")
@@ -124,8 +124,8 @@ vector<Scientist> Service::getScientists(string choice)
     if (choice == "da")
         sortByDeathAscending();
     if (choice == "dd")
-        sortByDeathDescending();
-    */
+        sortByDeathDescending();*/
+
 
     return _scientists;
 }
@@ -144,14 +144,41 @@ struct birthAscending{
     bool operator() (Scientist i, Scientist j) { return (i.getYearOfBirth()<j.getYearOfBirth());}
 };
 
-void sortByBirthAscending()
+void Service::sortByBirthAscending()
 {
-    sort(_scientists.begin(), _scientists.end()+4, birthAscending);
+    birthAscending ba;
+    sort(_scientists.begin(), _scientists.end(), ba);
 }
 
-void sortByBirthDescending();
-void sortByDeathAscending();
-void sortByDeathDescending();
+struct birthDescending{
+    bool operator() (Scientist i, Scientist j) { return (i.getYearOfBirth()>j.getYearOfBirth());}
+};
+
+void Service::sortByBirthDescending()
+{
+    birthDescending bd;
+    sort(_scientists.begin(), _scientists.end(), bd);
+}
+
+struct deathAscending{
+    bool operator() (Scientist i, Scientist j) { return (i.getYearOfDeath()<j.getYearOfDeath());}
+};
+
+void Service::sortByDeathAscending()
+{
+    deathAscending da;
+    sort(_scientists.begin(), _scientists.end(), da);
+}
+
+struct deathDescending{
+    bool operator() (Scientist i, Scientist j) { return (i.getYearOfDeath()>j.getYearOfDeath());}
+};
+
+void Service::sortByDeathDescending()
+{
+    deathDescending de;
+    sort(_scientists.begin(), _scientists.end(), de);
+}
 
 
 
