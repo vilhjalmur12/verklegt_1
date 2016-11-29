@@ -112,9 +112,8 @@ void Service::addPerson(string name, string sex, int birthYear, int deathYear)
    // database.pushData(tempScientist);
 }
 
-vector<Scientist> Service::getScientists(string choice)
+vector<Scientist> Service::getScientists (string choice)
 {
-    
     if (choice == "na")
         sortByNameAscending();
     if (choice == "nd")
