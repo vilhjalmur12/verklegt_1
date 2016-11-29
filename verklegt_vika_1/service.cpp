@@ -49,20 +49,23 @@ bool Service::addName(string name)
     return true;
 }
 
-bool Service::addSex(string sex)
+bool Service::addSex(string& sex)
 {
     sex = fixString(sex);
 
     if(sex == "M")
+    {
         sex = "Male";
+        return true
+    }
 
     if(sex == "F")
+    {
         sex = "Female";
+        return true
+    }
 
-    if(sex != "Male" && sex != "Female")
-        return false;
-
-    return true;
+    return false;
 }
 
 bool Service::addYears(int birthYear, int deathYear)
