@@ -28,7 +28,7 @@ private:
     vector<Scientist> _scientists;
 
     string fixString(string before);
-    bool addName(string name);
+    bool addName(string& name);
     bool addSex(string& sex);
     bool addYears(int birthYear, int deathYear);
 

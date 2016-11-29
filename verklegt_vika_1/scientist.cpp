@@ -26,6 +26,7 @@ void Scientist::pushScientist(string name, string sex, int DOB, int DOD)
 }
     
     
+
  ostream& operator << (ostream& out, Scientist sc)
  {
     out << sc.getName() << "/t" << sc.getSex() << "/t" << sc.getYearOfBirth() << "/t" << sc.getYearOfDeath();

@@ -31,7 +31,7 @@ string Service::fixString(string before)
     return before;
 }
 
-bool Service::addName(string name)
+bool Service::addName(string& name)
 {
     name = fixString(name);
 
