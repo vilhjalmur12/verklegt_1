@@ -1,19 +1,24 @@
 #include <iostream>
-#include "Console.h"
+#include "console.h"
+
 #include <string>
 using namespace std;
 
 int main()
 {
+    //database data;
+
     char choice_made;
-    string str;
+    //string str;
 
     Console console;
-    console.welcome(); //spurning um ad yta a enter til ad fa naesta glugga?
+    console.welcome();
+    console.toContinue(); //naudsyn ad yta a enter til ad fa naestu valmynd
     console.viewOrInsert(); //her kemur valmynd um hvort vid viljum skoda lista eda setja inn i hann
     choice_made = console.choice(); //her er gildid sem segir okkur hvad vid viljum gera med char
     console.choiceMade(choice_made);
 
+    //console.sorting(str);
 
 
     // TODO:

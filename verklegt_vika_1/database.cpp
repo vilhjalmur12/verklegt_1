@@ -21,10 +21,17 @@ void database::getData ()
     ifstream dataInput;
 
     dataInput.open("data.db");
+    if (dataInput.fail())
+    {
+        output.dataWriteError();
+        exit(1);
+    }
 
     for (int i = 0; i < 4; i++)
     {
         dataInput >> name >> sex >> DOB >> DOD;
+        
+        
         tempName.push_back(name);
         tempSex.push_back(sex);
         tempDOB.push_back(DOB);
@@ -46,7 +53,12 @@ void database::writeData ()
 
     ofstream dataOutput;
     dataOutput.open("data.db");
-
+    if (dataOutput.fail())
+    {
+        output.dataWriteError();
+        exit(1);
+    }
+    
     for (int i = 0; i < tempName.size(); i++)
     {
         name = tempName[i];
@@ -67,14 +79,14 @@ void database::writeData ()
  ****************************************************************************/
 int database::dataSearch (string tmp)
 {
-    int id = 100;
+    int id = 0;
 
 
     for (int i = 0; i < tempName.size(); i++)
     {
         if (tmp == tempName[i])
         {
-            id = i;
+            id = 0;
         }
     }
     return id;
@@ -166,18 +178,35 @@ void database::pullData (vector<string> &name, vector<string> &gender, vector<in
     DOD = tempDOD;
 }
 
-void database::encryptData ()
+/*************************************************************
+                    Encryptions
+ 
+ *************************************************************/
+
+void database::encryptData (string &n)
 {
     char encryptionKey = 'x';
     for (int i = 0; i < n.size(); i++)
     n[i] ^= encryptionKey;
 }
 
-void database::decryptData ()
+void database::encryptData (int &n)
+{
+    char encryptionKey = 'x';
+        n ^= encryptionKey;
+}
+
+void database::decryptData (string &n)
 {
     char decryptionKey = 'x';
     for (int i = 0; i < n.size(); i++)
     n[i] ^= decryptionKey;
+}
+
+void database::decryptData (int &n)
+{
+    char decryptionKey = 'x';
+        n ^= decryptionKey;
 }
 
 
