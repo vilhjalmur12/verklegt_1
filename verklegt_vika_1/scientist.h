@@ -3,6 +3,8 @@
 
 #include <string>
 
+using namespace std;
+
 class Scientist
 {
 public:
@@ -32,7 +34,7 @@ public:
 
 private:
     string _name;
-    sring _sex;
+    string _sex;
     int _yearOfBirth;
     int _yearOfDeath;
 };

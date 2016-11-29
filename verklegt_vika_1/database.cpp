@@ -21,6 +21,11 @@ void database::getData ()
     ifstream dataInput;
 
     dataInput.open("data.db");
+    if (dataInput.fail())
+    {
+        output.dataWriteError();
+        exit(1);
+    }
 
     for (int i = 0; i < 4; i++)
     {
@@ -48,7 +53,12 @@ void database::writeData ()
 
     ofstream dataOutput;
     dataOutput.open("data.db");
-
+    if (dataOutput.fail())
+    {
+        output.dataWriteError();
+        exit(1);
+    }
+    
     for (int i = 0; i < tempName.size(); i++)
     {
         name = tempName[i];
@@ -69,14 +79,14 @@ void database::writeData ()
  ****************************************************************************/
 int database::dataSearch (string tmp)
 {
-    int id = 100;
+    int id = 0;
 
 
     for (int i = 0; i < tempName.size(); i++)
     {
         if (tmp == tempName[i])
         {
-            id = i;
+            id = 0;
         }
     }
     return id;
