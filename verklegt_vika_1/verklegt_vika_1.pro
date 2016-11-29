@@ -12,9 +12,11 @@ TEMPLATE = app
 SOURCES += main.cpp \
     service.cpp \
     database.cpp \
-    console.cpp
+    console.cpp \
+    scientists.cpp
 
 HEADERS += \
     service.h \
     database.h \
-    console.h
+    console.h \
+    scientists.h
