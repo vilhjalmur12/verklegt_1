@@ -110,7 +110,6 @@ vector<Scientist> Service::getScientists(string choice)
 {
     if (choice == "na")
         sortByNameAscending();
-    /*
     if (choice == "nd")
         sortByNameDesending();
     if (choice == "gf")
@@ -125,7 +124,6 @@ vector<Scientist> Service::getScientists(string choice)
         sortByDeathAscending();
     if (choice == "dd")
         sortByDeathDescending();
-    */
 
     return _scientists;
 }
@@ -146,58 +144,10 @@ struct birthAscending{
 
 void sortByBirthAscending()
 {
-    sort(_scientists.begin(), _scientists.end()+4, birthAscending);
+    birthAscending ba;
+    sort(_scientists.begin(), _scientists.end()+4, ba);
 }
 
 void sortByBirthDescending();
 void sortByDeathAscending();
 void sortByDeathDescending();
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Erum her med allan listann i mismunandi butum. Nofnin, kynid, o.s.frv...
-/*
-void Service::sortByNameAscending()
-{
-    // Skoda betur hjemme
-    for(int i = 0; i < names.size(); i++)
-    {
-        //if(tolower(names[i])<tolower(names[i+1]))
-        //{
-
-        //}
-    }
-
-}
-
-void Service::sortByNameDesending()
-{
-    for(int i = 0; i < names.size() - 1; i++)
-    {
-
-    }
-}
-
-void Service::sortBySexF()
-{
-    for(int i = 0; i < names.size(); i++)
-    {
-        if(sexes[i] == "f" || sexes[i] == "F")
-        {
-            string tmp = sexes[i];
-            sexes[i] = sexes[i + 1];
-            sexes[i+1] = tmp;
-        }
-    }
-}
-*/
