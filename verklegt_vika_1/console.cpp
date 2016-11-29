@@ -1,5 +1,6 @@
 #include "Console.h"
 #include <iostream>
+#include <string>
 
 
 Console::Console()
@@ -40,12 +41,23 @@ char Console::choice()
     return choice_made;
 }
 
+string Console::stringChoice()
+{
+    string str;
+    getline(cin, str);
+
+    return str;
+}
+
 
 void Console::choiceMade(char choice_made)
 {
     if (choice_made == 'v')
     {
-        cout << "view" << endl;;
+        string str;
+        sorting_menu();
+        stringChoice();
+        cout << str << endl;
 
         //displayFræðina();
         //Setja hérna hvernig hægt er setja upp listann og kannski leita?
@@ -96,19 +108,19 @@ void Console::choiceMade(char choice_made)
     }*/
 
 
-void Console::sorting()
+void Console::sorting_menu()
 {
     cout << "-----------------------------------------" << endl;
-    cout << "|                Sorting                |" << endl;
+    cout << "| In what order would you like to view? |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|     Name ascending - na               |" << endl;
-    cout << "|     Name descending - nd              |" << endl;
-    cout << "|     Gender female - gf                |" << endl;
-    cout << "|     Gender male - gm                  |" << endl;
-    cout << "|     Birth year ascending - ba         |" << endl;
-    cout << "|     Birth year descending - bd        |" << endl;
-    cout << "|     Death year ascending - da         |" << endl;
-    cout << "|     Death year descending - dd        |" << endl;
+    cout << "|     Name, ascending: na               |" << endl;
+    cout << "|     Name, descending: nd              |" << endl;
+    cout << "|     Gender, female: gf                |" << endl;
+    cout << "|     Gender, male: gm                  |" << endl;
+    cout << "|     Birth year, ascending: ba         |" << endl;
+    cout << "|     Birth year, descending: bd        |" << endl;
+    cout << "|     Death year, ascending: da         |" << endl;
+    cout << "|     Death year, descending: dd        |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
