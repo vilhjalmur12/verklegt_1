@@ -64,7 +64,7 @@ void Console::choiceMade()
     do
     {
         char choice_made = choice();
-    
+
         if (choice_made == 'v')
         {
             string str;
@@ -265,7 +265,6 @@ void Console::dataSearchNotFound ()
     cout << "No items found" << endl;
 }
 
-<<<<<<< HEAD
 // addsex addyear, Xdanarar a undan fæðingarári, bokstafur i faedingar- eda danarari
 void invalidYear (int errorCode)
 {
@@ -300,8 +299,4 @@ void invalidName (int errorCode)
         cout << "Name can not include numbers" << endl;
     }
 }
-
-=======
-
-/**********************************************************/
->>>>>>> d22906a08aec771ad843759db7eab9ee73769192
+//**********************************************************
