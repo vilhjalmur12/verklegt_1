@@ -1,15 +1,16 @@
 #include <iostream>
 #include "Console.h"
-#include "database.h"
+//#include "database.h"
 #include <string>
-#include "database.h"
+//#include "database.h"
 using namespace std;
 
 int main()
 {
-    database data;
-    
+  //  database data;
+
     char choice_made;
+    char stringChoiceMade;
 
     Console console;
     console.welcome();
@@ -19,8 +20,8 @@ int main()
     console.choiceMade(choice_made);
 
 
-
     // TODO:
+
     //displayList();
     //addToList(); setjum vid tad her eda er tad komid inn sjalfkrafa? (1.3 endi)
 
