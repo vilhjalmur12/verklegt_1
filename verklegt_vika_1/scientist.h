@@ -13,7 +13,6 @@ public:
 
     void pushScientist(string name, string sex, int DOB, int DOD);
 
-    
   //  string getName();
 
 

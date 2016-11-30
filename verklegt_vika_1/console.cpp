@@ -60,57 +60,67 @@ string Console::stringChoice()
 }
 
 // Það sem gerist ef þú velur view, insert eða search
-void Console::choiceMade(char choice_made)
+void Console::choiceMade()
 {
-    if (choice_made == 'v')
+    do
     {
-        string str;
-
-        do
+        char choice_made = choice();
+    
+        if (choice_made == 'v')
         {
-            viewDisplay();
+            string str;
+            sorting_menu();
 
             str = stringChoice();
+            sorting(str);
         }
 
+<<<<<<< HEAD
         while (sorting(str) == false);
     }
+=======
+        else if (choice_made == 'i')
+        {
+            cout << "insert" << endl;;
 
-    else if (choice_made == 'i')
-    {
-        cout << "insert" << endl;;
+            cout << "Enter name: " << endl;
+            //cin << name;
+            cout << "Enter gender: " << endl;
+            //cin >> gender;
+            cout << "Enter year of birth: " << endl;
+            //cin >> yob;
+            cout << "Enter year of death (if it applies): " << endl;
+            //cin >> yod;
 
-        cout << "Enter name: " << endl;
-        //cin << name;
-        cout << "Enter gender: " << endl;
-        //cin >> gender;
-        cout << "Enter year of birth: " << endl;
-        //cin >> yob;
-        cout << "Enter year of death (if it applies): " << endl;
-        //cin >> yod;
+            /*
+             string name;
+             char sex;
+             int birthYear;
+             int deathYear;
+             cin >> name;
+             cin >> sex;
+             cin >> birthYear;
+             cin >> deathYear;
 
-        /*
-         string name;
-         char sex;
-         int birthYear;
-         int deathYear;
-         cin >> name;
-         cin >> sex;
-         cin >> birthYear;
-         cin >> deathYear;
+             */
+        }
+>>>>>>> 86729826edab77b6cd2f750e817cab11af23fe9a
 
-         */
-    }
+        else if (choice_made == 's')
+        {
+            cout << "Search" << endl;
+        }
+        else if (choice_made == 'q')
+        {
+            quit();
+        }
+        else
+        {
+            cout << "Please enter a valid *** " << endl;
+        }
+    } while ( (choice_made != 'q') && (choice_made != 's') && (choice_made != 'i') && (choice_made != 'v') );
 
-    else if (choice_made == 's')
-    {
-        cout << "Search" << endl;
-    }
 
-    else
-    {
-        cout << "Please enter a valid *** " << endl;
-    }
 }
 
 
@@ -150,6 +160,7 @@ void Console::sorting_menu()
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
+
 
 void Console::viewDisplay()
 {
@@ -209,11 +220,6 @@ bool Console::sorting(string str)
 }
 
 
-
-/*void Console::run()
- {
- welcome();
-=======
 /**********************************************************
                 Villi er að vinna hér
  **********************************************************/
@@ -263,6 +269,41 @@ void Console::dataWriteError ()
 void Console::dataSearchNotFound ()
 {
     cout << "No items found" << endl;
+}
+
+// addsex addyear, Xdanarar a undan fæðingarári, bokstafur i faedingar- eda danarari
+void invalidYear (int errorCode)
+{
+    if(errorCode == 1)
+    {
+        cout << "Year of death can not be before year of birth" << endl;
+    }
+    if(errorCode == 2)
+    {
+        cout << "The Computer Scientst can not be born in the future" << endl;
+    }
+    if(errorCode == 3)
+    {
+        // Ath ad thessi dude faer samt ad halda afram i forritinu!!
+        cout << "Are you sure you want to add a Computer Scientist that was born before Christ? " << endl;
+    }
+}
+
+void invalidSex ()
+{
+    cout << "Sex must be either Male or Female" << endl;
+}
+
+void invalidName (int errorCode)
+{
+    if(errorCode == 1)
+    {
+        cout << "The name you entered is already exists in the list" << endl;
+    }
+    if(errorCode == 2)
+    {
+        cout << "Name can not include numbers" << endl;
+    }
 }
 
 
