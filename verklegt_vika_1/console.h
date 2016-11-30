@@ -25,6 +25,9 @@ public:
     void quit();   // quit fall ef við vijum hætta í forriti
     string str = stringChoice();
     void dataSearchNotFound ();
+    void invalidYear (int errorCode);
+    void invalidSex ();
+    void invalidName (int errorCode);
 
 protected:
 private:
