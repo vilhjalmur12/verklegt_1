@@ -1,4 +1,5 @@
-#include "Console.h"
+#include "console.h"
+
 #include <iostream>
 #include <string>
 #include <limits>
@@ -26,9 +27,7 @@ void Console::welcome()
 
 void Console::toContinue()
 {
-
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
-
 }
 
 void Console::viewOrInsert()
@@ -36,8 +35,9 @@ void Console::viewOrInsert()
     cout << "-----------------------------------------" << endl;
     cout << "|                                       |" << endl;
     cout << "|           Choose procedure:           |" << endl;
-    cout << "|           v - for viewing             |" << endl;
-    cout << "|          i - for insertion            |" << endl;
+    cout << "|            v - for viewing            |" << endl;
+    cout << "|           i - for insertion           |" << endl;
+    cout << "|           s - for searching           |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
@@ -54,7 +54,6 @@ string Console::stringChoice()
 {
     string str;
     cin >> str;
-
     return str;
 }
 
@@ -62,28 +61,45 @@ void Console::choiceMade(char choice_made)
 {
     if (choice_made == 'v')
     {
+        string str;
         viewDisplay();
+<<<<<<< HEAD
 
+=======
+        str = stringChoice();
+        sorting(str);
+>>>>>>> 7dfc4c929a80c60f22b761b315d5b524789ed2e0
     }
 
     else if (choice_made == 'i')
     {
         cout << "insert" << endl;;
 
+        cout << "Enter name: " << endl;
+        //cin << name;
+        cout << "Enter gender: " << endl;
+        //cin >> gender;
+        cout << "Enter year of birth: " << endl;
+        //cin >> yob;
+        cout << "Enter year of death (if it applys): " << endl;
+        //cin >> yod;
+
         /*
-         string name;
-         char sex;
-         int birthYear;
-         int deathYear;
-         cin >> name;
-         cin >> sex;
-         cin >> birthYear;
-         cin >> deathYear;
+        string name;
+        char sex;
+        int birthYear;
+        int deathYear;
+        cin >> name;
+        cin >> sex;
+        cin >> birthYear;
+        cin >> deathYear;
 
-            banna að sleppa nafni, kyni og fæðingarári en má sleppa dánarári (ekki allir dánir)?
-            ekki leyfa fæðingarári að vera á eftir dánarári
+        */
+    }
 
-         */
+    else if (choice_made == 's')
+    {
+        cout << "Search" << endl;
     }
 
     else
@@ -93,22 +109,22 @@ void Console::choiceMade(char choice_made)
 }
 
 
-    /*void Console::displayFræðinga()
-    {
-        vektor með fræðingur = sækjaFræðinga(); - frá service
+/*void Console::displayFræðinga()
+ {
+ vektor með fræðingur = sækjaFræðinga(); - frá service
 
-        tékka hvernig hægt er að prenta út upplýsingar í töflu
-
-
-        for (size_t i = 0; i < fallFræðinga.size(); i++)
-        {
-            cout << fallFræðinga[i].sækjaNafn() << endl;
-            prenta líka út allt hitt?
-        }
+ tékka hvernig hægt er að prenta út upplýsingar í töflu
 
 
+ for (size_t i = 0; i < fallFræðinga.size(); i++)
+ {
+ cout << fallFræðinga[i].sækjaNafn() << endl;
+ prenta líka út allt hitt?
+ }
 
-    }*/
+
+
+ }*/
 
 
 void Console::sorting_menu()
@@ -132,26 +148,76 @@ void Console::viewDisplay()
 {
     string str;
     sorting_menu();
-    stringChoice();
-    cout << str << endl;
 
     //displayFræðina();
-    //Setja hérna hvernig hægt er setja upp listann og kannski leita?
 }
 
+<<<<<<< HEAD
+=======
+void Console::sorting(string str)
+{
+    if (str == "na")
+    {
+        cout << "na virkar" << endl;
+        //na fallið
+    }
+    else if (str == "nd")
+    {
+        cout << "nd" << endl;
+        //nd fallið
+    }
+    else if (str == "gf")
+    {
+        cout << "gf virkar" << endl;
+        //nd fallið
+    }
+    else if (str == "gm")
+    {
+        cout << "gm" << endl;
+        //nd fallið
+    }
+    else if (str == "ba")
+    {
+        cout << "ba" << endl;
+        //nd fallið
+    }
+    else if (str == "bd")
+    {
+        cout << "bd" << endl;
+        //nd fallið
+    }
+    else if (str == "da")
+    {
+        cout << "da" << endl;
+        //nd fallið
+    }
+    else if (str == "dd")
+    {
+        cout << "dd" << endl;
+        //nd fallið
+    }
+    else
+    {
+        cout << "Enter valid command" << endl;
+    }
+}
+
+>>>>>>> 7dfc4c929a80c60f22b761b315d5b524789ed2e0
 /*void Console::run()
 {
     welcome();
-    
+
     char arg;
-    
+
     while (arg != 'q')
     {
-        <#statements#>
+        break;
     }
-    
-    
+
+
 }
+*/
+
 /**********************************************************
                     ERRORS
  **********************************************************/
@@ -166,3 +232,7 @@ void Console::dataSearchNotFound ()
     cout << "No items found" << endl;
 }
 /**********************************************************/
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7dfc4c929a80c60f22b761b315d5b524789ed2e0

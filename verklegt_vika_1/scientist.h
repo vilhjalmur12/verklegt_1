@@ -10,13 +10,16 @@ class Scientist
 public:
     Scientist();
     Scientist(string name, string sex, int YOB, int YOD);
+<<<<<<< HEAD
     void pushScientist(string name, string sex, int DOB, int DOD);
     
-    string getName();
+  //  string getName();
+=======
+>>>>>>> 46122e1a8c9989605c9a43b591ca74601c329585
 
+    void pushScientist(string name, string sex, int DOB, int DOD);
 
     string getName() const
-
     {
         return _name;
     }

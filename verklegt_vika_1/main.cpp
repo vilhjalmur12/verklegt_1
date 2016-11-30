@@ -1,16 +1,28 @@
 #include <iostream>
+<<<<<<< HEAD
 #include "Console.h"
 //#include "database.h"
+=======
+#include "console.h"
+
+>>>>>>> 7dfc4c929a80c60f22b761b315d5b524789ed2e0
 #include <string>
 //#include "database.h"
 using namespace std;
 
 int main()
 {
+<<<<<<< HEAD
   //  database data;
 
     char choice_made;
     char stringChoiceMade;
+=======
+    //database data;
+
+    char choice_made;
+    //string str;
+>>>>>>> 7dfc4c929a80c60f22b761b315d5b524789ed2e0
 
     Console console;
     console.welcome();
@@ -19,6 +31,7 @@ int main()
     choice_made = console.choice(); //her er gildid sem segir okkur hvad vid viljum gera med char
     console.choiceMade(choice_made);
 
+    //console.sorting(str);
 
     // TODO:
 

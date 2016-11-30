@@ -15,6 +15,7 @@ class Service
 public:
     // TODO: Útfæra database fall sem skilar vísindamönnum í vector
     Service();
+    virtual ~Service();
 
     // TODO: Útfæra database fall til að bæta einstaklingi við database
     void addPerson(string name, string sex, int birthYear, int deathYear);
@@ -28,8 +29,8 @@ private:
     vector<Scientist> _scientists;
 
     string fixString(string before);
-    bool addName(string name);
-    bool addSex(string sex);
+    bool addName(string& name);
+    bool addSex(string& sex);
     bool addYears(int birthYear, int deathYear);
 
     void sortByNameAscending();

@@ -1,15 +1,13 @@
-#include "service.h"
 #include "database.h"
+#include "service.h"
 #include <algorithm>
 #include <ctime>
 
 using namespace std;
 
+Service::Service() { }
 
-Service::Service()
-{
-
-}
+Service::~Service(){ }
 
 //Stillir fyrsta staf hvers ords storan og hina litla
 string Service::fixString(string before)
@@ -32,13 +30,11 @@ string Service::fixString(string before)
     return before;
 }
 
-bool Service::addName(string name)
+bool Service::addName(string& name)
 {
     name = fixString(name);
 
-    //Athugar hvort takn seu til stadar sem ekki eru stafir
-    //Tharf ad laga svo ad bil seu leyfd
-    bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]+([A-Za-z]+[ ])*+$"));
+    bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]+([A-Za-z]||[ ])*+$"));
 
     for(unsigned int i = 0; i < _scientists.size(); i++)
     {
@@ -52,14 +48,23 @@ bool Service::addName(string name)
     return true;
 }
 
-bool Service::addSex(string sex)
+bool Service::addSex(string& sex)
 {
     sex = fixString(sex);
 
-    if(sex != "Male" && sex != "Female")
-        return false;
+    if(sex == "M")
+    {
+        sex = "Male";
+        return true;
+    }
 
-    return true;
+    if(sex == "F")
+    {
+        sex = "Female";
+        return true;
+    }
+
+    return false;
 }
 
 bool Service::addYears(int birthYear, int deathYear)
@@ -106,11 +111,10 @@ void Service::addPerson(string name, string sex, int birthYear, int deathYear)
    // database.pushData(tempScientist);
 }
 
-vector<Scientist> Service::getScientists(string choice)
+vector<Scientist> Service::getScientists (string choice)
 {
     if (choice == "na")
         sortByNameAscending();
-    /*
     if (choice == "nd")
         sortByNameDesending();
     if (choice == "gf")
@@ -125,14 +129,62 @@ vector<Scientist> Service::getScientists(string choice)
         sortByDeathAscending();
     if (choice == "dd")
         sortByDeathDescending();
-    */
 
-    return _scientists;
+return _scientists;
 }
 
-struct nameAscending {
+
+/***********************************************
+ *                                                *
+ *             Struct til að sortera              *
+ *                                                *
+************************************************/
+
+struct nameAscending
+{
   bool operator() (Scientist i, Scientist j) { return (i.getName()<j.getName());}
 };
+
+struct nameDescending
+{
+  bool operator() (Scientist i, Scientist j) { return (i.getName()>j.getName());}
+};
+
+struct sexFemale
+{
+  bool operator() (Scientist i, Scientist j) { return (i.getSex()<j.getSex());}
+};
+
+struct sexMale
+{
+  bool operator() (Scientist i, Scientist j) { return (i.getSex()>j.getSex());}
+};
+
+struct birthAscending
+{
+    bool operator() (Scientist i, Scientist j) { return (i.getYearOfBirth()<j.getYearOfBirth());}
+};
+
+struct birthDescending
+{
+    bool operator() (Scientist i, Scientist j) { return (i.getYearOfBirth()>j.getYearOfBirth());}
+};
+
+struct deathAscending
+{
+    bool operator() (Scientist i, Scientist j) { return (i.getYearOfDeath()<j.getYearOfDeath());}
+};
+
+struct deathDescending
+{
+    bool operator() (Scientist i, Scientist j) { return (i.getYearOfDeath()>j.getYearOfDeath());}
+};
+
+/**************************************************
+ *                                                *
+ *               Föll til að sortera              *
+ *                                                *
+*///***********************************************
 
 void Service::sortByNameAscending()
 {
@@ -140,64 +192,44 @@ void Service::sortByNameAscending()
     sort(_scientists.begin(), _scientists.end(), na);
 }
 
-struct birthAscending{
-    bool operator() (Scientist i, Scientist j) { return (i.getYearOfBirth()<j.getYearOfBirth());}
-};
-
-void sortByBirthAscending()
-{
-    sort(_scientists.begin(), _scientists.end()+4, birthAscending);
-}
-
-void sortByBirthDescending();
-void sortByDeathAscending();
-void sortByDeathDescending();
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Erum her med allan listann i mismunandi butum. Nofnin, kynid, o.s.frv...
-/*
-void Service::sortByNameAscending()
-{
-    // Skoda betur hjemme
-    for(int i = 0; i < names.size(); i++)
-    {
-        //if(tolower(names[i])<tolower(names[i+1]))
-        //{
-
-        //}
-    }
-
-}
-
 void Service::sortByNameDesending()
 {
-    for(int i = 0; i < names.size() - 1; i++)
-    {
-
-    }
+    nameDescending nd;
+    sort(_scientists.begin(), _scientists.end(), nd);
 }
 
 void Service::sortBySexF()
 {
-    for(int i = 0; i < names.size(); i++)
-    {
-        if(sexes[i] == "f" || sexes[i] == "F")
-        {
-            string tmp = sexes[i];
-            sexes[i] = sexes[i + 1];
-            sexes[i+1] = tmp;
-        }
-    }
+    sexFemale sf;
+    sort(_scientists.begin(), _scientists.end(), sf);
 }
-*/
+
+void Service::sortbySexM()
+{
+    sexMale sm;
+    sort(_scientists.begin(), _scientists.end(), sm);
+}
+
+void Service::sortByBirthAscending()
+{
+    birthAscending ba;
+    sort(_scientists.begin(), _scientists.end(), ba);
+}
+
+void Service::sortByBirthDescending()
+{
+    birthDescending bd;
+    sort(_scientists.begin(), _scientists.end(), bd);
+}
+
+void Service::sortByDeathAscending()
+{
+    deathAscending da;
+    sort(_scientists.begin(), _scientists.end(), da);
+}
+
+void Service::sortByDeathDescending()
+{
+    deathDescending de;
+    sort(_scientists.begin(), _scientists.end(), de);
+}
