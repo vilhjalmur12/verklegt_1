@@ -69,26 +69,27 @@ string Console::stringChoice()
 }
 
 // Það sem gerist ef þú velur view, insert eða search
-void Console::choiceMade()
+void Console::choiceMade(Scientist &scientist, vector<Scientist> &allScientists)
 {
     char choice_made = choice();
 
     do
     {
-
         char cont;
 
         if (choice_made == 'v')
         {
             do
             {
-            string str;
-            sorting_menu();
+                string str;
+                sorting_menu();
 
-            str = stringChoice();
-            sorting(str);
+                str = stringChoice();
+                sorting(str);
+                
+                printTable(allScientists);
 
-            cont = continueFunction();
+                cont = continueFunction();
 
             } while (cont == 'y');
         }
@@ -123,27 +124,6 @@ void Console::choiceMade()
 
 
 }
-
-
-/*void Console::displayFræðinga()
- {
- vektor með fræðingur = sækjaFræðinga(); - frá service
-
- tékka hvernig hægt er að prenta út upplýsingar í töflu
-
-
- for (size_t i = 0; i < fallFræðinga.size(); i++)
- {
- cout << fallFræðinga[i].sækjaNafn() << endl;
- prenta líka út allt hitt?
- }
-
-
-
- }*/
-
-
-
 
 void Console::sorting_menu()
 {
@@ -246,7 +226,6 @@ void Console::quit()
 
 void Console::printTable (vector<Scientist> allScientists)
 {
-
     Scientist tmp;
     
     cout << "Name\t\tGender\tDate of birth\tDate of death" << endl;
@@ -258,7 +237,6 @@ void Console::printTable (vector<Scientist> allScientists)
         
         cout << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t" << tmp.getYearOfDeath() << endl;
     }
-
 }
 
 
