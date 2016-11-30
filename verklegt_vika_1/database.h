@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <vector>
-#include "console.h"
+#include "errorhandling.h"
 #include "scientist.h"
 #include <fstream>
 
@@ -23,7 +23,7 @@ private:
     void decryptData (string &n);
     void decryptData (int &n);
     
-    Console output;
+    ErrorHandling output;
 
 public:
     database ();

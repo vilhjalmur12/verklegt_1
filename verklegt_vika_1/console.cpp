@@ -77,7 +77,7 @@ void Console::printInsertScreen()
     cout << "|          Name:   First (Middle) Last  |" << endl;
     cout << "|        Gender:   m/f                  |" << endl;
     cout << "| Year of Birth:   YYYY                 |" << endl;
-    cout << "| Year of Death:   YYYY / na            |" << endl;
+    cout << "| Year of Death:   YYYY / n/a           |" << endl;
     cout << "-----------------------------------------" << endl;
 }
 
@@ -86,12 +86,12 @@ void Console::insertScientist()
     printInsertScreen();
 
     string name, sex;
-    int YOB, YOD = inf;
+    int YOB, YOD;
 
     do
     {
-        cout << "Name: "
-        cin.getline(name);
+        cout << "Name: ";
+        getline(cin, name);
     }while(!scientistService.validName(name));
 
     do
@@ -113,7 +113,7 @@ void Console::insertScientist()
             YOD = stoi(input);
         }
 
-    }while(!scientistService.validYears());
+    }while(!scientistService.validYears(YOB, YOD));
 
     scientistService.appendScientist(name, sex, YOB, YOD);
 }

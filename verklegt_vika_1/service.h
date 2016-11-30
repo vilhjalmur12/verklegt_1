@@ -2,6 +2,7 @@
 #define SERVICE_H
 
 #include "database.h"
+#include "errorhandling.h"
 #include "scientist.h"
 #include <string>
 #include <vector>
@@ -33,6 +34,8 @@ public:
 private:
     //Meðlimabreytur
     vector<Scientist> _scientists;
+    ErrorHandling throwError;
+    database data;
 
     //appendScientist Hjálparföll
     string removeSpaces(string before);

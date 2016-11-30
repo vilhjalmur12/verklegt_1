@@ -1,14 +1,10 @@
-#include "console.h"
-#include "database.h"
 #include "service.h"
 
 using namespace std;
 
 Service::Service()
 {
-    database* pD = new database;
-    _scientists = pD->pullData();
-    delete pD;
+    _scientists = data.pullData();
 }
 
 Service::~Service(){ }
@@ -50,54 +46,46 @@ string Service::fixString(string before)
 
 bool Service::validName(string& name)
 {
-    name = fixString(name);
-    Console* pC = new Console();
-
 
     for(unsigned int i = 0; i < _scientists.size(); i++)
     {
         if(_scientists[i].getName() == name)
-            pC->invalidName(1);
-            delete pC;
+        {
+            throwError.invalidName(1);
             return false;
+        }
     }
 
     bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]+([A-Za-z]||[ ])*+$"));
 
     if (containsDigits)
     {
-        pC->invalidName(2);
-        delete pC;
+        throwError.invalidName(2);
         return false;
     }
 
-    delete pC;
+
     return true;
 }
 
 bool Service::validSex(string& sex)
 {
-    Console* pC = new Console();
-
     sex = fixString(sex);
 
     if(sex == "M")
     {
         sex = "Male";
-        delete pC;
         return true;
     }
 
     if(sex == "F")
     {
         sex = "Female";
-        delete pC;
         return true;
     }
     else
     {
-        pC->invalidSex();
-        delete pC;
+        throwError.invalidSex();
         return false;
     }
 
@@ -109,22 +97,20 @@ bool Service::validYears(int birthYear, int deathYear)
     time_t t = time(NULL);
     tm* timePtr = localtime(&t);
 
-    Console pC;
-
     if(deathYear < birthYear)
     {
-        pC.invalidYear(1);
+        throwError.invalidYear(1);
         return false;
     }
         //pointer + 1900 == nuverandi ar
     if(birthYear > timePtr->tm_year + 1900 || deathYear > timePtr->tm_year + 1900)
     {
-        pC.invalidYear(2);
+        throwError.invalidYear(2);
         return false;
     }
     if(birthYear < 0)
     {
-        pC.invalidYear(3);
+        throwError.invalidYear(3);
         return false;
     }
 
@@ -135,10 +121,6 @@ void Service::appendScientist(string name, string sex, int birthYear, int deathY
 {
     Scientist tempScientist(name, sex, birthYear, deathYear);
     _scientists.push_back(tempScientist);
-
-    database* pD = new database;
-    pD->pushData(_scientists);
-    delete pD;
 }
 
 vector<Scientist> Service::getScientists (string choice)

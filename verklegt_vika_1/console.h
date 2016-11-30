@@ -2,6 +2,7 @@
 #define CONSOLE_H
 #include "scientist.h"
 #include "service.h"
+#include "errorhandling.h"
 #include <vector>
 #include <string>
 
@@ -24,6 +25,7 @@ public:
     void run();
     char continueFunction(); // spyr hvort þú viljir endurtaka aðferð y/n
     void printTable(vector<Scientist> allScientists); // prentar út töflu með scientists
+    void quit();
 
 
 private:
