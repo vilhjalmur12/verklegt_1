@@ -38,7 +38,8 @@ void Console::viewOrInsert()
     cout << "|           Choose procedure:           |" << endl;
     cout << "|            v - for viewing            |" << endl;
     cout << "|           i - for insertion           |" << endl;
-    cout << "|           s - for searching           |" << endl;
+    cout << "|            s - for search             |" << endl;
+    cout << "|           q - for quitting            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
@@ -73,8 +74,6 @@ void Console::choiceMade(char choice_made)
         }
 
         while (sorting(str) == false);
-
-
     }
 
     else if (choice_made == 'i')
