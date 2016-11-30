@@ -19,7 +19,7 @@ public:
     string stringChoice(); //here you choose what kind of sorting you want to do
     void viewDisplay(); //prints out the list and sorting
     void toContinue(); //press enter to continue
-    void sorting(string str);
+    bool sorting(string str);
 
     //void dataWriteError ();  // villi: error output fyrir database
     //string str = stringChoice();
@@ -29,7 +29,6 @@ public:
 
 protected:
 private:
-
 
 
 
