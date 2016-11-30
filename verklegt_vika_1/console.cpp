@@ -88,7 +88,7 @@ void Console::pushBackScientist()
 {
     printInsertScreen();
 
-    string name, sex;
+    string name, sex, furtherInfo;
     int YOB, YOD;
 
     do
@@ -102,6 +102,9 @@ void Console::pushBackScientist()
     cout << "Gender: ";
     cin >> sex;
     }while(!scientistService.validSex(sex));
+
+    cout << "Further Information: ";
+    cin >> furtherInfo;
 
     do
     {
@@ -118,7 +121,7 @@ void Console::pushBackScientist()
 
     }while(!scientistService.validYears(YOB, YOD));
 
-    scientistService.appendScientist(name, sex, YOB, YOD);
+    scientistService.appendScientist(name, sex, YOB, YOD, furtherInfo);
 }
 
 // Það sem gerist ef þú velur view, insert eða search
@@ -286,14 +289,15 @@ void Console::printTable (vector<Scientist> allScientists)
 {
     Scientist tmp;
     
-    cout << "Name\t\tGender\tDate of birth\tDate of death" << endl;
+    cout << "Name\t\tGender\tDate of birth\tDate of death\tFurther Information" << endl;
     cout <<"----------------------------------------------------------------------" << endl;
     
     for (int i = 0; i < 4; i++)
     {
         tmp = allScientists[i];
         
-        cout << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t" << tmp.getYearOfDeath() << endl;
+        cout << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t"
+             << tmp.getYearOfDeath() << "\t" << tmp.getFurtherInfo() << endl;
     }
 }
 

@@ -20,7 +20,7 @@ database::~database () {}
 
 void database::getData ()
 {
-    string name, sex;
+    string name, sex, furtherInfo;
     int DOB, DOD;
 
     ifstream dataInput;
@@ -34,19 +34,23 @@ void database::getData ()
 
     for (int i = 0; i < 4; i++)
     {
-        dataInput >> name >> sex >> DOB >> DOD;
+        dataInput >> name >> sex >> DOB >> DOD >> furtherInfo;
         
         decryptData(name);
         cout << name << endl;
         decryptData(sex);
         cout << sex << endl;
+        decryptData(furtherInfo); // Sandra baetti vid thessari linu
+        cout << furtherInfo << endl; // og thessari
         decryptData(DOB);
         decryptData(DOD);
+
         
         tempName.push_back(name);
         tempSex.push_back(sex);
         tempDOB.push_back(DOB);
         tempDOD.push_back(DOD);
+        tempfInfo.push_back(furtherInfo); // Sandra baetti vid
     }
 
     dataInput.close();
@@ -59,7 +63,7 @@ void database::getData ()
  ****************************************************************************/
 void database::writeData ()
 {
-    string name, sex;
+    string name, sex, furtherInfo;
     int DOB, DOD;
 
     ofstream dataOutput;
@@ -80,8 +84,10 @@ void database::writeData ()
         encryptData(DOB);
         DOD = tempDOD[i];
         encryptData(DOD);
+        furtherInfo = tempfInfo[i]; // Sandra baetti vid
+        encryptData(furtherInfo); // Sandra baetti vid
 
-        dataOutput << name << "\t" << sex << "\t" << DOD << "\t" << DOB << endl;
+        dataOutput << name << "\t" << sex << "\t" << DOD << "\t" << DOB << "\t" << furtherInfo << endl;
     }
 
     dataOutput.close();
@@ -164,7 +170,7 @@ int database::dataSearch()
 void database::testData ()
 {
     char cont;
-    string name, sex;
+    string name, sex, furtherInfo;
     int DOB, DOD;
 
     while (cont != 'n')
@@ -177,11 +183,14 @@ void database::testData ()
         cin >> DOB;
         cout << "Date of death: ";
         cin >> DOD;
+        cout << "Further information: "; // Lina by Sandra
+        cin >> furtherInfo;
 
         tempName.push_back(name);
         tempSex.push_back(sex);
         tempDOB.push_back(DOB);
         tempDOD.push_back(DOD);
+        tempfInfo.push_back(furtherInfo); // Lina by Sandra
 
         cout << "Continue?\t (y = yes, n = no)" << endl << "->";
         cin >> cont;
@@ -193,7 +202,7 @@ void database::dataPrint ()
     cout << "You selected\n";
     for (unsigned int i = 0; i < tempName.size(); i++)
     {
-        cout << tempName[i] << "\t" << tempSex[i] << "\t" << tempDOB[i] << "\t" << tempDOD[i] << endl;
+        cout << tempName[i] << "\t" << tempSex[i] << "\t" << tempDOB[i] << "\t" << tempDOD[i] << "\t" << tempfInfo[i] << endl;
     }
 }
 
@@ -213,6 +222,7 @@ void database::pushData (vector<Scientist> write)
     tempSex.clear();
     tempDOD.clear();
     tempDOB.clear();
+    tempfInfo.clear();
     
     for (unsigned int i = 0; i < write.size(); i++)
     {
@@ -221,6 +231,7 @@ void database::pushData (vector<Scientist> write)
         tempSex[i] = tmp.getSex();
         tempDOB[i] = tmp.getYearOfBirth();
         tempDOD[i] = tmp.getYearOfDeath();
+        tempfInfo[i] = tmp.getFurtherInfo(); // Sandra
     }
 }
 
@@ -228,7 +239,7 @@ vector<Scientist> database::pullData ()
 {
     vector<Scientist> A;
     Scientist tmp;
-    string name, gender;
+    string name, gender, furtherInfo;
     int DOB, DOD;
     
     for (int i = 0; i < 4; i++)
@@ -237,8 +248,9 @@ vector<Scientist> database::pullData ()
         gender = tempSex[i];
         DOB = tempDOB[i];
         DOD = tempDOD[i];
+        furtherInfo = tempfInfo[i]; // Lina by Sandra
         
-        tmp.pushScientist(name, gender, DOB, DOD);
+        tmp.pushScientist(name, gender, DOB, DOD, furtherInfo);
         
         A.push_back(tmp);
         

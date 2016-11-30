@@ -117,9 +117,9 @@ bool Service::validYears(int birthYear, int deathYear)
     return true;
 }
 
-void Service::appendScientist(string name, string sex, int birthYear, int deathYear)
+void Service::appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo)
 {
-    Scientist tempScientist(name, sex, birthYear, deathYear);
+    Scientist tempScientist(name, sex, birthYear, deathYear, furtherInfo);
     _scientists.push_back(tempScientist);
 }
 
@@ -151,6 +151,29 @@ vector<Scientist> Service::getScientists (string choice)
     return _scientists;
 }
 
+bool Service::findInInt(int query, int year)
+{
+    int century = (year / 100)*100;
+    int decade = (year/10)*10;
+
+    if(query == century || query == decade)
+        return true;
+    if(query == year)
+        return true;
+    return false;
+}
+
+bool Service::findInString(string query, string String)
+{
+    for(unsigned int i = 0; i < String.length()- query.length(); i++)
+    {
+        if(String.compare(i, query.length(), query))
+            return true;
+    }
+
+    return false;
+}
+
 vector<int> Service::search(string query)
 {
     vector<int> foundScientists;
@@ -161,26 +184,19 @@ vector<int> Service::search(string query)
 
         for (unsigned int i = 0; i < _scientists.size(); i++)
         {
-            if (year == _scientists[i].getYearOfBirth())
+            if (findInInt(year, _scientists[i].getYearOfBirth()) || findInInt(year, _scientists[i].getYearOfDeath()))
             {
                 foundScientists.push_back(i);
             }
-        }
-        for (unsigned int i = 0; i < _scientists.size(); i++)
-        {
-            if (year == _scientists[i].getYearOfDeath())
-            {
-                foundScientists.push_back(i);
-            }
-        }
+        }    
     }
     else
     {
         for (unsigned int i = 0; i < _scientists.size(); i++)
         {
-            if (query == _scientists[i].getName())
+            if (findInString(query, _scientists[i].getName()) || findInString(query, _scientists[i].getSex()) || findInString(query, _scientists[i].getFurtherInfo()))
             {
-                foundScientists.push_back(i);;
+                foundScientists.push_back(i);
             }
         }
     }

@@ -18,9 +18,10 @@ class Service
 public:
     Service();
     virtual ~Service();
+    void appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo);
 
-    void appendScientist(string name, string sex, int birthYear, int deathYear);
     void moveLastTo(int index);
+
 
     bool validName(string& name);
     bool validSex(string& sex);
@@ -43,7 +44,8 @@ private:
     string fixString(string before);
 
     //search Hjálparföll
-
+    bool findInInt(int query, int year);
+    bool findInString(string query, string string);
 
     //getScientists - sorting algrímar
     void sortByNameAscending();

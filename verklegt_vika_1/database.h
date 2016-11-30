@@ -17,6 +17,7 @@ private:
     vector<string> tempSex;
     vector<int> tempDOB;
     vector<int> tempDOD;
+    vector<string> tempfInfo;
     
     void encryptData (string &n);
     void encryptData (int &n);
