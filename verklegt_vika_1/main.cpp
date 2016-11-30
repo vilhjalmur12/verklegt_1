@@ -29,8 +29,8 @@ int main()
     //console.choiceMade();
 
 
-    ///Bara svo að hann hætti að væla um að choice_made sé ekki notað
-    cout << choice_made;
+
+    cout << choice_made; ///Bara svo að hann hætti að væla um að choice_made sé ekki notað
 
     //console.sorting(str);
 
@@ -40,6 +40,8 @@ int main()
     //addToList(); setjum vid tad her eda er tad komid inn sjalfkrafa? (1.3 endi)
 
     //cout << choice_made << endl;
+
+    /// Passa að skrifa vector út í database í lok keyrslu
 
     return 0;
 }
