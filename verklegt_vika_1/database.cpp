@@ -214,10 +214,10 @@ void database::pushData (vector<Scientist> write)
     for (int i = 0; i < write.size(); i++)
     {
         write[i] = tmp;
-        tmp.getName = tempName[i];
-        tmp.getSex() = tempSex[i];
-        tmp.getYearOfBirth() = tempDOB[i];
-        tmp.getYearOfDeath() = tempDOD[i];
+        tempName[i] = tmp.getName();
+        tempSex[i] = tmp.getSex();
+        tempDOB[i] = tmp.getYearOfBirth();
+        tempDOD[i] = tmp.getYearOfDeath();
     }
 }
 

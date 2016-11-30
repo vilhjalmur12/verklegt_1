@@ -13,7 +13,7 @@ public:
     void welcome(); // print out welcome note
     void viewOrInsert(); // print out choice menu for viewing or inserting
     char choice(); // make choice
-    void choiceMade(char choice_made); // choose view or insert
+    void choiceMade(); // choose view or insert
     void sorting_menu(); // print out the sorting menu
     string stringChoice(); // here you choose what kind of sorting you want to do
     void viewDisplay(); // prints out the list and sorting
@@ -25,6 +25,9 @@ public:
     void quit();   // quit fall ef við vijum hætta í forriti
     string str = stringChoice();
     void dataSearchNotFound ();
+    void invalidYear (int errorCode);
+    void invalidSex ();
+    void invalidName (int errorCode);
 
 protected:
 private:
