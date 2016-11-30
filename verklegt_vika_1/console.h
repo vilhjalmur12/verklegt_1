@@ -13,19 +13,29 @@ class Console
 public:
     Console();
     virtual ~Console();
+
+    //Keyrsluföll
+    void run();
+    void edit();
+    void search();
+    void viewDisplay(); // prints out the list and sorting
+    char continueFunction(); // spyr hvort þú viljir endurtaka aðferð y/n
+    void quit();
+
+    //Opnunarföll
     void welcome(); // print out welcome note
-    void viewOrInsert(); // print out choice menu for viewing or inserting
+    void toContinue(); // press enter to continue
+
+    //Valmyndarföll
+    void viewOrInsert(); // print out main menu
     char choice(); // make choice to insert, view or more
     void choiceMade(); // choose view or insert
+
+    //Sorting föll
     void sorting_menu(); // print out the sorting menu
     string stringChoice(); // here you choose what kind of sorting you want to do
-    void viewDisplay(); // prints out the list and sorting
-    void toContinue(); // press enter to continue
     bool sorting(string str); // here we print out the list how they want it to be sorted like
-    void run();
-    char continueFunction(); // spyr hvort þú viljir endurtaka aðferð y/n
-    void printTable(); // prentar út töflu með scientists
-    void quit();
+
 
 
 private:
@@ -33,15 +43,14 @@ private:
     Service scientistService;
 
     //Hjálparföll við edit
-    void edit();
     int findIndexToEdit(string oldName);
     void printInsertMenu();
     void pushBackScientist();
 
     //Hjálparföll við search
-    void search();
     void printSearchMenu();
 
+    void printTable(); // prentar út töflu með öllum scientists í núverandi röð
     void printTable(vector<int> indexesToPrint);
 
 
