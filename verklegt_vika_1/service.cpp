@@ -113,7 +113,9 @@ void Service::appendScientist(string name, string sex, int birthYear, int deathY
     Scientist tempScientist(name, sex, birthYear, deathYear);
     _scientists.push_back(tempScientist);
 
-    // database.pushData(_scientist);
+    database* pD = new database;
+  //  pD->pushData(_scientists);
+    delete pD;
 }
 
 vector<Scientist> Service::getScientists (string choice)
@@ -135,7 +137,7 @@ vector<Scientist> Service::getScientists (string choice)
     if (choice == "dd")
         sortByDeathDescending();
 
-return _scientists;
+    return _scientists;
 }
 
 
