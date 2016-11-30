@@ -27,8 +27,6 @@ public:
     //Fyrsta breyta er val um hvernig skuli raða
     vector<Scientist> getScientists(string choice);
 
-
-
     //TODO: Færa search fall frá datadrengjum í cpp
     void search(string query);
 
@@ -39,7 +37,6 @@ private:
     //appendScientist Hjálparföll
     string removeSpaces(string before);
     string fixString(string before);
-
 
     //getScientists - sorting algrímar
     void sortByNameAscending();
