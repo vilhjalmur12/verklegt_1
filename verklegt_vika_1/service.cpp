@@ -84,7 +84,7 @@ bool Service::addYears(int birthYear, int deathYear)
 
 
 //Temp cout setningar fyrir villur, finna leið til að láta skilaboð berast til console
-void Service::addPerson(string name, string sex, int birthYear, int deathYear)
+void Service::appendScientist(string name, string sex, int birthYear, int deathYear)
 {
     // Fallið skilar false ef inntak inniheldur óþekktan staf eða er nú þegar til
     if(!addName(name))

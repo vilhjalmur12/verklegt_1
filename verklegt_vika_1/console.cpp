@@ -25,6 +25,7 @@ void Console::welcome()
     cout << "-----------------------------------------" << endl;
 }
 
+// Enter to continue
 void Console::toContinue()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -57,6 +58,7 @@ string Console::stringChoice()
     return str;
 }
 
+// Það sem gerist ef þú velur view, insert eða search
 void Console::choiceMade(char choice_made)
 {
     if (choice_made == 'v')

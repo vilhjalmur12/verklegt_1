@@ -18,7 +18,7 @@ public:
     virtual ~Service();
 
     // TODO: Útfæra database fall til að bæta einstaklingi við database
-    void addPerson(string name, string sex, int birthYear, int deathYear);
+    void appendScientist(string name, string sex, int birthYear, int deathYear);
 
     //Fyrsta breyta er val um hvernig skuli raða
     vector<Scientist> getScientists(string choice);
