@@ -23,7 +23,7 @@ void database::getData ()
 
     ifstream dataInput;
 
-    dataInput.open("data.db");
+    dataInput.open("verklegt_1/verklegt_vika_1/data.db");
     if (dataInput.fail())
     {
         output.dataWriteError();
@@ -35,7 +35,9 @@ void database::getData ()
         dataInput >> name >> sex >> DOB >> DOD;
         
         decryptData(name);
+        cout << name << endl;
         decryptData(sex);
+        cout << sex << endl;
         decryptData(DOB);
         decryptData(DOD);
         
@@ -198,6 +200,7 @@ void database::printSearch (int id)
     cout << tempName[id] << "\t" << tempSex[id] << "\t" << tempDOB[id] << "\t" << tempDOD[id] << endl;
 
 }
+/*****************************************************************************/
 
 
 void database::pushData (vector<string> name, vector<string> gender, vector<int> DOB, vector<int> DOD)
@@ -267,5 +270,5 @@ void database::decryptData (int &n)
         n ^= decryptionKey;
 }
 
-
+/************************************************************/
 

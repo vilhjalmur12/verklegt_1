@@ -5,10 +5,9 @@
 
 using namespace std;
 
-Service::Service()
-{
+Service::Service() { }
 
-}
+Service::~Service(){ }
 
 //Stillir fyrsta staf hvers ords storan og hina litla
 string Service::fixString(string before)
@@ -112,9 +111,8 @@ void Service::addPerson(string name, string sex, int birthYear, int deathYear)
    // database.pushData(tempScientist);
 }
 
-vector<Scientist> Service::getScientists(string choice)
+vector<Scientist> Service::getScientists (string choice)
 {
-    
     if (choice == "na")
         sortByNameAscending();
     if (choice == "nd")

@@ -15,6 +15,7 @@ class Service
 public:
     // TODO: Útfæra database fall sem skilar vísindamönnum í vector
     Service();
+    virtual ~Service();
 
     // TODO: Útfæra database fall til að bæta einstaklingi við database
     void addPerson(string name, string sex, int birthYear, int deathYear);
