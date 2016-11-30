@@ -1,8 +1,6 @@
 #include "console.h"
 #include "database.h"
 #include "service.h"
-#include <algorithm>
-#include <ctime>
 
 using namespace std;
 

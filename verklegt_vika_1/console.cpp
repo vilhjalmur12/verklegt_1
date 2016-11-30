@@ -5,15 +5,9 @@
 #include <limits>
 
 
-Console::Console()
-{
-    //ctor
-}
+Console::Console(){ }
 
-Console::~Console()
-{
-    //dtor
-}
+Console::~Console() { }
 
 void Console::welcome()
 {
@@ -25,7 +19,7 @@ void Console::welcome()
     cout << "-----------------------------------------" << endl;
 }
 
-// Enter to continue
+// Yta a Enter til ad halda afram
 void Console::toContinue()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -161,7 +155,7 @@ void Console::sorting_menu()
     cout << "-----------------------------------------" << endl;
 }
 
-
+// Notandi sendur i sorting_menu
 void Console::viewDisplay()
 {
     string str;
@@ -169,7 +163,7 @@ void Console::viewDisplay()
     //displayFræðina();
 }
 
-
+// Tjekk a hvort val a sorteringu se rett valid
 bool Console::sorting(string str)
 {
     if (str == "na")
@@ -271,7 +265,9 @@ void Console::dataSearchNotFound ()
     cout << "No items found" << endl;
 }
 
+
 // addsex addyear, Xdanarar a undan fæðingarári, bokstafur i faedingar- eda danarari
+
 void invalidYear (int errorCode)
 {
     if(errorCode == 1)
@@ -307,4 +303,9 @@ void invalidName (int errorCode)
 }
 
 
+
 /**********************************************************/
+
+/**********************************************************/
+
+
