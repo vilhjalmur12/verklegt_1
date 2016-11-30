@@ -1,4 +1,6 @@
 #include "console.h"
+#include "service.h"
+#include "scientist.h"
 
 #include <iostream>
 #include <string>
@@ -28,7 +30,14 @@ char Console::continueFunction()
     return cont;
 }
 
+<<<<<<< HEAD
 // Yta a Enter til ad halda afram
+=======
+
+// Enter to continue
+// Yta a Enter til ad halda afram
+
+>>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
 void Console::toContinue()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -65,13 +74,20 @@ string Console::stringChoice()
 // Það sem gerist ef þú velur view, insert eða search
 void Console::choiceMade()
 {
+    char choice_made = choice();
+
     do
     {
+<<<<<<< HEAD
         char choice_made = choice();
 
         char cont;
     
 
+=======
+        char cont;
+    
+>>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
         if (choice_made == 'v')
         {
             do
@@ -86,10 +102,13 @@ void Console::choiceMade()
                 
             } while (cont == 'y');
         }
+<<<<<<< HEAD
 
         while (sorting(str) == false);
     }
 
+=======
+>>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
         else if (choice_made == 'i')
         {
             cout << "insert" << endl;;
@@ -103,19 +122,11 @@ void Console::choiceMade()
             cout << "Enter year of death (if it applies): " << endl;
             //cin >> yod;
 
-            /*
-             string name;
-             char sex;
-             int birthYear;
-             int deathYear;
-             cin >> name;
-             cin >> sex;
-             cin >> birthYear;
-             cin >> deathYear;
-
-             */
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
 
         else if (choice_made == 's')
         {
@@ -183,9 +194,14 @@ void Console::viewDisplay()
 // Tjekk a hvort val a sorteringu se rett valid
 bool Console::sorting(string str)
 {
-    if (str == "na")
+    Service tmp;
+    vector<Scientist> scientists;
+    
+    if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd")
     {
-        cout << "na virkar" << endl;
+        scientists = tmp.getScientists(str);
+        
+        
         return true;
     }
     else if (str == "nd")
@@ -237,21 +253,9 @@ bool Console::sorting(string str)
 
 
 void Console::run()
-
 {
     welcome();
-
-
- char arg;
-
-
- while (arg != 'q')
- {
-    break;
- }
-
-
- }
+}
 
 
 void Console::quit()
@@ -259,6 +263,13 @@ void Console::quit()
     cout << "Thank you for using Database, stay classy!" << endl << endl;
     
     exit(1);
+}
+
+void Console::printTable (vector<Scientist> allScientists)
+{
+    
+    cout << "Name\tGender\tDate of birth\tDate of death"
+    
 }
 
 
@@ -285,6 +296,23 @@ void Console::dataSearchNotFound ()
 
 // addsex addyear, Xdanarar a undan fæðingarári, bokstafur i faedingar- eda danarari
 
+void invalidName (int errorCode)
+{
+    if(errorCode == 1)
+    {
+        cout << "The name you entered is already exists in the list" << endl;
+    }
+    if(errorCode == 2)
+    {
+        cout << "Name can not include numbers" << endl;
+    }
+}
+
+void invalidSex ()
+{
+    cout << "Sex must be either Male or Female" << endl;
+}
+
 void invalidYear (int errorCode)
 {
     if(errorCode == 1)
@@ -302,26 +330,10 @@ void invalidYear (int errorCode)
     }
 }
 
-void invalidSex ()
-{
-    cout << "Sex must be either Male or Female" << endl;
-}
-
-void invalidName (int errorCode)
-{
-    if(errorCode == 1)
-    {
-        cout << "The name you entered is already exists in the list" << endl;
-    }
-    if(errorCode == 2)
-    {
-        cout << "Name can not include numbers" << endl;
-    }
-}
 
 
 
-/**********************************************************/
+<<<<<<< HEAD
+=======
 
-/**********************************************************/
-
+>>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
