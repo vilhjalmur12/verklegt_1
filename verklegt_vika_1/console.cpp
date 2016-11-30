@@ -98,17 +98,6 @@ void Console::choiceMade()
             cout << "Enter year of death (if it applies): " << endl;
             //cin >> yod;
 
-            /*
-             string name;
-             char sex;
-             int birthYear;
-             int deathYear;
-             cin >> name;
-             cin >> sex;
-             cin >> birthYear;
-             cin >> deathYear;
-
-             */
         }
 
         else if (choice_made == 's')
