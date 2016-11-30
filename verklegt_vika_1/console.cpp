@@ -1,4 +1,6 @@
 #include "console.h"
+#include "service.h"
+#include "scientist.h"
 
 #include <iostream>
 #include <string>
@@ -28,7 +30,10 @@ char Console::continueFunction()
     return cont;
 }
 
+
+// Enter to continue
 // Yta a Enter til ad halda afram
+
 void Console::toContinue()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -166,9 +171,14 @@ void Console::viewDisplay()
 // Tjekk a hvort val a sorteringu se rett valid
 bool Console::sorting(string str)
 {
-    if (str == "na")
+    Service tmp;
+    vector<Scientist> scientists;
+    
+    if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd")
     {
-        cout << "na virkar" << endl;
+        scientists = tmp.getScientists(str);
+        
+        
         return true;
     }
     else if (str == "nd")
@@ -232,6 +242,13 @@ void Console::quit()
     exit(1);
 }
 
+void Console::printTable (vector<Scientist> allScientists)
+{
+    
+    cout << "Name\tGender\tDate of birth\tDate of death"
+    
+}
+
 
 /**********************************************************/
 
@@ -252,6 +269,7 @@ void Console::dataSearchNotFound ()
 {
     cout << "No items found" << endl;
 }
+
 
 // addsex addyear, Xdanarar a undan fæðingarári, bokstafur i faedingar- eda danarari
 
@@ -292,4 +310,4 @@ void invalidYear (int errorCode)
 
 
 
-/**********************************************************/
+

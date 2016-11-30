@@ -26,6 +26,7 @@ int main()
     //her kemur valmynd um hvort vid viljum skoda lista eda setja inn i hann
     choice_made = console.choice();
     //her er gildid sem segir okkur hvad vid viljum gera med char
+    console.choiceMade();
 
 
     ///Bara svo að hann hætti að væla um að choice_made sé ekki notað
