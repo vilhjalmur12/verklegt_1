@@ -12,7 +12,7 @@ int main()
   //  database data;
 
     char choice_made;
-    char stringChoiceMade;
+    //char stringChoiceMade;
 
     //database data;
 
@@ -24,7 +24,10 @@ int main()
     console.toContinue(); //naudsyn ad yta a enter til ad fa naestu valmynd
     console.viewOrInsert(); //her kemur valmynd um hvort vid viljum skoda lista eda setja inn i hann
     choice_made = console.choice(); //her er gildid sem segir okkur hvad vid viljum gera med char
-    console.choiceMade(choice_made);
+
+
+    ///Bara svo að hann hætti að væla um að choice_made sé ekki notað
+    cout << choice_made;
 
     //console.sorting(str);
 

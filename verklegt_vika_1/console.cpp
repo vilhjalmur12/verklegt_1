@@ -19,7 +19,6 @@ void Console::welcome()
     cout << "-----------------------------------------" << endl;
 }
 
-<<<<<<< HEAD
 char Console::continueFunction()
 {
     char cont;
@@ -28,10 +27,7 @@ char Console::continueFunction()
     
     return cont;
 }
-// Enter to continue
-=======
 // Yta a Enter til ad halda afram
->>>>>>> 4fc601ca142b69fbc59b3eca55fa4f433038a9ff
 void Console::toContinue()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -67,15 +63,12 @@ string Console::stringChoice()
 // Það sem gerist ef þú velur view, insert eða search
 void Console::choiceMade()
 {
+    char choice_made = choice();
+
     do
     {
-        char choice_made = choice();
-<<<<<<< HEAD
         char cont;
     
-=======
-
->>>>>>> 4fc601ca142b69fbc59b3eca55fa4f433038a9ff
         if (choice_made == 'v')
         {
             do
@@ -240,18 +233,7 @@ void Console::run()
 
 {
     welcome();
-
-
- char arg;
-
-
- while (arg != 'q')
- {
-    break;
- }
-
-
- }
+}
 
 
 void Console::quit()
@@ -282,10 +264,6 @@ void Console::dataSearchNotFound ()
     cout << "No items found" << endl;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 4fc601ca142b69fbc59b3eca55fa4f433038a9ff
 // addsex addyear, Xdanarar a undan fæðingarári, bokstafur i faedingar- eda danarari
 
 void invalidYear (int errorCode)
@@ -321,10 +299,5 @@ void invalidName (int errorCode)
         cout << "Name can not include numbers" << endl;
     }
 }
-<<<<<<< HEAD
-/**********************************************************/
-=======
 
 /**********************************************************/
-
->>>>>>> 4fc601ca142b69fbc59b3eca55fa4f433038a9ff
