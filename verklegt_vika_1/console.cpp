@@ -210,24 +210,51 @@ bool Console::sorting(string str)
 }
 
 
+
 /*void Console::run()
  {
  welcome();
+=======
+/**********************************************************
+                Villi er að vinna hér
+ **********************************************************/
+
+
+void Console::run()
+
+{
+    welcome();
+
 
  char arg;
 
+
  while (arg != 'q')
  {
- break;
+    break;
  }
 
 
  }
- */
+
+
+void Console::quit()
+{
+    cout << "Thank you for using Database, stay classy!" << endl << endl;
+    
+    exit(1);
+}
+
+
+/**********************************************************/
+
+
+
 
 /**********************************************************
  ERRORS
  **********************************************************/
+
 
 void Console::dataWriteError ()
 {
@@ -238,3 +265,6 @@ void Console::dataSearchNotFound ()
 {
     cout << "No items found" << endl;
 }
+
+
+/**********************************************************/

@@ -12,6 +12,11 @@ public:
     Scientist(string name, string sex, int YOB, int YOD);
 
     void pushScientist(string name, string sex, int DOB, int DOD);
+<<<<<<< HEAD
+    
+  //  string getName();
+=======
+>>>>>>> caa8fb301ce5ae09a8b94653fc337d2200ccd65b
 
     string getName() const
     {

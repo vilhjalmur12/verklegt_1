@@ -203,17 +203,22 @@ void database::printSearch (int id)
 /*****************************************************************************/
 
 
-void database::pushData (vector<string> name, vector<string> gender, vector<int> DOB, vector<int> DOD)
+void database::pushData (vector<Scientist> write)
 {
+    Scientist tmp;
     tempName.clear();
     tempSex.clear();
     tempDOD.clear();
     tempDOB.clear();
-
-    tempName = name;
-    tempSex = gender;
-    tempDOB = DOB;
-    tempDOD = DOD;
+    
+    for (int i = 0; i < write.size(); i++)
+    {
+        write[i] = tmp;
+        tmp.getName = tempName[i];
+        tmp.getSex() = tempSex[i];
+        tmp.getYearOfBirth() = tempDOB[i];
+        tmp.getYearOfDeath() = tempDOD[i];
+    }
 }
 
 vector<Scientist> database::pullData ()
