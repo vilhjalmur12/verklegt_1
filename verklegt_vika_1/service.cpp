@@ -39,7 +39,6 @@ bool Service::addName(string& name)
     name = fixString(name);
     Console* pC = new Console();
 
-    bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]+([A-Za-z]||[ ])*+$"));
 
     for(unsigned int i = 0; i < _scientists.size(); i++)
     {
@@ -48,6 +47,8 @@ bool Service::addName(string& name)
             delete pC;
             return false;
     }
+
+    bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]+([A-Za-z]||[ ])*+$"));
 
     if (containsDigits)
     {
