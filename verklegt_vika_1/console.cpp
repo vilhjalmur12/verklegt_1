@@ -26,18 +26,14 @@ char Console::continueFunction()
     char cont;
     cout << "Would you like to view again?\t(y/n)" << endl << "-> ";
     cont = choice();
-    
+
     return cont;
 }
 
-<<<<<<< HEAD
-// Yta a Enter til ad halda afram
-=======
 
 // Enter to continue
 // Yta a Enter til ad halda afram
 
->>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
 void Console::toContinue()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -78,16 +74,8 @@ void Console::choiceMade()
 
     do
     {
-<<<<<<< HEAD
-        char choice_made = choice();
-
         char cont;
-    
 
-=======
-        char cont;
-    
->>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
         if (choice_made == 'v')
         {
             do
@@ -97,18 +85,11 @@ void Console::choiceMade()
 
             str = stringChoice();
             sorting(str);
-                
+
             cont = continueFunction();
-                
+
             } while (cont == 'y');
         }
-<<<<<<< HEAD
-
-        while (sorting(str) == false);
-    }
-
-=======
->>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
         else if (choice_made == 'i')
         {
             cout << "insert" << endl;;
@@ -123,10 +104,6 @@ void Console::choiceMade()
             //cin >> yod;
 
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
 
         else if (choice_made == 's')
         {
@@ -196,12 +173,12 @@ bool Console::sorting(string str)
 {
     Service tmp;
     vector<Scientist> scientists;
-    
+
     if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd")
     {
         scientists = tmp.getScientists(str);
-        
-        
+
+
         return true;
     }
     else if (str == "nd")
@@ -261,15 +238,15 @@ void Console::run()
 void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
-    
+
     exit(1);
 }
 
 void Console::printTable (vector<Scientist> allScientists)
 {
-    
-    cout << "Name\tGender\tDate of birth\tDate of death"
-    
+
+    cout << "Name\tGender\tDate of birth\tDate of death";
+
 }
 
 
@@ -333,7 +310,3 @@ void invalidYear (int errorCode)
 
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
