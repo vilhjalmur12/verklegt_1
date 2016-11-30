@@ -27,6 +27,7 @@ char Console::continueFunction()
     
     return cont;
 }
+
 // Yta a Enter til ad halda afram
 void Console::toContinue()
 {
@@ -230,7 +231,6 @@ bool Console::sorting(string str)
 
 
 void Console::run()
-
 {
     welcome();
 }
@@ -266,6 +266,23 @@ void Console::dataSearchNotFound ()
 
 // addsex addyear, Xdanarar a undan fæðingarári, bokstafur i faedingar- eda danarari
 
+void invalidName (int errorCode)
+{
+    if(errorCode == 1)
+    {
+        cout << "The name you entered is already exists in the list" << endl;
+    }
+    if(errorCode == 2)
+    {
+        cout << "Name can not include numbers" << endl;
+    }
+}
+
+void invalidSex ()
+{
+    cout << "Sex must be either Male or Female" << endl;
+}
+
 void invalidYear (int errorCode)
 {
     if(errorCode == 1)
@@ -283,22 +300,6 @@ void invalidYear (int errorCode)
     }
 }
 
-void invalidSex ()
-{
-    cout << "Sex must be either Male or Female" << endl;
-}
-
-void invalidName (int errorCode)
-{
-    if(errorCode == 1)
-    {
-        cout << "The name you entered is already exists in the list" << endl;
-    }
-    if(errorCode == 2)
-    {
-        cout << "Name can not include numbers" << endl;
-    }
-}
 
 
 
