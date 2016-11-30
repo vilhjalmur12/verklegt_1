@@ -30,11 +30,7 @@ public:
     void invalidSex ();
     void invalidName (int errorCode);
 
-protected:
 private:
-
-
-
 };
 
 #endif // CONSOLE_H
