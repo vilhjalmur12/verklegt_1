@@ -7,7 +7,7 @@
 #include <limits>
 
 
-Console::Console(){ }
+// Console::Console(){ }
 
 Console::~Console() { }
 
@@ -152,7 +152,6 @@ void Console::choiceMade()
         else if (choice_made == 'i')
         {
             pushBackScientist();
-
         }
 
         else if (choice_made == 's')
@@ -172,8 +171,6 @@ void Console::choiceMade()
             cout << "Please enter a valid *** " << endl;
         }
     }
-
-
 }
 
 void Console::sorting_menu()
@@ -258,7 +255,6 @@ void Console::printTable (vector<int> indexesToPrint)
     }
 }
 
-
 // Tjekk a hvort val a sorteringu se rett valid
 bool Console::sorting(string str, vector<Scientist> &allScientists)
 {
@@ -275,7 +271,6 @@ bool Console::sorting(string str, vector<Scientist> &allScientists)
         return false;
     }
 }
-
 
 /**********************************************************
                 Villi er að vinna hér

@@ -11,7 +11,7 @@ using namespace std;
 class Console
 {
 public:
-    Console();
+   // Console();
     virtual ~Console();
 
     //Keyrsluföll
