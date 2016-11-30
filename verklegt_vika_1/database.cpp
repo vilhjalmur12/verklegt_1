@@ -212,7 +212,7 @@ void database::pushData (vector<Scientist> write)
     tempDOD.clear();
     tempDOB.clear();
     
-    for (int i = 0; i < write.size(); i++)
+    for (unsigned int i = 0; i < write.size(); i++)
     {
         write[i] = tmp;
         tempName[i] = tmp.getName();
