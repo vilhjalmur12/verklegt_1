@@ -1,4 +1,6 @@
 #include "console.h"
+#include "service.h"
+#include "scientist.h"
 
 #include <iostream>
 #include <string>
@@ -19,6 +21,10 @@ void Console::welcome()
     cout << "-----------------------------------------" << endl;
 }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> aa1ee29ae527b200b2efbadb573a9f9e47c239c8
 char Console::continueFunction()
 {
     char cont;
@@ -28,7 +34,13 @@ char Console::continueFunction()
     return cont;
 }
 
+<<<<<<< HEAD
+// Enter to continue
 // Yta a Enter til ad halda afram
+
+=======
+// Yta a Enter til ad halda afram
+>>>>>>> aa1ee29ae527b200b2efbadb573a9f9e47c239c8
 void Console::toContinue()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -69,6 +81,11 @@ void Console::choiceMade()
 
     do
     {
+<<<<<<< HEAD
+        char choice_made = choice();
+
+=======
+>>>>>>> aa1ee29ae527b200b2efbadb573a9f9e47c239c8
         char cont;
     
         if (choice_made == 'v')
@@ -166,9 +183,12 @@ void Console::viewDisplay()
 // Tjekk a hvort val a sorteringu se rett valid
 bool Console::sorting(string str)
 {
-    if (str == "na")
+    Service tmp;
+    vector<Scientist> scientists;
+    
+    if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd")
     {
-        cout << "na virkar" << endl;
+        scientists = tmp.getScientists(str);
         return true;
     }
     else if (str == "nd")
@@ -253,6 +273,10 @@ void Console::dataSearchNotFound ()
     cout << "No items found" << endl;
 }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> aa1ee29ae527b200b2efbadb573a9f9e47c239c8
 // addsex addyear, Xdanarar a undan fæðingarári, bokstafur i faedingar- eda danarari
 
 void invalidName (int errorCode)
@@ -292,4 +316,7 @@ void invalidYear (int errorCode)
 
 
 
+<<<<<<< HEAD
+=======
 /**********************************************************/
+>>>>>>> aa1ee29ae527b200b2efbadb573a9f9e47c239c8
