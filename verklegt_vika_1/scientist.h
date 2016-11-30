@@ -9,9 +9,9 @@ class Scientist
 {
 public:
     Scientist();
-    Scientist(string name, string sex, int YOB, int YOD);
+    Scientist(string name, string sex, int YOB, int YOD, string FI);
 
-    void pushScientist(string name, string sex, int DOB, int DOD);
+    void pushScientist(string name, string sex, int DOB, int DOD, string FI);
 
     string getName() const
     {
@@ -33,6 +33,12 @@ public:
         return _yearOfDeath;
     }
 
+    string getfurtherInfo() const
+    {
+        return _furtherInfo;
+    }
+
+
     //Prentar út allar uppl um vísindamann í eina línu (aðskilið af tab-keypress)
     friend ostream& operator << (ostream& out, Scientist sc);
 
@@ -40,6 +46,7 @@ public:
 private:
     string _name;
     string _sex;
+    string _furtherInfo;
     int _yearOfBirth;
     int _yearOfDeath;
 };

@@ -19,7 +19,7 @@ public:
     Service();
     virtual ~Service();
 
-    void appendScientist(string name, string sex, int birthYear, int deathYear);
+    void appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo);
 
     bool validName(string& name);
     bool validSex(string& sex);

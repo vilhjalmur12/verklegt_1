@@ -117,9 +117,9 @@ bool Service::validYears(int birthYear, int deathYear)
     return true;
 }
 
-void Service::appendScientist(string name, string sex, int birthYear, int deathYear)
+void Service::appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo)
 {
-    Scientist tempScientist(name, sex, birthYear, deathYear);
+    Scientist tempScientist(name, sex, birthYear, deathYear, furtherInfo);
     _scientists.push_back(tempScientist);
 }
 
