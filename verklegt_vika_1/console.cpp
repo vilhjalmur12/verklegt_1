@@ -71,7 +71,7 @@ string Console::stringChoice()
     return str;
 }
 
-void Console::printInsertScreen()
+void Console::printInsertMenu()
 {
     cout << "-----------------------------------------" << endl;
     cout << "|       Please Insert Information       |" << endl;
@@ -86,7 +86,7 @@ void Console::printInsertScreen()
 
 void Console::pushBackScientist()
 {
-    printInsertScreen();
+    printInsertMenu();
 
     string name, sex, furtherInfo;
     int YOB, YOD;
@@ -125,7 +125,7 @@ void Console::pushBackScientist()
 }
 
 // Það sem gerist ef þú velur view, insert eða search
-void Console::choiceMade(/*Scientist &scientist, */vector<Scientist> &allScientists)
+void Console::choiceMade()
 {
     char choice_made = choice();
 
@@ -143,8 +143,6 @@ void Console::choiceMade(/*Scientist &scientist, */vector<Scientist> &allScienti
                 str = stringChoice();
                 sorting(str);
                 
-                printTable(allScientists);
-
                 cont = continueFunction();
 
             } while (cont == 'y');
@@ -201,15 +199,63 @@ void Console::viewDisplay()
     //displayFræðina();
 }
 
-void Console::edit(int index)
+int Console::findIndexToEdit(string oldName)
+{
+    int index = 0;
+    vector<int> indexesWithQuery = (scientistService.getIndexesWith(oldName));
+
+    for(unsigned int i = 0; i < indexesWithQuery.size(); i++)
+    {
+        printTable(indexesWithQuery);
+    }
+
+    int input;
+
+    cout << "Please enter the number of the entry you want to edit: ";
+    cin >> input;
+
+    index = indexesWithQuery[input];
+
+    return index;
+}
+
+void Console::edit()
 {
     string oldName;
     cout << "Name of scientist to edit: ";
     cin >> oldName;
-    //TODO: Implement'a fall sem skilar index'i viðkomandi gæja
+    int index = findIndexToEdit(oldName);
     pushBackScientist();
     scientistService.moveLastTo(index);
 }
+
+void Console::search()
+{
+    string query;
+    //TODO: search menu!!
+    cin >> query;
+    vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
+    printTable(indexesToPrint); //Prenta leitarniðurstöðu
+    //TODO Bjóða upp á eyða / breyta
+}
+
+void Console::printTable (vector<int> indexesToPrint)
+{
+    vector<Scientist> allScientists = scientistService.getScientists();
+    Scientist tmp;
+
+    cout << "Nr.  Name\t\tGender\tDate of birth\tDate of death\tFurther Information" << endl;
+    cout <<"----------------------------------------------------------------------" << endl;
+
+    for (unsigned int i = 0; i < indexesToPrint.size(); i++)
+    {
+        tmp = allScientists[indexesToPrint[i]];
+
+        cout << i << "  " << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t"
+             << tmp.getYearOfDeath() << "\t" << tmp.getFurtherInfo() << endl;
+    }
+}
+
 
 // Tjekk a hvort val a sorteringu se rett valid
 bool Console::sorting(string str)
@@ -285,18 +331,19 @@ void Console::quit()
     exit(1);
 }
 
-void Console::printTable (vector<Scientist> allScientists)
+void Console::printTable ()
 {
+    vector<Scientist> allScientists = scientistService.getScientists();
     Scientist tmp;
     
-    cout << "Name\t\tGender\tDate of birth\tDate of death\tFurther Information" << endl;
+    cout << "Nr.  Name\t\tGender\tDate of birth\tDate of death\tFurther Information" << endl;
     cout <<"----------------------------------------------------------------------" << endl;
     
-    for (int i = 0; i < 4; i++)
+    for (unsigned int i = 0; i < allScientists.size(); i++)
     {
         tmp = allScientists[i];
         
-        cout << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t"
+        cout << i << "  " << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t"
              << tmp.getYearOfDeath() << "\t" << tmp.getFurtherInfo() << endl;
     }
 }

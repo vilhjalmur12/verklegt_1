@@ -129,7 +129,7 @@ void Service::moveLastTo(int index)
     _scientists.pop_back();
 }
 
-vector<Scientist> Service::getScientists (string choice)
+vector<Scientist> Service::getScientists (string choice /*= "na"*/)
 {
     if (choice == "na")
         sortByNameAscending();
@@ -174,7 +174,7 @@ bool Service::findInString(string query, string String)
     return false;
 }
 
-vector<int> Service::search(string query)
+vector<int> Service::getIndexesWith(string query)
 {
     vector<int> foundScientists;
 

@@ -18,20 +18,20 @@ class Service
 public:
     Service();
     virtual ~Service();
+
     void appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo);
 
     void moveLastTo(int index);
-
 
     bool validName(string& name);
     bool validSex(string& sex);
     bool validYears(int birthYear, int deathYear);
 
     //Fyrsta breyta er val um hvernig skuli raða
-    vector<Scientist> getScientists(string choice);
+    vector<Scientist> getScientists(string choice = "na");
 
     //TODO: Færa search fall frá datadrengjum í cpp
-    vector<int> search(string query);
+    vector<int> getIndexesWith(string query);
 
 private:
     //Meðlimabreytur
