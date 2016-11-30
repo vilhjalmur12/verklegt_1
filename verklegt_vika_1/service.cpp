@@ -109,29 +109,25 @@ bool Service::addYears(int birthYear, int deathYear)
     time_t t = time(NULL);
     tm* timePtr = localtime(&t);
 
-    Console* pC = new Console();
+    Console pC;
 
     if(deathYear < birthYear)
     {
-        pC->invalidYear(1);
-        delete pC;
+        pC.invalidYear(1);
         return false;
     }
         //pointer + 1900 == nuverandi ar
     if(birthYear > timePtr->tm_year + 1900 || deathYear > timePtr->tm_year + 1900)
     {
-        pC->invalidYear(2);
-        delete pC;
+        pC.invalidYear(2);
         return false;
     }
     if(birthYear < 0)
     {
-        pC->invalidYear(3);
-        delete pC;
+        pC.invalidYear(3);
         return false;
     }
 
-    delete pC;
     return true;
 }
 
