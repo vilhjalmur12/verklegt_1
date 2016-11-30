@@ -218,8 +218,13 @@ void Console::run()
     {
         break;
     }
+}
 
-
+void Console::quit()
+{
+    cout << "Thank you for using Database, stay classy!" << endl << endl;
+    
+    exit(1);
 }
 
 
@@ -232,12 +237,8 @@ void Console::run()
                     ERRORS
  **********************************************************/
 
-<<<<<<< HEAD
-/*
- void Console::dataWriteError ()
-=======
+
 void Console::dataWriteError ()
->>>>>>> bae02c828e2e970be00ccfff081cf04f6800a8b9
 {
     cout << "No database found!" << endl;
 }
@@ -246,8 +247,6 @@ void Console::dataSearchNotFound ()
 {
     cout << "No items found" << endl;
 }
-<<<<<<< HEAD
- */
+
+
 /**********************************************************/
-=======
->>>>>>> bae02c828e2e970be00ccfff081cf04f6800a8b9
