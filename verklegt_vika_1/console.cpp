@@ -25,6 +25,14 @@ void Console::welcome()
     cout << "-----------------------------------------" << endl;
 }
 
+char Console::continueFunction()
+{
+    char cont;
+    cout << "Would you like to view again?\t(y/n)" << endl << "-> ";
+    cont = choice();
+    
+    return cont;
+}
 // Enter to continue
 void Console::toContinue()
 {
@@ -64,14 +72,21 @@ void Console::choiceMade()
     do
     {
         char choice_made = choice();
+        char cont;
     
         if (choice_made == 'v')
         {
+            do
+            {
             string str;
             sorting_menu();
 
             str = stringChoice();
             sorting(str);
+                
+            cont = continueFunction();
+                
+            } while (cont == 'y');
         }
 
         else if (choice_made == 'i')
@@ -265,7 +280,7 @@ void Console::dataSearchNotFound ()
     cout << "No items found" << endl;
 }
 
-<<<<<<< HEAD
+
 // addsex addyear, Xdanarar a undan fæðingarári, bokstafur i faedingar- eda danarari
 void invalidYear (int errorCode)
 {
@@ -300,8 +315,4 @@ void invalidName (int errorCode)
         cout << "Name can not include numbers" << endl;
     }
 }
-
-=======
-
 /**********************************************************/
->>>>>>> d22906a08aec771ad843759db7eab9ee73769192

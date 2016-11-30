@@ -20,6 +20,7 @@ public:
     void toContinue(); // press enter to continue
     bool sorting(string str); // here we print out the list how they want it to be sorted like
     void run();
+    char continueFunction(); // spyr hvort þú viljir endurtaka aðferð y/n
 
     void dataWriteError ();  // villi: error output fyrir database
     void quit();   // quit fall ef við vijum hætta í forriti
