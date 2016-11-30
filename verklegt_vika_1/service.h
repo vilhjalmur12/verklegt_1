@@ -13,26 +13,28 @@ using namespace std;
 class Service
 {
 public:
-    // TODO: Útfæra database fall sem skilar vísindamönnum í vector
     Service();
     virtual ~Service();
 
-    // TODO: Útfæra database fall til að bæta einstaklingi við database
     void appendScientist(string name, string sex, int birthYear, int deathYear);
 
     //Fyrsta breyta er val um hvernig skuli raða
     vector<Scientist> getScientists(string choice);
 
+    //TODO: Færa search fall frá datadrengjum í cpp
     void search(string query);
 
 private:
+//Meðlimabreytur
     vector<Scientist> _scientists;
 
+//appendScientist Hjálparföll
     string fixString(string before);
     bool addName(string& name);
     bool addSex(string& sex);
     bool addYears(int birthYear, int deathYear);
 
+//getScientists - sorting algrímar
     void sortByNameAscending();
     void sortByNameDesending();
     void sortBySexF();

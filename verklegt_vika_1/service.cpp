@@ -5,7 +5,12 @@
 
 using namespace std;
 
-Service::Service() { }
+Service::Service()
+{
+    database* pD = new database;
+    _scientists = pD->pullData();
+    delete pD;
+}
 
 Service::~Service(){ }
 
@@ -108,7 +113,7 @@ void Service::appendScientist(string name, string sex, int birthYear, int deathY
     Scientist tempScientist(name, sex, birthYear, deathYear);
     _scientists.push_back(tempScientist);
 
-   // database.pushData(tempScientist);
+    // database.pushData(_scientist);
 }
 
 vector<Scientist> Service::getScientists (string choice)
