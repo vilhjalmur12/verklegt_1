@@ -221,7 +221,7 @@ void Console::sorting(string str)
                     ERRORS
  **********************************************************/
 
-/*void Console::dataWriteError ()
+void Console::dataWriteError ()
 {
     cout << "No database found!" << endl;
 }
@@ -230,4 +230,3 @@ void Console::dataSearchNotFound ()
 {
     cout << "No items found" << endl;
 }
-/**********************************************************/
