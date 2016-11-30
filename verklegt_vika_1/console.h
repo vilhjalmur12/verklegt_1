@@ -25,13 +25,6 @@ public:
     char continueFunction(); // spyr hvort þú viljir endurtaka aðferð y/n
     void printTable(vector<Scientist> allScientists); // prentar út töflu með scientists
 
-    void dataWriteError ();  // villi: error output fyrir database
-    void quit();   // quit fall ef við vijum hætta í forriti
-    string str = stringChoice();
-    void dataSearchNotFound ();
-    void invalidYear (int errorCode);
-    void invalidSex ();
-    void invalidName (int errorCode);
 
 private:
     void insertScientist();

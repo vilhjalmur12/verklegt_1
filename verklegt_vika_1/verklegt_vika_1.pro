@@ -13,10 +13,12 @@ SOURCES += main.cpp \
     service.cpp \
     database.cpp \
     console.cpp \
-    scientist.cpp
+    scientist.cpp \
+    errorhandling.cpp
 
 HEADERS += \
     service.h \
     database.h \
     console.h \
-    scientist.h
+    scientist.h \
+    errorhandling.h
