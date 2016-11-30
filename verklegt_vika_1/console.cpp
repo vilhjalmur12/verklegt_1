@@ -30,6 +30,8 @@ char Console::continueFunction()
     return cont;
 }
 
+
+
 // Enter to continue
 // Yta a Enter til ad halda afram
 
@@ -66,6 +68,56 @@ string Console::stringChoice()
     return str;
 }
 
+void Console::printInsertScreen()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|       Please Insert Information       |" << endl;
+    cout << "|        in the following format        |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|          Name:   First (Middle) Last  |" << endl;
+    cout << "|        Gender:   m/f                  |" << endl;
+    cout << "| Year of Birth:   YYYY                 |" << endl;
+    cout << "| Year of Death:   YYYY / na            |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+void Console::insertScientist()
+{
+    printInsertScreen();
+
+    string name, sex;
+    int YOB, YOD = inf;
+
+    do
+    {
+        cout << "Name: "
+        cin.getline(name);
+    }while(!scientistService.validName(name));
+
+    do
+    {
+    cout << "Gender: ";
+    cin >> sex;
+    }while(!scientistService.validSex(sex));
+
+    do
+    {
+        string input;
+        cout << "Year of birth: ";
+        cin >> YOB;
+        cout << "Year of death : ";
+        cin >> input;
+        if(input == "na");
+        else
+        {
+            YOD = stoi(input);
+        }
+
+    }while(!scientistService.validYears());
+
+    scientistService.appendScientist(name, sex, YOB, YOD);
+}
+
 // Það sem gerist ef þú velur view, insert eða search
 void Console::choiceMade(Scientist &scientist, vector<Scientist> &allScientists)
 {
@@ -93,16 +145,7 @@ void Console::choiceMade(Scientist &scientist, vector<Scientist> &allScientists)
         }
         else if (choice_made == 'i')
         {
-            cout << "insert" << endl;;
-
-            cout << "Enter name: " << endl;
-            //cin << name;
-            cout << "Enter gender: " << endl;
-            //cin >> gender;
-            cout << "Enter year of birth: " << endl;
-            //cin >> yob;
-            cout << "Enter year of death (if it applies): " << endl;
-            //cin >> yod;
+            insertScientist();
 
         }
 
@@ -239,62 +282,3 @@ void Console::printTable (vector<Scientist> allScientists)
 
 
 /**********************************************************/
-
-
-
-
-/**********************************************************
- ERRORS
- **********************************************************/
-
-
-void Console::dataWriteError ()
-{
-    cout << "No database found!" << endl;
-}
-
-void Console::dataSearchNotFound ()
-{
-    cout << "No items found" << endl;
-}
-
-
-// addsex addyear, Xdanarar a undan fæðingarári, bokstafur i faedingar- eda danarari
-
-void invalidName (int errorCode)
-{
-    switch (errorCode)
-    {
-        case 1:
-            cout << "The name you entered is already exists in the list" << endl;
-            break;
-        case 2:
-            cout << "Name can not include numbers" << endl;
-            break;
-    }
-}
-
-void invalidSex ()
-{
-    cout << "Sex must be either Male or Female" << endl;
-}
-
-void invalidYear (int errorCode)
-{
-    switch (errorCode)
-    {
-        case 1:
-            cout << "Year of death can not be before year of birth" << endl;
-            break;
-            
-        case 2:
-            cout << "The Computer Scientst can not be born in the future" << endl;
-            break;
-            
-        case 3:
-            // Ath ad thessi dude faer samt ad halda afram i forritinu!!
-            cout << "Are you sure you want to add a Computer Scientist that was born before Christ? " << endl;
-            break;
-    }
-}
-

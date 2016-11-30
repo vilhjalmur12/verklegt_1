@@ -48,7 +48,7 @@ string Service::fixString(string before)
     return before;
 }
 
-bool Service::addName(string& name)
+bool Service::validName(string& name)
 {
     name = fixString(name);
     Console* pC = new Console();
@@ -75,7 +75,7 @@ bool Service::addName(string& name)
     return true;
 }
 
-bool Service::addSex(string& sex)
+bool Service::validSex(string& sex)
 {
     Console* pC = new Console();
 
@@ -103,7 +103,7 @@ bool Service::addSex(string& sex)
 
 }
 
-bool Service::addYears(int birthYear, int deathYear)
+bool Service::validYears(int birthYear, int deathYear)
 {
     //Pointer heldur utan um nuverandi ar -1900
     time_t t = time(NULL);
