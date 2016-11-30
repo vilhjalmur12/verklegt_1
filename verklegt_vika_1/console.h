@@ -1,6 +1,7 @@
     #ifndef CONSOLE_H
 #define CONSOLE_H
 #include "scientist.h"
+#include "service.h"
 #include <vector>
 #include <string>
 
@@ -33,6 +34,9 @@ public:
     void invalidName (int errorCode);
 
 private:
+    void insertScientist();
+    Service scientistService;
+
 };
 
 #endif // CONSOLE_H
