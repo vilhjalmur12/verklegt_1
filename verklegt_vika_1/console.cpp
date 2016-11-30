@@ -63,8 +63,12 @@ void Console::choiceMade(char choice_made)
     {
         string str;
         viewDisplay();
+<<<<<<< HEAD
+
+=======
         str = stringChoice();
         sorting(str);
+>>>>>>> 7dfc4c929a80c60f22b761b315d5b524789ed2e0
     }
 
     else if (choice_made == 'i')
@@ -148,6 +152,8 @@ void Console::viewDisplay()
     //displayFræðina();
 }
 
+<<<<<<< HEAD
+=======
 void Console::sorting(string str)
 {
     if (str == "na")
@@ -196,6 +202,7 @@ void Console::sorting(string str)
     }
 }
 
+>>>>>>> 7dfc4c929a80c60f22b761b315d5b524789ed2e0
 /*void Console::run()
 {
     welcome();
@@ -215,7 +222,7 @@ void Console::sorting(string str)
                     ERRORS
  **********************************************************/
 
-void Console::dataWriteError ()
+/*void Console::dataWriteError ()
 {
     cout << "No database found!" << endl;
 }
@@ -225,4 +232,7 @@ void Console::dataSearchNotFound ()
     cout << "No items found" << endl;
 }
 /**********************************************************/
+<<<<<<< HEAD
+=======
 
+>>>>>>> 7dfc4c929a80c60f22b761b315d5b524789ed2e0
