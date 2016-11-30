@@ -30,10 +30,7 @@ char Console::continueFunction()
     return cont;
 }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 7a21b99d49dda45923efb21e1831b226ca8156a7
 
 // Enter to continue
 // Yta a Enter til ad halda afram
@@ -78,10 +75,7 @@ void Console::choiceMade()
 
     do
     {
-<<<<<<< HEAD
 
-=======
->>>>>>> 7a21b99d49dda45923efb21e1831b226ca8156a7
         char cont;
 
         if (choice_made == 'v')
@@ -112,10 +106,7 @@ void Console::choiceMade()
             //cin >> yod;
 
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> 7a21b99d49dda45923efb21e1831b226ca8156a7
         else if (choice_made == 's')
         {
             cout << "Search" << endl;
@@ -255,11 +246,7 @@ void Console::quit()
 
 void Console::printTable (vector<Scientist> allScientists)
 {
-<<<<<<< HEAD
 
-    cout << "Name\tGender\tDate of birth\tDate of death";
-
-=======
     Scientist tmp;
     
     cout << "Name\t\tGender\tDate of birth\tDate of death" << endl;
@@ -271,7 +258,7 @@ void Console::printTable (vector<Scientist> allScientists)
         
         cout << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t" << tmp.getYearOfDeath() << endl;
     }
->>>>>>> 23248896ef800e09ac12c1aa0251df01555e4668
+
 }
 
 
@@ -333,8 +320,4 @@ void invalidYear (int errorCode)
 }
 
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 7a21b99d49dda45923efb21e1831b226ca8156a7
