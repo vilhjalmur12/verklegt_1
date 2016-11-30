@@ -50,6 +50,7 @@ void Console::viewOrInsert()
     cout << "|            v - for viewing            |" << endl;
     cout << "|           i - for insertion           |" << endl;
     cout << "|            s - for search             |" << endl;
+    cout << "|      e - for editing a scientist      |" << endl;
     cout << "|           q - for quitting            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -83,7 +84,7 @@ void Console::printInsertScreen()
     cout << "-----------------------------------------" << endl;
 }
 
-void Console::insertScientist()
+void Console::pushBackScientist()
 {
     printInsertScreen();
 
@@ -124,7 +125,7 @@ void Console::insertScientist()
 }
 
 // Það sem gerist ef þú velur view, insert eða search
-void Console::choiceMade(Scientist &scientist, vector<Scientist> &allScientists)
+void Console::choiceMade(/*Scientist &scientist, */vector<Scientist> &allScientists)
 {
     char choice_made = choice();
 
@@ -150,13 +151,17 @@ void Console::choiceMade(Scientist &scientist, vector<Scientist> &allScientists)
         }
         else if (choice_made == 'i')
         {
-            insertScientist();
+            pushBackScientist();
 
         }
 
         else if (choice_made == 's')
         {
             cout << "Search" << endl;
+        }
+        else if(choice_made == 'e')
+        {
+            //TODO: Implement edit function
         }
         else if (choice_made == 'q')
         {
@@ -194,6 +199,16 @@ void Console::viewDisplay()
     string str;
     sorting_menu();
     //displayFræðina();
+}
+
+void Console::edit(int index)
+{
+    string oldName;
+    cout << "Name of scientist to edit: ";
+    cin >> oldName;
+    //TODO: Implement'a fall sem skilar index'i viðkomandi gæja
+    pushBackScientist();
+    scientistService.moveLastTo(index);
 }
 
 // Tjekk a hvort val a sorteringu se rett valid

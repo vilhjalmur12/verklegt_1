@@ -35,6 +35,7 @@ public:
     int dataSearch (int tmp);
     void pushData (vector<Scientist> write);
     vector<Scientist> pullData ();
+    vector<int> dataSearch(string tmp,vector<Scientist> allScientist);
 
 
     // tvö prufuföll - við skulum sjá til þess að færa þessi út úr klasanum fyrir skil

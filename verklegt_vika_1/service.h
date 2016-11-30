@@ -18,8 +18,10 @@ class Service
 public:
     Service();
     virtual ~Service();
-
     void appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo);
+
+    void moveLastTo(int index);
+
 
     bool validName(string& name);
     bool validSex(string& sex);

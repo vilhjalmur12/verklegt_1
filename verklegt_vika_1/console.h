@@ -16,7 +16,7 @@ public:
     void welcome(); // print out welcome note
     void viewOrInsert(); // print out choice menu for viewing or inserting
     char choice(); // make choice to insert, view or more
-    void choiceMade(Scientist &scientist, vector<Scientist> &allScientists); // choose view or insert
+    void choiceMade(/*Scientist &scientist, */vector<Scientist> &allScientists); // choose view or insert
     void sorting_menu(); // print out the sorting menu
     string stringChoice(); // here you choose what kind of sorting you want to do
     void viewDisplay(); // prints out the list and sorting
@@ -26,11 +26,12 @@ public:
     char continueFunction(); // spyr hvort þú viljir endurtaka aðferð y/n
     void printTable(vector<Scientist> allScientists); // prentar út töflu með scientists
     void quit();
+    void edit(int index);
 
 
 private:
     void printInsertScreen();
-    void insertScientist();
+    void pushBackScientist();
     Service scientistService;
 
 };

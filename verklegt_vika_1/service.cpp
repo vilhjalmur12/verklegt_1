@@ -123,6 +123,12 @@ void Service::appendScientist(string name, string sex, int birthYear, int deathY
     _scientists.push_back(tempScientist);
 }
 
+void Service::moveLastTo(int index)
+{
+    _scientists[index] = _scientists.back();
+    _scientists.pop_back();
+}
+
 vector<Scientist> Service::getScientists (string choice)
 {
     if (choice == "na")
