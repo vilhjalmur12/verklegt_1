@@ -117,7 +117,6 @@ vector<int> database::dataSearch(string tmp,vector<Scientist> allScientist)
             tmpScientist = allScientist[i];
             if (year == tmpScientist.getYearOfDeath())
             {
-                id = i;
                 foundScientists.push_back(i);
             }
         }
