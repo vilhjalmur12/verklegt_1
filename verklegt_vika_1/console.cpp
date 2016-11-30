@@ -40,7 +40,8 @@ void Console::viewOrInsert()
     cout << "|           Choose procedure:           |" << endl;
     cout << "|            v - for viewing            |" << endl;
     cout << "|           i - for insertion           |" << endl;
-    cout << "|           s - for searching           |" << endl;
+    cout << "|            s - for search             |" << endl;
+    cout << "|           q - for quitting            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
@@ -83,7 +84,6 @@ void Console::choiceMade()
                 
             } while (cont == 'y');
         }
-
         else if (choice_made == 'i')
         {
             cout << "insert" << endl;;
@@ -299,5 +299,7 @@ void invalidName (int errorCode)
         cout << "Name can not include numbers" << endl;
     }
 }
+
+
 
 /**********************************************************/
