@@ -19,7 +19,6 @@ void Console::welcome()
     cout << "-----------------------------------------" << endl;
 }
 
-<<<<<<< HEAD
 char Console::continueFunction()
 {
     char cont;
@@ -28,10 +27,8 @@ char Console::continueFunction()
     
     return cont;
 }
-// Enter to continue
-=======
+
 // Yta a Enter til ad halda afram
->>>>>>> 4fc601ca142b69fbc59b3eca55fa4f433038a9ff
 void Console::toContinue()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -71,12 +68,10 @@ void Console::choiceMade()
     do
     {
         char choice_made = choice();
-<<<<<<< HEAD
+
         char cont;
     
-=======
 
->>>>>>> 4fc601ca142b69fbc59b3eca55fa4f433038a9ff
         if (choice_made == 'v')
         {
             do
@@ -92,10 +87,9 @@ void Console::choiceMade()
             } while (cont == 'y');
         }
 
-<<<<<<< HEAD
         while (sorting(str) == false);
     }
-=======
+
         else if (choice_made == 'i')
         {
             cout << "insert" << endl;;
@@ -121,7 +115,7 @@ void Console::choiceMade()
 
              */
         }
->>>>>>> 86729826edab77b6cd2f750e817cab11af23fe9a
+
 
         else if (choice_made == 's')
         {
@@ -288,14 +282,7 @@ void Console::dataSearchNotFound ()
     cout << "No items found" << endl;
 }
 
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 4fc601ca142b69fbc59b3eca55fa4f433038a9ff
->>>>>>> b21627e4d0690376ee6a0fffc8f72bb7a6436e85
 // addsex addyear, Xdanarar a undan fæðingarári, bokstafur i faedingar- eda danarari
 
 void invalidYear (int errorCode)
@@ -331,9 +318,6 @@ void invalidName (int errorCode)
         cout << "Name can not include numbers" << endl;
     }
 }
-<<<<<<< HEAD
-/**********************************************************/
-=======
 
 
 
@@ -341,8 +325,3 @@ void invalidName (int errorCode)
 
 /**********************************************************/
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 4fc601ca142b69fbc59b3eca55fa4f433038a9ff
->>>>>>> b21627e4d0690376ee6a0fffc8f72bb7a6436e85
