@@ -26,10 +26,14 @@ char Console::continueFunction()
     char cont;
     cout << "Would you like to view again?\t(y/n)" << endl << "-> ";
     cont = choice();
-    
+
     return cont;
 }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7a21b99d49dda45923efb21e1831b226ca8156a7
 
 // Enter to continue
 // Yta a Enter til ad halda afram
@@ -103,8 +107,12 @@ void Console::choiceMade()
 
     do
     {
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7a21b99d49dda45923efb21e1831b226ca8156a7
         char cont;
-    
+
         if (choice_made == 'v')
         {
             do
@@ -114,9 +122,9 @@ void Console::choiceMade()
 
             str = stringChoice();
             sorting(str);
-                
+
             cont = continueFunction();
-                
+
             } while (cont == 'y');
         }
         else if (choice_made == 'i')
@@ -133,7 +141,10 @@ void Console::choiceMade()
             //cin >> yod;
 
         }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 7a21b99d49dda45923efb21e1831b226ca8156a7
         else if (choice_made == 's')
         {
             cout << "Search" << endl;
@@ -202,12 +213,12 @@ bool Console::sorting(string str)
 {
     Service tmp;
     vector<Scientist> scientists;
-    
+
     if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd")
     {
         scientists = tmp.getScientists(str);
-        
-        
+
+
         return true;
     }
     else if (str == "nd")
@@ -267,15 +278,29 @@ void Console::run()
 void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
-    
+
     exit(1);
 }
 
 void Console::printTable (vector<Scientist> allScientists)
 {
+<<<<<<< HEAD
+
+    cout << "Name\tGender\tDate of birth\tDate of death";
+
+=======
+    Scientist tmp;
     
-    cout << "Name\tGender\tDate of birth\tDate of death"
+    cout << "Name\t\tGender\tDate of birth\tDate of death" << endl;
+    cout <<"----------------------------------------------------------------------" << endl;
     
+    for (int i = 0; i < 4; i++)
+    {
+        tmp = allScientists[i];
+        
+        cout << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t" << tmp.getYearOfDeath() << endl;
+    }
+>>>>>>> 23248896ef800e09ac12c1aa0251df01555e4668
 }
 
 
@@ -337,6 +362,8 @@ void invalidYear (int errorCode)
 }
 
 
+<<<<<<< HEAD
+=======
 
 
-
+>>>>>>> 7a21b99d49dda45923efb21e1831b226ca8156a7
