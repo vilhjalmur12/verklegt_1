@@ -30,10 +30,14 @@ char Console::continueFunction()
     return cont;
 }
 
+<<<<<<< HEAD
+// Yta a Enter til ad halda afram
+=======
 
 // Enter to continue
 // Yta a Enter til ad halda afram
 
+>>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
 void Console::toContinue()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -74,8 +78,16 @@ void Console::choiceMade()
 
     do
     {
+<<<<<<< HEAD
+        char choice_made = choice();
+
         char cont;
     
+
+=======
+        char cont;
+    
+>>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
         if (choice_made == 'v')
         {
             do
@@ -90,6 +102,13 @@ void Console::choiceMade()
                 
             } while (cont == 'y');
         }
+<<<<<<< HEAD
+
+        while (sorting(str) == false);
+    }
+
+=======
+>>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
         else if (choice_made == 'i')
         {
             cout << "insert" << endl;;
@@ -104,6 +123,10 @@ void Console::choiceMade()
             //cin >> yod;
 
         }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
 
         else if (choice_made == 's')
         {
@@ -318,4 +341,7 @@ void invalidYear (int errorCode)
 
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 543a0d2d083ab735cdae192f072f3daae82952d0
