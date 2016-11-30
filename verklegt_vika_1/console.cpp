@@ -81,7 +81,7 @@ void Console::choiceMade(char choice_made)
         //cin >> gender;
         cout << "Enter year of birth: " << endl;
         //cin >> yob;
-        cout << "Enter year of death (if it applys): " << endl;
+        cout << "Enter year of death (if it applies): " << endl;
         //cin >> yod;
 
         /*
@@ -221,7 +221,7 @@ void Console::sorting(string str)
                     ERRORS
  **********************************************************/
 
-/*void Console::dataWriteError ()
+void Console::dataWriteError ()
 {
     cout << "No database found!" << endl;
 }
