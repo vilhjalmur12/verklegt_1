@@ -34,6 +34,7 @@ public:
     void invalidName (int errorCode);
 
 private:
+    void printInsertScreen();
     void insertScientist();
     Service scientistService;
 

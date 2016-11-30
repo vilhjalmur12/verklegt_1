@@ -66,8 +66,23 @@ string Console::stringChoice()
     return str;
 }
 
+void Console::printInsertScreen()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|       Please Insert Information       |" << endl;
+    cout << "|        in the following format        |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|          Name:   First (Middle) Last  |" << endl;
+    cout << "|        Gender:   m/f                  |" << endl;
+    cout << "| Year of Birth:   YYYY                 |" << endl;
+    cout << "| Year of Death:   YYYY / na            |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 void Console::insertScientist()
 {
+    printInsertScreen();
+
     string name, sex;
     int YOB, YOD = inf;
 
@@ -88,11 +103,17 @@ void Console::insertScientist()
         string input;
         cout << "Year of birth: ";
         cin >> YOB;
-        cout << "Year of death(na for not available) : ";
+        cout << "Year of death : ";
         cin >> input;
+        if(input == "na");
+        else
+        {
+            YOD = stoi(input);
+        }
+
     }while(!scientistService.validYears());
 
-
+    scientistService.appendScientist(name, sex, YOB, YOD);
 }
 
 // Það sem gerist ef þú velur view, insert eða search
@@ -122,16 +143,7 @@ void Console::choiceMade(Scientist &scientist, vector<Scientist> &allScientists)
         }
         else if (choice_made == 'i')
         {
-            cout << "insert" << endl;;
-
-            cout << "Enter name: " << endl;
-            //cin << name;
-            cout << "Enter gender: " << endl;
-            //cin >> gender;
-            cout << "Enter year of birth: " << endl;
-            //cin >> yob;
-            cout << "Enter year of death (if it applies): " << endl;
-            //cin >> yod;
+            insertScientist();
 
         }
 
