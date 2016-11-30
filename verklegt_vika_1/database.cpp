@@ -102,7 +102,7 @@ vector<int> database::dataSearch(string tmp,vector<Scientist> allScientist)
     {
         int year = atoi(tmp.c_str()); // String í int
 
-        for (int i = 0; i < tempName.size(); i++)
+        for (unsigned int i = 0; i < tempName.size(); i++)
         {
             tmpScientist = allScientist[i];
             id=i;
@@ -111,7 +111,7 @@ vector<int> database::dataSearch(string tmp,vector<Scientist> allScientist)
                 foundScientists.push_back(i);
             }
         }
-        for (int i = 0; i < tempName.size(); i++)
+        for (unsigned int i = 0; i < tempName.size(); i++)
         {
             id = i;
             tmpScientist = allScientist[i];
@@ -124,7 +124,7 @@ vector<int> database::dataSearch(string tmp,vector<Scientist> allScientist)
     }
     else
     {
-        for (int i = 0; i < tempName.size(); i++)
+        for (unsigned int i = 0; i < tempName.size(); i++)
         {
             id = i;
             tmpScientist = allScientist[i];
