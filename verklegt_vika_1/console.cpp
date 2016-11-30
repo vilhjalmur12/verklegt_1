@@ -177,6 +177,8 @@ bool Console::sorting(string str)
     if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd")
     {
         scientists = tmp.getScientists(str);
+        
+        
         return true;
     }
     else if (str == "nd")
@@ -238,6 +240,13 @@ void Console::quit()
     cout << "Thank you for using Database, stay classy!" << endl << endl;
     
     exit(1);
+}
+
+void Console::printTable (vector<Scientist> allScientists)
+{
+    
+    cout << "Name\tGender\tDate of birth\tDate of death"
+    
 }
 
 

@@ -1,6 +1,7 @@
     #ifndef CONSOLE_H
 #define CONSOLE_H
-
+#include "scientist.h"
+#include <vector>
 #include <string>
 
 using namespace std;
@@ -21,6 +22,7 @@ public:
     bool sorting(string str); // here we print out the list how they want it to be sorted like
     void run();
     char continueFunction(); // spyr hvort þú viljir endurtaka aðferð y/n
+    void printTable(vector<Scientist> allScientists); // prentar út töflu með scientists
 
     void dataWriteError ();  // villi: error output fyrir database
     void quit();   // quit fall ef við vijum hætta í forriti
