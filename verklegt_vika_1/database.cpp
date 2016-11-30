@@ -13,9 +13,10 @@ database::~database () {}
 /****************************************************************************
                 getData
 
- fall sem sækir allar niðurstöður úr gagnagrunni og skilar þeim í vectora svo við höfum þá til notkunnar allann
+ fall sem sækir allar niðurstöður úr gagnagrunni og skilar þeim í vectora svo við höfum þá til notkunar allann
  tíman sem við erum að vinna í forritinu.
  ****************************************************************************/
+
 void database::getData ()
 {
     string name, sex;
@@ -53,7 +54,7 @@ void database::getData ()
 /****************************************************************************
                 writeData
 
- tekur inn upplýsingar frá gagnagrunni og hleður allar í vectoar til að reyðubúa notkun
+ tekur inn upplýsingar frá gagnagrunni og hleður allar í vectoar til að reiðubúa notkun
  ****************************************************************************/
 void database::writeData ()
 {
