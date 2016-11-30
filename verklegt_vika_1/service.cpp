@@ -1,3 +1,4 @@
+#include "console.h"
 #include "database.h"
 #include "service.h"
 #include <algorithm>
@@ -38,38 +39,55 @@ string Service::fixString(string before)
 bool Service::addName(string& name)
 {
     name = fixString(name);
+    Console* pC = new Console();
 
     bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]+([A-Za-z]||[ ])*+$"));
 
     for(unsigned int i = 0; i < _scientists.size(); i++)
     {
         if(_scientists[i].getName() == name)
+           // pC->invalidName(1);
+            delete pC;
             return false;
     }
 
     if (containsDigits)
+    {
+        //pC->invalidName(2);
+        delete pC;
         return false;
+    }
 
+    delete pC;
     return true;
 }
 
 bool Service::addSex(string& sex)
 {
+    Console* pC = new Console();
+
     sex = fixString(sex);
 
     if(sex == "M")
     {
         sex = "Male";
+        delete pC;
         return true;
     }
 
     if(sex == "F")
     {
         sex = "Female";
+        delete pC;
         return true;
     }
+    else
+    {
+       // pC->invalidSex();
+        delete pC;
+        return false;
+    }
 
-    return false;
 }
 
 bool Service::addYears(int birthYear, int deathYear)
@@ -78,17 +96,34 @@ bool Service::addYears(int birthYear, int deathYear)
     time_t t = time(NULL);
     tm* timePtr = localtime(&t);
 
-    if(deathYear < birthYear)
-        return false;
-    //pointer + 1900 == nuverandi ar
-    if(birthYear > timePtr->tm_year + 1900 || deathYear > timePtr->tm_year + 1900)
-        return false;
+    Console* pC = new Console();
 
+    if(deathYear < birthYear)
+    {
+       // pC->invalidYear(1);
+        delete pC;
+        return false;
+    }
+        //pointer + 1900 == nuverandi ar
+    if(birthYear > timePtr->tm_year + 1900 || deathYear > timePtr->tm_year + 1900)
+    {
+        // pC->invalidYear(2);
+        delete pC;
+        return false;
+    }
+    if(birthYear < 0)
+    {
+       // pc->invalidYear(3);
+        delete pC;
+        return false;
+    }
+
+    delete pC;
     return true;
 }
 
 
-//Temp cout setningar fyrir villur, finna leið til að láta skilaboð berast til console
+//TODO: Fjarlægja add föll og gera console kleift að runna þau
 void Service::appendScientist(string name, string sex, int birthYear, int deathYear)
 {
     // Fallið skilar false ef inntak inniheldur óþekktan staf eða er nú þegar til
@@ -104,17 +139,13 @@ void Service::appendScientist(string name, string sex, int birthYear, int deathY
         return;
     }
 
-    if(!addYears(birthYear, deathYear))
-    {
-        cout << "Invalid Dates!";
-        return;
-    }
+    addYears(birthYear, deathYear);
 
     Scientist tempScientist(name, sex, birthYear, deathYear);
     _scientists.push_back(tempScientist);
 
     database* pD = new database;
-  //  pD->pushData(_scientists);
+  //1  pD->pushData(_scientists);
     delete pD;
 }
 
