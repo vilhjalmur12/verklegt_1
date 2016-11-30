@@ -81,7 +81,7 @@ void Console::choiceMade(char choice_made)
         //cin >> gender;
         cout << "Enter year of birth: " << endl;
         //cin >> yob;
-        cout << "Enter year of death (if it applys): " << endl;
+        cout << "Enter year of death (if it applies): " << endl;
         //cin >> yod;
 
         /*
@@ -232,8 +232,12 @@ void Console::run()
                     ERRORS
  **********************************************************/
 
+<<<<<<< HEAD
 /*
  void Console::dataWriteError ()
+=======
+void Console::dataWriteError ()
+>>>>>>> bae02c828e2e970be00ccfff081cf04f6800a8b9
 {
     cout << "No database found!" << endl;
 }
@@ -242,5 +246,8 @@ void Console::dataSearchNotFound ()
 {
     cout << "No items found" << endl;
 }
+<<<<<<< HEAD
  */
 /**********************************************************/
+=======
+>>>>>>> bae02c828e2e970be00ccfff081cf04f6800a8b9
