@@ -86,11 +86,11 @@ void Console::insertScientist()
     printInsertScreen();
 
     string name, sex;
-    int YOB, YOD = inf;
+    int YOB, YOD;
 
     do
     {
-        cout << "Name: "
+        cout << "Name: ";
         cin.getline(name);
     }while(!scientistService.validName(name));
 
