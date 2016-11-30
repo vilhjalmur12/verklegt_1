@@ -1,11 +1,11 @@
 #ifndef SERVICE_H
 #define SERVICE_H
 
+#include "database.h"
+#include "scientist.h"
 #include <string>
 #include <vector>
 #include <regex>
-#include "database.h"
-#include "scientist.h"
 #include <iostream>
 #include <algorithm>
 #include <ctime>

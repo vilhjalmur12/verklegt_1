@@ -2,7 +2,6 @@
 #include "database.h"
 #include "service.h"
 
-
 using namespace std;
 
 Service::Service()
