@@ -126,7 +126,7 @@ bool Service::addYears(int birthYear, int deathYear)
     }
     if(birthYear < 0)
     {
-        pc->invalidYear(3);
+        pC->invalidYear(3);
         delete pC;
         return false;
     }

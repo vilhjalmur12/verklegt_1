@@ -23,6 +23,10 @@ public:
     bool rightName(string& name);
     bool rightSex(string& sex);
     bool rightYears(int birthYear, int deathYear);
+    
+    bool addName(string& name);
+    bool addSex(string& sex);
+    bool addYears(int birthYear, int deathYear);
 
     //Fyrsta breyta er val um hvernig skuli raða
     vector<Scientist> getScientists(string choice);
