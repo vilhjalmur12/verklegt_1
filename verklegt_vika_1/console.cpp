@@ -63,6 +63,7 @@ void Console::choiceMade()
 {
     do
     {
+<<<<<<< HEAD
         char choice_made = choice();
     
         if (choice_made == 'v')
@@ -113,6 +114,57 @@ void Console::choiceMade()
             cout << "Please enter a valid *** " << endl;
         }
     } while (arg != q || arg != s || arg != i || arg !=v);
+=======
+        string str;
+
+        do
+        {
+            viewDisplay();
+
+            str = stringChoice();
+        }
+
+        while (sorting(str) == false);
+
+
+    }
+
+    else if (choice_made == 'i')
+    {
+        cout << "insert" << endl;;
+
+        cout << "Enter name: " << endl;
+        //cin << name;
+        cout << "Enter gender: " << endl;
+        //cin >> gender;
+        cout << "Enter year of birth: " << endl;
+        //cin >> yob;
+        cout << "Enter year of death (if it applies): " << endl;
+        //cin >> yod;
+
+        /*
+         string name;
+         char sex;
+         int birthYear;
+         int deathYear;
+         cin >> name;
+         cin >> sex;
+         cin >> birthYear;
+         cin >> deathYear;
+
+         */
+    }
+
+    else if (choice_made == 's')
+    {
+        cout << "Search" << endl;
+    }
+
+    else
+    {
+        cout << "Please enter a valid *** " << endl;
+    }
+>>>>>>> d22906a08aec771ad843759db7eab9ee73769192
 }
 
 
@@ -134,6 +186,8 @@ void Console::choiceMade()
  }*/
 
 
+
+
 void Console::sorting_menu()
 {
     cout << "-----------------------------------------" << endl;
@@ -151,58 +205,73 @@ void Console::sorting_menu()
     cout << "-----------------------------------------" << endl;
 }
 
+<<<<<<< HEAD
+
+=======
+void Console::viewDisplay()
+{
+    string str;
+    sorting_menu();
+    //displayFræðina();
+}
+>>>>>>> d22906a08aec771ad843759db7eab9ee73769192
 
 
-
-void Console::sorting(string str)
+bool Console::sorting(string str)
 {
     if (str == "na")
     {
         cout << "na virkar" << endl;
-        //na fallið
+        return true;
     }
     else if (str == "nd")
     {
         cout << "nd" << endl;
-        //nd fallið
+        return true;
     }
     else if (str == "gf")
     {
         cout << "gf virkar" << endl;
-        //nd fallið
+        return true;
     }
     else if (str == "gm")
     {
         cout << "gm" << endl;
-        //nd fallið
+        return true;
     }
     else if (str == "ba")
     {
         cout << "ba" << endl;
-        //nd fallið
+        return true;
     }
     else if (str == "bd")
     {
         cout << "bd" << endl;
-        //nd fallið
+        return true;
     }
     else if (str == "da")
     {
         cout << "da" << endl;
-        //nd fallið
+        return true;
     }
     else if (str == "dd")
     {
         cout << "dd" << endl;
-        //nd fallið
+        return true;
     }
     else
     {
-        cout << "Enter valid command" << endl;
+        cout << "Enter a valid command" << endl;
+        return false;
     }
 }
 
 
+
+/*void Console::run()
+ {
+ welcome();
+=======
 /**********************************************************
                 Villi er að vinna hér
  **********************************************************/
@@ -213,13 +282,18 @@ void Console::run()
 {
     welcome();
 
-    char arg;
 
-    while (arg != 'q')
-    {
-        break;
-    }
-}
+ char arg;
+
+
+ while (arg != 'q')
+ {
+    break;
+ }
+
+
+ }
+
 
 void Console::quit()
 {
@@ -235,7 +309,7 @@ void Console::quit()
 
 
 /**********************************************************
-                    ERRORS
+ ERRORS
  **********************************************************/
 
 

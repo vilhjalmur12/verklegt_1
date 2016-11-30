@@ -18,11 +18,8 @@ public:
     string stringChoice(); // here you choose what kind of sorting you want to do
     void viewDisplay(); // prints out the list and sorting
     void toContinue(); // press enter to continue
-    void sorting(string str); // here we print out the list how they want it to be sorted like
+    bool sorting(string str); // here we print out the list how they want it to be sorted like
     void run();
-
-
-
 
     void dataWriteError ();  // villi: error output fyrir database
     void quit();   // quit fall ef við vijum hætta í forriti
@@ -31,7 +28,6 @@ public:
 
 protected:
 private:
-
 
 
 

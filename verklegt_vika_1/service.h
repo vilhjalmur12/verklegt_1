@@ -30,6 +30,7 @@ private:
 
 //appendScientist Hjálparföll
     string fixString(string before);
+//TODO: Gera þessi föll public svo console geti notað þau!
     bool addName(string& name);
     bool addSex(string& sex);
     bool addYears(int birthYear, int deathYear);
