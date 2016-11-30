@@ -196,7 +196,7 @@ void Console::sorting(string str)
     }
 }
 
-/*void Console::run()
+void Console::run()
 {
     welcome();
 
@@ -209,7 +209,7 @@ void Console::sorting(string str)
 
 
 }
-*/
+
 
 /**********************************************************
                     ERRORS

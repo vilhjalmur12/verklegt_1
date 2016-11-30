@@ -19,6 +19,7 @@ public:
     void viewDisplay(); // prints out the list and sorting
     void toContinue(); // press enter to continue
     void sorting(string str); // here we print out the list how they want it to be sorted like
+    void run();
 
     //string str = stringChoice();
 
