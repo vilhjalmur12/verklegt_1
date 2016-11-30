@@ -59,53 +59,60 @@ string Console::stringChoice()
 }
 
 // Það sem gerist ef þú velur view, insert eða search
-void Console::choiceMade(char choice_made)
+void Console::choiceMade()
 {
-    if (choice_made == 'v')
+    do
     {
-        string str;
-        viewDisplay();
+        char choice_made = choice();
+    
+        if (choice_made == 'v')
+        {
+            string str;
+            sorting_menu();
 
-        str = stringChoice();
-        sorting(str);
+            str = stringChoice();
+            sorting(str);
+        }
 
-    }
+        else if (choice_made == 'i')
+        {
+            cout << "insert" << endl;;
 
-    else if (choice_made == 'i')
-    {
-        cout << "insert" << endl;;
+            cout << "Enter name: " << endl;
+            //cin << name;
+            cout << "Enter gender: " << endl;
+            //cin >> gender;
+            cout << "Enter year of birth: " << endl;
+            //cin >> yob;
+            cout << "Enter year of death (if it applies): " << endl;
+            //cin >> yod;
 
-        cout << "Enter name: " << endl;
-        //cin << name;
-        cout << "Enter gender: " << endl;
-        //cin >> gender;
-        cout << "Enter year of birth: " << endl;
-        //cin >> yob;
-        cout << "Enter year of death (if it applies): " << endl;
-        //cin >> yod;
+            /*
+             string name;
+             char sex;
+             int birthYear;
+             int deathYear;
+             cin >> name;
+             cin >> sex;
+             cin >> birthYear;
+             cin >> deathYear;
 
-        /*
-        string name;
-        char sex;
-        int birthYear;
-        int deathYear;
-        cin >> name;
-        cin >> sex;
-        cin >> birthYear;
-        cin >> deathYear;
+             */
+        }
 
-        */
-    }
-
-    else if (choice_made == 's')
-    {
-        cout << "Search" << endl;
-    }
-
-    else
-    {
-        cout << "Please enter a valid *** " << endl;
-    }
+        else if (choice_made == 's')
+        {
+            cout << "Search" << endl;
+        }
+        else if (choice_made == 'q')
+        {
+            quit();
+        }
+        else
+        {
+            cout << "Please enter a valid *** " << endl;
+        }
+    } while (arg != q || arg != s || arg != i || arg !=v);
 }
 
 
@@ -144,13 +151,7 @@ void Console::sorting_menu()
     cout << "-----------------------------------------" << endl;
 }
 
-void Console::viewDisplay()
-{
-    string str;
-    sorting_menu();
 
-    //displayFræðina();
-}
 
 
 void Console::sorting(string str)
