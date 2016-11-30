@@ -230,3 +230,39 @@ void Console::dataSearchNotFound ()
 {
     cout << "No items found" << endl;
 }
+
+// addsex addyear, Xdanarar a undan fæðingarári, bokstafur i faedingar- eda danarari
+void invalidYear (int errorCode)
+{
+    if(errorCode == 1)
+    {
+        cout << "Year of death can not be before year of birth" << endl;
+    }
+    if(errorCode == 2)
+    {
+        cout << "The Computer Scientst can not be born in the future" << endl;
+    }
+    if(errorCode == 3)
+    {
+        // Ath ad thessi dude faer samt ad halda afram i forritinu!!
+        cout << "Are you sure you want to add a Computer Scientist that was born before Christ? " << endl;
+    }
+}
+
+void invalidSex ()
+{
+    cout << "Sex must be either Male or Female" << endl;
+}
+
+void invalidName (int errorCode)
+{
+    if(errorCode == 1)
+    {
+        cout << "The name you entered is already exists in the list" << endl;
+    }
+    if(errorCode == 2)
+    {
+        cout << "Name can not include numbers" << endl;
+    }
+}
+

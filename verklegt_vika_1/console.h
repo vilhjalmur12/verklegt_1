@@ -26,6 +26,9 @@ public:
 
     void dataWriteError ();  // villi: error output fyrir database
     void dataSearchNotFound ();
+    void invalidYear (int errorCode);
+    void invalidSex ();
+    void invalidName (int errorCode);
 
 protected:
 private:
