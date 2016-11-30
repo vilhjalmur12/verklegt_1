@@ -26,10 +26,9 @@ char Console::continueFunction()
     char cont;
     cout << "Would you like to view again?\t(y/n)" << endl << "-> ";
     cont = choice();
-    
+
     return cont;
 }
-
 
 // Enter to continue
 // Yta a Enter til ad halda afram
@@ -68,26 +67,28 @@ string Console::stringChoice()
 }
 
 // Það sem gerist ef þú velur view, insert eða search
-void Console::choiceMade()
+void Console::choiceMade(Scientist &scientist, vector<Scientist> &allScientists)
 {
     char choice_made = choice();
 
     do
     {
         char cont;
-    
+
         if (choice_made == 'v')
         {
             do
             {
-            string str;
-            sorting_menu();
+                string str;
+                sorting_menu();
 
-            str = stringChoice();
-            sorting(str);
+                str = stringChoice();
+                sorting(str);
                 
-            cont = continueFunction();
-                
+                printTable(allScientists);
+
+                cont = continueFunction();
+
             } while (cont == 'y');
         }
         else if (choice_made == 'i')
@@ -122,27 +123,6 @@ void Console::choiceMade()
 
 }
 
-
-/*void Console::displayFræðinga()
- {
- vektor með fræðingur = sækjaFræðinga(); - frá service
-
- tékka hvernig hægt er að prenta út upplýsingar í töflu
-
-
- for (size_t i = 0; i < fallFræðinga.size(); i++)
- {
- cout << fallFræðinga[i].sækjaNafn() << endl;
- prenta líka út allt hitt?
- }
-
-
-
- }*/
-
-
-
-
 void Console::sorting_menu()
 {
     cout << "-----------------------------------------" << endl;
@@ -173,10 +153,12 @@ bool Console::sorting(string str)
 {
     Service tmp;
     vector<Scientist> scientists;
-    
+
     if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd")
     {
         scientists = tmp.getScientists(str);
+
+
         return true;
     }
     else if (str == "nd")
@@ -236,8 +218,23 @@ void Console::run()
 void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
-    
+
     exit(1);
+}
+
+void Console::printTable (vector<Scientist> allScientists)
+{
+    Scientist tmp;
+    
+    cout << "Name\t\tGender\tDate of birth\tDate of death" << endl;
+    cout <<"----------------------------------------------------------------------" << endl;
+    
+    for (int i = 0; i < 4; i++)
+    {
+        tmp = allScientists[i];
+        
+        cout << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t" << tmp.getYearOfDeath() << endl;
+    }
 }
 
 
@@ -297,8 +294,4 @@ void invalidYear (int errorCode)
         cout << "Are you sure you want to add a Computer Scientist that was born before Christ? " << endl;
     }
 }
-
-
-
-
 
