@@ -68,6 +68,35 @@ string Console::stringChoice()
     return str;
 }
 
+void Console::insertScientist()
+{
+    string name, sex;
+    int YOB, YOD = inf;
+
+    do
+    {
+        cout << "Name: "
+        cin.getline(name);
+    }while(!scientistService.validName(name));
+
+    do
+    {
+    cout << "Gender: ";
+    cin >> sex;
+    }while(!scientistService.validSex(sex));
+
+    do
+    {
+        string input;
+        cout << "Year of birth: ";
+        cin >> YOB;
+        cout << "Year of death(na for not available) : ";
+        cin >> input;
+    }while(!scientistService.validYears());
+
+
+}
+
 // Það sem gerist ef þú velur view, insert eða search
 void Console::choiceMade(Scientist &scientist, vector<Scientist> &allScientists)
 {
