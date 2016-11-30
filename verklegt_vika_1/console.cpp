@@ -30,6 +30,8 @@ char Console::continueFunction()
     return cont;
 }
 
+
+
 // Enter to continue
 // Yta a Enter til ad halda afram
 
@@ -280,6 +282,8 @@ void Console::printTable (vector<Scientist> allScientists)
 
 
 /**********************************************************/
+<<<<<<< HEAD
+=======
 
 
 
@@ -307,7 +311,7 @@ void invalidName (int errorCode)
     switch (errorCode)
     {
         case 1:
-            cout << "The name you entered is already exists in the list" << endl;
+            cout << "The name you entered already exists in the list" << endl;
             break;
         case 2:
             cout << "Name can not include numbers" << endl;
@@ -317,7 +321,7 @@ void invalidName (int errorCode)
 
 void invalidSex ()
 {
-    cout << "Sex must be either Male or Female" << endl;
+    cout << "Gender must be either Male or Female" << endl;
 }
 
 void invalidYear (int errorCode)
@@ -329,7 +333,7 @@ void invalidYear (int errorCode)
             break;
             
         case 2:
-            cout << "The Computer Scientst can not be born in the future" << endl;
+            cout << "The Computer Scientist can not be born in the future" << endl;
             break;
             
         case 3:
@@ -339,3 +343,6 @@ void invalidYear (int errorCode)
     }
 }
 
+
+
+>>>>>>> 9183fae714e3a48665157849d24b0b49639a66cb
