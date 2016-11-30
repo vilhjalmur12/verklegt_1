@@ -151,6 +151,44 @@ vector<Scientist> Service::getScientists (string choice)
     return _scientists;
 }
 
+vector<int> Service::search(string query)
+{
+    vector<int> foundScientists;
+
+    if (string::npos != query.find_first_of("0123456789")) // Strengur af tölustöfum ?
+    {
+        int year = stoi(query); // String í int
+
+        for (unsigned int i = 0; i < _scientists.size(); i++)
+        {
+            if (year == _scientists[i].getYearOfBirth())
+            {
+                foundScientists.push_back(i);
+            }
+        }
+        for (unsigned int i = 0; i < _scientists.size(); i++)
+        {
+            if (year == _scientists[i].getYearOfDeath())
+            {
+                foundScientists.push_back(i);
+            }
+        }
+    }
+    else
+    {
+        for (unsigned int i = 0; i < _scientists.size(); i++)
+        {
+            if (query == _scientists[i].getName())
+            {
+                foundScientists.push_back(i);;
+            }
+        }
+    }
+
+    return foundScientists;
+}
+
+
 
 /***********************************************
  *                                                *

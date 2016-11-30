@@ -30,7 +30,7 @@ public:
     vector<Scientist> getScientists(string choice);
 
     //TODO: Færa search fall frá datadrengjum í cpp
-    void search(string query);
+    vector<int> search(string query);
 
 private:
     //Meðlimabreytur
@@ -41,6 +41,9 @@ private:
     //appendScientist Hjálparföll
     string removeSpaces(string before);
     string fixString(string before);
+
+    //search Hjálparföll
+
 
     //getScientists - sorting algrímar
     void sortByNameAscending();

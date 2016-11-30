@@ -92,50 +92,6 @@ void database::writeData ()
     Leitarvél sem tekur inn streng sem leitað er í nafna vector og skilar
     út í hvaða staki hann var. Hægt að nota tölu sem identifier í hina vectora
  ****************************************************************************/
-vector<int> database::dataSearch(string tmp,vector<Scientist> allScientist)
-{
-    int id = -1;
-    Scientist tmpScientist;
-    vector<int> foundScientists;
-
-    if (string::npos != tmp.find_first_of("0123456789")) // Strengur af tölustöfum ?
-    {
-        int year = atoi(tmp.c_str()); // String í int
-
-        for (unsigned int i = 0; i < tempName.size(); i++)
-        {
-            tmpScientist = allScientist[i];
-            id=i;
-            if (year == tmpScientist.getYearOfBirth())
-            {
-                foundScientists.push_back(i);
-            }
-        }
-        for (unsigned int i = 0; i < tempName.size(); i++)
-        {
-            id = i;
-            tmpScientist = allScientist[i];
-            if (year == tmpScientist.getYearOfDeath())
-            {
-                foundScientists.push_back(i);
-            }
-        }
-    }
-    else
-    {
-        for (unsigned int i = 0; i < tempName.size(); i++)
-        {
-            id = i;
-            tmpScientist = allScientist[i];
-            if (tmp == tmpScientist.getName())
-            {
-                foundScientists.push_back(i);;
-            }
-        }
-    }
-
-    return foundScientists;
-}
 
 int database::dataSearch (string tmp)
 {
