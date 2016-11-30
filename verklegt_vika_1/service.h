@@ -7,6 +7,8 @@
 #include "database.h"
 #include "scientist.h"
 #include <iostream>
+#include <algorithm>
+#include <ctime>
 
 using namespace std;
 
@@ -25,17 +27,17 @@ public:
     void search(string query);
 
 private:
-//Meðlimabreytur
+    //Meðlimabreytur
     vector<Scientist> _scientists;
 
-//appendScientist Hjálparföll
+    //appendScientist Hjálparföll
     string fixString(string before);
-//TODO: Gera þessi föll public svo console geti notað þau!
+    //TODO: Gera þessi föll public svo console geti notað þau!
     bool addName(string& name);
     bool addSex(string& sex);
     bool addYears(int birthYear, int deathYear);
 
-//getScientists - sorting algrímar
+    //getScientists - sorting algrímar
     void sortByNameAscending();
     void sortByNameDesending();
     void sortBySexF();
