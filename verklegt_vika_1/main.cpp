@@ -1,14 +1,22 @@
 #include <iostream>
+#include "Console.h"
+//#include "database.h"
 #include "console.h"
-
 #include <string>
+//#include "database.h"
 using namespace std;
 
 int main()
 {
-    //database data;
+
+  //  database data;
 
     char choice_made;
+    char stringChoiceMade;
+
+    //database data;
+
+
     //string str;
 
     Console console;
@@ -20,8 +28,8 @@ int main()
 
     //console.sorting(str);
 
-
     // TODO:
+
     //displayList();
     //addToList(); setjum vid tad her eda er tad komid inn sjalfkrafa? (1.3 endi)
 

@@ -25,6 +25,7 @@ void Console::welcome()
     cout << "-----------------------------------------" << endl;
 }
 
+// Enter to continue
 void Console::toContinue()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -57,14 +58,17 @@ string Console::stringChoice()
     return str;
 }
 
+// Það sem gerist ef þú velur view, insert eða search
 void Console::choiceMade(char choice_made)
 {
     if (choice_made == 'v')
     {
         string str;
         viewDisplay();
+
         str = stringChoice();
         sorting(str);
+
     }
 
     else if (choice_made == 'i')
@@ -148,6 +152,7 @@ void Console::viewDisplay()
     //displayFræðina();
 }
 
+
 void Console::sorting(string str)
 {
     if (str == "na")
@@ -196,7 +201,14 @@ void Console::sorting(string str)
     }
 }
 
+
+/**********************************************************
+                Villi er að vinna hér
+ **********************************************************/
+
+
 void Console::run()
+
 {
     welcome();
 
@@ -211,11 +223,17 @@ void Console::run()
 }
 
 
+/**********************************************************/
+
+
+
+
 /**********************************************************
                     ERRORS
  **********************************************************/
 
-void Console::dataWriteError ()
+/*
+ void Console::dataWriteError ()
 {
     cout << "No database found!" << endl;
 }
@@ -224,5 +242,5 @@ void Console::dataSearchNotFound ()
 {
     cout << "No items found" << endl;
 }
+ */
 /**********************************************************/
-
