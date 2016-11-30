@@ -20,9 +20,9 @@ public:
 
     void appendScientist(string name, string sex, int birthYear, int deathYear);
 
-    bool rightName(string& name);
-    bool rightSex(string& sex);
-    bool rightYears(int birthYear, int deathYear);
+    bool validName(string& name);
+    bool validSex(string& sex);
+    bool validYears(int birthYear, int deathYear);
 
     //Fyrsta breyta er val um hvernig skuli raða
     vector<Scientist> getScientists(string choice);
