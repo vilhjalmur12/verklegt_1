@@ -292,13 +292,14 @@ void Console::dataSearchNotFound ()
 
 void invalidName (int errorCode)
 {
-    if(errorCode == 1)
+    switch (errorCode)
     {
-        cout << "The name you entered is already exists in the list" << endl;
-    }
-    if(errorCode == 2)
-    {
-        cout << "Name can not include numbers" << endl;
+        case 1:
+            cout << "The name you entered is already exists in the list" << endl;
+            break;
+        case 2:
+            cout << "Name can not include numbers" << endl;
+            break;
     }
 }
 
@@ -309,18 +310,20 @@ void invalidSex ()
 
 void invalidYear (int errorCode)
 {
-    if(errorCode == 1)
+    switch (errorCode)
     {
-        cout << "Year of death can not be before year of birth" << endl;
-    }
-    if(errorCode == 2)
-    {
-        cout << "The Computer Scientst can not be born in the future" << endl;
-    }
-    if(errorCode == 3)
-    {
-        // Ath ad thessi dude faer samt ad halda afram i forritinu!!
-        cout << "Are you sure you want to add a Computer Scientist that was born before Christ? " << endl;
+        case 1:
+            cout << "Year of death can not be before year of birth" << endl;
+            break;
+            
+        case 2:
+            cout << "The Computer Scientst can not be born in the future" << endl;
+            break;
+            
+        case 3:
+            // Ath ad thessi dude faer samt ad halda afram i forritinu!!
+            cout << "Are you sure you want to add a Computer Scientist that was born before Christ? " << endl;
+            break;
     }
 }
 
