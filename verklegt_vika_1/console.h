@@ -1,4 +1,4 @@
-    #ifndef CONSOLE_H
+#ifndef CONSOLE_H
 #define CONSOLE_H
 #include "scientist.h"
 #include <vector>
