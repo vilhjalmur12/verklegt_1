@@ -128,8 +128,10 @@ void Console::pushBackScientist()
 void Console::choiceMade()
 {
     char choice_made = choice();
+    vector<Scientist> allScientists;
+    bool isOn = true;
 
-    do
+    while (isOn == true)
     {
         char cont;
 
@@ -141,7 +143,7 @@ void Console::choiceMade()
                 sorting_menu();
 
                 str = stringChoice();
-                sorting(str);
+                sorting(str, allScientists);
                 
                 cont = continueFunction();
 
@@ -169,7 +171,7 @@ void Console::choiceMade()
         {
             cout << "Please enter a valid *** " << endl;
         }
-    } while ( (choice_made != 'q') && (choice_made != 's') && (choice_made != 'i') && (choice_made != 'v') );
+    }
 
 
 }
@@ -258,51 +260,13 @@ void Console::printTable (vector<int> indexesToPrint)
 
 
 // Tjekk a hvort val a sorteringu se rett valid
-bool Console::sorting(string str)
+bool Console::sorting(string str, vector<Scientist> &allScientists)
 {
     Service tmp;
-    vector<Scientist> scientists;
 
     if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd")
     {
-        scientists = tmp.getScientists(str);
-
-
-        return true;
-    }
-    else if (str == "nd")
-    {
-        cout << "nd" << endl;
-        return true;
-    }
-    else if (str == "gf")
-    {
-        cout << "gf virkar" << endl;
-        return true;
-    }
-    else if (str == "gm")
-    {
-        cout << "gm" << endl;
-        return true;
-    }
-    else if (str == "ba")
-    {
-        cout << "ba" << endl;
-        return true;
-    }
-    else if (str == "bd")
-    {
-        cout << "bd" << endl;
-        return true;
-    }
-    else if (str == "da")
-    {
-        cout << "da" << endl;
-        return true;
-    }
-    else if (str == "dd")
-    {
-        cout << "dd" << endl;
+        allScientists = tmp.getScientists(str);
         return true;
     }
     else
