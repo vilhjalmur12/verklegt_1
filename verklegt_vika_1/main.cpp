@@ -8,6 +8,9 @@ using namespace std;
 
 int main()
 {
+
+
+    /*//database data;
     Console screen;
     screen.run();
     //database data;
@@ -43,6 +46,10 @@ int main()
     //cout << choice_made << endl;
 
     /// Passa að skrifa vector út í database í lok keyrslu*/
+
+    Console screen;
+    screen.run();
+
 
     return 0;
 }
