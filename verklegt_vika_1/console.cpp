@@ -113,7 +113,6 @@ char Console::continueFunction()
 
 // Enter to continue
 // Yta a Enter til ad halda afram
-
 void Console::toContinue()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -286,7 +285,9 @@ void Console::search()
     cin >> query;
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
     printTable(indexesToPrint); //Prenta leitarniðurstöðu
-    //TODO Bjóða upp á eyða / breyta
+    changeDelete();
+    //TODO kalla á change og delete fallið
+
 }
 
 void Console::printTable (vector<int> indexesToPrint)
