@@ -310,9 +310,7 @@ void Console::search()
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
     printTable(indexesToPrint); //Prenta leitarniðurstöðu
     printChangeDelete();
-    //TODO kalla á change og delete fallið
-
-
+    changeOrDelete();
 }
 
 // Prenta út tölfu með upplýsingum
