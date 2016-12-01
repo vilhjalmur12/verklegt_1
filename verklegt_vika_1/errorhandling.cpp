@@ -47,11 +47,9 @@ void ErrorHandling::invalidYear (int errorCode)
         case 1:
             cout << "ERROR: Year of death can not be before year of birth!" << endl;
             break;
-
         case 2:
             cout << "ERROR: The Computer Scientist can not be born in the future!" << endl;
             break;
-
         case 3:
             cout << "Are you sure you want to add a Computer Scientist that was born before Christ?" << endl;
             break;
