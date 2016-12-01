@@ -203,7 +203,16 @@ void Console::choiceMade()
 
     if (choice_made == 'v')
     {
-        do
+
+        string str;
+        sorting_menu();
+
+        str = stringChoice();
+        sorting(str);
+
+        cont = continueFunction();
+
+        if (cont == 'y')
         {
             string str;
             sorting_menu();
@@ -212,7 +221,15 @@ void Console::choiceMade()
             sorting(str);
 
             cont = continueFunction();
-        } while (cont == 'y');
+        }
+        else if (cont == 'n')
+        {
+
+        }
+        else
+        {
+            cout << "Please choose a valid command!" << endl;
+        }
     }
     else if (choice_made == 'i')
     {
@@ -234,7 +251,7 @@ void Console::choiceMade()
     }
     else
     {
-        cout << "Please enter a valid *** " << endl;
+        cout << "Please enter a valid command!" << endl;
     }
 
 }
@@ -244,7 +261,6 @@ void Console::viewDisplay()
 {
     string str;
     sorting_menu();
-    //displayFræðina();
 }
 
 int Console::findIndexToEdit(string oldName)
@@ -324,15 +340,14 @@ void Console::printTable (vector<int> indexesToPrint)
     vector<Scientist> allScientists = scientistService.getScientists();
     Scientist tmp;
 
-    cout << "Nr.  Name\t\tGender\tDate of birth\tDate of death\tFurther Information" << endl;
-    cout <<"----------------------------------------------------------------------" << endl;
+    printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Fruther Information");
+    cout <<"-------------------------------------------------------------------------------------------------------" << endl;
 
     for (unsigned int i = 0; i < indexesToPrint.size(); i++)
     {
-        tmp = allScientists[indexesToPrint[i]];
+        tmp = allScientists[i];
 
-        cout << i << "  " << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t"
-             << tmp.getYearOfDeath() << "\t" << tmp.getFurtherInfo() << endl;
+        printf("%-4d%-30s%-9s%-18d%-18d%-30s\n",i, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeath(), tmp.getFurtherInfo().c_str());
     }
 }
 
@@ -397,17 +412,17 @@ void Console::printTable ()
     vector<Scientist> allScientists = scientistService.getScientists();
     Scientist tmp;
     
-    cout << "Nr.  Name\t\tGender\tDate of birth\tDate of death\tFurther Information" << endl;
-    cout <<"----------------------------------------------------------------------" << endl;
+    printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Fruther Information");
+    cout <<"-------------------------------------------------------------------------------------------------------" << endl;
     
     for (unsigned int i = 0; i < allScientists.size(); i++)
     {
         tmp = allScientists[i];
-        
-        cout << i << "  " << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t"
-             << tmp.getYearOfDeath() << "\t" << tmp.getFurtherInfo() << endl;
+
+        printf("%-4d%-30s%-9s%-18d%-18d%-30s\n",i, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeath(), tmp.getFurtherInfo().c_str());
     }
 }
+
 
 
 /**********************************************************/
