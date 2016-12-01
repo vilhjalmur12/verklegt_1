@@ -1,13 +1,18 @@
 #include "console.h"
 #include "service.h"
 #include "scientist.h"
+#include "errorhandling.h"
 
 #include <iostream>
 #include <string>
 #include <limits>
+#include <regex>
 
 
-// Console::Console(){ }
+Console::Console()
+{
+
+}
 
 Console::~Console() { }
 
@@ -80,6 +85,7 @@ void Console::printInsertMenu()
     cout << "|                                       |" << endl;
     cout << "|          Name:   First (Middle) Last  |" << endl;
     cout << "|        Gender:   m/f                  |" << endl;
+    cout << "|  Contribution:   String               |" << endl;
     cout << "| Year of Birth:   YYYY                 |" << endl;
     cout << "| Year of Death:   YYYY / n/a           |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -90,7 +96,7 @@ void Console::pushBackScientist()
     printInsertMenu();
 
     string name, sex, furtherInfo;
-    int YOB, YOD;
+    int YOB, YOD = 200000000;
 
     do
     {
@@ -107,20 +113,37 @@ void Console::pushBackScientist()
     cout << "Further Information: ";
     cin >> furtherInfo;
 
+    bool cont = false;
     do
     {
+        cont = false;
         string input;
         cout << "Year of birth: ";
         cin >> YOB;
+        if(cin.fail())
+        {
+            throwError.invalidYear(4);
+            cont = true;
+            continue;
+        }
         cout << "Year of death : ";
         cin >> input;
+
+        bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+$"));
+
         if(input == "na");
+        else if(deathContainsNonDigits)
+        {
+            throwError.invalidYear(4);
+            cont = true;
+            continue;
+        }
         else
         {
             YOD = stoi(input);
         }
 
-    }while(!scientistService.validYears(YOB, YOD));
+    }while(!scientistService.validYears(YOB, YOD) || cont);
 
     scientistService.appendScientist(name, sex, YOB, YOD, furtherInfo);
 }
@@ -221,17 +244,29 @@ int Console::findIndexToEdit(string oldName)
 void Console::edit()
 {
     string oldName;
-    cout << "Name of scientist to edit: ";
+    cout << "Search scientist to edit: ";
     cin >> oldName;
     int index = findIndexToEdit(oldName);
     pushBackScientist();
     scientistService.moveLastTo(index);
 }
 
+void Console::printSearchMenu()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|      You can search by string         |" << endl;
+    cout << "|      or substring. If you are         |" << endl;
+    cout << "|      searching by date the            |" << endl;
+    cout << "|      century or decade will           |" << endl;
+    cout << "|      suffice                          |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 void Console::search()
 {
     string query;
     //TODO: search menu!!
+    cout << "Query: ";
     cin >> query;
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
     printTable(indexesToPrint); //Prenta leitarniðurstöðu

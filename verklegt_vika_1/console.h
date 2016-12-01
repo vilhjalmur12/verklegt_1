@@ -11,7 +11,7 @@ using namespace std;
 class Console
 {
 public:
-   // Console();
+    Console();
     virtual ~Console();
 
     //Keyrsluföll
@@ -41,6 +41,7 @@ public:
 private:
     //Meðlimabreytur
     Service scientistService;
+    ErrorHandling throwError;
 
     //Hjálparföll við edit
     int findIndexToEdit(string oldName);
