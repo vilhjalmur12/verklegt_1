@@ -46,11 +46,7 @@ int main()
 
     /// Passa að skrifa vector út í database í lok keyrslu*/
 
-
-
     Console screen;
-
-
 
     return 0;
 }
