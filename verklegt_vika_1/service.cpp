@@ -21,9 +21,9 @@ Service::~Service()
 }
 
 /***********************************************
- *                                                *
- *            Vinna með vísindamenn               *
- *                                                *
+ *                                             *
+ *            Vinna með vísindamenn            *
+ *                                             *
 ************************************************/
 
 void Service::saveData ()
@@ -108,9 +108,9 @@ void Service::SortedScientistsBy(string choice)
 }
 
 /***********************************************
- *                                                *
- *             Villumeldingar                     *
- *                                                *
+ *                                             *
+ *             Villumeldingar                  *
+ *                                             *
 ************************************************/
 
 bool Service::validName(string& name)
@@ -188,9 +188,9 @@ bool Service::validYears(int birthYear, int deathYear)
 }
 
 /***********************************************
- *                                                *
- *          Leitarvélar í gagnagrunn              *
- *                                                *
+ *                                             *
+ *          Leitarvélar í gagnagrunn           *
+ *                                             *
 ************************************************/
 
 //Leitar í gagnagrunn eftir öld
@@ -249,9 +249,9 @@ vector<int> Service::getIndexesWith(string query)
 }
 
 /***********************************************
- *                                                *
- *             Struct til að sortera              *
- *                                                *
+ *                                             *
+ *             Struct til að sortera           *
+ *                                             *
 ************************************************/
 
 struct nameAscending
