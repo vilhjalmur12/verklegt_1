@@ -115,6 +115,7 @@ char Console::continueFunction()
     return cont;
 }
 
+
 char Console::choice()
 {
     char choice_made;
@@ -282,7 +283,9 @@ void Console::search()
     cin >> query;
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
     printTable(indexesToPrint); //Prenta leitarniðurstöðu
-    //TODO Bjóða upp á eyða / breyta
+    changeDelete();
+    //TODO kalla á change og delete fallið
+
 }
 
 void Console::printTable (vector<int> indexesToPrint)
