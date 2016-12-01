@@ -7,7 +7,7 @@ ErrorHandling::ErrorHandling() { }
 ErrorHandling::~ErrorHandling (){ }
 
 /**********************************************************
-                   ERRORS AND ERROR MESSAGES
+                   Villuskilaboð
  **********************************************************/
 
 void ErrorHandling::dataWriteError ()
