@@ -15,7 +15,7 @@ int main()
     screen.run();
     //database data;
 
-    /*char choice_made;
+    //char choice_made;
     //char stringChoiceMade;
 
     //database data;

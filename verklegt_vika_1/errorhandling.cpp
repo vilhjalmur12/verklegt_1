@@ -59,5 +59,8 @@ void ErrorHandling::invalidYear (int errorCode)
         case 4:
             cout << "Invalid characters in year." << endl;
             break;
+        case 5:
+            cout << "Death cannot be registered for a future date" << endl;
+            break;
     }
 }

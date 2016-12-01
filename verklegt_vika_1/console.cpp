@@ -73,12 +73,12 @@ void Console::sorting_menu()
     cout << "-----------------------------------------" << endl;
 }
 
-void Console::changeDelete()
+void Console::printChangeDelete()
 {
     cout << "-----------------------------------------" << endl;
     cout << "|   Would you like to pamper the list   |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|              c - change               |" << endl;
+    cout << "|              e - edit                 |" << endl;
     cout << "|              d - delete               |" << endl;
     cout << "|              m - menu                 |" << endl;
     cout << "|              q - quit                 |" << endl;
@@ -277,16 +277,8 @@ void Console::edit()
     scientistService.moveLastTo(index);
 }
 
-void Console::search()
+void Console::changeOrDelete()
 {
-    string query;
-    printSearchMenu();
-    cout << "Query: ";
-    cin >> query;
-    vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
-    printTable(indexesToPrint); //Prenta leitarniðurstöðu
-    changeDelete();
-    choice();
     char changeDeleteChoice = choice();
 
     if(changeDeleteChoice == 'q')
@@ -307,6 +299,19 @@ void Console::search()
     {
 
     }
+
+}
+
+void Console::search()
+{
+    string query;
+    printSearchMenu();
+    cout << "Query: ";
+    cin >> query;
+    vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
+    printTable(indexesToPrint); //Prenta leitarniðurstöðu
+    printChangeDelete();
+    //TODO kalla á change og delete fallið
 
 
 }
