@@ -166,6 +166,12 @@ bool Service::validYears(int birthYear, int deathYear)
     time_t t = time(NULL);
     tm* timePtr = localtime(&t);
 
+    if(birthYear < -193000)
+    {
+        throwError.invalidYear(3);
+        return false;
+    }
+
     if(deathYear < birthYear)
     {
         throwError.invalidYear(1);
@@ -177,16 +183,16 @@ bool Service::validYears(int birthYear, int deathYear)
         throwError.invalidYear(2);
         return false;
     }
+    if(birthYear == 200000000)
+    {
+        return true;
+    }
     if(deathYear > timePtr->tm_year + 1900)
     {
         throwError.invalidYear(5);
         return false;
     }
-    if(birthYear < 0)
-    {
-        throwError.invalidYear(3);
-        return false;
-    }
+
     return true;
 }
 

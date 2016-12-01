@@ -49,7 +49,7 @@ void ErrorHandling::invalidYear (int errorCode)
             cout << "ERROR: The Computer Scientist can not be born in the future!" << endl;
             break;
         case 3:
-            cout << "Are you sure you want to add a Computer Scientist that was born before Christ?" << endl;
+            cout << "ERROR: The Computer Scientist couldn't have been born before the ascent of Homo Sapiens!" << endl;
             break;
         case 4:
             cout << "ERROR: Invalid characters in year!" << endl;

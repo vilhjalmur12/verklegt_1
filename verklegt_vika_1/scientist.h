@@ -33,6 +33,14 @@ public:
         return _yearOfDeath;
     }
 
+    string getYearOfDeathForPrinting() const
+    {
+        if(_yearOfDeath==200000000)
+            return "n/a";
+        else
+            return to_string(_yearOfDeath);
+    }
+
     string getFurtherInfo() const
     {
         return _furtherInfo;
