@@ -32,7 +32,7 @@ void Service::saveData ()
     data.writeData();
 }
 
-string Service::removeSpaces(string before)
+string Service::removeSpaces(string& before)
 {
     for(unsigned int i = 0; i < before.length()-1; i++)
     {
@@ -46,7 +46,7 @@ string Service::removeSpaces(string before)
 }
 
 //Stillir fyrsta staf hvers orðs stóran og hina litla
-string Service::fixString(string before)
+string Service::fixString(string& before)
 {
     char a = before.at(0);
     before.at(0) = toupper(a);
@@ -68,7 +68,7 @@ string Service::fixString(string before)
 bool Service::appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo)
 {
     Scientist tempScientist(name, sex, birthYear, deathYear, furtherInfo);
-    for(int i = 0; i < _scientists.size(); i++)
+    for(unsigned int i = 0; i < _scientists.size(); i++)
     {
         if(tempScientist == _scientists[i])
         {
@@ -123,7 +123,7 @@ void Service::SortedScientistsBy(string choice)
  *                                             *
 ************************************************/
 
-bool Service::validName(string& name)
+bool Service::validName(string &name)
 {
     bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]*([A-Za-z]||[ ])*$"));
 

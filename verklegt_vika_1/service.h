@@ -43,8 +43,8 @@ private:
     database data;
 
     //appendScientist Hjálparföll
-    string removeSpaces(string before);
-    string fixString(string before);
+    string removeSpaces(string& before);
+    string fixString(string& before);
 
     //search Hjálparföll
     bool findInInt(int query, int year);
