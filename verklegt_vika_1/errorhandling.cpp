@@ -8,7 +8,7 @@ ErrorHandling::ErrorHandling() { }
 ErrorHandling::~ErrorHandling (){ }
 
 /**********************************************************
- ERRORS AND ERROR MESSAGES
+                   ERRORS AND ERROR MESSAGES
  **********************************************************/
 
 

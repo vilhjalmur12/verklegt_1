@@ -124,7 +124,7 @@ char Console::choice()
 string Console::stringChoice()
 {
     string str;
-    cout << "->";
+    cout << "-> ";
     cin >> str;
     return str;
 }
@@ -264,10 +264,12 @@ int Console::findIndexToEdit(string oldName)
 
 void Console::edit()
 {
-    string oldName;
-    cout << "Search scientist to edit: ";
-    cin >> oldName;
-    int index = findIndexToEdit(oldName);
+    string query;
+    printSearchMenu();
+    cout << "Query: ";
+    cin >> query;
+    int index = findIndexToEdit(query);
+    cout << "--------Insert new Information:---------" << endl;
     pushBackScientist();
     scientistService.moveLastTo(index);
 }
@@ -275,7 +277,7 @@ void Console::edit()
 void Console::search()
 {
     string query;
-    //TODO: search menu!!
+    printSearchMenu();
     cout << "Query: ";
     cin >> query;
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
@@ -352,7 +354,7 @@ void Console::run()
 void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
-    
+
     exit(1);
 }
 
