@@ -213,7 +213,7 @@ void database::testData (vector<Scientist> &allScientists)
 void database::dataPrint (vector<Scientist> const allScientists)
 {
     cout << "You selected\n";
-    string name, sex, further;
+    string name, sex, furtherInfo;
     int DOD, DOB;
     Scientist tmp;
     
@@ -224,16 +224,16 @@ void database::dataPrint (vector<Scientist> const allScientists)
         sex = tmp.getSex();
         DOB = tmp.getYearOfBirth();
         DOD = tmp.getYearOfDeath();
-        further = tmp.getFurtherInfo();
+        furtherInfo = tmp.getFurtherInfo();
         
-        cout << name << "\t" << sex << "\t" << DOB << "\t" << DOD << "\t" << further << endl;
+        cout << name << "\t" << sex << "\t" << DOB << "\t" << DOD << "\t" << furtherInfo << endl;
     }
 }
 
 void database::printSearch (int id)
 {
     cout << "fannst eftirfarandi: \n";
-    cout << tempName[id] << "\t" << tempSex[id] << "\t" << tempDOB[id] << "\t" << tempDOD[id] << endl;
+    cout << tempName[id] << "\t" << tempSex[id] << "\t" << tempDOB[id] << "\t" << tempDOD[id] << "\t" << tempfInfo[id] << endl;
 
 }
 /*****************************************************************************/
