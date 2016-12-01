@@ -1,9 +1,10 @@
 #include <iostream>
+#include <string>
+#include<fstream>
 #include "database.h"
 #include "console.h"
 #include "service.h"
-#include <string>
-#include<fstream>
+
 using namespace std;
 
 int main()
@@ -12,4 +13,3 @@ int main()
     screen.run();
     return 0;
 }
-
