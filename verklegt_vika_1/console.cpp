@@ -150,7 +150,11 @@ void Console::pushBackScientist()
             cout << "Name: ";
             cin.clear();
             cin.sync();
+            do
+            {
             getline(cin, name);
+            }while(name.length()>0);
+
         }while(!scientistService.validName(name));
 
         do
@@ -165,7 +169,8 @@ void Console::pushBackScientist()
         cin.sync();
         getline(cin, furtherInfo);
 
-        furtherInfo.at(0) = toupper(furtherInfo.at(0));
+        if(furtherInfo.length() > 0)
+            furtherInfo.at(0) = toupper(furtherInfo.at(0));
 
         bool cont = false;
         do
