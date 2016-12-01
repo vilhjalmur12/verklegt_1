@@ -30,7 +30,7 @@ public:
     void viewOrInsert(); // print out main menu
     char choice(); // make choice to insert, view or more
     void choiceMade(); // choose view or insert
-    void changeDelete(); // make choice to change / delete
+    void printChangeDelete(); // make choice to change / delete
 
 
     //Sorting föll
@@ -50,6 +50,7 @@ private:
 
     //Hjálparföll við search
     void printSearchMenu();
+    void changeOrDelete();
 
     void printTable(); // prentar út töflu með öllum scientists í núverandi röð
     void printTable(vector<int> indexesToPrint);

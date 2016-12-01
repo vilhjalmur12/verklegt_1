@@ -73,12 +73,12 @@ void Console::sorting_menu()
     cout << "-----------------------------------------" << endl;
 }
 
-void Console::changeDelete()
+void Console::printChangeDelete()
 {
     cout << "-----------------------------------------" << endl;
     cout << "|   Would you like to pamper the list   |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|              c - change               |" << endl;
+    cout << "|              e - edit                 |" << endl;
     cout << "|              d - delete               |" << endl;
     cout << "|              m - menu                 |" << endl;
     cout << "|              q - quit                 |" << endl;
@@ -169,7 +169,7 @@ void Console::pushBackScientist()
         cout << "Year of death : ";
         cin >> input;
 
-        bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+$"));
+        bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]$"));
 
         if(input == "na");
         else if(deathContainsNonDigits)
@@ -277,16 +277,8 @@ void Console::edit()
     scientistService.moveLastTo(index);
 }
 
-void Console::search()
+void Console::changeOrDelete()
 {
-    string query;
-    printSearchMenu();
-    cout << "Query: ";
-    cin >> query;
-    vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
-    printTable(indexesToPrint); //Prenta leitarniðurstöðu
-    changeDelete();
-    choice();
     char changeDeleteChoice = choice();
 
     if(changeDeleteChoice == 'q')
@@ -307,6 +299,19 @@ void Console::search()
     {
 
     }
+
+}
+
+void Console::search()
+{
+    string query;
+    printSearchMenu();
+    cout << "Query: ";
+    cin >> query;
+    vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
+    printTable(indexesToPrint); //Prenta leitarniðurstöðu
+    printChangeDelete();
+    //TODO kalla á change og delete fallið
 
 
 }
@@ -378,8 +383,10 @@ void Console::run()
 void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
-    
+
     scientistService.saveData();
+    
+    exit(1);
 }
 
 void Console::printTable ()
