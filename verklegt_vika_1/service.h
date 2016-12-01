@@ -26,6 +26,7 @@ public:
     bool validName(string& name);
     bool validSex(string& sex);
     bool validYears(int birthYear, int deathYear);
+    void saveData ();
 
     //Fyrsta breyta er val um hvernig skuli raða
     vector<Scientist> getScientists();
