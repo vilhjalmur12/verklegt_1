@@ -127,7 +127,7 @@ char Console::choice()
 string Console::stringChoice()
 {
     string str;
-    cout << "->";
+    cout << "-> ";
     cin >> str;
     return str;
 }
