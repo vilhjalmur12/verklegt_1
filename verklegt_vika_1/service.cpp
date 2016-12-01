@@ -82,17 +82,18 @@ bool Service::validSex(string& sex)
 {
     sex = fixString(sex);
 
-    if(sex == "M")
+    if(sex == "M"||sex == "Male")
     {
         sex = "Male";
         return true;
     }
 
-    if(sex == "F")
+    if(sex == "F"||sex == "Female")
     {
         sex = "Female";
         return true;
     }
+
     else
     {
         throwError.invalidSex();
@@ -113,9 +114,14 @@ bool Service::validYears(int birthYear, int deathYear)
         return false;
     }
         //pointer + 1900 == nuverandi ar
-    if(birthYear > timePtr->tm_year + 1900 || deathYear > timePtr->tm_year + 1900)
+    if(birthYear > timePtr->tm_year + 1900)
     {
         throwError.invalidYear(2);
+        return false;
+    }
+    if(deathYear > timePtr->tm_year + 1900)
+    {
+        throwError.invalidYear(5);
         return false;
     }
     if(birthYear < 0)
@@ -133,6 +139,11 @@ void Service::appendScientist(string name, string sex, int birthYear, int deathY
     _scientists.push_back(tempScientist);
 }
 
+void Service::removeScientist(const int index)
+{
+    _scientists.erase(_scientists.begin()+index);
+}
+
 void Service::moveLastTo(int index)
 {
     _scientists[index] = _scientists.back();
@@ -146,7 +157,6 @@ vector<Scientist> Service::getScientists()
 
 void Service::SortedScientistsBy(string choice /*= "na"*/)
 {
-    
     if (choice == "na")
         sortByNameAscending();
     if (choice == "nd")
@@ -319,5 +329,3 @@ void Service::sortByDeathDescending()
     deathDescending de;
     sort(_scientists.begin(), _scientists.end(), de);
 }
-
-
