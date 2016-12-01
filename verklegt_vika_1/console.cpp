@@ -76,9 +76,35 @@ void Console::sorting_menu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::changeDelete()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|   Would you like to pamper the list   |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|              c - change               |" << endl;
+    cout << "|              d - delete               |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+void Console::printSearchMenu()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|      You can search by string         |" << endl;
+    cout << "|      or substring. If you are         |" << endl;
+    cout << "|      searching by date the            |" << endl;
+    cout << "|      century or decade will           |" << endl;
+    cout << "|      suffice                          |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 /********************************************************
                       Föll
 *********************************************************/
+void Console::toContinue()
+{
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+}
 
 char Console::continueFunction()
 {
@@ -89,15 +115,6 @@ char Console::continueFunction()
     return cont;
 }
 
-
-
-// Enter to continue
-// Yta a Enter til ad halda afram
-
-void Console::toContinue()
-{
-    cin.ignore(numeric_limits<streamsize>::max(),'\n');
-}
 
 char Console::choice()
 {
@@ -258,17 +275,6 @@ void Console::edit()
     scientistService.moveLastTo(index);
 }
 
-void Console::printSearchMenu()
-{
-    cout << "-----------------------------------------" << endl;
-    cout << "|      You can search by string         |" << endl;
-    cout << "|      or substring. If you are         |" << endl;
-    cout << "|      searching by date the            |" << endl;
-    cout << "|      century or decade will           |" << endl;
-    cout << "|      suffice                          |" << endl;
-    cout << "-----------------------------------------" << endl;
-}
-
 void Console::search()
 {
     string query;
@@ -277,7 +283,9 @@ void Console::search()
     cin >> query;
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
     printTable(indexesToPrint); //Prenta leitarniðurstöðu
-    //TODO Bjóða upp á eyða / breyta
+    changeDelete();
+    //TODO kalla á change og delete fallið
+
 }
 
 void Console::printTable (vector<int> indexesToPrint)
@@ -346,8 +354,11 @@ void Console::run()
 void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
+<<<<<<< HEAD
     
     
+=======
+>>>>>>> ef4ca65acb0c490a91f93a69b7a77139ca3f5fd1
     
     exit(1);
 }
