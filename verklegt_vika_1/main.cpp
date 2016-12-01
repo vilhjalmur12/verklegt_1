@@ -15,7 +15,7 @@ int main()
     screen.run();
     //database data;
 
-    /*char choice_made;
+    char choice_made;
     //char stringChoiceMade;
 
     //database data;
@@ -46,12 +46,10 @@ int main()
     //cout << choice_made << endl;
 
     /// Passa að skrifa vector út í database í lok keyrslu*/
-<<<<<<< HEAD
+
 
     Console screen;
-    screen.run();
-=======
->>>>>>> d2c9aefdfc0c3fd249ebf23d3b2ac3dfc4c51b92
+
 
     return 0;
 }
