@@ -48,10 +48,6 @@ int main()
 
     Console screen;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 28d2a00049e9a10d8d38e1b3f424596dcb0c520c
     return 0;
 }
 
