@@ -71,6 +71,17 @@ void Console::sorting_menu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::changeDelete()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|  Would you like to doctor the list?   |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|              c - change               |" << endl;
+    cout << "|              d - delete               |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 /********************************************************
                       Föll
 *********************************************************/
@@ -83,8 +94,6 @@ char Console::continueFunction()
 
     return cont;
 }
-
-
 
 // Enter to continue
 // Yta a Enter til ad halda afram
