@@ -57,7 +57,7 @@ bool Service::validName(string& name)
         }
     }
 
-    bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]+([A-Za-z]||[ ])*+$"));
+    bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]*+([A-Za-z]||[ ])*+$"));
 
     if (containsDigits)
     {
