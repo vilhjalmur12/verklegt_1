@@ -42,7 +42,7 @@ void database::getData ()
     }
     else
     {
-        for (unsigned int i = 0; i < tempName.size(); i++)
+        while(!isEmpty(dataInput))
         {
             dataInput >> name >> sex >> DOB >> DOD >> furtherInfo;
 
@@ -84,7 +84,7 @@ void database::writeData ()
         output.dataWriteError();
         exit(1);
     }
-    
+
     for (unsigned int i = 0; i < tempName.size(); i++)
     {
         name = tempName[i];
@@ -268,6 +268,8 @@ vector<Scientist> database::pullData ()
     Scientist tmp;
     string name, gender, furtherInfo;
     int DOB, DOD;
+
+    cout << tempName.size();
     
     for (unsigned int i = 0; i < tempName.size(); i++)
     {
