@@ -34,7 +34,7 @@ public:
     //Sorting föll
     void sorting_menu(); // print out the sorting menu
     string stringChoice(); // here you choose what kind of sorting you want to do
-    bool sorting(string str, vector<Scientist> &allScientists); // here we print out the list how they want it to be sorted like
+    void sorting(string str); // here we print out the list how they want it to be sorted like
 
 
 

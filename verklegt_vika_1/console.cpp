@@ -67,6 +67,7 @@ char Console::choice()
 string Console::stringChoice()
 {
     string str;
+    cout << "->";
     cin >> str;
     return str;
 }
@@ -99,8 +100,8 @@ void Console::pushBackScientist()
 
     do
     {
-    cout << "Gender: ";
-    cin >> sex;
+        cout << "Gender: ";
+        cin >> sex;
     }while(!scientistService.validSex(sex));
 
     cout << "Further Information: ";
@@ -128,12 +129,12 @@ void Console::pushBackScientist()
 void Console::choiceMade()
 {
     char choice_made = choice();
-    vector<Scientist> allScientists;
     bool isOn = true;
+    
 
     while (isOn == true)
     {
-        char cont;
+        char cont = 'y';
 
         if (choice_made == 'v')
         {
@@ -143,10 +144,9 @@ void Console::choiceMade()
                 sorting_menu();
 
                 str = stringChoice();
-                sorting(str, allScientists);
+                sorting(str);
                 
                 cont = continueFunction();
-
             } while (cont == 'y');
         }
         else if (choice_made == 'i')
@@ -256,19 +256,25 @@ void Console::printTable (vector<int> indexesToPrint)
 }
 
 // Tjekk a hvort val a sorteringu se rett valid
-bool Console::sorting(string str, vector<Scientist> &allScientists)
+void Console::sorting(string str)
 {
     Service tmp;
+    vector<Scientist> allScientists;
+    bool isRunning = true;
 
-    if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd")
+    while (isRunning == true)
     {
-        allScientists = tmp.getScientists(str);
-        return true;
-    }
-    else
-    {
-        cout << "Enter a valid command" << endl;
-        return false;
+        if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd")
+        {
+            allScientists = tmp.getScientists(str);
+            printTable();
+            isRunning = false;
+        }
+        else
+        {
+            cout << "Enter a valid command" << endl;
+            str = stringChoice();
+        }
     }
 }
 
@@ -279,7 +285,20 @@ bool Console::sorting(string str, vector<Scientist> &allScientists)
 
 void Console::run()
 {
-    welcome();
+    
+    bool programON = true;
+    
+    // Welcome
+    void welcome ();
+    
+    // initial val
+    do
+    {
+        viewOrInsert();
+        
+        choiceMade();
+        
+    } while (programON == true);
 }
 
 

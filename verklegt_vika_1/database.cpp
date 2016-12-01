@@ -22,6 +22,7 @@ void database::getData ()
 {
     string name, sex, furtherInfo;
     int DOB, DOD;
+    
 
     ifstream dataInput;
 
@@ -31,30 +32,37 @@ void database::getData ()
         output.dataWriteError();
         exit(1);
     }
-
-    for (int i = 0; i < 4; i++)
+    if (isEmpty(dataInput))
     {
-        dataInput >> name >> sex >> DOB >> DOD >> furtherInfo;
-        
-        decryptData(name);
-        cout << name << endl;
-        decryptData(sex);
-        cout << sex << endl;
-        decryptData(furtherInfo); // Sandra baetti vid thessari linu
-        cout << furtherInfo << endl; // og thessari
-        decryptData(DOB);
-        decryptData(DOD);
-
-        
-        tempName.push_back(name);
-        tempSex.push_back(sex);
-        tempDOB.push_back(DOB);
-        tempDOD.push_back(DOD);
-        tempfInfo.push_back(furtherInfo); // Sandra baetti vid
+        tempName.push_back("name");
+        tempSex.push_back("gender");
+        tempDOB.push_back(0);
+        tempDOD.push_back(0);
+        tempfInfo.push_back("info");
     }
+        for (int i = 0; i < tempName.size(); i++)
+        {
+            dataInput >> name >> sex >> DOB >> DOD >> furtherInfo;
+        
+               name = decryptData(name);
+               sex = decryptData(sex);
+              furtherInfo = decryptData(furtherInfo); // Sandra baetti vid thessari linu
 
+            tempName.push_back(name);
+            tempSex.push_back(sex);
+            tempDOB.push_back(DOB);
+            tempDOD.push_back(DOD);
+            tempfInfo.push_back(furtherInfo); // Sandra baetti vid
+        }
+    
     dataInput.close();
 }
+
+bool database::isEmpty(ifstream& input)
+{
+    return input.peek() == std::ifstream::traits_type::eof();
+}
+
 
 /****************************************************************************
                 writeData
@@ -67,7 +75,7 @@ void database::writeData ()
     int DOB, DOD;
 
     ofstream dataOutput;
-    dataOutput.open("data.db");
+    dataOutput.open("verklegt_1/verklegt_vika_1/data.db");
     if (dataOutput.fail())
     {
         output.dataWriteError();
@@ -77,15 +85,13 @@ void database::writeData ()
     for (unsigned int i = 0; i < tempName.size(); i++)
     {
         name = tempName[i];
-        encryptData(name);
+        name = encryptData(name);
         sex = tempSex[i];
-        encryptData(sex);
+        sex = encryptData(sex);
         DOB = tempDOB[i];
-        encryptData(DOB);
         DOD = tempDOD[i];
-        encryptData(DOD);
         furtherInfo = tempfInfo[i]; // Sandra baetti vid
-        encryptData(furtherInfo); // Sandra baetti vid
+        furtherInfo = encryptData(furtherInfo); // Sandra baetti vid
 
         dataOutput << name << "\t" << sex << "\t" << DOD << "\t" << DOB << "\t" << furtherInfo << endl;
     }
@@ -167,13 +173,14 @@ int database::dataSearch()
     testData
     dataPrint
  ****************************************************************************/
-void database::testData ()
+void database::testData (vector<Scientist> &allScientists)
 {
     char cont;
     string name, sex, furtherInfo;
     int DOB, DOD;
+    Scientist tmp;
 
-    while (cont != 'n')
+    do
     {
         cout << "Add name: ";
         cin >> name;
@@ -186,23 +193,40 @@ void database::testData ()
         cout << "Further information: "; // Lina by Sandra
         cin >> furtherInfo;
 
-        tempName.push_back(name);
-        tempSex.push_back(sex);
-        tempDOB.push_back(DOB);
-        tempDOD.push_back(DOD);
-        tempfInfo.push_back(furtherInfo); // Lina by Sandra
-
+        tmp.pushScientist(name, sex, DOB, DOD, furtherInfo);
+        allScientists.push_back(tmp);
+        
         cout << "Continue?\t (y = yes, n = no)" << endl << "->";
         cin >> cont;
-    }
+        
+   //     tempName.push_back(name);
+   //     tempSex.push_back(sex);
+   //     tempDOB.push_back(DOB);
+   //     tempDOD.push_back(DOD);
+   //     tempfInfo.push_back(furtherInfo); // Lina by Sandra
+        
+        cout << endl;
+        
+    }while (cont != 'n');
 }
 
-void database::dataPrint ()
+void database::dataPrint (vector<Scientist> const allScientists)
 {
     cout << "You selected\n";
-    for (unsigned int i = 0; i < tempName.size(); i++)
+    string name, sex, further;
+    int DOD, DOB;
+    Scientist tmp;
+    
+    for (unsigned int i = 0; i < allScientists.size(); i++)
     {
-        cout << tempName[i] << "\t" << tempSex[i] << "\t" << tempDOB[i] << "\t" << tempDOD[i] << "\t" << tempfInfo[i] << endl;
+        tmp = allScientists[i];
+        name = tmp.getName();
+        sex = tmp.getSex();
+        DOB = tmp.getYearOfBirth();
+        DOD = tmp.getYearOfDeath();
+        further = tmp.getFurtherInfo();
+        
+        cout << name << "\t" << sex << "\t" << DOB << "\t" << DOD << "\t" << further << endl;
     }
 }
 
@@ -226,12 +250,12 @@ void database::pushData (vector<Scientist> write)
     
     for (unsigned int i = 0; i < write.size(); i++)
     {
-        write[i] = tmp;
-        tempName[i] = tmp.getName();
-        tempSex[i] = tmp.getSex();
-        tempDOB[i] = tmp.getYearOfBirth();
-        tempDOD[i] = tmp.getYearOfDeath();
-        tempfInfo[i] = tmp.getFurtherInfo(); // Sandra
+        tmp = write[i];
+        tempName.push_back(tmp.getName());
+        tempSex.push_back(tmp.getSex());
+        tempDOB.push_back(tmp.getYearOfBirth());
+        tempDOD.push_back(tmp.getYearOfDeath());
+        tempfInfo.push_back(tmp.getFurtherInfo());
     }
 }
 
@@ -242,7 +266,7 @@ vector<Scientist> database::pullData ()
     string name, gender, furtherInfo;
     int DOB, DOD;
     
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < tempName.size(); i++)
     {
         name = tempName[i];
         gender = tempSex[i];
@@ -255,7 +279,6 @@ vector<Scientist> database::pullData ()
         A.push_back(tmp);
         
     }
-    
     return A;
 }
 
@@ -264,6 +287,29 @@ vector<Scientist> database::pullData ()
  
  *************************************************************/
 
+    // ceasar cypher
+
+string database::encryptData (string n)
+{
+    for(int u=0; u < n.size(); u++){
+        n[u]--;
+    }
+    return n;
+}
+
+
+string database::decryptData (string n)
+{
+    for(int u=0; u < n.size(); u++){
+        n[u]++;
+    }
+    return n;
+}
+
+
+
+        // XOR encryptions
+/*
 void database::encryptData (string &n)
 {
     char encryptionKey = 'x';
@@ -289,6 +335,7 @@ void database::decryptData (int &n)
     char decryptionKey = 'x';
         n ^= decryptionKey;
 }
+ */
 
 /************************************************************/
 

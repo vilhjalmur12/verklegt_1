@@ -19,10 +19,9 @@ private:
     vector<int> tempDOD;
     vector<string> tempfInfo;
     
-    void encryptData (string &n);
-    void encryptData (int &n);
-    void decryptData (string &n);
-    void decryptData (int &n);
+    string encryptData (string n);
+    string decryptData (string n);
+    bool isEmpty (ifstream& input);
     
     ErrorHandling output;
 
@@ -39,8 +38,8 @@ public:
 
 
     // tvö prufuföll - við skulum sjá til þess að færa þessi út úr klasanum fyrir skil
-    void testData ();
-    void dataPrint ();
+    void testData (vector<Scientist> &allScientists);
+    void dataPrint (vector<Scientist> const allScientists);
     void printSearch (int id);
 
 };

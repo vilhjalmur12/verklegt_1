@@ -4,7 +4,7 @@ using namespace std;
 
 Service::Service()
 {
-    _scientists = data.pullData();
+    
 }
 
 Service::~Service(){ }
@@ -131,6 +131,10 @@ void Service::moveLastTo(int index)
 
 vector<Scientist> Service::getScientists (string choice /*= "na"*/)
 {
+    database data;
+    data.getData();
+    _scientists = data.pullData();
+    
     if (choice == "na")
         sortByNameAscending();
     if (choice == "nd")
@@ -147,6 +151,9 @@ vector<Scientist> Service::getScientists (string choice /*= "na"*/)
         sortByDeathAscending();
     if (choice == "dd")
         sortByDeathDescending();
+    
+    data.pushData(_scientists);
+    data.writeData();
 
     return _scientists;
 }
