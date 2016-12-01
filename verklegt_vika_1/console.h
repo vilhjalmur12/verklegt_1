@@ -30,6 +30,7 @@ public:
     void viewOrInsert(); // print out main menu
     char choice(); // make choice to insert, view or more
     void choiceMade(); // choose view or insert
+    void changeDelete(); //change/delete menu
 
     //Sorting föll
     void sorting_menu(); // print out the sorting menu
