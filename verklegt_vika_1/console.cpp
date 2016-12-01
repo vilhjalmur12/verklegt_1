@@ -373,7 +373,8 @@ void Console::run()
     bool programON = true;
     
     // Welcome
-    void welcome ();
+    welcome();
+    toContinue();
     
     // initial val
     do
