@@ -18,25 +18,25 @@ public:
     void run();
     void edit();
     void search();
-    void viewDisplay(); // prints out the list and sorting
-    char continueFunction(); // spyr hvort þú viljir endurtaka aðferð y/n
+    void viewDisplay(); //Notandi sendur i sorting_menu
+    char continueFunction(); //Spyr hvort eigi að endurtaka aðgerð og geymir valið y/n
     void quit();
 
     //Opnunarföll
-    void welcome(); // print out welcome note
-    void toContinue(); // press enter to continue
+    void welcome(); //Bjóða notanda velkominn
+    void toContinue(); //Notandi þarf að ýta á ENTER til að halda áfram
 
     //Valmyndarföll
-    void viewOrInsert(); // print out main menu
-    char choice(); // make choice to insert, view or more
-    void choiceMade(); // choose view or insert
-    void printChangeDelete(); // make choice to change / delete
+    void viewOrInsert(); //Birta aðal valmynd
+    char choice(); //Geyma valmöguleika
+    void choiceMade(); //Kalla á framkvæmd eftir vali notanda
+    void printChangeDelete(); //Bjóða uppá að eiga við lista
 
 
     //Sorting föll
-    void sorting_menu(); // print out the sorting menu
-    string stringChoice(); // here you choose what kind of sorting you want to do
-    void sorting(string str); // here we print out the list how they want it to be sorted like
+    void sorting_menu(); //Birta valmynd yfir möguleika til að raða lista
+    string stringChoice(); //Geyma val notanda yfir hvernig hann vildi raða listanum
+    void sorting(string str); //Birta raðaðann lista
 
 private:
     //Meðlimabreytur
