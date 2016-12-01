@@ -125,6 +125,8 @@ void Service::SortedScientistsBy(string choice)
 
 bool Service::validName(string &name)
 {
+    name = fixString(name);
+
     bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]*([A-Za-z]||[ ])*$"));
 
     if (containsDigits)
