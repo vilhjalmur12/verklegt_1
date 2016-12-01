@@ -284,7 +284,6 @@ void Console::changeOrDelete()
     if(changeDeleteChoice == 'q')
     {
         quit();
-
     }
     else if(changeDeleteChoice == 'd')
     {
