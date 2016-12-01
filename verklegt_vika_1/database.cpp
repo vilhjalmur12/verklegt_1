@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>
 
+
 using namespace std;
 
 database::database () {}
@@ -42,13 +43,23 @@ void database::getData ()
     }
     else
     {
-        for (unsigned int i = 0; i < tempName.size(); i++)
+        int j = 0;
+        string line;
+        while (std::getline(dataInput, line)) {
+            j++;
+        }
+
+        dataInput.clear();
+        dataInput.seekg(0);
+
+
+        for(int i = 0; i < j; i++)
         {
             dataInput >> name >> sex >> DOB >> DOD >> furtherInfo;
 
-               name = decryptData(name);
-               sex = decryptData(sex);
-              furtherInfo = decryptData(furtherInfo); // Sandra baetti vid thessari linu
+            name = decryptData(name);
+            sex = decryptData(sex);
+            furtherInfo = decryptData(furtherInfo); // Sandra baetti vid thessari linu
 
             tempName.push_back(name);
             tempSex.push_back(sex);
@@ -84,7 +95,7 @@ void database::writeData ()
         output.dataWriteError();
         exit(1);
     }
-    
+
     for (unsigned int i = 0; i < tempName.size(); i++)
     {
         name = tempName[i];

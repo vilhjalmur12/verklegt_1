@@ -38,9 +38,9 @@ public:
         return _furtherInfo;
     }
 
-
     //Prentar út allar uppl um vísindamann í eina línu (aðskilið af tab-keypress)
     friend ostream& operator << (ostream& out, Scientist sc);
+    friend bool operator == (Scientist lhs, Scientist rhs);
 
 private:
     string _name;

@@ -1,14 +1,14 @@
 #ifndef SERVICE_H
 #define SERVICE_H
 
-#include "database.h"
 #include "errorhandling.h"
 #include "scientist.h"
+#include "database.h"
+#include <algorithm>
+#include <iostream>
 #include <string>
 #include <vector>
 #include <regex>
-#include <iostream>
-#include <algorithm>
 #include <ctime>
 
 using namespace std;
@@ -19,7 +19,7 @@ public:
     Service();
     virtual ~Service();
 
-    void appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo);
+    bool appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo);
     void removeScientist(int index);
 
     void moveLastTo(int index);
@@ -59,7 +59,6 @@ private:
     void sortByBirthDescending();
     void sortByDeathAscending();
     void sortByDeathDescending();
-
 };
 
 #endif // SERVICE_H

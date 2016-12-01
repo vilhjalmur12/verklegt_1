@@ -27,4 +27,3 @@ HEADERS += \
 DISTFILES += \
     data.db \
     data.txt \
-

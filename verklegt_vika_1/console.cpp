@@ -20,7 +20,6 @@ Console::Console()
 
 Console::~Console() { }
 
-//commit
 
 /********************************************************
                       Allir menu gluggar
@@ -144,58 +143,61 @@ void Console::pushBackScientist()
 
     string name, sex, furtherInfo;
     int YOB, YOD = 200000000;
-
     do
     {
-        cout << "Name: ";
-        getline(cin, name);
-    }while(!scientistService.validName(name));
-
-    do
-    {
-        cout << "Gender: ";
-        cin >> sex;
-    }while(!scientistService.validSex(sex));
-
-    cout << "Further Information: ";
-    getline(cin, furtherInfo);
-
-    bool cont = false;
-    do
-    {
-        cont = false;
-        string input;
-        cout << "Year of birth: ";
-        cin >> YOB;
-        if(cin.fail())
+        do
         {
-            throwError.invalidYear(4);
-            cont = true;
-            continue;
-        }
-        cout << "Year of death: ";
-        cin >> input;
+            cout << "Name: ";
+            cin.clear();
+            cin.sync();
+            getline(cin, name);
+        }while(!scientistService.validName(name));
 
-        bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+[0-9]*$"));
-
-        if(input == "na");
-        else if(deathContainsNonDigits)
+        do
         {
-            throwError.invalidYear(4);
-            cont = true;
-            continue;
-        }
-        else
+            cout << "Gender: ";
+            cin >> sex;
+        }while(!scientistService.validSex(sex));
+
+        cin.sync();
+        cin.clear();
+        cout << "Further Information: ";
+        getline(cin, furtherInfo);
+
+        bool cont = false;
+        do
         {
-            YOD = stoi(input);
-        }
+            cont = false;
+            string input;
+            cout << "Year of birth: ";
+            cin >> YOB;
+            if(cin.fail())
+            {
+                throwError.invalidYear(4);
+                cont = true;
+                continue;
+            }
+            cout << "Year of death: ";
+            cin >> input;
 
-    }while(!scientistService.validYears(YOB, YOD) || cont);
+            bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+[0-9]*$"));
 
-    scientistService.appendScientist(name, sex, YOB, YOD, furtherInfo);
+            if(input == "na");
+            else if(deathContainsNonDigits)
+            {
+                throwError.invalidYear(4);
+                cont = true;
+                continue;
+            }
+            else
+            {
+                YOD = stoi(input);
+            }
+
+        }while(!scientistService.validYears(YOB, YOD) || cont);
+    } while(!scientistService.appendScientist(name, sex, YOB, YOD, furtherInfo));
 }
 
-// Það sem gerist ef þú velur view, insert eða search
 void Console::choiceMade()
 {
     char choice_made = choice();
@@ -256,7 +258,6 @@ void Console::choiceMade()
 
 }
 
-// Notandi sendur i sorting_menu
 void Console::viewDisplay()
 {
     string str;
@@ -268,10 +269,7 @@ int Console::findIndexToEdit(string oldName)
     int index = 0;
     vector<int> indexesWithQuery = (scientistService.getIndexesWith(oldName));
 
-    for(unsigned int i = 0; i < indexesWithQuery.size(); i++)
-    {
-        printTable(indexesWithQuery);
-    }
+    printTable(indexesWithQuery);
 
     int input;
 
@@ -328,13 +326,13 @@ void Console::search()
     printSearchMenu();
     cout << "Query: ";
     cin >> query;
-    vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
-    printTable(indexesToPrint); //Prenta leitarniðurstöðu
+    vector<int> indexesToPrint = scientistService.getIndexesWith(query);
+    cout << "-------------------------------------------------------------------" << indexesToPrint.size();
+    printTable(indexesToPrint);
     printChangeDelete();
     changeOrDelete();
 }
 
-// Prenta út tölfu með upplýsingum
 void Console::printTable (vector<int> indexesToPrint)
 {
     vector<Scientist> allScientists = scientistService.getScientists();
@@ -348,10 +346,10 @@ void Console::printTable (vector<int> indexesToPrint)
         tmp = allScientists[i];
 
         printf("%-4d%-30s%-9s%-18d%-18d%-30s\n",i, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeath(), tmp.getFurtherInfo().c_str());
+
     }
 }
 
-// Tjekk a hvort val a sorteringu se rett valid
 void Console::sorting(string str)
 {
     vector<Scientist> allScientists;
@@ -373,21 +371,13 @@ void Console::sorting(string str)
     }
 }
 
-/**********************************************************
-                Villi er að vinna hér
- **********************************************************/
-
-
 void Console::run()
 {
-    
     bool programON = true;
     
-    // Welcome
     welcome();
     toContinue();
-    
-    // initial val
+
     do
     {
         viewOrInsert();
@@ -396,7 +386,6 @@ void Console::run()
         
     } while (programON == true);
 }
-
 
 void Console::quit()
 {
@@ -422,7 +411,3 @@ void Console::printTable ()
         printf("%-4d%-30s%-9s%-18d%-18d%-30s\n",i, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeath(), tmp.getFurtherInfo().c_str());
     }
 }
-
-
-
-/**********************************************************/
