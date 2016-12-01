@@ -100,7 +100,6 @@ void Console::printSearchMenu()
                       Föll
 *********************************************************/
 
-
 char Console::continueFunction()
 {
     char cont;
