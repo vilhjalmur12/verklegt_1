@@ -20,7 +20,6 @@ Console::Console()
 
 Console::~Console() { }
 
-//commit
 
 /********************************************************
                       Allir menu gluggar
@@ -196,7 +195,6 @@ void Console::pushBackScientist()
     scientistService.appendScientist(name, sex, YOB, YOD, furtherInfo);
 }
 
-// Það sem gerist ef þú velur view, insert eða search
 void Console::choiceMade()
 {
     char choice_made = choice();
@@ -240,12 +238,10 @@ void Console::choiceMade()
 
 }
 
-// Notandi sendur i sorting_menu
 void Console::viewDisplay()
 {
     string str;
     sorting_menu();
-    //displayFræðina();
 }
 
 int Console::findIndexToEdit(string oldName)
@@ -314,12 +310,11 @@ void Console::search()
     cout << "Query: ";
     cin >> query;
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
-    printTable(indexesToPrint); //Prenta leitarniðurstöðu
+    printTable(indexesToPrint);
     printChangeDelete();
     changeOrDelete();
 }
 
-// Prenta út tölfu með upplýsingum
 void Console::printTable (vector<int> indexesToPrint)
 {
     vector<Scientist> allScientists = scientistService.getScientists();
@@ -337,7 +332,6 @@ void Console::printTable (vector<int> indexesToPrint)
     }
 }
 
-// Tjekk a hvort val a sorteringu se rett valid
 void Console::sorting(string str)
 {
     vector<Scientist> allScientists;
@@ -359,21 +353,13 @@ void Console::sorting(string str)
     }
 }
 
-/**********************************************************
-                Villi er að vinna hér
- **********************************************************/
-
-
 void Console::run()
 {
-    
     bool programON = true;
     
-    // Welcome
     welcome();
     toContinue();
-    
-    // initial val
+
     do
     {
         viewOrInsert();
@@ -382,7 +368,6 @@ void Console::run()
         
     } while (programON == true);
 }
-
 
 void Console::quit()
 {
@@ -409,6 +394,3 @@ void Console::printTable ()
              << tmp.getYearOfDeath() << "\t" << tmp.getFurtherInfo() << endl;
     }
 }
-
-
-/**********************************************************/
