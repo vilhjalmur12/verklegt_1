@@ -9,7 +9,14 @@
 #include <regex>
 
 
-Console::Console() { }
+Console::Console()
+{
+    Service serviceTemp;
+    ErrorHandling errorTemp;
+
+    throwError = errorTemp;
+    scientistService = serviceTemp;
+}
 
 Console::~Console() { }
 

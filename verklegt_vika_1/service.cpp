@@ -4,7 +4,13 @@ using namespace std;
 
 Service::Service()
 {
-    data.getData();
+    database dat;
+    data = dat;
+
+    ErrorHandling err;
+    throwError = err;
+
+    //data.getData();
     _scientists = data.pullData();
 }
 
