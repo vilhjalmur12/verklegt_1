@@ -354,13 +354,9 @@ void Console::run()
 void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
-<<<<<<< HEAD
     
     scientistService.saveData();
     
-=======
-
->>>>>>> 76d4e969c650777f59844b7c680466f1c361c7b6
     exit(1);
 }
 
