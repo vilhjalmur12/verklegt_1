@@ -8,7 +8,11 @@ Service::Service()
     _scientists = data.pullData();
 }
 
-Service::~Service(){ }
+Service::~Service()
+{
+    data.pushData(_scientists);
+    data.writeData();
+}
 
 string Service::removeSpaces(string before)
 {
@@ -130,7 +134,12 @@ void Service::moveLastTo(int index)
     _scientists.pop_back();
 }
 
-vector<Scientist> Service::getScientists (string choice /*= "na"*/)
+vector<Scientist> Service::getScientists()
+{
+    return _scientists;
+}
+
+void Service::SortedScientistsBy(string choice /*= "na"*/)
 {
     
     if (choice == "na")
@@ -149,11 +158,6 @@ vector<Scientist> Service::getScientists (string choice /*= "na"*/)
         sortByDeathAscending();
     if (choice == "dd")
         sortByDeathDescending();
-    
-    data.pushData(_scientists);
-    data.writeData();
-
-    return _scientists;
 }
 
 bool Service::findInInt(int query, int year)

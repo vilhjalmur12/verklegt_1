@@ -285,6 +285,7 @@ void Console::search()
 
 }
 
+// Prenta út tölfu með upplýsingum
 void Console::printTable (vector<int> indexesToPrint)
 {
     vector<Scientist> allScientists = scientistService.getScientists();
@@ -305,7 +306,6 @@ void Console::printTable (vector<int> indexesToPrint)
 // Tjekk a hvort val a sorteringu se rett valid
 void Console::sorting(string str)
 {
-    Service tmp;
     vector<Scientist> allScientists;
     bool isRunning = true;
 
@@ -313,7 +313,7 @@ void Console::sorting(string str)
     {
         if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd")
         {
-            allScientists = tmp.getScientists(str);
+            scientistService.SortedScientistsBy(str);
             printTable();
             isRunning = false;
         }
@@ -352,6 +352,11 @@ void Console::run()
 void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
+<<<<<<< HEAD
+    
+    
+=======
+>>>>>>> ef4ca65acb0c490a91f93a69b7a77139ca3f5fd1
     
     exit(1);
 }
