@@ -1,9 +1,9 @@
-#include <iostream>
-#include <string>
-#include<fstream>
 #include "database.h"
 #include "console.h"
 #include "service.h"
+#include <iostream>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
