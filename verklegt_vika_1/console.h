@@ -25,7 +25,7 @@ public:
     void quit();
 
     //Opnunarföll
-    void welcome(); //Bjóða notanda velkominn
+    void welcome();
     void toContinue(); //Notandi þarf að ýta á ENTER til að halda áfram
 
     //Valmyndarföll
@@ -54,7 +54,8 @@ private:
     void printSearchMenu();
     void changeOrDelete();
 
-    void printTable(); // prentar út töflu með öllum scientists í núverandi röð
+    //Birta töflu
+    void printTable();
     void printTable(vector<int> indexesToPrint);
 
 
