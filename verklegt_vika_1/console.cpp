@@ -9,10 +9,7 @@
 #include <regex>
 
 
-Console::Console()
-{
-
-}
+Console::Console() { }
 
 Console::~Console() { }
 
