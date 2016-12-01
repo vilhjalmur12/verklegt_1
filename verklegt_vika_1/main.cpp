@@ -1,18 +1,17 @@
-#include <iostream>
-#include "Console.h"
-//#include "database.h"
+#include "database.h"
 #include "console.h"
+#include "service.h"
+#include <iostream>
+#include <fstream>
 #include <string>
-//#include "database.h"
+
 using namespace std;
 
 int main()
 {
-
-
-    /*//database data;
     Console screen;
     screen.run();
+<<<<<<< HEAD
     //database data;
 
     //char stringChoiceMade;
@@ -49,6 +48,7 @@ int main()
     Console screen;
     screen.run();
 
+=======
+>>>>>>> 04b1c5a420399cb2e72e6bf56fcd94ab03d99b73
     return 0;
 }
-

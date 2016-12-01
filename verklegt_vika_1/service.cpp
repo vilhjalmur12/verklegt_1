@@ -4,14 +4,27 @@ using namespace std;
 
 Service::Service()
 {
+    database dat;
+    data = dat;
+
+    ErrorHandling err;
+    throwError = err;
+
     data.getData();
     _scientists = data.pullData();
+   // cout << _scientists[0].getName();
 }
 
 Service::~Service()
 {
     
 }
+
+/***********************************************
+ *                                             *
+ *            Vinna með vísindamenn            *
+ *                                             *
+************************************************/
 
 void Service::saveData ()
 {
@@ -29,11 +42,10 @@ string Service::removeSpaces(string before)
             return(removeSpaces(before));
         }
     }
-
     return before;
 }
 
-//Stillir fyrsta staf hvers ords storan og hina litla
+//Stillir fyrsta staf hvers orðs stóran og hina litla
 string Service::fixString(string before)
 {
     char a = before.at(0);
@@ -50,87 +62,7 @@ string Service::fixString(string before)
             before.at(i) = toupper(a);
         }
     }
-
     return before;
-}
-
-bool Service::validName(string& name)
-{
-
-    for(unsigned int i = 0; i < _scientists.size(); i++)
-    {
-        if(_scientists[i].getName() == name)
-        {
-            throwError.invalidName(1);
-            return false;
-        }
-    }
-
-    bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]*([A-Za-z]||[ ])*$"));
-
-    if (containsDigits)
-    {
-        throwError.invalidName(2);
-        return false;
-    }
-
-
-    return true;
-}
-
-bool Service::validSex(string& sex)
-{
-    sex = fixString(sex);
-
-    if(sex == "M"||sex == "Male")
-    {
-        sex = "Male";
-        return true;
-    }
-
-    if(sex == "F"||sex == "Female")
-    {
-        sex = "Female";
-        return true;
-    }
-
-    else
-    {
-        throwError.invalidSex();
-        return false;
-    }
-
-}
-
-bool Service::validYears(int birthYear, int deathYear)
-{
-    //Pointer heldur utan um nuverandi ar -1900
-    time_t t = time(NULL);
-    tm* timePtr = localtime(&t);
-
-    if(deathYear < birthYear)
-    {
-        throwError.invalidYear(1);
-        return false;
-    }
-        //pointer + 1900 == nuverandi ar
-    if(birthYear > timePtr->tm_year + 1900)
-    {
-        throwError.invalidYear(2);
-        return false;
-    }
-    if(deathYear > timePtr->tm_year + 1900)
-    {
-        throwError.invalidYear(5);
-        return false;
-    }
-    if(birthYear < 0)
-    {
-        throwError.invalidYear(3);
-        return false;
-    }
-
-    return true;
 }
 
 void Service::appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo)
@@ -155,7 +87,7 @@ vector<Scientist> Service::getScientists()
     return _scientists;
 }
 
-void Service::SortedScientistsBy(string choice /*= "na"*/)
+void Service::SortedScientistsBy(string choice)
 {
     if (choice == "na")
         sortByNameAscending();
@@ -175,6 +107,93 @@ void Service::SortedScientistsBy(string choice /*= "na"*/)
         sortByDeathDescending();
 }
 
+/***********************************************
+ *                                             *
+ *             Villumeldingar                  *
+ *                                             *
+************************************************/
+
+bool Service::validName(string& name)
+{
+    for(unsigned int i = 0; i < _scientists.size(); i++)
+    {
+        if(_scientists[i].getName() == name)
+        {
+            throwError.invalidName(1);
+            return false;
+        }
+    }
+
+    bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]*([A-Za-z]||[ ])*$"));
+
+    if (containsDigits)
+    {
+        throwError.invalidName(2);
+        return false;
+    }
+    return true;
+}
+
+bool Service::validSex(string& sex)
+{
+    sex = fixString(sex);
+
+    if(sex == "M"||sex == "Male")
+    {
+        sex = "Male";
+        return true;
+    }
+
+    if(sex == "F"||sex == "Female")
+    {
+        sex = "Female";
+        return true;
+    }
+
+    else
+    {
+        throwError.invalidSex();
+        return false;
+    }
+}
+
+bool Service::validYears(int birthYear, int deathYear)
+{
+    //Pointer heldur utan um núverandi ár -1900
+    time_t t = time(NULL);
+    tm* timePtr = localtime(&t);
+
+    if(deathYear < birthYear)
+    {
+        throwError.invalidYear(1);
+        return false;
+    }
+        //pointer + 1900 == núverandi ár
+    if(birthYear > timePtr->tm_year + 1900)
+    {
+        throwError.invalidYear(2);
+        return false;
+    }
+    if(deathYear > timePtr->tm_year + 1900)
+    {
+        throwError.invalidYear(5);
+        return false;
+    }
+    if(birthYear < 0)
+    {
+        throwError.invalidYear(3);
+        return false;
+    }
+    return true;
+}
+
+/***********************************************
+ *                                             *
+ *          Leitarvélar í gagnagrunn           *
+ *                                             *
+************************************************/
+
+//Leitar í gagnagrunn eftir öld
 bool Service::findInInt(int query, int year)
 {
     int century = (year / 100)*100;
@@ -198,11 +217,12 @@ bool Service::findInString(string query, string String)
     return false;
 }
 
+//Leitarvél sem skilar index-um í gagnagrunn
 vector<int> Service::getIndexesWith(string query)
 {
     vector<int> foundScientists;
 
-    if (string::npos != query.find_first_of("0123456789")) // Strengur af tölustöfum ?
+    if (string::npos != query.find_first_of("0123456789"))
     {
         int year = stoi(query); // String í int
 
@@ -228,12 +248,10 @@ vector<int> Service::getIndexesWith(string query)
     return foundScientists;
 }
 
-
-
 /***********************************************
- *                                                *
- *             Struct til að sortera              *
- *                                                *
+ *                                             *
+ *             Struct til að sortera           *
+ *                                             *
 ************************************************/
 
 struct nameAscending

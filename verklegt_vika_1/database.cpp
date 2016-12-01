@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>
 
+
 using namespace std;
 
 database::database () {}
@@ -34,19 +35,31 @@ void database::getData ()
     }
     if (isEmpty(dataInput))
     {
-        tempName.push_back("name");
-        tempSex.push_back("gender");
-        tempDOB.push_back(0);
-        tempDOD.push_back(0);
-        tempfInfo.push_back("info");
+        tempName.push_back("Ada Lovelace");
+        tempSex.push_back("Female");
+        tempDOB.push_back(1933);
+        tempDOD.push_back(2000);
+        tempfInfo.push_back("First programmer");
     }
-        for (unsigned int i = 0; i < tempName.size(); i++)
+    else
+    {
+        int j = 0;
+        string line;
+        while (std::getline(dataInput, line)) {
+            j++;
+        }
+
+        dataInput.clear();
+        dataInput.seekg(0);
+
+
+        for(int i = 0; i < j; i++)
         {
-            dataInput >> name >> sex >> DOB >> DOD >> furtherInfo;
-        
-               name = decryptData(name);
-               sex = decryptData(sex);
-              furtherInfo = decryptData(furtherInfo); // Sandra baetti vid thessari linu
+            dataInput >> name >> sex >> DOB >> DOD; // >> furtherInfo;
+
+            name = decryptData(name);
+            sex = decryptData(sex);
+            furtherInfo = decryptData(furtherInfo); // Sandra baetti vid thessari linu
 
             tempName.push_back(name);
             tempSex.push_back(sex);
@@ -54,6 +67,7 @@ void database::getData ()
             tempDOD.push_back(DOD);
             tempfInfo.push_back(furtherInfo); // Sandra baetti vid
         }
+    }
     
     dataInput.close();
 }
@@ -81,7 +95,7 @@ void database::writeData ()
         output.dataWriteError();
         exit(1);
     }
-    
+
     for (unsigned int i = 0; i < tempName.size(); i++)
     {
         name = tempName[i];

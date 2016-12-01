@@ -9,11 +9,17 @@
 #include <regex>
 
 
-Console::Console() { }
+Console::Console()
+{
+    Service serviceTemp;
+    ErrorHandling errorTemp;
+
+    throwError = errorTemp;
+    scientistService = serviceTemp;
+}
 
 Console::~Console() { }
 
-//commit
 
 /********************************************************
                       Allir menu gluggar
@@ -50,7 +56,8 @@ void Console::printInsertMenu()
     cout << "|        in the following format        |" << endl;
     cout << "|                                       |" << endl;
     cout << "|          Name:   First (Middle) Last  |" << endl;
-    cout << "|        Gender:   m/f                  |" << endl;
+    cout << "|        Gender:   m/f/male/female      |" << endl;
+    cout << "|  Contribution:   string               |" << endl;
     cout << "| Year of Birth:   YYYY                 |" << endl;
     cout << "| Year of Death:   YYYY / n/a           |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -139,6 +146,7 @@ void Console::pushBackScientist()
 
     do
     {
+        //PRENTAR SJÁLFKRAFA VILLUBOÐ (NAME CANNOT INCLUDE NUMBER)
         cout << "Name: ";
         getline(cin, name);
     }while(!scientistService.validName(name));
@@ -149,8 +157,8 @@ void Console::pushBackScientist()
         cin >> sex;
     }while(!scientistService.validSex(sex));
 
-    cout << "Further Information: ";
-    cin >> furtherInfo;
+//    cout << "Further Information: ";
+//    getline(cin, furtherInfo);
 
     bool cont = false;
     do
@@ -165,10 +173,10 @@ void Console::pushBackScientist()
             cont = true;
             continue;
         }
-        cout << "Year of death : ";
+        cout << "Year of death: ";
         cin >> input;
 
-        bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]$"));
+        bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+[0-9]*$"));
 
         if(input == "na");
         else if(deathContainsNonDigits)
@@ -187,61 +195,53 @@ void Console::pushBackScientist()
     scientistService.appendScientist(name, sex, YOB, YOD, furtherInfo);
 }
 
-// Það sem gerist ef þú velur view, insert eða search
 void Console::choiceMade()
 {
     char choice_made = choice();
-    bool isOn = true;
-    
+    char cont = 'y';
 
-    while (isOn == true)
+    if (choice_made == 'v')
     {
-        char cont = 'y';
+        do
+        {
+            string str;
+            sorting_menu();
 
-        if (choice_made == 'v')
-        {
-            do
-            {
-                string str;
-                sorting_menu();
+            str = stringChoice();
+            sorting(str);
 
-                str = stringChoice();
-                sorting(str);
-                
-                cont = continueFunction();
-            } while (cont == 'y');
-        }
-        else if (choice_made == 'i')
-        {
-            pushBackScientist();
-        }
-
-        else if (choice_made == 's')
-        {
-            search();
-        }
-
-        else if(choice_made == 'e')
-        {
-            edit();
-        }
-        else if (choice_made == 'q')
-        {
-            quit();
-        }
-        else
-        {
-            cout << "Please enter a valid *** " << endl;
-        }
+            cont = continueFunction();
+        } while (cont == 'y');
     }
+    else if (choice_made == 'i')
+    {
+        pushBackScientist();
+    }
+
+    else if (choice_made == 's')
+    {
+        search();
+    }
+
+    else if(choice_made == 'e')
+    {
+        edit();
+    }
+    else if (choice_made == 'q')
+    {
+        quit();
+    }
+    else
+    {
+        cout << "Please enter a valid *** " << endl;
+    }
+
 }
 
-// Notandi sendur i sorting_menu
 void Console::viewDisplay()
 {
     string str;
     sorting_menu();
-    //displayFræðina();
 }
 
 int Console::findIndexToEdit(string oldName)
@@ -310,12 +310,11 @@ void Console::search()
     cout << "Query: ";
     cin >> query;
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
-    printTable(indexesToPrint); //Prenta leitarniðurstöðu
+    printTable(indexesToPrint);
     printChangeDelete();
     changeOrDelete();
 }
 
-// Prenta út tölfu með upplýsingum
 void Console::printTable (vector<int> indexesToPrint)
 {
     vector<Scientist> allScientists = scientistService.getScientists();
@@ -333,7 +332,6 @@ void Console::printTable (vector<int> indexesToPrint)
     }
 }
 
-// Tjekk a hvort val a sorteringu se rett valid
 void Console::sorting(string str)
 {
     vector<Scientist> allScientists;
@@ -355,20 +353,13 @@ void Console::sorting(string str)
     }
 }
 
-/**********************************************************
-                Villi er að vinna hér
- **********************************************************/
-
-
 void Console::run()
 {
-    
     bool programON = true;
     
-    // Welcome
-    void welcome ();
-    
-    // initial val
+    welcome();
+    toContinue();
+
     do
     {
         viewOrInsert();
@@ -377,7 +368,6 @@ void Console::run()
         
     } while (programON == true);
 }
-
 
 void Console::quit()
 {
@@ -404,6 +394,3 @@ void Console::printTable ()
              << tmp.getYearOfDeath() << "\t" << tmp.getFurtherInfo() << endl;
     }
 }
-
-
-/**********************************************************/

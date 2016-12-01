@@ -5,7 +5,6 @@ using namespace std;
 
 Scientist::Scientist() { }
 
-
 Scientist::Scientist(string name, string sex, int YOB, int YOD, string furtherInfo)
 {
     _name = name;
@@ -15,7 +14,6 @@ Scientist::Scientist(string name, string sex, int YOB, int YOD, string furtherIn
     _furtherInfo = furtherInfo;
 }
 
-
 void Scientist::pushScientist(string name, string sex, int DOB, int DOD, string furtherInfo)
 {
     _name = name;
@@ -23,9 +21,7 @@ void Scientist::pushScientist(string name, string sex, int DOB, int DOD, string 
     _yearOfBirth = DOB;
     _yearOfDeath = DOD;
     _furtherInfo = furtherInfo;
-}
-    
-    
+}  
 
  ostream& operator << (ostream& out, Scientist sc)
  {
