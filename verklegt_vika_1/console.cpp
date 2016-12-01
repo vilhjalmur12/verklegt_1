@@ -79,11 +79,22 @@ void Console::sorting_menu()
 void Console::changeDelete()
 {
     cout << "-----------------------------------------" << endl;
-    cout << "|  Would you like to doctor the list?   |" << endl;
+    cout << "|   Would you like to pamper the list   |" << endl;
     cout << "|                                       |" << endl;
     cout << "|              c - change               |" << endl;
     cout << "|              d - delete               |" << endl;
     cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+void Console::printSearchMenu()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|      You can search by string         |" << endl;
+    cout << "|      or substring. If you are         |" << endl;
+    cout << "|      searching by date the            |" << endl;
+    cout << "|      century or decade will           |" << endl;
+    cout << "|      suffice                          |" << endl;
     cout << "-----------------------------------------" << endl;
 }
 
@@ -267,17 +278,6 @@ void Console::edit()
     scientistService.moveLastTo(index);
 }
 
-void Console::printSearchMenu()
-{
-    cout << "-----------------------------------------" << endl;
-    cout << "|      You can search by string         |" << endl;
-    cout << "|      or substring. If you are         |" << endl;
-    cout << "|      searching by date the            |" << endl;
-    cout << "|      century or decade will           |" << endl;
-    cout << "|      suffice                          |" << endl;
-    cout << "-----------------------------------------" << endl;
-}
-
 void Console::search()
 {
     string query;
@@ -356,7 +356,6 @@ void Console::run()
 void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
-
     
     exit(1);
 }
