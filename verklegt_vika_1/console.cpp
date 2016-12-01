@@ -56,13 +56,13 @@ void Console::viewOrInsert()
     cout << "-----------------------------------------" << endl;
 }
 
-char Console::choice()
+/*char Console::choice()
 {
     char choice_made;
     cin >> choice_made;
 
     return choice_made;
-}
+}*/
 
 string Console::stringChoice()
 {
@@ -125,10 +125,12 @@ void Console::pushBackScientist()
     scientistService.appendScientist(name, sex, YOB, YOD, furtherInfo);
 }
 
-// Það sem gerist ef þú velur view, insert eða search
+// Hér er valið view, insert, edit, search eða quit og svo gerist það sem er valið
 void Console::choiceMade()
 {
-    char choice_made = choice();
+    char choice_made; // = choice();
+    cin >> choice_made;
+
     bool isOn = true;
     
 
