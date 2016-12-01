@@ -101,6 +101,10 @@ void Console::printSearchMenu()
 /********************************************************
                       Föll
 *********************************************************/
+void Console::toContinue()
+{
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+}
 
 char Console::continueFunction()
 {
@@ -109,14 +113,6 @@ char Console::continueFunction()
     cont = choice();
 
     return cont;
-}
-
-// Enter to continue
-// Yta a Enter til ad halda afram
-
-void Console::toContinue()
-{
-    cin.ignore(numeric_limits<streamsize>::max(),'\n');
 }
 
 char Console::choice()
