@@ -295,19 +295,18 @@ void Console::search()
 
     }
     else if(changeDeleteChoice == 'd')
-        {
-            //TODO: delete fall
-        }
+    {
+        //TODO: delete fall
+    }
 
     else if(changeDeleteChoice == 'c')
-        {
-          edit();
-        }
+    {
+        edit();
+    }
     else if(changeDeleteChoice == 'm')
-        {
+    {
 
-        }
-
+    }
 
 
 }
