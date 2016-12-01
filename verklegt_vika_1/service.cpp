@@ -65,10 +65,20 @@ string Service::fixString(string before)
     return before;
 }
 
-void Service::appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo)
+bool Service::appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo)
 {
     Scientist tempScientist(name, sex, birthYear, deathYear, furtherInfo);
+    for(int i = 0; i < _scientists.size(); i++)
+    {
+        if(tempScientist == _scientists[i])
+        {
+            throwError.invalidName(1);
+            return false;
+        }
+    }
     _scientists.push_back(tempScientist);
+
+    return true;
 }
 
 void Service::removeScientist(const int index)
@@ -115,15 +125,6 @@ void Service::SortedScientistsBy(string choice)
 
 bool Service::validName(string& name)
 {
-    for(unsigned int i = 0; i < _scientists.size(); i++)
-    {
-        if(_scientists[i].getName() == name)
-        {
-            throwError.invalidName(1);
-            return false;
-        }
-    }
-
     bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]*([A-Za-z]||[ ])*$"));
 
     if (containsDigits)

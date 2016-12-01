@@ -55,7 +55,7 @@ void database::getData ()
 
         for(int i = 0; i < j; i++)
         {
-            dataInput >> name >> sex >> DOB >> DOD; // >> furtherInfo;
+            dataInput >> name >> sex >> DOB >> DOD >> furtherInfo;
 
             name = decryptData(name);
             sex = decryptData(sex);

@@ -143,56 +143,59 @@ void Console::pushBackScientist()
 
     string name, sex, furtherInfo;
     int YOB, YOD = 200000000;
-
     do
     {
-        //PRENTAR SJÁLFKRAFA VILLUBOÐ (NAME CANNOT INCLUDE NUMBER)
-        cout << "Name: ";
-        getline(cin, name);
-    }while(!scientistService.validName(name));
-
-    do
-    {
-        cout << "Gender: ";
-        cin >> sex;
-    }while(!scientistService.validSex(sex));
-
-//    cout << "Further Information: ";
-//    getline(cin, furtherInfo);
-
-    bool cont = false;
-    do
-    {
-        cont = false;
-        string input;
-        cout << "Year of birth: ";
-        cin >> YOB;
-        if(cin.fail())
+        do
         {
-            throwError.invalidYear(4);
-            cont = true;
-            continue;
-        }
-        cout << "Year of death: ";
-        cin >> input;
+            cout << "Name: ";
+            cin.clear();
+            cin.sync();
+            getline(cin, name);
+        }while(!scientistService.validName(name));
 
-        bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+[0-9]*$"));
-
-        if(input == "na");
-        else if(deathContainsNonDigits)
+        do
         {
-            throwError.invalidYear(4);
-            cont = true;
-            continue;
-        }
-        else
+            cout << "Gender: ";
+            cin >> sex;
+        }while(!scientistService.validSex(sex));
+
+        cin.sync();
+        cin.clear();
+        cout << "Further Information: ";
+        getline(cin, furtherInfo);
+
+        bool cont = false;
+        do
         {
-            YOD = stoi(input);
-        }
+            cont = false;
+            string input;
+            cout << "Year of birth: ";
+            cin >> YOB;
+            if(cin.fail())
+            {
+                throwError.invalidYear(4);
+                cont = true;
+                continue;
+            }
+            cout << "Year of death: ";
+            cin >> input;
 
-    }while(!scientistService.validYears(YOB, YOD) || cont);
+            bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+[0-9]*$"));
 
-    scientistService.appendScientist(name, sex, YOB, YOD, furtherInfo);
+            if(input == "na");
+            else if(deathContainsNonDigits)
+            {
+                throwError.invalidYear(4);
+                cont = true;
+                continue;
+            }
+            else
+            {
+                YOD = stoi(input);
+            }
+
+        }while(!scientistService.validYears(YOB, YOD) || cont);
+    } while(!scientistService.appendScientist(name, sex, YOB, YOD, furtherInfo));
 }
 
 void Console::choiceMade()
@@ -249,10 +252,7 @@ int Console::findIndexToEdit(string oldName)
     int index = 0;
     vector<int> indexesWithQuery = (scientistService.getIndexesWith(oldName));
 
-    for(unsigned int i = 0; i < indexesWithQuery.size(); i++)
-    {
-        printTable(indexesWithQuery);
-    }
+    printTable(indexesWithQuery);
 
     int input;
 
@@ -309,7 +309,8 @@ void Console::search()
     printSearchMenu();
     cout << "Query: ";
     cin >> query;
-    vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
+    vector<int> indexesToPrint = scientistService.getIndexesWith(query);
+    cout << "-------------------------------------------------------------------" << indexesToPrint.size();
     printTable(indexesToPrint);
     printChangeDelete();
     changeOrDelete();
@@ -327,7 +328,7 @@ void Console::printTable (vector<int> indexesToPrint)
     {
         tmp = allScientists[indexesToPrint[i]];
 
-        cout << i << "  " << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t"
+        cout << i+1 << "  " << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t"
              << tmp.getYearOfDeath() << "\t" << tmp.getFurtherInfo() << endl;
     }
 }
@@ -390,7 +391,7 @@ void Console::printTable ()
     {
         tmp = allScientists[i];
         
-        cout << i << "  " << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t"
+        cout << i+1 << "  " << tmp.getName() << "\t\t" << tmp.getSex() << "\t" << tmp.getYearOfBirth() << "\t"
              << tmp.getYearOfDeath() << "\t" << tmp.getFurtherInfo() << endl;
     }
 }

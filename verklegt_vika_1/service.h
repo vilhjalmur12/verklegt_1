@@ -19,7 +19,7 @@ public:
     Service();
     virtual ~Service();
 
-    void appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo);
+    bool appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo);
     void removeScientist(int index);
 
     void moveLastTo(int index);
