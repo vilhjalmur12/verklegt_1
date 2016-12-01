@@ -80,7 +80,8 @@ void Console::printChangeDelete()
     cout << "|                                       |" << endl;
     cout << "|              e - edit                 |" << endl;
     cout << "|              d - delete               |" << endl;
-    cout << "|                                       |" << endl;
+    cout << "|              m - menu                 |" << endl;
+    cout << "|              q - quit                 |" << endl;
     cout << "-----------------------------------------" << endl;
 }
 
@@ -98,10 +99,7 @@ void Console::printSearchMenu()
 /********************************************************
                       Föll
 *********************************************************/
-void Console::toContinue()
-{
-    cin.ignore(numeric_limits<streamsize>::max(),'\n');
-}
+
 
 char Console::continueFunction()
 {
@@ -112,6 +110,10 @@ char Console::continueFunction()
     return cont;
 }
 
+void Console::toContinue()
+{
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+}
 
 char Console::choice()
 {
@@ -277,18 +279,27 @@ void Console::edit()
 
 void Console::changeOrDelete()
 {
-    char choice;
-    cout << "Choice: ";
-    cin >> choice;
+    char changeDeleteChoice = choice();
 
-    if(choice == 'e')
+    if(changeDeleteChoice == 'q')
+    {
+        quit();
+
+    }
+    else if(changeDeleteChoice == 'd')
+    {
+        //TODO: delete fall
+    }
+
+    else if(changeDeleteChoice == 'c')
     {
         edit();
     }
-    if(choice == 'd')
+    else if(changeDeleteChoice == 'm')
     {
 
     }
+
 }
 
 void Console::search()
@@ -301,6 +312,7 @@ void Console::search()
     printTable(indexesToPrint); //Prenta leitarniðurstöðu
     printChangeDelete();
     //TODO kalla á change og delete fallið
+
 
 }
 
@@ -371,8 +383,8 @@ void Console::run()
 void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
+    
     scientistService.saveData();
-    exit(1);
 }
 
 void Console::printTable ()
