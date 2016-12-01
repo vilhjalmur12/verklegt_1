@@ -10,7 +10,7 @@ Service::Service()
     ErrorHandling err;
     throwError = err;
 
-    //data.getData();
+    data.getData();
     _scientists = data.pullData();
 }
 
