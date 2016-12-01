@@ -306,6 +306,7 @@ void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
 
+    
     exit(1);
 }
 
