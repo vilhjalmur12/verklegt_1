@@ -169,7 +169,7 @@ void Console::pushBackScientist()
         cout << "Year of death : ";
         cin >> input;
 
-        bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+$"));
+        bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]$"));
 
         if(input == "na");
         else if(deathContainsNonDigits)
@@ -382,8 +382,10 @@ void Console::run()
 void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
-    
+
     scientistService.saveData();
+    
+    exit(1);
 }
 
 void Console::printTable ()
