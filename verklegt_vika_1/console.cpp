@@ -147,6 +147,7 @@ void Console::pushBackScientist()
 
     do
     {
+        //PRENTAR SJÁLFKRAFA VILLUBOÐ (NAME CANNOT INCLUDE NUMBER)
         cout << "Name: ";
         getline(cin, name);
     }while(!scientistService.validName(name));
@@ -157,8 +158,8 @@ void Console::pushBackScientist()
         cin >> sex;
     }while(!scientistService.validSex(sex));
 
-    cout << "Further Information: ";
-    getline(cin, furtherInfo);
+//    cout << "Further Information: ";
+//    getline(cin, furtherInfo);
 
     bool cont = false;
     do
