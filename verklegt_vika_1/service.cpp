@@ -12,6 +12,7 @@ Service::Service()
 
     data.getData();
     _scientists = data.pullData();
+   // cout << _scientists[0].getName();
 }
 
 Service::~Service()
@@ -62,7 +63,6 @@ string Service::fixString(string before)
 
 bool Service::validName(string& name)
 {
-
     for(unsigned int i = 0; i < _scientists.size(); i++)
     {
         if(_scientists[i].getName() == name)
@@ -79,7 +79,6 @@ bool Service::validName(string& name)
         throwError.invalidName(2);
         return false;
     }
-
 
     return true;
 }

@@ -12,4 +12,3 @@ int main()
     screen.run();
     return 0;
 }
-
