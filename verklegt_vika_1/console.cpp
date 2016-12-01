@@ -80,7 +80,8 @@ void Console::changeDelete()
     cout << "|                                       |" << endl;
     cout << "|              c - change               |" << endl;
     cout << "|              d - delete               |" << endl;
-    cout << "|                                       |" << endl;
+    cout << "|              m - menu                 |" << endl;
+    cout << "|              q - quit                 |" << endl;
     cout << "-----------------------------------------" << endl;
 }
 
@@ -98,10 +99,7 @@ void Console::printSearchMenu()
 /********************************************************
                       Föll
 *********************************************************/
-void Console::toContinue()
-{
-    cin.ignore(numeric_limits<streamsize>::max(),'\n');
-}
+
 
 char Console::continueFunction()
 {
@@ -112,6 +110,10 @@ char Console::continueFunction()
     return cont;
 }
 
+void Console::toContinue()
+{
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+}
 
 char Console::choice()
 {
@@ -217,11 +219,12 @@ void Console::choiceMade()
 
         else if (choice_made == 's')
         {
-            cout << "Search" << endl;
+            search();
         }
+
         else if(choice_made == 'e')
         {
-            //TODO: Implement edit function
+            edit();
         }
         else if (choice_made == 'q')
         {
@@ -283,7 +286,29 @@ void Console::search()
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
     printTable(indexesToPrint); //Prenta leitarniðurstöðu
     changeDelete();
-    //TODO kalla á change og delete fallið
+    choice();
+    char changeDeleteChoice = choice();
+
+    if(changeDeleteChoice == 'q')
+    {
+        quit();
+
+    }
+    else if(changeDeleteChoice == 'd')
+        {
+            //TODO: delete fall
+        }
+
+    else if(changeDeleteChoice == 'c')
+        {
+          edit();
+        }
+    else if(changeDeleteChoice == 'm')
+        {
+
+        }
+
+
 
 }
 
@@ -354,8 +379,8 @@ void Console::run()
 void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
-
-    exit(1);
+    
+    scientistService.saveData();
 }
 
 void Console::printTable ()

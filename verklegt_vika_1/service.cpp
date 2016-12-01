@@ -10,6 +10,11 @@ Service::Service()
 
 Service::~Service()
 {
+    
+}
+
+void Service::saveData ()
+{
     data.pushData(_scientists);
     data.writeData();
 }
@@ -314,3 +319,5 @@ void Service::sortByDeathDescending()
     deathDescending de;
     sort(_scientists.begin(), _scientists.end(), de);
 }
+
+
