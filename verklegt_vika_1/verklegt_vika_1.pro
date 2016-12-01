@@ -24,4 +24,4 @@ HEADERS += \
     errorhandling.h
 
 DISTFILES += \
-    data.db
+    ../build-verklegt_vika_1-Desktop_Qt_5_7_0_MinGW_32bit-Debug/data.db
