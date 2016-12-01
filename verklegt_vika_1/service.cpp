@@ -217,9 +217,19 @@ bool Service::findInInt(int query, int year)
 
 bool Service::findInString(string query, string String)
 {
-    for(unsigned int i = 0; i < String.length()- query.length(); i++)
+    transform(query.begin(), query.end(), query.begin(), ::tolower);
+    transform(String.begin(), String.end(), String.begin(), ::tolower);
+
+    if(query.length() > String.length())
+        return false;
+    else if(query.length() == String.length())
     {
-        if(String.compare(i, query.length(), query))
+        return !String.compare(0, query.length(), query);
+    }
+
+    for(unsigned int i = 0; i < (String.length() - query.length()); i++)
+    {
+        if(!String.compare(i, query.length(), query))
             return true;
     }
 

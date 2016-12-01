@@ -60,6 +60,7 @@ void Console::printInsertMenu()
     cout << "|  Contribution:   string               |" << endl;
     cout << "| Year of Birth:   YYYY                 |" << endl;
     cout << "| Year of Death:   (YYYY) / (n/a)       |" << endl;
+    cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
 
@@ -83,23 +84,27 @@ void Console::sorting_menu()
 void Console::printChangeDelete()
 {
     cout << "-----------------------------------------" << endl;
-    cout << "|   Would you like to pamper the list   |" << endl;
+    cout << "|       What would you like to do       |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|              e - edit                 |" << endl;
-    cout << "|              d - delete               |" << endl;
-    cout << "|              m - menu                 |" << endl;
-    cout << "|              q - quit                 |" << endl;
+    cout << "|           s - search again            |" << endl;
+    cout << "|         e - edit a Scientist          |" << endl;
+    cout << "|        d - delete a Scientist         |" << endl;
+    cout << "|           m - go to menu              |" << endl;
+    cout << "|          q - quit program             |" << endl;
+    cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
 
 void Console::printSearchMenu()
 {
     cout << "-----------------------------------------" << endl;
+    cout << "|                                       |" << endl;
     cout << "|      You can search by string         |" << endl;
     cout << "|      or substring. If you are         |" << endl;
     cout << "|      searching by date the            |" << endl;
     cout << "|      century or decade will           |" << endl;
     cout << "|      suffice                          |" << endl;
+    cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
 
@@ -336,6 +341,10 @@ void Console::changeOrDelete()
     else if(changeDeleteChoice == 'm')
     {
 
+    }
+    else if(changeDeleteChoice == 's')
+    {
+        search();
     };
 }
 
@@ -346,7 +355,6 @@ void Console::search()
     cout << "Query: ";
     cin >> query;
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);
-    cout << "-------------------------------------------------------------------" << indexesToPrint.size();
     printTable(indexesToPrint);
     printChangeDelete();
     changeOrDelete();
@@ -357,15 +365,22 @@ void Console::printTable (vector<int> indexesToPrint)
     vector<Scientist> allScientists = scientistService.getScientists();
     Scientist tmp;
 
-    printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Fruther Information");
-    cout <<"-------------------------------------------------------------------------------------------------------" << endl;
-
-    for (unsigned int i = 0; i < indexesToPrint.size(); i++)
+    if(indexesToPrint.size() == 0)
     {
-        tmp = allScientists[indexesToPrint[i]];
+        cout << "No related indexes found" << endl;
+    }
+    else
+    {
+        printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Fruther Information");
+        cout <<"-------------------------------------------------------------------------------------------------------" << endl;
 
-        printf("%-4d%-30s%-9s%-18d%-18s%-30s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(), tmp.getFurtherInfo().c_str());
+        for (unsigned int i = 0; i < indexesToPrint.size(); i++)
+        {
+            tmp = allScientists[indexesToPrint[i]];
 
+            printf("%-4d%-30s%-9s%-18d%-18s%-30s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(), tmp.getFurtherInfo().c_str());
+
+        }
     }
 }
 
