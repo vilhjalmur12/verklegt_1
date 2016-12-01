@@ -40,7 +40,7 @@ void database::getData ()
         tempDOD.push_back(0);
         tempfInfo.push_back("info");
     }
-        for (int i = 0; i < tempName.size(); i++)
+        for (unsigned int i = 0; i < tempName.size(); i++)
         {
             dataInput >> name >> sex >> DOB >> DOD >> furtherInfo;
         
@@ -266,7 +266,7 @@ vector<Scientist> database::pullData ()
     string name, gender, furtherInfo;
     int DOB, DOD;
     
-    for (int i = 0; i < tempName.size(); i++)
+    for (unsigned int i = 0; i < tempName.size(); i++)
     {
         name = tempName[i];
         gender = tempSex[i];
@@ -291,7 +291,7 @@ vector<Scientist> database::pullData ()
 
 string database::encryptData (string n)
 {
-    for(int u=0; u < n.size(); u++){
+    for(unsigned int u=0; u < n.size(); u++){
         n[u]--;
     }
     return n;
@@ -300,7 +300,7 @@ string database::encryptData (string n)
 
 string database::decryptData (string n)
 {
-    for(int u=0; u < n.size(); u++){
+    for(unsigned int u=0; u < n.size(); u++){
         n[u]++;
     }
     return n;

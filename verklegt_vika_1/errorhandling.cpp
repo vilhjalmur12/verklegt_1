@@ -62,5 +62,8 @@ void ErrorHandling::invalidYear (int errorCode)
             // Ath ad thessi dude faer samt ad halda afram i forritinu!!
             cout << "Are you sure you want to add a Computer Scientist that was born before Christ? " << endl;
             break;
+        case 4:
+            cout << "Invalid characters in year." << endl;
+            break;
     }
 }
