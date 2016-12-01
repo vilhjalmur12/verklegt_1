@@ -51,7 +51,6 @@ int main()
     Console screen;
 
 
-
     return 0;
 }
 
