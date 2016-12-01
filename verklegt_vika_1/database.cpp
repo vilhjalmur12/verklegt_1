@@ -26,7 +26,7 @@ void database::getData ()
 
     ifstream dataInput;
 
-    dataInput.open("data.db");
+    dataInput.open("data.txt");
     if (dataInput.fail())
     {
         output.dataWriteError();
@@ -75,7 +75,7 @@ void database::writeData ()
     int DOB, DOD;
 
     ofstream dataOutput;
-    dataOutput.open("data.db");
+    dataOutput.open("data.txt");
     if (dataOutput.fail())
     {
         output.dataWriteError();
