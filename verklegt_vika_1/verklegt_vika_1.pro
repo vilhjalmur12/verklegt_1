@@ -22,3 +22,6 @@ HEADERS += \
     console.h \
     scientist.h \
     errorhandling.h
+
+DISTFILES += \
+    data.db

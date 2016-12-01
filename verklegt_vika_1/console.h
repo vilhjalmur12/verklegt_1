@@ -38,8 +38,6 @@ public:
     string stringChoice(); // here you choose what kind of sorting you want to do
     void sorting(string str); // here we print out the list how they want it to be sorted like
 
-
-
 private:
     //Meðlimabreytur
     Service scientistService;
