@@ -1,8 +1,10 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
+
+#include "errorhandling.h"
 #include "scientist.h"
 #include "service.h"
-#include "errorhandling.h"
+
 #include <vector>
 #include <string>
 
