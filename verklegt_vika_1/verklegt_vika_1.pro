@@ -24,4 +24,4 @@ HEADERS += \
     errorhandling.h
 
 DISTFILES += \
-    data.db
+    data.txt
