@@ -8,10 +8,11 @@ using namespace std;
 
 int main()
 {
-
+    Console screen;
+    screen.run();
     //database data;
 
-    char choice_made;
+    /*char choice_made;
     //char stringChoiceMade;
 
     //database data;
@@ -41,7 +42,7 @@ int main()
 
     //cout << choice_made << endl;
 
-    /// Passa að skrifa vector út í database í lok keyrslu
+    /// Passa að skrifa vector út í database í lok keyrslu*/
 
     return 0;
 }

@@ -219,11 +219,12 @@ void Console::choiceMade()
 
         else if (choice_made == 's')
         {
-            cout << "Search" << endl;
+            search();
         }
+
         else if(choice_made == 'e')
         {
-            //TODO: Implement edit function
+            edit();
         }
         else if (choice_made == 'q')
         {
@@ -378,7 +379,8 @@ void Console::run()
 void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
-    exit(1);
+    
+    scientistService.saveData();
 }
 
 void Console::printTable ()
