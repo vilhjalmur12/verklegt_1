@@ -26,7 +26,7 @@ void database::getData ()
 
     ifstream dataInput;
 
-    dataInput.open("verklegt_1/verklegt_vika_1/data.db");
+    dataInput.open("data.db");
     if (dataInput.fail())
     {
         output.dataWriteError();
@@ -75,7 +75,7 @@ void database::writeData ()
     int DOB, DOD;
 
     ofstream dataOutput;
-    dataOutput.open("verklegt_1/verklegt_vika_1/data.db");
+    dataOutput.open("data.db");
     if (dataOutput.fail())
     {
         output.dataWriteError();
