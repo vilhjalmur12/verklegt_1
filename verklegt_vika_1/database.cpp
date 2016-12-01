@@ -34,16 +34,18 @@ void database::getData ()
     }
     if (isEmpty(dataInput))
     {
-        tempName.push_back("name");
-        tempSex.push_back("gender");
-        tempDOB.push_back(0);
-        tempDOD.push_back(0);
-        tempfInfo.push_back("info");
+        tempName.push_back("Ada Lovelace");
+        tempSex.push_back("Female");
+        tempDOB.push_back(1933);
+        tempDOD.push_back(2000);
+        tempfInfo.push_back("First programmer");
     }
+    else
+    {
         for (unsigned int i = 0; i < tempName.size(); i++)
         {
             dataInput >> name >> sex >> DOB >> DOD >> furtherInfo;
-        
+
                name = decryptData(name);
                sex = decryptData(sex);
               furtherInfo = decryptData(furtherInfo); // Sandra baetti vid thessari linu
@@ -54,6 +56,7 @@ void database::getData ()
             tempDOD.push_back(DOD);
             tempfInfo.push_back(furtherInfo); // Sandra baetti vid
         }
+    }
     
     dataInput.close();
 }

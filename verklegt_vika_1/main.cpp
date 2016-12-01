@@ -8,10 +8,8 @@ using namespace std;
 
 int main()
 {
-    Service serv;
-
-
-    cout << "bla";
+    Console screen;
+    screen.run();
     return 0;
 }
 
