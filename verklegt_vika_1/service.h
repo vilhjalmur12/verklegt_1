@@ -28,7 +28,8 @@ public:
     bool validYears(int birthYear, int deathYear);
 
     //Fyrsta breyta er val um hvernig skuli raða
-    vector<Scientist> getScientists(string choice = "na");
+    vector<Scientist> getScientists();
+    void SortedScientistsBy(string choice = "na");
 
     //TODO: Færa search fall frá datadrengjum í cpp
     vector<int> getIndexesWith(string query);

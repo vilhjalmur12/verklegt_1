@@ -9,10 +9,7 @@
 #include <regex>
 
 
-Console::Console()
-{
-
-}
+Console::Console() { }
 
 Console::~Console() { }
 
@@ -76,9 +73,35 @@ void Console::sorting_menu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::changeDelete()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|   Would you like to pamper the list   |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|              c - change               |" << endl;
+    cout << "|              d - delete               |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+void Console::printSearchMenu()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|      You can search by string         |" << endl;
+    cout << "|      or substring. If you are         |" << endl;
+    cout << "|      searching by date the            |" << endl;
+    cout << "|      century or decade will           |" << endl;
+    cout << "|      suffice                          |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 /********************************************************
                       Föll
 *********************************************************/
+void Console::toContinue()
+{
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+}
 
 char Console::continueFunction()
 {
@@ -89,15 +112,6 @@ char Console::continueFunction()
     return cont;
 }
 
-
-
-// Enter to continue
-// Yta a Enter til ad halda afram
-
-void Console::toContinue()
-{
-    cin.ignore(numeric_limits<streamsize>::max(),'\n');
-}
 
 char Console::choice()
 {
@@ -110,7 +124,7 @@ char Console::choice()
 string Console::stringChoice()
 {
     string str;
-    cout << "->";
+    cout << "-> ";
     cin >> str;
     return str;
 }
@@ -260,17 +274,6 @@ void Console::edit()
     scientistService.moveLastTo(index);
 }
 
-void Console::printSearchMenu()
-{
-    cout << "-----------------------------------------" << endl;
-    cout << "|      You can search by string         |" << endl;
-    cout << "|      or substring. If you are         |" << endl;
-    cout << "|      searching by date the            |" << endl;
-    cout << "|      century or decade will           |" << endl;
-    cout << "|      suffice                          |" << endl;
-    cout << "-----------------------------------------" << endl;
-}
-
 void Console::search()
 {
     string query;
@@ -279,9 +282,12 @@ void Console::search()
     cin >> query;
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
     printTable(indexesToPrint); //Prenta leitarniðurstöðu
-    //TODO Bjóða upp á eyða / breyta
+    changeDelete();
+    //TODO kalla á change og delete fallið
+
 }
 
+// Prenta út tölfu með upplýsingum
 void Console::printTable (vector<int> indexesToPrint)
 {
     vector<Scientist> allScientists = scientistService.getScientists();
@@ -302,7 +308,6 @@ void Console::printTable (vector<int> indexesToPrint)
 // Tjekk a hvort val a sorteringu se rett valid
 void Console::sorting(string str)
 {
-    Service tmp;
     vector<Scientist> allScientists;
     bool isRunning = true;
 
@@ -310,7 +315,7 @@ void Console::sorting(string str)
     {
         if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd")
         {
-            allScientists = tmp.getScientists(str);
+            scientistService.SortedScientistsBy(str);
             printTable();
             isRunning = false;
         }
@@ -349,7 +354,6 @@ void Console::run()
 void Console::quit()
 {
     cout << "Thank you for using Database, stay classy!" << endl << endl;
-
     exit(1);
 }
 

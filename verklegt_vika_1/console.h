@@ -30,13 +30,13 @@ public:
     void viewOrInsert(); // print out main menu
     char choice(); // make choice to insert, view or more
     void choiceMade(); // choose view or insert
+    void changeDelete(); // make choice to change / delete
+
 
     //Sorting föll
     void sorting_menu(); // print out the sorting menu
     string stringChoice(); // here you choose what kind of sorting you want to do
     void sorting(string str); // here we print out the list how they want it to be sorted like
-
-
 
 private:
     //Meðlimabreytur
