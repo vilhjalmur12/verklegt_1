@@ -13,6 +13,10 @@ Console::~Console() { }
 
 //commit
 
+/********************************************************
+                      Allir menu gluggar
+*********************************************************/
+
 void Console::welcome()
 {
     cout << "-----------------------------------------" << endl;
@@ -22,6 +26,54 @@ void Console::welcome()
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
+
+void Console::viewOrInsert()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|           Choose procedure:           |" << endl;
+    cout << "|            v - for viewing            |" << endl;
+    cout << "|           i - for insertion           |" << endl;
+    cout << "|            s - for search             |" << endl;
+    cout << "|      e - for editing a scientist      |" << endl;
+    cout << "|           q - for quitting            |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+void Console::printInsertMenu()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|       Please Insert Information       |" << endl;
+    cout << "|        in the following format        |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|          Name:   First (Middle) Last  |" << endl;
+    cout << "|        Gender:   m/f                  |" << endl;
+    cout << "| Year of Birth:   YYYY                 |" << endl;
+    cout << "| Year of Death:   YYYY / n/a           |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+void Console::sorting_menu()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "| In what order would you like to view? |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|     Name, ascending: na               |" << endl;
+    cout << "|     Name, descending: nd              |" << endl;
+    cout << "|     Gender, female: gf                |" << endl;
+    cout << "|     Gender, male: gm                  |" << endl;
+    cout << "|     Birth year, ascending: ba         |" << endl;
+    cout << "|     Birth year, descending: bd        |" << endl;
+    cout << "|     Death year, ascending: da         |" << endl;
+    cout << "|     Death year, descending: dd        |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+/********************************************************
+                      Föll
+*********************************************************/
 
 char Console::continueFunction()
 {
@@ -42,20 +94,6 @@ void Console::toContinue()
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
 }
 
-void Console::viewOrInsert()
-{
-    cout << "-----------------------------------------" << endl;
-    cout << "|                                       |" << endl;
-    cout << "|           Choose procedure:           |" << endl;
-    cout << "|            v - for viewing            |" << endl;
-    cout << "|           i - for insertion           |" << endl;
-    cout << "|            s - for search             |" << endl;
-    cout << "|      e - for editing a scientist      |" << endl;
-    cout << "|           q - for quitting            |" << endl;
-    cout << "|                                       |" << endl;
-    cout << "-----------------------------------------" << endl;
-}
-
 char Console::choice()
 {
     char choice_made;
@@ -70,19 +108,6 @@ string Console::stringChoice()
     cout << "->";
     cin >> str;
     return str;
-}
-
-void Console::printInsertMenu()
-{
-    cout << "-----------------------------------------" << endl;
-    cout << "|       Please Insert Information       |" << endl;
-    cout << "|        in the following format        |" << endl;
-    cout << "|                                       |" << endl;
-    cout << "|          Name:   First (Middle) Last  |" << endl;
-    cout << "|        Gender:   m/f                  |" << endl;
-    cout << "| Year of Birth:   YYYY                 |" << endl;
-    cout << "| Year of Death:   YYYY / n/a           |" << endl;
-    cout << "-----------------------------------------" << endl;
 }
 
 void Console::pushBackScientist()
@@ -171,23 +196,6 @@ void Console::choiceMade()
             cout << "Please enter a valid *** " << endl;
         }
     }
-}
-
-void Console::sorting_menu()
-{
-    cout << "-----------------------------------------" << endl;
-    cout << "| In what order would you like to view? |" << endl;
-    cout << "|                                       |" << endl;
-    cout << "|     Name, ascending: na               |" << endl;
-    cout << "|     Name, descending: nd              |" << endl;
-    cout << "|     Gender, female: gf                |" << endl;
-    cout << "|     Gender, male: gm                  |" << endl;
-    cout << "|     Birth year, ascending: ba         |" << endl;
-    cout << "|     Birth year, descending: bd        |" << endl;
-    cout << "|     Death year, ascending: da         |" << endl;
-    cout << "|     Death year, descending: dd        |" << endl;
-    cout << "|                                       |" << endl;
-    cout << "-----------------------------------------" << endl;
 }
 
 // Notandi sendur i sorting_menu
