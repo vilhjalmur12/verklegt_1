@@ -6,8 +6,8 @@ class ErrorHandling
 public:
     ErrorHandling();
     virtual ~ErrorHandling();
-    void dataWriteError ();  // villi: error output fyrir database
-    void quit();   // quit fall ef við vijum hætta í forriti
+    void dataWriteError ();
+    void quit();
     void dataSearchNotFound ();
     void invalidYear (int errorCode);
     void invalidSex ();

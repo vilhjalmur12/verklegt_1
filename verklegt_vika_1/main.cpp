@@ -1,9 +1,10 @@
-#include <iostream>
 #include "database.h"
 #include "console.h"
 #include "service.h"
+#include <iostream>
+#include <fstream>
 #include <string>
-#include<fstream>
+
 using namespace std;
 
 int main()
