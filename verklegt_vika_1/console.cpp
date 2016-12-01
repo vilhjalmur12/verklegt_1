@@ -100,7 +100,6 @@ void Console::printSearchMenu()
                       Föll
 *********************************************************/
 
-
 char Console::continueFunction()
 {
     char cont;
@@ -284,22 +283,24 @@ void Console::changeOrDelete()
     if(changeDeleteChoice == 'q')
     {
         quit();
-
     }
     else if(changeDeleteChoice == 'd')
     {
-        //TODO: delete fall
+        string query;
+        cout << "Query for deletion: " << endl;
+        cin >> query;
+        int index = findIndexToEdit(query);
+        scientistService.removeScientist(index);
     }
 
-    else if(changeDeleteChoice == 'c')
+    else if(changeDeleteChoice == 'e')
     {
         edit();
     }
     else if(changeDeleteChoice == 'm')
     {
 
-    }
-
+    };
 }
 
 void Console::search()
@@ -311,9 +312,7 @@ void Console::search()
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);//á að leita
     printTable(indexesToPrint); //Prenta leitarniðurstöðu
     printChangeDelete();
-    //TODO kalla á change og delete fallið
-
-
+    changeOrDelete();
 }
 
 // Prenta út tölfu með upplýsingum

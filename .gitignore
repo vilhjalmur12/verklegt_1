@@ -36,4 +36,8 @@ Makefile*
 # QtCtreator CMake
 CMakeLists.txt.user
 /.DS_Store
+<<<<<<< HEAD
+=======
+.DS_Store
+>>>>>>> 234c32a4eee2aa36041fe968217bcc7f056f6e1b
 
