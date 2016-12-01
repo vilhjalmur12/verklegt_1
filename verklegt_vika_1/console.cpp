@@ -343,7 +343,7 @@ void Console::printTable (vector<int> indexesToPrint)
 
     for (unsigned int i = 0; i < indexesToPrint.size(); i++)
     {
-        tmp = allScientists[i];
+        tmp = allScientists[indexesToPrint[i]];
 
         printf("%-4d%-30s%-9s%-18d%-18d%-30s\n",i, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeath(), tmp.getFurtherInfo().c_str());
 
