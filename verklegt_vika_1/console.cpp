@@ -288,6 +288,7 @@ void Console::search()
 
 }
 
+// Prenta út tölfu með upplýsingum
 void Console::printTable (vector<int> indexesToPrint)
 {
     vector<Scientist> allScientists = scientistService.getScientists();
