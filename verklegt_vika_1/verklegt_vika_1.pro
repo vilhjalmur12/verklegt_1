@@ -9,12 +9,13 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-SOURCES += main.cpp \
+SOURCES += \
     service.cpp \
     database.cpp \
     console.cpp \
     scientist.cpp \
-    errorhandling.cpp
+    errorhandling.cpp \
+    main.cpp \
 
 HEADERS += \
     service.h \
@@ -24,4 +25,6 @@ HEADERS += \
     errorhandling.h
 
 DISTFILES += \
-    data.db
+    data.db \
+    data.txt \
+
