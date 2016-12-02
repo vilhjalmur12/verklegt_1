@@ -190,10 +190,9 @@ void Console::pushBackScientist()
 
         //cin.clear();
         //cin.sync();
-        cin.ignore();
+
 
         cout << "Further Information: ";
-
         cin.ignore();
         getline(cin, furtherInfo);
 
@@ -214,7 +213,6 @@ void Console::pushBackScientist()
 
             if(cin.fail())
             {
-                cin.ignore();
                 throwError.invalidYear(4);
                 cont = true;
                 continue;
