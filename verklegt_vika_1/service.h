@@ -23,7 +23,7 @@ public:
     Service(string username);
     virtual ~Service();
 
-    bool appendScientist(string name, string sex, int birthYear, int deathYear, string nationality, string furtherInfo);
+    bool appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo, string nationality);
     void removeScientist(int index);
 
     void moveLastTo(int index);
@@ -31,9 +31,11 @@ public:
     bool validName(string& name);
     bool validSex(string& sex);
     bool validYears(int birthYear, int deathYear);
-    bool validNationality(string& nationality);
     bool validDeathYear(string deathYear);
+    bool validNationality(string& nationality);
     void saveData ();
+
+    string getErrorString();
 
     //Fyrsta breyta er val um hvernig skuli raða
     vector<Scientist> getScientists();
