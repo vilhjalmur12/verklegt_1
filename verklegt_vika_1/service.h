@@ -19,6 +19,7 @@ class Service
 {
 public:
     Service();
+    Service(string username);
     virtual ~Service();
 
     bool appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo);
@@ -46,6 +47,7 @@ private:
     vector<Scientist> _scientists;
     ErrorHandling throwError;
     database data;
+    string user;
 
 /**********************************************************
              Hjálparföll fyrir appendScientist

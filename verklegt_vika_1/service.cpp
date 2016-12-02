@@ -10,7 +10,21 @@ Service::Service()
     ErrorHandling err;
     throwError = err;
 
-    data.getData();
+    data.getData(user);
+    _scientists = data.pullData();
+   // cout << _scientists[0].getName();
+}
+
+Service::Service(string username)
+{
+    user = username;
+    database dat;
+    data = dat;
+
+    ErrorHandling err;
+    throwError = err;
+
+    data.getData(user);
     _scientists = data.pullData();
    // cout << _scientists[0].getName();
 }
@@ -20,6 +34,11 @@ Service::~Service()
     
 }
 
+void pushUser (string username)
+{
+
+}
+
 /**********************************************************
                    Vinna með vísindamenn
 **********************************************************/
@@ -27,7 +46,7 @@ Service::~Service()
 void Service::saveData ()
 {
     data.pushData(_scientists);
-    data.writeData();
+    data.writeData(user);
 }
 
 string Service::removeSpaces(string& before)

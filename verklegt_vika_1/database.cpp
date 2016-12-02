@@ -18,19 +18,20 @@ database::~database () {}
  tíman sem við erum að vinna í forritinu.
  ****************************************************************************/
 
-void database::getData ()
+void database::getData (string user)
 {
-    string name, sex, furtherInfo;
+    string name, sex, furtherInfo, fullUser;
     int DOB, DOD;
-    
 
     ifstream dataInput;
+    fullUser = user +".txt";
 
-    dataInput.open("data.txt");
+    dataInput.open(fullUser);
     if (dataInput.fail())
     {
-        output.dataWriteError();
-        exit(1);
+        fstream newDataInput (fullUser, std::ios::out);
+        newDataInput.close();
+        dataInput.open(fullUser);
     }
     if (isEmpty(dataInput))
     {
@@ -128,13 +129,15 @@ bool database::isEmpty(ifstream& input)
 
  tekur inn upplýsingar frá gagnagrunni og hleður allar í vectora til að reiðubúa notkun
  ****************************************************************************/
-void database::writeData ()
+void database::writeData (string username)
 {
     string name, sex, furtherInfo;
     int DOB, DOD;
 
+    string fullUser = username + ".txt";
+
     ofstream dataOutput;
-    dataOutput.open("data.txt");
+    dataOutput.open(fullUser);
     if (dataOutput.fail())
     {
         output.dataWriteError();

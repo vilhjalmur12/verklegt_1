@@ -196,6 +196,8 @@ void Console::callUser ()
             cout << "Invaid action!" << endl << endl;
         }
     }
+    Service newScientistService(user);
+    scientistService = newScientistService;
     run();
 }
 
