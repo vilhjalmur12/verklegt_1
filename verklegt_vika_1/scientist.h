@@ -33,6 +33,14 @@ public:
         return _yearOfDeath;
     }
 
+    string getYearOfDeathForPrinting() const
+    {
+        if(_yearOfDeath==200000000)
+            return "n/a";
+        else
+            return to_string(_yearOfDeath);
+    }
+
     string getFurtherInfo() const
     {
         return _furtherInfo;
@@ -40,6 +48,7 @@ public:
 
     //Prentar út allar uppl um vísindamann í eina línu (aðskilið af tab-keypress)
     friend ostream& operator << (ostream& out, Scientist sc);
+    friend bool operator == (Scientist lhs, Scientist rhs);
 
 private:
     string _name;

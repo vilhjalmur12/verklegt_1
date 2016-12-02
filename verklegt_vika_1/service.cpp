@@ -32,7 +32,7 @@ void Service::saveData ()
     data.writeData();
 }
 
-string Service::removeSpaces(string before)
+string Service::removeSpaces(string& before)
 {
     for(unsigned int i = 0; i < before.length()-1; i++)
     {
@@ -46,7 +46,7 @@ string Service::removeSpaces(string before)
 }
 
 //Stillir fyrsta staf hvers orðs stóran og hina litla
-string Service::fixString(string before)
+string Service::fixString(string& before)
 {
     char a = before.at(0);
     before.at(0) = toupper(a);
@@ -65,10 +65,20 @@ string Service::fixString(string before)
     return before;
 }
 
-void Service::appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo)
+bool Service::appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo)
 {
     Scientist tempScientist(name, sex, birthYear, deathYear, furtherInfo);
+    for(unsigned int i = 0; i < _scientists.size(); i++)
+    {
+        if(tempScientist == _scientists[i])
+        {
+            throwError.invalidName(1);
+            return false;
+        }
+    }
     _scientists.push_back(tempScientist);
+
+    return true;
 }
 
 void Service::removeScientist(const int index)
@@ -113,16 +123,9 @@ void Service::SortedScientistsBy(string choice)
  *                                             *
 ************************************************/
 
-bool Service::validName(string& name)
+bool Service::validName(string &name)
 {
-    for(unsigned int i = 0; i < _scientists.size(); i++)
-    {
-        if(_scientists[i].getName() == name)
-        {
-            throwError.invalidName(1);
-            return false;
-        }
-    }
+    name = fixString(name);
 
     bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]*([A-Za-z]||[ ])*$"));
 
@@ -163,6 +166,12 @@ bool Service::validYears(int birthYear, int deathYear)
     time_t t = time(NULL);
     tm* timePtr = localtime(&t);
 
+    if(birthYear < -193000)
+    {
+        throwError.invalidYear(3);
+        return false;
+    }
+
     if(deathYear < birthYear)
     {
         throwError.invalidYear(1);
@@ -174,16 +183,16 @@ bool Service::validYears(int birthYear, int deathYear)
         throwError.invalidYear(2);
         return false;
     }
+    if(birthYear == 200000000)
+    {
+        return true;
+    }
     if(deathYear > timePtr->tm_year + 1900)
     {
         throwError.invalidYear(5);
         return false;
     }
-    if(birthYear < 0)
-    {
-        throwError.invalidYear(3);
-        return false;
-    }
+
     return true;
 }
 
@@ -208,9 +217,19 @@ bool Service::findInInt(int query, int year)
 
 bool Service::findInString(string query, string String)
 {
-    for(unsigned int i = 0; i < String.length()- query.length(); i++)
+    transform(query.begin(), query.end(), query.begin(), ::tolower);
+    transform(String.begin(), String.end(), String.begin(), ::tolower);
+
+    if(query.length() > String.length())
+        return false;
+    else if(query.length() == String.length())
     {
-        if(String.compare(i, query.length(), query))
+        return !String.compare(0, query.length(), query);
+    }
+
+    for(unsigned int i = 0; i < (String.length() - query.length()); i++)
+    {
+        if(!String.compare(i, query.length(), query))
             return true;
     }
 

@@ -19,7 +19,7 @@ public:
     Service();
     virtual ~Service();
 
-    void appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo);
+    bool appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo);
     void removeScientist(int index);
 
     void moveLastTo(int index);
@@ -43,8 +43,8 @@ private:
     database data;
 
     //appendScientist Hjálparföll
-    string removeSpaces(string before);
-    string fixString(string before);
+    string removeSpaces(string& before);
+    string fixString(string& before);
 
     //search Hjálparföll
     bool findInInt(int query, int year);
