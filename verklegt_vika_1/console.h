@@ -17,28 +17,28 @@ public:
 /**************************************************
                     Keyrsluföll
 **************************************************/
-    void run();
-    void edit();
-    void search();
-    void viewDisplay();     //Notandi sendur i sorting_menu
+    void run();                     //Keyrir forrit í gang
+    void edit();                    //Notandi sendur í edit glugga
+    void search();                  //Notandi sendur í leitar vél
+    void viewDisplay();             //Notandi sendur i sorting_menu
     string continueFunction();      //Spyr hvort eigi að endurtaka aðgerð og geymir valið y/n
-    void quit();
-    void callUser ();
+    void quit();                    //Hættir í forriti
+    void callUser ();               //Notandi getur loggað sig inn eða skráð nýjan user
 
 /**************************************************
                     Opnunarföll
 **************************************************/
-    void welcome();
+    void welcome();         //Kallar á upphafsmynd
     void toContinue();      //Notandi þarf að ýta á ENTER til að halda áfram
 
 /**************************************************
                    Valmyndarföll
 **************************************************/
     void viewOrInsert();        //Birta aðal valmynd
-    void loginMenu();       //Login menu
-    string choice();        //Geyma valmöguleika
-    void choiceMade();      //Kalla á framkvæmd eftir vali notanda
-    void printChangeDelete();       //Bjóða uppá að eiga við lista
+    void loginMenu();           //Login menu
+    string choice();            //Geyma valmöguleika
+    void choiceMade();          //Kalla á framkvæmd eftir vali notanda
+    void printChangeDelete();   //Bjóða uppá að eiga við lista
     void quitMenu();
 
 /**************************************************
@@ -46,43 +46,42 @@ public:
 **************************************************/
     void sorting_menu();        //Birta valmynd yfir möguleika til að raða lista
     string stringChoice();      //Geyma val notanda yfir hvernig hann vildi raða listanum
-    void sorting(string str);       //Birta raðaðann lista
+    void sorting(string str);   //Birta raðaðann lista
 
 private:
 /**************************************************
                    Meðlimabreytur
 **************************************************/
-    ErrorHandling throwError;
-    string user;
-    Service scientistService;
+    ErrorHandling throwError;   //Sendir forrit í villu tékk
+    string user;                //Nafn fyrir user
+    Service scientistService;   //Heldur utan um upplýsingar frá gagnagrunni fyrir service hlutan
 /**************************************************
                Hjálparföll við edit
 **************************************************/
-    int findIndexToEdit(string oldName);
-    void printPushBackMenu();
-    void printEditMenu();
-
-    void pushBackScientist();
-    void createScientist(string& name, string& sex, int& YOB, int& YOD, string& nationality, string& furtherInfo);
-    void readName(string& name);
-    void readSex(string& sex);
-    void readFurtherInfo(string& furtherInfo);
-    void readNationality(string& nationality);
-    void readYears(int& YOB, int& YOD);
-    void readBirthYear(int& YOB, bool& cont);
-    void readDeathYear(int& YOD, bool& cont);
+    int findIndexToEdit(string oldName);                                                                            //Finnur nr. á vísindamann sem á að edit-a
+    void printPushBackMenu();                                                                                       //Byrtir valmynd þegar nýr vísindamaður er settur í gagnagrunn
+    void printEditMenu();                                                                                           //Birtir valmynd þegar edit-a á vísindamann
+    void pushBackScientist();                                                                                       //
+    void createScientist(string& name, string& sex, int& YOB, int& YOD, string& nationality, string& furtherInfo);  //Býr til nýjan vísindamann
+    void readName(string& name);                                                                                    //Tekur inn nafn fyrir vísindamann
+    void readSex(string& sex);                                                                                      //Tekur inn kyn fyrir vísindamann
+    void readFurtherInfo(string& furtherInfo);                                                                      //Tekur inn auka upplýsingar fyrir vísindamann
+    void readNationality(string& nationality);                                                                      //Tekur inn þjóðerni fyrir vísindamann
+    void readYears(int& YOB, int& YOD);                                                                             //Tekur inn fæðingar/dánar ár fyrir vísindamann
+    void readBirthYear(int& YOB, bool& cont);                                                                       //Athugar fæðingar ár á vísindamanni
+    void readDeathYear(int& YOD, bool& cont);                                                                       //Athugar dánar ár á vísindamanni
 
 /**************************************************
               Hjálparföll við search
 **************************************************/
-    void printSearchMenu();
-    void changeOrDelete(vector<int> indexes);
+    void printSearchMenu();                         //Byrtir leitar valmynd
+    void changeOrDelete(vector<int> indexes);       //Tekur við ákvörðun frá notanda um edit
 
 /**************************************************
                  Birta töflu
 **************************************************/
-    void printTable();
-    void printTable(vector<int> indexesToPrint);
+    void printTable();                              //Byrtir töflu af vísindamönnum
+    void printTable(vector<int> indexesToPrint);    //Byrtir töflu af vísindamönnum fyrir edit
 };
 
 #endif // CONSOLE_H
