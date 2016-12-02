@@ -28,7 +28,7 @@ void ErrorHandling::invalidName (int errorCode)
             cout << "ERROR: The name you entered already exists in the list!" << endl;
             break;
         case 2:
-            cout << "ERROR: Name can not include numbers!" << endl;
+            cout << "ERROR: Name includes unsupported characters!" << endl;
             break;
     }
 }

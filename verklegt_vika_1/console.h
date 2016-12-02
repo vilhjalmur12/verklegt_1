@@ -1,7 +1,6 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-#include "errorhandling.h"
 #include "scientist.h"
 #include "service.h"
 
@@ -40,6 +39,8 @@ public:
 **************************************************/
     //Birta aðal valmynd
     void viewOrInsert();
+    //Login menu
+    void loginMenu();
     //Geyma valmöguleika
     string choice();
     //Kalla á framkvæmd eftir vali notanda

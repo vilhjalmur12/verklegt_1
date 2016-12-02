@@ -128,13 +128,26 @@ void Console::quitMenu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::loginMenu()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|             Choose option:            |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|           c - create new user         |" << endl;
+    cout << "|               l - login               |" << endl;
+    cout << "|               q - quit                |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 /********************************************************
                      Keyrsluföll
 *********************************************************/
 void Console::callUser ()
 {
     database data;
-    string password, action;
+    string password;
+    char action;
     bool runProgram = false;
 
     welcome();
@@ -143,10 +156,11 @@ void Console::callUser ()
 
     while (!runProgram)
     {
-        cout << "login/create/quit\n->";
+        loginMenu();
+        cout << "-> ";
         cin >> action;
 
-        if (action == "create")
+        if (action == 'c')
         {
             string confirmPass = "password";
 
@@ -169,7 +183,7 @@ void Console::callUser ()
             runProgram = true;
 
         }
-        else if (action == "login")
+        else if (action == 'l')
         {
             cout << "Username: ";
             cin >> user;
@@ -187,7 +201,7 @@ void Console::callUser ()
                 cout << "Invalid user or password" << endl << endl;
             }
         }
-        else if (action == "quit")
+        else if (action == 'q')
         {
                     exit(1);
         }
@@ -278,6 +292,7 @@ void Console::viewDisplay()
 string Console::continueFunction()
 {
     string cont;
+
     cout << "Would you like to view again?\t(y/n)" << endl << "-> ";
     cont = choice();
 
@@ -619,6 +634,7 @@ void Console::printTable ()
     vector<Scientist> allScientists = scientistService.getScientists();
     Scientist tmp;
 
+    cout << endl;
     printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
     cout <<"-------------------------------------------------------------------------------------------------------" << endl;
 
@@ -640,6 +656,7 @@ void Console::printTable (vector<int> indexesToPrint)
     }
     else
     {
+        cout << endl;
         printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
         cout <<"-------------------------------------------------------------------------------------------------------" << endl;
 
