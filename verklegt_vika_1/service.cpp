@@ -252,7 +252,7 @@ bool Service::findInString(string query, string String)
         return !String.compare(0, query.length(), query);
     }
 
-    for(unsigned int i = 0; i < (String.length() - query.length()); i++)
+    for(unsigned int i = 0; i <= (String.length() - query.length()); i++)
     {
         if(!String.compare(i, query.length(), query))
             return true;
