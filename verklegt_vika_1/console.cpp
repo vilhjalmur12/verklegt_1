@@ -496,6 +496,11 @@ int Console::findIndexToEdit(string oldName)
         return -1;
 }
 
+/******************************************************************
+                      pushBackScientist
+    Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
+ ******************************************************************/
+
 void Console::pushBackScientist()
 {
     printPushBackMenu();
@@ -507,6 +512,19 @@ void Console::pushBackScientist()
         createScientist(name, sex, YOB, YOD, nationality, furtherInfo);
     }while(!scientistService.appendScientist(name, sex, YOB, YOD, nationality, furtherInfo));
 }
+
+/******************************************************************
+                      createScientist
+    Býr til nýjan vísindamann í gagnagrunninn
+            @parameter(int &name) - bendir á streng sem inniheldur nafn vísindamanns
+            @parameter(int &sex) - bendir á streng sem inniheldur kyn vísindamanns
+            @parameter(int &YOB) - bendir á tölu sem inniheldur fæðingarár
+            @parameter(int &YOD) - bendir á tölu sem inniheldur dánarár
+            @parameter(string &furtherInfo) - bendir á streng sem
+                inniheldur auka upplýsingar notanda
+            @parameter(string &nationality) - bendir á streng sem
+                inniheldur þjóðernis geymslu notanda
+ ******************************************************************/
 
 void Console::createScientist(string &name, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo)
 {
@@ -521,6 +539,12 @@ void Console::createScientist(string &name, string &sex, int &YOB, int &YOD, str
     readYears(YOB, YOD);
 
 }
+
+/******************************************************************
+                      readName
+    Tekur inn nafn fyrir vísindamann
+            @parameter(int &name) - bendir á streng sem inniheldur nafn vísindamanns
+ ******************************************************************/
 
 void Console::readName(string &name)
 {
@@ -537,6 +561,12 @@ void Console::readName(string &name)
     }while(!scientistService.validName(name));
 }
 
+/******************************************************************
+                      readSex
+    Tekur inn kyn fyrir vísindamann
+            @parameter(int &sex) - bendir á streng sem inniheldur kyn vísindamanns
+ ******************************************************************/
+
 void Console::readSex(string &sex)
 {
     do
@@ -547,6 +577,12 @@ void Console::readSex(string &sex)
     }while(!scientistService.validSex(sex));
 }
 
+/******************************************************************
+                      readYears
+    Tekur inn fæðingar/dánar ár fyrir vísindamann
+            @parameter(int &YOB) - bendir á tölu sem inniheldur fæðingarár
+            @parameter(int &YOD) - bendir á tölu sem inniheldur dánarár
+ ******************************************************************/
 
 void Console::readYears(int& YOB, int& YOD)
 {
@@ -573,6 +609,14 @@ void Console::readYears(int& YOB, int& YOD)
     }while(!validYears || cont);
 }
 
+/******************************************************************
+                      readBirthYear
+    Athugar fæðingar ár á vísindamanni
+            @parameter(int &YOB) - bendir á tölu sem inniheldur fæðingarár
+            @parameter(bool &cont) - bendir á bool breytu sem segjir til
+            um hvort halda eigi áfram
+ ******************************************************************/
+
 void Console::readBirthYear(int &YOB, bool &cont)
 {
     cout << "Year of birth: ";
@@ -596,6 +640,14 @@ void Console::readBirthYear(int &YOB, bool &cont)
     }
     return;
 }
+
+/******************************************************************
+                      readDeathYear
+    Athugar dánar ár á vísindamanni
+            @parameter(int &YOD) - bendir á tölu sem inniheldur dánarár
+            @parameter(bool &cont) - bendir á bool breytu sem segjir til
+            um hvort halda eigi áfram
+ ******************************************************************/
 
 void Console::readDeathYear(int &YOD, bool &cont)
 {
@@ -624,6 +676,13 @@ void Console::readDeathYear(int &YOD, bool &cont)
     }
 }
 
+/******************************************************************
+                      readFurtherInfo
+    Tekur inn auka upplýsingar fyrir vísindamann
+            @parameter(string &furtherInfo) - bendir á streng sem
+            inniheldur auka upplýsingar notanda
+ ******************************************************************/
+
 void Console::readFurtherInfo(string &furtherInfo)
 {
     cout << "Further Information: ";
@@ -632,6 +691,13 @@ void Console::readFurtherInfo(string &furtherInfo)
     if(furtherInfo.length() > 0)
         furtherInfo.at(0) = toupper(furtherInfo.at(0));
 }
+
+/******************************************************************
+                      readNationality
+    Tekur inn þjóðerni fyrir vísindamann
+            @parameter(string &nationality) - bendir á streng sem
+            inniheldur þjóðernis geymslu notanda
+ ******************************************************************/
 
 void Console::readNationality(string &nationality)
 {
@@ -647,9 +713,12 @@ void Console::readNationality(string &nationality)
 }
 
 
-/********************************************************
-                 Hjálparföll við search
-*********************************************************/
+/******************************************************************
+                      changeOrDelete
+    Tekur við ákvörðun frá notanda um edit
+            @parameter(vector<int> indexes) - vector (listi) af tölum
+            sem segja til um stak vísindamanns í gagnagrunni
+ ******************************************************************/
 
 void Console::changeOrDelete(vector<int> indexes)
 {
@@ -705,9 +774,10 @@ void Console::changeOrDelete(vector<int> indexes)
     };
 }
 
-/********************************************************
-                      Birta töflu
-*********************************************************/
+/******************************************************************
+                      printTable
+    Prentar út alla vísindamenn í gagnagrunni með viðmóti.
+ ******************************************************************/
 
 void Console::printTable ()
 {
@@ -725,6 +795,13 @@ void Console::printTable ()
                tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str());
     }
 }
+
+/******************************************************************
+                      printTable
+    Prentar út ákveðna valda vísindamenn í glugga með viðmóti
+            @parameter(vector<int> indexesToPrint) - vector (listi) af þeim
+            vísindamönnum sem skulu prentast
+ ******************************************************************/
 
 void Console::printTable (vector<int> indexesToPrint)
 {
