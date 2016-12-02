@@ -108,6 +108,17 @@ void Console::printSearchMenu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::printEditMenu()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|       What would you like to do?      |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|    l - see the full list of Scienti   |" << endl;
+    cout << "|      s - search for a scientist       |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 /********************************************************
                       Föll
 *********************************************************/
@@ -161,8 +172,8 @@ void Console::pushBackScientist()
         do
         {
             cout << "Name: ";
-            cin.clear();
-            cin.sync();
+
+            cin.ignore();
             do
             {
             getline(cin, name);
@@ -176,13 +187,13 @@ void Console::pushBackScientist()
             cin >> sex;
         }while(!scientistService.validSex(sex));
 
-        cin.clear();
-        cin.sync();
+        //cin.clear();
+        //cin.sync();
+        cin.ignore();
 
         cout << "Further Information: ";
 
-        cin.clear();
-        cin.sync();
+        cin.ignore();
         getline(cin, furtherInfo);
 
         if(furtherInfo.length() > 0)
@@ -202,8 +213,7 @@ void Console::pushBackScientist()
 
             if(cin.fail())
             {
-                cin.clear();
-                cin.sync();
+                cin.ignore();
                 throwError.invalidYear(4);
                 cont = true;
                 continue;
@@ -303,18 +313,35 @@ int Console::findIndexToEdit(string oldName)
     cout << "Please enter the number of the entry you want to edit: ";
     cin >> input;
 
-    index = indexesWithQuery[input];
+    index = indexesWithQuery[input-1];
 
     return index;
 }
 
 void Console::edit()
 {
-    string query;
-    printSearchMenu();
-    cout << "Query: ";
-    cin >> query;
-    int index = findIndexToEdit(query);
+    char choice;
+    int index;
+    do
+    {
+       cout << "-> ";
+       cin >> choice;
+    }while(choice != 'l' && choice != 's');
+
+    if(choice == 'l')
+    {
+        printTable();
+        cout << "Index to edit: ";
+        cin >> index;
+    }
+    else
+    {
+        string query;
+        printSearchMenu();
+        cout << "Query: ";
+        cin >> query;
+        index = findIndexToEdit(query);
+    }
     cout << "--------Insert new Information:---------" << endl;
     pushBackScientist();
     scientistService.moveLastTo(index);
