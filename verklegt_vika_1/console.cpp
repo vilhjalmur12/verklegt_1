@@ -290,7 +290,7 @@ void Console::viewDisplay()
 char Console::continueFunction()
 {
     char cont;
-    cout << "Would you like to view again?\t(y/n)" << endl << "-> ";
+    cout << '\n' << "Would you like to view again?\t(y/n)" << endl << "-> ";
     cont = choice();
 
     while(cont != 'y' && cont != 'n')
@@ -631,6 +631,7 @@ void Console::printTable ()
     vector<Scientist> allScientists = scientistService.getScientists();
     Scientist tmp;
 
+    cout << endl;
     printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
     cout <<"-------------------------------------------------------------------------------------------------------" << endl;
 
@@ -652,6 +653,7 @@ void Console::printTable (vector<int> indexesToPrint)
     }
     else
     {
+        cout << endl;
         printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
         cout <<"-------------------------------------------------------------------------------------------------------" << endl;
 
