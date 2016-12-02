@@ -45,6 +45,7 @@ public:
     void choiceMade();
     //Bjóða uppá að eiga við lista
     void printChangeDelete();
+    void quitMenu();
 
 /**************************************************
                    Sorting föll
@@ -82,8 +83,6 @@ private:
 **************************************************/
     void printTable();
     void printTable(vector<int> indexesToPrint);
-
-
 };
 
 #endif // CONSOLE_H
