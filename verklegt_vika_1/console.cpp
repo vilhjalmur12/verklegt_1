@@ -59,7 +59,8 @@ void Console::printInsertMenu()
     cout << "|        Gender:   m/f/male/female      |" << endl;
     cout << "|  Contribution:   string               |" << endl;
     cout << "| Year of Birth:   YYYY                 |" << endl;
-    cout << "| Year of Death:   YYYY / n/a           |" << endl;
+    cout << "| Year of Death:   (YYYY) / (n/a)       |" << endl;
+    cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
 
@@ -68,14 +69,14 @@ void Console::sorting_menu()
     cout << "-----------------------------------------" << endl;
     cout << "| In what order would you like to view? |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|     Name, ascending: na               |" << endl;
-    cout << "|     Name, descending: nd              |" << endl;
-    cout << "|     Gender, female: gf                |" << endl;
-    cout << "|     Gender, male: gm                  |" << endl;
+    cout << "|           Name, ascending: na         |" << endl;
+    cout << "|          Name, descending: nd         |" << endl;
+    cout << "|            Gender, female: gf         |" << endl;
+    cout << "|              Gender, male: gm         |" << endl;
     cout << "|     Birth year, ascending: ba         |" << endl;
-    cout << "|     Birth year, descending: bd        |" << endl;
+    cout << "|    Birth year, descending: bd         |" << endl;
     cout << "|     Death year, ascending: da         |" << endl;
-    cout << "|     Death year, descending: dd        |" << endl;
+    cout << "|    Death year, descending: dd         |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
@@ -83,23 +84,27 @@ void Console::sorting_menu()
 void Console::printChangeDelete()
 {
     cout << "-----------------------------------------" << endl;
-    cout << "|   Would you like to pamper the list   |" << endl;
+    cout << "|       What would you like to do       |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|              e - edit                 |" << endl;
-    cout << "|              d - delete               |" << endl;
-    cout << "|              m - menu                 |" << endl;
-    cout << "|              q - quit                 |" << endl;
+    cout << "|           s - search again            |" << endl;
+    cout << "|         e - edit a Scientist          |" << endl;
+    cout << "|        d - delete a Scientist         |" << endl;
+    cout << "|           m - go to menu              |" << endl;
+    cout << "|          q - quit program             |" << endl;
+    cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
 
 void Console::printSearchMenu()
 {
     cout << "-----------------------------------------" << endl;
+    cout << "|                                       |" << endl;
     cout << "|      You can search by string         |" << endl;
     cout << "|      or substring. If you are         |" << endl;
     cout << "|      searching by date the            |" << endl;
     cout << "|      century or decade will           |" << endl;
     cout << "|      suffice                          |" << endl;
+    cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
 
@@ -112,6 +117,14 @@ char Console::continueFunction()
     char cont;
     cout << "Would you like to view again?\t(y/n)" << endl << "-> ";
     cont = choice();
+
+    while(cont != 'y' && cont != 'n')
+    {
+        cout << "Please make a valid choice!" << endl << "->";
+        cont = choice();
+    }
+
+
 
     return cont;
 }
@@ -142,7 +155,7 @@ void Console::pushBackScientist()
     printInsertMenu();
 
     string name, sex, furtherInfo;
-    int YOB, YOD = 200000000;
+    int YOB, YOD;
     do
     {
         do
@@ -150,7 +163,11 @@ void Console::pushBackScientist()
             cout << "Name: ";
             cin.clear();
             cin.sync();
+            do
+            {
             getline(cin, name);
+            }while(name.length()<1);
+
         }while(!scientistService.validName(name));
 
         do
@@ -159,31 +176,57 @@ void Console::pushBackScientist()
             cin >> sex;
         }while(!scientistService.validSex(sex));
 
+<<<<<<< HEAD
         cin.clear();
         cin.sync();
 
+=======
+>>>>>>> a7b5c33b23e60881ca7e63f97b107a750aa2da2a
         cout << "Further Information: ";
+
+        cin.clear();
+        cin.sync();
         getline(cin, furtherInfo);
 
+        if(furtherInfo.length() > 0)
+            furtherInfo.at(0) = toupper(furtherInfo.at(0));
+
         bool cont = false;
+        bool validYears = false;
         do
         {
             cont = false;
+            validYears = true;
+            YOD = 200000000;
             string input;
+
             cout << "Year of birth: ";
             cin >> YOB;
+
             if(cin.fail())
             {
+                cin.clear();
+                cin.sync();
                 throwError.invalidYear(4);
                 cont = true;
                 continue;
             }
+            if(YOB < -2700)
+            {
+                cout << "Attention: your Computer Scientist will have to have been born before" << endl
+                     << "the invention of the abbacus, the first known tool used for computation" << endl
+                     << "tip: enter an invalid Year of Death to re-input year of birth" << endl;
+            }
+
             cout << "Year of death: ";
             cin >> input;
 
             bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+[0-9]*$"));
 
-            if(input == "na");
+            if(input == "n/a")
+            {
+                continue;
+            }
             else if(deathContainsNonDigits)
             {
                 throwError.invalidYear(4);
@@ -195,7 +238,10 @@ void Console::pushBackScientist()
                 YOD = stoi(input);
             }
 
-        }while(!scientistService.validYears(YOB, YOD) || cont);
+            if(cont == false)
+                validYears = scientistService.validYears(YOB, YOD);
+
+        }while(!validYears || cont);
     } while(!scientistService.appendScientist(name, sex, YOB, YOD, furtherInfo));
 }
 
@@ -206,7 +252,8 @@ void Console::choiceMade()
 
     if (choice_made == 'v')
     {
-
+        do
+        {
         string str;
         sorting_menu();
 
@@ -214,25 +261,7 @@ void Console::choiceMade()
         sorting(str);
 
         cont = continueFunction();
-
-        if (cont == 'y')
-        {
-            string str;
-            sorting_menu();
-
-            str = stringChoice();
-            sorting(str);
-
-            cont = continueFunction();
-        }
-        else if (cont == 'n')
-        {
-
-        }
-        else
-        {
-            cout << "Please choose a valid command!" << endl;
-        }
+        }while(cont == 'y');
     }
     else if (choice_made == 'i')
     {
@@ -318,6 +347,10 @@ void Console::changeOrDelete()
     else if(changeDeleteChoice == 'm')
     {
 
+    }
+    else if(changeDeleteChoice == 's')
+    {
+        search();
     };
 }
 
@@ -328,7 +361,6 @@ void Console::search()
     cout << "Query: ";
     cin >> query;
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);
-    cout << "-------------------------------------------------------------------" << indexesToPrint.size();
     printTable(indexesToPrint);
     printChangeDelete();
     changeOrDelete();
@@ -339,15 +371,22 @@ void Console::printTable (vector<int> indexesToPrint)
     vector<Scientist> allScientists = scientistService.getScientists();
     Scientist tmp;
 
-    printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Fruther Information");
-    cout <<"-------------------------------------------------------------------------------------------------------" << endl;
-
-    for (unsigned int i = 0; i < indexesToPrint.size(); i++)
+    if(indexesToPrint.size() == 0)
     {
-        tmp = allScientists[indexesToPrint[i]];
+        cout << "No related indexes found" << endl;
+    }
+    else
+    {
+        printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Fruther Information");
+        cout <<"-------------------------------------------------------------------------------------------------------" << endl;
 
-        printf("%-4d%-30s%-9s%-18d%-18d%-30s\n",i, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeath(), tmp.getFurtherInfo().c_str());
+        for (unsigned int i = 0; i < indexesToPrint.size(); i++)
+        {
+            tmp = allScientists[indexesToPrint[i]];
 
+            printf("%-4d%-30s%-9s%-18d%-18s%-30s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(), tmp.getFurtherInfo().c_str());
+
+        }
     }
 }
 
@@ -408,7 +447,6 @@ void Console::printTable ()
     for (unsigned int i = 0; i < allScientists.size(); i++)
     {
         tmp = allScientists[i];
-
-        printf("%-4d%-30s%-9s%-18d%-18d%-30s\n",i, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeath(), tmp.getFurtherInfo().c_str());
+        printf("%-4d%-30s%-9s%-18d%-18s%-30s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(), tmp.getFurtherInfo().c_str());
     }
 }
