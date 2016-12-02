@@ -31,6 +31,8 @@ void Console::welcome()
     cout << "|                                       |" << endl;
     cout << "|          Welcome to Database          |" << endl;
     cout << "|        Press enter to continue        |" << endl;
+    cout << "|       please ensure the console       |" << endl;
+    cout << "|       window is at least 120x30       |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
