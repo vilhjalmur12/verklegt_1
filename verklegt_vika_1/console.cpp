@@ -295,7 +295,7 @@ char Console::continueFunction()
 
     while(cont != 'y' && cont != 'n')
     {
-        cout << "Please make a valid choice!" << endl << "->";
+        cout << "Please make a valid choice!" << endl << "-> ";
         cont = choice();
     }
 
@@ -334,7 +334,7 @@ char Console::choice()
 
 void Console::choiceMade()
 {
-    cout << "->";
+    cout << "-> ";
     char choice_made = choice();
     char cont = 'y';
 
@@ -573,6 +573,7 @@ void Console::readDeathYear(int &YOD, bool &cont)
 
 void Console::changeOrDelete(vector<int> indexes)
 {
+    cout << "-> ";
     char changeDeleteChoice = choice();
 
     if(changeDeleteChoice == 'q')
@@ -664,6 +665,7 @@ void Console::printTable (vector<int> indexesToPrint)
             printf("%-4d%-30s%-9s%-18d%-18s%-30s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(), tmp.getFurtherInfo().c_str());
 
         }
+        cout << endl;
     }
 }
 
