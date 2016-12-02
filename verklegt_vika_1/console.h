@@ -64,10 +64,9 @@ private:
 /**************************************************
                    Meðlimabreytur
 **************************************************/
-    Service scientistService;
     ErrorHandling throwError;
     string user;
-
+    Service scientistService;
 /**************************************************
                Hjálparföll við edit
 **************************************************/

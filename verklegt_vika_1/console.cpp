@@ -209,6 +209,8 @@ void Console::callUser ()
             cout << "Invaid action!" << endl << endl;
         }
     }
+    Service newScientistService(user);
+    scientistService = newScientistService;
     run();
 }
 
@@ -331,6 +333,7 @@ char Console::choice()
 
 void Console::choiceMade()
 {
+    cout << "->";
     char choice_made = choice();
     char cont = 'y';
 

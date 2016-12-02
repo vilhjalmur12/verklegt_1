@@ -17,8 +17,8 @@ public:
     ~database ();
     int dataSearch (string tmp);
     int dataSearch (int tmp);
-    void getData ();
-    void writeData ();
+    void getData (string user);
+    void writeData (string username);
     void pushData (vector<Scientist> write);
     vector<Scientist> pullData ();
     vector<int> dataSearch(string tmp,vector<Scientist> allScientist);
