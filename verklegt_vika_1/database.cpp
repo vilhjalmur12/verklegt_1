@@ -11,9 +11,10 @@ database::database () {}
 database::~database () {}
 
 /****************************************************************************
-                    getData
- fall sem sækir allar niðurstöður úr gagnagrunni og skilar þeim í vectora svo
- við höfum þá til notkunar allann tíman sem við erum að vinna í forritinu.
+                        getData
+    Sækir allar upplýsingar frá gagnagrunnskrá notanda og geymir þær. Ef notandi á ekki
+    skrá þá býr það til nýja skrá og stillir 10 hluti á listann fyrir hann.
+            @parameter(string user) - notendanafn notanda að forriti
  ****************************************************************************/
 
 void database::getData (string user)
@@ -130,12 +131,20 @@ void database::getData (string user)
             tempDOB.push_back(DOB);
             tempDOD.push_back(DOD);
             tempNation.push_back(nationality);
-            tempfInfo.push_back(furtherInfo); // Sandra baetti vid
+            tempfInfo.push_back(furtherInfo);
         }
     }
     
     dataInput.close();
 }
+
+/****************************************************************************
+                        isEmpty
+    Lítur á skrá í gagnagrunni og segjir til um hvort hún sé tóm eða ekki
+            @parameter(ifstream& input) - tekur inn skrár streymi notanda
+            @return(true) - skilar satt ef hún sé tóm
+            @return(false) - skilar ósatt ef hún sé EKKI tóm
+ ****************************************************************************/
 
 bool database::isEmpty(ifstream& input)
 {
@@ -145,7 +154,8 @@ bool database::isEmpty(ifstream& input)
 
 /****************************************************************************
                         writeData
- tekur inn upplýsingar frá gagnagrunni og hleður allar í vectora til að reiðubúa notkun
+    Skilar aftur öllum upplýsingum af forriti yfir á gagnagrunn skránna hjá notanda
+            @parameter(string username) - notendanafn notanda að forriti
  ****************************************************************************/
 void database::writeData (string username)
 {
@@ -158,7 +168,8 @@ void database::writeData (string username)
     dataOutput.open(fullUser);
     if (dataOutput.fail())
     {
-        output.dataWriteError();  //-------------------------------------------------------------------------------Prentar enn 2x---------------------------------------------
+
+        output.dataWriteError();
         exit(1);
     }
 
@@ -172,8 +183,8 @@ void database::writeData (string username)
         DOD = tempDOD[i];
         nationality = tempNation[i];
         nationality = encryptData(nationality);
-        furtherInfo = tempfInfo[i]; // Sandra baetti vid
-        furtherInfo = encryptData(furtherInfo); // Sandra baetti vid
+        furtherInfo = tempfInfo[i];
+        furtherInfo = encryptData(furtherInfo);
 
         dataOutput << name << "\t" << sex << "\t" << DOD << "\t" << DOB << "\t" << "\t" << nationality << "\t" << furtherInfo << endl;
     }
@@ -184,7 +195,10 @@ void database::writeData (string username)
 /****************************************************************************
                         dataSearch
     Leitarvél sem tekur inn streng sem leitað er í nafna vector og skilar
-    út í hvaða staki hann var. Hægt að nota tölu sem identifier í hina vectora
+    út í hvaða staki hann var. Hægt að nota tölu sem identifier í hina vectora.
+            @parameter(string tmp) - tekur inn streng og leitar í gagnagrunni
+            @parameter(int tmp) - tekur inn tölu og leitar í gagnagrunni
+            @return(int id) - skilar af sér tölu sem segjir til um í hvaða staki upplýsingarnar eru
  ****************************************************************************/
 
 int database::dataSearch (string tmp)
@@ -216,10 +230,12 @@ int database::dataSearch (int tmp)
     return id;
 }
 
-/****************************************************************************
-                        pushData - pullData
-    Sér um að geta matað þau föll sem vilja sækja í gagnagrunninn.
- ****************************************************************************/
+/******************************************************************
+                     pushData
+    Fær til sín lista af vísindamönnum með upplýsingar fyrir hvern og einn
+    og sendir þær aftur í gagnagrunninn fyrir notandann.
+            @parameter(vector<Scientist> write) - vector (listi) af vísindamönnum
+ ******************************************************************/
 void database::pushData (vector<Scientist> write)
 {
     Scientist tmp;
@@ -242,6 +258,14 @@ void database::pushData (vector<Scientist> write)
     }
 }
 
+/******************************************************************
+                     pullData
+    Sækir allar upplýsingar úr meðlimabreytum og skilar af sér öllum
+    upplýsingum í einum vector (lista)
+            @return(vector<Scientist> A) - vector (listi) af klasanum
+            scientist með öllum upplýsingum um hvern scientist.
+ ******************************************************************/
+
 vector<Scientist> database::pullData ()
 {
     vector<Scientist> A;
@@ -256,7 +280,7 @@ vector<Scientist> database::pullData ()
         DOB = tempDOB[i];
         DOD = tempDOD[i];
         nationality = tempNation[i];
-        furtherInfo = tempfInfo[i]; // Lina by Sandra
+        furtherInfo = tempfInfo[i];
 
         
         tmp.pushScientist(name, gender, DOB, DOD, nationality, furtherInfo);
@@ -298,15 +322,14 @@ string database::decryptData (string n)
 }
 
 /******************************************************************
-                        Notenda gagnagrunnur
-              Heldur utan um og hjálpar að kalla í notendur.
- ******************************************************************/
-
-/******************************************************************
                             getUser
-    Auðveldur ceaser cypher sem dulkóðar og afkóðar data skrárnar
-            @parameter(string n) - venjulegur strengur
-            @return(string n) - dulkóðaður strengur
+    Sækir gagnagrunnsskrá og les af henni upplýsingar um notendur,
+    ef engin skrá er til um notendur þá býr hún til nýja. Ef notandi
+    hafði slegjið inn vitlaust eða hann finnst ekki þá keyrir hann út false
+            @parameter(string username) - notendanafn sem notandi sló inn í forritið
+            @parameter(string password) - lykilorð sem notandi sló inní forritið
+            @return(true) - verður satt ef notandi og lykilorð eru til
+            @return(false) - verður ósatt ef ekki er til notandi og lykilorð
  ******************************************************************/
 
 bool database::getUser (string username, string password)
@@ -351,6 +374,13 @@ bool database::getUser (string username, string password)
     return false;
 }
 
+/******************************************************************
+                      createUser
+    Býr til nýjan notanda og skráir hann í gagnagrunn fyrir notendur.
+            @parameter(string username) - notendanafn sem notandi sló inn í forritið
+            @parameter(string password) - lykilorð sem notandi sló inní forritið
+ ******************************************************************/
+
 void database::createUser (string user, string password)
 {
     ofstream userData;
@@ -372,6 +402,19 @@ void database::createUser (string user, string password)
     userData.close();
 
 }
+
+/******************************************************************
+                      userCorrect
+    Skoðar safn allra notanda, finnur notendanafn ef það sé til og
+    ber það saman við lykilorð. Skilar satt ef þau stemma.
+            @parameter(string username) - notendanafn sem notandi sló inn í forritið
+            @parameter(string password) - lykilorð sem notandi sló inní forritið
+            @parameter(vector<string allUsers) - allir notendur að forriti
+            @parameter(vector<string allPasswords) - öll lykilorð að forriti
+            @return(true) - skilar satt ef notendanafn í sama staki og lykilorð stemma
+            @return(false) - skilar ósatt ef notendanafn í sama staki og lykilorð stemma EKKI
+
+ ******************************************************************/
 
 bool database::userCorrect (string username, string password, vector<string> allUsers, vector<string> allPasswords)
 {
