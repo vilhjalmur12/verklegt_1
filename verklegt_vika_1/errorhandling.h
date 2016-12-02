@@ -24,11 +24,7 @@ public:
     string catchError();
 
 private:
-    string dataWritingError;
-    string dataSearchError;
-    string dataYearError;
-    string dataSexError;
-    string dataNameError;
+    string errorMessage;
 
 };
 

@@ -547,6 +547,7 @@ void Console::readYears(int& YOB, int& YOD)
 void Console::readBirthYear(int &YOB, bool &cont)
 {
     cout << "Year of birth: ";
+    cin.ignore();
     cin >> YOB;
 
     if(cin.fail())
