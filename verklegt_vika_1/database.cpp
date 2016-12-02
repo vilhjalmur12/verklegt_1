@@ -283,18 +283,22 @@ bool database::getUser (string username, string password)
 
     int j = 0;
     string line;
-    while (std::getline(userData, line)) {
+    while (std::getline(userData, line))
+    {
         j++;
     }
 
     userData.clear();
     userData.seekg(0);
 
+    string encUser, encPass;
     for (int i = 0; i < j; i++)
     {
         userData >> _username >> _password;
-        allUsers.push_back(username);
-        allPasswords.push_back(password);
+        encUser = decryptData(_username);
+        encPass = decryptData(_password);
+        allUsers.push_back(encUser);
+        allPasswords.push_back(encPass);
     }
 
     if(userCorrect(username, password, allUsers, allPasswords))
@@ -305,6 +309,27 @@ bool database::getUser (string username, string password)
     return false;
 }
 
+void database::createUser (string user, string password)
+{
+    ofstream userData;
+    userData.open("users.txt", std::ios::app);
+    if (userData.fail())
+    {
+        fstream newUserData ("users.txt", std::ios::out);
+        newUserData.close();
+        userData.open("users.txt");
+    }
+
+    string encUser, encPass;
+
+    encUser = encryptData(user);
+    encPass = encryptData(password);
+
+    userData << encUser << "\t" << encPass << endl;
+
+    userData.close();
+
+}
 
 /****************************************************************************
                         TEST FÖLL
@@ -318,7 +343,6 @@ bool database::userCorrect (string username, string password, vector<string> all
     for (unsigned int i = 0; i < allUsers.size(); i++)
     {
         tmpUser = allUsers[i];
-        i++;
         tmpPassword = allPasswords[i];
 
         if (tmpUser == username && tmpPassword == password)
@@ -328,8 +352,6 @@ bool database::userCorrect (string username, string password, vector<string> all
     }
     return false;
 }
-
-
 
 void database::testData (vector<Scientist> &allScientists)
 {

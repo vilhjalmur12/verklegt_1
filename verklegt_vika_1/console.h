@@ -26,6 +26,7 @@ public:
     //Spyr hvort eigi að endurtaka aðgerð og geymir valið y/n
     char continueFunction();
     void quit();
+    void callUser ();
 
 /**************************************************
                     Opnunarföll
@@ -63,14 +64,23 @@ private:
 **************************************************/
     Service scientistService;
     ErrorHandling throwError;
+    string user;
 
 /**************************************************
                Hjálparföll við edit
 **************************************************/
     int findIndexToEdit(string oldName);
-    void printInsertMenu();
+    void printPushBackMenu();
     void printEditMenu();
+
     void pushBackScientist();
+    void createScientist(string& name, string& sex, int& YOB, int& YOD, string& furtherInfo);
+    void readName(string& name);
+    void readSex(string& sex);
+    void readFurtherInfo(string& furtherInfo);
+    void readYears(int& YOB, int& YOD);
+    void readBirthYear(int& YOB, bool& cont);
+    void readDeathYear(int& YOD, bool& cont);
 
 /**************************************************
               Hjálparföll við search
