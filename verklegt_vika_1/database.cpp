@@ -333,3 +333,19 @@ void database::createUser (string user, string password)
     userData.close();
 
 }
+
+bool database::userCorrect (string username, string password, vector<string> allUsers, vector<string> allPasswords)
+{
+    string tmpUser, tmpPassword;
+    for (unsigned int i = 0; i < allUsers.size(); i++)
+    {
+        tmpUser = allUsers[i];
+        tmpPassword = allPasswords[i];
+
+        if (tmpUser == username && tmpPassword == password)
+        {
+            return true;
+        }
+    }
+    return false;
+}
