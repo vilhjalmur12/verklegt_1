@@ -399,14 +399,13 @@ void Console::pushBackScientist()
             cont = false;
             validYears = true;
             YOD = 200000000;
-            YOB = 0;
             string input;
 
             cout << "Year of birth: ";
             cin >> YOB;
 
-            bool birthContainsNonDigits = !regex_match(input, regex("^[0-9]+[0-9]*$"));
-/*
+            bool birthContainsNonDigits = regex_match(input, regex("^[0-9]+[0-9]*$"));
+
             if(cin.fail())
             {
                 cin.clear();
@@ -414,7 +413,8 @@ void Console::pushBackScientist()
                 throwError.invalidYear(4);
                 cont = true;
                 continue;
-            }*/
+            }
+
             if(YOB < -2700)
             {
                 cout << "Attention: your Computer Scientist will have to have been born before" << endl
