@@ -34,6 +34,9 @@ public:
     void createUser (string user, string password);     //býr til nýjan notanda með aðgangsorð í gagnagrunn og býr til gagnagrunn fyrir notandann
 
 private:
+    /***************************************
+                 Meðlimabreytur
+    ****************************************/
     vector<string> tempName;
     vector<string> tempSex;
     vector<int> tempDOB;
@@ -42,10 +45,13 @@ private:
     string _username;
     string _password;
 
-    string encryptData (string n);
-    string decryptData (string n);
-    bool isEmpty (ifstream& input);
-    bool userCorrect (string username, string password, vector<string> allUsers, vector<string> allPasswords);
+    /***************************************
+                 Meðlimaföll
+    ****************************************/
+    string encryptData (string n);      // tekur inn venjulegan streng og skilar strengnum kóðuðum
+    string decryptData (string n);      // tekur inn kóðaðan streng og skilar honum afkóðuðum
+    bool isEmpty (ifstream& input);     // athugar hvort skrá sé tóm
+    bool userCorrect (string username, string password, vector<string> allUsers, vector<string> allPasswords);      // ber saman notanda og lykilorð
 
     ErrorHandling output;
 
