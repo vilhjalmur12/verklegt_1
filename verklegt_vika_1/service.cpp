@@ -60,6 +60,8 @@ string Service::fixString(string& before)
             before.at(i) = toupper(a);
         }
     }
+
+    before = removeSpaces(before);
     return before;
 }
 
