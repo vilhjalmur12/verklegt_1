@@ -33,5 +33,5 @@ void Scientist::pushScientist(string name, string sex, int DOB, int DOD, string 
  bool operator ==(Scientist lhs, Scientist rhs)
  {
     return (lhs.getName() == rhs.getName() && lhs.getSex() == rhs.getSex() && lhs.getYearOfBirth() == lhs.getYearOfBirth()
-            && lhs.getYearOfDeath() == rhs.getYearOfDeath());
+            && lhs.getYearOfDeath() == rhs.getYearOfDeath()) && lhs.getFurtherInfo() == rhs.getFurtherInfo();
  }
