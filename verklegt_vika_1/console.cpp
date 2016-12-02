@@ -585,6 +585,7 @@ void Console::readDeathYear(int &YOD, bool &cont)
 
 void Console::changeOrDelete(vector<int> indexes)
 {
+    cout << "-> ";
     string changeDeleteChoice = choice();
 
     if(changeDeleteChoice == "q")
