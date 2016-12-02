@@ -39,10 +39,6 @@ public:
     bool getUser (string username, string password);
     void createUser (string user, string password);
 
-    // tvö prufuföll - við skulum sjá til þess að færa þessi út úr klasanum fyrir skil
-    void testData (vector<Scientist> &allScientists);
-    void dataPrint (vector<Scientist> const allScientists);
-    void printSearch (int id);
 
 private:
     vector<string> tempName;

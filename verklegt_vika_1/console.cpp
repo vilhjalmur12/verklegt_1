@@ -175,6 +175,7 @@ void Console::callUser ()
             cout << "Choose Username: ";
             cin >> user;
 
+
             while (password != confirmPass)
             {
                 cout << "Choose Password: ";

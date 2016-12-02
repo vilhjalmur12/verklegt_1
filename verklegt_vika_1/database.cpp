@@ -24,7 +24,7 @@ void database::getData (string user)
     int DOB, DOD;
 
     ifstream dataInput;
-    fullUser = "data/." + user +"_profile.dat";
+    fullUser = "." + user +"_profile.dat";
 
     dataInput.open(fullUser);
     if (dataInput.fail())
@@ -63,7 +63,7 @@ void database::getData (string user)
         tempName.push_back("Tim Berners-Lee");
         tempSex.push_back("Male");
         tempDOB.push_back(1955);
-        tempDOD.push_back(2016);
+        tempDOD.push_back('n/a');
         tempfInfo.push_back("Inventor of the World Wide Web");
         tempName.push_back("George Boole");
         tempSex.push_back("Male");
@@ -134,7 +134,7 @@ void database::writeData (string username)
     string name, sex, furtherInfo;
     int DOB, DOD;
 
-    string fullUser = "data/." + username + "_profile.dat";
+    string fullUser = "." + username + "_profile.dat";
 
     ofstream dataOutput;
     dataOutput.open(fullUser);
@@ -276,12 +276,12 @@ bool database::getUser (string username, string password)
     vector<string> allPasswords;
 
     ifstream userData;
-    userData.open("data/users.dat");
+    userData.open("users.dat");
     if (userData.fail())
     {
-        fstream newUserData ("data/users.dat", std::ios::out);
+        fstream newUserData ("users.dat", std::ios::out);
         newUserData.close();
-        userData.open("data/users.dat");
+        userData.open("users.dat");
     }
 
     int j = 0;
@@ -315,12 +315,12 @@ bool database::getUser (string username, string password)
 void database::createUser (string user, string password)
 {
     ofstream userData;
-    userData.open("data/users.dat", std::ios::app);
+    userData.open("users.dat", std::ios::app);
     if (userData.fail())
     {
-        fstream newUserData ("data/users.dat", std::ios::out);
+        fstream newUserData ("users.dat", std::ios::out);
         newUserData.close();
-        userData.open("data/users.dat");
+        userData.open("users.dat");
     }
 
     string encUser, encPass;
@@ -333,12 +333,6 @@ void database::createUser (string user, string password)
     userData.close();
 
 }
-
-/****************************************************************************
-                        TEST FÖLL
- Þessi föll hjálpa okkur að prufa og prenta vectora. Við eyðum eða færum þessi
- föll út úr klasanum fyrir skil.
- ****************************************************************************/
 
 bool database::userCorrect (string username, string password, vector<string> allUsers, vector<string> allPasswords)
 {
@@ -355,63 +349,3 @@ bool database::userCorrect (string username, string password, vector<string> all
     }
     return false;
 }
-
-void database::testData (vector<Scientist> &allScientists)
-{
-    char cont;
-    string name, sex, furtherInfo;
-    int DOB, DOD;
-    Scientist tmp;
-
-    do
-    {
-        cout << "Add name: ";
-        cin >> name;
-        cout << "Sex: ";
-        cin >> sex;
-        cout << "Date of birth: ";
-        cin >> DOB;
-        cout << "Date of death: ";
-        cin >> DOD;
-        cout << "Further information: "; // Lina by Sandra
-        cin >> furtherInfo;
-
-        tmp.pushScientist(name, sex, DOB, DOD, furtherInfo);
-        allScientists.push_back(tmp);
-
-        cout << "Continue?\t (y = yes, n = no)" << endl << "->";
-        cin >> cont;
-
-        cout << endl;
-
-    }while (cont != 'n');
-}
-
-void database::dataPrint (vector<Scientist> const allScientists)
-{
-    cout << "You selected\n";
-    string name, sex, furtherInfo;
-    int DOD, DOB;
-    Scientist tmp;
-
-    for (unsigned int i = 0; i < allScientists.size(); i++)
-    {
-        tmp = allScientists[i];
-        name = tmp.getName();
-        sex = tmp.getSex();
-        DOB = tmp.getYearOfBirth();
-        DOD = tmp.getYearOfDeath();
-        furtherInfo = tmp.getFurtherInfo();
-
-        cout << name << "\t" << sex << "\t" << DOB << "\t" << DOD << "\t" << furtherInfo << endl;
-    }
-}
-
-void database::printSearch (int id)
-{
-    cout << "fannst eftirfarandi: \n";
-    cout << tempName[id] << "\t" << tempSex[id] << "\t" << tempDOB[id] << "\t" << tempDOD[id] << "\t" << tempfInfo[id] << endl;
-
-}
-
-/*****************************************************************************/
