@@ -176,12 +176,9 @@ void Console::pushBackScientist()
             cin >> sex;
         }while(!scientistService.validSex(sex));
 
-<<<<<<< HEAD
         cin.clear();
         cin.sync();
 
-=======
->>>>>>> a7b5c33b23e60881ca7e63f97b107a750aa2da2a
         cout << "Further Information: ";
 
         cin.clear();
