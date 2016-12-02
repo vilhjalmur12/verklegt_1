@@ -8,14 +8,12 @@
 using namespace std;
 
 database::database () {}
-
 database::~database () {}
 
 /****************************************************************************
-                getData
-
- fall sem sækir allar niðurstöður úr gagnagrunni og skilar þeim í vectora svo við höfum þá til notkunar allann
- tíman sem við erum að vinna í forritinu.
+                    getData
+ fall sem sækir allar niðurstöður úr gagnagrunni og skilar þeim í vectora svo
+ við höfum þá til notkunar allann tíman sem við erum að vinna í forritinu.
  ****************************************************************************/
 
 void database::getData (string user)
@@ -125,8 +123,7 @@ bool database::isEmpty(ifstream& input)
 
 
 /****************************************************************************
-                writeData
-
+                        writeData
  tekur inn upplýsingar frá gagnagrunni og hleður allar í vectora til að reiðubúa notkun
  ****************************************************************************/
 void database::writeData (string username)
@@ -244,8 +241,8 @@ vector<Scientist> database::pullData ()
 }
 
 /******************************************************************
-                    Encryptions
-    Auðveldur ceaser cypher sem encryptar í decryptar data fileana
+                            Encryptions
+    Auðveldur ceaser cypher sem dulkóðar og afkóðar data skrárnar
  ******************************************************************/
 
 string database::encryptData (string n)
@@ -267,7 +264,7 @@ string database::decryptData (string n)
 
 /******************************************************************
                         Notenda gagnagrunnur
-    Heldur utan um og hjálpar að kalla í notendur
+              Heldur utan um og hjálpar að kalla í notendur.
  ******************************************************************/
 
 bool database::getUser (string username, string password)
