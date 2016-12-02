@@ -16,9 +16,9 @@ Console::Console()
 Console::~Console() { }
 
 
-/********************************************************
+/******************************************************************
                       Allir menu gluggar
-*********************************************************/
+*******************************************************************/
 
 void Console::welcome()
 {
@@ -149,9 +149,11 @@ void Console::loginMenu()
     cout << "-----------------------------------------" << endl;
 }
 
-/********************************************************
-                     Keyrsluföll
-*********************************************************/
+/****************************************************************************
+                        callUser
+    Notandi hefur val á að skrá sig inn í forritið eða skrá nýjan notanda
+ ****************************************************************************/
+
 void Console::callUser ()
 {
     database data;
@@ -225,6 +227,11 @@ void Console::callUser ()
     run();
 }
 
+/******************************************************************************
+                         run
+    Keyrir forritið fyrir þann notanda sem skráði sig inn í callUser fallinu.
+ ******************************************************************************/
+
 void Console::run()
 {
     bool programON = true;
@@ -238,6 +245,12 @@ void Console::run()
 
     } while (programON == true);
 }
+
+/******************************************************************************
+                         edit
+    Birtir edit valmynd og tekur við upplýsingum um hvort notandi vill velja
+    vísindamann úr lista eða leita í gagnagrunni að vísindamanni.
+ ******************************************************************************/
 
 void Console::edit()
 {
@@ -282,6 +295,13 @@ void Console::edit()
     }
 }
 
+/******************************************************************************
+                         search
+    Birtir leitar valmynd og tekur við leitar streng. Birtir síðan töflu af
+    vísindamönnum ásamt index-um og valmynd um þar sem notandi ákveður hvort
+    eigi að edit-a, eyða, leita aftur, fara aftur á aðvalmynd eða hætta keyrslu.
+ ******************************************************************************/
+
 void Console::search()
 {
     string query;
@@ -295,12 +315,24 @@ void Console::search()
     changeOrDelete(indexesToPrint);
 }
 
+/******************************************************************************
+                         viewDisplay
+             Birtir sorting-menu fyrir notanda
+ ******************************************************************************/
+
 void Console::viewDisplay()
 {
     string str;
     sorting_menu();
 }
 
+
+/******************************************************************************
+                         continueFunction
+      Eftir að notandi velur að skoða listan þá er hann spurður hvort hann
+      vilji skoða hann aftur með vali um y/n.
+      @return(string cont) - y/n frá notenda
+ ******************************************************************************/
 string Console::continueFunction()
 {
     string cont;
@@ -317,6 +349,10 @@ string Console::continueFunction()
     return cont;
 }
 
+/******************************************************************************
+                         quit
+      Hættir keyrslu á forritinu og vistar gögn í gagnagrunn.
+ ******************************************************************************/
 void Console::quit()
 {
     quitMenu();
@@ -328,19 +364,22 @@ void Console::quit()
     exit(1);
 }
 
-/********************************************************
-                    Opnunarföll
-*********************************************************/
+/******************************************************************************
+                         toContinue
+      Notandi þarf að ýta á enter til að komast í fram hjá upphafs glugga í
+      fyrstu valmynd.
+ ******************************************************************************/
 
 void Console::toContinue()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
 }
 
-/********************************************************
-                   Valmyndarföll
-*********************************************************/
-
+/******************************************************************************
+                         toContinue
+      Tekur á móti ákvörðun frá notanda um hvað á að gera frá fyrstu valmynd.
+      @return(choice_made) - ákvörðun frá notenda
+ ******************************************************************************/
 string Console::choice()
 {
     string choice_made;
@@ -349,6 +388,11 @@ string Console::choice()
     return choice_made;
 }
 
+/******************************************************************************
+                         choiceMade
+      Tekur við ákvörðun frá notanda um hvað á að gera frá fyrstu valmynd.
+      v-skoða lista, i-bæta við nýjum, s-leita, e-edit, q-hætta.
+ ******************************************************************************/
 void Console::choiceMade()
 {
     cout << "-> ";
@@ -392,9 +436,11 @@ void Console::choiceMade()
     }
 }
 
-/********************************************************
-                    Sorting föll
-*********************************************************/
+/******************************************************************************
+                         stringChoice
+      Tekur á móti ákvörðun um hvernig notandi vill sorta lista.
+      @return(string str) - sorting command frá notenda
+ ******************************************************************************/
 
 string Console::stringChoice()
 {
@@ -406,8 +452,9 @@ string Console::stringChoice()
 
 /********************************************************
                     sorting
-   Leifir notenda að velja hvernig hann skoðar listan
-   @
+  Tekur inn ávörðun frá notenda um hvernig hann skoðar listan.
+  Prentar lista út í samræmi.
+  @parameter(string str) - ákvörðun frá notenda
 *********************************************************/
 
 void Console::sorting(string str)
@@ -432,7 +479,10 @@ void Console::sorting(string str)
 }
 
 /********************************************************
-                  Hjálparföll við edit
+                    findIndexToEdit
+  Finnur það index af vísindamanni sem notandi vill edit-a
+  @parameter(string oldName) - leitarstrengur frá notenda
+  @return(int index) - tilvísun í ákveðin vísindamann í lista
 *********************************************************/
 
 int Console::findIndexToEdit(string oldName)
@@ -458,6 +508,11 @@ int Console::findIndexToEdit(string oldName)
         return -1;
 }
 
+/******************************************************************
+                      pushBackScientist
+    Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
+ ******************************************************************/
+
 void Console::pushBackScientist()
 {
     printPushBackMenu();
@@ -469,6 +524,19 @@ void Console::pushBackScientist()
         createScientist(name, sex, YOB, YOD, nationality, furtherInfo);
     }while(!scientistService.appendScientist(name, sex, YOB, YOD, nationality, furtherInfo));
 }
+
+/******************************************************************
+                      createScientist
+    Býr til nýjan vísindamann í gagnagrunninn
+            @parameter(int &name) - bendir á streng sem inniheldur nafn vísindamanns
+            @parameter(int &sex) - bendir á streng sem inniheldur kyn vísindamanns
+            @parameter(int &YOB) - bendir á tölu sem inniheldur fæðingarár
+            @parameter(int &YOD) - bendir á tölu sem inniheldur dánarár
+            @parameter(string &furtherInfo) - bendir á streng sem
+                inniheldur auka upplýsingar notanda
+            @parameter(string &nationality) - bendir á streng sem
+                inniheldur þjóðernis geymslu notanda
+ ******************************************************************/
 
 void Console::createScientist(string &name, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo)
 {
@@ -483,6 +551,12 @@ void Console::createScientist(string &name, string &sex, int &YOB, int &YOD, str
     readYears(YOB, YOD);
 
 }
+
+/******************************************************************
+                      readName
+    Tekur inn nafn fyrir vísindamann
+            @parameter(int &name) - bendir á streng sem inniheldur nafn vísindamanns
+ ******************************************************************/
 
 void Console::readName(string &name)
 {
@@ -499,6 +573,12 @@ void Console::readName(string &name)
     }while(!scientistService.validName(name));
 }
 
+/******************************************************************
+                      readSex
+    Tekur inn kyn fyrir vísindamann
+            @parameter(int &sex) - bendir á streng sem inniheldur kyn vísindamanns
+ ******************************************************************/
+
 void Console::readSex(string &sex)
 {
     do
@@ -509,6 +589,12 @@ void Console::readSex(string &sex)
     }while(!scientistService.validSex(sex));
 }
 
+/******************************************************************
+                      readYears
+    Tekur inn fæðingar/dánar ár fyrir vísindamann
+            @parameter(int &YOB) - bendir á tölu sem inniheldur fæðingarár
+            @parameter(int &YOD) - bendir á tölu sem inniheldur dánarár
+ ******************************************************************/
 
 void Console::readYears(int& YOB, int& YOD)
 {
@@ -535,6 +621,14 @@ void Console::readYears(int& YOB, int& YOD)
     }while(!validYears || cont);
 }
 
+/******************************************************************
+                      readBirthYear
+    Athugar fæðingar ár á vísindamanni
+            @parameter(int &YOB) - bendir á tölu sem inniheldur fæðingarár
+            @parameter(bool &cont) - bendir á bool breytu sem segjir til
+            um hvort halda eigi áfram
+ ******************************************************************/
+
 void Console::readBirthYear(int &YOB, bool &cont)
 {
     cout << "Year of birth: ";
@@ -558,6 +652,14 @@ void Console::readBirthYear(int &YOB, bool &cont)
     }
     return;
 }
+
+/******************************************************************
+                      readDeathYear
+    Athugar dánar ár á vísindamanni
+            @parameter(int &YOD) - bendir á tölu sem inniheldur dánarár
+            @parameter(bool &cont) - bendir á bool breytu sem segjir til
+            um hvort halda eigi áfram
+ ******************************************************************/
 
 void Console::readDeathYear(int &YOD, bool &cont)
 {
@@ -586,6 +688,13 @@ void Console::readDeathYear(int &YOD, bool &cont)
     }
 }
 
+/******************************************************************
+                      readFurtherInfo
+    Tekur inn auka upplýsingar fyrir vísindamann
+            @parameter(string &furtherInfo) - bendir á streng sem
+            inniheldur auka upplýsingar notanda
+ ******************************************************************/
+
 void Console::readFurtherInfo(string &furtherInfo)
 {
     cout << "Further Information: ";
@@ -594,6 +703,13 @@ void Console::readFurtherInfo(string &furtherInfo)
     if(furtherInfo.length() > 0)
         furtherInfo.at(0) = toupper(furtherInfo.at(0));
 }
+
+/******************************************************************
+                      readNationality
+    Tekur inn þjóðerni fyrir vísindamann
+            @parameter(string &nationality) - bendir á streng sem
+            inniheldur þjóðernis geymslu notanda
+ ******************************************************************/
 
 void Console::readNationality(string &nationality)
 {
@@ -609,9 +725,12 @@ void Console::readNationality(string &nationality)
 }
 
 
-/********************************************************
-                 Hjálparföll við search
-*********************************************************/
+/******************************************************************
+                      changeOrDelete
+    Tekur við ákvörðun frá notanda um edit
+            @parameter(vector<int> indexes) - vector (listi) af tölum
+            sem segja til um stak vísindamanns í gagnagrunni
+ ******************************************************************/
 
 void Console::changeOrDelete(vector<int> indexes)
 {
@@ -667,9 +786,10 @@ void Console::changeOrDelete(vector<int> indexes)
     };
 }
 
-/********************************************************
-                      Birta töflu
-*********************************************************/
+/******************************************************************
+                      printTable
+    Prentar út alla vísindamenn í gagnagrunni með viðmóti.
+ ******************************************************************/
 
 void Console::printTable ()
 {
@@ -687,6 +807,13 @@ void Console::printTable ()
                tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str());
     }
 }
+
+/******************************************************************
+                      printTable
+    Prentar út ákveðna valda vísindamenn í glugga með viðmóti
+            @parameter(vector<int> indexesToPrint) - vector (listi) af þeim
+            vísindamönnum sem skulu prentast
+ ******************************************************************/
 
 void Console::printTable (vector<int> indexesToPrint)
 {

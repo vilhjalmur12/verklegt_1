@@ -39,7 +39,7 @@ public:
     string choice();            //Geyma valmöguleika
     void choiceMade();          //Kalla á framkvæmd eftir vali notanda
     void printChangeDelete();   //Bjóða uppá að eiga við lista
-    void quitMenu();
+    void quitMenu();            // skjár segjir bless þegar þú hættir í forriti
 
 /**************************************************
                    Sorting föll

@@ -6,19 +6,31 @@ using namespace std;
 ErrorHandling::ErrorHandling() { }
 ErrorHandling::~ErrorHandling (){ }
 
-/**********************************************************
-                   Villuskilaboð
- **********************************************************/
+/****************************************************************************
+                        dataWriteError
+    Skilar út villu skilaboðum á console glugga fyrir ófundinn gagnagrunn
+ ****************************************************************************/
 
 void ErrorHandling::dataWriteError ()
 {
     errorMessage = "ERROR: No database found!\n";
 }
 
+/****************************************************************************
+                        dataSearchNotFound
+    Skilar út villu skilaboðum á console glugga fyrir leitarvél
+ ****************************************************************************/
+
 void ErrorHandling::dataSearchNotFound ()
 {
     errorMessage = "ERROR: No items found!\n";
 }
+
+/****************************************************************************
+                        invaldiName
+    Skilar út villu skilaboðum á console glugga ef nafn sé þegar til staðar á listanum
+            @parameter(int errorCode) - tala sem segjir hvaða skilaboð skulu nota
+ ****************************************************************************/
 
 void ErrorHandling::invalidName (int errorCode)
 {
@@ -33,10 +45,21 @@ void ErrorHandling::invalidName (int errorCode)
     }
 }
 
+/****************************************************************************
+                        invalidSex
+    Skilar út villu skilaboðum á console glugga ef ekki er gefið karlkyn eða
+    kvenkyn í kyn vali
+ ****************************************************************************/
+
 void ErrorHandling::invalidSex ()
 {
     errorMessage = "ERROR: Gender has to be either male or female!\n";
 }
+
+/****************************************************************************
+                        invalidYear
+    Skilar út villu skilaboðum á console glugga ef ekki er valið rétt ártal
+ ****************************************************************************/
 
 void ErrorHandling::invalidYear (int errorCode)
 {
@@ -63,11 +86,16 @@ void ErrorHandling::invalidYear (int errorCode)
     }
 }
 
+
 void ErrorHandling::invalidNation()
 {
     errorMessage = "ERROR: Invalid characters in nationality!\n";
 }
 
+/****************************************************************************
+                         catchError
+                        Endurstillir
+ ****************************************************************************/
 string ErrorHandling::catchError()
 {
     string tmpError = errorMessage;

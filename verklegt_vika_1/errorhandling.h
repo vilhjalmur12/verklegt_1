@@ -15,18 +15,18 @@ public:
 /**********************************************************
                   Villuskilaboð
 **********************************************************/
+
     void dataWriteError ();
     void dataSearchNotFound ();
     void invalidYear (int errorCode);
     void invalidSex ();
     void invalidName (int errorCode);
     void invalidNation();
-
     string catchError();
+
 
 private:
     string errorMessage;
-
 };
 
 #endif // ERRORHANDLING_H
