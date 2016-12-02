@@ -124,7 +124,6 @@ void database::getData (string user)
             sex = decryptData(sex);
             nationality = decryptData(nationality);
             furtherInfo = decryptData(furtherInfo);
-            nationality = decryptData(nationality);
 
             tempName.push_back(name);
             tempSex.push_back(sex);
