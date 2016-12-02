@@ -34,7 +34,7 @@ Service::~Service()
     
 }
 
-void pushUser (string username)
+void pushUser (/*string username*/)
 {
 
 }
