@@ -693,7 +693,7 @@ void Console::printTable (vector<int> indexesToPrint)
     else
     {
 
-        printf("%-4s%-30s%-9d%-18s%-18s%-15s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
+        printf("%-4s%-30s%-9s%-18s%-18s%-15s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death","Nationality", "Further Information");
 
         cout << endl;
         //printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
@@ -704,7 +704,7 @@ void Console::printTable (vector<int> indexesToPrint)
         {
             tmp = allScientists[indexesToPrint[i]];
 
-            printf("%-4s%-30s%-9d%-18d%-18s%-15s%-30s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+            printf("%-4s%-30s%-9s%-18d%-18s%-15s%-30s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
                    tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str());
 
         }
