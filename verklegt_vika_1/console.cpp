@@ -602,22 +602,20 @@ void Console::readYears(int& YOB, int& YOD)
     bool validYears = false;
     do
     {
+        cout << scientistService.getErrorString();
         cout << throwError.catchError();
         cont = false;
         validYears = true;
 
         readBirthYear(YOB, cont);
-
         if(cont)
             continue;
 
         readDeathYear(YOD, cont);
-
         if(cont || YOD == maxDeathYear)
             continue;
 
         validYears = scientistService.validYears(YOB, YOD);
-
     }while(!validYears || cont);
 }
 
@@ -698,7 +696,7 @@ void Console::readDeathYear(int &YOD, bool &cont)
 void Console::readFurtherInfo(string &furtherInfo)
 {
     cout << "Further Information: ";
-    cin.ignore();
+    cin.clear();
     getline(cin, furtherInfo);
     if(furtherInfo.length() > 0)
         furtherInfo.at(0) = toupper(furtherInfo.at(0));
@@ -715,6 +713,7 @@ void Console::readNationality(string &nationality)
 {
     do
     {
+    cout << scientistService.getErrorString();
     cout << "Nationality: ";
     cin.ignore();
     getline(cin, nationality);
