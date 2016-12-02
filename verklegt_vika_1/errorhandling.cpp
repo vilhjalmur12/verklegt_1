@@ -6,9 +6,10 @@ using namespace std;
 ErrorHandling::ErrorHandling() { }
 ErrorHandling::~ErrorHandling (){ }
 
-/**********************************************************
-                   Villuskilaboð
- **********************************************************/
+/****************************************************************************
+                        dataWriteError
+    Skilar út villu skilaboðum á console glugga fyrir ófundinn gagnagrunn
+ ****************************************************************************/
 
 void ErrorHandling::dataWriteError ()
 {
@@ -16,11 +17,22 @@ void ErrorHandling::dataWriteError ()
     errorMessage = "ERROR: No database found!\n";
 }
 
+/****************************************************************************
+                        dataSearchNotFound
+    Skilar út villu skilaboðum á console glugga fyrir leitarvél
+ ****************************************************************************/
+
 void ErrorHandling::dataSearchNotFound ()
 {
     cout << "ERROR: No items found!" << endl;
     errorMessage = "ERROR: No items found!\n";
 }
+
+/****************************************************************************
+                        invaldiName
+    Skilar út villu skilaboðum á console glugga ef nafn sé þegar til staðar á listanum
+            @parameter(int errorCode) - tala sem segjir hvaða skilaboð skulu nota
+ ****************************************************************************/
 
 void ErrorHandling::invalidName (int errorCode)
 {
@@ -37,11 +49,22 @@ void ErrorHandling::invalidName (int errorCode)
     }
 }
 
+/****************************************************************************
+                        invalidSex
+    Skilar út villu skilaboðum á console glugga ef ekki er gefið karlkyn eða
+    kvenkyn í kyn vali
+ ****************************************************************************/
+
 void ErrorHandling::invalidSex ()
 {
     cout << "ERROR: Gender has to be either male or female!" << endl;
     errorMessage = "ERROR: Gender has to be either male or female!\n";
 }
+
+/****************************************************************************
+                        invalidYear
+    Skilar út villu skilaboðum á console glugga ef ekki er valið rétt ártal
+ ****************************************************************************/
 
 void ErrorHandling::invalidYear (int errorCode)
 {
@@ -73,6 +96,11 @@ void ErrorHandling::invalidYear (int errorCode)
             break;
     }
 }
+
+/****************************************************************************
+                         catchError
+                        Endurstillir
+ ****************************************************************************/
 
 string ErrorHandling::catchError()
 {

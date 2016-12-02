@@ -20,7 +20,7 @@ public:
     void run();
     void edit();
     void search();
-    void viewDisplay();     //Notandi sendur i sorting_menu
+    void viewDisplay();             //Notandi sendur i sorting_menu
     string continueFunction();      //Spyr hvort eigi að endurtaka aðgerð og geymir valið y/n
     void quit();
     void callUser ();
@@ -28,18 +28,18 @@ public:
 /**************************************************
                     Opnunarföll
 **************************************************/
-    void welcome();
+    void welcome();         // velkomin skjár
     void toContinue();      //Notandi þarf að ýta á ENTER til að halda áfram
 
 /**************************************************
                    Valmyndarföll
 **************************************************/
     void viewOrInsert();        //Birta aðal valmynd
-    void loginMenu();       //Login menu
-    string choice();        //Geyma valmöguleika
-    void choiceMade();      //Kalla á framkvæmd eftir vali notanda
-    void printChangeDelete();       //Bjóða uppá að eiga við lista
-    void quitMenu();
+    void loginMenu();           //Login menu
+    string choice();            //Geyma valmöguleika
+    void choiceMade();          //Kalla á framkvæmd eftir vali notanda
+    void printChangeDelete();   //Bjóða uppá að eiga við lista
+    void quitMenu();            // skjár segjir bless þegar þú hættir í forriti
 
 /**************************************************
                    Sorting föll
@@ -55,13 +55,13 @@ private:
     ErrorHandling throwError;
     string user;
     Service scientistService;
+
 /**************************************************
                Hjálparföll við edit
 **************************************************/
     int findIndexToEdit(string oldName);
     void printPushBackMenu();
     void printEditMenu();
-
     void pushBackScientist();
     void createScientist(string& name, string& sex, int& YOB, int& YOD, string& nationality, string& furtherInfo);
     void readName(string& name);
