@@ -68,6 +68,7 @@ private:
 **************************************************/
     int findIndexToEdit(string oldName);
     void printInsertMenu();
+    void printEditMenu();
     void pushBackScientist();
 
 /**************************************************
