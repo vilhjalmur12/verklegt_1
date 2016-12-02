@@ -23,7 +23,7 @@ public:
     //Notandi sendur i sorting_menu
     void viewDisplay();
     //Spyr hvort eigi að endurtaka aðgerð og geymir valið y/n
-    char continueFunction();
+    string continueFunction();
     void quit();
     void callUser ();
 
@@ -42,7 +42,7 @@ public:
     //Login menu
     void loginMenu();
     //Geyma valmöguleika
-    char choice();
+    string choice();
     //Kalla á framkvæmd eftir vali notanda
     void choiceMade();
     //Bjóða uppá að eiga við lista

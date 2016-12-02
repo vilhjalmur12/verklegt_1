@@ -34,7 +34,7 @@ Service::~Service()
     
 }
 
-void pushUser (string username)
+void pushUser (/*string username*/)
 {
 
 }
@@ -149,7 +149,7 @@ bool Service::validName(string &name)
 {
     name = fixString(name);
 
-    bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]*([A-Za-z]||[ ])*$"));
+    bool containsDigits = !regex_match(name, regex("(^[A-Za-z.-]+[ ]*([A-Za-z.-]||[ ])*$)"));
 
     if (containsDigits)
     {
