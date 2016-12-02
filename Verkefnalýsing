@@ -1,0 +1,46 @@
+#Verkefnalýsing
+
+Github linkur [https://github.com/vilhjalmur12/verklegt_1/]
+
+Um er að ræða forrit sem skráir og heldur utan um upplýsingar yfir tölvunarfræðinga.
+
+
+Í upphafi forrits er notandi boðinn velkominn og beðinn um að slá inn ENTER til að halda áfram.
+Þegar ýtt hefur verið á ENTER fær hann næstu valmynd þar sem hann hefur val um næstu
+framkvæmd.
+  Þá stendur valið um að skrá sig inn, búa til nýjann notanda eða hætta keyrslu
+Einfalt er að búa til nýjan notanda þar sem eingöngu þarf að velja sér notandanafn, lykilorð og
+staðfesta valið lykilorð
+Þá birtist aðalvalmynd þar sem hægt er að óska þess að skoða lista, leita í honum, fylla inn í
+hann, breyta eða hætta keyrslu.
+Sé viðkomandi nú þegar búinn að velja sér notandanafn og lykilorð velur hann að skrá sig inn og
+notar til þess það notandanafn og lykilorð sem hann valdi við nýskráningu og fær í framhaldi
+aðalvalmynd.
+  Sé valið að skoða listann fær notandi valmynd þar sem hann getur valið í hvaða röð
+hann vill skoða listann. Eftir að valið hefur verið slegið inn er listinn sóttur og prentaður út á skjá
+notanda í þeirri röð sem hann óskaði eftir og hann spurður hvort hann vilji framkvæma
+aðgerðina aftur. Velji hann að gera svo er ferlið endurtekið en kjósi hann að gera það það ekki er
+hann leiddur í aðalvalmynd forritsins og velur hann þar hvað hann vill gera næst.
+  Ef notandi vill fylla inn í lista er hann beðinn um að slá inn upplýsingar í ákveðinni röð en
+hafi hann ekki þær upplýsingar sem beðið er um velur hann n/a og er þá þeim dálk sleppt.
+Þegar innslætti er lokið fær hann aftur upp aðalvalmynd og velur þá næstu aðgerð.
+  Sé valið að leita í listanum er hægt að skrifa inn heilt orð í leitarvélina eða einn staf og þá
+prentast út þeir aðilar sem hafa upplýsingar sem innihalda þann staf eða orð. Ef ekkert finnst
+fær hann upp villuboð og valmynd yfir hvað er í boði að gera í framhaldinu en finnist það sem
+leitað er eftir fær hann listann eftir því hverju leitað var að og svo framhaldsvalmynd.
+Í framhaldsvalmynd er hægt að leita aftur í listanum, laga aðila sem nú þegar er í listanum eða
+eyða honum, koma sér í aðalvalmynd eða hætta keyrslu.
+  Sé valið að eyða einhverju þarf að leita að því sem á að eyða og þegar það hefur verið gert
+birtist aðalvalmynd í framhaldinu
+Ef valið er að breyta listanum er boðið upp á að skoða listann eða leita að einhverju
+ákveðnu .
+Ef notandi velur að skoða allan listann þá birtist hann og aðilinn þarf þá að velja númer þess
+sem hann vill breyta í listanum og fylla inn í.
+Ef valið er að leita að einhverju ákveðnu birtist listinn eingöngu með þeim aðilum sem
+viðkomandi leit á við og þá velur notandinn númer þess sem hann vill breyta og framkvæmir
+breytingarnar.
+Til að hætta er slegið inn q og er notandi þá kvaddur og forritið hættir keyrslu.
+
+
+Fyrir þann sem fer yfir verkefnið er nú þegar búið að stilla gagnagrunn með tíu einstaklingum til
+þess að prufa forritið en þegar það er alveg nýtt er gagnagrunnurinn tómur. 
