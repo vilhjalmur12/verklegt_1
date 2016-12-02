@@ -31,6 +31,7 @@ public:
     bool validName(string& name);
     bool validSex(string& sex);
     bool validYears(int birthYear, int deathYear);
+    bool validDeathYear(string deathYear);
     void saveData ();
 
     //Fyrsta breyta er val um hvernig skuli raða

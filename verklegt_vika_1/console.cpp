@@ -175,6 +175,7 @@ void Console::callUser ()
             cout << "Choose Username: ";
             cin >> user;
 
+
             while (password != confirmPass)
             {
                 cout << "Choose Password: ";
@@ -350,9 +351,6 @@ void Console::choiceMade()
     string choice_made = choice();
     string cont = "y";
 
-
-
-
     if (choice_made == "v")
     {
         do
@@ -465,8 +463,6 @@ void Console::pushBackScientist()
 
 void Console::createScientist(string &name, string &sex, int &YOB, int &YOD, string &furtherInfo)
 {
-    YOD = maxDeathYear;
-
     readName(name);
 
     readSex(sex);
@@ -563,13 +559,12 @@ void Console::readDeathYear(int &YOD, bool &cont)
     cout << "Year of death: ";
     cin >> input;
 
-    bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+[0-9]*$"));
-
     if(input == "n/a")
     {
+        YOD = maxDeathYear;
         return;
     }
-    if(deathContainsNonDigits)
+    if(scientistService.validDeathYear(input))
     {
         throwError.invalidYear(4);
         cont = true;
@@ -665,6 +660,7 @@ void Console::printTable (vector<int> indexesToPrint)
 
     if(indexesToPrint.size() == 0)
     {
+        cout << endl;
         cout << "No related indexes found" << endl;
     }
     else
