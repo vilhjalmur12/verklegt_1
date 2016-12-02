@@ -36,9 +36,55 @@ void database::getData ()
     {
         tempName.push_back("Ada Lovelace");
         tempSex.push_back("Female");
-        tempDOB.push_back(1933);
-        tempDOD.push_back(2000);
+        tempDOB.push_back(1815);
+        tempDOD.push_back(1852);
         tempfInfo.push_back("First programmer");
+        tempName.push_back("Charles Babbage");
+        tempSex.push_back("Male");
+        tempDOB.push_back(1791);
+        tempDOD.push_back(1871);
+        tempfInfo.push_back("The father of computing");
+        tempName.push_back("Blaise Pascal");
+        tempSex.push_back("Male");
+        tempDOB.push_back(1623);
+        tempDOD.push_back(1662);
+        tempfInfo.push_back("Pascal language named after him");
+        tempName.push_back("Gottfried Wilhelm Leibniz");
+        tempSex.push_back("Male");
+        tempDOB.push_back(1646);
+        tempDOD.push_back(1716);
+        tempfInfo.push_back("Mechanical multiplier");
+        tempName.push_back("Alan Turing");
+        tempSex.push_back("Male");
+        tempDOB.push_back(1912);
+        tempDOD.push_back(1954);
+        tempfInfo.push_back("Father of theoretical computer science");
+        tempName.push_back("Tim Berners-Lee");
+        tempSex.push_back("Male");
+        tempDOB.push_back(1955);
+        tempDOD.push_back(2016);
+        tempfInfo.push_back("Inventor of the World Wide Web");
+        tempName.push_back("George Boole");
+        tempSex.push_back("Male");
+        tempDOB.push_back(1815);
+        tempDOD.push_back(1864);
+        tempfInfo.push_back("Boolean algebra");
+        tempName.push_back("Edsger Dijkstra");
+        tempSex.push_back("Male");
+        tempDOB.push_back(1930);
+        tempDOD.push_back(2002);
+        tempfInfo.push_back("Dijkstra's algorithm");
+        tempName.push_back("Grace Hopper");
+        tempSex.push_back("Female");
+        tempDOB.push_back(1906);
+        tempDOD.push_back(1992);
+        tempfInfo.push_back("First compiler");
+        tempName.push_back("Margaret Hamilton");
+        tempSex.push_back("Female");
+        tempDOB.push_back(1936);
+        tempDOD.push_back(2016);
+        tempfInfo.push_back("Apollo mission");
+
     }
     else
     {
