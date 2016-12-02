@@ -13,9 +13,9 @@ Console::Console(){ }
 Console::~Console() { }
 
 
-/********************************************************
+/******************************************************************
                       Allir menu gluggar
-*********************************************************/
+*******************************************************************/
 
 void Console::welcome()
 {
@@ -146,9 +146,11 @@ void Console::loginMenu()
     cout << "-----------------------------------------" << endl;
 }
 
-/********************************************************
-                     Keyrsluföll
-*********************************************************/
+/****************************************************************************
+                        callUser
+    Notandi hefur val á að skrá sig inn í forritið eða skrá nýjan notanda
+ ****************************************************************************/
+
 void Console::callUser ()
 {
     database data;
@@ -222,6 +224,11 @@ void Console::callUser ()
     run();
 }
 
+/******************************************************************************
+                         run
+    Keyrir forritið fyrir þann notanda sem skráði sig inn í callUser fallinu.
+ ******************************************************************************/
+
 void Console::run()
 {
     bool programON = true;
@@ -235,6 +242,12 @@ void Console::run()
 
     } while (programON == true);
 }
+
+/******************************************************************************
+                         edit
+    Birtir edit valmynd og tekur við upplýsingum um hvort notandi vill velja
+    vísindamann úr lista eða leita í gagnagrunni að vísindamanni.
+ ******************************************************************************/
 
 void Console::edit()
 {
@@ -279,6 +292,13 @@ void Console::edit()
     }
 }
 
+/******************************************************************************
+                         search
+    Birtir leitar valmynd og tekur við leitar streng. Birtir síðan töflu af
+    vísindamönnum ásamt index-um og valmynd um þar sem notandi ákveður hvort
+    eigi að edit-a, eyða, leita aftur, fara aftur á aðvalmynd eða hætta keyrslu.
+ ******************************************************************************/
+
 void Console::search()
 {
     string query;
@@ -292,12 +312,23 @@ void Console::search()
     changeOrDelete(indexesToPrint);
 }
 
+/******************************************************************************
+                         viewDisplay
+             Birtir sorting-menu fyrir notanda
+ ******************************************************************************/
+
 void Console::viewDisplay()
 {
     string str;
     sorting_menu();
 }
 
+
+/******************************************************************************
+                         continueFunction
+      Eftir að notandi velur að skoða listan þá er hann spurður hvort hann
+      vilji skoða hann aftur með vali um y/n.
+ ******************************************************************************/
 string Console::continueFunction()
 {
     string cont;
@@ -314,6 +345,10 @@ string Console::continueFunction()
     return cont;
 }
 
+/******************************************************************************
+                         quit
+      Hættir keyrslu á forritinu og vistar gögn í gagnagrunn.
+ ******************************************************************************/
 void Console::quit()
 {
     quitMenu();
@@ -323,19 +358,22 @@ void Console::quit()
     exit(1);
 }
 
-/********************************************************
-                    Opnunarföll
-*********************************************************/
+/******************************************************************************
+                         toContinue
+      Notandi þarf að ýta á enter til að komast í fram hjá upphafs glugga í
+      fyrstu valmynd.
+ ******************************************************************************/
 
 void Console::toContinue()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
 }
 
-/********************************************************
-                   Valmyndarföll
-*********************************************************/
-
+/******************************************************************************
+                         toContinue
+      Notandi þarf að ýta á enter til að komast í fram hjá upphafs glugga í
+      fyrstu valmynd.
+ ******************************************************************************/
 string Console::choice()
 {
     string choice_made;
