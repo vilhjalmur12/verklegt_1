@@ -1,5 +1,4 @@
 #include "database.h"
-#include "console.h"
 #include <iostream>
 #include "scientist.h"
 #include <vector>
@@ -222,16 +221,24 @@ string database::decryptData (string n)
     Heldur utan um og hjálpar að kalla í notendur
  ******************************************************************/
 
-void database::getUsers ()
+void database::getUser ()
 {
+    vector<string> allUsers;
+    vector<string> allPasswords;
+
     ifstream userData;
-    string username, password;
-    userData.open(username + ".txt");
-    if (userData.open())
+    userData.open("users.txt");
+    if (userData.fail())
     {
-        screen.dataWriteError();
-        exit(1);
+        fstream newUserData ("users.txt", std::ios::out);
+        newUserData.close();
+        userData.open("users.txt");
     }
+
+
+
+
+
 }
 
 

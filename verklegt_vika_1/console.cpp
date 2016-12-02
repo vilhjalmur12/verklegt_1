@@ -172,6 +172,7 @@ void Console::pushBackScientist()
         do
         {
             cout << "Name: ";
+
             cin.ignore();
             do
             {
@@ -325,7 +326,7 @@ void Console::edit()
     {
        cout << "-> ";
        cin >> choice;
-    }while(choice != 'l' && choice != 's')
+    }while(choice != 'l' && choice != 's');
 
     if(choice == 'l')
     {
