@@ -15,17 +15,17 @@ class database
 public:
     database ();
     ~database ();
-
     /***************************************
                  Leitarföll
     ****************************************/
     int dataSearch (string tmp);
     int dataSearch (int tmp);
     vector<int> dataSearch(string tmp,vector<Scientist> allScientist);
+
     /***************************************
                  Gagnagrunnsföll
     ****************************************/
-    void getData (string user);     //sækir gagnagrunn í eigu notanda í vinnslu
+    void getData (string user);             //sækir gagnagrunn í eigu notanda í vinnslu
     void writeData (string username);       //skrifar gagnagrunn á skrá frá notanda í vinnslu
     vector<Scientist> pullData ();      //skilar öllum upplýsingum frá meðlimabreytum database klasanns ef kallað sé í fallið
     void pushData (vector<Scientist> write);        //ýtir breyttum upplýsingum í gagnagrunni yfir í meðlimabreytur klasanns database

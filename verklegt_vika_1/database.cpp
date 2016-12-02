@@ -103,13 +103,13 @@ void database::getData (string user)
 
             name = decryptData(name);
             sex = decryptData(sex);
-            furtherInfo = decryptData(furtherInfo); // Sandra baetti vid thessari linu
+            furtherInfo = decryptData(furtherInfo);
 
             tempName.push_back(name);
             tempSex.push_back(sex);
             tempDOB.push_back(DOB);
             tempDOD.push_back(DOD);
-            tempfInfo.push_back(furtherInfo); // Sandra baetti vid
+            tempfInfo.push_back(furtherInfo);
         }
     }
     
@@ -149,8 +149,8 @@ void database::writeData (string username)
         sex = encryptData(sex);
         DOB = tempDOB[i];
         DOD = tempDOD[i];
-        furtherInfo = tempfInfo[i]; // Sandra baetti vid
-        furtherInfo = encryptData(furtherInfo); // Sandra baetti vid
+        furtherInfo = tempfInfo[i];
+        furtherInfo = encryptData(furtherInfo);
 
         dataOutput << name << "\t" << sex << "\t" << DOD << "\t" << DOB << "\t" << furtherInfo << endl;
     }
@@ -230,7 +230,7 @@ vector<Scientist> database::pullData ()
         gender = tempSex[i];
         DOB = tempDOB[i];
         DOD = tempDOD[i];
-        furtherInfo = tempfInfo[i]; // Lina by Sandra
+        furtherInfo = tempfInfo[i];
         
         tmp.pushScientist(name, gender, DOB, DOD, furtherInfo);
         
@@ -241,8 +241,10 @@ vector<Scientist> database::pullData ()
 }
 
 /******************************************************************
-                            Encryptions
-    Auðveldur ceaser cypher sem dulkóðar og afkóðar data skrárnar
+                     encryptData
+    Auðveldur ceaser cypher sem dulkóðar streng
+            @parameter(string n) - venjulegur strengur
+            @return(string n) - dulkóðaður strengur
  ******************************************************************/
 
 string database::encryptData (string n)
@@ -253,6 +255,12 @@ string database::encryptData (string n)
     return n;
 }
 
+/******************************************************************
+                      decryptData
+    Auðveldur ceaser cypher sem afkóðar streng
+            @parameter(string n) - dulkóðaður strengur
+            @return(string n) - afkóðaður strengur
+ ******************************************************************/
 
 string database::decryptData (string n)
 {
@@ -265,6 +273,13 @@ string database::decryptData (string n)
 /******************************************************************
                         Notenda gagnagrunnur
               Heldur utan um og hjálpar að kalla í notendur.
+ ******************************************************************/
+
+/******************************************************************
+                            getUser
+    Auðveldur ceaser cypher sem dulkóðar og afkóðar data skrárnar
+            @parameter(string n) - venjulegur strengur
+            @return(string n) - dulkóðaður strengur
  ******************************************************************/
 
 bool database::getUser (string username, string password)

@@ -564,7 +564,7 @@ void Console::readDeathYear(int &YOD, bool &cont)
         YOD = maxDeathYear;
         return;
     }
-    if(scientistService.validDeathYear(input))
+    if(!scientistService.validDeathYear(input))
     {
         throwError.invalidYear(4);
         cont = true;
