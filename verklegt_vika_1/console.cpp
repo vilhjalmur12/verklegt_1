@@ -262,7 +262,9 @@ void Console::edit()
         do
         {
         cout << "Insert index to edit: ";
+        cin.ignore();
         cin >> index;
+        cin.clear();
         if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
             cout << "Please insert valid index!" << endl;
         }while(index <= 0 || index > scientistService.getLengthOfData() || cin.fail());
@@ -447,9 +449,11 @@ int Console::findIndexToEdit(string oldName)
     if(indexesWithQuery.size() > 0)
     {
         int input;
+        do
+        {
         cout << "Please enter the number of the entry you want to edit: ";
         cin >> input;
-
+        }while(cin.fail());
         index = indexesWithQuery[input-1];
 
         return index;
@@ -549,7 +553,7 @@ void Console::readBirthYear(int &YOB, bool &cont)
     {
         cin.clear();
         cin.sync();
-        throwError.invalidYear(4);
+        throwError.invalidYear(4); //---------------------------------------------------------------------------------------------------------
         cont = true;
         return;
     }
@@ -577,7 +581,7 @@ void Console::readDeathYear(int &YOD, bool &cont)
     }
     if(!scientistService.validDeathYear(input))
     {
-        throwError.invalidYear(4);
+        throwError.invalidYear(4); //----------------------------------------------------------------------------------------------------------------
         cont = true;
         return;
     }
@@ -590,16 +594,12 @@ void Console::readDeathYear(int &YOD, bool &cont)
 
 void Console::readNationality(string &nationality)
 {
-    do
-    {
-        cout << "Nationality: ";
-        cin.ignore();
-        do
-        {
-        getline(cin, nationality);
-        }while(nationality.length()<1);
+    cout << "Nationality: ";
+    cin.ignore();
+    getline(cin, nationality);
 
-    }while(!scientistService.validNationality(nationality));
+    if(nationality.length() > 0)
+        nationality.at(0) = toupper(nationality.at(0));
 }
 
 
@@ -622,6 +622,7 @@ void Console::changeOrDelete(vector<int> indexes)
         cout << "Insert the index you wish to delete: " << endl;
         do
         {
+            cin.ignore();
             cin >> index;
             if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
                 cout << "Please insert valid index!" << endl;
@@ -637,6 +638,7 @@ void Console::changeOrDelete(vector<int> indexes)
         cout << "Insert the index you wish to edit: " << endl;
         do
         {
+            cin.ignore();
             cin >> index;
             if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
                 cout << "Please insert valid index!" << endl;

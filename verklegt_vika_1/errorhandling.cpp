@@ -59,13 +59,3 @@ void ErrorHandling::invalidYear (int errorCode)
             break;
     }
 }
-
-void ErrorHandling::invalidNationality(int errorCode)
-{
-    switch (errorCode)
-    {
-        case 1:
-            cout << "ERROR: Name can not include numbers!" << endl;
-            break;
-    }
-}

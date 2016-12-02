@@ -1,7 +1,10 @@
 #ifndef ERRORHANDLING_H
 #define ERRORHANDLING_H
 
+#include <string>
+#include <iostream>
 
+using namespace std;
 
 class ErrorHandling
 {
@@ -13,14 +16,19 @@ public:
                   Villuskilaboð
 **********************************************************/
     void dataWriteError ();
-    void quit();
     void dataSearchNotFound ();
     void invalidYear (int errorCode);
     void invalidSex ();
     void invalidName (int errorCode);
-    void invalidNationality(int errorCode);
+
+    string catchError();
 
 private:
+    string dataWritingError;
+    string dataSearchError;
+    string dataYearError;
+    string dataSexError;
+    string dataNameError;
 
 };
 
