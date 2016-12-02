@@ -11,7 +11,6 @@ int main()
 {
     Console screen;
     screen.run();
-<<<<<<< HEAD
 
 
     /*
@@ -48,9 +47,5 @@ int main()
 
     // Passa að skrifa vector út í database í lok keyrslu
     */
-
-
-=======
->>>>>>> b51d55241abbdbfb7d180643c67aa5e96673b614
     return 0;
 }

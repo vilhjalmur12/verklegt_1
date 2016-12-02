@@ -81,7 +81,7 @@ bool database::isEmpty(ifstream& input)
 /****************************************************************************
                 writeData
 
- tekur inn upplýsingar frá gagnagrunni og hleður allar í vectoar til að reiðubúa notkun
+ tekur inn upplýsingar frá gagnagrunni og hleður allar í vectora til að reiðubúa notkun
  ****************************************************************************/
 void database::writeData ()
 {
@@ -148,111 +148,10 @@ int database::dataSearch (int tmp)
     return id;
 }
 
-/*
-int database::dataSearch()
-{
-    int id = -1;
-
-    if (string::npos != temp.find_first_of("0123456789")) // Strengur af tölustöfum ?
-    {
-        int year = atoi(temp.c_str()); // String í int
-
-        for (int i = 0; i < tempName.size(); i++)
-        {
-            if (year == tempDOD[i] || year == tempDOB[i])
-            {
-                id = i;
-            }
-        }
-    }
-    else
-    {
-        for (int i = 0; i < tempName.size(); i++)
-        {
-            if (temp == tempName[i])
-            {
-                id = i;
-            }
-        }
-    }
-
-    return id;
-}
-*/
-
 /****************************************************************************
-                        TEST FÖLL
- Þessi föll hjálpa okkur að prufa og prenta vectora. Við eyðum eða færum þessi
- föll út úr klasanum fyrir skil.
-    testData
-    dataPrint
+                        pushData - pullData
+    Sér um að geta matað þau föll sem vilja sækja í gagnagrunninn.
  ****************************************************************************/
-void database::testData (vector<Scientist> &allScientists)
-{
-    char cont;
-    string name, sex, furtherInfo;
-    int DOB, DOD;
-    Scientist tmp;
-
-    do
-    {
-        cout << "Add name: ";
-        cin >> name;
-        cout << "Sex: ";
-        cin >> sex;
-        cout << "Date of birth: ";
-        cin >> DOB;
-        cout << "Date of death: ";
-        cin >> DOD;
-        cout << "Further information: "; // Lina by Sandra
-        cin >> furtherInfo;
-
-        tmp.pushScientist(name, sex, DOB, DOD, furtherInfo);
-        allScientists.push_back(tmp);
-        
-        cout << "Continue?\t (y = yes, n = no)" << endl << "->";
-        cin >> cont;
-        
-   //     tempName.push_back(name);
-   //     tempSex.push_back(sex);
-   //     tempDOB.push_back(DOB);
-   //     tempDOD.push_back(DOD);
-   //     tempfInfo.push_back(furtherInfo); // Lina by Sandra
-        
-        cout << endl;
-        
-    }while (cont != 'n');
-}
-
-void database::dataPrint (vector<Scientist> const allScientists)
-{
-    cout << "You selected\n";
-    string name, sex, furtherInfo;
-    int DOD, DOB;
-    Scientist tmp;
-    
-    for (unsigned int i = 0; i < allScientists.size(); i++)
-    {
-        tmp = allScientists[i];
-        name = tmp.getName();
-        sex = tmp.getSex();
-        DOB = tmp.getYearOfBirth();
-        DOD = tmp.getYearOfDeath();
-        furtherInfo = tmp.getFurtherInfo();
-        
-        cout << name << "\t" << sex << "\t" << DOB << "\t" << DOD << "\t" << furtherInfo << endl;
-    }
-}
-
-void database::printSearch (int id)
-{
-    cout << "fannst eftirfarandi: \n";
-    cout << tempName[id] << "\t" << tempSex[id] << "\t" << tempDOB[id] << "\t" << tempDOD[id] << "\t" << tempfInfo[id] << endl;
-
-}
-/*****************************************************************************/
-
-
 void database::pushData (vector<Scientist> write)
 {
     Scientist tmp;
@@ -296,12 +195,10 @@ vector<Scientist> database::pullData ()
     return A;
 }
 
-/*************************************************************
+/******************************************************************
                     Encryptions
- 
- *************************************************************/
-
-    // ceasar cypher
+    Auðveldur ceaser cypher sem encryptar í decryptar data fileana
+ ******************************************************************/
 
 string database::encryptData (string n)
 {
@@ -320,36 +217,93 @@ string database::decryptData (string n)
     return n;
 }
 
+/******************************************************************
+                        Notenda gagnagrunnur
+    Heldur utan um og hjálpar að kalla í notendur
+ ******************************************************************/
 
-
-        // XOR encryptions
-/*
-void database::encryptData (string &n)
+void database::getUsers ()
 {
-    char encryptionKey = 'x';
-    for (unsigned int i = 0; i < n.size(); i++)
-    n[i] ^= encryptionKey;
+    ifstream userData;
+    string username, password;
+    userData.open(username + ".txt");
+    if (userData.open())
+    {
+        screen.dataWriteError();
+        exit(1);
+    }
 }
 
-void database::encryptData (int &n)
+
+/****************************************************************************
+                        TEST FÖLL
+ Þessi föll hjálpa okkur að prufa og prenta vectora. Við eyðum eða færum þessi
+ föll út úr klasanum fyrir skil.
+    testData
+    dataPrint
+ ****************************************************************************/
+void database::testData (vector<Scientist> &allScientists)
 {
-    char encryptionKey = 'x';
-        n ^= encryptionKey;
+    char cont;
+    string name, sex, furtherInfo;
+    int DOB, DOD;
+    Scientist tmp;
+
+    do
+    {
+        cout << "Add name: ";
+        cin >> name;
+        cout << "Sex: ";
+        cin >> sex;
+        cout << "Date of birth: ";
+        cin >> DOB;
+        cout << "Date of death: ";
+        cin >> DOD;
+        cout << "Further information: "; // Lina by Sandra
+        cin >> furtherInfo;
+
+        tmp.pushScientist(name, sex, DOB, DOD, furtherInfo);
+        allScientists.push_back(tmp);
+
+        cout << "Continue?\t (y = yes, n = no)" << endl << "->";
+        cin >> cont;
+
+   //     tempName.push_back(name);
+   //     tempSex.push_back(sex);
+   //     tempDOB.push_back(DOB);
+   //     tempDOD.push_back(DOD);
+   //     tempfInfo.push_back(furtherInfo); // Lina by Sandra
+
+        cout << endl;
+
+    }while (cont != 'n');
 }
 
-void database::decryptData (string &n)
+void database::dataPrint (vector<Scientist> const allScientists)
 {
-    char decryptionKey = 'x';
-    for (unsigned int i = 0; i < n.size(); i++)
-    n[i] ^= decryptionKey;
+    cout << "You selected\n";
+    string name, sex, furtherInfo;
+    int DOD, DOB;
+    Scientist tmp;
+
+    for (unsigned int i = 0; i < allScientists.size(); i++)
+    {
+        tmp = allScientists[i];
+        name = tmp.getName();
+        sex = tmp.getSex();
+        DOB = tmp.getYearOfBirth();
+        DOD = tmp.getYearOfDeath();
+        furtherInfo = tmp.getFurtherInfo();
+
+        cout << name << "\t" << sex << "\t" << DOB << "\t" << DOD << "\t" << furtherInfo << endl;
+    }
 }
 
-void database::decryptData (int &n)
+void database::printSearch (int id)
 {
-    char decryptionKey = 'x';
-        n ^= decryptionKey;
+    cout << "fannst eftirfarandi: \n";
+    cout << tempName[id] << "\t" << tempSex[id] << "\t" << tempDOB[id] << "\t" << tempDOD[id] << "\t" << tempfInfo[id] << endl;
+
 }
- */
 
-/************************************************************/
-
+/*****************************************************************************/

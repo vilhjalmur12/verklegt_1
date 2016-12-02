@@ -6,6 +6,7 @@
 #include <vector>
 #include "errorhandling.h"
 #include "scientist.h"
+#include "console.h"
 #include <fstream>
 
 using namespace std;
@@ -15,8 +16,6 @@ class database
 public:
     database ();
     ~database ();
-    void getData ();
-    void writeData ();
     int dataSearch (string tmp);
     int dataSearch (int tmp);
     void pushData (vector<Scientist> write);
@@ -35,10 +34,13 @@ private:
     vector<int> tempDOD;
     vector<string> tempfInfo;
 
+    void getData ();
+    void writeData ();
     string encryptData (string n);
     string decryptData (string n);
     bool isEmpty (ifstream& input);
 
+    void getUsers ();
     ErrorHandling output;
 
 };
