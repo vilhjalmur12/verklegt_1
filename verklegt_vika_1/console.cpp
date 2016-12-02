@@ -401,6 +401,12 @@ string Console::stringChoice()
     return str;
 }
 
+/********************************************************
+                    sorting
+   Leifir notenda að velja hvernig hann skoðar listan
+   @
+*********************************************************/
+
 void Console::sorting(string str)
 {
     vector<Scientist> allScientists;

@@ -15,6 +15,7 @@ class database
 public:
     database ();
     ~database ();
+
     /***************************************
                  Leitarföll
     ****************************************/
@@ -33,9 +34,6 @@ public:
     void createUser (string user, string password);     //býr til nýjan notanda með aðgangsorð í gagnagrunn og býr til gagnagrunn fyrir notandann
 
 private:
-    /***************************************
-                 Meðlimabreytur
-    ****************************************/
     vector<string> tempName;
     vector<string> tempSex;
     vector<int> tempDOB;
@@ -43,15 +41,14 @@ private:
     vector<string> tempfInfo;
     string _username;
     string _password;
+
+    string encryptData (string n);
+    string decryptData (string n);
+    bool isEmpty (ifstream& input);
+    bool userCorrect (string username, string password, vector<string> allUsers, vector<string> allPasswords);
+
     ErrorHandling output;
 
-    /***************************************
-                 Meðlimaföll
-    ****************************************/
-    string encryptData (string n);      //dulkóðun: tekur orð og dulkóðar það með ceaser script
-    string decryptData (string n);      //afkóðun: tekur orð og afkóðar það í öfugri ceasar script
-    bool isEmpty (ifstream& input);     //skoðar hvort ákveðin skrá sé tóm eða ekki
-    bool userCorrect (string username, string password, vector<string> allUsers, vector<string> allPasswords);      //athugar hvort notendanafn og leyniorð passa
 };
 
 #endif // DATABASE_H
