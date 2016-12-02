@@ -173,11 +173,6 @@ void Console::pushBackScientist()
         {
             cout << "Name: ";
 
-<<<<<<< HEAD
-            //cin.clear();
-            //cin.sync();
-=======
->>>>>>> 530ce2186e96e646eebed871636f872271fe0ec3
             cin.ignore();
             do
             {
@@ -198,11 +193,6 @@ void Console::pushBackScientist()
 
         cout << "Further Information: ";
 
-<<<<<<< HEAD
-        //cin.clear();
-        //cin.sync();
-=======
->>>>>>> 530ce2186e96e646eebed871636f872271fe0ec3
         cin.ignore();
         getline(cin, furtherInfo);
 
