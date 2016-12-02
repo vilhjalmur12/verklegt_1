@@ -218,6 +218,11 @@ bool Service::validYears(int birthYear, int deathYear)
     return true;
 }
 
+bool Service::validDeathYear(string input)
+{
+    return regex_match(input, regex("^[0-9]+[0-9]*$"));
+}
+
 /**********************************************************
                  Hjálparföll fyrir search
 **********************************************************/

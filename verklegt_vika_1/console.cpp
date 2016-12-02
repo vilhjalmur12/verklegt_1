@@ -462,8 +462,6 @@ void Console::pushBackScientist()
 
 void Console::createScientist(string &name, string &sex, int &YOB, int &YOD, string &furtherInfo)
 {
-    YOD = maxDeathYear;
-
     readName(name);
 
     readSex(sex);
@@ -560,13 +558,12 @@ void Console::readDeathYear(int &YOD, bool &cont)
     cout << "Year of death: ";
     cin >> input;
 
-    bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+[0-9]*$"));
-
     if(input == "n/a")
     {
+        YOD = maxDeathYear;
         return;
     }
-    if(deathContainsNonDigits)
+    if(scientistService.validDeathYear(input))
     {
         throwError.invalidYear(4);
         cont = true;
