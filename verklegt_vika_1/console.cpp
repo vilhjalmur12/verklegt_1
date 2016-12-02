@@ -547,13 +547,20 @@ void Console::readYears(int& YOB, int& YOD)
 void Console::readBirthYear(int &YOB, bool &cont)
 {
     cout << "Year of birth: ";
+    cin.ignore();
     cin >> YOB;
 
     if(cin.fail())
     {
+<<<<<<< HEAD
         cin.sync();
         cin.clear();
         throwError.invalidYear(4);
+=======
+        cin.clear();
+        cin.sync();
+        throwError.invalidYear(4); //---------------------------------------------------------------------------------------------------------
+>>>>>>> 58d16949e382f93040e487271b62dd85eeb8bb4f
         cont = true;
         return;
     }
