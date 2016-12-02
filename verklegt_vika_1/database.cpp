@@ -63,7 +63,7 @@ void database::getData (string user)
         tempName.push_back("Tim Berners-Lee");
         tempSex.push_back("Male");
         tempDOB.push_back(1955);
-        tempDOD.push_back('n/a');
+        tempDOD.push_back(n/a);
         tempfInfo.push_back("Inventor of the World Wide Web");
         tempName.push_back("George Boole");
         tempSex.push_back("Male");
