@@ -113,14 +113,24 @@ void Console::printEditMenu()
     cout << "-----------------------------------------" << endl;
     cout << "|       What would you like to do?      |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|    l - see the full list of Scienti   |" << endl;
+    cout << "|  l - see the full list of scientists  |" << endl;
     cout << "|      s - search for a scientist       |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::quitMenu()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|     Thank you for using Database,     |" << endl;
+    cout << "|             stay classy!              |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 /********************************************************
-                      Föll
+                     Keyrsluföll
 *********************************************************/
 void Console::callUser ()
 {
@@ -186,6 +196,81 @@ void Console::callUser ()
     run();
 }
 
+void Console::run()
+{
+    bool programON = true;
+
+    welcome();
+    toContinue();
+
+    do
+    {
+        viewOrInsert();
+
+        choiceMade();
+
+    } while (programON == true);
+}
+
+void Console::edit()
+{
+    char choice = 'l';
+    int index;
+    printEditMenu();
+    do
+    {
+        cout << "-> ";
+        cin >> choice;
+        if((choice != 'l' && choice != 's') || cin.fail())
+            cout << "Please insert valid choice" << endl;
+    }while(choice != 'l' && choice != 's');
+
+    if(choice == 'l')
+    {
+        printTable();
+        do
+        {
+        cout << "Insert index to edit: ";
+        cin >> index;
+        if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
+            cout << "Please insert valid index!" << endl;
+        }while(index <= 0 || index > scientistService.getLengthOfData() || cin.fail());
+        index -= 1;
+    }
+    else
+    {
+        string query;
+        printSearchMenu();
+        cout << "Query: ";
+        cin >> query;
+        index = findIndexToEdit(query);
+    }
+    if(index > -1)
+    {
+    cout << "--------Insert new Information:---------" << endl;
+    pushBackScientist();
+    scientistService.moveLastTo(index);
+    }
+}
+
+void Console::search()
+{
+    string query;
+    printSearchMenu();
+    cout << "Query: ";
+    cin >> query;
+    vector<int> indexesToPrint = scientistService.getIndexesWith(query);
+    printTable(indexesToPrint);
+    printChangeDelete();
+    changeOrDelete(indexesToPrint);
+}
+
+void Console::viewDisplay()
+{
+    string str;
+    sorting_menu();
+}
+
 char Console::continueFunction()
 {
     char cont;
@@ -198,15 +283,30 @@ char Console::continueFunction()
         cont = choice();
     }
 
-
-
     return cont;
 }
+
+void Console::quit()
+{
+    quitMenu();
+
+    scientistService.saveData();
+
+    exit(1);
+}
+
+/********************************************************
+                    Opnunarföll
+*********************************************************/
 
 void Console::toContinue()
 {
     cin.ignore(numeric_limits<streamsize>::max(),'\n');
 }
+
+/********************************************************
+                   Valmyndarföll
+*********************************************************/
 
 char Console::choice()
 {
@@ -214,106 +314,6 @@ char Console::choice()
     cin >> choice_made;
 
     return choice_made;
-}
-
-string Console::stringChoice()
-{
-    string str;
-    cout << "-> ";
-    cin >> str;
-    return str;
-}
-
-void Console::pushBackScientist()
-{
-    printInsertMenu();
-
-    string name, sex, furtherInfo;
-    int YOB, YOD;
-    do
-    {
-        do
-        {
-            cout << "Name: ";
-            //cin.clear();
-            //cin.sync();
-            cin.ignore();
-            do
-            {
-            getline(cin, name);
-            }while(name.length()<1);
-
-        }while(!scientistService.validName(name));
-
-        do
-        {
-            cout << "Gender: ";
-            cin >> sex;
-        }while(!scientistService.validSex(sex));
-
-        //cin.clear();
-        //cin.sync();
-        cin.ignore();
-
-        cout << "Further Information: ";
-
-        cin.ignore();
-        getline(cin, furtherInfo);
-
-        if(furtherInfo.length() > 0)
-            furtherInfo.at(0) = toupper(furtherInfo.at(0));
-
-        bool cont = false;
-        bool validYears = false;
-        do
-        {
-            cont = false;
-            validYears = true;
-            YOD = 200000000;
-            string input;
-
-            cout << "Year of birth: ";
-            cin >> YOB;
-
-            if(cin.fail())
-            {
-                cin.ignore();
-                throwError.invalidYear(4);
-                cont = true;
-                continue;
-            }
-            if(YOB < -2700)
-            {
-                cout << "Attention: your Computer Scientist will have to have been born before" << endl
-                     << "the invention of the abacus, the first known tool used for computation" << endl
-                     << "tip: enter an invalid Year of Death to re-input year of birth" << endl;
-            }
-
-            cout << "Year of death: ";
-            cin >> input;
-
-            bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+[0-9]*$"));
-
-            if(input == "n/a")
-            {
-                continue;
-            }
-            else if(deathContainsNonDigits)
-            {
-                throwError.invalidYear(4);
-                cont = true;
-                continue;
-            }
-            else
-            {
-                YOD = stoi(input);
-            }
-
-            if(cont == false)
-                validYears = scientistService.validYears(YOB, YOD);
-
-        }while(!validYears || cont);
-    } while(!scientistService.appendScientist(name, sex, YOB, YOD, furtherInfo));
 }
 
 void Console::choiceMade()
@@ -359,11 +359,42 @@ void Console::choiceMade()
 
 }
 
-void Console::viewDisplay()
+/********************************************************
+                    Sorting föll
+*********************************************************/
+
+string Console::stringChoice()
 {
     string str;
-    sorting_menu();
+    cout << "-> ";
+    cin >> str;
+    return str;
 }
+
+void Console::sorting(string str)
+{
+    vector<Scientist> allScientists;
+    bool isRunning = true;
+
+    while (isRunning == true)
+    {
+        if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd")
+        {
+            scientistService.SortedScientistsBy(str);
+            printTable();
+            isRunning = false;
+        }
+        else
+        {
+            cout << "Enter a valid command" << endl;
+            str = stringChoice();
+        }
+    }
+}
+
+/********************************************************
+                  Hjálparföll við edit
+*********************************************************/
 
 int Console::findIndexToEdit(string oldName)
 {
@@ -371,57 +402,126 @@ int Console::findIndexToEdit(string oldName)
     vector<int> indexesWithQuery = (scientistService.getIndexesWith(oldName));
 
     printTable(indexesWithQuery);
-    cout << indexesWithQuery[0] << endl;
 
-    int input;
-
-    cout << "Please enter the number of the entry you want to edit: ";
-    cin >> input;
-
-
-
-    index = indexesWithQuery[input-1];
-
-    return index;
-}
-
-void Console::edit()
-{
-    char choice = 'l';
-    int index;
-    printEditMenu();
-    do
+    if(indexesWithQuery.size() > 0)
     {
-        cout << "-> ";
-        cin >> choice;
-        if(choice != 'l' || choice != 's' || cin.fail())
-            cout << "Please insert valid choice" << endl;
-    }while(choice != 'l' && choice != 's');
+        int input;
+        cout << "Please enter the number of the entry you want to edit: ";
+        cin >> input;
 
-    if(choice == 'l')
-    {
-        printTable();
-        do
-        {
-        cout << "Insert index to edit: ";
-        cin >> index;
-        if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
-            cout << "Please insert valid index!" << endl;
-        }while(index <= 0 || index > scientistService.getLengthOfData() || cin.fail());
-        index -= 1;
+        index = indexesWithQuery[input-1];
+
+        return index;
     }
     else
-    {
-        string query;
-        printSearchMenu();
-        cout << "Query: ";
-        cin >> query;
-        index = findIndexToEdit(query);
-    }
-    cout << "--------Insert new Information:---------" << endl;
-    pushBackScientist();
-    scientistService.moveLastTo(index);
+        return -1;
 }
+
+void Console::pushBackScientist()
+{
+    printInsertMenu();
+
+    string name, sex, furtherInfo;
+    int YOB, YOD;
+    do
+    {
+        do
+        {
+            cout << "Name: ";
+            //cin.clear();
+            //cin.sync();
+            cin.ignore();
+            do
+            {
+            getline(cin, name);
+            }while(name.length()<1);
+
+        }while(!scientistService.validName(name));
+
+        do
+        {
+            cout << "Gender: ";
+            cin >> sex;
+        }while(!scientistService.validSex(sex));
+
+        //cin.clear();
+        //cin.sync();
+
+
+        cout << "Further Information: ";
+        cin.ignore();
+        getline(cin, furtherInfo);
+
+        if(furtherInfo.length() > 0)
+            furtherInfo.at(0) = toupper(furtherInfo.at(0));
+
+        bool cont = false;
+        bool validYears = false;
+        do
+        {
+            cont = false;
+            validYears = true;
+            YOD = 200000000;
+            string input;
+
+            cout << "Year of birth: ";
+            cin >> YOB;
+
+            bool birthContainsNonDigits = regex_match(input, regex("^[0-9]+[0-9]*$"));
+
+            if(cin.fail())
+            {
+                cin.clear();
+                cin.sync();
+                throwError.invalidYear(4);
+                cont = true;
+                continue;
+            }
+
+            if(YOB < -2700)
+            {
+                cout << "Attention: your Computer Scientist will have to have been born before" << endl
+                     << "the invention of the abacus, the first known tool used for computation" << endl
+                     << "tip: enter an invalid Year of Death to re-input year of birth" << endl;
+            }
+            else if(birthContainsNonDigits)
+            {
+                throwError.invalidYear(4);
+                cont = true;
+                continue;
+            }
+
+
+            cout << "Year of death: ";
+            cin >> input;
+
+            bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+[0-9]*$"));
+
+            if(input == "n/a")
+            {
+                continue;
+            }
+            else if(deathContainsNonDigits)
+            {
+                throwError.invalidYear(4);
+                cont = true;
+                continue;
+            }
+            else
+            {
+                YOD = stoi(input);
+            }
+
+            if(cont == false)
+                validYears = scientistService.validYears(YOB, YOD);
+
+        }while(!validYears || cont);
+    } while(!scientistService.appendScientist(name, sex, YOB, YOD, furtherInfo));
+}
+
+/********************************************************
+                 Hjálparföll við search
+*********************************************************/
 
 void Console::changeOrDelete(vector<int> indexes)
 {
@@ -474,16 +574,23 @@ void Console::changeOrDelete(vector<int> indexes)
     };
 }
 
-void Console::search()
+/********************************************************
+                      Birta töflu
+*********************************************************/
+
+void Console::printTable ()
 {
-    string query;
-    printSearchMenu();
-    cout << "Query: ";
-    cin >> query;
-    vector<int> indexesToPrint = scientistService.getIndexesWith(query);
-    printTable(indexesToPrint);
-    printChangeDelete();
-    changeOrDelete(indexesToPrint);
+    vector<Scientist> allScientists = scientistService.getScientists();
+    Scientist tmp;
+
+    printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
+    cout <<"-------------------------------------------------------------------------------------------------------" << endl;
+
+    for (unsigned int i = 0; i < allScientists.size(); i++)
+    {
+        tmp = allScientists[i];
+        printf("%-4d%-30s%-9s%-18d%-18s%-30s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(), tmp.getFurtherInfo().c_str());
+    }
 }
 
 void Console::printTable (vector<int> indexesToPrint)
@@ -510,63 +617,3 @@ void Console::printTable (vector<int> indexesToPrint)
     }
 }
 
-void Console::sorting(string str)
-{
-    vector<Scientist> allScientists;
-    bool isRunning = true;
-
-    while (isRunning == true)
-    {
-        if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd")
-        {
-            scientistService.SortedScientistsBy(str);
-            printTable();
-            isRunning = false;
-        }
-        else
-        {
-            cout << "Enter a valid command" << endl;
-            str = stringChoice();
-        }
-    }
-}
-
-void Console::run()
-{
-    bool programON = true;
-    
-    welcome();
-    toContinue();
-
-    do
-    {
-        viewOrInsert();
-        
-        choiceMade();
-        
-    } while (programON == true);
-}
-
-void Console::quit()
-{
-    cout << "Thank you for using Database, stay classy!" << endl << endl;
-
-    scientistService.saveData();
-    
-    exit(1);
-}
-
-void Console::printTable ()
-{
-    vector<Scientist> allScientists = scientistService.getScientists();
-    Scientist tmp;
-    
-    printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
-    cout <<"-------------------------------------------------------------------------------------------------------" << endl;
-    
-    for (unsigned int i = 0; i < allScientists.size(); i++)
-    {
-        tmp = allScientists[i];
-        printf("%-4d%-30s%-9s%-18d%-18s%-30s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(), tmp.getFurtherInfo().c_str());
-    }
-}

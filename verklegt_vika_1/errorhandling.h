@@ -6,6 +6,10 @@ class ErrorHandling
 public:
     ErrorHandling();
     virtual ~ErrorHandling();
+
+/**********************************************************
+                  Villuskilaboð
+**********************************************************/
     void dataWriteError ();
     void quit();
     void dataSearchNotFound ();

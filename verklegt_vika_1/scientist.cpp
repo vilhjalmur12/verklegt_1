@@ -23,15 +23,19 @@ void Scientist::pushScientist(string name, string sex, int DOB, int DOD, string 
     _furtherInfo = furtherInfo;
 }  
 
- ostream& operator << (ostream& out, Scientist sc)
- {
-    out << sc.getName() << "/t" << sc.getSex() << "/t" << sc.getYearOfBirth()
-        << "/t" << sc.getYearOfDeath() << "/t" << sc.getFurtherInfo();
-    return out;
- }
+/**************************************************
+                 Operator föll
+**************************************************/
 
- bool operator ==(Scientist lhs, Scientist rhs)
- {
-    return (lhs.getName() == rhs.getName() && lhs.getSex() == rhs.getSex() && lhs.getYearOfBirth() == lhs.getYearOfBirth()
-            && lhs.getYearOfDeath() == rhs.getYearOfDeath());
- }
+ostream& operator << (ostream& out, Scientist sc)
+{
+   out << sc.getName() << "/t" << sc.getSex() << "/t" << sc.getYearOfBirth()
+       << "/t" << sc.getYearOfDeath() << "/t" << sc.getFurtherInfo();
+   return out;
+}
+
+bool operator ==(Scientist lhs, Scientist rhs)
+{
+   return (lhs.getName() == rhs.getName() && lhs.getSex() == rhs.getSex() && lhs.getYearOfBirth() == lhs.getYearOfBirth()
+           && lhs.getYearOfDeath() == rhs.getYearOfDeath()) && lhs.getFurtherInfo() == rhs.getFurtherInfo();
+}
