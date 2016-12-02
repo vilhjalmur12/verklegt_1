@@ -8,14 +8,7 @@
 #include <limits>
 #include <regex>
 
-Console::Console()
-{
-    Service serviceTemp;
-    ErrorHandling errorTemp;
-
-    throwError = errorTemp;
-    scientistService = serviceTemp;
-}
+Console::Console(){ }
 
 Console::~Console() { }
 
@@ -480,11 +473,11 @@ void Console::createScientist(string &name, string &sex, int &YOB, int &YOD, str
 
     readSex(sex);
 
-    readFurtherInfo(furtherInfo);
-
     readYears(YOB, YOD);
 
     readNationality(nationality);
+
+    readFurtherInfo(furtherInfo);
 }
 
 void Console::readName(string &name)
@@ -510,15 +503,6 @@ void Console::readSex(string &sex)
     }while(!scientistService.validSex(sex));
 }
 
-void Console::readFurtherInfo(string &furtherInfo)
-{
-    cout << "Further Information: ";
-    cin.ignore();
-    getline(cin, furtherInfo);
-
-    if(furtherInfo.length() > 0)
-        furtherInfo.at(0) = toupper(furtherInfo.at(0));
-}
 
 void Console::readYears(int& YOB, int& YOD)
 {
@@ -552,10 +536,10 @@ void Console::readBirthYear(int &YOB, bool &cont)
     if(cin.fail())
     {
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-     //   cin.sync();
-        throwError.invalidYear(4); //---------------------------------------------------------------------------------------------------------
 
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        throwError.invalidYear(4);   //__________________________________________________________________________________-Prentar 2x
+        cout << throwError.catchError();
         cont = true;
         return;
     }
@@ -585,7 +569,8 @@ void Console::readDeathYear(int &YOD, bool &cont)
     {
         cin.clear();
         cin.sync();
-        throwError.invalidYear(4); //----------------------------------------------------------------------------------------------------------------
+        throwError.invalidYear(6); //------------------------------------------------------------Prentar 2x----------------------------------------------------
+        cout << throwError.catchError();
         cont = true;
         return;
     }
@@ -596,11 +581,24 @@ void Console::readDeathYear(int &YOD, bool &cont)
     }
 }
 
+void Console::readFurtherInfo(string &furtherInfo)
+{
+    cout << "Further Information: ";
+    cin.ignore();
+    getline(cin, furtherInfo);
+
+    if(furtherInfo.length() > 0)
+        furtherInfo.at(0) = toupper(furtherInfo.at(0));
+}
+
 void Console::readNationality(string &nationality)
 {
+    do
+    {
     cout << "Nationality: ";
     cin.ignore();
     getline(cin, nationality);
+    }while(!scientistService.validNationality(nationality));
 
     if(nationality.length() > 0)
         nationality.at(0) = toupper(nationality.at(0));

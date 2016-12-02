@@ -19,19 +19,19 @@ public:
     /***************************************
                  Leitarföll
     ****************************************/
-    int dataSearch (string tmp);
-    int dataSearch (int tmp);
-    vector<int> dataSearch(string tmp,vector<Scientist> allScientist);
+    int dataSearch (string tmp);                                        // leitar í gagnagrunni með streng
+    int dataSearch (int tmp);                                           // leitar í gagnagrunni með tölu
+    vector<int> dataSearch(string tmp,vector<Scientist> allScientist);  // leitar í gagnagrunni í heilum vector
 
     /***************************************
                  Gagnagrunnsföll
     ****************************************/
-    void getData (string user);             //sækir gagnagrunn í eigu notanda í vinnslu
-    void writeData (string username);       //skrifar gagnagrunn á skrá frá notanda í vinnslu
-    vector<Scientist> pullData ();      //skilar öllum upplýsingum frá meðlimabreytum database klasanns ef kallað sé í fallið
-    void pushData (vector<Scientist> write);        //ýtir breyttum upplýsingum í gagnagrunni yfir í meðlimabreytur klasanns database
-    bool getUser (string username, string password);        //sækir upplýsingar um alla skráða notendur og athugar hvort notandi og aðgangsorð sé tiltækt
-    void createUser (string user, string password);     //býr til nýjan notanda með aðgangsorð í gagnagrunn og býr til gagnagrunn fyrir notandann
+    void getData (string user);                                         //sækir gagnagrunn í eigu notanda í vinnslu
+    void writeData (string username);                                   //skrifar gagnagrunn á skrá frá notanda í vinnslu
+    vector<Scientist> pullData ();                                      //skilar öllum upplýsingum frá meðlimabreytum database klasanns ef kallað sé í fallið
+    void pushData (vector<Scientist> write);                            //ýtir breyttum upplýsingum í gagnagrunni yfir í meðlimabreytur klasanns database
+    bool getUser (string username, string password);                    //sækir upplýsingar um alla skráða notendur og athugar hvort notandi og aðgangsorð sé tiltækt
+    void createUser (string user, string password);                     //býr til nýjan notanda með aðgangsorð í gagnagrunn og býr til gagnagrunn fyrir notandann
 
 private:
     /***************************************
@@ -45,17 +45,15 @@ private:
     vector<string> tempfInfo;
     string _username;
     string _password;
+    ErrorHandling output;
 
     /***************************************
                  Meðlimaföll
     ****************************************/
-    string encryptData (string n);      // tekur inn venjulegan streng og skilar strengnum kóðuðum
-    string decryptData (string n);      // tekur inn kóðaðan streng og skilar honum afkóðuðum
-    bool isEmpty (ifstream& input);     // athugar hvort skrá sé tóm
+    string encryptData (string n);                                                                                  // tekur inn venjulegan streng og skilar strengnum kóðuðum
+    string decryptData (string n);                                                                                  // tekur inn kóðaðan streng og skilar honum afkóðuðum
+    bool isEmpty (ifstream& input);                                                                                 // athugar hvort skrá sé tóm
     bool userCorrect (string username, string password, vector<string> allUsers, vector<string> allPasswords);      // ber saman notanda og lykilorð
-
-    ErrorHandling output;
-
 };
 
 #endif // DATABASE_H

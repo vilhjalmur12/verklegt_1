@@ -4,15 +4,8 @@ using namespace std;
 
 Service::Service()
 {
-    database dat;
-    data = dat;
-
-    ErrorHandling err;
-    throwError = err;
-
     data.getData(user);
     _scientists = data.pullData();
-   // cout << _scientists[0].getName();
 }
 
 Service::Service(string username)
@@ -225,8 +218,13 @@ bool Service::validYears(int birthYear, int deathYear)
 bool Service::validDeathYear(string input)
 {
     return regex_match(input, regex("^[0-9]+[0-9]*$"));
-
 }
+
+bool Service::validNationality(string &nationality)
+{
+    return regex_match(nationality, regex("(^[A-Za-z.-]+[ ]*([A-Za-z.-]||[ ])*$)"));
+}
+
 
 /**********************************************************
                  Hjálparföll fyrir search
