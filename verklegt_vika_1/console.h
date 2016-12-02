@@ -40,6 +40,8 @@ public:
 **************************************************/
     //Birta aðal valmynd
     void viewOrInsert();
+    //Login menu
+    void loginMenu();
     //Geyma valmöguleika
     char choice();
     //Kalla á framkvæmd eftir vali notanda

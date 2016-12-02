@@ -128,6 +128,18 @@ void Console::quitMenu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::loginMenu()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|             Choose option:            |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|             c - create new            |" << endl;
+    cout << "|               l - login               |" << endl;
+    cout << "|               q - quit                |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 /********************************************************
                      Keyrsluföll
 *********************************************************/
@@ -143,10 +155,11 @@ void Console::callUser ()
 
     while (!runProgram)
     {
-        cout << "login/create/quit\n->";
+        loginMenu();
+        cout << "-> ";
         cin >> action;
 
-        if (action == "create")
+        if (action == "c")
         {
             string confirmPass = "password";
 
@@ -169,7 +182,7 @@ void Console::callUser ()
             runProgram = true;
 
         }
-        else if (action == "login")
+        else if (action == "l")
         {
             cout << "Username: ";
             cin >> user;
@@ -187,7 +200,7 @@ void Console::callUser ()
                 cout << "Invalid user or password" << endl << endl;
             }
         }
-        else if (action == "quit")
+        else if (action == "q")
         {
                     exit(1);
         }
