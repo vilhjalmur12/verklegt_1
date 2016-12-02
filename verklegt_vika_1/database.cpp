@@ -18,7 +18,7 @@ database::~database () {}
 
 void database::getData (string user)
 {
-    string name, sex, furtherInfo, fullUser;
+    string name, sex, nationality, furtherInfo, fullUser;
     int DOB, DOD;
 
     ifstream dataInput;
@@ -37,50 +37,62 @@ void database::getData (string user)
         tempSex.push_back("Female");
         tempDOB.push_back(1815);
         tempDOD.push_back(1852);
+        tempNation.push_back("English");
         tempfInfo.push_back("First programmer");
         tempName.push_back("Charles Babbage");
         tempSex.push_back("Male");
         tempDOB.push_back(1791);
         tempDOD.push_back(1871);
+        tempNation.push_back("English");
         tempfInfo.push_back("The father of computing");
         tempName.push_back("Blaise Pascal");
         tempSex.push_back("Male");
         tempDOB.push_back(1623);
         tempDOD.push_back(1662);
+        tempNation.push_back("French");
         tempfInfo.push_back("Pascal language named after him");
         tempName.push_back("Gottfried Wilhelm Leibniz");
         tempSex.push_back("Male");
         tempDOB.push_back(1646);
         tempDOD.push_back(1716);
+        tempNation.push_back("Now he would be considered German");
         tempfInfo.push_back("Mechanical multiplier");
         tempName.push_back("Alan Turing");
         tempSex.push_back("Male");
         tempDOB.push_back(1912);
         tempDOD.push_back(1954);
+        tempNation.push_back("English");
         tempfInfo.push_back("Father of theoretical computer science");
         tempName.push_back("Tim Berners-Lee");
         tempSex.push_back("Male");
         tempDOB.push_back(1955);
+        tempDOD.push_back(1988);
+        tempNation.push_back("English");
         tempDOD.push_back(200000000);
         tempfInfo.push_back("Inventor of the World Wide Web");
         tempName.push_back("George Boole");
         tempSex.push_back("Male");
         tempDOB.push_back(1815);
         tempDOD.push_back(1864);
+        tempNation.push_back("English");
         tempfInfo.push_back("Boolean algebra");
         tempName.push_back("Edsger Dijkstra");
         tempSex.push_back("Male");
         tempDOB.push_back(1930);
         tempDOD.push_back(2002);
+        tempNation.push_back("Dutch");
         tempfInfo.push_back("Dijkstra's algorithm");
         tempName.push_back("Grace Hopper");
         tempSex.push_back("Female");
         tempDOB.push_back(1906);
         tempDOD.push_back(1992);
+        tempNation.push_back("American");
         tempfInfo.push_back("First compiler");
         tempName.push_back("Margaret Hamilton");
         tempSex.push_back("Female");
         tempDOB.push_back(1936);
+        tempDOD.push_back(1988);
+        tempNation.push_back("American");
         tempDOD.push_back(200000000);
         tempfInfo.push_back("Apollo mission");
 
@@ -99,7 +111,7 @@ void database::getData (string user)
 
         for(int i = 0; i < j; i++)
         {
-            dataInput >> name >> sex >> DOD >> DOB >> furtherInfo;
+            dataInput >> name >> sex >> DOD >> DOB >> nationality >> furtherInfo;
 
             name = decryptData(name);
             sex = decryptData(sex);
@@ -109,6 +121,8 @@ void database::getData (string user)
             tempSex.push_back(sex);
             tempDOB.push_back(DOB);
             tempDOD.push_back(DOD);
+            tempNation.push_back(nationality);
+            tempfInfo.push_back(furtherInfo); // Sandra baetti vid
             tempfInfo.push_back(furtherInfo);
         }
     }
@@ -128,7 +142,7 @@ bool database::isEmpty(ifstream& input)
  ****************************************************************************/
 void database::writeData (string username)
 {
-    string name, sex, furtherInfo;
+    string name, sex, nationality, furtherInfo;
     int DOB, DOD;
 
     string fullUser = "." + username + "_profile.dat";
@@ -149,10 +163,14 @@ void database::writeData (string username)
         sex = encryptData(sex);
         DOB = tempDOB[i];
         DOD = tempDOD[i];
+        nationality = tempNation[i];
+        nationality = encryptData(nationality);
+        furtherInfo = tempfInfo[i]; // Sandra baetti vid
+        furtherInfo = encryptData(furtherInfo); // Sandra baetti vid
         furtherInfo = tempfInfo[i];
         furtherInfo = encryptData(furtherInfo);
 
-        dataOutput << name << "\t" << sex << "\t" << DOD << "\t" << DOB << "\t" << furtherInfo << endl;
+        dataOutput << name << "\t" << sex << "\t" << DOD << "\t" << DOB << "\t" << "\t" << nationality << "\t" << furtherInfo << endl;
     }
 
     dataOutput.close();
@@ -204,6 +222,7 @@ void database::pushData (vector<Scientist> write)
     tempSex.clear();
     tempDOD.clear();
     tempDOB.clear();
+    tempNation.clear();
     tempfInfo.clear();
     
     for (unsigned int i = 0; i < write.size(); i++)
@@ -213,6 +232,7 @@ void database::pushData (vector<Scientist> write)
         tempSex.push_back(tmp.getSex());
         tempDOB.push_back(tmp.getYearOfBirth());
         tempDOD.push_back(tmp.getYearOfDeath());
+        tempNation.push_back(tmp.getNationality());
         tempfInfo.push_back(tmp.getFurtherInfo());
     }
 }
@@ -221,7 +241,7 @@ vector<Scientist> database::pullData ()
 {
     vector<Scientist> A;
     Scientist tmp;
-    string name, gender, furtherInfo;
+    string name, gender, nationality, furtherInfo;
     int DOB, DOD;
     
     for (unsigned int i = 0; i < tempName.size(); i++)
@@ -230,9 +250,12 @@ vector<Scientist> database::pullData ()
         gender = tempSex[i];
         DOB = tempDOB[i];
         DOD = tempDOD[i];
+        nationality = tempNation[i];
+        furtherInfo = tempfInfo[i]; // Lina by Sandra
         furtherInfo = tempfInfo[i];
+
         
-        tmp.pushScientist(name, gender, DOB, DOD, furtherInfo);
+        tmp.pushScientist(name, gender, DOB, DOD, nationality, furtherInfo);
         
         A.push_back(tmp);
         
@@ -361,3 +384,72 @@ bool database::userCorrect (string username, string password, vector<string> all
     }
     return false;
 }
+/*
+void database::testData (vector<Scientist> &allScientists)
+{
+    char cont;
+    string name, sex, nationality, furtherInfo;
+    int DOB, DOD;
+    Scientist tmp;
+
+    do
+    {
+        cout << "Add name: ";
+        cin >> name;
+        cout << "Sex: ";
+        cin >> sex;
+        cout << "Date of birth: ";
+        cin >> DOB;
+        cout << "Date of death: ";
+        cin >> DOD;
+        cout << "Nationality: ";
+        cin >> nationality;
+        cout << "Further information: "; // Lina by Sandra
+        cin >> furtherInfo;
+
+        tmp.pushScientist(name, sex, DOB, DOD, nationality, furtherInfo);
+        allScientists.push_back(tmp);
+
+        cout << "Continue?\t (y = yes, n = no)" << endl << "->";
+        cin >> cont;
+
+   //     tempName.push_back(name);
+   //     tempSex.push_back(sex);
+   //     tempDOB.push_back(DOB);
+   //     tempDOD.push_back(DOD);
+   //     tempfInfo.push_back(furtherInfo); // Lina by Sandra
+
+        cout << endl;
+
+    }while (cont != 'n');
+}
+
+void database::dataPrint (vector<Scientist> const allScientists)
+{
+    cout << "You selected\n";
+    string name, sex, nationality, furtherInfo;
+    int DOD, DOB;
+    Scientist tmp;
+
+    for (unsigned int i = 0; i < allScientists.size(); i++)
+    {
+        tmp = allScientists[i];
+        name = tmp.getName();
+        sex = tmp.getSex();
+        DOB = tmp.getYearOfBirth();
+        DOD = tmp.getYearOfDeath();
+        nationality = tmp.getNationality();
+        furtherInfo = tmp.getFurtherInfo();
+
+        cout << name << "\t" << sex << "\t" << DOB << "\t" << DOD << "\t" << "\t" << furtherInfo << endl;
+    }
+}
+
+void database::printSearch (int id)
+{
+    cout << "fannst eftirfarandi: \n";
+    cout << tempName[id] << "\t" << tempSex[id] << "\t" << tempDOB[id] << "\t" << tempDOD[id] << "\t" << tempNation[id] << "\t" << tempfInfo[id] << endl;
+
+}
+
+/*****************************************************************************/

@@ -9,17 +9,21 @@ class Scientist
 {
 public:
     Scientist();
-    Scientist(string name, string sex, int YOB, int YOD, string FI);
-    void pushScientist(string name, string sex, int DOB, int DOD, string FI);
+    Scientist(string name, string sex, int YOB, int YOD, string nationality, string FI);
+
+    void pushScientist(string name, string sex, int DOB, int DOD, string nationality, string FI);
+
 
 /**************************************************
       Föll til að ná upplýsingum um fræðingana
 **************************************************/
+
     string getName() const;
     string getSex() const;
     int getYearOfBirth() const;
     int getYearOfDeath() const;
     string getYearOfDeathForPrinting() const ;
+    string getNationality() const;
     string getFurtherInfo() const;
 
 /**************************************************
@@ -35,6 +39,7 @@ private:
     string _name;
     string _sex;
     string _furtherInfo;
+    string _nationality;
     int _yearOfBirth;
     int _yearOfDeath;
 };
