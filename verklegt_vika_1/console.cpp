@@ -552,7 +552,8 @@ void Console::readBirthYear(int &YOB, bool &cont)
     if(cin.fail())
     {
         cin.clear();
-        cin.sync();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+     //   cin.sync();
         throwError.invalidYear(4); //---------------------------------------------------------------------------------------------------------
 
         cont = true;
