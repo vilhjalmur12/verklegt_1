@@ -209,7 +209,6 @@ void Console::run()
     {
         viewOrInsert();
 
-        cout << "->";
         choiceMade();
 
     } while (programON == true);
