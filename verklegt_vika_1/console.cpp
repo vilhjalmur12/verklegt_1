@@ -298,7 +298,7 @@ string Console::continueFunction()
 
     while(cont != "y" && cont != "n")
     {
-        cout << "Please make a valid choice!" << endl << "->";
+        cout << "Please make a valid choice!" << endl << "-> ";
         cont = choice();
     }
 
@@ -337,7 +337,7 @@ string Console::choice()
 
 string Console::choiceMade()
 {
-    cout << "->";
+    cout << "-> ";
     string choice_made = choice();
     string cont = "y";
 
