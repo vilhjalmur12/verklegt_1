@@ -458,8 +458,6 @@ int Console::findIndexToEdit(string oldName)
         return -1;
 }
 
-
-
 void Console::pushBackScientist()
 {
     printPushBackMenu();
