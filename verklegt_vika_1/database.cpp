@@ -221,7 +221,7 @@ string database::decryptData (string n)
     Heldur utan um og hjálpar að kalla í notendur
  ******************************************************************/
 
-void database::getUser ()
+bool database::getUser (string username, string password)
 {
     vector<string> allUsers;
     vector<string> allPasswords;
@@ -235,6 +235,26 @@ void database::getUser ()
         userData.open("users.txt");
     }
 
+    int j = 0;
+    string line;
+    while (std::getline(userData, line)) {
+        j++;
+    }
+
+    userData.clear();
+    userData.seekg(0);
+
+    for (int i = 0; i < j; i++)
+    {
+        userData >> _username >> _password;
+        allUsers.push_back(username);
+        allPasswords.push_back(password);
+    }
+
+    if(userCorrect(username, password, allUsers, allPasswords))
+    {
+        return ture;
+    }
 
 
 
@@ -246,9 +266,27 @@ void database::getUser ()
                         TEST FÖLL
  Þessi föll hjálpa okkur að prufa og prenta vectora. Við eyðum eða færum þessi
  föll út úr klasanum fyrir skil.
-    testData
-    dataPrint
  ****************************************************************************/
+
+bool database::userCorrect (string username, string password, vector<string> allUsers, vector<string> allPasswords)
+{
+    string tmpUser, tmpPassword;
+    for (int i = 0; i < allUsers.size(); i++)
+    {
+        tmpUser = allUsers[i];
+        i++;
+        tmpPassword = allPasswords[i];
+
+        if (tmpUser == username && tmpPassword == password)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
 void database::testData (vector<Scientist> &allScientists)
 {
     char cont;

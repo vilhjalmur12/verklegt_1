@@ -22,7 +22,7 @@ public:
     void pushData (vector<Scientist> write);
     vector<Scientist> pullData ();
     vector<int> dataSearch(string tmp,vector<Scientist> allScientist);
-    void getUser ();
+    bool getUser (string username, string password);
 
     // tvö prufuföll - við skulum sjá til þess að færa þessi út úr klasanum fyrir skil
     void testData (vector<Scientist> &allScientists);
@@ -35,12 +35,13 @@ private:
     vector<int> tempDOB;
     vector<int> tempDOD;
     vector<string> tempfInfo;
-    string username;
-    string password;
+    string _username;
+    string _password;
 
     string encryptData (string n);
     string decryptData (string n);
     bool isEmpty (ifstream& input);
+    bool userCorrect (string username, string password, vector<string> allUsers, vector<string> allPasswords);
 
     ErrorHandling output;
 
