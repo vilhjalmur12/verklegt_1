@@ -108,6 +108,17 @@ void Console::printSearchMenu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::printEditMenu()
+{
+    cout << "-----------------------------------------" << endl;
+    cout << "|       What would you like to do?      |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|    l - see the full list of Scienti   |" << endl;
+    cout << "|      s - search for a scientist       |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 /********************************************************
                       Föll
 *********************************************************/
@@ -203,8 +214,7 @@ void Console::pushBackScientist()
 
             if(cin.fail())
             {
-                cin.clear();
-                cin.sync();
+                cin.ignore();
                 throwError.invalidYear(4);
                 cont = true;
                 continue;
@@ -212,7 +222,7 @@ void Console::pushBackScientist()
             if(YOB < -2700)
             {
                 cout << "Attention: your Computer Scientist will have to have been born before" << endl
-                     << "the invention of the abbacus, the first known tool used for computation" << endl
+                     << "the invention of the abacus, the first known tool used for computation" << endl
                      << "tip: enter an invalid Year of Death to re-input year of birth" << endl;
             }
 
@@ -298,30 +308,59 @@ int Console::findIndexToEdit(string oldName)
     vector<int> indexesWithQuery = (scientistService.getIndexesWith(oldName));
 
     printTable(indexesWithQuery);
+    cout << indexesWithQuery[0] << endl;
 
     int input;
 
     cout << "Please enter the number of the entry you want to edit: ";
     cin >> input;
 
-    index = indexesWithQuery[input];
+
+
+    index = indexesWithQuery[input-1];
 
     return index;
 }
 
 void Console::edit()
 {
-    string query;
-    printSearchMenu();
-    cout << "Query: ";
-    cin >> query;
-    int index = findIndexToEdit(query);
+    char choice = 'l';
+    int index;
+    printEditMenu();
+    do
+    {
+        cout << "-> ";
+        cin >> choice;
+        if(choice != 'l' || choice != 's' || cin.fail())
+            cout << "Please insert valid choice" << endl;
+    }while(choice != 'l' && choice != 's');
+
+    if(choice == 'l')
+    {
+        printTable();
+        do
+        {
+        cout << "Insert index to edit: ";
+        cin >> index;
+        if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
+            cout << "Please insert valid index!" << endl;
+        }while(index <= 0 || index > scientistService.getLengthOfData() || cin.fail());
+        index -= 1;
+    }
+    else
+    {
+        string query;
+        printSearchMenu();
+        cout << "Query: ";
+        cin >> query;
+        index = findIndexToEdit(query);
+    }
     cout << "--------Insert new Information:---------" << endl;
     pushBackScientist();
     scientistService.moveLastTo(index);
 }
 
-void Console::changeOrDelete()
+void Console::changeOrDelete(vector<int> indexes)
 {
     char changeDeleteChoice = choice();
 
@@ -331,16 +370,36 @@ void Console::changeOrDelete()
     }
     else if(changeDeleteChoice == 'd')
     {
-        string query;
-        cout << "Query for deletion: " << endl;
-        cin >> query;
-        int index = findIndexToEdit(query);
+        int index;
+        cout << "Insert the index you wish to delete: " << endl;
+        do
+        {
+            cin >> index;
+            if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
+                cout << "Please insert valid index!" << endl;
+        }while(index <= 0 || index > scientistService.getLengthOfData() || cin.fail());
+        index -= 1;
+        index = indexes[index];
         scientistService.removeScientist(index);
     }
 
     else if(changeDeleteChoice == 'e')
     {
-        edit();
+        int index;
+        cout << "Insert the index you wish to edit: " << endl;
+        do
+        {
+            cin >> index;
+            if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
+                cout << "Please insert valid index!" << endl;
+        }while(index <= 0 || index > scientistService.getLengthOfData() || cin.fail());
+
+        index -= 1;
+
+        index = indexes[index];
+
+        pushBackScientist();
+        scientistService.moveLastTo(index);
     }
     else if(changeDeleteChoice == 'm')
     {
@@ -361,7 +420,7 @@ void Console::search()
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);
     printTable(indexesToPrint);
     printChangeDelete();
-    changeOrDelete();
+    changeOrDelete(indexesToPrint);
 }
 
 void Console::printTable (vector<int> indexesToPrint)
@@ -375,7 +434,7 @@ void Console::printTable (vector<int> indexesToPrint)
     }
     else
     {
-        printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Fruther Information");
+        printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
         cout <<"-------------------------------------------------------------------------------------------------------" << endl;
 
         for (unsigned int i = 0; i < indexesToPrint.size(); i++)
@@ -439,7 +498,7 @@ void Console::printTable ()
     vector<Scientist> allScientists = scientistService.getScientists();
     Scientist tmp;
     
-    printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Fruther Information");
+    printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
     cout <<"-------------------------------------------------------------------------------------------------------" << endl;
     
     for (unsigned int i = 0; i < allScientists.size(); i++)

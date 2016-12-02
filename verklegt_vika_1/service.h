@@ -31,6 +31,7 @@ public:
 
     //Fyrsta breyta er val um hvernig skuli raða
     vector<Scientist> getScientists();
+    int getLengthOfData();
     void SortedScientistsBy(string choice = "na");
 
     //TODO: Færa search fall frá datadrengjum í cpp

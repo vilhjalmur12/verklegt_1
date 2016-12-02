@@ -68,13 +68,14 @@ private:
 **************************************************/
     int findIndexToEdit(string oldName);
     void printInsertMenu();
+    void printEditMenu();
     void pushBackScientist();
 
 /**************************************************
               Hjálparföll við search
 **************************************************/
     void printSearchMenu();
-    void changeOrDelete();
+    void changeOrDelete(vector<int> indexes);
 
 /**************************************************
                  Birta töflu

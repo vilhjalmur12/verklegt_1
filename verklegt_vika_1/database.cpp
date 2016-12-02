@@ -253,7 +253,7 @@ bool database::getUser (string username, string password)
 
     if(userCorrect(username, password, allUsers, allPasswords))
     {
-        return ture;
+        return true;
     }
 
 
