@@ -24,7 +24,7 @@ void database::getData (string user)
     int DOB, DOD;
 
     ifstream dataInput;
-    fullUser = user +".txt";
+    fullUser = "data/." + user +"_profile.dat";
 
     dataInput.open(fullUser);
     if (dataInput.fail())
@@ -134,7 +134,7 @@ void database::writeData (string username)
     string name, sex, furtherInfo;
     int DOB, DOD;
 
-    string fullUser = username + ".txt";
+    string fullUser = "data/." + username + "_profile.dat";
 
     ofstream dataOutput;
     dataOutput.open(fullUser);
@@ -276,12 +276,12 @@ bool database::getUser (string username, string password)
     vector<string> allPasswords;
 
     ifstream userData;
-    userData.open("users.txt");
+    userData.open("data/users.dat");
     if (userData.fail())
     {
-        fstream newUserData ("users.txt", std::ios::out);
+        fstream newUserData ("data/users.dat", std::ios::out);
         newUserData.close();
-        userData.open("users.txt");
+        userData.open("data/users.dat");
     }
 
     int j = 0;
@@ -315,12 +315,12 @@ bool database::getUser (string username, string password)
 void database::createUser (string user, string password)
 {
     ofstream userData;
-    userData.open("users.txt", std::ios::app);
+    userData.open("data/users.dat", std::ios::app);
     if (userData.fail())
     {
-        fstream newUserData ("users.txt", std::ios::out);
+        fstream newUserData ("data/users.dat", std::ios::out);
         newUserData.close();
-        userData.open("users.txt");
+        userData.open("data/users.dat");
     }
 
     string encUser, encPass;
@@ -381,12 +381,6 @@ void database::testData (vector<Scientist> &allScientists)
 
         cout << "Continue?\t (y = yes, n = no)" << endl << "->";
         cin >> cont;
-
-   //     tempName.push_back(name);
-   //     tempSex.push_back(sex);
-   //     tempDOB.push_back(DOB);
-   //     tempDOD.push_back(DOD);
-   //     tempfInfo.push_back(furtherInfo); // Lina by Sandra
 
         cout << endl;
 

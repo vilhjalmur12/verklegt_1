@@ -333,7 +333,7 @@ char Console::choice()
 
 void Console::choiceMade()
 {
-    cout << "->";
+    cout << "-> ";
     char choice_made = choice();
     char cont = 'y';
 
