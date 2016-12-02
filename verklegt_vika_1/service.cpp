@@ -182,7 +182,7 @@ bool Service::validYears(int birthYear, int deathYear)
         throwError.invalidYear(2);
         return false;
     }
-    if(birthYear == 200000000)
+    if(birthYear == maxDeathYear)
     {
         return true;
     }

@@ -13,6 +13,8 @@
 
 using namespace std;
 
+const int maxDeathYear = 200000000;
+
 class Service
 {
 public:
