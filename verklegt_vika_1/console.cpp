@@ -26,6 +26,7 @@ Console::~Console() { }
 
 void Console::welcome()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "|                                       |" << endl;
     cout << "|          Welcome to Database          |" << endl;
@@ -36,6 +37,7 @@ void Console::welcome()
 
 void Console::viewOrInsert()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "|                                       |" << endl;
     cout << "|           Choose procedure:           |" << endl;
@@ -50,6 +52,7 @@ void Console::viewOrInsert()
 
 void Console::printPushBackMenu()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "|       Please Insert Information       |" << endl;
     cout << "|        in the following format        |" << endl;
@@ -65,6 +68,7 @@ void Console::printPushBackMenu()
 
 void Console::sorting_menu()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "| In what order would you like to view? |" << endl;
     cout << "|                                       |" << endl;
@@ -82,6 +86,7 @@ void Console::sorting_menu()
 
 void Console::printChangeDelete()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "|       What would you like to do       |" << endl;
     cout << "|                                       |" << endl;
@@ -96,6 +101,7 @@ void Console::printChangeDelete()
 
 void Console::printSearchMenu()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "|                                       |" << endl;
     cout << "|      You can search by string         |" << endl;
@@ -109,6 +115,7 @@ void Console::printSearchMenu()
 
 void Console::printEditMenu()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "|       What would you like to do?      |" << endl;
     cout << "|                                       |" << endl;
@@ -120,6 +127,7 @@ void Console::printEditMenu()
 
 void Console::quitMenu()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "|                                       |" << endl;
     cout << "|     Thank you for using Database,     |" << endl;
@@ -337,9 +345,13 @@ string Console::choice()
 
 void Console::choiceMade()
 {
-    cout << "->";
+    cout << "-> ";
+
     string choice_made = choice();
     string cont = "y";
+
+
+
 
     if (choice_made == "v")
     {
@@ -573,6 +585,7 @@ void Console::readDeathYear(int &YOD, bool &cont)
 
 void Console::changeOrDelete(vector<int> indexes)
 {
+    cout << "-> ";
     string changeDeleteChoice = choice();
 
     if(changeDeleteChoice == "q")
