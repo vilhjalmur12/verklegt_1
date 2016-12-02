@@ -159,8 +159,9 @@ void Console::pushBackScientist()
             cin >> sex;
         }while(!scientistService.validSex(sex));
 
-        cin.sync();
         cin.clear();
+        cin.sync();
+
         cout << "Further Information: ";
         getline(cin, furtherInfo);
 
