@@ -44,7 +44,7 @@ public:
     //Geyma valmöguleika
     string choice();
     //Kalla á framkvæmd eftir vali notanda
-    string choiceMade();
+    void choiceMade();
     //Bjóða uppá að eiga við lista
     void printChangeDelete();
     void quitMenu();

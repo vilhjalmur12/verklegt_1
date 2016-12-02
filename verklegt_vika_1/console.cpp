@@ -335,7 +335,7 @@ string Console::choice()
     return choice_made;
 }
 
-string Console::choiceMade()
+void Console::choiceMade()
 {
     cout << "->";
     string choice_made = choice();
