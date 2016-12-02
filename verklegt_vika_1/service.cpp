@@ -91,7 +91,7 @@ bool Service::appendScientist(string name, string sex, int birthYear, int deathY
     {
         if(tempScientist == _scientists[i])
         {
-            throwError.invalidName(1);
+            throwError.invalidName(1); //-------------------------------------------------------------------------------------------------------
             return false;
         }
     }
@@ -157,7 +157,7 @@ bool Service::validName(string &name)
 
     if (containsDigits)
     {
-        throwError.invalidName(2);
+        throwError.invalidName(2); //----------------------------------------------------------------------------------------------
         return false;
     }
     return true;
@@ -181,7 +181,7 @@ bool Service::validSex(string& sex)
 
     else
     {
-        throwError.invalidSex();
+        throwError.invalidSex(); //-------------------------------------------------------------------------------------------------
         return false;
     }
 }
@@ -194,19 +194,19 @@ bool Service::validYears(int birthYear, int deathYear)
 
     if(birthYear < -193000)
     {
-        throwError.invalidYear(3);
+        throwError.invalidYear(3); //----------------------------------------------------------------------------------------------------------
         return false;
     }
 
     if(deathYear < birthYear)
     {
-        throwError.invalidYear(1);
+        throwError.invalidYear(1); //----------------------------------------------------------------------------------------------------------------------
         return false;
     }
         //pointer + 1900 == núverandi ár
     if(birthYear > timePtr->tm_year + 1900)
     {
-        throwError.invalidYear(2);
+        throwError.invalidYear(2); //--------------------------------------------------------------------------------------------------------
         return false;
     }
     if(birthYear == maxDeathYear)
@@ -215,25 +215,10 @@ bool Service::validYears(int birthYear, int deathYear)
     }
     if(deathYear > timePtr->tm_year + 1900)
     {
-        throwError.invalidYear(5);
+        throwError.invalidYear(5); //----------------------------------------------------------------------------------------------------------
         return false;
     }
 
-    return true;
-}
-
-
-bool Service::validNationality(string& nationality)
-{
-    nationality = fixString(nationality);
-
-    bool containsDigits = !regex_match(nationality, regex("^[A-Za-z]+[ ]*([A-Za-z]||[ ])*$"));
-
-    if (containsDigits)
-    {
-        throwError.invalidNationality(1);
-        return false;
-    }
     return true;
 }
 
