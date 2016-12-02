@@ -350,9 +350,6 @@ void Console::choiceMade()
     string choice_made = choice();
     string cont = "y";
 
-
-
-
     if (choice_made == "v")
     {
         do
@@ -665,6 +662,7 @@ void Console::printTable (vector<int> indexesToPrint)
 
     if(indexesToPrint.size() == 0)
     {
+        cout << endl;
         cout << "No related indexes found" << endl;
     }
     else
