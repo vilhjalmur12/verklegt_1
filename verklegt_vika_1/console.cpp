@@ -138,6 +138,10 @@ void Console::callUser ()
     string password, action;
     bool runProgram = false;
 
+    welcome();
+    toContinue();
+
+
     while (!runProgram)
     {
         cout << "login/create/quit\n->";
@@ -199,9 +203,6 @@ void Console::callUser ()
 void Console::run()
 {
     bool programON = true;
-
-    welcome();
-    toContinue();
 
     do
     {
