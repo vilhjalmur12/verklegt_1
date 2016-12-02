@@ -256,9 +256,7 @@ bool database::getUser (string username, string password)
         return true;
     }
 
-
-
-
+    return false;
 }
 
 
@@ -271,7 +269,7 @@ bool database::getUser (string username, string password)
 bool database::userCorrect (string username, string password, vector<string> allUsers, vector<string> allPasswords)
 {
     string tmpUser, tmpPassword;
-    for (int i = 0; i < allUsers.size(); i++)
+    for (unsigned int i = 0; i < allUsers.size(); i++)
     {
         tmpUser = allUsers[i];
         i++;
