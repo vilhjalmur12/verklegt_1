@@ -213,6 +213,8 @@ void Console::pushBackScientist()
 
             if(cin.fail())
             {
+                cin.clear();
+                cin.sync();
                 throwError.invalidYear(4);
                 cont = true;
                 continue;
