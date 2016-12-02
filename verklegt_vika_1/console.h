@@ -61,7 +61,7 @@ private:
     int findIndexToEdit(string oldName);                                                                            //Finnur nr. á vísindamann sem á að edit-a
     void printPushBackMenu();                                                                                       //Byrtir valmynd þegar nýr vísindamaður er settur í gagnagrunn
     void printEditMenu();                                                                                           //Birtir valmynd þegar edit-a á vísindamann
-    void pushBackScientist();                                                                                       //
+    void pushBackScientist();                                                                                       //Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
     void createScientist(string& name, string& sex, int& YOB, int& YOD, string& nationality, string& furtherInfo);  //Býr til nýjan vísindamann
     void readName(string& name);                                                                                    //Tekur inn nafn fyrir vísindamann
     void readSex(string& sex);                                                                                      //Tekur inn kyn fyrir vísindamann
