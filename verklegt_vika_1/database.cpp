@@ -62,7 +62,7 @@ void database::getData ()
         tempName.push_back("Tim Berners-Lee");
         tempSex.push_back("Male");
         tempDOB.push_back(1955);
-        tempDOD.push_back(2016);
+        tempDOD.push_back(1988);
         tempfInfo.push_back("Inventor of the World Wide Web");
         tempName.push_back("George Boole");
         tempSex.push_back("Male");
@@ -82,7 +82,7 @@ void database::getData ()
         tempName.push_back("Margaret Hamilton");
         tempSex.push_back("Female");
         tempDOB.push_back(1936);
-        tempDOD.push_back(2016);
+        tempDOD.push_back(1988);
         tempfInfo.push_back("Apollo mission");
 
     }
