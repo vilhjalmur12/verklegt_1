@@ -94,6 +94,11 @@ vector<Scientist> Service::getScientists()
     return _scientists;
 }
 
+int Service::getLengthOfData()
+{
+    return _scientists.size();
+}
+
 void Service::SortedScientistsBy(string choice)
 {
     if (choice == "na")
