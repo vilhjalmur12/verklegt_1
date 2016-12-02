@@ -210,24 +210,25 @@ void Console::run()
         viewOrInsert();
 
         choiceMade();
+        cin.ignore();
 
     } while (programON == true);
 }
 
 void Console::edit()
 {
-    char choice = 'l';
+    string choice = "l";
     int index;
     printEditMenu();
     do
     {
         cout << "-> ";
         cin >> choice;
-        if((choice != 'l' && choice != 's') || cin.fail())
+        if((choice != "l" && choice != "s") || cin.fail())
             cout << "Please insert valid choice" << endl;
-    }while(choice != 'l' && choice != 's');
+    }while(choice != "l" && choice != "s");
 
-    if(choice == 'l')
+    if(choice == "l")
     {
         printTable();
         do
@@ -261,6 +262,7 @@ void Console::search()
     printSearchMenu();
     cout << "Query: ";
     cin >> query;
+    cin.ignore();
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);
     printTable(indexesToPrint);
     printChangeDelete();
@@ -273,13 +275,13 @@ void Console::viewDisplay()
     sorting_menu();
 }
 
-char Console::continueFunction()
+string Console::continueFunction()
 {
-    char cont;
+    string cont;
     cout << "Would you like to view again?\t(y/n)" << endl << "-> ";
     cont = choice();
 
-    while(cont != 'y' && cont != 'n')
+    while(cont != "y" && cont != "n")
     {
         cout << "Please make a valid choice!" << endl << "->";
         cont = choice();
@@ -310,21 +312,21 @@ void Console::toContinue()
                    Valmyndarföll
 *********************************************************/
 
-char Console::choice()
+string Console::choice()
 {
-    char choice_made;
+    string choice_made;
     cin >> choice_made;
 
     return choice_made;
 }
 
-void Console::choiceMade()
+string Console::choiceMade()
 {
     cout << "->";
-    char choice_made = choice();
-    char cont = 'y';
+    string choice_made = choice();
+    string cont = "y";
 
-    if (choice_made == 'v')
+    if (choice_made == "v")
     {
         do
         {
@@ -335,23 +337,23 @@ void Console::choiceMade()
         sorting(str);
 
         cont = continueFunction();
-        }while(cont == 'y');
+        }while(cont == "y");
     }
-    else if (choice_made == 'i')
+    else if (choice_made == "i")
     {
         pushBackScientist();
     }
 
-    else if (choice_made == 's')
+    else if (choice_made == "s")
     {
         search();
     }
 
-    else if(choice_made == 'e')
+    else if(choice_made == "e")
     {
         edit();
     }
-    else if (choice_made == 'q')
+    else if (choice_made == "q")
     {
         quit();
     }
@@ -559,13 +561,13 @@ void Console::readDeathYear(int &YOD, bool &cont)
 
 void Console::changeOrDelete(vector<int> indexes)
 {
-    char changeDeleteChoice = choice();
+    string changeDeleteChoice = choice();
 
-    if(changeDeleteChoice == 'q')
+    if(changeDeleteChoice == "q")
     {
         quit();
     }
-    else if(changeDeleteChoice == 'd')
+    else if(changeDeleteChoice == "d")
     {
         int index;
         cout << "Insert the index you wish to delete: " << endl;
@@ -580,7 +582,7 @@ void Console::changeOrDelete(vector<int> indexes)
         scientistService.removeScientist(index);
     }
 
-    else if(changeDeleteChoice == 'e')
+    else if(changeDeleteChoice == "e")
     {
         int index;
         cout << "Insert the index you wish to edit: " << endl;
@@ -598,11 +600,11 @@ void Console::changeOrDelete(vector<int> indexes)
         pushBackScientist();
         scientistService.moveLastTo(index);
     }
-    else if(changeDeleteChoice == 'm')
+    else if(changeDeleteChoice == "m")
     {
 
     }
-    else if(changeDeleteChoice == 's')
+    else if(changeDeleteChoice == "s")
     {
         search();
     };
