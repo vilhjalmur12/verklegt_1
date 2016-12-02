@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
     Console screen;
-    screen.run();
+    screen.callUser();
 
     /*
     //database data;

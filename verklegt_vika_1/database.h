@@ -23,6 +23,7 @@ public:
     vector<Scientist> pullData ();
     vector<int> dataSearch(string tmp,vector<Scientist> allScientist);
     bool getUser (string username, string password);
+    void createUser (string user, string password);
 
     // tvö prufuföll - við skulum sjá til þess að færa þessi út úr klasanum fyrir skil
     void testData (vector<Scientist> &allScientists);

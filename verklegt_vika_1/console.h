@@ -26,6 +26,7 @@ public:
     //Spyr hvort eigi að endurtaka aðgerð og geymir valið y/n
     char continueFunction();
     void quit();
+    void callUser ();
 
 /**************************************************
                     Opnunarföll
@@ -63,6 +64,7 @@ private:
 **************************************************/
     Service scientistService;
     ErrorHandling throwError;
+    string user;
 
 /**************************************************
                Hjálparföll við edit
