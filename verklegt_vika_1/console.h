@@ -83,8 +83,6 @@ private:
 **************************************************/
     void printTable();
     void printTable(vector<int> indexesToPrint);
-
-
 };
 
 #endif // CONSOLE_H
