@@ -4,6 +4,7 @@
 #include "errorhandling.h"
 #include "scientist.h"
 #include "database.h"
+
 #include <algorithm>
 #include <iostream>
 #include <string>
