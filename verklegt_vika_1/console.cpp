@@ -122,6 +122,69 @@ void Console::printEditMenu()
 /********************************************************
                       Föll
 *********************************************************/
+void Console::callUser ()
+{
+    database data;
+    string password, action;
+    bool runProgram = false;
+
+    while (!runProgram)
+    {
+        cout << "login/create/quit\n->";
+        cin >> action;
+
+        if (action == "create")
+        {
+            string confirmPass = "password";
+
+            cout << "Choose Username: ";
+            cin >> user;
+
+            while (password != confirmPass)
+            {
+                cout << "Choose Password: ";
+                cin >> password;
+                cout << "Confirm Password: ";
+                cin >> confirmPass;
+
+                if (password != confirmPass)
+                {
+                    cout << "You didn't confirm the right password" << endl;
+                }
+            }
+            data.createUser(user, password);
+            runProgram = true;
+
+        }
+        else if (action == "login")
+        {
+            cout << "Username: ";
+            cin >> user;
+            cout << "Password: ";
+            cin >> password;
+
+            bool foundUser = data.getUser(user, password);
+
+            if (foundUser == true)
+            {
+                runProgram = true;
+            }
+            else
+            {
+                cout << "Invalid user or password" << endl << endl;
+            }
+        }
+        else if (action == "quit")
+        {
+                    exit(1);
+        }
+        else
+        {
+            cout << "Invaid action!" << endl << endl;
+        }
+    }
+    run();
+}
 
 char Console::continueFunction()
 {
