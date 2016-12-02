@@ -1,25 +1,28 @@
 #include "service.h"
 
 using namespace std;
-
+/****************************************************************************
+                               Constructor
+                        fyllir data objectinn og dælir gildum þaðan í
+                        _scientists vectorinn
+*****************************************************************************/
 Service::Service()
 {
     data.getData(user);
     _scientists = data.pullData();
 }
 
+/****************************************************************************
+                               Constructot
+                     Býr til notendanafn og gerir það sama
+                     og constructor að ofan
+                     @parameter(string username) - innslegið notendanafn
+ ****************************************************************************/
 Service::Service(string username)
 {
     user = username;
-    database dat;
-    data = dat;
-
-    ErrorHandling err;
-    throwError = err;
-
     data.getData(user);
     _scientists = data.pullData();
-   // cout << _scientists[0].getName();
 }
 
 Service::~Service()
@@ -27,27 +30,38 @@ Service::~Service()
     
 }
 
-void pushUser (/*string username*/)
-{
-
-}
-
-/**********************************************************
-                   Vinna með vísindamenn
-**********************************************************/
-
+/****************************************************************************
+                                  saveData
+                     Vistar vísindamenn í meðlimavector út
+                     í database skrá
+ ****************************************************************************/
 void Service::saveData ()
 {
     data.pushData(_scientists);
     data.writeData(user);
 }
 
+
+/****************************************************************************
+                               getErrorString
+                     Sækir error message'ið sem er geymt í
+                     throw error objectinu, ef enginn
+                     error hefur verið skráður þá er
+                     strengurinn tómur
+ ****************************************************************************/
 string Service::getErrorString()
 {
     return throwError.catchError();
 }
 
-string Service::removeSpaces(string& before)
+/****************************************************************************
+                               removeSpaces
+                     Endurkvæmt fall sem fjarlægir öll
+                     bil nema eitt ef þau eru samliggjandi
+            @parameter(string before) - strengurinn með bilunum
+            @return(string before) - strengurinn þegar búið er að fjarlægja bil
+ ****************************************************************************/
+string Service::removeSpaces(string before)
 {
     for(unsigned int i = 0; i < before.length()-1; i++)
     {
@@ -60,8 +74,15 @@ string Service::removeSpaces(string& before)
     return before;
 }
 
-//Stillir fyrsta staf hvers orðs stóran og hina litla
-string Service::fixString(string& before)
+/****************************************************************************
+                               fixString
+                     Fall sem tekur streng og passar
+                     að fyrstu stafir allra orða séu
+                     stórir
+            @parameter(string before) - strengurinn fyrir
+            @return(string before) - strengurinn þegar búið er að stækka stafi
+ ****************************************************************************/
+string Service::fixString(string before)
 {
     char a = before.at(0);
     before.at(0) = toupper(a);
@@ -82,6 +103,15 @@ string Service::fixString(string& before)
     return before;
 }
 
+/****************************************************************************
+                               appendScientist
+                     Býr til vísindamann með fylgibreytum
+                     (því sem hann tekur inn)
+                     @return true ef vísindamaður er ekki nú þegar til
+                     @return false ef vísindamaður er til
+            *Til að vísindamaður sé til þurfa allar breytur að
+            *vera þær sömu
+ ****************************************************************************/
 bool Service::appendScientist(string name, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
 {
     Scientist tempScientist(name, sex, birthYear, deathYear, nationality, furtherInfo);
@@ -89,7 +119,7 @@ bool Service::appendScientist(string name, string sex, int birthYear, int deathY
     {
         if(tempScientist == _scientists[i])
         {
-            throwError.invalidName(1); //-------------------------------------------------------------------------------------------------------
+            throwError.invalidName(1);
             return false;
         }
     }
@@ -98,11 +128,22 @@ bool Service::appendScientist(string name, string sex, int birthYear, int deathY
     return true;
 }
 
+/****************************************************************************
+                               removeScientist
+                     Fjarlægir vísindamann skv index
+            @parameter(const int index) - index þess sem eyða á
+ ****************************************************************************/
 void Service::removeScientist(const int index)
 {
     _scientists.erase(_scientists.begin()+index);
 }
 
+/****************************************************************************
+                               moveLastTo
+                     Færir aftasta mann í sæti index
+                     minnkar síðan vectorinn um einn
+            @parameter(int index) - index sem færa á í
+ ****************************************************************************/
 void Service::moveLastTo(int index)
 {
     _scientists[index] = _scientists.back();
@@ -114,12 +155,23 @@ vector<Scientist> Service::getScientists()
     return _scientists;
 }
 
+/****************************************************************************
+                               getLengthOfData()
+                    skilar fjölda vísindamanna í gagnagrunni
+ ****************************************************************************/
 int Service::getLengthOfData()
 {
     return _scientists.size();
 }
 
-void Service::SortedScientistsBy(string choice)
+/****************************************************************************
+                        sortScientistsBy
+               Raðar vector vísindamanna í röð eftir því
+               sem notandi biður um
+        @parameter(string choice) - er "na" by default en annað ef notandi biður um annað
+            na=NameAscending, nd=NameDescending o.s.frv.
+ ****************************************************************************/
+void Service::sortScientistsBy(string choice/*="na"*/)
 {
     if (choice == "na")
         sortByNameAscending();
@@ -143,10 +195,15 @@ void Service::SortedScientistsBy(string choice)
         sortByNationalityDescending();
 }
 
-/**********************************************************
-                   Villumeldingar
-**********************************************************/
 
+/****************************************************************************
+                               validName
+                    Athugar hvort að nafn innihaldi skrítin tákn
+                    og stækkar fyrsta staf allra orða
+            @parameter(string& name) - nafnið, by reference til að breyta
+            @return true - ef nafnið er gilt
+            @return false - ef nafnið er ógilt
+ ****************************************************************************/
 bool Service::validName(string &name)
 {
     name = fixString(name);
@@ -155,12 +212,21 @@ bool Service::validName(string &name)
 
     if (containsDigits)
     {
-        throwError.invalidName(2); //----------------------------------------------------------------------------------------------
+        throwError.invalidName(2);
         return false;
     }
     return true;
 }
 
+/****************************************************************************
+                               validSex
+                     tekur inn kyn og stækkar fyrsta stafinn
+                     passar svo að nafn verði annað hvort
+                     "Male" eða "Female"
+                     @parameter(string& sex) - innslegid kyn
+                     @return true - ef kyn er gilt
+                     @return false - ef kyn er ógilt
+ ****************************************************************************/
 bool Service::validSex(string& sex)
 {
     sex = fixString(sex);
@@ -179,11 +245,19 @@ bool Service::validSex(string& sex)
 
     else
     {
-        throwError.invalidSex(); //-------------------------------------------------------------------------------------------------
+        throwError.invalidSex();
         return false;
     }
 }
 
+/****************************************************************************
+                               validYears
+                     tekur inn bæði ártöl og athugar villur
+
+                     @parameter(int birthYear, int deathYear) - innslegin ár
+                     @return true - ef ár eru gild
+                     @return false - ef ár eru ógild
+ ****************************************************************************/
 bool Service::validYears(int birthYear, int deathYear)
 {
     //Pointer heldur utan um núverandi ár -1900
@@ -192,19 +266,19 @@ bool Service::validYears(int birthYear, int deathYear)
 
     if(birthYear < -193000)
     {
-        throwError.invalidYear(3); //----------------------------------------------------------------------------------------------------------
+        throwError.invalidYear(3);
         return false;
     }
 
     if(deathYear < birthYear)
     {
-        throwError.invalidYear(1); //----------------------------------------------------------------------------------------------------------------------
+        throwError.invalidYear(1);
         return false;
     }
         //pointer + 1900 == núverandi ár
     if(birthYear > timePtr->tm_year + 1900)
     {
-        throwError.invalidYear(2); //--------------------------------------------------------------------------------------------------------
+        throwError.invalidYear(2);
         return false;
     }
     if(birthYear == maxDeathYear)
@@ -213,29 +287,55 @@ bool Service::validYears(int birthYear, int deathYear)
     }
     if(deathYear > timePtr->tm_year + 1900)
     {
-        throwError.invalidYear(5); //----------------------------------------------------------------------------------------------------------
+        throwError.invalidYear(5);
         return false;
     }
 
     return true;
 }
 
+/****************************************************************************
+                               validDeathYear
+              athugar hvort innslegið ár innihaldi annað en tölustafi
+                     @parameter(string input) - innslegid ár
+                     @return true - ef ár er gilt
+                     @return false - ef ár er ógilt
+ ****************************************************************************/
 bool Service::validDeathYear(string input)
 {
     return regex_match(input, regex("^[0-9]+[0-9]*$"));
 }
 
-bool Service::validNationality(string &nationality)
+/****************************************************************************
+                               validNationality
+
+                     @parameter(string n) - innslegid kyn
+                     @return true - ef kyn er gilt
+                     @return false - ef kyn er ógilt
+ ****************************************************************************/
+bool Service::validNationality(string& nationality)
 {
-    return regex_match(nationality, regex("(^[A-Za-z.-]+[ ]*([A-Za-z.-]||[ ])*$)"));
+    nationality = fixString(nationality);
+
+    bool containsDigits = !regex_match(nationality, regex("(^[A-Za-z]+[ ]*([A-Za-z]||[ ])*$)"));
+
+    if (containsDigits)
+    {
+        throwError.invalidNation();
+        return false;
+    }
+    return true;
 }
 
 
-/**********************************************************
-                 Hjálparföll fyrir search
-**********************************************************/
-
-//Leitar í gagnagrunn eftir öld
+/****************************************************************************
+                               findInInt
+                     ber saman fylgibreytur
+                     @parameter(int query) - ár sem leitað er að
+                     @parameter(int year) - ár sem leitað er eftir
+                     @return true - ef query nefnir rétt ár/áratug/árhundrað
+                     @return false - ef skilyrði að ofan eru óuppfyllt
+ ****************************************************************************/
 bool Service::findInInt(int query, int year)
 {
     int century = (year / 100)*100;
@@ -248,6 +348,16 @@ bool Service::findInInt(int query, int year)
     return false;
 }
 
+/****************************************************************************
+                               findInString
+                     ber saman fylgibreytur án þess að pæla
+                     í stórum og litlum stöfum
+
+                     @parameter(string query) - strengur sem leitað er að
+                     @parameter(string String) - strengur sem leitað er í
+                     @return true - ef query finnst sem heill-/hlutstrengur String
+                     @return false - ef skilyrði að ofan eru óuppfyllt
+ ****************************************************************************/
 bool Service::findInString(string query, string String)
 {
     transform(query.begin(), query.end(), query.begin(), ::tolower);
@@ -269,7 +379,13 @@ bool Service::findInString(string query, string String)
     return false;
 }
 
-//Leitarvél sem skilar index-um í gagnagrunn
+/****************************************************************************
+                               getIndexesWith
+                     Finnur indexa alla þeirra vísindamanna
+                     sem uppfylla leitarskilyrði má vera tala eða strengur.
+                     @parameter(string query) - Strengur/tala sem leitað er að
+                     @return vector<int> - indexar allra þeirra vísindamanna sem uppfylltu skilyrði
+ ****************************************************************************/
 vector<int> Service::getIndexesWith(string query)
 {
     vector<int> foundScientists;
@@ -302,6 +418,11 @@ vector<int> Service::getIndexesWith(string query)
 
 /**********************************************************
                    Struct til að sortera
+                 struct sem sort algorithm'inn
+                 þarf á að halda til að kunna að
+                 bera saman tvo vísindamenn.
+                 Tilgangur hvers er talin augljós
+                 útfrá nafni
 **********************************************************/
 
 struct nameAscending
@@ -354,7 +475,10 @@ struct nationalityDescending
     bool operator() (Scientist i, Scientist j) { return (i.getNationality()>j.getNationality());}
 };
 /**********************************************************
-              Sorting algrímar - getScientist
+              Sort föll
+              Þau föll sem kallað er í til að
+              raða meðlimavector í þá röð sem
+              nafn hvers falls segir til um
 **********************************************************/
 
 void Service::sortByNameAscending()

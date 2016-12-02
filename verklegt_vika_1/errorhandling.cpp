@@ -86,11 +86,16 @@ void ErrorHandling::invalidYear (int errorCode)
     }
 }
 
+
+void ErrorHandling::invalidNation()
+{
+    errorMessage = "ERROR: Invalid characters in nationality!\n";
+}
+
 /****************************************************************************
                          catchError
                         Endurstillir
  ****************************************************************************/
-
 string ErrorHandling::catchError()
 {
     string tmpError = errorMessage;

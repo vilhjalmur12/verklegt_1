@@ -331,6 +331,7 @@ void Console::viewDisplay()
                          continueFunction
       Eftir að notandi velur að skoða listan þá er hann spurður hvort hann
       vilji skoða hann aftur með vali um y/n.
+      @return(string cont) - y/n frá notenda
  ******************************************************************************/
 string Console::continueFunction()
 {
@@ -376,8 +377,8 @@ void Console::toContinue()
 
 /******************************************************************************
                          toContinue
-      Notandi þarf að ýta á enter til að komast í fram hjá upphafs glugga í
-      fyrstu valmynd.
+      Tekur á móti ákvörðun frá notanda um hvað á að gera frá fyrstu valmynd.
+      @return(choice_made) - ákvörðun frá notenda
  ******************************************************************************/
 string Console::choice()
 {
@@ -387,6 +388,11 @@ string Console::choice()
     return choice_made;
 }
 
+/******************************************************************************
+                         choiceMade
+      Tekur við ákvörðun frá notanda um hvað á að gera frá fyrstu valmynd.
+      v-skoða lista, i-bæta við nýjum, s-leita, e-edit, q-hætta.
+ ******************************************************************************/
 void Console::choiceMade()
 {
     cout << "-> ";
@@ -430,9 +436,11 @@ void Console::choiceMade()
     }
 }
 
-/********************************************************
-                    Sorting föll
-*********************************************************/
+/******************************************************************************
+                         stringChoice
+      Tekur á móti ákvörðun um hvernig notandi vill sorta lista.
+      @return(string str) - sorting command frá notenda
+ ******************************************************************************/
 
 string Console::stringChoice()
 {
@@ -444,8 +452,9 @@ string Console::stringChoice()
 
 /********************************************************
                     sorting
-   Leifir notenda að velja hvernig hann skoðar listan
-   @
+  Tekur inn ávörðun frá notenda um hvernig hann skoðar listan.
+  Prentar lista út í samræmi.
+  @parameter(string str) - ákvörðun frá notenda
 *********************************************************/
 
 void Console::sorting(string str)
@@ -457,7 +466,7 @@ void Console::sorting(string str)
     {
         if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd" || str == "nta" || str == "ntd")
         {
-            scientistService.SortedScientistsBy(str);
+            scientistService.sortScientistsBy(str);
             printTable();
             isRunning = false;
         }
@@ -470,7 +479,10 @@ void Console::sorting(string str)
 }
 
 /********************************************************
-                  Hjálparföll við edit
+                    findIndexToEdit
+  Finnur það index af vísindamanni sem notandi vill edit-a
+  @parameter(string oldName) - leitarstrengur frá notenda
+  @return(int index) - tilvísun í ákveðin vísindamann í lista
 *********************************************************/
 
 int Console::findIndexToEdit(string oldName)
