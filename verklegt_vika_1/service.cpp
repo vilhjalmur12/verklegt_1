@@ -34,7 +34,7 @@ Service::~Service()
     
 }
 
-void pushUser (string username)
+void pushUser (/*string username*/)
 {
 
 }
@@ -153,7 +153,7 @@ bool Service::validName(string &name)
 {
     name = fixString(name);
 
-    bool containsDigits = !regex_match(name, regex("^[A-Za-z]+[ ]*([A-Za-z]||[ ])*$"));
+    bool containsDigits = !regex_match(name, regex("(^[A-Za-z.-]+[ ]*([A-Za-z.-]||[ ])*$)"));
 
     if (containsDigits)
     {
@@ -222,6 +222,7 @@ bool Service::validYears(int birthYear, int deathYear)
     return true;
 }
 
+
 bool Service::validNationality(string& nationality)
 {
     nationality = fixString(nationality);
@@ -234,6 +235,12 @@ bool Service::validNationality(string& nationality)
         return false;
     }
     return true;
+}
+
+bool Service::validDeathYear(string input)
+{
+    return regex_match(input, regex("^[0-9]+[0-9]*$"));
+
 }
 
 /**********************************************************
@@ -265,7 +272,7 @@ bool Service::findInString(string query, string String)
         return !String.compare(0, query.length(), query);
     }
 
-    for(unsigned int i = 0; i < (String.length() - query.length()); i++)
+    for(unsigned int i = 0; i <= (String.length() - query.length()); i++)
     {
         if(!String.compare(i, query.length(), query))
             return true;

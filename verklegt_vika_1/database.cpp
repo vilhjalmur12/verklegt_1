@@ -8,14 +8,12 @@
 using namespace std;
 
 database::database () {}
-
 database::~database () {}
 
 /****************************************************************************
-                getData
-
- fall sem sækir allar niðurstöður úr gagnagrunni og skilar þeim í vectora svo við höfum þá til notkunar allann
- tíman sem við erum að vinna í forritinu.
+                    getData
+ fall sem sækir allar niðurstöður úr gagnagrunni og skilar þeim í vectora svo
+ við höfum þá til notkunar allann tíman sem við erum að vinna í forritinu.
  ****************************************************************************/
 
 void database::getData (string user)
@@ -24,7 +22,7 @@ void database::getData (string user)
     int DOB, DOD;
 
     ifstream dataInput;
-    fullUser = user +".txt";
+    fullUser = "." + user +"_profile.dat";
 
     dataInput.open(fullUser);
     if (dataInput.fail())
@@ -70,6 +68,7 @@ void database::getData (string user)
         tempDOB.push_back(1955);
         tempDOD.push_back(1988);
         tempNation.push_back("English");
+        tempDOD.push_back(200000000);
         tempfInfo.push_back("Inventor of the World Wide Web");
         tempName.push_back("George Boole");
         tempSex.push_back("Male");
@@ -94,6 +93,7 @@ void database::getData (string user)
         tempDOB.push_back(1936);
         tempDOD.push_back(1988);
         tempNation.push_back("American");
+        tempDOD.push_back(200000000);
         tempfInfo.push_back("Apollo mission");
 
     }
@@ -115,7 +115,7 @@ void database::getData (string user)
 
             name = decryptData(name);
             sex = decryptData(sex);
-            furtherInfo = decryptData(furtherInfo); // Sandra baetti vid thessari linu
+            furtherInfo = decryptData(furtherInfo);
 
             tempName.push_back(name);
             tempSex.push_back(sex);
@@ -123,6 +123,7 @@ void database::getData (string user)
             tempDOD.push_back(DOD);
             tempNation.push_back(nationality);
             tempfInfo.push_back(furtherInfo); // Sandra baetti vid
+            tempfInfo.push_back(furtherInfo);
         }
     }
     
@@ -136,8 +137,7 @@ bool database::isEmpty(ifstream& input)
 
 
 /****************************************************************************
-                writeData
-
+                        writeData
  tekur inn upplýsingar frá gagnagrunni og hleður allar í vectora til að reiðubúa notkun
  ****************************************************************************/
 void database::writeData (string username)
@@ -145,7 +145,7 @@ void database::writeData (string username)
     string name, sex, nationality, furtherInfo;
     int DOB, DOD;
 
-    string fullUser = username + ".txt";
+    string fullUser = "." + username + "_profile.dat";
 
     ofstream dataOutput;
     dataOutput.open(fullUser);
@@ -167,6 +167,8 @@ void database::writeData (string username)
         nationality = encryptData(nationality);
         furtherInfo = tempfInfo[i]; // Sandra baetti vid
         furtherInfo = encryptData(furtherInfo); // Sandra baetti vid
+        furtherInfo = tempfInfo[i];
+        furtherInfo = encryptData(furtherInfo);
 
         dataOutput << name << "\t" << sex << "\t" << DOD << "\t" << DOB << "\t" << "\t" << nationality << "\t" << furtherInfo << endl;
     }
@@ -250,8 +252,10 @@ vector<Scientist> database::pullData ()
         DOD = tempDOD[i];
         nationality = tempNation[i];
         furtherInfo = tempfInfo[i]; // Lina by Sandra
+        furtherInfo = tempfInfo[i];
+
         
-        tmp.pushScientist(name, gender, DOB, DOD, nationality,furtherInfo);
+        tmp.pushScientist(name, gender, DOB, DOD, nationality, furtherInfo);
         
         A.push_back(tmp);
         
@@ -260,8 +264,10 @@ vector<Scientist> database::pullData ()
 }
 
 /******************************************************************
-                    Encryptions
-    Auðveldur ceaser cypher sem encryptar í decryptar data fileana
+                     encryptData
+    Auðveldur ceaser cypher sem dulkóðar streng
+            @parameter(string n) - venjulegur strengur
+            @return(string n) - dulkóðaður strengur
  ******************************************************************/
 
 string database::encryptData (string n)
@@ -272,6 +278,12 @@ string database::encryptData (string n)
     return n;
 }
 
+/******************************************************************
+                      decryptData
+    Auðveldur ceaser cypher sem afkóðar streng
+            @parameter(string n) - dulkóðaður strengur
+            @return(string n) - afkóðaður strengur
+ ******************************************************************/
 
 string database::decryptData (string n)
 {
@@ -283,7 +295,14 @@ string database::decryptData (string n)
 
 /******************************************************************
                         Notenda gagnagrunnur
-    Heldur utan um og hjálpar að kalla í notendur
+              Heldur utan um og hjálpar að kalla í notendur.
+ ******************************************************************/
+
+/******************************************************************
+                            getUser
+    Auðveldur ceaser cypher sem dulkóðar og afkóðar data skrárnar
+            @parameter(string n) - venjulegur strengur
+            @return(string n) - dulkóðaður strengur
  ******************************************************************/
 
 bool database::getUser (string username, string password)
@@ -292,12 +311,12 @@ bool database::getUser (string username, string password)
     vector<string> allPasswords;
 
     ifstream userData;
-    userData.open("users.txt");
+    userData.open("users.dat");
     if (userData.fail())
     {
-        fstream newUserData ("users.txt", std::ios::out);
+        fstream newUserData ("users.dat", std::ios::out);
         newUserData.close();
-        userData.open("users.txt");
+        userData.open("users.dat");
     }
 
     int j = 0;
@@ -331,12 +350,12 @@ bool database::getUser (string username, string password)
 void database::createUser (string user, string password)
 {
     ofstream userData;
-    userData.open("users.txt", std::ios::app);
+    userData.open("users.dat", std::ios::app);
     if (userData.fail())
     {
-        fstream newUserData ("users.txt", std::ios::out);
+        fstream newUserData ("users.dat", std::ios::out);
         newUserData.close();
-        userData.open("users.txt");
+        userData.open("users.dat");
     }
 
     string encUser, encPass;
@@ -349,12 +368,6 @@ void database::createUser (string user, string password)
     userData.close();
 
 }
-
-/****************************************************************************
-                        TEST FÖLL
- Þessi föll hjálpa okkur að prufa og prenta vectora. Við eyðum eða færum þessi
- föll út úr klasanum fyrir skil.
- ****************************************************************************/
 
 bool database::userCorrect (string username, string password, vector<string> allUsers, vector<string> allPasswords)
 {
@@ -371,7 +384,7 @@ bool database::userCorrect (string username, string password, vector<string> all
     }
     return false;
 }
-
+/*
 void database::testData (vector<Scientist> &allScientists)
 {
     char cont;

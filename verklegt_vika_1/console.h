@@ -1,7 +1,6 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-#include "errorhandling.h"
 #include "scientist.h"
 #include "service.h"
 
@@ -21,10 +20,8 @@ public:
     void run();
     void edit();
     void search();
-    //Notandi sendur i sorting_menu
-    void viewDisplay();
-    //Spyr hvort eigi að endurtaka aðgerð og geymir valið y/n
-    char continueFunction();
+    void viewDisplay();     //Notandi sendur i sorting_menu
+    string continueFunction();      //Spyr hvort eigi að endurtaka aðgerð og geymir valið y/n
     void quit();
     void callUser ();
 
@@ -32,33 +29,24 @@ public:
                     Opnunarföll
 **************************************************/
     void welcome();
-    //Notandi þarf að ýta á ENTER til að halda áfram
-    void toContinue();
+    void toContinue();      //Notandi þarf að ýta á ENTER til að halda áfram
 
 /**************************************************
                    Valmyndarföll
 **************************************************/
-    //Birta aðal valmynd
-    void viewOrInsert();
-    //Login menu
-    void loginMenu();
-    //Geyma valmöguleika
-    char choice();
-    //Kalla á framkvæmd eftir vali notanda
-    void choiceMade();
-    //Bjóða uppá að eiga við lista
-    void printChangeDelete();
+    void viewOrInsert();        //Birta aðal valmynd
+    void loginMenu();       //Login menu
+    string choice();        //Geyma valmöguleika
+    void choiceMade();      //Kalla á framkvæmd eftir vali notanda
+    void printChangeDelete();       //Bjóða uppá að eiga við lista
     void quitMenu();
 
 /**************************************************
                    Sorting föll
 **************************************************/
-    //Birta valmynd yfir möguleika til að raða lista
-    void sorting_menu();
-    //Geyma val notanda yfir hvernig hann vildi raða listanum
-    string stringChoice();
-    //Birta raðaðann lista
-    void sorting(string str);
+    void sorting_menu();        //Birta valmynd yfir möguleika til að raða lista
+    string stringChoice();      //Geyma val notanda yfir hvernig hann vildi raða listanum
+    void sorting(string str);       //Birta raðaðann lista
 
 private:
 /**************************************************

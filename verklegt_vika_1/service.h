@@ -4,6 +4,7 @@
 #include "errorhandling.h"
 #include "scientist.h"
 #include "database.h"
+
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -31,6 +32,7 @@ public:
     bool validSex(string& sex);
     bool validYears(int birthYear, int deathYear);
     bool validNationality(string& nationality);
+    bool validDeathYear(string deathYear);
     void saveData ();
 
     //Fyrsta breyta er val um hvernig skuli raða

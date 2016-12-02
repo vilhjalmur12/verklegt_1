@@ -41,3 +41,44 @@ bool operator ==(Scientist lhs, Scientist rhs)
    return (lhs.getName() == rhs.getName() && lhs.getSex() == rhs.getSex() && lhs.getYearOfBirth() == lhs.getYearOfBirth() && lhs.getYearOfDeath() == rhs.getYearOfDeath())
            && lhs.getNationality() == rhs.getNationality() && lhs.getFurtherInfo() == rhs.getFurtherInfo();
 }
+
+/**************************************************
+      Föll til að ná upplýsingum um fræðingana
+**************************************************/
+string Scientist::getName() const
+{
+        return _name;
+}
+
+string Scientist::getSex() const
+{
+        return _sex;
+}
+
+int Scientist::getYearOfBirth() const
+{
+        return _yearOfBirth;
+}
+
+int Scientist::getYearOfDeath() const
+{
+        return _yearOfDeath;
+}
+
+string Scientist::getYearOfDeathForPrinting() const
+{
+        if(_yearOfDeath==200000000)
+            return "n/a";
+        else
+            return to_string(_yearOfDeath);
+}
+
+string Scientist::getNationality() const
+{
+    return _nationality;
+}
+
+string Scientist::getFurtherInfo() const
+{
+        return _furtherInfo;
+}

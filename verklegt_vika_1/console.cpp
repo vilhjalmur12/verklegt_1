@@ -26,6 +26,7 @@ Console::~Console() { }
 
 void Console::welcome()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "|                                       |" << endl;
     cout << "|          Welcome to Database          |" << endl;
@@ -36,6 +37,7 @@ void Console::welcome()
 
 void Console::viewOrInsert()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "|                                       |" << endl;
     cout << "|           Choose procedure:           |" << endl;
@@ -50,6 +52,7 @@ void Console::viewOrInsert()
 
 void Console::printPushBackMenu()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "|       Please Insert Information       |" << endl;
     cout << "|        in the following format        |" << endl;
@@ -66,6 +69,7 @@ void Console::printPushBackMenu()
 
 void Console::sorting_menu()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "| In what order would you like to view? |" << endl;
     cout << "|                                       |" << endl;
@@ -85,6 +89,7 @@ void Console::sorting_menu()
 
 void Console::printChangeDelete()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "|       What would you like to do       |" << endl;
     cout << "|                                       |" << endl;
@@ -99,6 +104,7 @@ void Console::printChangeDelete()
 
 void Console::printSearchMenu()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "|                                       |" << endl;
     cout << "|      You can search by string         |" << endl;
@@ -112,6 +118,7 @@ void Console::printSearchMenu()
 
 void Console::printEditMenu()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "|       What would you like to do?      |" << endl;
     cout << "|                                       |" << endl;
@@ -123,6 +130,7 @@ void Console::printEditMenu()
 
 void Console::quitMenu()
 {
+    cout << endl;
     cout << "-----------------------------------------" << endl;
     cout << "|                                       |" << endl;
     cout << "|     Thank you for using Database,     |" << endl;
@@ -136,7 +144,7 @@ void Console::loginMenu()
     cout << "-----------------------------------------" << endl;
     cout << "|             Choose option:            |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|             c - create new            |" << endl;
+    cout << "|           c - create new user         |" << endl;
     cout << "|               l - login               |" << endl;
     cout << "|               q - quit                |" << endl;
     cout << "|                                       |" << endl;
@@ -149,7 +157,8 @@ void Console::loginMenu()
 void Console::callUser ()
 {
     database data;
-    string password, action;
+    string password;
+    string action;
     bool runProgram = false;
 
     welcome();
@@ -168,6 +177,7 @@ void Console::callUser ()
 
             cout << "Choose Username: ";
             cin >> user;
+
 
             while (password != confirmPass)
             {
@@ -205,7 +215,7 @@ void Console::callUser ()
         }
         else if (action == "q")
         {
-                    exit(1);
+            exit(1);
         }
         else
         {
@@ -226,24 +236,25 @@ void Console::run()
         viewOrInsert();
 
         choiceMade();
+        cin.ignore();
 
     } while (programON == true);
 }
 
 void Console::edit()
 {
-    char choice = 'l';
+    string choice = "l";
     int index;
     printEditMenu();
     do
     {
         cout << "-> ";
         cin >> choice;
-        if((choice != 'l' && choice != 's') || cin.fail())
+        if((choice != "l" && choice != "s") || cin.fail())
             cout << "Please insert valid choice" << endl;
-    }while(choice != 'l' && choice != 's');
+    }while(choice != "l" && choice != "s");
 
-    if(choice == 'l')
+    if(choice == "l")
     {
         printTable();
         do
@@ -277,6 +288,7 @@ void Console::search()
     printSearchMenu();
     cout << "Query: ";
     cin >> query;
+    cin.ignore();
     vector<int> indexesToPrint = scientistService.getIndexesWith(query);
     printTable(indexesToPrint);
     printChangeDelete();
@@ -289,15 +301,16 @@ void Console::viewDisplay()
     sorting_menu();
 }
 
-char Console::continueFunction()
+string Console::continueFunction()
 {
-    char cont;
+    string cont;
+
     cout << "Would you like to view again?\t(y/n)" << endl << "-> ";
     cont = choice();
 
-    while(cont != 'y' && cont != 'n')
+    while(cont != "y" && cont != "n")
     {
-        cout << "Please make a valid choice!" << endl << "->";
+        cout << "Please make a valid choice!" << endl << "-> ";
         cont = choice();
     }
 
@@ -326,9 +339,9 @@ void Console::toContinue()
                    Valmyndarföll
 *********************************************************/
 
-char Console::choice()
+string Console::choice()
 {
-    char choice_made;
+    string choice_made;
     cin >> choice_made;
 
     return choice_made;
@@ -336,11 +349,12 @@ char Console::choice()
 
 void Console::choiceMade()
 {
-    cout << "->";
-    char choice_made = choice();
-    char cont = 'y';
+    cout << "-> ";
 
-    if (choice_made == 'v')
+    string choice_made = choice();
+    string cont = "y";
+
+    if (choice_made == "v")
     {
         do
         {
@@ -351,23 +365,23 @@ void Console::choiceMade()
         sorting(str);
 
         cont = continueFunction();
-        }while(cont == 'y');
+        }while(cont == "y");
     }
-    else if (choice_made == 'i')
+    else if (choice_made == "i")
     {
         pushBackScientist();
     }
 
-    else if (choice_made == 's')
+    else if (choice_made == "s")
     {
         search();
     }
 
-    else if(choice_made == 'e')
+    else if(choice_made == "e")
     {
         edit();
     }
-    else if (choice_made == 'q')
+    else if (choice_made == "q")
     {
         quit();
     }
@@ -389,6 +403,12 @@ string Console::stringChoice()
     cin >> str;
     return str;
 }
+
+/********************************************************
+                    sorting
+   Leifir notenda að velja hvernig hann skoðar listan
+   @
+*********************************************************/
 
 void Console::sorting(string str)
 {
@@ -452,8 +472,6 @@ void Console::pushBackScientist()
 
 void Console::createScientist(string &name, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo)
 {
-    YOD = maxDeathYear;
-
     readName(name);
 
     readSex(sex);
@@ -552,13 +570,12 @@ void Console::readDeathYear(int &YOD, bool &cont)
     cout << "Year of death: ";
     cin >> input;
 
-    bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+[0-9]*$"));
-
     if(input == "n/a")
     {
+        YOD = maxDeathYear;
         return;
     }
-    if(deathContainsNonDigits)
+    if(!scientistService.validDeathYear(input))
     {
         throwError.invalidYear(4);
         cont = true;
@@ -592,13 +609,14 @@ void Console::readNationality(string &nationality)
 
 void Console::changeOrDelete(vector<int> indexes)
 {
-    char changeDeleteChoice = choice();
+    cout << "-> ";
+    string changeDeleteChoice = choice();
 
-    if(changeDeleteChoice == 'q')
+    if(changeDeleteChoice == "q")
     {
         quit();
     }
-    else if(changeDeleteChoice == 'd')
+    else if(changeDeleteChoice == "d")
     {
         int index;
         cout << "Insert the index you wish to delete: " << endl;
@@ -613,7 +631,7 @@ void Console::changeOrDelete(vector<int> indexes)
         scientistService.removeScientist(index);
     }
 
-    else if(changeDeleteChoice == 'e')
+    else if(changeDeleteChoice == "e")
     {
         int index;
         cout << "Insert the index you wish to edit: " << endl;
@@ -631,11 +649,11 @@ void Console::changeOrDelete(vector<int> indexes)
         pushBackScientist();
         scientistService.moveLastTo(index);
     }
-    else if(changeDeleteChoice == 'm')
+    else if(changeDeleteChoice == "m")
     {
 
     }
-    else if(changeDeleteChoice == 's')
+    else if(changeDeleteChoice == "s")
     {
         search();
     };
@@ -650,7 +668,10 @@ void Console::printTable ()
     vector<Scientist> allScientists = scientistService.getScientists();
     Scientist tmp;
 
-    printf("%-4s%-30s%-9s%-18s%-18s%-15s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information");
+//    printf("%-4s%-30s%-9s%-18s%-18s%-15s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information");
+
+    printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information");
+
     cout <<"-------------------------------------------------------------------------------------------------------" << endl;
 
     for (unsigned int i = 0; i < allScientists.size(); i++)
@@ -668,11 +689,17 @@ void Console::printTable (vector<int> indexesToPrint)
 
     if(indexesToPrint.size() == 0)
     {
+        cout << endl;
         cout << "No related indexes found" << endl;
     }
     else
     {
+
         printf("%-4s%-30s%-9d%-18s%-18s%-15s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
+
+        cout << endl;
+        //printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
+
         cout <<"-------------------------------------------------------------------------------------------------------" << endl;
 
         for (unsigned int i = 0; i < indexesToPrint.size(); i++)
@@ -683,6 +710,7 @@ void Console::printTable (vector<int> indexesToPrint)
                    tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str());
 
         }
+        cout << endl;
     }
 }
 

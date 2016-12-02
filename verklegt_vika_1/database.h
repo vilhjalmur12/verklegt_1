@@ -15,22 +15,28 @@ class database
 public:
     database ();
     ~database ();
+
+    /***************************************
+                 Leitarföll
+    ****************************************/
     int dataSearch (string tmp);
     int dataSearch (int tmp);
-    void getData (string user);
-    void writeData (string username);
-    void pushData (vector<Scientist> write);
-    vector<Scientist> pullData ();
     vector<int> dataSearch(string tmp,vector<Scientist> allScientist);
-    bool getUser (string username, string password);
-    void createUser (string user, string password);
 
-    // tvö prufuföll - við skulum sjá til þess að færa þessi út úr klasanum fyrir skil
-    void testData (vector<Scientist> &allScientists);
-    void dataPrint (vector<Scientist> const allScientists);
-    void printSearch (int id);
+    /***************************************
+                 Gagnagrunnsföll
+    ****************************************/
+    void getData (string user);             //sækir gagnagrunn í eigu notanda í vinnslu
+    void writeData (string username);       //skrifar gagnagrunn á skrá frá notanda í vinnslu
+    vector<Scientist> pullData ();      //skilar öllum upplýsingum frá meðlimabreytum database klasanns ef kallað sé í fallið
+    void pushData (vector<Scientist> write);        //ýtir breyttum upplýsingum í gagnagrunni yfir í meðlimabreytur klasanns database
+    bool getUser (string username, string password);        //sækir upplýsingar um alla skráða notendur og athugar hvort notandi og aðgangsorð sé tiltækt
+    void createUser (string user, string password);     //býr til nýjan notanda með aðgangsorð í gagnagrunn og býr til gagnagrunn fyrir notandann
 
 private:
+    /***************************************
+                 Meðlimabreytur
+    ****************************************/
     vector<string> tempName;
     vector<string> tempSex;
     vector<int> tempDOB;
@@ -40,10 +46,13 @@ private:
     string _username;
     string _password;
 
-    string encryptData (string n);
-    string decryptData (string n);
-    bool isEmpty (ifstream& input);
-    bool userCorrect (string username, string password, vector<string> allUsers, vector<string> allPasswords);
+    /***************************************
+                 Meðlimaföll
+    ****************************************/
+    string encryptData (string n);      // tekur inn venjulegan streng og skilar strengnum kóðuðum
+    string decryptData (string n);      // tekur inn kóðaðan streng og skilar honum afkóðuðum
+    bool isEmpty (ifstream& input);     // athugar hvort skrá sé tóm
+    bool userCorrect (string username, string password, vector<string> allUsers, vector<string> allPasswords);      // ber saman notanda og lykilorð
 
     ErrorHandling output;
 
