@@ -67,7 +67,7 @@ string Service::removeSpaces(string before)
     {
         if(before.at(i) == ' ' && before.at(i+1)==' ')
         {
-            before.erase(i, 1);
+            before.erase(i,i+1);
             return(removeSpaces(before));
         }
     }
@@ -84,18 +84,15 @@ string Service::removeSpaces(string before)
  ****************************************************************************/
 string Service::fixString(string before)
 {
-    char a = before.at(0);
-    before.at(0) = toupper(a);
+    before.at(0) = toupper(before.at(0));
 
     for(unsigned int i = 1; i < before.length(); i++)
     {
-        a = before.at(i);
-        before.at(i) = tolower(a);
+        before.at(i) = tolower(before.at(i));
 
         if(before.at(i-1) == ' ')
         {
-            a = before.at(i);
-            before.at(i) = toupper(a);
+            before.at(i) = toupper(before.at(i));
         }
     }
 
