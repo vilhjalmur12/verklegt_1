@@ -350,6 +350,9 @@ void Console::choiceMade()
     string choice_made = choice();
     string cont = "y";
 
+
+
+
     if (choice_made == "v")
     {
         do
