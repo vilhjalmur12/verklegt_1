@@ -16,6 +16,7 @@ public:
     void invalidYear (int errorCode);
     void invalidSex ();
     void invalidName (int errorCode);
+    void invalidNationality(int errorCode);
 
 private:
 

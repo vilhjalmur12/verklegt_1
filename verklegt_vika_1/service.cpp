@@ -84,9 +84,9 @@ string Service::fixString(string& before)
     return before;
 }
 
-bool Service::appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo)
+bool Service::appendScientist(string name, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
 {
-    Scientist tempScientist(name, sex, birthYear, deathYear, furtherInfo);
+    Scientist tempScientist(name, sex, birthYear, deathYear, nationality, furtherInfo);
     for(unsigned int i = 0; i < _scientists.size(); i++)
     {
         if(tempScientist == _scientists[i])
@@ -139,6 +139,10 @@ void Service::SortedScientistsBy(string choice)
         sortByDeathAscending();
     if (choice == "dd")
         sortByDeathDescending();
+    if (choice == "nta")
+        sortByNationalityAscending();
+    if (choice == "ntd")
+        sortByNationalityDescending();
 }
 
 /**********************************************************
@@ -215,6 +219,20 @@ bool Service::validYears(int birthYear, int deathYear)
         return false;
     }
 
+    return true;
+}
+
+bool Service::validNationality(string& nationality)
+{
+    nationality = fixString(nationality);
+
+    bool containsDigits = !regex_match(nationality, regex("^[A-Za-z]+[ ]*([A-Za-z]||[ ])*$"));
+
+    if (containsDigits)
+    {
+        throwError.invalidNationality(1);
+        return false;
+    }
     return true;
 }
 
@@ -331,6 +349,15 @@ struct deathDescending
     bool operator() (Scientist i, Scientist j) { return (i.getYearOfDeath()>j.getYearOfDeath());}
 };
 
+struct nationalityAscending
+{
+    bool operator() (Scientist i, Scientist j) { return (i.getNationality()<j.getNationality());}
+};
+
+struct nationalityDescending
+{
+    bool operator() (Scientist i, Scientist j) { return (i.getNationality()>j.getNationality());}
+};
 /**********************************************************
               Sorting algrímar - getScientist
 **********************************************************/
@@ -381,4 +408,16 @@ void Service::sortByDeathDescending()
 {
     deathDescending de;
     sort(_scientists.begin(), _scientists.end(), de);
+}
+
+void Service::sortByNationalityAscending()
+{
+    nationalityAscending nta;
+    sort(_scientists.begin(), _scientists.end(), nta);
+}
+
+void Service::sortByNationalityDescending()
+{
+    nationalityDescending ntd;
+    sort(_scientists.begin(), _scientists.end(), ntd);
 }

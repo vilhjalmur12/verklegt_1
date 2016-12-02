@@ -22,7 +22,7 @@ public:
     Service(string username);
     virtual ~Service();
 
-    bool appendScientist(string name, string sex, int birthYear, int deathYear, string furtherInfo);
+    bool appendScientist(string name, string sex, int birthYear, int deathYear, string nationality, string furtherInfo);
     void removeScientist(int index);
 
     void moveLastTo(int index);
@@ -30,6 +30,7 @@ public:
     bool validName(string& name);
     bool validSex(string& sex);
     bool validYears(int birthYear, int deathYear);
+    bool validNationality(string& nationality);
     void saveData ();
 
     //Fyrsta breyta er val um hvernig skuli raða
@@ -72,6 +73,8 @@ private:
     void sortByBirthDescending();
     void sortByDeathAscending();
     void sortByDeathDescending();
+    void sortByNationalityAscending();
+    void sortByNationalityDescending();
 };
 
 #endif // SERVICE_H

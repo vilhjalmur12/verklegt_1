@@ -9,9 +9,9 @@ class Scientist
 {
 public:
     Scientist();
-    Scientist(string name, string sex, int YOB, int YOD, string FI);
+    Scientist(string name, string sex, int YOB, int YOD, string nationality, string FI);
 
-    void pushScientist(string name, string sex, int DOB, int DOD, string FI);
+    void pushScientist(string name, string sex, int DOB, int DOD, string nationality, string FI);
 
 /**************************************************
       Föll til að ná upplýsingum um fræðingana
@@ -34,6 +34,11 @@ public:
     int getYearOfDeath() const
     {
         return _yearOfDeath;
+    }
+
+    string getNationality()
+    {
+        return _nationality;
     }
 
     string getYearOfDeathForPrinting() const
@@ -64,6 +69,7 @@ private:
     string _name;
     string _sex;
     string _furtherInfo;
+    string _nationality;
     int _yearOfBirth;
     int _yearOfDeath;
 };
