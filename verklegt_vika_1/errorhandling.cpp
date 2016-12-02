@@ -69,3 +69,10 @@ void ErrorHandling::invalidYear (int errorCode)
             break;
     }
 }
+
+string ErrorHandling::catchError()
+{
+    string tmpError = errorMessage;
+    errorMessage = "";
+    return tmpError;
+}

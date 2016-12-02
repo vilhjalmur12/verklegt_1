@@ -547,7 +547,6 @@ void Console::readYears(int& YOB, int& YOD)
 void Console::readBirthYear(int &YOB, bool &cont)
 {
     cout << "Year of birth: ";
-    cin.ignore();
     cin >> YOB;
 
     if(cin.fail())
@@ -582,6 +581,8 @@ void Console::readDeathYear(int &YOD, bool &cont)
     }
     if(!scientistService.validDeathYear(input))
     {
+        cin.clear();
+        cin.sync();
         throwError.invalidYear(4); //----------------------------------------------------------------------------------------------------------------
         cont = true;
         return;
