@@ -161,8 +161,9 @@ void Console::pushBackScientist()
         do
         {
             cout << "Name: ";
-            cin.clear();
-            cin.sync();
+            //cin.clear();
+            //cin.sync();
+            cin.ignore();
             do
             {
             getline(cin, name);
@@ -176,13 +177,15 @@ void Console::pushBackScientist()
             cin >> sex;
         }while(!scientistService.validSex(sex));
 
-        cin.clear();
-        cin.sync();
+        //cin.clear();
+        //cin.sync();
+        cin.ignore();
 
         cout << "Further Information: ";
 
-        cin.clear();
-        cin.sync();
+        //cin.clear();
+        //cin.sync();
+        cin.ignore();
         getline(cin, furtherInfo);
 
         if(furtherInfo.length() > 0)
