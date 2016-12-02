@@ -172,7 +172,8 @@ void Console::pushBackScientist()
         do
         {
             cout << "Name: ";
-
+            //cin.clear();
+            //cin.sync();
             cin.ignore();
             do
             {

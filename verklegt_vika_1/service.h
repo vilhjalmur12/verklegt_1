@@ -38,20 +38,28 @@ public:
     vector<int> getIndexesWith(string query);
 
 private:
-    //Meðlimabreytur
+/**********************************************************
+                     Meðlimabreytur
+**********************************************************/
     vector<Scientist> _scientists;
     ErrorHandling throwError;
     database data;
 
-    //appendScientist Hjálparföll
+/**********************************************************
+             Hjálparföll fyrir appendScientist
+**********************************************************/
     string removeSpaces(string& before);
     string fixString(string& before);
 
-    //search Hjálparföll
+/**********************************************************
+                 Hjálparföll fyrir search
+**********************************************************/
     bool findInInt(int query, int year);
     bool findInString(string query, string string);
 
-    //getScientists - sorting algrímar
+/**********************************************************
+              Sorting algrímar - getScientist
+**********************************************************/
     void sortByNameAscending();
     void sortByNameDesending();
     void sortBySexF();

@@ -20,12 +20,9 @@ Service::~Service()
     
 }
 
-/***********************************************
- *                                             *
- *            Vinna með vísindamenn            *
- *                                             *
-************************************************/
-
+/**********************************************************
+                   Vinna með vísindamenn
+**********************************************************/
 void Service::saveData ()
 {
     data.pushData(_scientists);
@@ -122,12 +119,9 @@ void Service::SortedScientistsBy(string choice)
         sortByDeathDescending();
 }
 
-/***********************************************
- *                                             *
- *             Villumeldingar                  *
- *                                             *
-************************************************/
-
+/**********************************************************
+                   Villumeldingar
+**********************************************************/
 bool Service::validName(string &name)
 {
     name = fixString(name);
@@ -201,12 +195,9 @@ bool Service::validYears(int birthYear, int deathYear)
     return true;
 }
 
-/***********************************************
- *                                             *
- *          Leitarvélar í gagnagrunn           *
- *                                             *
-************************************************/
-
+/**********************************************************
+                 Hjálparföll fyrir search
+**********************************************************/
 //Leitar í gagnagrunn eftir öld
 bool Service::findInInt(int query, int year)
 {
@@ -272,12 +263,9 @@ vector<int> Service::getIndexesWith(string query)
     return foundScientists;
 }
 
-/***********************************************
- *                                             *
- *             Struct til að sortera           *
- *                                             *
-************************************************/
-
+/**********************************************************
+                   Struct til að sortera
+**********************************************************/
 struct nameAscending
 {
   bool operator() (Scientist i, Scientist j) { return (i.getName()<j.getName());}
@@ -318,12 +306,9 @@ struct deathDescending
     bool operator() (Scientist i, Scientist j) { return (i.getYearOfDeath()>j.getYearOfDeath());}
 };
 
-/**************************************************
- *                                                *
- *               Föll til að sortera              *
- *                                                *
-*///***********************************************
-
+/**********************************************************
+              Sorting algrímar - getScientist
+**********************************************************/
 void Service::sortByNameAscending()
 {
     nameAscending na;
