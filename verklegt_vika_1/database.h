@@ -15,11 +15,25 @@ class database
 public:
     database ();
     ~database ();
+
+/**************************************************
+              Hjálparföll við search
+**************************************************/
+
     int dataSearch (string tmp);
     int dataSearch (int tmp);
+
+/**************************************************
+              Vinna með upplýsingarnar
+**************************************************/
+
     void getData (string user);
     void writeData (string username);
+
+
     void pushData (vector<Scientist> write);
+
+
     vector<Scientist> pullData ();
     vector<int> dataSearch(string tmp,vector<Scientist> allScientist);
     bool getUser (string username, string password);
