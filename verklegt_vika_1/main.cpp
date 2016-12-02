@@ -11,8 +11,6 @@ int main()
 {
     Console screen;
     screen.run();
-<<<<<<< HEAD
-
 
     /*
     //database data;
@@ -50,7 +48,5 @@ int main()
     */
 
 
-=======
->>>>>>> b51d55241abbdbfb7d180643c67aa5e96673b614
     return 0;
 }
