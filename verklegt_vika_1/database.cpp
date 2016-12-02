@@ -39,62 +39,69 @@ void database::getData (string user)
         tempDOD.push_back(1852);
         tempNation.push_back("English");
         tempfInfo.push_back("First programmer");
-        tempName.push_back("Charles Babbage");
-        tempSex.push_back("Male");
-        tempDOB.push_back(1791);
-        tempDOD.push_back(1871);
-        tempNation.push_back("English");
-        tempfInfo.push_back("The father of computing");
-        tempName.push_back("Blaise Pascal");
-        tempSex.push_back("Male");
-        tempDOB.push_back(1623);
-        tempDOD.push_back(1662);
-        tempNation.push_back("French");
-        tempfInfo.push_back("Pascal language named after him");
-        tempName.push_back("Gottfried Wilhelm Leibniz");
-        tempSex.push_back("Male");
-        tempDOB.push_back(1646);
-        tempDOD.push_back(1716);
-        tempNation.push_back("Now he would be considered German");
-        tempfInfo.push_back("Mechanical multiplier");
+
         tempName.push_back("Alan Turing");
         tempSex.push_back("Male");
         tempDOB.push_back(1912);
         tempDOD.push_back(1954);
         tempNation.push_back("English");
         tempfInfo.push_back("Father of theoretical computer science");
-        tempName.push_back("Tim Berners-Lee");
+
+        tempName.push_back("Blaise Pascal");
         tempSex.push_back("Male");
-        tempDOB.push_back(1955);
-        tempDOD.push_back(1988);
-        tempNation.push_back("English");
-        tempDOD.push_back(200000000);
-        tempfInfo.push_back("Inventor of the World Wide Web");
-        tempName.push_back("George Boole");
+        tempDOB.push_back(1623);
+        tempDOD.push_back(1662);
+        tempNation.push_back("French");
+        tempfInfo.push_back("Pascal language named after him");
+
+        tempName.push_back("Charles Babbage");
         tempSex.push_back("Male");
-        tempDOB.push_back(1815);
-        tempDOD.push_back(1864);
+        tempDOB.push_back(1791);
+        tempDOD.push_back(1871);
         tempNation.push_back("English");
-        tempfInfo.push_back("Boolean algebra");
+        tempfInfo.push_back("The father of computing");
+
         tempName.push_back("Edsger Dijkstra");
         tempSex.push_back("Male");
         tempDOB.push_back(1930);
         tempDOD.push_back(2002);
         tempNation.push_back("Dutch");
         tempfInfo.push_back("Dijkstra's algorithm");
+
+        tempName.push_back("George Boole");
+        tempSex.push_back("Male");
+        tempDOB.push_back(1815);
+        tempDOD.push_back(1864);
+        tempNation.push_back("English");
+        tempfInfo.push_back("Boolean algebra");
+
+        tempName.push_back("Gottfried Wilhelm Leibniz");
+        tempSex.push_back("Male");
+        tempDOB.push_back(1646);
+        tempDOD.push_back(1716);
+        tempNation.push_back("German");
+        tempfInfo.push_back("Mechanical multiplier");
+
         tempName.push_back("Grace Hopper");
         tempSex.push_back("Female");
         tempDOB.push_back(1906);
         tempDOD.push_back(1992);
         tempNation.push_back("American");
         tempfInfo.push_back("First compiler");
+
         tempName.push_back("Margaret Hamilton");
         tempSex.push_back("Female");
         tempDOB.push_back(1936);
-        tempDOD.push_back(1988);
-        tempNation.push_back("American");
         tempDOD.push_back(200000000);
+        tempNation.push_back("American");
         tempfInfo.push_back("Apollo mission");
+
+        tempName.push_back("Tim Berners-Lee");
+        tempSex.push_back("Male");
+        tempDOB.push_back(1955);
+        tempDOD.push_back(200000000);
+        tempNation.push_back("English");
+        tempfInfo.push_back("Inventor of the World Wide Web");
 
     }
     else
@@ -115,6 +122,7 @@ void database::getData (string user)
 
             name = decryptData(name);
             sex = decryptData(sex);
+            nationality = decryptData(nationality);
             furtherInfo = decryptData(furtherInfo);
             nationality = decryptData(nationality);
 
@@ -250,7 +258,6 @@ vector<Scientist> database::pullData ()
         DOD = tempDOD[i];
         nationality = tempNation[i];
         furtherInfo = tempfInfo[i]; // Lina by Sandra
-        furtherInfo = tempfInfo[i];
 
         
         tmp.pushScientist(name, gender, DOB, DOD, nationality, furtherInfo);

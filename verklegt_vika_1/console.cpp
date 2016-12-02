@@ -31,6 +31,8 @@ void Console::welcome()
     cout << "|                                       |" << endl;
     cout << "|          Welcome to Database          |" << endl;
     cout << "|        Press enter to continue        |" << endl;
+    cout << "|       please ensure the console       |" << endl;
+    cout << "|       window is at least 120x30       |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
@@ -666,16 +668,14 @@ void Console::printTable ()
     vector<Scientist> allScientists = scientistService.getScientists();
     Scientist tmp;
 
-//    printf("%-4s%-30s%-9s%-18s%-18s%-15s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information");
+    printf("%-5s%-35s%-15s%-16s%-16s%-14s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information");
 
-    printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information");
-
-    cout <<"-------------------------------------------------------------------------------------------------------" << endl;
+    cout <<"--------------------------------------------------------------------------------------------------------------------------------" << endl;
 
     for (unsigned int i = 0; i < allScientists.size(); i++)
     {
         tmp = allScientists[i];
-        printf("%-4s%-30s%-9s%-18s%-18s%-15s%-30s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+        printf("%-5d%-35s%-15s%-16d%-16s%-14s%-20s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
                tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str());
     }
 }
@@ -693,18 +693,17 @@ void Console::printTable (vector<int> indexesToPrint)
     else
     {
 
-        printf("%-4s%-30s%-9s%-18s%-18s%-15s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death","Nationality", "Further Information");
+        printf("%-5s%-35s%-15s%-16s%-16s%-14s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information");
 
         cout << endl;
-        //printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
 
-        cout <<"-------------------------------------------------------------------------------------------------------" << endl;
+        cout <<"------------------------------------------------------------------------------------------------------------------------------" << endl;
 
         for (unsigned int i = 0; i < indexesToPrint.size(); i++)
         {
             tmp = allScientists[indexesToPrint[i]];
 
-            printf("%-4s%-30s%-9s%-18d%-18s%-15s%-30s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+            printf("%-5d%-35s%-15s%-16d%-16s%-14s%-20s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
                    tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str());
 
         }
