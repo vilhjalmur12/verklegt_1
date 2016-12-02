@@ -161,15 +161,12 @@ void Console::pushBackScientist()
         do
         {
             cout << "Name: ";
-<<<<<<< HEAD
-            cin.ignore();
-=======
+
             //cin.clear();
             //cin.sync();
             cin.ignore();
             do
             {
->>>>>>> deb4d1c26aad9acd9f75db8e5e105f8c75d02933
             getline(cin, name);
             }while(name.length()<1);
 
@@ -187,11 +184,8 @@ void Console::pushBackScientist()
 
         cout << "Further Information: ";
 
-<<<<<<< HEAD
-=======
         //cin.clear();
         //cin.sync();
->>>>>>> deb4d1c26aad9acd9f75db8e5e105f8c75d02933
         cin.ignore();
         getline(cin, furtherInfo);
 
