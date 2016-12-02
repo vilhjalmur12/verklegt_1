@@ -155,7 +155,7 @@ void Console::callUser ()
 {
     database data;
     string password;
-    char action;
+    string action;
     bool runProgram = false;
 
     welcome();
@@ -168,7 +168,7 @@ void Console::callUser ()
         cout << "-> ";
         cin >> action;
 
-        if (action == 'c')
+        if (action == "c")
         {
             string confirmPass = "password";
 
@@ -191,7 +191,7 @@ void Console::callUser ()
             runProgram = true;
 
         }
-        else if (action == 'l')
+        else if (action == "l")
         {
             cout << "Username: ";
             cin >> user;
@@ -209,9 +209,9 @@ void Console::callUser ()
                 cout << "Invalid user or password" << endl << endl;
             }
         }
-        else if (action == 'q')
+        else if (action == "q")
         {
-                    exit(1);
+            exit(1);
         }
         else
         {
