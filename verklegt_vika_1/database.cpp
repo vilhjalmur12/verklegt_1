@@ -130,7 +130,7 @@ void database::getData (string user)
             tempDOB.push_back(DOB);
             tempDOD.push_back(DOD);
             tempNation.push_back(nationality);
-            tempfInfo.push_back(furtherInfo);
+            tempfInfo.push_back(furtherInfo); // Sandra baetti vid
         }
     }
     
@@ -174,8 +174,6 @@ void database::writeData (string username)
         nationality = encryptData(nationality);
         furtherInfo = tempfInfo[i]; // Sandra baetti vid
         furtherInfo = encryptData(furtherInfo); // Sandra baetti vid
-        furtherInfo = tempfInfo[i];
-        furtherInfo = encryptData(furtherInfo);
 
         dataOutput << name << "\t" << sex << "\t" << DOD << "\t" << DOB << "\t" << "\t" << nationality << "\t" << furtherInfo << endl;
     }
@@ -259,7 +257,6 @@ vector<Scientist> database::pullData ()
         DOD = tempDOD[i];
         nationality = tempNation[i];
         furtherInfo = tempfInfo[i]; // Lina by Sandra
-        furtherInfo = tempfInfo[i];
 
         
         tmp.pushScientist(name, gender, DOB, DOD, nationality, furtherInfo);
