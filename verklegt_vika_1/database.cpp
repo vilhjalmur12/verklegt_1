@@ -24,7 +24,7 @@ void database::getData (string user)
     int DOB, DOD;
 
     ifstream dataInput;
-    fullUser = "data/." + user +"_profile.dat";
+    fullUser = "." + user +"_profile.dat";
 
     dataInput.open(fullUser);
     if (dataInput.fail())
@@ -134,7 +134,7 @@ void database::writeData (string username)
     string name, sex, furtherInfo;
     int DOB, DOD;
 
-    string fullUser = "data/." + username + "_profile.dat";
+    string fullUser = "." + username + "_profile.dat";
 
     ofstream dataOutput;
     dataOutput.open(fullUser);
@@ -276,12 +276,12 @@ bool database::getUser (string username, string password)
     vector<string> allPasswords;
 
     ifstream userData;
-    userData.open("data/users.dat");
+    userData.open("users.dat");
     if (userData.fail())
     {
-        fstream newUserData ("data/users.dat", std::ios::out);
+        fstream newUserData ("users.dat", std::ios::out);
         newUserData.close();
-        userData.open("data/users.dat");
+        userData.open("users.dat");
     }
 
     int j = 0;
@@ -315,12 +315,12 @@ bool database::getUser (string username, string password)
 void database::createUser (string user, string password)
 {
     ofstream userData;
-    userData.open("data/users.dat", std::ios::app);
+    userData.open("users.dat", std::ios::app);
     if (userData.fail())
     {
-        fstream newUserData ("data/users.dat", std::ios::out);
+        fstream newUserData ("users.dat", std::ios::out);
         newUserData.close();
-        userData.open("data/users.dat");
+        userData.open("users.dat");
     }
 
     string encUser, encPass;
