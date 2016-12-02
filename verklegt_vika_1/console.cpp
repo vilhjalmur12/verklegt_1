@@ -551,10 +551,9 @@ void Console::readBirthYear(int &YOB, bool &cont)
 
     if(cin.fail())
     {
-        cin.sync();
         cin.clear();
-        //cin.sync();
-        throwError.invalidYear(4);
+        cin.sync();
+        throwError.invalidYear(4); //---------------------------------------------------------------------------------------------------------
 
         cont = true;
         return;
@@ -583,6 +582,8 @@ void Console::readDeathYear(int &YOD, bool &cont)
     }
     if(!scientistService.validDeathYear(input))
     {
+        cin.clear();
+        cin.sync();
         throwError.invalidYear(4); //----------------------------------------------------------------------------------------------------------------
         cont = true;
         return;
