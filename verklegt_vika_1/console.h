@@ -75,7 +75,7 @@ private:
               Hjálparföll við search
 **************************************************/
     void printSearchMenu();
-    void changeOrDelete();
+    void changeOrDelete(vector<int> indexes);
 
 /**************************************************
                  Birta töflu
