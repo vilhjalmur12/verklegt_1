@@ -11,10 +11,6 @@ int main()
 {
     Console screen;
     screen.run();
-<<<<<<< HEAD
-
-=======
->>>>>>> 765a933364e4e969c858c9e9a5864694bb1f98dc
 
     /*
     //database data;
@@ -50,10 +46,5 @@ int main()
 
     // Passa að skrifa vector út í database í lok keyrslu
     */
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 765a933364e4e969c858c9e9a5864694bb1f98dc
     return 0;
 }
