@@ -23,6 +23,7 @@ Service::~Service()
 /**********************************************************
                    Vinna með vísindamenn
 **********************************************************/
+
 void Service::saveData ()
 {
     data.pushData(_scientists);
@@ -122,6 +123,7 @@ void Service::SortedScientistsBy(string choice)
 /**********************************************************
                    Villumeldingar
 **********************************************************/
+
 bool Service::validName(string &name)
 {
     name = fixString(name);
@@ -198,6 +200,7 @@ bool Service::validYears(int birthYear, int deathYear)
 /**********************************************************
                  Hjálparföll fyrir search
 **********************************************************/
+
 //Leitar í gagnagrunn eftir öld
 bool Service::findInInt(int query, int year)
 {
@@ -266,6 +269,7 @@ vector<int> Service::getIndexesWith(string query)
 /**********************************************************
                    Struct til að sortera
 **********************************************************/
+
 struct nameAscending
 {
   bool operator() (Scientist i, Scientist j) { return (i.getName()<j.getName());}
@@ -309,6 +313,7 @@ struct deathDescending
 /**********************************************************
               Sorting algrímar - getScientist
 **********************************************************/
+
 void Service::sortByNameAscending()
 {
     nameAscending na;
