@@ -307,18 +307,19 @@ int Console::findIndexToEdit(string oldName)
     vector<int> indexesWithQuery = (scientistService.getIndexesWith(oldName));
 
     printTable(indexesWithQuery);
-    cout << indexesWithQuery[0] << endl;
 
-    int input;
+    if(indexesWithQuery.size() > 0)
+    {
+        int input;
+        cout << "Please enter the number of the entry you want to edit: ";
+        cin >> input;
 
-    cout << "Please enter the number of the entry you want to edit: ";
-    cin >> input;
+        index = indexesWithQuery[input-1];
 
-
-
-    index = indexesWithQuery[input-1];
-
-    return index;
+        return index;
+    }
+    else
+        return -1;
 }
 
 void Console::edit()
@@ -330,7 +331,7 @@ void Console::edit()
     {
         cout << "-> ";
         cin >> choice;
-        if(choice != 'l' || choice != 's' || cin.fail())
+        if((choice != 'l' && choice != 's') || cin.fail())
             cout << "Please insert valid choice" << endl;
     }while(choice != 'l' && choice != 's');
 
@@ -354,9 +355,12 @@ void Console::edit()
         cin >> query;
         index = findIndexToEdit(query);
     }
+    if(index > -1)
+    {
     cout << "--------Insert new Information:---------" << endl;
     pushBackScientist();
     scientistService.moveLastTo(index);
+    }
 }
 
 void Console::changeOrDelete(vector<int> indexes)
