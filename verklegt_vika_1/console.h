@@ -15,8 +15,9 @@ class Console
 public:
     Console();
     virtual ~Console();
-
-    //Keyrsluföll
+/**************************************************
+                    Keyrsluföll
+**************************************************/
     void run();
     void edit();
     void search();
@@ -24,37 +25,50 @@ public:
     char continueFunction(); //Spyr hvort eigi að endurtaka aðgerð og geymir valið y/n
     void quit();
 
-    //Opnunarföll
+/**************************************************
+                    Opnunarföll
+**************************************************/
     void welcome();
     void toContinue(); //Notandi þarf að ýta á ENTER til að halda áfram
 
-    //Valmyndarföll
+/**************************************************
+                   Valmyndarföll
+**************************************************/
     void viewOrInsert(); //Birta aðal valmynd
     char choice(); //Geyma valmöguleika
     void choiceMade(); //Kalla á framkvæmd eftir vali notanda
     void printChangeDelete(); //Bjóða uppá að eiga við lista
 
-
-    //Sorting föll
+/**************************************************
+                   Sorting föll
+**************************************************/
     void sorting_menu(); //Birta valmynd yfir möguleika til að raða lista
     string stringChoice(); //Geyma val notanda yfir hvernig hann vildi raða listanum
     void sorting(string str); //Birta raðaðann lista
 
 private:
-    //Meðlimabreytur
+/**************************************************
+                   Meðlimabreytur
+**************************************************/
     Service scientistService;
     ErrorHandling throwError;
 
-    //Hjálparföll við edit
+/**************************************************
+               Hjálparföll við edit
+**************************************************/
     int findIndexToEdit(string oldName);
     void printInsertMenu();
     void pushBackScientist();
 
-    //Hjálparföll við search
+/**************************************************
+              Hjálparföll við search
+**************************************************/
     void printSearchMenu();
     void changeOrDelete();
 
-    //Birta töflu
+/**************************************************
+                 Birta töflu
+**************************************************/
     void printTable();
     void printTable(vector<int> indexesToPrint);
 
