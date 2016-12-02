@@ -8,7 +8,10 @@
 #include <limits>
 #include <regex>
 
-Console::Console(){ }
+Console::Console()
+{
+
+}
 
 Console::~Console() { }
 
@@ -355,6 +358,8 @@ void Console::quit()
 
     scientistService.saveData();
 
+    cout << scientistService.getErrorString();
+
     exit(1);
 }
 
@@ -406,7 +411,6 @@ void Console::choiceMade()
     {
         pushBackScientist();
     }
-
     else if (choice_made == "s")
     {
         search();
@@ -424,7 +428,6 @@ void Console::choiceMade()
     {
         cout << "Please enter a valid command!" << endl;
     }
-
 }
 
 /********************************************************
@@ -511,17 +514,19 @@ void Console::createScientist(string &name, string &sex, int &YOB, int &YOD, str
 
     readSex(sex);
 
-    readYears(YOB, YOD);
-
     readNationality(nationality);
 
     readFurtherInfo(furtherInfo);
+
+    readYears(YOB, YOD);
+
 }
 
 void Console::readName(string &name)
 {
     do
     {
+        cout << scientistService.getErrorString();
         cout << "Name: ";
         cin.ignore();
         do
@@ -536,6 +541,7 @@ void Console::readSex(string &sex)
 {
     do
     {
+        cout << scientistService.getErrorString();
         cout << "Gender: ";
         cin >> sex;
     }while(!scientistService.validSex(sex));
@@ -548,6 +554,7 @@ void Console::readYears(int& YOB, int& YOD)
     bool validYears = false;
     do
     {
+        cout << throwError.catchError();
         cont = false;
         validYears = true;
 
@@ -577,7 +584,6 @@ void Console::readBirthYear(int &YOB, bool &cont)
 
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         throwError.invalidYear(4);   //__________________________________________________________________________________-Prentar 2x
-        cout << throwError.catchError();
         cont = true;
         return;
     }
@@ -608,7 +614,6 @@ void Console::readDeathYear(int &YOD, bool &cont)
         cin.clear();
         cin.sync();
         throwError.invalidYear(6); //------------------------------------------------------------Prentar 2x----------------------------------------------------
-        cout << throwError.catchError();
         cont = true;
         return;
     }
@@ -624,7 +629,6 @@ void Console::readFurtherInfo(string &furtherInfo)
     cout << "Further Information: ";
     cin.ignore();
     getline(cin, furtherInfo);
-
     if(furtherInfo.length() > 0)
         furtherInfo.at(0) = toupper(furtherInfo.at(0));
 }

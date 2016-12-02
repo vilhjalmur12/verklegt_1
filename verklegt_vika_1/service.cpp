@@ -42,6 +42,11 @@ void Service::saveData ()
     data.writeData(user);
 }
 
+string Service::getErrorString()
+{
+    return throwError.catchError();
+}
+
 string Service::removeSpaces(string& before)
 {
     for(unsigned int i = 0; i < before.length()-1; i++)
