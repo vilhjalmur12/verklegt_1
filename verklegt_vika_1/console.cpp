@@ -133,7 +133,7 @@ void Console::loginMenu()
     cout << "-----------------------------------------" << endl;
     cout << "|             Choose option:            |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|             c - create new            |" << endl;
+    cout << "|           c - create new user         |" << endl;
     cout << "|               l - login               |" << endl;
     cout << "|               q - quit                |" << endl;
     cout << "|                                       |" << endl;
