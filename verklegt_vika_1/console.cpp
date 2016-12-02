@@ -8,7 +8,6 @@
 #include <limits>
 #include <regex>
 
-
 Console::Console()
 {
     Service serviceTemp;
@@ -49,7 +48,7 @@ void Console::viewOrInsert()
     cout << "-----------------------------------------" << endl;
 }
 
-void Console::printInsertMenu()
+void Console::printPushBackMenu()
 {
     cout << "-----------------------------------------" << endl;
     cout << "|       Please Insert Information       |" << endl;
@@ -418,106 +417,137 @@ int Console::findIndexToEdit(string oldName)
         return -1;
 }
 
+
+
 void Console::pushBackScientist()
 {
-    printInsertMenu();
-
+    printPushBackMenu();
     string name, sex, furtherInfo;
     int YOB, YOD;
+
     do
     {
-        do
-        {
-            cout << "Name: ";
-            //cin.clear();
-            //cin.sync();
-            cin.ignore();
-            do
-            {
-            getline(cin, name);
-            }while(name.length()<1);
+        createScientist(name, sex, YOB, YOD, furtherInfo);
+    }while(!scientistService.appendScientist(name, sex, YOB, YOD, furtherInfo));
+}
 
-        }while(!scientistService.validName(name));
+void Console::createScientist(string &name, string &sex, int &YOB, int &YOD, string &furtherInfo)
+{
+    YOD = maxDeathYear;
 
-        do
-        {
-            cout << "Gender: ";
-            cin >> sex;
-        }while(!scientistService.validSex(sex));
+    readName(name);
 
-        //cin.clear();
-        //cin.sync();
+    readSex(sex);
 
+    readFurtherInfo(furtherInfo);
 
-        cout << "Further Information: ";
+    readYears(YOB, YOD);
+}
+
+void Console::readName(string &name)
+{
+    do
+    {
+        cout << "Name: ";
         cin.ignore();
-        getline(cin, furtherInfo);
-
-        if(furtherInfo.length() > 0)
-            furtherInfo.at(0) = toupper(furtherInfo.at(0));
-
-        bool cont = false;
-        bool validYears = false;
         do
         {
-            cont = false;
-            validYears = true;
-            YOD = 200000000;
-            string input;
+        getline(cin, name);
+        }while(name.length()<1);
 
-            cout << "Year of birth: ";
-            cin >> YOB;
+    }while(!scientistService.validName(name));
+}
 
-            bool birthContainsNonDigits = regex_match(input, regex("^[0-9]+[0-9]*$"));
+void Console::readSex(string &sex)
+{
+    do
+    {
+        cout << "Gender: ";
+        cin >> sex;
+    }while(!scientistService.validSex(sex));
+}
 
-            if(cin.fail())
-            {
-                cin.clear();
-                cin.sync();
-                throwError.invalidYear(4);
-                cont = true;
-                continue;
-            }
+void Console::readFurtherInfo(string &furtherInfo)
+{
+    cout << "Further Information: ";
+    cin.ignore();
+    getline(cin, furtherInfo);
 
-            if(YOB < -2700)
-            {
-                cout << "Attention: your Computer Scientist will have to have been born before" << endl
-                     << "the invention of the abacus, the first known tool used for computation" << endl
-                     << "tip: enter an invalid Year of Death to re-input year of birth" << endl;
-            }
-            else if(birthContainsNonDigits)
-            {
-                throwError.invalidYear(4);
-                cont = true;
-                continue;
-            }
+    if(furtherInfo.length() > 0)
+        furtherInfo.at(0) = toupper(furtherInfo.at(0));
+}
 
+void Console::readYears(int& YOB, int& YOD)
+{
+    bool cont = false;
+    bool validYears = false;
+    do
+    {
+        cont = false;
+        validYears = true;
 
-            cout << "Year of death: ";
-            cin >> input;
+        readBirthYear(YOB, cont);
 
-            bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+[0-9]*$"));
+        if(cont)
+            continue;
 
-            if(input == "n/a")
-            {
-                continue;
-            }
-            else if(deathContainsNonDigits)
-            {
-                throwError.invalidYear(4);
-                cont = true;
-                continue;
-            }
-            else
-            {
-                YOD = stoi(input);
-            }
+        readDeathYear(YOD, cont);
 
-            if(cont == false)
-                validYears = scientistService.validYears(YOB, YOD);
+        if(cont || YOD == maxDeathYear)
+            continue;
 
-        }while(!validYears || cont);
-    } while(!scientistService.appendScientist(name, sex, YOB, YOD, furtherInfo));
+        validYears = scientistService.validYears(YOB, YOD);
+
+    }while(!validYears || cont);
+}
+
+void Console::readBirthYear(int &YOB, bool &cont)
+{
+    cout << "Year of birth: ";
+    cin >> YOB;
+
+    if(cin.fail())
+    {
+        cin.clear();
+        cin.sync();
+        throwError.invalidYear(4);
+        cont = true;
+        return;
+    }
+
+    if(YOB < -2700)
+    {
+        cout << "Attention: your Computer Scientist will have to have been born before" << endl
+             << "the invention of the abacus, the first known tool used for computation" << endl
+             << "tip: enter an invalid Year of Death to re-input year of birth" << endl;
+    }
+    return;
+}
+
+void Console::readDeathYear(int &YOD, bool &cont)
+{
+    string input;
+
+    cout << "Year of death: ";
+    cin >> input;
+
+    bool deathContainsNonDigits = !regex_match(input, regex("^[0-9]+[0-9]*$"));
+
+    if(input == "n/a")
+    {
+        return;
+    }
+    if(deathContainsNonDigits)
+    {
+        throwError.invalidYear(4);
+        cont = true;
+        return;
+    }
+    else
+    {
+        YOD = stoi(input);
+        return;
+    }
 }
 
 /********************************************************
