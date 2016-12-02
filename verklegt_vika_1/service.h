@@ -33,7 +33,7 @@ public:
     void moveLastTo(int index);                                   //Færir aftasta vísindamann í stak sem index gefur til kynna
     vector<Scientist> getScientists();                            //Skilar vector of vísindamönnum í núverandi röð
     int getLengthOfData();                                        //Segir til um hve margir vísindamenn eru í gagnagrunni
-    void SortedScientistsBy(string choice = "na");                //Raðar vísindamönnum í röð eftir vali sem er stafsrófsröð by default
+    void sortScientistsBy(string choice = "na");                  //Raðar vísindamönnum í röð eftir vali sem er stafsrófsröð by default
 
     /**********************************************************
                          Villucheckar föll
@@ -68,8 +68,8 @@ private:
     /**********************************************************
                  Hjálparföll fyrir appendScientist
     **********************************************************/
-    string removeSpaces(string& before);                         //tekur inn streng og skilar honum án samliggjandi bila
-    string fixString(string& before);                            //Stækkar fyrstu stafi allra orða
+    string removeSpaces(string before);                         //tekur inn streng og skilar honum án samliggjandi bila
+    string fixString(string before);                            //Stækkar fyrstu stafi allra orða
 
     /**********************************************************
                      Hjálparföll fyrir search

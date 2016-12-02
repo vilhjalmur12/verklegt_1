@@ -20,6 +20,7 @@ public:
     void invalidYear (int errorCode);
     void invalidSex ();
     void invalidName (int errorCode);
+    void invalidNation();
 
     string catchError();
 

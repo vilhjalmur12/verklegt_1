@@ -419,7 +419,7 @@ void Console::sorting(string str)
     {
         if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd" || str == "nta" || str == "ntd")
         {
-            scientistService.SortedScientistsBy(str);
+            scientistService.sortScientistsBy(str);
             printTable();
             isRunning = false;
         }
