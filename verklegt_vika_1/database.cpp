@@ -116,6 +116,7 @@ void database::getData (string user)
             name = decryptData(name);
             sex = decryptData(sex);
             furtherInfo = decryptData(furtherInfo);
+            nationality = decryptData(nationality);
 
             tempName.push_back(name);
             tempSex.push_back(sex);
@@ -123,7 +124,6 @@ void database::getData (string user)
             tempDOD.push_back(DOD);
             tempNation.push_back(nationality);
             tempfInfo.push_back(furtherInfo); // Sandra baetti vid
-            tempfInfo.push_back(furtherInfo);
         }
     }
     
@@ -167,8 +167,6 @@ void database::writeData (string username)
         nationality = encryptData(nationality);
         furtherInfo = tempfInfo[i]; // Sandra baetti vid
         furtherInfo = encryptData(furtherInfo); // Sandra baetti vid
-        furtherInfo = tempfInfo[i];
-        furtherInfo = encryptData(furtherInfo);
 
         dataOutput << name << "\t" << sex << "\t" << DOD << "\t" << DOB << "\t" << "\t" << nationality << "\t" << furtherInfo << endl;
     }
