@@ -221,7 +221,7 @@ void Console::pushBackScientist()
             if(YOB < -2700)
             {
                 cout << "Attention: your Computer Scientist will have to have been born before" << endl
-                     << "the invention of the abbacus, the first known tool used for computation" << endl
+                     << "the invention of the abacus, the first known tool used for computation" << endl
                      << "tip: enter an invalid Year of Death to re-input year of birth" << endl;
             }
 
@@ -433,7 +433,7 @@ void Console::printTable (vector<int> indexesToPrint)
     }
     else
     {
-        printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Fruther Information");
+        printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
         cout <<"-------------------------------------------------------------------------------------------------------" << endl;
 
         for (unsigned int i = 0; i < indexesToPrint.size(); i++)
@@ -497,7 +497,7 @@ void Console::printTable ()
     vector<Scientist> allScientists = scientistService.getScientists();
     Scientist tmp;
     
-    printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Fruther Information");
+    printf("%-4s%-30s%-9s%-18s%-18s%-30s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Further Information");
     cout <<"-------------------------------------------------------------------------------------------------------" << endl;
     
     for (unsigned int i = 0; i < allScientists.size(); i++)

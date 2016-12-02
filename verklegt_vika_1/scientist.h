@@ -13,6 +13,9 @@ public:
 
     void pushScientist(string name, string sex, int DOB, int DOD, string FI);
 
+/**************************************************
+      Föll til að ná upplýsingum um fræðingana
+**************************************************/
     string getName() const
     {
         return _name;
@@ -46,11 +49,18 @@ public:
         return _furtherInfo;
     }
 
-    //Prentar út allar uppl um vísindamann í eina línu (aðskilið af tab-keypress)
+/**************************************************
+                 Operator föll
+**************************************************/
+    // Prentar út allar uppl um vísindamann í eina línu (aðskilið af tab-keypress)
     friend ostream& operator << (ostream& out, Scientist sc);
+    // Ber saman upplýsingarnar til að sjá hvor þær séu eins
     friend bool operator == (Scientist lhs, Scientist rhs);
 
 private:
+/**************************************************
+                 Meðlimabreytur
+**************************************************/
     string _name;
     string _sex;
     string _furtherInfo;
