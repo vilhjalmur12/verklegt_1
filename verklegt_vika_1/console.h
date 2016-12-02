@@ -21,30 +21,40 @@ public:
     void run();
     void edit();
     void search();
-    void viewDisplay(); //Notandi sendur i sorting_menu
-    char continueFunction(); //Spyr hvort eigi að endurtaka aðgerð og geymir valið y/n
+    //Notandi sendur i sorting_menu
+    void viewDisplay();
+    //Spyr hvort eigi að endurtaka aðgerð og geymir valið y/n
+    char continueFunction();
     void quit();
 
 /**************************************************
                     Opnunarföll
 **************************************************/
     void welcome();
-    void toContinue(); //Notandi þarf að ýta á ENTER til að halda áfram
+    //Notandi þarf að ýta á ENTER til að halda áfram
+    void toContinue();
 
 /**************************************************
                    Valmyndarföll
 **************************************************/
-    void viewOrInsert(); //Birta aðal valmynd
-    char choice(); //Geyma valmöguleika
-    void choiceMade(); //Kalla á framkvæmd eftir vali notanda
-    void printChangeDelete(); //Bjóða uppá að eiga við lista
+    //Birta aðal valmynd
+    void viewOrInsert();
+    //Geyma valmöguleika
+    char choice();
+    //Kalla á framkvæmd eftir vali notanda
+    void choiceMade();
+    //Bjóða uppá að eiga við lista
+    void printChangeDelete();
 
 /**************************************************
                    Sorting föll
 **************************************************/
-    void sorting_menu(); //Birta valmynd yfir möguleika til að raða lista
-    string stringChoice(); //Geyma val notanda yfir hvernig hann vildi raða listanum
-    void sorting(string str); //Birta raðaðann lista
+    //Birta valmynd yfir möguleika til að raða lista
+    void sorting_menu();
+    //Geyma val notanda yfir hvernig hann vildi raða listanum
+    string stringChoice();
+    //Birta raðaðann lista
+    void sorting(string str);
 
 private:
 /**************************************************
