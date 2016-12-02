@@ -41,6 +41,7 @@ private:
     vector<string> tempSex;
     vector<int> tempDOB;
     vector<int> tempDOD;
+    vector<string> tempNation;
     vector<string> tempfInfo;
     string _username;
     string _password;

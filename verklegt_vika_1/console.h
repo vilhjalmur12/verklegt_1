@@ -63,10 +63,11 @@ private:
     void printEditMenu();
 
     void pushBackScientist();
-    void createScientist(string& name, string& sex, int& YOB, int& YOD, string& furtherInfo);
+    void createScientist(string& name, string& sex, int& YOB, int& YOD, string& nationality, string& furtherInfo);
     void readName(string& name);
     void readSex(string& sex);
     void readFurtherInfo(string& furtherInfo);
+    void readNationality(string& nationality);
     void readYears(int& YOB, int& YOD);
     void readBirthYear(int& YOB, bool& cont);
     void readDeathYear(int& YOD, bool& cont);
