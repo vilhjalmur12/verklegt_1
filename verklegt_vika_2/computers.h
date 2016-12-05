@@ -10,7 +10,7 @@ class Computers
 {
 public:
     Computers();
-    Computers(string name, string cpuType, bool built, int yearBuilt);    // Stillir smiðinn þegar hann er búinn til með breytum sem byrjanargildi
+    Computers(string name, string cpuType, bool built, int yearBuilt);           // Stillir smiðinn þegar hann er búinn til með breytum sem byrjanargildi
     void pushComputer(string name, string cpuType, bool built, int yearBuilt);   // Stillir upplýsingar fyrir tölvur í meðlimabreytur
     virtual ~Computers();
 
@@ -28,7 +28,7 @@ public:
                  Operator föll
 **************************************************/
     friend ostream& operator << (ostream& out, Computers sc);       // Prentar út allar uppl um tölvu í eina línu (aðskilið af tab-keypress)
-    friend bool operator == (Computers lhs, Computers rhs);     // Ber saman upplýsingarnar til að sjá hvor þær séu eins
+    friend bool operator == (Computers lhs, Computers rhs);         // Ber saman upplýsingarnar til að sjá hvor þær séu eins
 
 private:
 /**************************************************
