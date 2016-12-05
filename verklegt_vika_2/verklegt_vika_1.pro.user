@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
 <!-- Written by QtCreator 4.1.0, 2016-12-05T09:33:49. -->
+=======
+<!-- Written by QtCreator 4.1.0, 2016-12-05T12:08:55. -->
+>>>>>>> 4512b3a58161256d4178b20b5eaa99461b020273
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -285,8 +289,13 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">verklegt_vika_1</value>
+<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Sandra/Documents/GitHub/AlvoruVerklegt/verklegt_1/verklegt_vika_2/verklegt_vika_1.pro</value>
+=======
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">verklegt_vika_12</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/Users/villi/Desktop/Verklegt Git/verklegt_1/verklegt_vika_2/verklegt_vika_1.pro</value>
+>>>>>>> 4512b3a58161256d4178b20b5eaa99461b020273
     <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">verklegt_vika_1.pro</value>

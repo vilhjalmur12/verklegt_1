@@ -3,6 +3,7 @@
 #include "scientist.h"
 #include <vector>
 #include <fstream>
+#include <sqlite3.h>
 
 
 using namespace std;
@@ -22,16 +23,9 @@ void database::getData (string user)
     string name, sex, nationality, furtherInfo, fullUser;
     int DOB, DOD;
 
-    ifstream dataInput;
-    fullUser = "." + user +"_profile.dat";
+    sqlite3 *db;
 
-    dataInput.open(fullUser);
-    if (dataInput.fail())
-    {
-        fstream newDataInput (fullUser, std::ios::out);
-        newDataInput.close();
-        dataInput.open(fullUser);
-    }
+    // ef skráin er tóm gerðum við þetta
     if (isEmpty(dataInput))
     {
         tempName.push_back("Ada Lovelace");
@@ -105,6 +99,8 @@ void database::getData (string user)
         tempfInfo.push_back("Inventor of the World Wide Web");
 
     }
+
+    // Ef skráin var ekki tóm gerðist þetta
     else
     {
         int j = 0;
