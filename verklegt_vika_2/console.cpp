@@ -79,7 +79,7 @@ void Console::sorting_menu()
     cout << "|    Birth year, descending: bd         |" << endl;
     cout << "|     Death year, ascending: da         |" << endl;
     cout << "|    Death year, descending: dd         |" << endl;
-    cout << "|   Nationality, ascending:  nta        |" << endl;
+    cout << "|    Nationality, ascending: nta        |" << endl;
     cout << "|   Nationality, descending: ntd        |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -145,6 +145,22 @@ void Console::loginMenu()
     cout << "|           c - create new user         |" << endl;
     cout << "|               l - login               |" << endl;
     cout << "|               q - quit                |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+void Console::printComPushBackMenu();
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "|       Please Insert Information       |" << endl;
+    cout << "|        in the following format        |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|             Name:   string            |" << endl;
+    cout << "|       Build year:   YYYY              |" << endl;
+    cout << "|    Computer type:   string            |" << endl;
+    cout << "|         Built by:   string            |" << endl;
+    cout << "|    Was it built?:   y/n               |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
