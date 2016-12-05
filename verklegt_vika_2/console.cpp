@@ -603,7 +603,6 @@ void Console::readYears(int& YOB, int& YOD)
     do
     {
         cout << scientistService.getErrorString();
-        cout << throwError.catchError();
         cont = false;
         validYears = true;
 
@@ -637,7 +636,7 @@ void Console::readBirthYear(int &YOB, bool &cont)
         cin.clear();
 
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        throwError.invalidYear(4);   //__________________________________________________________________________________-Prentar 2x
+        scientistService.logYearError(4);
         cont = true;
         return;
     }
@@ -675,7 +674,7 @@ void Console::readDeathYear(int &YOD, bool &cont)
     {
         cin.clear();
         cin.sync();
-        throwError.invalidYear(6); //------------------------------------------------------------Prentar 2x----------------------------------------------------
+        scientistService.logYearError(6);
         cont = true;
         return;
     }

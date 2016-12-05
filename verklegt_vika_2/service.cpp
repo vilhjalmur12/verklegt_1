@@ -8,7 +8,7 @@ using namespace std;
 *****************************************************************************/
 Service::Service()
 {
-    data.getData(user);
+    data.getData(user);  //---------------------------------------------------------------------------------------------------------------------BREYTA
     _scientists = data.pullData();
 }
 
@@ -21,7 +21,7 @@ Service::Service()
 Service::Service(string username)
 {
     user = username;
-    data.getData(user);
+    data.getData(user);              //-----------------------------------------------------------------------------------------------------Breyta
     _scientists = data.pullData();
 }
 
@@ -37,7 +37,7 @@ Service::~Service()
  ****************************************************************************/
 void Service::saveData ()
 {
-    data.pushData(_scientists);
+    data.pushData(_scientists); //---------------------------------------------------------------------------------------------------------Breyta
     data.writeData(user);
 }
 
@@ -52,6 +52,11 @@ void Service::saveData ()
 string Service::getErrorString()
 {
     return throwError.catchError();
+}
+
+void Service::logYearError(int code)
+{
+    throwError.invalidYear(code);
 }
 
 /****************************************************************************
