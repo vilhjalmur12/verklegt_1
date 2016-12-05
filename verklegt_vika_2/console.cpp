@@ -302,7 +302,7 @@ void Console::callUser ()
             cout << "Invaid action!" << endl << endl;
         }
     }
-    Service newScientistService(user);
+    Service newScientistService;
     scientistService = newScientistService;
     run();
 }
@@ -437,9 +437,9 @@ void Console::quit()
 {
     quitMenu();
 
-    scientistService.saveData();
+   //  scientistService.saveData();
 
-    cout << scientistService.getErrorString();
+   // cout << scientistService.getErrorString();
 
     exit(1);
 }

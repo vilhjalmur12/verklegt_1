@@ -30,7 +30,7 @@ Computer::~Computer() { }
             @parameter(int yearBuilt) - byggingarár tölvu
  ****************************************************************************/
 
-void Computer::pushComputer()
+void Computer::pushComputer(string name, string cpuType, bool built, int yearBuilt)
 {
     _name = name;
     _cpuType = cpuType;
@@ -99,6 +99,8 @@ vector<string> Computer::getAuthor() const
 /**************************************************
              Operator föll
 **************************************************/
+
+/*
 friend ostream& operator << (ostream& out, Computer co)     // Prentar út allar uppl um tölvu í eina línu (aðskilið af tab-keypress)
 {
     out << co.getName() << "\t" << co.getCpuType() << "\t" << co.getBuilt() << "\t" << co.getYearBuilt();
@@ -109,3 +111,4 @@ friend bool operator == (Computer lhs, Computer rhs)     // Ber saman upplýsing
 {
     (lhs.getName() == rhs.getName() && lhs.getCpuType() == rhs.getCpuType() && lhs.getBuilt() == lhs.getBuilt() && lhs.getYearBuilt() == rhs.getYearBuilt());
 }
+*/

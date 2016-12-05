@@ -70,6 +70,9 @@ private:
     void readYears(int& YOB, int& YOD);                                                                             //Tekur inn fæðingar/dánar ár fyrir vísindamann
     void readBirthYear(int& YOB, bool& cont);                                                                       //Athugar fæðingar ár á vísindamanni
     void readDeathYear(int& YOD, bool& cont);                                                                       //Athugar dánar ár á vísindamanni
+    void printComPushBackMenu();
+    void editMenu();
+    void deleteMenu();
 
 /**************************************************
               Hjálparföll við search

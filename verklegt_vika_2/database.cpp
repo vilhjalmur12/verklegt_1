@@ -74,17 +74,13 @@ void database::createUser(const QString& username, const QString& password, cons
     }
 
     QSqlQuery query;
-    query.prepare("SELECT * FROM users WHERE username = :username");
+    query.prepare("INSERT INTO users (first_name, last_name, username, password)" "VALUES (:firstName, :lastName, :username, :password)");
+    query.bindValue(":firstName", firstName);
+    query.bindValue(":lastName", lastName);
     query.bindValue(":username", username);
-
-    while (query.next())
-    {
-            QString name = query.value(3).toString();
-            QString pass = query.value(4).toString();
-    }
-
-
-
+    query.bindValue(":password", password);
+    query.exec();
+    qDebug() << firstName << lastName << username << password;
 
 
 
