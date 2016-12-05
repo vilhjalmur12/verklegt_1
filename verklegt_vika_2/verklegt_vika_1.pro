@@ -16,7 +16,7 @@ SOURCES += \
     scientist.cpp \
     errorhandling.cpp \
     main.cpp \
-    computers.cpp
+    computer.cpp
 
 HEADERS += \
     service.h \
@@ -24,7 +24,7 @@ HEADERS += \
     console.h \
     scientist.h \
     errorhandling.h \
-    computers.h
+    computer.h
 
 DISTFILES += \
     data.db \
