@@ -27,7 +27,7 @@ void Console::welcome()
     cout << "|                                       |" << endl;
     cout << "|          Welcome to Database          |" << endl;
     cout << "|        Press enter to continue        |" << endl;
-    cout << "|       please ensure the console       |" << endl;
+    cout << "|       Please ensure the console       |" << endl;
     cout << "|       window is at least 120x30       |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -37,12 +37,13 @@ void Console::viewOrInsert()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
-    cout << "|                                       |" << endl;
     cout << "|           Choose procedure:           |" << endl;
+    cout << "|                                       |" << endl;
     cout << "|            v - for viewing            |" << endl;
     cout << "|           i - for insertion           |" << endl;
     cout << "|            s - for search             |" << endl;
-    cout << "|      e - for editing a scientist      |" << endl;
+    cout << "|            e - for editing            |" << endl;
+    cout << "|           d - for deleting            |" << endl;
     cout << "|           q - for quitting            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -91,11 +92,11 @@ void Console::printChangeDelete()
     cout << "-----------------------------------------" << endl;
     cout << "|       What would you like to do       |" << endl;
     cout << "|                                       |" << endl;
+    cout << "|               e - edit                |" << endl;
+    cout << "|              d - delete               |" << endl;
+    cout << "|            m - go to menu             |" << endl;
     cout << "|           s - search again            |" << endl;
-    cout << "|         e - edit a Scientist          |" << endl;
-    cout << "|        d - delete a Scientist         |" << endl;
-    cout << "|           m - go to menu              |" << endl;
-    cout << "|          q - quit program             |" << endl;
+    cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
@@ -149,7 +150,7 @@ void Console::loginMenu()
     cout << "-----------------------------------------" << endl;
 }
 
-void Console::printComPushBackMenu();
+void Console::printComPushBackMenu()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
@@ -164,6 +165,33 @@ void Console::printComPushBackMenu();
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
+
+void Console::editMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "|       What would you like to do       |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|         es - edit a scientist         |" << endl;
+    cout << "|         ec - edit a computer          |" << endl;
+    cout << "|           q - quit program            |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+void Console::deleteMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "|       What would you like to do       |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|         ds - delete a scientist       |" << endl;
+    cout << "|         dc - delete a computer        |" << endl;
+    cout << "|           q - quit program            |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 
 /****************************************************************************
                         callUser
