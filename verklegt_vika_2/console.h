@@ -52,7 +52,6 @@ private:
 /**************************************************
                    Meðlimabreytur
 **************************************************/
-    ErrorHandling throwError;   //Sendir forrit í villu tékk
     string user;                //Nafn fyrir user
     Service scientistService;   //Heldur utan um upplýsingar frá gagnagrunni fyrir service hlutan
 /**************************************************

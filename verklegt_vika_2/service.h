@@ -44,6 +44,7 @@ public:
     bool validDeathYear(string deathYear);                        //segir til um hvort dánarár sé löglegt
     bool validNationality(string& nationality);                   //segir til um hvort þjóðerni sé löglegt
     string getErrorString();                                      //skilar núverandi villuboði ef það er til staðar
+    void logYearError(int code);
 
 
     /**********************************************************
