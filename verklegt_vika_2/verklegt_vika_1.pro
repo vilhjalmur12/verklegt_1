@@ -16,13 +16,15 @@ SOURCES += \
     scientist.cpp \
     errorhandling.cpp \
     main.cpp \
+    computers.cpp
 
 HEADERS += \
     service.h \
     database.h \
     console.h \
     scientist.h \
-    errorhandling.h
+    errorhandling.h \
+    computers.h
 
 DISTFILES += \
     data.db \
