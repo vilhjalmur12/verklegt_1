@@ -154,13 +154,12 @@ void Console::printComPushBackMenu()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
-    cout << "|       Please Insert Information       |" << endl;
+    cout << "|       Please insert information       |" << endl;
     cout << "|        in the following format        |" << endl;
     cout << "|                                       |" << endl;
     cout << "|             Name:   string            |" << endl;
     cout << "|       Build year:   YYYY              |" << endl;
     cout << "|    Computer type:   string            |" << endl;
-    cout << "|         Built by:   string            |" << endl;
     cout << "|    Was it built?:   y/n               |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -192,6 +191,23 @@ void Console::deleteMenu()
     cout << "-----------------------------------------" << endl;
 }
 
+void comSortingMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "| In what order would you like to view? |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|           Name, ascending: na         |" << endl;
+    cout << "|          Name, descending: nd         |" << endl;
+    cout << "|     Build year, ascending: ba         |" << endl;
+    cout << "|    Build year, descending: bd         |" << endl;
+    cout << "|  Computer type, ascending: ta         |" << endl;
+    cout << "| Computer type, descending: td         |" << endl;
+    cout << "|                Built, yes: by         |" << endl;
+    cout << "|                 Built, no: bn         |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
 
 /****************************************************************************
                         callUser
