@@ -52,7 +52,7 @@ private:
 /**************************************************
                    Meðlimabreytur
 **************************************************/
-    string user;                //Nafn fyrir user
+    QString user;                //Nafn fyrir user
     Service scientistService;   //Heldur utan um upplýsingar frá gagnagrunni fyrir service hlutan
 /**************************************************
                Hjálparföll við edit

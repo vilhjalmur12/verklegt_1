@@ -3,7 +3,7 @@
 #include "scientist.h"
 #include <vector>
 #include <QDebug>
-#include <QSqlQuery.h>
+#include <QSqlQuery>
 #include <QSqlRecord.h>
 
 
@@ -13,7 +13,7 @@ database::database () {}
 database::~database () {}
 
 // ætti að fara inn í constructor: const QString& path ef við viljum útbúa spes path.
-database::database()
+void database::getData(string selection, string table)
 {
    myData = QSqlDatabase::addDatabase("QSQLITE");
    myData.setDatabaseName("/Users/villi/Desktop/Verklegt\ Git/Qt_test/sql_test/computers.sqlite");
@@ -33,6 +33,62 @@ database::database()
 
    myData.close();
 
+}
+
+bool database::getUser(const QString& username, const QString& password)
+{
+
+    myData = QSqlDatabase::addDatabase("QSQLITE");
+    myData.setDatabaseName("/Users/villi/Desktop/Verklegt\ Git/Qt_test/sql_test/users.sqlite");
+
+    if (!myData.open())
+    {
+       qDebug() << "Error: connection with database fail";
+    }
+    else
+    {
+       qDebug() << "Database: connection ok";
+    }
+
+
+
+
+
+    myData.close();
+    return false;
+}
+
+void database::createUser(const QString& username, const QString& password, const QString& firstName, const QString& lastName)
+{
+    myData = QSqlDatabase::addDatabase("QSQLITE");
+    myData.setDatabaseName("/Users/villi/Desktop/Verklegt\ Git/Qt_test/sql_test/users.sqlite");
+
+
+    if (!myData.open())
+    {
+       qDebug() << "Error: connection with database fail";
+    }
+    else
+    {
+       qDebug() << "Database: connection ok";
+    }
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM users WHERE username = :username");
+    query.bindValue(":username", username);
+
+    while (query.next())
+    {
+            QString name = query.value(3).toString();
+            QString pass = query.value(4).toString();
+    }
+
+
+
+
+
+
+    myData.close();
 }
 
 void database::selectData ()

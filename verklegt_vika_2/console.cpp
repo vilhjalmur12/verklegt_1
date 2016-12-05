@@ -167,6 +167,7 @@ void Console::callUser ()
 
     while (!runProgram)
     {
+        string tmpUser;
         loginMenu();
         cout << "-> ";
         cin >> action;
@@ -175,8 +176,11 @@ void Console::callUser ()
         {
             string confirmPass = "password";
 
+
             cout << "Choose Username: ";
-            cin >> user;
+            cin >> tmpUser;
+            QString user(tmpUser.c_str());
+            qDebug() << user;
 
 
             while (password != confirmPass)
@@ -191,18 +195,34 @@ void Console::callUser ()
                     cout << "You didn't confirm the right password" << endl;
                 }
             }
-            data.createUser(user, password);
+            QString qPassword(password.c_str());
+
+            string firstName, lastName;
+            cout << "Enter your first name: " << endl;
+            cin >> firstName;
+            cout << "Enter your last name: " << endl;
+            cin >> lastName;
+
+            QString qFirstName(firstName.c_str());
+            QString qLastName(lastName.c_str());
+            qDebug() << qPassword << qFirstName << qLastName;
+
+            data.createUser(user, qPassword, qFirstName, qLastName);
             runProgram = true;
 
         }
         else if (action == "l")
         {
             cout << "Username: ";
-            cin >> user;
+            cin >> tmpUser;
             cout << "Password: ";
             cin >> password;
 
-            bool foundUser = data.getUser(user, password);
+            QString user(tmpUser.c_str());
+            QString qPassword(password.c_str());
+            qDebug() << user << qPassword;
+
+            bool foundUser = data.getUser(user, qPassword);
 
             if (foundUser == true)
             {
