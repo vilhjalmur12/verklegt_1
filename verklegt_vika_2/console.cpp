@@ -27,7 +27,7 @@ void Console::welcome()
     cout << "|                                       |" << endl;
     cout << "|          Welcome to Database          |" << endl;
     cout << "|        Press enter to continue        |" << endl;
-    cout << "|       please ensure the console       |" << endl;
+    cout << "|       Please ensure the console       |" << endl;
     cout << "|       window is at least 120x30       |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -37,12 +37,13 @@ void Console::viewOrInsert()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
-    cout << "|                                       |" << endl;
     cout << "|           Choose procedure:           |" << endl;
+    cout << "|                                       |" << endl;
     cout << "|            v - for viewing            |" << endl;
     cout << "|           i - for insertion           |" << endl;
     cout << "|            s - for search             |" << endl;
-    cout << "|      e - for editing a scientist      |" << endl;
+    cout << "|            e - for editing            |" << endl;
+    cout << "|           d - for deleting            |" << endl;
     cout << "|           q - for quitting            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -79,7 +80,7 @@ void Console::sorting_menu()
     cout << "|    Birth year, descending: bd         |" << endl;
     cout << "|     Death year, ascending: da         |" << endl;
     cout << "|    Death year, descending: dd         |" << endl;
-    cout << "|   Nationality, ascending:  nta        |" << endl;
+    cout << "|    Nationality, ascending: nta        |" << endl;
     cout << "|   Nationality, descending: ntd        |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -91,11 +92,11 @@ void Console::printChangeDelete()
     cout << "-----------------------------------------" << endl;
     cout << "|       What would you like to do       |" << endl;
     cout << "|                                       |" << endl;
+    cout << "|               e - edit                |" << endl;
+    cout << "|              d - delete               |" << endl;
+    cout << "|            m - go to menu             |" << endl;
     cout << "|           s - search again            |" << endl;
-    cout << "|         e - edit a Scientist          |" << endl;
-    cout << "|        d - delete a Scientist         |" << endl;
-    cout << "|           m - go to menu              |" << endl;
-    cout << "|          q - quit program             |" << endl;
+    cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
@@ -145,6 +146,65 @@ void Console::loginMenu()
     cout << "|           c - create new user         |" << endl;
     cout << "|               l - login               |" << endl;
     cout << "|               q - quit                |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+void Console::printComPushBackMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "|       Please insert information       |" << endl;
+    cout << "|        in the following format        |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|             Name:   string            |" << endl;
+    cout << "|       Build year:   YYYY              |" << endl;
+    cout << "|    Computer type:   string            |" << endl;
+    cout << "|    Was it built?:   y/n               |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+void Console::editMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "|       What would you like to do       |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|         es - edit a scientist         |" << endl;
+    cout << "|         ec - edit a computer          |" << endl;
+    cout << "|           q - quit program            |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+void Console::deleteMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "|       What would you like to do       |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|         ds - delete a scientist       |" << endl;
+    cout << "|         dc - delete a computer        |" << endl;
+    cout << "|           q - quit program            |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+void comSortingMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "| In what order would you like to view? |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|           Name, ascending: na         |" << endl;
+    cout << "|          Name, descending: nd         |" << endl;
+    cout << "|     Build year, ascending: ba         |" << endl;
+    cout << "|    Build year, descending: bd         |" << endl;
+    cout << "|  Computer type, ascending: ta         |" << endl;
+    cout << "| Computer type, descending: td         |" << endl;
+    cout << "|                Built, yes: by         |" << endl;
+    cout << "|                 Built, no: bn         |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
