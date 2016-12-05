@@ -8,19 +8,14 @@ using namespace std;
 
 class Computers
 {
-    /*Nafn, byggingarár, tegund og byggðe/ekki byggð?
-String, int, string, bool
-Gera notenda kleift að tengja saman tölvur og vísindamenn (fleiri en 1)
-Finna leið til að implementa vensl í forriti og database.
-Setja lika inn einn strengjavektor um það hverjit unnu við að búa til hvaða tölvu
-*/
 public:
     Computers();
     Computers(string name, string cpuType, bool built, int yearBuilt);    // Stillir smiðinn þegar hann er búinn til með breytum sem byrjanargildi
     void pushComputer(string name, string cpuType, bool built, int yearBuilt);   // Stillir upplýsingar fyrir tölvur í meðlimabreytur
+    virtual ~Computers();
 
 /**************************************************
-      Föll til að ná upplýsingum um fræðingana
+      Föll til að ná upplýsingum um tolvurnar
 **************************************************/
 
     string getName() const;         // Dregur fram nafn tolvunnar úr meðlimabreytum og skilar því til baka
@@ -43,6 +38,7 @@ private:
     string _cpuType;
     bool _built;
     int _yearBuilt;
+    vector<string> workedOnComputer;
 };
 
 #endif // COMPUTERS_H
