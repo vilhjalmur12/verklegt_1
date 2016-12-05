@@ -8,15 +8,15 @@ using namespace std;
 
 class Computers
 {
-    /*Nafn, byggingarár, tegund og byggðe/ekki byggð?
-String, int, string, bool
-Gera notenda kleift að tengja saman tölvur og vísindamenn (fleiri en 1)
-Finna leið til að implementa vensl í forriti og database.
-Setja lika inn einn strengjavektor um það hverjit unnu við að búa til hvaða tölvu
+    /*Nafn, byggingarár, tegund og byggð/ekki byggð?
+    String, int, string, bool
+    Gera notenda kleift að tengja saman tölvur og vísindamenn (fleiri en 1)
+    Finna leið til að implementa vensl í forriti og database.
+    Setja lika inn einn strengjavektor um það hverjit unnu við að búa til hvaða tölvu
 */
 public:
     Computers();
-    Computers(string name, string cpuType, bool built, int yearBuilt);    // Stillir smiðinn þegar hann er búinn til með breytum sem byrjanargildi
+    Computers(string name, string cpuType, bool built, int yearBuilt);           // Stillir smiðinn þegar hann er búinn til með breytum sem byrjanargildi
     void pushComputer(string name, string cpuType, bool built, int yearBuilt);   // Stillir upplýsingar fyrir tölvur í meðlimabreytur
 
 /**************************************************
@@ -33,7 +33,7 @@ public:
                  Operator föll
 **************************************************/
     friend ostream& operator << (ostream& out, Computers sc);       // Prentar út allar uppl um tölvu í eina línu (aðskilið af tab-keypress)
-    friend bool operator == (Computers lhs, Computers rhs);     // Ber saman upplýsingarnar til að sjá hvor þær séu eins
+    friend bool operator == (Computers lhs, Computers rhs);         // Ber saman upplýsingarnar til að sjá hvor þær séu eins
 
 private:
 /**************************************************
