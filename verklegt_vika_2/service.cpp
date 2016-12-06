@@ -6,10 +6,7 @@ using namespace std;
                         fyllir data objectinn og dælir gildum þaðan í
                         _scientists vectorinn
 *****************************************************************************/
-Service::Service()
-{
-
-}
+Service::Service() { }
 
 Service::Service(const QString user)
 {
@@ -17,10 +14,7 @@ Service::Service(const QString user)
 }
 
 
-Service::~Service()
-{
-    
-}
+Service::~Service() { }
 
 
 
