@@ -36,11 +36,19 @@ void database::getData(string selection, string table)
 
 }
 
+vector<Scientist> pullDataScientist (const QSqlDatabase& data)
+{
+    vector<string> tmp;
+    vector<string> tmpS2;
+
+
+}
+
 bool database::getUser(const QString& username, const QString& password)
 {
     user = username;
     myData = QSqlDatabase::addDatabase("QSQLITE");
-    myData.setDatabaseName("/Users/villi/Desktop/Verklegt Git/verklegt_1/verklegt_vika_2/users.sqlite");
+    myData.setDatabaseName("./users.sqlite");
 
     if (!myData.open())
     {
@@ -62,8 +70,6 @@ bool database::getUser(const QString& username, const QString& password)
         qPass = query.value(0).toString();
     }
 
-    qDebug() << qPass;
-
     if (password == qPass)
     {
         myData.close();
@@ -80,8 +86,7 @@ void database::createUser(const QString& username, const QString& password, cons
 {
     user = username;
     myData = QSqlDatabase::addDatabase("QSQLITE");
-    myData.setDatabaseName("/Users/villi/Desktop/Verklegt Git/verklegt_1/verklegt_vika_2/users.sqlite");
-
+    myData.setDatabaseName("./users.sqlite");
 
     if (!myData.open())
     {
@@ -110,7 +115,7 @@ void database::initDatabase (const QString& username)
 {
     QSqlQuery userQuery;
     QSqlDatabase userData = QSqlDatabase::addDatabase("QSQLITE");
-    userData.setDatabaseName("/Users/villi/Desktop/Verklegt Git/verklegt_1/verklegt_vika_2/" + username + ".sqlite");
+    userData.setDatabaseName("./" + username + ".sqlite");
     if (!userData.open())
     {
        qDebug() << "Error: connection with database fail";
@@ -119,20 +124,27 @@ void database::initDatabase (const QString& username)
     {
        qDebug() << "Database: connection ok";
     }
-
-    userQuery.prepare("CREATE  TABLE \"main\".\"scientists\" "
-                  "(\"ID\" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
-                  "\"First Name\" VARCHAR NOT NULL , \"Last Name\" VARCHAR NOT NULL , "
-                  "\"Gender\" VARCHAR, \"Year_of_birth\" INTEGER, \"Year_of_death\" INTEGER, "
-                  "\"Nationality\" VARCHAR, \"Information\" VARCHAR)");
+/*
+    userQuery.prepare("CREATE  TABLE scientists "
+                      "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
+                  "First_name VARCHAR NOT NULL , Last_name VARCHAR NOT NULL , "
+                  "Gender VARCHAR, Year_of_birth INTEGER, Year_of_death INTEGER, "
+                  "Nationality VARCHAR, Information VARCHAR)");
+    */
+   /*
     userQuery.prepare ("CREATE  TABLE \"main\".\"computers\" "
                    "(\"ID\" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
                    "\"Name\" VARCHAR NOT NULL , \"Year_of_build\" INTEGER, "
                    "\"CPU_type_ID\" INTEGER, \"built_or_not\" BOOL)");
+                   */
+    /*
     userQuery.prepare("CREATE  TABLE \"main\".\"cpuType\" "
                   "(\"ID\" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
                   "\"type\" VARCHAR NOT NULL )");
-    userQuery.exec();
+                  */
+
+    userQuery.exec("CREATE TABLE scientists (ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , First_name VARCHAR NOT NULL , Last_name VARCHAR NOT NULL , Gender VARCHAR, Year_of_birth INTEGER, Year_of_death INTEGER, Nationality VARCHAR, Information VARCHAR)");
+
 
     userData.close();
 
