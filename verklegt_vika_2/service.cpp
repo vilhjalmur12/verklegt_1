@@ -381,8 +381,12 @@ bool Service::findInString(string query, string String) //Jafnvel að endurskoð
                      @parameter(string query) - Strengur/tala sem leitað er að
                      @return vector<int> - indexar allra þeirra vísindamanna sem uppfylltu skilyrði
  ****************************************************************************/
-vector<int> Service::getIndexesWith(string query /*, vector<Scientist> _scientists*/)//Þetta fall þyrfti að öllum líkindum að taka inn slíkan vector
+vector<int> Service::getIndexesWith(string query )
 {
+    /* vector<Scientist> _scientists = data.getScientists()
+     * Betra að finna leið til að láta þetta vinna beint í SQL
+     */
+
     vector<int> foundScientists;
 
     if (string::npos != query.find_first_of("0123456789"))

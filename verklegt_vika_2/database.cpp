@@ -98,6 +98,11 @@ void database::createUser(const QString& username, const QString& password, cons
     }
 
     QSqlQuery query;
+
+    query.prepare("CREATE TABLE users(first_name VARCHAR NOT NULL, last_name VARCHAR NOT NULL, username VARCHAR NOT NULL, password VARCHAR NOT NULL)");
+    query.exec();
+
+
     query.prepare("INSERT INTO users (first_name, last_name, username, password)" "VALUES (:firstName, :lastName, :username, :password)");
     query.bindValue(":firstName", firstName);
     query.bindValue(":lastName", lastName);
@@ -105,9 +110,10 @@ void database::createUser(const QString& username, const QString& password, cons
     query.bindValue(":password", password);
     query.exec();
 
+
     myData.close();
 
-    initDatabase(username);
+   // initDatabase(username);
 
 }
 
@@ -143,7 +149,9 @@ void database::initDatabase (const QString& username)
                   "\"type\" VARCHAR NOT NULL )");
                   */
 
-   userQuery.exec("CREATE TABLE scientists (ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , First_name VARCHAR NOT NULL , Last_name VARCHAR NOT NULL , Gender VARCHAR, Year_of_birth INTEGER, Year_of_death INTEGER, Nationality VARCHAR, Information VARCHAR)");
+
+  // userQuery.exec("CREATE TABLE sRc(computerID INTEGER, scientistID INTEGER, FOREIGN KEY (computerID) REFERENCES Computers(ID), FOREIGN KEY (scientistID) REFERENCES Scientists(ID) PRIMARY KEY (computerID, scientistID))");
+
 
 
     userData.close();
