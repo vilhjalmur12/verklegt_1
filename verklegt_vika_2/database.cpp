@@ -170,7 +170,6 @@ void database::createUser(const QString& username, const QString& password, cons
 
 void database::initDatabase (const QString& username)
 {
-
     QSqlDatabase userData = QSqlDatabase::addDatabase("QSQLITE");
     userData.setDatabaseName("./" + username + ".sqlite");
     if (!userData.open())
