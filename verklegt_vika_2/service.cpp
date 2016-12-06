@@ -95,6 +95,9 @@ string Service::fixString(string before)
  ****************************************************************************/
 bool Service::appendScientist(string name, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
 {
+    //_scientists = data.getScientists();
+
+
     Scientist tempScientist(name, sex, birthYear, deathYear, nationality, furtherInfo);
     for(unsigned int i = 0; i < _scientists.size(); i++)
     {
@@ -104,7 +107,11 @@ bool Service::appendScientist(string name, string sex, int birthYear, int deathY
             return false;
         }
     }
-    _scientists.push_back(tempScientist);
+    _scientists.push_back(tempScientist);  // Líklega óþarfi
+
+
+    //data.addScientist(tempScientist); --> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
+
 
     return true;
 }
@@ -116,6 +123,9 @@ bool Service::appendScientist(string name, string sex, int birthYear, int deathY
  ****************************************************************************/
 void Service::removeScientist(const int index)
 {
+    //data.remove(int index)
+
+
     _scientists.erase(_scientists.begin()+index);
 }
 
@@ -127,6 +137,7 @@ void Service::removeScientist(const int index)
  ****************************************************************************/
 void Service::moveLastTo(int index)
 {
+    //Skoða og finna leið til að hátta þessu fyrir SQL þ.a. hann update'i í hverju skrefi
     _scientists[index] = _scientists.back();
     _scientists.pop_back();
 }
@@ -134,6 +145,8 @@ void Service::moveLastTo(int index)
 vector<Scientist> Service::getScientists()
 {
     return _scientists;
+
+    //return data.getScientists();
 }
 
 /****************************************************************************
@@ -143,6 +156,7 @@ vector<Scientist> Service::getScientists()
 int Service::getLengthOfData()
 {
     return _scientists.size();
+    //Return data.numberOfScientistEntries();
 }
 
 /****************************************************************************
@@ -152,10 +166,10 @@ int Service::getLengthOfData()
         @parameter(string choice) - er "na" by default en annað ef notandi biður um annað
             na=NameAscending, nd=NameDescending o.s.frv.
  ****************************************************************************/
-void Service::sortScientistsBy(string choice/*="na"*/)
+void Service::sortScientistsBy(string choice/*="na"*//*, vector<Scientist>& _scientists*/)
 {
     if (choice == "na")
-        sortByNameAscending();
+        sortByNameAscending(/*vector<Scientist>& _scientists*/); // Líklega þyrftu öll föllin að taka inn þennan vector
     if (choice == "nd")
         sortByNameDesending();
     if (choice == "gf")
@@ -339,7 +353,7 @@ bool Service::findInInt(int query, int year)
                      @return true - ef query finnst sem heill-/hlutstrengur String
                      @return false - ef skilyrði að ofan eru óuppfyllt
  ****************************************************************************/
-bool Service::findInString(string query, string String)
+bool Service::findInString(string query, string String) //Jafnvel að endurskoða þetta fall ef við tökum inn Qstring í stað string
 {
     transform(query.begin(), query.end(), query.begin(), ::tolower);
     transform(String.begin(), String.end(), String.begin(), ::tolower);
@@ -367,7 +381,7 @@ bool Service::findInString(string query, string String)
                      @parameter(string query) - Strengur/tala sem leitað er að
                      @return vector<int> - indexar allra þeirra vísindamanna sem uppfylltu skilyrði
  ****************************************************************************/
-vector<int> Service::getIndexesWith(string query)
+vector<int> Service::getIndexesWith(string query /*, vector<Scientist> _scientists*/)//Þetta fall þyrfti að öllum líkindum að taka inn slíkan vector
 {
     vector<int> foundScientists;
 
@@ -462,7 +476,7 @@ struct nationalityDescending
               nafn hvers falls segir til um
 **********************************************************/
 
-void Service::sortByNameAscending()
+void Service::sortByNameAscending(/*vector<Scientist>& _scientists*/)  // Það þyrfti líklega að breyta öllum slíkum föllum á þennan máta
 {
     nameAscending na;
     sort(_scientists.begin(), _scientists.end(), na);
