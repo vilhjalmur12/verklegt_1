@@ -143,7 +143,7 @@ void database::initDatabase (const QString& username)
                   "\"type\" VARCHAR NOT NULL )");
                   */
 
-    userQuery.exec("CREATE TABLE scientists (ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , First_name VARCHAR NOT NULL , Last_name VARCHAR NOT NULL , Gender VARCHAR, Year_of_birth INTEGER, Year_of_death INTEGER, Nationality VARCHAR, Information VARCHAR)");
+   // userQuery.exec("CREATE TABLE scientists (ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , First_name VARCHAR NOT NULL , Last_name VARCHAR NOT NULL , Gender VARCHAR, Year_of_birth INTEGER, Year_of_death INTEGER, Nationality VARCHAR, Information VARCHAR)");
 
 
     userData.close();
