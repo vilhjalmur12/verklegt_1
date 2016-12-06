@@ -47,6 +47,7 @@ public:
     void sorting_menu();        //Birta valmynd yfir möguleika til að raða lista
     string stringChoice();      //Geyma val notanda yfir hvernig hann vildi raða listanum
     void sorting(string str);   //Birta raðaðann lista
+    void cpuSortingMenu();
 
 private:
 /**************************************************
@@ -85,16 +86,6 @@ private:
 **************************************************/
     void printTable();                              //Birtir töflu af vísindamönnum
     void printTable(vector<int> indexesToPrint);    //Birtir töflu af vísindamönnum fyrir edit
-
-/**************************************************
-            Ný föll - eftir að flokka
-**************************************************/
-    void cpuSortingMenu();
-    void deleteMenu();
-    void editMenu();
-    void printCpuPushBackMenu();
-
-
 };
 
 #endif // CONSOLE_H
