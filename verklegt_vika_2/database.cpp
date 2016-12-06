@@ -16,7 +16,7 @@ database::~database () {}
 void database::getData(string selection, string table)
 {
    myData = QSqlDatabase::addDatabase("QSQLITE");
-   myData.setDatabaseName("/Users/villi/Desktop/Verklegt\ Git/Qt_test/sql_test/computers.sqlite");
+   myData.setDatabaseName("/Users/villi/Desktop/Verklegt Git/verklegt_1/verklegt_vika_2/" + user + ".sqlite");
 
    if (!myData.open())
    {
@@ -29,6 +29,7 @@ void database::getData(string selection, string table)
 
    // Byrjum að setja If setningar hér
 
+
    selectData();
 
    myData.close();
@@ -37,9 +38,9 @@ void database::getData(string selection, string table)
 
 bool database::getUser(const QString& username, const QString& password)
 {
-
+    user = username;
     myData = QSqlDatabase::addDatabase("QSQLITE");
-    myData.setDatabaseName("/Users/villi/Desktop/Verklegt\ Git/Qt_test/sql_test/users.sqlite");
+    myData.setDatabaseName("/Users/villi/Desktop/Verklegt Git/verklegt_1/verklegt_vika_2/users.sqlite");
 
     if (!myData.open())
     {
@@ -50,18 +51,36 @@ bool database::getUser(const QString& username, const QString& password)
        qDebug() << "Database: connection ok";
     }
 
+    QSqlQuery query;
+    query.prepare("SELECT password FROM users WHERE username = :user");
+    query.bindValue(":user", username);
+    query.exec();
 
+    QString qPass;
+    if (query.next())
+    {
+        qPass = query.value(0).toString();
+    }
 
+    qDebug() << qPass;
 
-
-    myData.close();
-    return false;
+    if (password == qPass)
+    {
+        myData.close();
+        return true;
+    }
+    else
+    {
+        myData.close();
+        return false;
+    }
 }
 
 void database::createUser(const QString& username, const QString& password, const QString& firstName, const QString& lastName)
 {
+    user = username;
     myData = QSqlDatabase::addDatabase("QSQLITE");
-    myData.setDatabaseName("/Users/villi/Desktop/Verklegt\ Git/Qt_test/sql_test/users.sqlite");
+    myData.setDatabaseName("/Users/villi/Desktop/Verklegt Git/verklegt_1/verklegt_vika_2/users.sqlite");
 
 
     if (!myData.open())
@@ -74,21 +93,49 @@ void database::createUser(const QString& username, const QString& password, cons
     }
 
     QSqlQuery query;
-    query.prepare("SELECT * FROM users WHERE username = :username");
+    query.prepare("INSERT INTO users (first_name, last_name, username, password)" "VALUES (:firstName, :lastName, :username, :password)");
+    query.bindValue(":firstName", firstName);
+    query.bindValue(":lastName", lastName);
     query.bindValue(":username", username);
-
-    while (query.next())
-    {
-            QString name = query.value(3).toString();
-            QString pass = query.value(4).toString();
-    }
-
-
-
-
-
+    query.bindValue(":password", password);
+    query.exec();
 
     myData.close();
+
+    initDatabase(username);
+
+}
+
+void database::initDatabase (const QString& username)
+{
+    QSqlQuery userQuery;
+    QSqlDatabase userData = QSqlDatabase::addDatabase("QSQLITE");
+    userData.setDatabaseName("/Users/villi/Desktop/Verklegt Git/verklegt_1/verklegt_vika_2/" + username + ".sqlite");
+    if (!userData.open())
+    {
+       qDebug() << "Error: connection with database fail";
+    }
+    else
+    {
+       qDebug() << "Database: connection ok";
+    }
+
+    userQuery.prepare("CREATE  TABLE \"main\".\"scientists\" "
+                  "(\"ID\" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
+                  "\"First Name\" VARCHAR NOT NULL , \"Last Name\" VARCHAR NOT NULL , "
+                  "\"Gender\" VARCHAR, \"Year_of_birth\" INTEGER, \"Year_of_death\" INTEGER, "
+                  "\"Nationality\" VARCHAR, \"Information\" VARCHAR)");
+    userQuery.prepare ("CREATE  TABLE \"main\".\"computers\" "
+                   "(\"ID\" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
+                   "\"Name\" VARCHAR NOT NULL , \"Year_of_build\" INTEGER, "
+                   "\"CPU_type_ID\" INTEGER, \"built_or_not\" BOOL)");
+    userQuery.prepare("CREATE  TABLE \"main\".\"cpuType\" "
+                  "(\"ID\" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
+                  "\"type\" VARCHAR NOT NULL )");
+    userQuery.exec();
+
+    userData.close();
+
 }
 
 void database::selectData ()
