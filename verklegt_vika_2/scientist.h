@@ -9,7 +9,7 @@ class Scientist
 {
 public:
     Scientist();
-    Scientist(string firstName, string lastName, string sex, int YOB, int YOD, string nationality, string furtherInfo);            // stillir smiðinn þegar hann er búinn til með breytum sem byrjanargildi
+    Scientist(int ID, string firstName, string lastName, string sex, int YOB, int YOD, string nationality, string furtherInfo);            // stillir smiðinn þegar hann er búinn til með breytum sem byrjanargildi
     void pushScientist(string firstName, string lastName, string sex, int DOB, int DOD, string nationality, string furtherInfo);   // Stillir upplýsingar fyrir vísindamann í meðlimabreytur
 
 /**************************************************
@@ -35,6 +35,7 @@ private:
 /**************************************************
                  Meðlimabreytur
 **************************************************/
+    int _ID;
     string _firstName;
     string _lastName;
     string _gender;

@@ -13,6 +13,29 @@ database::database () {}
 database::~database () {}
 
 // ætti að fara inn í constructor: const QString& path ef við viljum útbúa spes path.
+void database::getData(QString username, vector<Scientist> &scien)
+{
+   myData = QSqlDatabase::addDatabase("QSQLITE");
+   myData.setDatabaseName("./" + username + ".sqlite");
+
+   if (!myData.open())
+   {
+      qDebug() << "Error: connection with database fail";
+   }
+   else
+   {
+      qDebug() << "Database: connection ok";
+   }
+
+   // Byrjum að setja If setningar hér
+    scien = pullDataScientist(myData);
+
+
+
+   myData.close();
+
+}
+
 void database::getData(string selection, string table)
 {
    myData = QSqlDatabase::addDatabase("QSQLITE");
@@ -38,16 +61,6 @@ void database::getData(string selection, string table)
 
 vector<Scientist> database::pullDataScientist (const QSqlDatabase data)
 {
-    /*
-    vector<string> firstName;
-    vector<string> lastName;
-    vector<string> gender;
-    vector<int> YOB;
-    vector<int> YOD;
-    vector<string> nationality;
-    vector<string> info;
-    */
-
     vector<Scientist> scientists;
 
     QSqlQuery query;
@@ -55,6 +68,7 @@ vector<Scientist> database::pullDataScientist (const QSqlDatabase data)
     while(query.next())
     {
         QString tempQ;
+        int tempID;
         string tempFirstName;
         string tempLastName;
         string tempGender;
@@ -63,30 +77,29 @@ vector<Scientist> database::pullDataScientist (const QSqlDatabase data)
         string tempNationality;
         string tempInfo;
 
-        tempQ = query.value(0).toString();
-        tempFirstName = tempQ.toUtf8().constData();
-        //firstName.push_back(tempFirstName);
+        tempID = query.value(0).toInt();
 
         tempQ = query.value(1).toString();
-        tempLastName = tempQ.toUtf8().constData();
-        //firstName.push_back(tempFirstName);
+        tempFirstName = tempQ.toUtf8().constData();
 
         tempQ = query.value(2).toString();
+        tempLastName = tempQ.toUtf8().constData();
+
+        tempQ = query.value(3).toString();
         tempGender = tempQ.toUtf8().constData();
-        //firstName.push_back(tempFirstName);
 
-        tempYOB = query.value(3).toInt();
-        tempYOD = query.value(4).toInt();
-
-        tempQ = query.value(5).toString();
-        tempNationality = tempQ.toUtf8().constData();
+        tempYOB = query.value(4).toInt();
+        tempYOD = query.value(5).toInt();
 
         tempQ = query.value(6).toString();
+        tempNationality = tempQ.toUtf8().constData();
+
+        tempQ = query.value(7).toString();
         tempInfo = tempQ.toUtf8().constData();
 
-        cout << tempFirstName << endl << tempLastName << endl << tempGender << endl << tempYOB << endl << tempYOD << endl << tempNationality << endl << tempInfo << endl;
+        cout << tempID << endl << tempFirstName << endl << tempLastName << endl << tempGender << endl << tempYOB << endl << tempYOD << endl << tempNationality << endl << tempInfo << endl;
 
-        Scientist tmp(tempFirstName, tempLastName, tempGender, tempYOB, tempYOD, tempNationality, tempInfo);
+        Scientist tmp(tempID, tempFirstName, tempLastName, tempGender, tempYOB, tempYOD, tempNationality, tempInfo);
 
         scientists.push_back(tmp);
     }
