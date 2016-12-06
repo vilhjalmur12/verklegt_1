@@ -497,10 +497,51 @@ void Console::choiceMade()
     {
         search();
     }
-
     else if(choice_made == "e")
     {
-        edit();
+        editMenu();
+        string choice_made = choice();
+
+        if (choice_made == "es")
+        {
+            edit();
+        }
+        else if (choice_made == "ec")
+        {
+            cout << "edit computers" << endl;
+            // TODO: edit fall fyrir tölvur
+        }
+        else if (choice_made == "q")
+        {
+            quit();
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+        }
+
+    }
+    else if (choice_made == "d")
+    {
+        void deleteMenu();
+        string choice_made = choice();
+
+        if (choice_made == ds)
+        {
+            cout << "delete scientists" << endl;
+        }
+        else if (choice_made == dc)
+        {
+            cout << "delete computers" << endl;
+        }
+        else if (choice_made == "q")
+        {
+            quit();
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+        }
     }
     else if (choice_made == "q")
     {
