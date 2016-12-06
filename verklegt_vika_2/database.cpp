@@ -174,15 +174,15 @@ void database::initDatabase (const QString& username)
 
     userQuery.exec("INSERT INTO cpuType"
                       "(Type)"
-                      "VALUES (Mechanical)");
+                      "VALUES ('Mechanic')");
 
     userQuery.exec("INSERT INTO cpuType"
                       "(Type)"
-                      "VALUES (Electronical)");
+                      "VALUES ('Electronic')");
 
     userQuery.exec("INSERT INTO cpuType"
                       "(Type)"
-                      "VALUES (Transistorized)");
+                      "VALUES ('Transistor Machine')");
 
     userData.close();
 
