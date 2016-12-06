@@ -52,9 +52,16 @@ bool database::getUser(const QString& username, const QString& password)
     }
 
     QSqlQuery query;
-    query.prepare("SELECT password FROM users WHERE username = " + user);
-    QString qPass = query.value(3).toString();
+    query.prepare("SELECT password FROM users WHERE username = :user");
+    query.bindValue(":user", username);
     query.exec();
+
+    QString qPass;
+    if (query.next())
+    {
+        qPass = query.value(0).toString();
+    }
+
     qDebug() << qPass;
 
     if (password == qPass)
