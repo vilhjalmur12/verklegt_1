@@ -23,11 +23,12 @@ public:
 
 private:
     QSqlDatabase myData;
-    string user;
+    QString user;
 
     void selectData ();
     string encryptData (string n);
     string decryptData (string n);
+    void initDatabase (const QString& username);
 
 };
 

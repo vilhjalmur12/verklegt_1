@@ -240,8 +240,6 @@ void Console::callUser ()
             cout << "Choose Username: ";
             cin >> tmpUser;
             QString user(tmpUser.c_str());
-            qDebug() << user;
-
 
             while (password != confirmPass)
             {
@@ -265,7 +263,6 @@ void Console::callUser ()
 
             QString qFirstName(firstName.c_str());
             QString qLastName(lastName.c_str());
-            qDebug() << qPassword << qFirstName << qLastName;
 
             data.createUser(user, qPassword, qFirstName, qLastName);
             runProgram = true;
@@ -280,7 +277,6 @@ void Console::callUser ()
 
             QString user(tmpUser.c_str());
             QString qPassword(password.c_str());
-            qDebug() << user << qPassword;
 
             bool foundUser = data.getUser(user, qPassword);
 
