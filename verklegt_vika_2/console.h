@@ -47,19 +47,20 @@ public:
     void sorting_menu();        //Birta valmynd yfir möguleika til að raða lista
     string stringChoice();      //Geyma val notanda yfir hvernig hann vildi raða listanum
     void sorting(string str);   //Birta raðaðann lista
+    void cpuSortingMenu();
 
 private:
 /**************************************************
                    Meðlimabreytur
 **************************************************/
-    QString user;                //Nafn fyrir user
+    QString user;               //Nafn fyrir user
     ErrorHandling throwError;   //Sendir forrit í villu tékk
     Service scientistService;   //Heldur utan um upplýsingar frá gagnagrunni fyrir service hlutan
 /**************************************************
                Hjálparföll við edit
 **************************************************/
     int findIndexToEdit(string oldName);                                                                            //Finnur nr. á vísindamann sem á að edit-a
-    void printPushBackMenu();                                                                                       //Byrtir valmynd þegar nýr vísindamaður er settur í gagnagrunn
+    void printPushBackMenu();                                                                                       //Birtir valmynd þegar nýr vísindamaður er settur í gagnagrunn
     void printEditMenu();                                                                                           //Birtir valmynd þegar edit-a á vísindamann
     void pushBackScientist();                                                                                       //Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
     void createScientist(string& name, string& sex, int& YOB, int& YOD, string& nationality, string& furtherInfo);  //Býr til nýjan vísindamann
@@ -77,14 +78,14 @@ private:
 /**************************************************
               Hjálparföll við search
 **************************************************/
-    void printSearchMenu();                         //Byrtir leitar valmynd
+    void printSearchMenu();                         //Birtir leitar valmynd
     void changeOrDelete(vector<int> indexes);       //Tekur við ákvörðun frá notanda um edit
 
 /**************************************************
                  Birta töflu
 **************************************************/
-    void printTable();                              //Byrtir töflu af vísindamönnum
-    void printTable(vector<int> indexesToPrint);    //Byrtir töflu af vísindamönnum fyrir edit
+    void printTable();                              //Birtir töflu af vísindamönnum
+    void printTable(vector<int> indexesToPrint);    //Birtir töflu af vísindamönnum fyrir edit
 };
 
 #endif // CONSOLE_H
