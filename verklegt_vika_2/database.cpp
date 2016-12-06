@@ -115,13 +115,13 @@ void database::createUser(const QString& username, const QString& password, cons
 
     myData.close();
 
-   // initDatabase(username);
+    initDatabase(username);
 
 }
 
 void database::initDatabase (const QString& username)
 {
-    QSqlQuery userQuery;
+
     QSqlDatabase userData = QSqlDatabase::addDatabase("QSQLITE");
     userData.setDatabaseName("./" + username + ".sqlite");
     if (!userData.open())
@@ -132,28 +132,23 @@ void database::initDatabase (const QString& username)
     {
        qDebug() << "Database: connection ok";
     }
-/*
-    userQuery.prepare("CREATE  TABLE scientists "
-                      "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
-                  "First_name VARCHAR NOT NULL , Last_name VARCHAR NOT NULL , "
-                  "Gender VARCHAR, Year_of_birth INTEGER, Year_of_death INTEGER, "
-                  "Nationality VARCHAR, Information VARCHAR)");
-    */
-   /*
-    userQuery.prepare ("CREATE  TABLE \"main\".\"computers\" "
-                   "(\"ID\" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
-                   "\"Name\" VARCHAR NOT NULL , \"Year_of_build\" INTEGER, "
-                   "\"CPU_type_ID\" INTEGER, \"built_or_not\" BOOL)");
-                   */
-    /*
-    userQuery.prepare("CREATE  TABLE \"main\".\"cpuType\" "
-                  "(\"ID\" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
-                  "\"type\" VARCHAR NOT NULL )");
-                  */
+
+    QSqlQuery userQuery;
+    userQuery.exec("CREATE  TABLE scientists "
+                   "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
+                    "First_name VARCHAR NOT NULL , Last_name VARCHAR NOT NULL , "
+                    "Gender VARCHAR, Year_of_birth INTEGER, Year_of_death INTEGER, "
+                    "Nationality VARCHAR, Information VARCHAR)");
+
+    userQuery.prepare ("CREATE  TABLE computers "
+                   "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
+                   "Name VARCHAR NOT NULL , Year_of_build INTEGER, "
+                   "CPU_type_ID INTEGER, built_or_not BOOL)");
 
 
-  // userQuery.exec("CREATE TABLE sRc(computerID INTEGER, scientistID INTEGER, FOREIGN KEY (computerID) REFERENCES Computers(ID), FOREIGN KEY (scientistID) REFERENCES Scientists(ID) PRIMARY KEY (computerID, scientistID))");
-
+    userQuery.prepare("CREATE  TABLE cpuType "
+                  "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
+                  "type VARCHAR NOT NULL )");
 
 
     userData.close();
