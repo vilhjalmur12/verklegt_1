@@ -256,9 +256,9 @@ void Console::callUser ()
             QString qPassword(password.c_str());
 
             string firstName, lastName;
-            cout << "Enter your first name: " << endl;
+            cout << "Enter your first name: ";
             cin >> firstName;
-            cout << "Enter your last name: " << endl;
+            cout << "Enter your last name: ";
             cin >> lastName;
 
             QString qFirstName(firstName.c_str());
