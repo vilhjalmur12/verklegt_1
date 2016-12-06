@@ -138,15 +138,17 @@ void database::initDatabase (const QString& username)
                     "Gender VARCHAR, Year_of_birth INTEGER, Year_of_death INTEGER, "
                     "Nationality VARCHAR, Information VARCHAR)");
 
-    userQuery.prepare ("CREATE  TABLE computers "
+    userQuery.exec ("CREATE  TABLE computers "
                    "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
                    "Name VARCHAR NOT NULL , Year_of_build INTEGER, "
                    "CPU_type_ID INTEGER, built_or_not BOOL)");
 
 
-    userQuery.prepare("CREATE  TABLE cpuType "
+    userQuery.exec ("CREATE  TABLE cpuType "
                   "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
                   "type VARCHAR NOT NULL )");
+
+
 
 
     userData.close();
