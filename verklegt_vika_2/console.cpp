@@ -298,7 +298,7 @@ void Console::callUser ()
             cout << "Invaid action!" << endl << endl;
         }
     }
-    Service newScientistService;
+    Service newScientistService(user);
     scientistService = newScientistService;
     run();
 }
@@ -634,12 +634,12 @@ void Console::pushBackScientist()
 {
     printPushBackMenu();
     string firstName, lastName, sex, nationality, furtherInfo;
-    int YOB, YOD;
+    int ID, YOB, YOD;
 
     do
     {
-        createScientist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo);
-    }while(!scientistService.appendScientist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo));
+        createScientist(ID, firstName, lastName, sex, YOB, YOD, nationality, furtherInfo);
+    }while(!scientistService.appendScientist(ID, firstName, lastName, sex, YOB, YOD, nationality, furtherInfo));
 }
 
 /******************************************************************
@@ -655,8 +655,9 @@ void Console::pushBackScientist()
                 inniheldur þjóðernis geymslu notanda
  ******************************************************************/
 
-void Console::createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo)
+void Console::createScientist(int &ID, string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo)
 {
+
     readFirstName(firstName);
 
     readLastName(lastName);
