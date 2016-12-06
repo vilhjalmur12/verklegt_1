@@ -11,6 +11,8 @@
 #include <vector>
 #include <regex>
 #include <ctime>
+#include <qsqldatabase.h>
+#include <QDebug>
 
 using namespace std;
 
