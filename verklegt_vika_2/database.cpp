@@ -148,8 +148,41 @@ void database::initDatabase (const QString& username)
                   "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
                   "type VARCHAR NOT NULL )");
 
+    userQuery.exec("INSERT INTO scientists "
+                      "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
+                      "VALUES ('Ada', 'Lovelace', 'Female', 1815, 1852, 'English', 'First computer programmer')");
 
+    userQuery.exec("INSERT INTO scientists "
+                      "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
+                      "VALUES ('John', 'Eckert', 'Male', 1919, 1995, 'American', 'Electrical engineer')");
 
+    userQuery.exec("INSERT INTO scientists "
+                      "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
+                      "VALUES ('Heinz', 'Zemanek', 'Male', 1920, 2014, 'Austrian', 'Computer Scientist')");
+
+    userQuery.exec("INSERT INTO computers"
+                      "(Name, Year_of_build, CPU_type_ID, built_or_not)"
+                      "VALUES ('Analytical engine', 'n/a', 1, 'n')");
+
+    userQuery.exec("INSERT INTO computers"
+                      "(Name, Year_of_build, CPU_type_ID, built_or_not)"
+                      "VALUES ('ENIAC', 1946, 2, 'y')");
+
+    userQuery.exec("INSERT INTO computers"
+                      "(Name, Year_of_build, CPU_type_ID, built_or_not)"
+                      "VALUES ('Mailüfterl', 1958, 3, 'y')");
+
+    userQuery.exec("INSERT INTO cpuType"
+                      "(Type)"
+                      "VALUES (Mechanical)");
+
+    userQuery.exec("INSERT INTO cpuType"
+                      "(Type)"
+                      "VALUES (Electronical)");
+
+    userQuery.exec("INSERT INTO cpuType"
+                      "(Type)"
+                      "VALUES (Transistorized)");
 
     userData.close();
 
