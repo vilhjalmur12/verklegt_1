@@ -526,11 +526,11 @@ void Console::choiceMade()
         void deleteMenu();
         string choice_made = choice();
 
-        if (choice_made == ds)
+        if (choice_made == "ds")
         {
             cout << "delete scientists" << endl;
         }
-        else if (choice_made == dc)
+        else if (choice_made == "dc")
         {
             cout << "delete computers" << endl;
         }
