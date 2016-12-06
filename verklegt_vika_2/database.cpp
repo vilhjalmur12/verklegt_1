@@ -18,6 +18,8 @@ void database::getData(string selection, string table)
    myData = QSqlDatabase::addDatabase("QSQLITE");
    myData.setDatabaseName("/Users/villi/Desktop/Verklegt Git/verklegt_1/verklegt_vika_2/" + user + ".sqlite");
 
+   // myData.setDatabaseName("/Users/Sandra/Documents/GitHub/AlvoruVerklegt/verklegt_1/verklegt_vika_2/" + user + ".sqlite");
+
    if (!myData.open())
    {
       qDebug() << "Error: connection with database fail";
