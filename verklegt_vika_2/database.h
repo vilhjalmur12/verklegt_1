@@ -20,6 +20,7 @@ public:
     void getData (string selection, string table);
     bool getUser (const QString& username, const QString& password);
     void createUser (const QString& username, const QString& password, const QString& firstName, const QString& lastName);
+    vector<Scientist> pullDataScientist (const QSqlDatabase data);
 
 private:
     QSqlDatabase myData;

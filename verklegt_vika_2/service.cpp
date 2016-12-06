@@ -93,12 +93,12 @@ string Service::fixString(string before)
             *Til að vísindamaður sé til þurfa allar breytur að
             *vera þær sömu
  ****************************************************************************/
-bool Service::appendScientist(string name, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
+bool Service::appendScientist(string firstName, string lastName, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
 {
     //_scientists = data.getScientists();
 
 
-    Scientist tempScientist(name, sex, birthYear, deathYear, nationality, furtherInfo);
+    Scientist tempScientist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo);
     for(unsigned int i = 0; i < _scientists.size(); i++)
     {
         if(tempScientist == _scientists[i])
@@ -166,10 +166,11 @@ int Service::getLengthOfData()
         @parameter(string choice) - er "na" by default en annað ef notandi biður um annað
             na=NameAscending, nd=NameDescending o.s.frv.
  ****************************************************************************/
-void Service::sortScientistsBy(string choice/*="na"*//*, vector<Scientist>& _scientists*/)
+/*
+void Service::sortScientistsBy(string choice)
 {
     if (choice == "na")
-        sortByNameAscending(/*vector<Scientist>& _scientists*/); // Líklega þyrftu öll föllin að taka inn þennan vector
+        sortByNameAscending(); // Líklega þyrftu öll föllin að taka inn þennan vector
     if (choice == "nd")
         sortByNameDesending();
     if (choice == "gf")
@@ -189,7 +190,7 @@ void Service::sortScientistsBy(string choice/*="na"*//*, vector<Scientist>& _sci
     if (choice == "ntd")
         sortByNationalityDescending();
 }
-
+*/
 
 /****************************************************************************
                                validName
@@ -405,7 +406,7 @@ vector<int> Service::getIndexesWith(string query )
     {
         for (unsigned int i = 0; i < _scientists.size(); i++)
         {
-            if (findInString(query, _scientists[i].getName()) || findInString(query, _scientists[i].getSex()) || findInString(query, _scientists[i].getFurtherInfo()))
+            if (findInString(query, _scientists[i].getFirstName()) || findInString(query, _scientists[i].getLastName()) || findInString(query, _scientists[i].getSex()) || findInString(query, _scientists[i].getFurtherInfo()))
             {
                 foundScientists.push_back(i);
             }
@@ -423,7 +424,7 @@ vector<int> Service::getIndexesWith(string query )
                  Tilgangur hvers er talin augljós
                  útfrá nafni
 **********************************************************/
-
+/*
 struct nameAscending
 {
   bool operator() (Scientist i, Scientist j) { return (i.getName()<j.getName());}
@@ -473,14 +474,16 @@ struct nationalityDescending
 {
     bool operator() (Scientist i, Scientist j) { return (i.getNationality()>j.getNationality());}
 };
+
+*/
 /**********************************************************
               Sort föll
               Þau föll sem kallað er í til að
               raða meðlimavector í þá röð sem
               nafn hvers falls segir til um
 **********************************************************/
-
-void Service::sortByNameAscending(/*vector<Scientist>& _scientists*/)  // Það þyrfti líklega að breyta öllum slíkum föllum á þennan máta
+/*
+void Service::sortByNameAscending()  // Það þyrfti líklega að breyta öllum slíkum föllum á þennan máta
 {
     nameAscending na;
     sort(_scientists.begin(), _scientists.end(), na);
@@ -539,3 +542,4 @@ void Service::sortByNationalityDescending()
     nationalityDescending ntd;
     sort(_scientists.begin(), _scientists.end(), ntd);
 }
+*/

@@ -16,14 +16,15 @@ Scientist::Scientist() { }
             @parameter(string furtherInfo) - auka upplýsingar um vísindamann
  ****************************************************************************/
 
-Scientist::Scientist(string name, string sex, int YOB, int YOD, string nationality, string furtherInfo)
+Scientist::Scientist(string firstName, string lastName, string sex, int YOB, int YOD, string nationality, string furtherInfo)
 {
-    _name = name;
-    _sex = sex;
-    _yearOfBirth = YOB;
-    _yearOfDeath = YOD;
+    _firstName = firstName;
+    _lastName = lastName;
+    _gender = sex;
+    _YOB = YOB;
+    int _YOD = YOD;
     _nationality = nationality;
-    _furtherInfo = furtherInfo;
+    _info = furtherInfo;
 }
 
 /****************************************************************************
@@ -37,14 +38,15 @@ Scientist::Scientist(string name, string sex, int YOB, int YOD, string nationali
             @parameter(string furtherInfo) - auka upplýsingar um vísindamann
  ****************************************************************************/
 
-void Scientist::pushScientist(string name, string sex, int DOB, int DOD, string nationality, string furtherInfo)
+void Scientist::pushScientist(string firstName, string lastName, string sex, int DOB, int DOD, string nationality, string furtherInfo)
 {
-    _name = name;
-    _sex = sex;
-    _yearOfBirth = DOB;
-    _yearOfDeath = DOD;
+    _firstName = firstName;
+    _lastName = lastName;
+    _gender = sex;
+    _YOB = DOB;
+    _YOD = DOD;
     _nationality = nationality;
-    _furtherInfo = furtherInfo;
+    _info = furtherInfo;
 }  
 
 /**************************************************
@@ -53,14 +55,14 @@ void Scientist::pushScientist(string name, string sex, int DOB, int DOD, string 
 
 ostream& operator << (ostream& out, Scientist sc)
 {
-   out << sc.getName() << "/t" << sc.getSex() << "/t" << sc.getYearOfBirth() << "/t" << sc.getYearOfDeath() << "/t"
+   out << sc.getFirstName() << "/t" << sc.getLastName() << "/t" << sc.getSex() << "/t" << sc.getYearOfBirth() << "/t" << sc.getYearOfDeath() << "/t"
        << sc.getNationality() << "/t" << sc.getNationality() << "/t" << sc.getFurtherInfo();
    return out;
 }
 
 bool operator ==(Scientist lhs, Scientist rhs)
 {
-   return (lhs.getName() == rhs.getName() && lhs.getSex() == rhs.getSex() && lhs.getYearOfBirth() == lhs.getYearOfBirth() && lhs.getYearOfDeath() == rhs.getYearOfDeath())
+   return (lhs.getFirstName() == rhs.getFirstName() && lhs.getLastName() == rhs.getLastName() && lhs.getSex() == rhs.getSex() && lhs.getYearOfBirth() == lhs.getYearOfBirth() && lhs.getYearOfDeath() == rhs.getYearOfDeath())
            && lhs.getNationality() == rhs.getNationality() && lhs.getFurtherInfo() == rhs.getFurtherInfo();
 }
 
@@ -69,9 +71,14 @@ bool operator ==(Scientist lhs, Scientist rhs)
         Dregur fram nafn vísindamanns úr meðlimabreytum og skilar því til baka
                 @return(string _name) - skilar nafni vísindamanns
  ****************************************************************************/
-string Scientist::getName() const
+string Scientist::getFirstName() const
 {
-        return _name;
+        return _firstName;
+}
+
+string Scientist::getLastName() const
+{
+        return _lastName;
 }
 
 /****************************************************************************
@@ -82,7 +89,7 @@ string Scientist::getName() const
 
 string Scientist::getSex() const
 {
-        return _sex;
+        return _gender;
 }
 
 /****************************************************************************
@@ -93,7 +100,7 @@ string Scientist::getSex() const
 
 int Scientist::getYearOfBirth() const
 {
-        return _yearOfBirth;
+        return _YOB;
 }
 
 /****************************************************************************
@@ -104,7 +111,7 @@ int Scientist::getYearOfBirth() const
 
 int Scientist::getYearOfDeath() const
 {
-        return _yearOfDeath;
+        return _YOD;
 }
 
 /****************************************************************************
@@ -117,10 +124,10 @@ int Scientist::getYearOfDeath() const
 
 string Scientist::getYearOfDeathForPrinting() const
 {
-        if(_yearOfDeath==200000000)
+        if(_YOD==200000000)
             return "n/a";
         else
-            return to_string(_yearOfDeath);
+            return to_string(_YOD);
 }
 
 /****************************************************************************
@@ -142,5 +149,5 @@ string Scientist::getNationality() const
 
 string Scientist::getFurtherInfo() const
 {
-        return _furtherInfo;
+        return _info;
 }

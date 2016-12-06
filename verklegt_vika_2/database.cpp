@@ -28,20 +28,70 @@ void database::getData(string selection, string table)
    }
 
    // Byrjum að setja If setningar hér
+    vector<Scientist> scien = pullDataScientist(myData);
 
 
-   selectData();
 
    myData.close();
 
 }
 
-vector<Scientist> pullDataScientist (const QSqlDatabase& data)
+vector<Scientist> database::pullDataScientist (const QSqlDatabase data)
 {
-    vector<string> tmp;
-    vector<string> tmpS2;
+    /*
+    vector<string> firstName;
+    vector<string> lastName;
+    vector<string> gender;
+    vector<int> YOB;
+    vector<int> YOD;
+    vector<string> nationality;
+    vector<string> info;
+    */
 
+    vector<Scientist> scientists;
 
+    QSqlQuery query;
+    query.exec("SELECT * FROM scientists");
+    while(query.next())
+    {
+        QString tempQ;
+        string tempFirstName;
+        string tempLastName;
+        string tempGender;
+        int tempYOB;
+        int tempYOD;
+        string tempNationality;
+        string tempInfo;
+
+        tempQ = query.value(0).toString();
+        tempFirstName = tempQ.toUtf8().constData();
+        //firstName.push_back(tempFirstName);
+
+        tempQ = query.value(1).toString();
+        tempLastName = tempQ.toUtf8().constData();
+        //firstName.push_back(tempFirstName);
+
+        tempQ = query.value(2).toString();
+        tempGender = tempQ.toUtf8().constData();
+        //firstName.push_back(tempFirstName);
+
+        tempYOB = query.value(3).toInt();
+        tempYOD = query.value(4).toInt();
+
+        tempQ = query.value(5).toString();
+        tempNationality = tempQ.toUtf8().constData();
+
+        tempQ = query.value(6).toString();
+        tempInfo = tempQ.toUtf8().constData();
+
+        cout << tempFirstName << endl << tempLastName << endl << tempGender << endl << tempYOB << endl << tempYOD << endl << tempNationality << endl << tempInfo << endl;
+
+        Scientist tmp(tempFirstName, tempLastName, tempGender, tempYOB, tempYOD, tempNationality, tempInfo);
+
+        scientists.push_back(tmp);
+    }
+
+    return scientists;
 }
 
 bool database::getUser(const QString& username, const QString& password)
@@ -73,6 +123,7 @@ bool database::getUser(const QString& username, const QString& password)
     if (password == qPass)
     {
         myData.close();
+        getData("selection", "table");
         return true;
     }
     else
@@ -166,6 +217,8 @@ void database::selectData ()
        qDebug() << name;
     }
 }
+
+
 
 
 /******************************************************************
