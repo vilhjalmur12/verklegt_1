@@ -16,7 +16,7 @@ database::~database () {}
 void database::getData(string selection, string table)
 {
    myData = QSqlDatabase::addDatabase("QSQLITE");
-   myData.setDatabaseName("/Users/villi/Desktop/Verklegt Git/verklegt_1/verklegt_vika_2/" + user + ".sqlite");
+   myData.setDatabaseName("./" + user + ".sqlite");
 
    if (!myData.open())
    {
