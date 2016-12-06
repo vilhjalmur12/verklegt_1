@@ -298,7 +298,7 @@ void Console::callUser ()
             cout << "Invaid action!" << endl << endl;
         }
     }
-    Service newScientistService;
+    Service newScientistService(user);
     scientistService = newScientistService;
     run();
 }
@@ -583,7 +583,7 @@ void Console::sorting(string str)
     {
         if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd" || str == "nta" || str == "ntd")
         {
-            scientistService.sortScientistsBy(str);
+            //scientistService.sortScientistsBy(str);
             printTable();
             isRunning = false;
         }
@@ -633,13 +633,13 @@ int Console::findIndexToEdit(string oldName)
 void Console::pushBackScientist()
 {
     printPushBackMenu();
-    string name, sex, nationality, furtherInfo;
-    int YOB, YOD;
+    string firstName, lastName, sex, nationality, furtherInfo;
+    int ID, YOB, YOD;
 
     do
     {
-        createScientist(name, sex, YOB, YOD, nationality, furtherInfo);
-    }while(!scientistService.appendScientist(name, sex, YOB, YOD, nationality, furtherInfo));
+        createScientist(ID, firstName, lastName, sex, YOB, YOD, nationality, furtherInfo);
+    }while(!scientistService.appendScientist(ID, firstName, lastName, sex, YOB, YOD, nationality, furtherInfo));
 }
 
 /******************************************************************
@@ -655,9 +655,12 @@ void Console::pushBackScientist()
                 inniheldur þjóðernis geymslu notanda
  ******************************************************************/
 
-void Console::createScientist(string &name, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo)
+void Console::createScientist(int &ID, string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo)
 {
-    readName(name);
+
+    readFirstName(firstName);
+
+    readLastName(lastName);
 
     readSex(sex);
 
@@ -675,19 +678,34 @@ void Console::createScientist(string &name, string &sex, int &YOB, int &YOD, str
             @parameter(int &name) - bendir á streng sem inniheldur nafn vísindamanns
  ******************************************************************/
 
-void Console::readName(string &name)
+void Console::readFirstName(string &firstName)
 {
     do
     {
         cout << scientistService.getErrorString();
-        cout << "Name: ";
+        cout << "First Name: ";
         cin.ignore();
         do
         {
-        getline(cin, name);
-        }while(name.length()<1);
+        getline(cin, firstName);
+        }while(firstName.length()<1);
 
-    }while(!scientistService.validName(name));
+    }while(!scientistService.validName(firstName));
+}
+
+void Console::readLastName(string &lastName)
+{
+    do
+    {
+        cout << scientistService.getErrorString();
+        cout << "Last Name: ";
+        cin.ignore();
+        do
+        {
+        getline(cin, lastName);
+        }while(lastName.length()<1);
+
+    }while(!scientistService.validName(lastName));
 }
 
 /******************************************************************
@@ -918,7 +936,7 @@ void Console::printTable ()
     for (unsigned int i = 0; i < allScientists.size(); i++)
     {
         tmp = allScientists[i];
-        printf("%-5d%-35s%-15s%-16d%-16s%-14s%-20s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+        printf("%-5d%-35s%-15s%-16d%-16s%-14s%-20s\n",i+1, tmp.getFirstName().c_str(), tmp.getLastName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
                tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str());
     }
 }
@@ -953,7 +971,7 @@ void Console::printTable (vector<int> indexesToPrint)
         {
             tmp = allScientists[indexesToPrint[i]];
 
-            printf("%-5d%-35s%-15s%-16d%-16s%-14s%-20s\n",i+1, tmp.getName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+            printf("%-5d%-35s%-15s%-16d%-16s%-14s%-20s\n",i+1, tmp.getFirstName().c_str(), tmp.getLastName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
                    tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str());
 
         }

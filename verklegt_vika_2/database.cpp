@@ -13,6 +13,29 @@ database::database () {}
 database::~database () {}
 
 // ætti að fara inn í constructor: const QString& path ef við viljum útbúa spes path.
+void database::getData(QString username, vector<Scientist> &scien)
+{
+   myData = QSqlDatabase::addDatabase("QSQLITE");
+   myData.setDatabaseName("./" + username + ".sqlite");
+
+   if (!myData.open())
+   {
+      qDebug() << "Error: connection with database fail";
+   }
+   else
+   {
+      qDebug() << "Database: connection ok";
+   }
+
+   // Byrjum að setja If setningar hér
+    scien = pullDataScientist(myData);
+
+
+
+   myData.close();
+
+}
+
 void database::getData(string selection, string table)
 {
    myData = QSqlDatabase::addDatabase("QSQLITE");
@@ -30,20 +53,60 @@ void database::getData(string selection, string table)
    }
 
    // Byrjum að setja If setningar hér
+    vector<Scientist> scien = pullDataScientist(myData);
 
 
-   selectData();
 
    myData.close();
 
 }
 
-vector<Scientist> pullDataScientist (const QSqlDatabase& data)
+vector<Scientist> database::pullDataScientist (const QSqlDatabase data)
 {
-    vector<string> tmp;
-    vector<string> tmpS2;
+    vector<Scientist> scientists;
 
+    QSqlQuery query;
+    query.exec("SELECT * FROM scientists");
+    while(query.next())
+    {
+        QString tempQ;
+        int tempID;
+        string tempFirstName;
+        string tempLastName;
+        string tempGender;
+        int tempYOB;
+        int tempYOD;
+        string tempNationality;
+        string tempInfo;
 
+        tempID = query.value(0).toInt();
+
+        tempQ = query.value(1).toString();
+        tempFirstName = tempQ.toUtf8().constData();
+
+        tempQ = query.value(2).toString();
+        tempLastName = tempQ.toUtf8().constData();
+
+        tempQ = query.value(3).toString();
+        tempGender = tempQ.toUtf8().constData();
+
+        tempYOB = query.value(4).toInt();
+        tempYOD = query.value(5).toInt();
+
+        tempQ = query.value(6).toString();
+        tempNationality = tempQ.toUtf8().constData();
+
+        tempQ = query.value(7).toString();
+        tempInfo = tempQ.toUtf8().constData();
+
+        cout << tempID << endl << tempFirstName << endl << tempLastName << endl << tempGender << endl << tempYOB << endl << tempYOD << endl << tempNationality << endl << tempInfo << endl;
+
+        Scientist tmp(tempID, tempFirstName, tempLastName, tempGender, tempYOB, tempYOD, tempNationality, tempInfo);
+
+        scientists.push_back(tmp);
+    }
+
+    return scientists;
 }
 
 bool database::getUser(const QString& username, const QString& password)
@@ -75,6 +138,7 @@ bool database::getUser(const QString& username, const QString& password)
     if (password == qPass)
     {
         myData.close();
+        getData("selection", "table");
         return true;
     }
     else
@@ -121,7 +185,6 @@ void database::createUser(const QString& username, const QString& password, cons
 
 void database::initDatabase (const QString& username)
 {
-
     QSqlDatabase userData = QSqlDatabase::addDatabase("QSQLITE");
     userData.setDatabaseName("./" + username + ".sqlite");
     if (!userData.open())
@@ -201,6 +264,8 @@ void database::selectData ()
        qDebug() << name;
     }
 }
+
+
 
 
 /******************************************************************

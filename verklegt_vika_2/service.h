@@ -22,20 +22,19 @@ class Service
 {
 public:
     Service();
-    Service(string username);
+    Service(const QString user);
     virtual ~Service();
 
     /**********************************************************
                          Vector aðgerðir
     **********************************************************/
-    bool appendScientist(string name, string sex, int birthYear,                 //Bætir vísindamanni aftast í meðlimavector og skilar boolean
-                         int deathYear, string furtherInfo, string nationality); // gildi sem útskýrir hvernig gekk.
-
+    bool appendScientist (int ID, string firstName, string lastName, string sex, int birthYear,         //Bætir vísindamanni aftast í meðlimavector og skilar boolean
+                          int deathYear, string nationality, string furtherInfo);               // gildi sem útskýrir hvernig gekk.
     void removeScientist(int index);                              //Fjarlægjr vísindamann sem index gefur til kynna
     void moveLastTo(int index);                                   //Færir aftasta vísindamann í stak sem index gefur til kynna
     vector<Scientist> getScientists();                            //Skilar vector of vísindamönnum í núverandi röð
     int getLengthOfData();                                        //Segir til um hve margir vísindamenn eru í gagnagrunni
-    void sortScientistsBy(string choice = "na");                  //Raðar vísindamönnum í röð eftir vali sem er stafsrófsröð by default
+  //  void sortScientistsBy(string choice = "na");                  //Raðar vísindamönnum í röð eftir vali sem er stafsrófsröð by default
 
     /**********************************************************
                          Villucheckar föll
@@ -67,6 +66,7 @@ private:
     ErrorHandling throwError;
     database data;
     string user;
+    QString qUser;
 
     /**********************************************************
                  Hjálparföll fyrir appendScientist
@@ -85,6 +85,7 @@ private:
          Þeir umraða _scientists vectornum
          eftir því sem við á í hverju falli
     **********************************************************/
+    /*
     void sortByNameAscending();             //Stafrófsröð
     void sortByNameDesending();             //Öfug stafrófsröð
     void sortBySexF();                      //Konur fyrst
@@ -95,6 +96,7 @@ private:
     void sortByDeathDescending();           //Dánarári lækkandi
     void sortByNationalityAscending();      //Stafrófsröð þjóðernis
     void sortByNationalityDescending();     //Öfugri stafrófsröð þjóðernis
+    */
 };
 
 #endif // SERVICE_H
