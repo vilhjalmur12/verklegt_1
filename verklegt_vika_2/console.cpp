@@ -1073,7 +1073,7 @@ void printScientists(vector<Scientist> allScientists)
         string computersString;
         vector <string> computers = allScientists[i].getComputersBuilt();
 
-        for(int j = 0; j < computers.size(); j++)
+        for(size_t j = 0; j < computers.size(); j++)
         {
             computersString += computers[j];
 
