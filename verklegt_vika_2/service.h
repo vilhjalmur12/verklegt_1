@@ -28,7 +28,7 @@ public:
     /**********************************************************
                          Vector aðgerðir
     **********************************************************/
-    bool appendScientist (int ID, string firstName, string lastName, string sex, int birthYear,         //Bætir vísindamanni aftast í meðlimavector og skilar boolean
+    bool appendScientist (string firstName, string lastName, string sex, int birthYear,         //Bætir vísindamanni aftast í meðlimavector og skilar boolean
                           int deathYear, string nationality, string furtherInfo);               // gildi sem útskýrir hvernig gekk.
     void removeScientist(int index);                              //Fjarlægjr vísindamann sem index gefur til kynna
     void moveLastTo(int index);                                   //Færir aftasta vísindamann í stak sem index gefur til kynna

@@ -759,12 +759,12 @@ void Console::pushBackScientist()
 {
     printPushBackMenu();
     string firstName, lastName, sex, nationality, furtherInfo;
-    int ID, YOB, YOD;
+    int YOB, YOD;
 
     do
     {
-        createScientist(ID, firstName, lastName, sex, YOB, YOD, nationality, furtherInfo);
-    }while(!scientistService.appendScientist(ID, firstName, lastName, sex, YOB, YOD, nationality, furtherInfo));
+        createScientist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo);
+    }while(!scientistService.appendScientist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo));
 }
 
 /******************************************************************
@@ -780,7 +780,7 @@ void Console::pushBackScientist()
                 inniheldur þjóðernis geymslu notanda
  ******************************************************************/
 
-void Console::createScientist(int &ID, string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo)
+void Console::createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo)
 {
 
     readFirstName(firstName);
@@ -1048,8 +1048,7 @@ void Console::changeOrDelete(vector<int> indexes)
                       printTable
     Prentar út alla vísindamenn í gagnagrunni með viðmóti.
  ******************************************************************/
-
-void Console::printTable ()
+void Console::printTable () // ÞAÐ ÞARF AÐ EYÐA ÞESSU FALLI OG KALLA ALLS STAÐAR Á PRINTSCIENTISTS(VECTOR) Í STAÐIN
 {
     vector<Scientist> allScientists = scientistService.getScientists();
     Scientist tmp;
@@ -1066,6 +1065,65 @@ void Console::printTable ()
     }
 }
 
+void printScientists(vector<Scientist> allScientists)
+{
+    cout << endl << endl << "---------------------------------------------------Scientists Found---------------------------------------------------------------------------------------------------------------------------------" << endl << endl;
+
+    printf("%-5s%-35s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Built");
+
+    cout <<"---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+
+    for (unsigned int i = 0; i < allScientists.size(); i++)
+    {
+        string computersString;
+        vector <string> computers = allScientists[i].getComputersBuilt();
+
+        for(int j = 0; j < computers.size(); j++)
+        {
+            computersString += computers[j];
+
+            if(j != computers.size()-1)
+                computersString += ", ";
+        }
+
+        Scientist tmp = allScientists[i];
+        printf("%-5d%-10s%-15s%-15s%-16d%-16s%-14s%-40s%-20s\n",i+1, tmp.getLastName().c_str(), tmp.getFirstName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+               tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str(), computersString.c_str());
+    }
+}
+
+void printComputers(vector<Computer> computers)
+{
+    cout << endl << endl << "-------------------------------------Computers Found---------------------------------------------" << endl << endl;
+
+    printf("%-5s%-15s%-20s%-20s%-20s%-20s\n", "Nr.", "Name", "Year of build", "Type", "Built or not", "Creators");
+
+    cout <<"-------------------------------------------------------------------------------------------------" << endl;
+
+    for (unsigned int i = 0; i < computers.size(); i++)
+    {
+        Computer tmp = computers[i];
+
+        string built;
+        if(tmp.getBuilt())
+            built = "Built";
+        else
+            built = "Not Built";
+
+        string buildersString;
+        vector<string> builders = computers[i].getBuilders();
+        for(unsigned int j = 0; j < builders.size(); j++)
+        {
+            buildersString += builders[j];
+
+            if(j != builders.size()-1)
+                buildersString += ", ";
+        }
+
+        printf("%-5d%-15s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearBuilt(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
+    }
+}
+
 /******************************************************************
                       printTable
     Prentar út ákveðna valda vísindamenn í glugga með viðmóti
@@ -1073,7 +1131,7 @@ void Console::printTable ()
             vísindamönnum sem skulu prentast
  ******************************************************************/
 
-void Console::printTable (vector<int> indexesToPrint)
+void Console::printTable (vector<int> indexesToPrint) // ÞAÐ ÞARF AÐ EYÐA ÞESSU FALLI OG KALLA ALLS STAÐAR Á PRINTSCIENTISTS(VECTOR) Í STAÐIN
 {
     vector<Scientist> allScientists = scientistService.getScientists();
     Scientist tmp;
