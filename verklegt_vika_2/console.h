@@ -39,15 +39,15 @@ public:
     string choice();            //Geyma valmöguleika
     void choiceMade();          //Kalla á framkvæmd eftir vali notanda
     void printChangeDelete();   //Bjóða uppá að eiga við lista
-    void quitMenu();            // skjár segjir bless þegar þú hættir í forriti
+    void quitMenu();            //Skjár segir bless þegar þú hættir í forriti
 
 /**************************************************
                    Sorting föll
 **************************************************/
-    void sorting_menu();        //Birta valmynd yfir möguleika til að raða lista
+    void sorting_menu();        //Birta valmynd yfir möguleika til að raða lista um vísindamenn
     string stringChoice();      //Geyma val notanda yfir hvernig hann vildi raða listanum
     void sorting(string str);   //Birta raðaðann lista
-    void cpuSortingMenu();
+    void cpuSortingMenu();      //Birta valmynd yfir möguleika til að raða lista um tölvur
 
 private:
 /**************************************************
@@ -64,17 +64,17 @@ private:
     void printEditMenu();                                                                                           //Birtir valmynd þegar edit-a á vísindamann
     void pushBackScientist();                                                                                       //Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
     void createScientist(int &ID, string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo);  //Býr til nýjan vísindamann
-    void readFirstName(string &firstName);                                                                          //Tekur inn nafn fyrir vísindamann
-    void readLastName(string &lastName);
+    void readFirstName(string &firstName);                                                                          //Tekur inn fyrra nafn fyrir vísindamann
+    void readLastName(string &lastName);                                                                            //Tekur inn seinna nafn fyrir vísindamann
     void readSex(string& sex);                                                                                      //Tekur inn kyn fyrir vísindamann
     void readFurtherInfo(string& furtherInfo);                                                                      //Tekur inn auka upplýsingar fyrir vísindamann
     void readNationality(string& nationality);                                                                      //Tekur inn þjóðerni fyrir vísindamann
     void readYears(int& YOB, int& YOD);                                                                             //Tekur inn fæðingar/dánar ár fyrir vísindamann
     void readBirthYear(int& YOB, bool& cont);                                                                       //Athugar fæðingar ár á vísindamanni
     void readDeathYear(int& YOD, bool& cont);                                                                       //Athugar dánar ár á vísindamanni
-    void printComPushBackMenu();
-    void editMenu();
-    void deleteMenu();
+    void printCpuPushBackMenu();                                                                                    //Birtir valmynd þegar ný tölva er settur í gagnagrunn
+    void editMenu();                                                                                                //Spyr hvort það eigi að breyta vísindamanni eða tölvu
+    void deleteMenu();                                                                                              //Spyr hvort það eigi að eyða vísindamanni eða tölvu
 
 /**************************************************
               Hjálparföll við search

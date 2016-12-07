@@ -8,10 +8,7 @@
 #include <limits>
 #include <regex>
 
-Console::Console()
-{
-
-}
+Console::Console() { }
 
 Console::~Console() { }
 
@@ -150,7 +147,7 @@ void Console::loginMenu()
     cout << "-----------------------------------------" << endl;
 }
 
-void Console::printComPushBackMenu()
+void Console::printCpuPushBackMenu()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
@@ -191,7 +188,7 @@ void Console::deleteMenu()
     cout << "-----------------------------------------" << endl;
 }
 
-void comSortingMenu()
+void cpuSortingMenu()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
