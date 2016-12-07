@@ -1037,22 +1037,7 @@ void Console::changeOrDelete(vector<int> indexes)
                       printTable
     Prentar út alla vísindamenn í gagnagrunni með viðmóti.
  ******************************************************************/
-void Console::printTable () // ÞAÐ ÞARF AÐ EYÐA ÞESSU FALLI OG KALLA ALLS STAÐAR Á PRINTSCIENTISTS(VECTOR) Í STAÐIN
-{
-    vector<Scientist> allScientists = scientistService.getScientists();
-    Scientist tmp;
 
-    printf("%-5s%-35s%-15s%-16s%-16s%-14s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information");
-
-    cout <<"--------------------------------------------------------------------------------------------------------------------------------" << endl;
-
-    for (unsigned int i = 0; i < allScientists.size(); i++)
-    {
-        tmp = allScientists[i];
-        printf("%-5d%-35s%-15s%-16s%-16d%-14s%-20s\n",i+1, tmp.getFirstName().c_str(), tmp.getLastName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
-               tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str());
-    }
-}
 
 void printScientists(vector<Scientist> allScientists)
 {
@@ -1076,7 +1061,7 @@ void printScientists(vector<Scientist> allScientists)
         }
 
         Scientist tmp = allScientists[i];
-        printf("%-5d%-10s%-15s%-15s%-16d%-16s%-14s%-40s%-20s\n",i+1, tmp.getLastName().c_str(), tmp.getFirstName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+        printf("%-5d%-10s%-15s%-15s%-16d%-16s%-14s%-40s%-20s\n",i+1, tmp.getLastName().c_str() + " " + tmp.getFirstName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
                tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str(), computersString.c_str());
     }
 }
