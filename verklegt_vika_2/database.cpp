@@ -324,6 +324,29 @@ void database::insertScientist (Scientist scientist, QString tmpUser)
        databaseClose(myData);
 }
 
+void database::insertComputer (Computer computer, QString tmpUser)
+{
+       user = tmpUser;
+       databaseOpen();
+
+       QString tmpName(computer.getName().c_str());
+       QString tmpCpuType(computer.getCpuType().c_str());
+       int tmpYB = computer.getYearBuilt();
+       bool tmpBuilt = computer.getBuilt();
+
+       QSqlQuery query;
+       query.prepare("INSERT INTO computers"
+                     "(Name, Year_of_build, CPU_type_ID, built_or_not)"
+                     "VALUES (:name, :YOB, :type, :BON)");
+       query.bindValue(":name", tmpName);
+       query.bindValue(":YOB", tmpYB);
+       query.bindValue(":type", tmpCpuType);
+       query.bindValue(":BON", tmpBuilt);
+       query.exec();
+
+       databaseClose(myData);
+}
+
 //------------------------------------------------------------------------------------------------Ný Search Fölll---------------------------------
 
 QString database::generalizeQuery(string query)

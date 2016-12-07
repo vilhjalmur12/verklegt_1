@@ -24,6 +24,7 @@ public:
     void createUser (const QString& username, const QString& password, const QString& firstName, const QString& lastName);
     vector<Scientist> pullDataScientist ();
     void insertScientist (Scientist scientist, QString tmpUser);
+    void insertComputer (Computer computer, QString tmpUser);
 
     void openDataBaseConnection();
 
