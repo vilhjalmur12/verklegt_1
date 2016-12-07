@@ -814,7 +814,6 @@ void Console::readLastName(string &lastName)
     {
         cout << scientistService.getErrorString();
         cout << "Last Name: ";
-        cin.ignore();
         do
         {
         cin >> lastName;
