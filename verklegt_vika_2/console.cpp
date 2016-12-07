@@ -262,7 +262,8 @@ void Console::callUser ()
 
             cout << "Choose Username: ";
             cin >> tmpUser;
-            QString user(tmpUser.c_str());
+            QString tmpQUser(tmpUser.c_str());
+            user = tmpQUser;
 
             while (password != confirmPass)
             {
@@ -298,7 +299,8 @@ void Console::callUser ()
             cout << "Password: ";
             cin >> password;
 
-            QString user(tmpUser.c_str());
+            QString tmpQUser(tmpUser.c_str());
+            user = tmpQUser;
             QString qPassword(password.c_str());
 
             bool foundUser = data.getUser(user, qPassword);
@@ -403,8 +405,22 @@ void Console::edit()
 
 void Console::search()
 {
+  vector<Scientist> scientists;
+  vector<Computer> computers;
+  string query;
+
+  printSearchMenu();
+  cout << "Query: ";
+  cin >> query;
+
+  scientistService.searchInDatabase(scientists, computers, query);
+  printScientists(scientists);
+  printComputers(computers);
+}
+/*
+void Console::search() -- GAMLA FALLIÐ
+{
     string query;
-    printSearchMenu();
     cout << "Query: ";
     cin >> query;
     cin.ignore();
@@ -413,6 +429,7 @@ void Console::search()
     printChangeDelete();
     changeOrDelete(indexesToPrint);
 }
+*/
 
 /******************************************************************************
                          viewDisplay
@@ -802,10 +819,9 @@ void Console::readLastName(string &lastName)
     {
         cout << scientistService.getErrorString();
         cout << "Last Name: ";
-        cin.ignore();
         do
         {
-        getline(cin, lastName);
+        cin >> lastName;
         }while(lastName.length()<1);
 
     }while(!scientistService.validName(lastName));
@@ -1043,11 +1059,16 @@ void Console::printTable () // ÞAÐ ÞARF AÐ EYÐA ÞESSU FALLI OG KALLA ALLS 
     }
 }
 
-void printScientists(vector<Scientist> allScientists)
+void Console::printScientists(vector<Scientist> allScientists)
 {
+    if(allScientists.size() == 0)
+    {
+        cout << endl << "-----------------------------------------------------No Scientists Found-----------------------------------------------------------------------------------" << endl;
+        return;
+    }
     cout << endl << endl << "---------------------------------------------------Scientists Found---------------------------------------------------------------------------------------------------------------------------------" << endl << endl;
 
-    printf("%-5s%-35s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Built");
+    printf("%-5s%-25s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Built");
 
     cout <<"---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
@@ -1065,16 +1086,21 @@ void printScientists(vector<Scientist> allScientists)
         }
 
         Scientist tmp = allScientists[i];
-        printf("%-5d%-10s%-15s%-15s%-16d%-16s%-14s%-40s%-20s\n",i+1, tmp.getLastName().c_str(), tmp.getFirstName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+        printf("%-5d%-10s%-15s%-15s%-16d%-16s%-14s%-40s%-20s\n",i+1, (tmp.getLastName()+",").c_str(), tmp.getFirstName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
                tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str(), computersString.c_str());
     }
 }
 
-void printComputers(vector<Computer> computers)
+void  Console::printComputers(vector<Computer> computers)
 {
-    cout << endl << endl << "-------------------------------------Computers Found---------------------------------------------" << endl << endl;
+    if(computers.size() == 0)
+    {
+        cout << endl << "---------------------------------------------------No Computers Found-----------------------------------" << endl;
+        return;
+    }
+    cout << endl << endl << "--------------------------------------------------Computers Found-------------------------------------------------" << endl << endl;
 
-    printf("%-5s%-15s%-20s%-20s%-20s%-20s\n", "Nr.", "Name", "Year of build", "Type", "Built or not", "Creators");
+    printf("%-5s%-25s%-20s%-20s%-20s%-20s\n", "Nr.", "Name", "Year of build", "Type", "Built or not", "Creators");
 
     cout <<"-------------------------------------------------------------------------------------------------" << endl;
 
@@ -1098,7 +1124,7 @@ void printComputers(vector<Computer> computers)
                 buildersString += ", ";
         }
 
-        printf("%-5d%-15s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearBuilt(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
+        printf("%-5d%-25s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearBuilt(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
     }
 }
 

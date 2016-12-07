@@ -35,8 +35,9 @@ void database::databaseClose(QSqlDatabase &data)
 // ætti að fara inn í constructor: const QString& path ef við viljum útbúa spes path.
 void database::getData(QString username, vector<Scientist> &scien)
 {
+   user = username;
    myData = QSqlDatabase::addDatabase("QSQLITE");
-   myData.setDatabaseName("./" + username + ".sqlite");
+   myData.setDatabaseName("./" + user + ".sqlite");
 
    if (!myData.open())
    {
@@ -48,8 +49,6 @@ void database::getData(QString username, vector<Scientist> &scien)
 
        databaseClose(myData);
    }
-
-
 }
 
 void database::getData(string selection, string table)
@@ -267,7 +266,7 @@ void database::initDatabase (const QString& username)
 
         userQuery.exec("INSERT INTO computers "
                           "(Name, Year_of_build, CPU_type_ID, built_or_not) "
-                          "VALUES ('Mailüfterl', 1958, 3, 1)");
+                          "VALUES ('Mailufterl', 1958, 3, 1)");
 
         userQuery.exec("INSERT INTO computers "
                           "(Name, Year_of_build, CPU_type_ID, built_or_not) "
@@ -296,8 +295,9 @@ void database::initDatabase (const QString& username)
     }
 }
 
-void database::insertScientist (Scientist scientist)
+void database::insertScientist (Scientist scientist, QString tmpUser)
 {
+       user = tmpUser;
        databaseOpen();
 
        QString tmpFirstName(scientist.getFirstName().c_str());
@@ -322,7 +322,6 @@ void database::insertScientist (Scientist scientist)
        query.exec();
 
        databaseClose(myData);
-
 }
 
 //------------------------------------------------------------------------------------------------Ný Search Fölll---------------------------------
@@ -347,8 +346,6 @@ QString database::generalizeQuery(string query)
     QString searchQuery (tempSQuery.c_str());
     return searchQuery;
 }
-
-
 
 void database::searchData(vector<Scientist> &scientists, vector<Computer> &computers, string sQuery)
 {
