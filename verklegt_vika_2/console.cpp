@@ -162,6 +162,19 @@ void Console::printCpuPushBackMenu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::insertMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "|       What would you like to do?      |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|          s - insert a scientist       |" << endl;
+    cout << "|          c - insert a computer        |" << endl;
+    cout << "|           q - quit program            |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 void Console::editMenu()
 {
     cout << endl;
@@ -532,7 +545,30 @@ void Console::choiceMade()
     }
     else if (choice_made == "i")
     {
-        pushBackScientist();
+        insertMenu();
+        cout << "-> ";
+        string choice_made = choice();
+
+        if (choice_made == "s")
+        {
+            pushBackScientist();
+        }
+        else if(choice_made == "c")
+        {
+            printCpuPushBackMenu();
+            cout << "Setja inn tolvu" << endl;
+
+            //TODO: fylla inn tölvu
+        }
+        else if (choice_made == "q")
+        {
+            quit();
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+        }
+
     }
     else if (choice_made == "s")
     {

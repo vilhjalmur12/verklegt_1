@@ -75,6 +75,7 @@ private:
     void printCpuPushBackMenu();                                                                                    //Birtir valmynd þegar ný tölva er settur í gagnagrunn
     void viewMenu();                                                                                                //Spyr hvort það eigi að skoða vísindamann eða tölvu
     void editMenu();                                                                                                //Spyr hvort það eigi að breyta vísindamanni eða tölvu
+    void insertMenu();                                                                                              //Spyr hvort það eigi að setja inn vísindamann eða tölvu
     void deleteMenu();                                                                                              //Spyr hvort það eigi að eyða vísindamanni eða tölvu
 
 
