@@ -219,6 +219,19 @@ void Console::cpuSortingMenu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::insertMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "|       What would you like to do?      |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|         s - insert a scientist        |" << endl;
+    cout << "|         c - insert a computer         |" << endl;
+    cout << "|           q - quit program            |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 /****************************************************************************
                         callUser
     Notandi hefur val á að skrá sig inn í forritið eða skrá nýjan notanda
@@ -490,19 +503,43 @@ void Console::choiceMade()
     {
         viewMenu();
 
-        cout << "-> ";
-        string choice_made = choice();
-
-        if (choice_made == "s")
+        do
         {
-            do
+            cout << "-> ";
+            string choice_made = choice();
+
+            if (choice_made == "s")
             {
-            string str;
-            sorting_menu();
+                string str;
+                sorting_menu();
 
-            str = stringChoice();
-            sorting(str);
+                str = stringChoice();
+                sorting(str);
 
+<<<<<<< HEAD
+                cont = continueFunction();
+            }
+            else if (choice_made == "c")
+            {
+                cpuSortingMenu();
+
+                cout << "-> ";
+                string choice_made = choice();
+
+                //TODO: sorta tölvur
+
+                cont = continueFunction();
+            }
+            else if (choice_made == "q")
+            {
+                quit();
+            }
+            else
+            {
+                cout << "Please enter a valid command!" << endl;
+            }
+        }while(cont == "y");
+=======
             cont = continueFunction();
             }while(cont == "y");
         }
@@ -529,10 +566,39 @@ void Console::choiceMade()
         {
             cout << "Please enter a valid command!" << endl;
         }
+>>>>>>> 228c81b026d3cdca14d5d78d4c2c55758d0a7c95
     }
     else if (choice_made == "i")
     {
-        pushBackScientist();
+        insertMenu();
+        string cont = "n";
+
+        do
+        {
+            cout << "-> ";
+            string choice_made = choice();
+
+            if (choice_made == "s")
+            {
+                pushBackScientist();
+                cont = "n";
+            }
+            else if (choice_made == "c")
+            {
+                cout << "bæta við tölvu" << endl;
+                cont = "n";
+            }
+            else if (choice_made == "q")
+            {
+                quit();
+                cont = "n";
+            }
+            else
+            {
+                cout << "Please enter a valid command!" << endl;
+                cont = "y";
+            }
+        }while (cont == "y")
     }
     else if (choice_made == "s")
     {
@@ -540,51 +606,70 @@ void Console::choiceMade()
     }
     else if(choice_made == "e")
     {
+        string cont = "n";
         editMenu();
-        cout << "-> ";
-        string choice_made = choice();
 
-        if (choice_made == "es")
+        do
         {
-            edit();
-        }
-        else if (choice_made == "ec")
-        {
-            cout << "edit computers" << endl;
-            // TODO: edit fall fyrir tölvur
-        }
-        else if (choice_made == "q")
-        {
-            quit();
-        }
-        else
-        {
-            cout << "Please enter a valid command!" << endl;
-        }
+            cout << "-> ";
+            string choice_made = choice();
+
+            if (choice_made == "s")
+            {
+                edit();
+                cont = "n";
+            }
+            else if (choice_made == "c")
+            {
+                cout << "edit computers" << endl;
+                // TODO: edit fall fyrir tölvur
+                cont = "n";
+            }
+            else if (choice_made == "q")
+            {
+                quit();
+                cont = "n";
+            }
+            else
+            {
+                cout << "Please enter a valid command!" << endl;
+                cont = "y";
+
+            }
+        }while (cont == "y");
 
     }
     else if (choice_made == "d")
     {
-        void deleteMenu();
-        cout << "-> ";
-        string choice_made = choice();
+        string cont = "n";
 
-        if (choice_made == "ds")
+        do
         {
-            cout << "delete scientists" << endl;
-        }
-        else if (choice_made == "dc")
-        {
-            cout << "delete computers" << endl;
-        }
-        else if (choice_made == "q")
-        {
-            quit();
-        }
-        else
-        {
-            cout << "Please enter a valid command!" << endl;
-        }
+            void deleteMenu();
+            cout << "-> ";
+            string choice_made = choice();
+
+            if (choice_made == "s")
+            {
+                cout << "delete scientists" << endl;
+                cont = "n";
+            }
+            else if (choice_made == "c")
+            {
+                cout << "delete computers" << endl;
+                cont = "n";
+            }
+            else if (choice_made == "q")
+            {
+                quit();
+                cont = "n";
+            }
+            else
+            {
+                cout << "Please enter a valid command!" << endl;
+                cont == "y";
+            }
+        }while(cont == "y")
     }
     else if (choice_made == "q")
     {
