@@ -1,15 +1,15 @@
 #include "service.h"
+#include <qsqldatabase.h>
+#include <QSqlQuery>
 
+// Ekki vinna med medlimabreytur heldur database-ið = getScientist stuff
 using namespace std;
 /****************************************************************************
                                Constructor
                         fyllir data objectinn og dælir gildum þaðan í
                         _scientists vectorinn
 *****************************************************************************/
-Service::Service()
-{
-
-}
+Service::Service() { }
 
 Service::Service(const QString user)
 {
@@ -17,10 +17,7 @@ Service::Service(const QString user)
 }
 
 
-Service::~Service()
-{
-    
-}
+Service::~Service() { }
 
 
 
@@ -125,12 +122,24 @@ bool Service::appendScientist(int ID, string firstName, string lastName, string 
                      Fjarlægir vísindamann skv index
             @parameter(const int index) - index þess sem eyða á
  ****************************************************************************/
-void Service::removeScientist(const int index)
+void Service::removeScientist(int index) // Hvernig tek eg id inn her?
+// Remove og EDIT!
+// index er tekid inn i edit() fallinu i console
 {
     //data.remove(int index)
+    QSqlQuery query;
 
+    // Matcha id-id vid thad sem er valid
+    // query.prepare("UPDATE scientists set First Name = );
+    /* query.bindValue(":ID", ID);
+    success = query.exec();
 
-    _scientists.erase(_scientists.begin()+index);
+    if(!success)
+    {
+        qDebug() << "Error: user was not found. ";
+    }
+
+    // _scientists.erase(_scientists.begin()+index);*/
 }
 
 /****************************************************************************

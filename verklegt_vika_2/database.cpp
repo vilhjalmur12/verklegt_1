@@ -41,6 +41,8 @@ void database::getData(string selection, string table)
    myData = QSqlDatabase::addDatabase("QSQLITE");
    myData.setDatabaseName("./" + user + ".sqlite");
 
+   // myData.setDatabaseName("/Users/Sandra/Documents/GitHub/AlvoruVerklegt/verklegt_1/verklegt_vika_2/" + user + ".sqlite");
+
    if (!myData.open())
    {
       qDebug() << "Error: connection with database fail";
@@ -184,7 +186,6 @@ void database::createUser(const QString& username, const QString& password, cons
 
 void database::initDatabase (const QString& username)
 {
-
     QSqlDatabase userData = QSqlDatabase::addDatabase("QSQLITE");
     userData.setDatabaseName("./" + username + ".sqlite");
     if (!userData.open())
