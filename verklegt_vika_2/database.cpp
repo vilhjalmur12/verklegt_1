@@ -56,6 +56,7 @@ void database::getData(string selection, string table)
 
 
    myData.close();
+   QSqlDatabase::removeDatabase("QSQLITE");
 
 }
 
