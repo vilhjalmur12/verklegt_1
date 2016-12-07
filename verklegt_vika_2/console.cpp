@@ -508,7 +508,16 @@ void Console::choiceMade()
         }
         else if (choice_made == "c")
         {
+            do
+            {
+            string str;
             cpuSortingMenu();
+
+            str = stringChoice();
+            //cpuSorting(str); sem a eftir ad utbua
+
+            cont = continueFunction();
+            }while(cont == "y");
 
             //TODO: sorta tölvur
         }
