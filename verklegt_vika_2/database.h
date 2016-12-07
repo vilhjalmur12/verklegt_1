@@ -22,6 +22,7 @@ public:
     bool getUser (const QString& username, const QString& password);
     void createUser (const QString& username, const QString& password, const QString& firstName, const QString& lastName);
     vector<Scientist> pullDataScientist (const QSqlDatabase data);
+    void insertScientist (Scientist scientist);
 
 private:
     QSqlDatabase myData;
@@ -32,6 +33,7 @@ private:
     string decryptData (string n);
     void initDatabase (const QString& username);
     void databaseClose(QSqlDatabase &data);
+    void databaseOpen();
 
 };
 

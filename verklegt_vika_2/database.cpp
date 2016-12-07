@@ -12,6 +12,26 @@ using namespace std;
 database::database () {}
 database::~database () {}
 
+void database::databaseOpen()
+{
+    myData = QSqlDatabase::addDatabase("QSQLITE");
+    myData.setDatabaseName("./" + user + ".sqlite");
+
+    if (!myData.open())
+    {
+       qDebug() << "Error: connection with database fail";
+    }
+}
+
+void database::databaseClose(QSqlDatabase &data)
+{
+    QString connection;
+    connection = data.connectionName();
+    data.close();
+    data = QSqlDatabase();
+    QSqlDatabase::removeDatabase(connection);
+}
+
 // ætti að fara inn í constructor: const QString& path ef við viljum útbúa spes path.
 void database::getData(QString username, vector<Scientist> &scien)
 {
@@ -237,9 +257,32 @@ void database::initDatabase (const QString& username)
     }
 }
 
-void insertScientist (Scientist scientist)
+void database::insertScientist (Scientist scientist)
 {
+       databaseOpen();
 
+       QString tmpFirstName(scientist.getFirstName().c_str());
+       QString tmpLastName(scientist.getLastName().c_str());
+       QString tmpGender(scientist.getSex().c_str());
+       int tmpYOB = scientist.getYearOfBirth();
+       int tmpYOD = scientist.getYearOfDeath();
+       QString tmpNation(scientist.getNationality().c_str());
+       QString tmpInfo(scientist.getFurtherInfo().c_str());
+
+       QSqlQuery query;
+       query.prepare("INSERT INTO scientists"
+                     "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
+                     "VALUES (:firstName, :lastName, :gender, :YOB, :YOD, :nation, :info)");
+       query.bindValue(":firstName", tmpFirstName);
+       query.bindValue(":lastName", tmpLastName);
+       query.bindValue(":gender", tmpGender);
+       query.bindValue(":YOB", tmpYOB);
+       query.bindValue(":YOD", tmpYOD);
+       query.bindValue(":nation", tmpNation);
+       query.bindValue(":info", tmpInfo);
+       query.exec();
+
+       databaseClose(myData);
 
 }
 
@@ -253,15 +296,6 @@ void database::selectData ()
        QString name = query.value(idName).toString();
        qDebug() << name;
     }
-}
-
-void database::databaseClose(QSqlDatabase &data)
-{
-    QString connection;
-    connection = data.connectionName();
-    data.close();
-    data = QSqlDatabase();
-    QSqlDatabase::removeDatabase(connection);
 }
 
 
