@@ -87,7 +87,7 @@ void Console::printChangeDelete()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
-    cout << "|       What would you like to do       |" << endl;
+    cout << "|       What would you like to do?      |" << endl;
     cout << "|                                       |" << endl;
     cout << "|               e - edit                |" << endl;
     cout << "|              d - delete               |" << endl;
@@ -166,10 +166,10 @@ void Console::editMenu()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
-    cout << "|       What would you like to do       |" << endl;
+    cout << "|       What would you like to do?      |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|         es - edit a scientist         |" << endl;
-    cout << "|         ec - edit a computer          |" << endl;
+    cout << "|          s - edit a scientist         |" << endl;
+    cout << "|          c - edit a computer          |" << endl;
     cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -179,16 +179,29 @@ void Console::deleteMenu()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
-    cout << "|       What would you like to do       |" << endl;
+    cout << "|       What would you like to do?      |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|         ds - delete a scientist       |" << endl;
-    cout << "|         dc - delete a computer        |" << endl;
+    cout << "|         s - delete a scientist        |" << endl;
+    cout << "|         c - delete a computer         |" << endl;
     cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
 
-void cpuSortingMenu()
+void Console::viewMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "|       What would you like to do?      |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|          s - view a scientist         |" << endl;
+    cout << "|          c - view a computer          |" << endl;
+    cout << "|           q - quit program            |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+void Console::cpuSortingMenu()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
@@ -475,16 +488,38 @@ void Console::choiceMade()
 
     if (choice_made == "v")
     {
-        do
+        viewMenu();
+
+        cout << "-> ";
+        string choice_made = choice();
+
+        if (choice_made == "s")
         {
-        string str;
-        sorting_menu();
+            do
+            {
+            string str;
+            sorting_menu();
 
-        str = stringChoice();
-        sorting(str);
+            str = stringChoice();
+            sorting(str);
 
-        cont = continueFunction();
-        }while(cont == "y");
+            cont = continueFunction();
+            }while(cont == "y");
+        }
+        else if (choice_made == "c")
+        {
+            cpuSortingMenu();
+
+            //TODO: sorta tölvur
+        }
+        else if (choice_made == "q")
+        {
+            quit();
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+        }
     }
     else if (choice_made == "i")
     {
@@ -497,6 +532,7 @@ void Console::choiceMade()
     else if(choice_made == "e")
     {
         editMenu();
+        cout << "-> ";
         string choice_made = choice();
 
         if (choice_made == "es")
@@ -521,6 +557,7 @@ void Console::choiceMade()
     else if (choice_made == "d")
     {
         void deleteMenu();
+        cout << "-> ";
         string choice_made = choice();
 
         if (choice_made == "ds")
