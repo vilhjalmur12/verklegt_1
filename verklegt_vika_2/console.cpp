@@ -498,48 +498,50 @@ void Console::choiceMade()
 
     string choice_made = choice();
     string cont = "y";
+    //string cont;
 
     if (choice_made == "v")
     {
-       viewMenu();
-       cout << "-> ";
-       string choice_made = choice();
+        do
+        {
+            viewMenu();
+            cout << "-> ";
+            string choice_made = choice();
 
-       do
-       {
-            if (choice_made == "s")
-            {
-                string str;
-                sorting_menu();
+            //do
+            //{
+                if (choice_made == "s")
+                {
+                    string str;
+                    sorting_menu();
+                    str = stringChoice();
 
-                str = stringChoice();
-                sorting(str);
+                    sorting(str);
+                }
+                else if (choice_made == "c")
+                {
+                    string str;
+                    cpuSortingMenu();
+
+                    str = stringChoice();
+                    //cpuSorting(str); sem a eftir ad utbua
+
+                    cout << "listi yfir tolvur" << endl;
+
+                    //TODO: sorta tölvur
+                }
+                else if (choice_made == "q")
+                {
+                    quit();
+                }
+                else
+                {
+                    cout << "Please enter a valid command!" << endl;
+                }
 
                 cont = continueFunction();
-            }
-            else if (choice_made == "c")
-            {
-                string str;
-                cpuSortingMenu();
 
-                str = stringChoice();
-                //cpuSorting(str); sem a eftir ad utbua
-
-                cont = continueFunction();
-
-                //TODO: sorta tölvur
-            }
-            else if (choice_made == "q")
-            {
-                quit();
-            }
-            else
-            {
-                cout << "Please enter a valid command!" << endl;
-            }
-
-            cont = continueFunction();
-
+            //}while(cont == "y");
         }while(cont == "y");
     }
     else if (choice_made == "i")
