@@ -534,18 +534,20 @@ void Console::choiceMade()
                     str = stringChoice();
 
                     sorting(str);
+                    cont = continueFunction();
                 }
                 else if (choice_made == "c")
                 {
                     string str;
                     cpuSortingMenu();
-
                     str = stringChoice();
-                    //cpuSorting(str); sem a eftir ad utbua
+
+                    //cpuSorting(str); sem a eftir ad gera
 
                     cout << "listi yfir tolvur" << endl;
 
                     //TODO: sorta tölvur
+                    cont = continueFunction();
                 }
                 else if (choice_made == "q")
                 {
@@ -556,7 +558,7 @@ void Console::choiceMade()
                     cout << "Please enter a valid command!" << endl;
                 }
 
-                cont = continueFunction();
+               // cont = continueFunction();
 
             //}while(cont == "y");
         }while(cont == "y");
