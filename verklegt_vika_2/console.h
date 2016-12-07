@@ -73,8 +73,10 @@ private:
     void readBirthYear(int& YOB, bool& cont);                                                                       //Athugar fæðingar ár á vísindamanni
     void readDeathYear(int& YOD, bool& cont);                                                                       //Athugar dánar ár á vísindamanni
     void printCpuPushBackMenu();                                                                                    //Birtir valmynd þegar ný tölva er settur í gagnagrunn
+    void viewMenu();                                                                                                //Spyr hvort það eigi að skoða vísindamann eða tölvu
     void editMenu();                                                                                                //Spyr hvort það eigi að breyta vísindamanni eða tölvu
     void deleteMenu();                                                                                              //Spyr hvort það eigi að eyða vísindamanni eða tölvu
+
 
 /**************************************************
               Hjálparföll við search
