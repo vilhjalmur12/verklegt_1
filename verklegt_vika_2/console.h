@@ -40,6 +40,8 @@ public:
     void choiceMade();          //Kalla á framkvæmd eftir vali notanda
     void printChangeDelete();   //Bjóða uppá að eiga við lista
     void quitMenu();            //Skjár segir bless þegar þú hættir í forriti
+    void viewMenu();            //Spyr hvort það eigi að birta lista vísindamanna eða tölva
+    void insertMenu();          //Spyr hvort það eigi að bæta við vísindamanni eða tölvu
 
 /**************************************************
                    Sorting föll
@@ -73,9 +75,7 @@ private:
     void readBirthYear(int& YOB, bool& cont);                                                                       //Athugar fæðingar ár á vísindamanni
     void readDeathYear(int& YOD, bool& cont);                                                                       //Athugar dánar ár á vísindamanni
     void printCpuPushBackMenu();                                                                                    //Birtir valmynd þegar ný tölva er settur í gagnagrunn
-    void viewMenu();                                                                                                //Spyr hvort það eigi að skoða vísindamann eða tölvu
     void editMenu();                                                                                                //Spyr hvort það eigi að breyta vísindamanni eða tölvu
-    void insertMenu();                                                                                              //Spyr hvort það eigi að setja inn vísindamann eða tölvu
     void deleteMenu();                                                                                              //Spyr hvort það eigi að eyða vísindamanni eða tölvu
 
 
