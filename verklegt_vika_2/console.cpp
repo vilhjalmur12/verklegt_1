@@ -1110,7 +1110,7 @@ void  Console::printComputers(vector<Computer> computers)
     }
     cout << endl << endl << "--------------------------------------------------Computers Found-------------------------------------------------" << endl << endl;
 
-    printf("%-5s%-15s%-20s%-20s%-20s%-20s\n", "Nr.", "Name", "Year of build", "Type", "Built or not", "Creators");
+    printf("%-5s%-25s%-20s%-20s%-20s%-20s\n", "Nr.", "Name", "Year of build", "Type", "Built or not", "Creators");
 
     cout <<"-------------------------------------------------------------------------------------------------" << endl;
 
@@ -1134,7 +1134,7 @@ void  Console::printComputers(vector<Computer> computers)
                 buildersString += ", ";
         }
 
-        printf("%-5d%-15s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearBuilt(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
+        printf("%-5d%-25s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearBuilt(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
     }
 }
 
