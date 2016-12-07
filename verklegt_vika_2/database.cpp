@@ -181,21 +181,33 @@ void database::initDatabase (const QString& username)
     else
     {
         QSqlQuery userQuery;
+        userQuery.exec("PRAGMA foreign_keys = ON");
+
         userQuery.exec("CREATE  TABLE scientists "
                        "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
                         "First_name VARCHAR NOT NULL , Last_name VARCHAR NOT NULL , "
                         "Gender VARCHAR, Year_of_birth INTEGER, Year_of_death INTEGER, "
                         "Nationality VARCHAR, Information VARCHAR)");
 
-        userQuery.exec ("CREATE  TABLE computers "
-                       "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
-                       "Name VARCHAR NOT NULL , Year_of_build INTEGER, "
-                       "CPU_type_ID INTEGER, built_or_not BOOL)");
-
 
         userQuery.exec ("CREATE  TABLE cpuType "
                       "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
                       "type VARCHAR NOT NULL )");
+
+        userQuery.exec ("CREATE TABLE computers "
+                        "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL, "
+                        "Name VARCHAR NOT NULL, "
+                        "Year_of_build INTEGER, "
+                        "CPU_type_ID INTEGER, "
+                        "built_or_not BOOL, "
+                        "FOREIGN KEY(CPU_type_ID) REFERENCES cpuType(ID))");
+
+        userQuery.exec("CREATE TABLE scientist_computer_relations"
+                       "(scientistID INTEGER, "
+                       "computerID INTEGER, "
+                       "FOREIGN KEY (computerID) REFERENCES Computers(ID), "
+                       "FOREIGN KEY (scientistID) REFERENCES Scientists(ID) "
+                       "PRIMARY KEY (computerID, scientistID)) ");
 
         userQuery.exec("INSERT INTO scientists "
                           "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
@@ -209,30 +221,57 @@ void database::initDatabase (const QString& username)
                           "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
                           "VALUES ('Heinz', 'Zemanek', 'Male', 1920, 2014, 'Austrian', 'Computer Scientist')");
 
-        userQuery.exec("INSERT INTO computers"
-                          "(Name, Year_of_build, CPU_type_ID, built_or_not)"
-                          "VALUES ('Analytical engine', 'n/a', 1, 'n')");
+        userQuery.exec("INSERT INTO scientists "
+                          "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
+                          "VALUES ('Charles', 'Babbage', 'Male', 1791, 1871, 'English', 'Mechanical Engineer')");
 
-        userQuery.exec("INSERT INTO computers"
-                          "(Name, Year_of_build, CPU_type_ID, built_or_not)"
-                          "VALUES ('ENIAC', 1946, 2, 'y')");
-
-        userQuery.exec("INSERT INTO computers"
-                          "(Name, Year_of_build, CPU_type_ID, built_or_not)"
-                          "VALUES ('Mailüfterl', 1958, 3, 'y')");
-
-        userQuery.exec("INSERT INTO cpuType"
+        userQuery.exec("INSERT INTO cpuType "
                           "(Type)"
                           "VALUES ('Mechanic')");
 
-        userQuery.exec("INSERT INTO cpuType"
+        userQuery.exec("INSERT INTO cpuType "
                           "(Type)"
                           "VALUES ('Electronic')");
 
-        userQuery.exec("INSERT INTO cpuType"
+        userQuery.exec("INSERT INTO cpuType "
                           "(Type)"
                           "VALUES ('Transistor Machine')");
 
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, CPU_type_ID, built_or_not)"
+                          "VALUES ('Analytical engine', 1, 0)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('ENIAC', 1946, 2, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('Mailüfterl', 1958, 3, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('Difference Engine', 1991, 1, 1)");
+
+        userQuery.exec("INSERT INTO scientist_computer_relations "
+                       "(ScientistID, ComputerID) "
+                       "VALUES (1,1)");
+
+        userQuery.exec("INSERT INTO scientist_computer_relations "
+                       "(ScientistID, ComputerID) "
+                       "VALUES (2,2)");
+
+        userQuery.exec("INSERT INTO scientist_computer_relations "
+                       "(ScientistID, ComputerID) "
+                       "VALUES (3,3)");
+
+        userQuery.exec("INSERT INTO scientist_computer_relations "
+                       "(ScientistID, ComputerID) "
+                       "VALUES (4,1)");
+
+        userQuery.exec("INSERT INTO scientist_computer_relations "
+                       "(ScientistID, ComputerID) "
+                       "VALUES (4,4)");
         databaseClose(userData);
     }
 }
