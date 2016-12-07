@@ -1071,9 +1071,14 @@ void Console::printTable () // ÞAÐ ÞARF AÐ EYÐA ÞESSU FALLI OG KALLA ALLS 
 
 void Console::printScientists(vector<Scientist> allScientists)
 {
+    if(allScientists.size() == 0)
+    {
+        cout << endl << "-----------------------------------------------------No Scientists Found-----------------------------------------------------------------------------------" << endl;
+        return;
+    }
     cout << endl << endl << "---------------------------------------------------Scientists Found---------------------------------------------------------------------------------------------------------------------------------" << endl << endl;
 
-    printf("%-5s%-35s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Built");
+    printf("%-5s%-25s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Built");
 
     cout <<"---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
@@ -1091,14 +1096,19 @@ void Console::printScientists(vector<Scientist> allScientists)
         }
 
         Scientist tmp = allScientists[i];
-        printf("%-5d%-10s%-15s%-15s%-16d%-16s%-14s%-40s%-20s\n",i+1, tmp.getLastName().c_str(), tmp.getFirstName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+        printf("%-5d%-10s%-15s%-15s%-16d%-16s%-14s%-40s%-20s\n",i+1, (tmp.getLastName()+",").c_str(), tmp.getFirstName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
                tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str(), computersString.c_str());
     }
 }
 
 void  Console::printComputers(vector<Computer> computers)
 {
-    cout << endl << endl << "-------------------------------------Computers Found---------------------------------------------" << endl << endl;
+    if(computers.size() == 0)
+    {
+        cout << endl << "---------------------------------------------------No Computers Found-----------------------------------" << endl;
+        return;
+    }
+    cout << endl << endl << "--------------------------------------------------Computers Found-------------------------------------------------" << endl << endl;
 
     printf("%-5s%-15s%-20s%-20s%-20s%-20s\n", "Nr.", "Name", "Year of build", "Type", "Built or not", "Creators");
 
