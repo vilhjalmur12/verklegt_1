@@ -50,6 +50,7 @@ public:
     string stringChoice();      //Geyma val notanda yfir hvernig hann vildi raða listanum
     void sorting(string str);   //Birta raðaðann lista
     void cpuSortingMenu();      //Birta valmynd yfir möguleika til að raða lista um tölvur
+    void cpuSorting(string str);
 
 private:
 /**************************************************
