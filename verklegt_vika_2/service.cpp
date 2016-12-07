@@ -429,6 +429,11 @@ vector<int> Service::getIndexesWith(string query )
     return foundScientists;
 }
 
+void Service::searchInDatabase(vector<Scientist> &scientists, vector<Computer> &computers, string query)
+{
+    data.searchData(scientists, computers, query);
+}
+
 /**********************************************************
                    Struct til að sortera
                  struct sem sort algorithm'inn

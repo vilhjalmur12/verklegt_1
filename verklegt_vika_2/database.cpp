@@ -348,8 +348,6 @@ QString database::generalizeQuery(string query)
     return searchQuery;
 }
 
-
-
 void database::searchData(vector<Scientist> &scientists, vector<Computer> &computers, string sQuery)
 {
     if (string::npos != sQuery.find_first_of("0123456789"))

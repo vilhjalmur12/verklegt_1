@@ -403,8 +403,22 @@ void Console::edit()
 
 void Console::search()
 {
+  vector<Scientist> scientists;
+  vector<Computer> computers;
+  string query;
+
+  printSearchMenu();
+  cout << "Query: ";
+  cin >> query;
+
+  scientistService.searchInDatabase(scientists, computers, query);
+  printScientists(scientists);
+  printComputers(computers);
+}
+/*
+void Console::search() -- GAMLA FALLIÐ
+{
     string query;
-    printSearchMenu();
     cout << "Query: ";
     cin >> query;
     cin.ignore();
@@ -413,6 +427,7 @@ void Console::search()
     printChangeDelete();
     changeOrDelete(indexesToPrint);
 }
+*/
 
 /******************************************************************************
                          viewDisplay
@@ -1060,7 +1075,7 @@ void Console::printTable () // ÞAÐ ÞARF AÐ EYÐA ÞESSU FALLI OG KALLA ALLS 
     }
 }
 
-void printScientists(vector<Scientist> allScientists)
+void Console::printScientists(vector<Scientist> allScientists)
 {
     cout << endl << endl << "---------------------------------------------------Scientists Found---------------------------------------------------------------------------------------------------------------------------------" << endl << endl;
 
@@ -1087,7 +1102,7 @@ void printScientists(vector<Scientist> allScientists)
     }
 }
 
-void printComputers(vector<Computer> computers)
+void  Console::printComputers(vector<Computer> computers)
 {
     cout << endl << endl << "-------------------------------------Computers Found---------------------------------------------" << endl << endl;
 
