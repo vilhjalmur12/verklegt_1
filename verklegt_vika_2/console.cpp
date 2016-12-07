@@ -498,7 +498,7 @@ void Console::choiceMade()
 
    string choice_made = choice();
    //string cont = "y";
-string cont;
+   string cont;
 
    if (choice_made == "v")
    {
@@ -520,19 +520,12 @@ string cont;
            }
            else if (choice_made == "c")
            {
-               do
-               {
-                   string str;
-                   cpuSortingMenu();
+               string str;
+               cpuSortingMenu();
 
-
-                   str = stringChoice();
-                   //cpuSorting(str); sem a eftir ad utbua
-
-
-                   cont = continueFunction();
-               }while(cont == "y");
-
+               str = stringChoice();
+               //cpuSorting(str); sem a eftir ad utbua
+               cout << "listi yfir tolvur" << endl;
 
                //TODO: sorta tölvur
            }
