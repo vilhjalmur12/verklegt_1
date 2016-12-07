@@ -526,13 +526,11 @@ void Console::choiceMade()
             cout << "-> ";
             string choice_made = choice();
 
-            //do
-            //{
-                if (choice_made == "s")
-                {
-                    string str;
-                    sorting_menu();
-                    str = stringChoice();
+            if (choice_made == "s")
+            {
+                string str;
+                sorting_menu();
+                str = stringChoice();
 
                     sorting(str);
                 }
@@ -555,7 +553,6 @@ void Console::choiceMade()
 
                 cont = continueFunction();
 
-            //}while(cont == "y");
         }while(cont == "y");
     }
     else if (choice_made == "i")
@@ -1060,14 +1057,14 @@ void Console::printScientists(vector<Scientist> allScientists)
 {
     if(allScientists.size() == 0)
     {
-        cout << endl << "---------------------------------------------------------------------------------------No Scientists Found--------------------------------------------------------------------------------------" << endl;
+        cout << endl << "-------------------------------------------------------------------------No Scientists Found-------------------------------------------------------------------------" << endl;
         return;
     }
-    cout << endl << endl << "---------------------------------------------------------------------------------------Scientists Found--------------------------------------------------------------------------------------" << endl << endl;
+    cout << endl << endl << "---------------------------------------------------------------------------Scientists Found---------------------------------------------------------------------------------" << endl << endl;
 
     printf("%-5s%-25s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Designed");
 
-    cout <<"---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout <<"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
     for (unsigned int i = 0; i < allScientists.size(); i++)
     {
@@ -1100,7 +1097,7 @@ void  Console::printComputers(vector<Computer> computers)
 
     printf("%-5s%-25s%-20s%-20s%-20s%-20s\n", "Nr.", "Name", "Year of build", "Type", "Built or not", "Creators");
 
-    cout <<"-------------------------------------------------------------------------------------------------" << endl;
+    cout <<"------------------------------------------------------------------------------------------------------------------" << endl;
 
     for (unsigned int i = 0; i < computers.size(); i++)
     {
