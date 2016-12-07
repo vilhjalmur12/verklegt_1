@@ -516,19 +516,22 @@ void Console::choiceMade()
                 str = stringChoice();
                 sorting(str);
 
-<<<<<<< HEAD
                 cont = continueFunction();
             }
             else if (choice_made == "c")
             {
-                cpuSortingMenu();
+                do
+                {
+                    string str;
+                    cpuSortingMenu();
 
-                cout << "-> ";
-                string choice_made = choice();
+                    str = stringChoice();
+                    //cpuSorting(str); sem a eftir ad utbua
+
+                    cont = continueFunction();
+                }while(cont == "y");
 
                 //TODO: sorta tölvur
-
-                cont = continueFunction();
             }
             else if (choice_made == "q")
             {
@@ -538,35 +541,10 @@ void Console::choiceMade()
             {
                 cout << "Please enter a valid command!" << endl;
             }
+
+            cont = continueFunction();
+
         }while(cont == "y");
-=======
-            cont = continueFunction();
-            }while(cont == "y");
-        }
-        else if (choice_made == "c")
-        {
-            do
-            {
-            string str;
-            cpuSortingMenu();
-
-            str = stringChoice();
-            //cpuSorting(str); sem a eftir ad utbua
-
-            cont = continueFunction();
-            }while(cont == "y");
-
-            //TODO: sorta tölvur
-        }
-        else if (choice_made == "q")
-        {
-            quit();
-        }
-        else
-        {
-            cout << "Please enter a valid command!" << endl;
-        }
->>>>>>> 228c81b026d3cdca14d5d78d4c2c55758d0a7c95
     }
     else if (choice_made == "i")
     {
