@@ -520,6 +520,9 @@ void Console::choiceMade()
 
     if (choice_made == "v")
     {
+        vector<Scientist> scientists;
+        vector<Computer> computers;
+
         do
         {
             viewMenu();

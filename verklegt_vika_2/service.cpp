@@ -155,7 +155,7 @@ void Service::moveLastTo(int index)
     _scientists.pop_back();
 }
 
-vector<Scientist> Service::getScientists()
+vector<Scientist> Service::getScientists(string choice)
 {
     return _scientists;
 
