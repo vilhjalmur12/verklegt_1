@@ -501,13 +501,12 @@ void Console::choiceMade()
 
     if (choice_made == "v")
     {
-        viewMenu();
+       viewMenu();
+       cout << "-> ";
+       string choice_made = choice();
 
-        do
-        {
-            cout << "-> ";
-            string choice_made = choice();
-
+       do
+       {
             if (choice_made == "s")
             {
                 string str;
@@ -1138,4 +1137,3 @@ void Console::printTable (vector<int> indexesToPrint) // ÞAÐ ÞARF AÐ EYÐA �
         cout << endl;
     }
 }
-
