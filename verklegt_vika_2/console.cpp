@@ -497,31 +497,26 @@ void Console::choiceMade()
    cout << "-> ";
 
    string choice_made = choice();
-   string cont = "y";
-
+   //string cont = "y";
+string cont;
 
    if (choice_made == "v")
    {
        viewMenu();
 
+       cout << "-> ";
+       string choice_made = choice();
 
        do
        {
-           cout << "-> ";
-           string choice_made = choice();
-
-
            if (choice_made == "s")
            {
                string str;
                sorting_menu();
 
-
                str = stringChoice();
                sorting(str);
 
-
-               cont = continueFunction();
            }
            else if (choice_made == "c")
            {
