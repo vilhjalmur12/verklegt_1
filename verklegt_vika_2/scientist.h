@@ -2,6 +2,7 @@
 #define SCIENTIST_H
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ public:
       Föll til að ná upplýsingum um fræðingana
 **************************************************/
 
+    int getID() const;
     string getFirstName() const;                    // Dregur fram nafn vísindamanns úr meðlimabreytum og skilar því til baka
     string getLastName() const;
     string getSex() const;                      // Dregur fram kyn vísindamanns úr meðlimabreytum og skilar því til baka
@@ -24,6 +26,9 @@ public:
     string getYearOfDeathForPrinting() const ;  // Dregur fram dánarár vísindamanns úr meðlimabreytum og skilar því til baka sérstaklega fyrir töflu í útprentun fyrir console
     string getNationality() const;              // Dregur fram þjóðerni vísindamanns úr meðlimabreytum og skilar því til baka
     string getFurtherInfo() const;              // Dregur fram auka upplýsingar vísindamanns úr meðlimabreytum og skilar því til baka
+    vector<string> getComputersBuilt() const;
+
+    void addComputerBuilt(string computer);
 
 /**************************************************
                  Operator föll
@@ -35,14 +40,15 @@ private:
 /**************************************************
                  Meðlimabreytur
 **************************************************/
-    int _ID;
+    int     _ID;
     string _firstName;
     string _lastName;
     string _gender;
-    int _YOB;
-    int _YOD;
+    int    _YOB;
+    int    _YOD;
     string _nationality;
     string _info;
-};
+    vector<string> _computersBuilt;
+    };
 
 #endif // SCIENTIST_H

@@ -243,6 +243,260 @@ void insertScientist (Scientist scientist)
 
 }
 
+//------------------------------------------------------------------------------------------------Ný Search Fölll---------------------------------
+void database::openDataBaseConnection()
+{
+    myData = QSqlDatabase::addDatabase("QSQLITE");
+    myData.setDatabaseName("./" + user + ".sqlite"); // --------------------------------------------------------------- ATHUGA hvort línan virki
+
+    if (!myData.open())
+    {
+       qDebug() << "Error: connection with database fail";
+    }
+    else
+    {
+       qDebug() << "Database: connection ok";
+    }
+}
+
+QString database::generalizeQuery(string query)
+{
+    string tempSQuery = "%"+ query +"%";
+    QString searchQuery (tempSQuery.c_str());
+    return searchQuery;
+}
+
+
+
+void database::searchData(vector<Scientist> &scientists, vector<Computer> &computers, string sQuery)
+{
+    if (string::npos != sQuery.find_first_of("0123456789"))
+    {
+        int year = stoi(sQuery);
+        searchComputersForInt(computers, year);
+        searchScientistsForInt(scientists, year);
+        searchComputersForSubstring(computers, sQuery);
+        searchScientistsForSubstring(scientists, sQuery);
+    }
+    else
+    {
+        searchComputersForSubstring(computers, sQuery);
+        searchScientistsForSubstring(scientists, sQuery);
+    }
+
+    addBuildersToComputers(computers);
+    adddBuiltComputersToScientists(scientists);
+}
+
+void database::searchComputersForSubstring(vector<Computer> &computers, const string sQuery)
+{
+    QString searchQuery = generalizeQuery(sQuery);
+
+    openDataBaseConnection();
+
+    QSqlQuery query;
+    query.prepare("SELECT c.ID, Name, year_of_build, type, built_or_not FROM computers c "
+                  "INNER JOIN cpuType t "
+                  "ON t.ID = c.CPU_type_ID "
+                  "WHERE c.name like :string "
+                  "OR t.type like :string "
+                  );
+    query.bindValue(":string", searchQuery);
+    query.exec();
+
+    addFoundComputers(query, computers);
+
+    myData.close();
+}
+
+void database::searchComputersForInt(vector<Computer> &computers, const int iQuery)
+{
+    openDataBaseConnection();
+
+    QSqlQuery query;
+    query.prepare("Select c.ID, name, year_of_build, type, built_or_not FROM computers c "
+                  "INNER JOIN cpuType t "
+                  "ON t.ID = c.CPU_type_ID "
+                  "WHERE year_of_build = :int "
+                  "OR (year_of_build/100)*100 = :int "
+                  "OR (year_of_build/10)*10 = :int "
+                );
+    query.bindValue(":int",iQuery);
+    query.exec();
+
+    addFoundComputers(query, computers);
+
+    myData.close();
+}
+
+void database::addFoundComputers(QSqlQuery& query, vector<Computer> &computers)
+{
+    while(query.next())
+    {
+        QString tempQ;
+
+        int ID;
+        string Name;
+        int YOB;
+        string cpuType;
+        bool built;
+
+        ID = query.value(0).toInt();
+
+        tempQ = query.value(1).toString();
+        Name = tempQ.toUtf8().constData();
+
+        YOB = query.value(2).toInt();
+
+        tempQ = query.value(3).toString();
+        cpuType = tempQ.toUtf8().constData();
+
+        built = query.value(4).toBool();
+
+        Computer temp(ID, Name, cpuType, built, YOB);
+        computers.push_back(temp);
+    }
+}
+
+void database::addBuildersToComputers(vector<Computer> &computers)
+{
+    for(unsigned int i = 0; i < computers.size(); i++)
+    {
+        int compID = computers[i].getID();
+
+        openDataBaseConnection();
+
+        QSqlQuery query;
+        query.prepare("SELECT last_name FROM scientists s "
+                      "LEFT OUTER JOIN scientist_computer_relations r "
+                      "ON r.computerID = :ID "
+                      "WHERE ID = r.scientistID ");
+        query.bindValue(":ID", compID);
+        query.exec();
+
+        while(query.next())
+        {
+            QString tempQ = query.value(0).toString();
+            string lastName = tempQ.toUtf8().constData();
+            computers[i].addBuilder(lastName);
+        }
+
+        myData.close();
+    }
+}
+
+void database::searchScientistsForSubstring(vector<Scientist> &scientists, const string sQuery)
+{
+    QString searchQuery = generalizeQuery(sQuery);
+
+    openDataBaseConnection();
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM scientists s "
+                  "WHERE s.first_name like :string "
+                  "OR s.last_name like :string "
+                  "OR s.gender like :string "
+                  "OR s.nationality like :string "
+                  "OR s.information like :string "
+                  );
+    query.bindValue(":string", searchQuery);
+    query.exec();
+
+    addFoundScientists(query, scientists);
+
+    myData.close();
+}
+
+void database::searchScientistsForInt(vector<Scientist> &scientists, const int iQuery)
+{
+    openDataBaseConnection();
+
+    QSqlQuery query;
+    query.prepare("Select * FROM scientists s "
+                  "WHERE year_of_birth = :int "
+                  "OR (year_of_birth/100)*100 = :int "
+                  "OR (year_of_birth/10)*10 = :int "
+                  "OR  year_of_death = :int "
+                  "OR (year_of_death/100)*100 = :int "
+                  "OR (year_of_death/10)*10 = :int "
+                );
+    query.bindValue(":int",iQuery);
+    query.exec();
+
+    addFoundScientists(query, scientists);
+
+    myData.close();
+}
+
+void database::addFoundScientists(QSqlQuery& query, vector<Scientist> &scientists)
+{
+    while(query.next())
+    {
+        QString tempQ;
+        int ID;
+        string firstName;
+        string lastName;
+        string gender;
+        int YOB;
+        int YOD;
+        string nationality;
+        string information;
+
+        ID = query.value(0).toInt();
+
+        tempQ = query.value(1).toString();
+        firstName = tempQ.toUtf8().constData();
+
+        tempQ = query.value(2).toString();
+        lastName = tempQ.toUtf8().constData();
+
+        tempQ = query.value(3).toString();
+        gender = tempQ.toUtf8().constData();
+
+        YOB = query.value(4).toInt();
+
+        YOD = query.value(5).toInt();
+
+        tempQ = query.value(6).toString();
+        nationality = tempQ.toUtf8().constData();
+
+        tempQ = query.value(7).toString();
+        information = tempQ.toUtf8().constData();
+
+        Scientist temp(ID,firstName, lastName, gender, YOB, YOD, nationality, information);
+        scientists.push_back(temp);
+    }
+}
+
+void database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
+{
+    for(unsigned int i = 0; i < scientists.size(); i++)
+    {
+        int sciID = scientists[i].getID();
+
+        openDataBaseConnection();
+
+        QSqlQuery query;
+        query.prepare("SELECT name FROM computers c "
+                      "LEFT OUTER JOIN scientist_computer_relations r "
+                      "ON r.ScientistID = :ID "
+                      "WHERE ID = r.computerID ");
+        query.bindValue(":ID", sciID);
+        query.exec();
+
+        while(query.next())
+        {
+            QString tempQ = query.value(0).toString();
+            string computer = tempQ.toUtf8().constData();
+            scientists[i].addComputerBuilt(computer);
+        }
+
+        myData.close();
+    }
+}
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void database::selectData ()
 {
 

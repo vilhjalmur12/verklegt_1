@@ -11,8 +11,9 @@ Computer::Computer() { }
             @parameter(int yearBuilt) - byggingarar tolvu
  ****************************************************************************/
 
-Computer::Computer(string name, string cpuType, bool built, int yearBuilt)
+Computer::Computer(int ID, string name, string cpuType, bool built, int yearBuilt)
 {
+    _ID = ID;
     _name = name;
     _cpuType = cpuType;
     _built = built;
@@ -36,6 +37,11 @@ void Computer::pushComputer(string name, string cpuType, bool built, int yearBui
     _cpuType = cpuType;
     _built = built;
     _yearBuilt = yearBuilt;
+}
+
+int Computer::getID() const
+{
+    return _ID;
 }
 
 /****************************************************************************
@@ -91,9 +97,14 @@ string Computer::getCpuType() const
                                         byggði tölvuna í vector
  ****************************************************************************/
 
-vector<string> Computer::getAuthor() const
+vector<string> Computer::getBuilders() const
 {
     return _computerAuthor;
+}
+
+void Computer::addBuilder(string lastName)
+{
+    _builders.push_back(lastName);
 }
 
 /**************************************************
