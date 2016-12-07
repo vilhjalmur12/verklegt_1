@@ -529,42 +529,38 @@ void Console::choiceMade()
             cout << "-> ";
             string choice_made = choice();
 
-            //do
-            //{
-                if (choice_made == "s")
-                {
-                    string str;
-                    sorting_menu();
-                    str = stringChoice();
+            if (choice_made == "s")
+            {
+                string str;
+                sorting_menu();
+                str = stringChoice();
 
-                    sorting(str);
+                sorting(str);
 
-                    cont = continueFunction();
-                }
-                else if (choice_made == "c")
-                {
-                    string str;
-                    cpuSortingMenu();
-                    str = stringChoice();
+                cont = continueFunction();
+            }
+            else if (choice_made == "c")
+            {
+                string str;
+                cpuSortingMenu();
+                str = stringChoice();
 
-                    //cpuSorting(str); sem a eftir ad gera
+                //cpuSorting(str); sem a eftir ad gera
 
-                    cout << "listi yfir tolvur" << endl;
+                cout << "listi yfir tolvur" << endl;
 
-                    //TODO: sorta tölvur
+                //TODO: sorta tölvur
 
-                    cont = continueFunction();
-                }
-                else if (choice_made == "q")
-                {
-                    quit();
-                }
-                else
-                {
-                    cout << "Please enter a valid command!" << endl;
-                }
-
-            //}while(cont == "y");
+                cont = continueFunction();
+            }
+            else if (choice_made == "q")
+            {
+                quit();
+            }
+            else
+            {
+                cout << "Please enter a valid command!" << endl;
+            }
         }while(cont == "y");
     }
     else if (choice_made == "i")
