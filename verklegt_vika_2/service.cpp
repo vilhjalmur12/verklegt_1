@@ -13,7 +13,8 @@ Service::Service() { }
 
 Service::Service(const QString user)
 {
-    data.getData(qUser, _scientists);
+    qUser = user;
+    data.getData(user, _scientists);
 }
 
 
@@ -108,11 +109,10 @@ bool Service::appendScientist(string firstName, string lastName, string sex, int
             return false;
         }
     }
+
     _scientists.push_back(tempScientist);  // Líklega óþarfi
 
-
-    //data.addScientist(tempScientist); --> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
-
+    data.insertScientist(tempScientist, qUser); //--> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
 
     return true;
 }

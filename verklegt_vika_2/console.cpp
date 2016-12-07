@@ -262,7 +262,8 @@ void Console::callUser ()
 
             cout << "Choose Username: ";
             cin >> tmpUser;
-            QString user(tmpUser.c_str());
+            QString tmpQUser(tmpUser.c_str());
+            user = tmpQUser;
 
             while (password != confirmPass)
             {
@@ -298,7 +299,8 @@ void Console::callUser ()
             cout << "Password: ";
             cin >> password;
 
-            QString user(tmpUser.c_str());
+            QString tmpQUser(tmpUser.c_str());
+            user = tmpQUser;
             QString qPassword(password.c_str());
 
             bool foundUser = data.getUser(user, qPassword);
@@ -828,7 +830,7 @@ void Console::readLastName(string &lastName)
         cin.ignore();
         do
         {
-        getline(cin, lastName);
+        cin >> lastName;
         }while(lastName.length()<1);
 
     }while(!scientistService.validName(lastName));

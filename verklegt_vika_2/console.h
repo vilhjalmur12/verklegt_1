@@ -55,9 +55,9 @@ private:
 /**************************************************
                    Meðlimabreytur
 **************************************************/
-    QString user;               //Nafn fyrir user
     ErrorHandling throwError;   //Sendir forrit í villu tékk
     Service scientistService;   //Heldur utan um upplýsingar frá gagnagrunni fyrir service hlutan
+    QString user;
 /**************************************************
                Hjálparföll við edit
 **************************************************/

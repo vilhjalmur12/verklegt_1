@@ -23,7 +23,7 @@ public:
     bool getUser (const QString& username, const QString& password);
     void createUser (const QString& username, const QString& password, const QString& firstName, const QString& lastName);
     vector<Scientist> pullDataScientist (const QSqlDatabase data);
-    void insertScientist (Scientist scientist);
+    void insertScientist (Scientist scientist, QString tmpUser);
 
     void openDataBaseConnection();
 
