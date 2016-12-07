@@ -45,7 +45,7 @@ void database::getData(QString username, vector<Scientist> &scien)
    }
    else
    {
-       scien = pullDataScientist(myData);
+       scien = pullDataScientist();
 
        databaseClose(myData);
    }
@@ -65,13 +65,13 @@ void database::getData(string selection, string table)
    else
    {
        // Byrjum að setja If setningar hér
-        vector<Scientist> scien = pullDataScientist(myData);
+        vector<Scientist> scien = pullDataScientist();
 
         databaseClose(myData);
    }
 }
 
-vector<Scientist> database::pullDataScientist (const QSqlDatabase data)
+vector<Scientist> database::pullDataScientist ()
 {
     vector<Scientist> scientists;
 
