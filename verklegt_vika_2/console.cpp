@@ -1090,7 +1090,7 @@ void  Console::printComputers(vector<Computer> computers)
 
     printf("%-5s%-25s%-20s%-20s%-20s%-20s\n", "Nr.", "Name", "Year of build", "Type", "Built or not", "Creators");
 
-    cout <<"-------------------------------------------------------------------------------------------------------------------" << endl;
+    cout <<"------------------------------------------------------------------------------------------------------------------" << endl;
 
     for (unsigned int i = 0; i < computers.size(); i++)
     {
