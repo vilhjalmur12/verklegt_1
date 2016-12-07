@@ -416,6 +416,7 @@ void Console::search()
   scientistService.searchInDatabase(scientists, computers, query);
   printScientists(scientists);
   printComputers(computers);
+  ///-------------------------------------------------------------------SKOÐA CHANGE/DELETE/LEITA AFTUR/MENU
 }
 /*
 void Console::search() -- GAMLA FALLIÐ
@@ -1078,7 +1079,7 @@ void Console::printScientists(vector<Scientist> allScientists)
     }
     cout << endl << endl << "---------------------------------------------------Scientists Found---------------------------------------------------------------------------------------------------------------------------------" << endl << endl;
 
-    printf("%-5s%-25s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Built");
+    printf("%-5s%-25s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Designed");
 
     cout <<"---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
