@@ -45,7 +45,7 @@ void database::getData(QString username, vector<Scientist> &scien)
    }
    else
    {
-       scien = pullDataScientist();
+     //  scien = pullDataScientist();
 
        databaseClose(myData);
    }
@@ -56,8 +56,6 @@ void database::getData(string selection, string table)
    myData = QSqlDatabase::addDatabase("QSQLITE");
    myData.setDatabaseName("./" + user + ".sqlite");
 
-   // myData.setDatabaseName("/Users/Sandra/Documents/GitHub/AlvoruVerklegt/verklegt_1/verklegt_vika_2/" + user + ".sqlite");
-
    if (!myData.open())
    {
       qDebug() << "Error: connection with database fail";
@@ -65,56 +63,57 @@ void database::getData(string selection, string table)
    else
    {
        // Byrjum að setja If setningar hér
-        vector<Scientist> scien = pullDataScientist();
+      //  vector<Scientist> scien = pullDataScientist();
 
         databaseClose(myData);
    }
 }
 
-vector<Scientist> database::pullDataScientist ()
+vector<Scientist> database::pullScientists(string choice)
 {
+    databaseOpen();
+
     vector<Scientist> scientists;
 
+    string command = "SELECT * FROM Scientists ORDER BY " + choice + ", last_name";
+
+  //  QString Qchoice(choice.c_str());
+    QString Qcommand(command.c_str());
+
     QSqlQuery query;
-    query.exec("SELECT * FROM scientists");
-    while(query.next())
-    {
-        QString tempQ;
-        int tempID;
-        string tempFirstName;
-        string tempLastName;
-        string tempGender;
-        int tempYOB;
-        int tempYOD;
-        string tempNationality;
-        string tempInfo;
+    query.exec(Qcommand);
 
-        tempID = query.value(0).toInt();
+    addFoundScientists(query, scientists);
+    adddBuiltComputersToScientists(scientists);
 
-        tempQ = query.value(1).toString();
-        tempFirstName = tempQ.toUtf8().constData();
-
-        tempQ = query.value(2).toString();
-        tempLastName = tempQ.toUtf8().constData();
-
-        tempQ = query.value(3).toString();
-        tempGender = tempQ.toUtf8().constData();
-
-        tempYOB = query.value(4).toInt();
-        tempYOD = query.value(5).toInt();
-
-        tempQ = query.value(6).toString();
-        tempNationality = tempQ.toUtf8().constData();
-
-        tempQ = query.value(7).toString();
-        tempInfo = tempQ.toUtf8().constData();
-
-        Scientist tmp(tempID, tempFirstName, tempLastName, tempGender, tempYOB, tempYOD, tempNationality, tempInfo);
-
-        scientists.push_back(tmp);
-    }
+    databaseClose(myData);
 
     return scientists;
+}
+
+vector<Computer> database::pullComputers(string choice)
+{
+    databaseOpen();
+
+    vector<Computer> computers;
+
+    string command = "SELECT c.ID, name, year_of_build, type, built_or_not FROM Computers c "
+                     "INNER JOIN cpuType t "
+                     "ON t.ID = c.CPU_type_ID "
+                     "ORDER BY " + choice +", name";
+
+    //QString Qchoice(choice.c_str());
+    QString Qcommand(command.c_str());
+
+    QSqlQuery query;
+    query.exec(Qcommand);
+
+    addFoundComputers(query, computers);
+    addBuildersToComputers(computers);
+
+    databaseClose(myData);
+
+    return computers;
 }
 
 bool database::getUser(const QString& username, const QString& password)

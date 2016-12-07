@@ -32,9 +32,11 @@ public:
                           int deathYear, string nationality, string furtherInfo);               // gildi sem útskýrir hvernig gekk.
     void removeScientist(int index);                              //Fjarlægjr vísindamann sem index gefur til kynna
     void moveLastTo(int index);                                   //Færir aftasta vísindamann í stak sem index gefur til kynna
-    vector<Scientist> getScientists();                            //Skilar vector of vísindamönnum í núverandi röð
+    vector<Scientist> getScientists(string choice = "na");                            //Skilar vector of vísindamönnum í núverandi röð
+    vector<Computer> getComputers(string choice = "na");
     int getLengthOfData();                                        //Segir til um hve margir vísindamenn eru í gagnagrunni
   //  void sortScientistsBy(string choice = "na");                  //Raðar vísindamönnum í röð eftir vali sem er stafsrófsröð by default
+
 
     /**********************************************************
                          Villucheckar föll

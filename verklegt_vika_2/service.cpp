@@ -155,12 +155,48 @@ void Service::moveLastTo(int index)
     _scientists.pop_back();
 }
 
-vector<Scientist> Service::getScientists()
+vector<Scientist> Service::getScientists(string choice/*="na"*/)
 {
-    return _scientists;
+    string columnOfChoice;
+
+    if(choice.at(0) == 'n')
+        columnOfChoice = "last_name";
+    if(choice.at(0) == 'g')
+        columnOfChoice = "gender";
+    if(choice.at(0) == 'b')
+        columnOfChoice = "year_of_birth";
+    if(choice.at(0) == 'd')
+        columnOfChoice = "year_of_death";
+    if(choice.at(0) == 'c')
+        columnOfChoice = "nationality";
+
+    if(choice.at(1) == 'd' || choice.at(1) == 'm')
+        columnOfChoice += " DESC";
+
+    return data.pullScientists(columnOfChoice);
 
     //return data.getScientists();
 }
+
+
+vector<Computer> Service::getComputers(string choice)
+{
+    string columnOfChoice;
+    if(choice.at(0) == 'n')
+        columnOfChoice = "name";
+    if(choice.at(0) == 'y')
+        columnOfChoice = "year_of_build";
+    if(choice.at(0) == 't')
+        columnOfChoice = "type";
+    if(choice.at(0) == 'b')
+        columnOfChoice = "built_or_not";
+
+    if(choice.at(1) == 'd' || choice.at(1) == 'y')
+        columnOfChoice += " DESC";
+
+    return data.pullComputers(columnOfChoice);
+}
+
 
 /****************************************************************************
                                getLengthOfData()

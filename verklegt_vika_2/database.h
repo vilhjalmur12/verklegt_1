@@ -22,7 +22,8 @@ public:
     void getData (string selection, string table);
     bool getUser (const QString& username, const QString& password);
     void createUser (const QString& username, const QString& password, const QString& firstName, const QString& lastName);
-    vector<Scientist> pullDataScientist ();
+    vector<Scientist> pullScientists(string choice);
+    vector<Computer> pullComputers(string choice);
     void insertScientist (Scientist scientist, QString tmpUser);
     void insertComputer (Computer computer, QString tmpUser);
 
