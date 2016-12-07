@@ -40,6 +40,8 @@ public:
     void choiceMade();          //Kalla á framkvæmd eftir vali notanda
     void printChangeDelete();   //Bjóða uppá að eiga við lista
     void quitMenu();            //Skjár segir bless þegar þú hættir í forriti
+    void viewMenu();            //Spyr hvort það eigi að birta lista vísindamanna eða tölva
+    void insertMenu();          //Spyr hvort það eigi að bæta við vísindamanni eða tölvu
 
 /**************************************************
                    Sorting föll
