@@ -99,7 +99,7 @@ string Computer::getCpuType() const
 
 vector<string> Computer::getBuilders() const
 {
-    return _computerAuthor;
+    return _builders;
 }
 
 void Computer::addBuilder(string lastName)

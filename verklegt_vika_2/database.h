@@ -6,6 +6,7 @@
 #include <vector>
 #include "errorhandling.h"
 #include "scientist.h"
+#include "computer.h"
 #include <qsqldatabase.h>
 #include <QDebug>
 
