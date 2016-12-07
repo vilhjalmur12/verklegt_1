@@ -237,6 +237,12 @@ void database::initDatabase (const QString& username)
     }
 }
 
+void insertScientist (Scientist scientist)
+{
+
+
+}
+
 void database::selectData ()
 {
 
