@@ -368,7 +368,7 @@ void Console::edit()
 
     if(choice == "l")
     {
-        printTable();
+        printScientists(scientistService.getScientists());
         do
         {
         cout << "Insert index to edit: ";
@@ -704,7 +704,7 @@ void Console::sorting(string str)
         if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd" || str == "nta" || str == "ntd")
         {
             //scientistService.sortScientistsBy(str);
-            printTable();
+            printScientists(scientistService.getScientists());
             isRunning = false;
         }
         else
