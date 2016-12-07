@@ -545,9 +545,9 @@ void Console::choiceMade()
                 {
                     string str;
                     cpuSortingMenu();
-
                     str = stringChoice();
-                    //cpuSorting(str); sem a eftir ad utbua
+
+                    //cpuSorting(str); sem a eftir ad gera
 
                     cout << "listi yfir tolvur" << endl;
 
