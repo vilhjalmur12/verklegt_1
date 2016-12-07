@@ -6,6 +6,7 @@
 #include <vector>
 #include "errorhandling.h"
 #include "scientist.h"
+#include "computer.h"
 #include <qsqldatabase.h>
 #include <QDebug>
 
@@ -23,6 +24,21 @@ public:
     void createUser (const QString& username, const QString& password, const QString& firstName, const QString& lastName);
     vector<Scientist> pullDataScientist (const QSqlDatabase data);
 
+    void openDataBaseConnection();
+
+    void searchData(vector<Scientist> &scientists, vector<Computer> &computers, string sQuery);
+    QString generalizeQuery(string query);
+
+    void searchComputersForSubstring(vector<Computer> &computers, const string query);
+    void searchComputersForInt(vector<Computer> &computers, const int iQuery);
+    void addFoundComputers(QSqlQuery &query, vector<Computer> &computers);
+    void addBuildersToComputers(vector<Computer> &computers);
+
+    void searchScientistsForSubstring(vector<Scientist> &scientists, const string query);
+    void searchScientistsForInt(vector<Scientist> &scientists, const int iQuery);
+    void addFoundScientists(QSqlQuery &query, vector<Scientist> &scientists);
+    void adddBuiltComputersToScientists(vector<Scientist> &scientists);
+
 private:
     QSqlDatabase myData;
     QString user;
@@ -32,7 +48,6 @@ private:
     string decryptData (string n);
     void initDatabase (const QString& username);
     void databaseClose(QSqlDatabase &data);
-
 };
 
 #endif // DATABASE_H

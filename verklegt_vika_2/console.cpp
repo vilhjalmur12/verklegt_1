@@ -496,7 +496,6 @@ void Console::choiceMade()
 {
    cout << "-> ";
 
-
    string choice_made = choice();
    string cont = "y";
 
