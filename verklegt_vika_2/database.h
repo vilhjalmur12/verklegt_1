@@ -31,6 +31,7 @@ private:
     string encryptData (string n);
     string decryptData (string n);
     void initDatabase (const QString& username);
+    void databaseClose(QSqlDatabase &data);
 
 };
 
