@@ -498,49 +498,36 @@ void Console::choiceMade()
 {
    cout << "-> ";
 
-
    string choice_made = choice();
-   string cont = "y";
-
+   //string cont = "y";
+   string cont;
 
    if (choice_made == "v")
    {
        viewMenu();
 
+       cout << "-> ";
+       string choice_made = choice();
 
        do
        {
-           cout << "-> ";
-           string choice_made = choice();
-
-
            if (choice_made == "s")
            {
                string str;
                sorting_menu();
 
-
                str = stringChoice();
                sorting(str);
 
-
-               cont = continueFunction();
            }
            else if (choice_made == "c")
            {
-               do
-               {
-                   string str;
-                   cpuSortingMenu();
+               string str;
+               cpuSortingMenu();
 
-
-                   str = stringChoice();
-                   //cpuSorting(str); sem a eftir ad utbua
-
-
-                   cont = continueFunction();
-               }while(cont == "y");
-
+               str = stringChoice();
+               //cpuSorting(str); sem a eftir ad utbua
+               cout << "listi yfir tolvur" << endl;
 
                //TODO: sorta tölvur
            }
@@ -1063,7 +1050,7 @@ void Console::printTable () // ÞAÐ ÞARF AÐ EYÐA ÞESSU FALLI OG KALLA ALLS 
     for (unsigned int i = 0; i < allScientists.size(); i++)
     {
         tmp = allScientists[i];
-        printf("%-5d%-35s%-15s%-16d%-16s%-14s%-20s\n",i+1, tmp.getFirstName().c_str(), tmp.getLastName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+        printf("%-5d%-35s%-15s%-16s%-16d%-14s%-20s\n",i+1, tmp.getFirstName().c_str(), tmp.getLastName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
                tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str());
     }
 }
@@ -1081,7 +1068,7 @@ void printScientists(vector<Scientist> allScientists)
         string computersString;
         vector <string> computers = allScientists[i].getComputersBuilt();
 
-        for(int j = 0; j < computers.size(); j++)
+        for(unsigned int j = 0; j < computers.size(); j++)
         {
             computersString += computers[j];
 
@@ -1157,11 +1144,10 @@ void Console::printTable (vector<int> indexesToPrint) // ÞAÐ ÞARF AÐ EYÐA �
         {
             tmp = allScientists[indexesToPrint[i]];
 
-            printf("%-5d%-35s%-15s%-16d%-16s%-14s%-20s\n",i+1, tmp.getFirstName().c_str(), tmp.getLastName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+            printf("%-5d%-35s%-15s%-16s%-16d%-14s%-20s\n",i+1, tmp.getFirstName().c_str(), tmp.getLastName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
                    tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str());
 
         }
         cout << endl;
     }
 }
-
