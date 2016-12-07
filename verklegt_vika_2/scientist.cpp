@@ -15,6 +15,16 @@ Scientist::Scientist() { }
             @parameter(string nationality) - frá hvaða landi er vísindamaðurinn
             @parameter(string furtherInfo) - auka upplýsingar um vísindamann
  ****************************************************************************/
+Scientist::Scientist(string firstName, string lastName, string sex, int YOB, int YOD, string nationality, string furtherInfo)
+{
+    _firstName = firstName;
+    _lastName = lastName;
+    _gender = sex;
+    _YOB = YOB;
+    _YOD = YOD;
+    _nationality = nationality;
+    _info = furtherInfo;
+}
 
 Scientist::Scientist(int ID, string firstName, string lastName, string sex, int YOB, int YOD, string nationality, string furtherInfo)
 {
@@ -23,7 +33,7 @@ Scientist::Scientist(int ID, string firstName, string lastName, string sex, int 
     _lastName = lastName;
     _gender = sex;
     _YOB = YOB;
-    int _YOD = YOD;
+    _YOD = YOD;
     _nationality = nationality;
     _info = furtherInfo;
 }
@@ -66,6 +76,12 @@ bool operator ==(Scientist lhs, Scientist rhs)
    return (lhs.getFirstName() == rhs.getFirstName() && lhs.getLastName() == rhs.getLastName() && lhs.getSex() == rhs.getSex() && lhs.getYearOfBirth() == lhs.getYearOfBirth() && lhs.getYearOfDeath() == rhs.getYearOfDeath())
            && lhs.getNationality() == rhs.getNationality() && lhs.getFurtherInfo() == rhs.getFurtherInfo();
 }
+
+int Scientist::getID() const
+{
+    return _ID;
+}
+
 
 /****************************************************************************
                         getName
@@ -151,4 +167,14 @@ string Scientist::getNationality() const
 string Scientist::getFurtherInfo() const
 {
         return _info;
+}
+
+vector<string> Scientist::getComputersBuilt() const
+{
+    return _computersBuilt;
+}
+
+void Scientist::addComputerBuilt(string computer)
+{
+    _computersBuilt.push_back(computer);
 }

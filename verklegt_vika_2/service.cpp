@@ -94,12 +94,12 @@ string Service::fixString(string before)
             *Til að vísindamaður sé til þurfa allar breytur að
             *vera þær sömu
  ****************************************************************************/
-bool Service::appendScientist(int ID, string firstName, string lastName, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
+bool Service::appendScientist(string firstName, string lastName, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
 {
     //_scientists = data.getScientists();
 
 
-    Scientist tempScientist(ID, firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo);
+    Scientist tempScientist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo);
     for(unsigned int i = 0; i < _scientists.size(); i++)
     {
         if(tempScientist == _scientists[i])

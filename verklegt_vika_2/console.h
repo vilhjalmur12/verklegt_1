@@ -65,7 +65,7 @@ private:
     void printPushBackMenu();                                                                                       //Birtir valmynd þegar nýr vísindamaður er settur í gagnagrunn
     void printEditMenu();                                                                                           //Birtir valmynd þegar edit-a á vísindamann
     void pushBackScientist();                                                                                       //Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
-    void createScientist(int &ID, string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo);  //Býr til nýjan vísindamann
+    void createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo);  //Býr til nýjan vísindamann
     void readFirstName(string &firstName);                                                                          //Tekur inn fyrra nafn fyrir vísindamann
     void readLastName(string &lastName);                                                                            //Tekur inn seinna nafn fyrir vísindamann
     void readSex(string& sex);                                                                                      //Tekur inn kyn fyrir vísindamann
@@ -75,7 +75,6 @@ private:
     void readBirthYear(int& YOB, bool& cont);                                                                       //Athugar fæðingar ár á vísindamanni
     void readDeathYear(int& YOD, bool& cont);                                                                       //Athugar dánar ár á vísindamanni
     void printCpuPushBackMenu();                                                                                    //Birtir valmynd þegar ný tölva er settur í gagnagrunn
-    void viewMenu();                                                                                                //Spyr hvort það eigi að skoða vísindamann eða tölvu
     void editMenu();                                                                                                //Spyr hvort það eigi að breyta vísindamanni eða tölvu
     void deleteMenu();                                                                                              //Spyr hvort það eigi að eyða vísindamanni eða tölvu
 
@@ -90,7 +89,9 @@ private:
                  Birta töflu
 **************************************************/
     void printTable();                              //Birtir töflu af vísindamönnum
+    void printScientists(vector<Scientist> allScientists);
     void printTable(vector<int> indexesToPrint);    //Birtir töflu af vísindamönnum fyrir edit
+    void printComputers(vector<Computer> computers);
 };
 
 #endif // CONSOLE_H
