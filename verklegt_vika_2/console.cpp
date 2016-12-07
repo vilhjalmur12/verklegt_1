@@ -368,7 +368,7 @@ void Console::edit()
 
     if(choice == "l")
     {
-        printTable();
+        printScientists(scientistService.getScientists());
         do
         {
         cout << "Insert index to edit: ";
@@ -416,6 +416,7 @@ void Console::search()
   scientistService.searchInDatabase(scientists, computers, query);
   printScientists(scientists);
   printComputers(computers);
+  ///-------------------------------------------------------------------SKOÐA CHANGE/DELETE/LEITA AFTUR/MENU
 }
 /*
 void Console::search() -- GAMLA FALLIÐ
@@ -519,6 +520,9 @@ void Console::choiceMade()
 
     if (choice_made == "v")
     {
+        vector<Scientist> scientists;
+        vector<Computer> computers;
+
         do
         {
             viewMenu();
@@ -706,7 +710,7 @@ void Console::sorting(string str)
         if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd" || str == "nta" || str == "ntd")
         {
             //scientistService.sortScientistsBy(str);
-            printTable();
+            printScientists(scientistService.getScientists());
             isRunning = false;
         }
         else
@@ -1044,33 +1048,18 @@ void Console::changeOrDelete(vector<int> indexes)
                       printTable
     Prentar út alla vísindamenn í gagnagrunni með viðmóti.
  ******************************************************************/
-void Console::printTable () // ÞAÐ ÞARF AÐ EYÐA ÞESSU FALLI OG KALLA ALLS STAÐAR Á PRINTSCIENTISTS(VECTOR) Í STAÐIN
-{
-    vector<Scientist> allScientists = scientistService.getScientists();
-    Scientist tmp;
 
-    printf("%-5s%-35s%-15s%-16s%-16s%-14s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information");
-
-    cout <<"--------------------------------------------------------------------------------------------------------------------------------" << endl;
-
-    for (unsigned int i = 0; i < allScientists.size(); i++)
-    {
-        tmp = allScientists[i];
-        printf("%-5d%-35s%-15s%-16s%-16d%-14s%-20s\n",i+1, tmp.getFirstName().c_str(), tmp.getLastName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
-               tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str());
-    }
-}
 
 void Console::printScientists(vector<Scientist> allScientists)
 {
     if(allScientists.size() == 0)
     {
-        cout << endl << "-----------------------------------------------------No Scientists Found-----------------------------------------------------------------------------------" << endl;
+        cout << endl << "---------------------------------------------------------------------------------------No Scientists Found--------------------------------------------------------------------------------------" << endl;
         return;
     }
-    cout << endl << endl << "---------------------------------------------------Scientists Found---------------------------------------------------------------------------------------------------------------------------------" << endl << endl;
+    cout << endl << endl << "---------------------------------------------------------------------------------------Scientists Found--------------------------------------------------------------------------------------" << endl << endl;
 
-    printf("%-5s%-25s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Built");
+    printf("%-5s%-25s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Designed");
 
     cout <<"---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
@@ -1088,6 +1077,7 @@ void Console::printScientists(vector<Scientist> allScientists)
         }
 
         Scientist tmp = allScientists[i];
+
         printf("%-5d%-10s%-15s%-15s%-16d%-16s%-14s%-40s%-20s\n",i+1, (tmp.getLastName()+",").c_str(), tmp.getFirstName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
                tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str(), computersString.c_str());
     }
