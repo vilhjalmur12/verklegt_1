@@ -555,8 +555,13 @@ void Console::choiceMade()
         }
         else if(choice_made == "c")
         {
-            printCpuPushBackMenu();
-            cout << "Setja inn tolvu" << endl;
+            do
+            {
+                printCpuPushBackMenu();
+                cout << "Setja inn tolvu" << endl;
+
+                cont = continueFunction();
+                }while(cont == "y");
 
             //TODO: fylla inn tölvu
         }
@@ -574,7 +579,7 @@ void Console::choiceMade()
     {
         search();
     }
-    else if(choice_made == "e")
+    else if (choice_made == "e")
     {
         editMenu();
         cout << "-> ";
