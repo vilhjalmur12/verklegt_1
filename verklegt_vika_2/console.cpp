@@ -512,89 +512,87 @@ string Console::choice()
  ******************************************************************************/
 void Console::choiceMade()
 {
-   cout << "-> ";
+    cout << "-> ";
 
-   string choice_made = choice();
-   //string cont = "y";
-   string cont;
+    string choice_made = choice();
+    string cont = "y";
+    //string cont;
 
-   if (choice_made == "v")
-   {
-       viewMenu();
+    if (choice_made == "v")
+    {
+        do
+        {
+            viewMenu();
+            cout << "-> ";
+            string choice_made = choice();
 
-       cout << "-> ";
-       string choice_made = choice();
+            //do
+            //{
+                if (choice_made == "s")
+                {
+                    string str;
+                    sorting_menu();
+                    str = stringChoice();
 
-       do
-       {
-           if (choice_made == "s")
-           {
-               string str;
-               sorting_menu();
+                    sorting(str);
+                }
+                else if (choice_made == "c")
+                {
+                    string str;
+                    cpuSortingMenu();
 
-               str = stringChoice();
-               sorting(str);
+                    str = stringChoice();
+                    //cpuSorting(str); sem a eftir ad utbua
 
-           }
-           else if (choice_made == "c")
-           {
-               string str;
-               cpuSortingMenu();
+                    cout << "listi yfir tolvur" << endl;
 
-               str = stringChoice();
-               //cpuSorting(str); sem a eftir ad utbua
-               cout << "listi yfir tolvur" << endl;
+                    //TODO: sorta tölvur
+                }
+                else if (choice_made == "q")
+                {
+                    quit();
+                }
+                else
+                {
+                    cout << "Please enter a valid command!" << endl;
+                }
 
-               //TODO: sorta tölvur
-           }
-           else if (choice_made == "q")
-           {
-               quit();
-           }
-           else
-           {
-               cout << "Please enter a valid command!" << endl;
-           }
+                cont = continueFunction();
 
-
-           cont = continueFunction();
-
-
-       }while(cont == "y");
-   }
-   else if (choice_made == "i")
-   {
+            //}while(cont == "y");
+        }while(cont == "y");
+    }
+    else if (choice_made == "i")
+    {
        insertMenu();
-       string cont = "n";
-
+       string tmp = "n";
 
        do
        {
            cout << "-> ";
            string choice_made = choice();
 
-
            if (choice_made == "s")
            {
                pushBackScientist();
-               cont = "n";
+               tmp = "n";
            }
            else if (choice_made == "c")
            {
                cout << "bæta við tölvu" << endl;
-               cont = "n";
+               tmp = "n";
            }
            else if (choice_made == "q")
            {
                quit();
-               cont = "n";
+               tmp = "n";
            }
            else
            {
                cout << "Please enter a valid command!" << endl;
-               cont = "y";
+               tmp = "y";
            }
-       }while (cont == "y");
+       }while (tmp == "y");
    }
    else if (choice_made == "s")
    {
@@ -602,47 +600,40 @@ void Console::choiceMade()
    }
    else if(choice_made == "e")
    {
-       string cont = "n";
+       string tmp = "n";
        editMenu();
-
 
        do
        {
            cout << "-> ";
            string choice_made = choice();
 
-
            if (choice_made == "s")
            {
                edit();
-               cont = "n";
+               tmp = "n";
            }
            else if (choice_made == "c")
            {
                cout << "edit computers" << endl;
                // TODO: edit fall fyrir tölvur
-               cont = "n";
+               tmp = "n";
            }
            else if (choice_made == "q")
            {
                quit();
-               cont = "n";
+               tmp = "n";
            }
            else
            {
                cout << "Please enter a valid command!" << endl;
-               cont = "y";
-
-
+               tmp = "y";
            }
-       }while (cont == "y");
-
-
+       }while (tmp == "y");
    }
    else if (choice_made == "d")
    {
-       string cont = "n";
-
+       string tmp = "n";
 
        do
        {
@@ -650,28 +641,27 @@ void Console::choiceMade()
            cout << "-> ";
            string choice_made = choice();
 
-
            if (choice_made == "s")
            {
                cout << "delete scientists" << endl;
-               cont = "n";
+               tmp = "n";
            }
            else if (choice_made == "c")
            {
                cout << "delete computers" << endl;
-               cont = "n";
+               tmp = "n";
            }
            else if (choice_made == "q")
            {
                quit();
-               cont = "n";
+               tmp = "n";
            }
            else
            {
                cout << "Please enter a valid command!" << endl;
-               cont = "y";
+               tmp = "y";
            }
-       }while(cont == "y");
+       }while(tmp == "y");
    }
    else if (choice_made == "q")
    {
@@ -1053,22 +1043,7 @@ void Console::changeOrDelete(vector<int> indexes)
                       printTable
     Prentar út alla vísindamenn í gagnagrunni með viðmóti.
  ******************************************************************/
-void Console::printTable () // ÞAÐ ÞARF AÐ EYÐA ÞESSU FALLI OG KALLA ALLS STAÐAR Á PRINTSCIENTISTS(VECTOR) Í STAÐIN
-{
-    vector<Scientist> allScientists = scientistService.getScientists();
-    Scientist tmp;
 
-    printf("%-5s%-35s%-15s%-16s%-16s%-14s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information");
-
-    cout <<"--------------------------------------------------------------------------------------------------------------------------------" << endl;
-
-    for (unsigned int i = 0; i < allScientists.size(); i++)
-    {
-        tmp = allScientists[i];
-        printf("%-5d%-35s%-15s%-16s%-16d%-14s%-20s\n",i+1, tmp.getFirstName().c_str(), tmp.getLastName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
-               tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str());
-    }
-}
 
 void Console::printScientists(vector<Scientist> allScientists)
 {
@@ -1097,7 +1072,11 @@ void Console::printScientists(vector<Scientist> allScientists)
         }
 
         Scientist tmp = allScientists[i];
+<<<<<<< HEAD
+        printf("%-5d%-10s%-15s%-15s%-16d%-16s%-14s%-40s%-20s\n",i+1, tmp.getLastName().c_str() + " " + tmp.getFirstName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+=======
         printf("%-5d%-10s%-15s%-15s%-16d%-16s%-14s%-40s%-20s\n",i+1, (tmp.getLastName()+",").c_str(), tmp.getFirstName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+>>>>>>> 37fef524e6fbe8936118b86d0adcd15c117f8539
                tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str(), computersString.c_str());
     }
 }
