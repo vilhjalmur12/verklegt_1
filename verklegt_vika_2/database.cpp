@@ -266,7 +266,7 @@ void database::initDatabase (const QString& username)
 
         userQuery.exec("INSERT INTO computers "
                           "(Name, Year_of_build, CPU_type_ID, built_or_not) "
-                          "VALUES ('Mailüfterl', 1958, 3, 1)");
+                          "VALUES ('Mailufterl', 1958, 3, 1)");
 
         userQuery.exec("INSERT INTO computers "
                           "(Name, Year_of_build, CPU_type_ID, built_or_not) "
@@ -346,8 +346,6 @@ QString database::generalizeQuery(string query)
     QString searchQuery (tempSQuery.c_str());
     return searchQuery;
 }
-
-
 
 void database::searchData(vector<Scientist> &scientists, vector<Computer> &computers, string sQuery)
 {
