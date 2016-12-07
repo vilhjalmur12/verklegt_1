@@ -262,7 +262,8 @@ void Console::callUser ()
 
             cout << "Choose Username: ";
             cin >> tmpUser;
-            QString user(tmpUser.c_str());
+            QString tmpQUser(tmpUser.c_str());
+            user = tmpQUser;
 
             while (password != confirmPass)
             {
@@ -298,7 +299,8 @@ void Console::callUser ()
             cout << "Password: ";
             cin >> password;
 
-            QString user(tmpUser.c_str());
+            QString tmpQUser(tmpUser.c_str());
+            user = tmpQUser;
             QString qPassword(password.c_str());
 
             bool foundUser = data.getUser(user, qPassword);
@@ -513,7 +515,7 @@ void Console::choiceMade()
 
    string choice_made = choice();
    //string cont = "y";
-string cont;
+   string cont;
 
    if (choice_made == "v")
    {
@@ -535,19 +537,12 @@ string cont;
            }
            else if (choice_made == "c")
            {
-               do
-               {
-                   string str;
-                   cpuSortingMenu();
+               string str;
+               cpuSortingMenu();
 
-
-                   str = stringChoice();
-                   //cpuSorting(str); sem a eftir ad utbua
-
-
-                   cont = continueFunction();
-               }while(cont == "y");
-
+               str = stringChoice();
+               //cpuSorting(str); sem a eftir ad utbua
+               cout << "listi yfir tolvur" << endl;
 
                //TODO: sorta tölvur
            }
@@ -834,10 +829,9 @@ void Console::readLastName(string &lastName)
     {
         cout << scientistService.getErrorString();
         cout << "Last Name: ";
-        cin.ignore();
         do
         {
-        getline(cin, lastName);
+        cin >> lastName;
         }while(lastName.length()<1);
 
     }while(!scientistService.validName(lastName));
