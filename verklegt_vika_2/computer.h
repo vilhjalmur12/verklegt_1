@@ -11,7 +11,7 @@ class Computer
 {
 public:
     Computer();
-    Computer(string name, string cpuType, bool built, int yearBuilt);           // Stillir smiðinn þegar hann er búinn til með breytum sem byrjanargildi
+    Computer(int ID, string name, string cpuType, bool built, int yearBuilt);           // Stillir smiðinn þegar hann er búinn til með breytum sem byrjanargildi
     virtual ~Computer();
     void pushComputer(string name, string cpuType, bool built, int yearBuilt);   // Stillir upplýsingar fyrir tölvur í meðlimabreytur
 
@@ -19,12 +19,14 @@ public:
       Föll til að ná upplýsingum um tolvurnar
 **************************************************/
 
+    int getID() const;
     string getName() const;             // Dregur fram nafn tolvunnar úr meðlimabreytum og skilar því til baka
     bool getBuilt() const;              // Dregur fram hvort tolvan hafi verid byggd og skilar true eda false
     int getYearBuilt() const;           // Dregur fram arid sem tolvan var byggd og skilar því til baka
     string getCpuType() const;          // Dregur fram tegund tölvunnar og skilar henni til baka
-    vector<string> getAuthor() const;   // Dregur fram hver byggdi tolvuna og skilar nafninu til baka i vector
+    vector<string> getBuilders() const;   // Dregur fram hver byggdi tolvuna og skilar nafninu til baka i vector
 
+    void addBuilder(string lastName);
 
 /**************************************************
                  Operator föll
@@ -36,11 +38,12 @@ private:
 /**************************************************
                  Meðlimabreytur
 **************************************************/
+    int _ID;
     string _name;
     string _cpuType;
     bool _built;
     int _yearBuilt;
-    vector<string> _computerAuthor;
+    vector<string> _builders;
 };
 
 #endif // COMPUTERS_H
