@@ -50,8 +50,6 @@ void database::getData(string selection, string table)
 
         databaseClose(myData);
    }
-
-
 }
 
 vector<Scientist> database::pullDataScientist (const QSqlDatabase data)
@@ -136,8 +134,6 @@ bool database::getUser(const QString& username, const QString& password)
             return false;
         }
     }
-
-
 }
 
 void database::createUser(const QString& username, const QString& password, const QString& firstName, const QString& lastName)
