@@ -494,192 +494,190 @@ string Console::choice()
  ******************************************************************************/
 void Console::choiceMade()
 {
-    cout << "-> ";
+   cout << "-> ";
 
-    string choice_made = choice();
-    string cont = "y";
 
-    if (choice_made == "v")
-    {
-        viewMenu();
+   string choice_made = choice();
+   string cont = "y";
 
-        do
-        {
-            cout << "-> ";
-            string choice_made = choice();
 
-            if (choice_made == "s")
-            {
-                string str;
-                sorting_menu();
+   if (choice_made == "v")
+   {
+       viewMenu();
 
-                str = stringChoice();
-                sorting(str);
 
-<<<<<<< HEAD
-                cont = continueFunction();
-            }
-            else if (choice_made == "c")
-            {
-                cpuSortingMenu();
+       do
+       {
+           cout << "-> ";
+           string choice_made = choice();
 
-                cout << "-> ";
-                string choice_made = choice();
 
-                //TODO: sorta tölvur
+           if (choice_made == "s")
+           {
+               string str;
+               sorting_menu();
 
-                cont = continueFunction();
-            }
-            else if (choice_made == "q")
-            {
-                quit();
-            }
-            else
-            {
-                cout << "Please enter a valid command!" << endl;
-            }
-        }while(cont == "y");
-=======
-            cont = continueFunction();
-            }while(cont == "y");
-        }
-        else if (choice_made == "c")
-        {
-            do
-            {
-            string str;
-            cpuSortingMenu();
 
-            str = stringChoice();
-            //cpuSorting(str); sem a eftir ad utbua
+               str = stringChoice();
+               sorting(str);
 
-            cont = continueFunction();
-            }while(cont == "y");
 
-            //TODO: sorta tölvur
-        }
-        else if (choice_made == "q")
-        {
-            quit();
-        }
-        else
-        {
-            cout << "Please enter a valid command!" << endl;
-        }
->>>>>>> 228c81b026d3cdca14d5d78d4c2c55758d0a7c95
-    }
-    else if (choice_made == "i")
-    {
-        insertMenu();
-        string cont = "n";
+               cont = continueFunction();
+           }
+           else if (choice_made == "c")
+           {
+               do
+               {
+                   string str;
+                   cpuSortingMenu();
 
-        do
-        {
-            cout << "-> ";
-            string choice_made = choice();
 
-            if (choice_made == "s")
-            {
-                pushBackScientist();
-                cont = "n";
-            }
-            else if (choice_made == "c")
-            {
-                cout << "bæta við tölvu" << endl;
-                cont = "n";
-            }
-            else if (choice_made == "q")
-            {
-                quit();
-                cont = "n";
-            }
-            else
-            {
-                cout << "Please enter a valid command!" << endl;
-                cont = "y";
-            }
-        }while (cont == "y")
-    }
-    else if (choice_made == "s")
-    {
-        search();
-    }
-    else if(choice_made == "e")
-    {
-        string cont = "n";
-        editMenu();
+                   str = stringChoice();
+                   //cpuSorting(str); sem a eftir ad utbua
 
-        do
-        {
-            cout << "-> ";
-            string choice_made = choice();
 
-            if (choice_made == "s")
-            {
-                edit();
-                cont = "n";
-            }
-            else if (choice_made == "c")
-            {
-                cout << "edit computers" << endl;
-                // TODO: edit fall fyrir tölvur
-                cont = "n";
-            }
-            else if (choice_made == "q")
-            {
-                quit();
-                cont = "n";
-            }
-            else
-            {
-                cout << "Please enter a valid command!" << endl;
-                cont = "y";
+                   cont = continueFunction();
+               }while(cont == "y");
 
-            }
-        }while (cont == "y");
 
-    }
-    else if (choice_made == "d")
-    {
-        string cont = "n";
+               //TODO: sorta tölvur
+           }
+           else if (choice_made == "q")
+           {
+               quit();
+           }
+           else
+           {
+               cout << "Please enter a valid command!" << endl;
+           }
 
-        do
-        {
-            void deleteMenu();
-            cout << "-> ";
-            string choice_made = choice();
 
-            if (choice_made == "s")
-            {
-                cout << "delete scientists" << endl;
-                cont = "n";
-            }
-            else if (choice_made == "c")
-            {
-                cout << "delete computers" << endl;
-                cont = "n";
-            }
-            else if (choice_made == "q")
-            {
-                quit();
-                cont = "n";
-            }
-            else
-            {
-                cout << "Please enter a valid command!" << endl;
-                cont == "y";
-            }
-        }while(cont == "y")
-    }
-    else if (choice_made == "q")
-    {
-        quit();
-    }
-    else
-    {
-        cout << "Please enter a valid command!" << endl;
-    }
+           cont = continueFunction();
+
+
+       }while(cont == "y");
+   }
+   else if (choice_made == "i")
+   {
+       insertMenu();
+       string cont = "n";
+
+
+       do
+       {
+           cout << "-> ";
+           string choice_made = choice();
+
+
+           if (choice_made == "s")
+           {
+               pushBackScientist();
+               cont = "n";
+           }
+           else if (choice_made == "c")
+           {
+               cout << "bæta við tölvu" << endl;
+               cont = "n";
+           }
+           else if (choice_made == "q")
+           {
+               quit();
+               cont = "n";
+           }
+           else
+           {
+               cout << "Please enter a valid command!" << endl;
+               cont = "y";
+           }
+       }while (cont == "y");
+   }
+   else if (choice_made == "s")
+   {
+       search();
+   }
+   else if(choice_made == "e")
+   {
+       string cont = "n";
+       editMenu();
+
+
+       do
+       {
+           cout << "-> ";
+           string choice_made = choice();
+
+
+           if (choice_made == "s")
+           {
+               edit();
+               cont = "n";
+           }
+           else if (choice_made == "c")
+           {
+               cout << "edit computers" << endl;
+               // TODO: edit fall fyrir tölvur
+               cont = "n";
+           }
+           else if (choice_made == "q")
+           {
+               quit();
+               cont = "n";
+           }
+           else
+           {
+               cout << "Please enter a valid command!" << endl;
+               cont = "y";
+
+
+           }
+       }while (cont == "y");
+
+
+   }
+   else if (choice_made == "d")
+   {
+       string cont = "n";
+
+
+       do
+       {
+           void deleteMenu();
+           cout << "-> ";
+           string choice_made = choice();
+
+
+           if (choice_made == "s")
+           {
+               cout << "delete scientists" << endl;
+               cont = "n";
+           }
+           else if (choice_made == "c")
+           {
+               cout << "delete computers" << endl;
+               cont = "n";
+           }
+           else if (choice_made == "q")
+           {
+               quit();
+               cont = "n";
+           }
+           else
+           {
+               cout << "Please enter a valid command!" << endl;
+               cont = "y";
+           }
+       }while(cont == "y");
+   }
+   else if (choice_made == "q")
+   {
+       quit();
+   }
+   else
+   {
+       cout << "Please enter a valid command!" << endl;
+   }
 }
+
 
 /******************************************************************************
                          stringChoice
