@@ -15,6 +15,16 @@ Scientist::Scientist() { }
             @parameter(string nationality) - frá hvaða landi er vísindamaðurinn
             @parameter(string furtherInfo) - auka upplýsingar um vísindamann
  ****************************************************************************/
+Scientist::Scientist(string firstName, string lastName, string sex, int YOB, int YOD, string nationality, string furtherInfo)
+{
+    _firstName = firstName;
+    _lastName = lastName;
+    _gender = sex;
+    _YOB = YOB;
+    _YOD = YOD;
+    _nationality = nationality;
+    _info = furtherInfo;
+}
 
 Scientist::Scientist(int ID, string firstName, string lastName, string sex, int YOB, int YOD, string nationality, string furtherInfo)
 {
