@@ -231,7 +231,7 @@ void database::initDatabase (const QString& username)
                         "Year_of_build INTEGER, "
                         "CPU_type_ID INTEGER, "
                         "built_or_not BOOL,"
-                        "deleted DEFAULT (0), "
+                        "deleted BOOL DEFAULT (0), "
                         "FOREIGN KEY(CPU_type_ID) REFERENCES cpuType(ID))");
 
         userQuery.exec("CREATE TABLE scientist_computer_relations"
