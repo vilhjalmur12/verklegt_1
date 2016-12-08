@@ -410,7 +410,7 @@ int database::getNumberOfScientistEntries()
   databaseOpen();
 
   QSqlQuery query;
-  query.exec("SELECT MAX(ID), ID FROM scientists");
+  query.exec("SELECT MAX(ID) FROM scientists");
 
   query.next();
   int ID = query.value(0).toInt();

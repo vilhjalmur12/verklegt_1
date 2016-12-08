@@ -791,11 +791,35 @@ void Console::pushBackScientist()
     printPushBackMenu();
     string firstName, lastName, sex, nationality, furtherInfo;
     int YOB, YOD;
+    string choice;
 
     do
     {
         createScientist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo);
     }while(!scientistService.appendScientist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo));
+
+    int index = scientistService.getNumberOfScientists();
+
+    do
+    {
+        cout << "Would you like to relate the scientist to a computer? (y/n)" << endl << "-> ";
+        cin >> choice;
+
+        if((choice != "y" && choice != "n") || cin.fail())
+        {
+            cout << "Please insert a valid command!";
+        }
+
+    }while((choice != "y" && choice != "n") || cin.fail());
+
+    if(choice == "y")
+    {
+        addRelationsToSci(index);
+    }
+    else
+    {
+        return;
+    }
 }
 
 void Console::pushBackComputer()
@@ -804,12 +828,35 @@ void Console::pushBackComputer()
     string name, cpuType;
     int yearBuilt;
     bool built;
+    string choice;
 
     do
     {
         createComputer(name, cpuType, yearBuilt, built);
     }while(!scientistService.appendComputer(name, cpuType, yearBuilt, built));
 
+    int index = scientistService.getNumberOfComputers();
+
+    do
+    {
+        cout << "Would you like to relate the computer to a scientist? (y/n)" << endl << "-> ";
+        cin >> choice;
+
+        if((choice != "y" && choice != "n") || cin.fail())
+        {
+            cout << "Please insert a valid command!";
+        }
+
+    }while((choice != "y" && choice != "n") || cin.fail());
+
+    if(choice == "y")
+    {
+    addRelationsToCpu(index);
+    }
+    else
+    {
+
+    }
 }
 
 /******************************************************************
@@ -870,9 +917,32 @@ void Console::addRelations()
     }while(choice == "y");
 }
 
-void Console::addRelationsToCpu()
+void Console::addRelationsToCpu(int cIndex)
 {
+    string choice;
+    do
+    {
+        int sIndex = getScID();
 
+        scientistService.addRelations(cIndex, sIndex);
+
+        choice = continueFunction();
+
+    }while(choice == "y");
+}
+
+void Console::addRelationsToSci(int sIndex)
+{
+    string choice;
+    do
+    {
+        int cIndex = getCpuID();
+
+        scientistService.addRelations(cIndex, sIndex);
+
+        choice = continueFunction();
+
+    }while(choice == "y");
 }
 
 int Console::getCpuID()

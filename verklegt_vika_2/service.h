@@ -38,6 +38,7 @@ public:
     vector<Scientist> getScientists(string choice = "na");                            //Skilar vector of vísindamönnum í núverandi röð
     vector<Computer> getComputers(string choice = "na");
     int getNumberOfScientists();                                        //Segir til um hve margir vísindamenn eru í gagnagrunni
+    int getNumberOfComputers();
   //  void sortScientistsBy(string choice = "na");                  //Raðar vísindamönnum í röð eftir vali sem er stafsrófsröð by default
 
 

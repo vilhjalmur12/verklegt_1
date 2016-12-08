@@ -259,6 +259,11 @@ int Service::getNumberOfScientists()
     return data.getNumberOfScientistEntries();
 }
 
+int Service::getNumberOfComputers()
+{
+    return data.getNumberOfComputerEntries();
+}
+
 /****************************************************************************
                         sortScientistsBy
                Raðar vector vísindamanna í röð eftir því
