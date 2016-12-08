@@ -1214,7 +1214,8 @@ void Console::readNationality(string &nationality)
         cout << "Nationality: ";
 
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore(1000,'\n');
         getline(cin, nationality);
     }while(!scientistService.validNationality(nationality));
 
