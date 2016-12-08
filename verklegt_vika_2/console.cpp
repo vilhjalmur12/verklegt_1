@@ -1467,18 +1467,23 @@ void Console::deleteOperation()
             cout << "ID -> ";
             cin >> ID;
             scientistService.deleteScientist(ID);
-            cout << "delete scientists" << endl;
             tmp = "n";
         }
         else if (choice_made == "c")
         {
-            cout << "delete computers" << endl;
+            printScientists(scientists);
+
+            int ID;
+            cout << "ID -> ";
+            cin >> ID;
+            scientistService.deleteComputer(ID);
             tmp = "n";
         }
         else if (choice_made == "q")
         {
             quit();
             tmp = "n";
+
         }
         else
         {

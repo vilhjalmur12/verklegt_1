@@ -164,6 +164,11 @@ void Service::deleteScientist(int ID)
     data.deleteScientist(ID);
 }
 
+void Service::deleteComputer(int ID)
+{
+    data.deleteComputer(ID);
+}
+
 void Service::editScientist(int ID, Scientist scientist)
 {
     data.editScientist(ID, scientist);
