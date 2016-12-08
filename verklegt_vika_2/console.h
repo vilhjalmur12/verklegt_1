@@ -87,6 +87,12 @@ private:
     void changeOrDelete(vector<int> indexes);       //Tekur við ákvörðun frá notanda um edit
 
 /**************************************************
+           Hjálparföll við choiceMade
+**************************************************/
+    void viewOperation();                                 //Tekur ákvörðun um hvað sé gert hafi verið valið að view'a
+
+
+/**************************************************
                  Birta töflu
 **************************************************/
     void printTable();                              //Birtir töflu af vísindamönnum
