@@ -45,9 +45,13 @@ public:
     void addFoundScientists(QSqlQuery &query, vector<Scientist> &scientists);
     void adddBuiltComputersToScientists(vector<Scientist> &scientists);
 
+    void addRelations(int cID, int sID);
+
     void deleteAllFromDatabase();
     void deleteAllFromComputerDatabase();
     void deleteAllFromScientistDatabase();
+
+    void deleteScientist(int ID, Scientist scientist);
 
 
 private:
@@ -60,6 +64,7 @@ private:
     void initDatabase (const QString& username);
     void databaseClose(QSqlDatabase &data);
     void databaseOpen();
+
 };
 
 #endif // DATABASE_H
