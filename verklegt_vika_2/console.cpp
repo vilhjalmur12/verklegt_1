@@ -370,10 +370,12 @@ void Console::edit()
 {
     string choice = "l";
     unsigned int index;
+    bool cont;
     vector<Scientist> scientists = scientistService.getScientists();
 
     do
     {
+        cont = false;
         scientists = scientistService.getScientists();
         printEditMenu();
         do
@@ -409,7 +411,7 @@ void Console::edit()
             if(scientists.size() == 0)
             {
                 cout << "-----------No entries found------------";
-                index = -1;
+                cont = true;
                 continue;
             }
             printScientists(scientists);
@@ -427,7 +429,7 @@ void Console::edit()
         {
             quit();
         }
-    }while(index < 0);
+    }while(cont);
     cout << endl << endl << "--------Insert new Information:---------" << endl;
     int ID = scientists[index].getID();
     Scientist scientist = makeNewScientist();
@@ -438,10 +440,12 @@ void Console::editComputer()
 {
     string choice = "l";
     unsigned int index;
+    bool cont;
     vector<Computer> computers = scientistService.getComputers();
 
     do
     {
+        cont = false;
         printEditComputerMenu();
         do
         {
@@ -472,6 +476,11 @@ void Console::editComputer()
             vector<Scientist> scientists;
             computers.clear();
             scientistService.searchInDatabase(scientists, computers, query);
+            if(computers.size() == 0)
+            {
+                cont = true;
+                continue;
+            }
             printComputers(computers);
             do
             {
@@ -487,7 +496,7 @@ void Console::editComputer()
         {
             quit();
         }
-    }while(index < 0);
+    }while(cont);
     cout << endl << endl << "--------Insert new Information:---------" << endl;
     int ID = computers[index].getID();
   //  Computer computer = makeNewScientist();
@@ -820,6 +829,11 @@ void Console::createComputer(string &name, string &cpuType, int &yearBuilt, bool
     readYearBuilt(yearBuilt);
 
     readBuilt(built);
+
+}
+
+void Console::addRelations()
+{
 
 }
 
