@@ -870,6 +870,10 @@ void Console::addRelations()
     }while(choice == "y");
 }
 
+void Console::addRelationsToCpu()
+{
+
+}
 
 int Console::getCpuID()
 {
