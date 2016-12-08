@@ -532,26 +532,26 @@ void Console::choiceMade()
                 sorting_menu();
                 str = stringChoice();
 
-                    sorting(str);
-                }
-                else if (choice_made == "c")
-                {
-                    string str;
-                    cpuSortingMenu();
-                    str = stringChoice();
+                sorting(str);
+            }
+            else if (choice_made == "c")
+            {
+                string str;
+                cpuSortingMenu();
+                str = stringChoice();
 
-                    cpuSorting(str);
-                }
-                else if (choice_made == "q")
-                {
-                    quit();
-                }
-                else
-                {
-                    cout << "Please enter a valid command!" << endl;
-                }
+                cpuSorting(str);
+            }
+            else if (choice_made == "q")
+            {
+                quit();
+            }
+            else
+            {
+                cout << "Please enter a valid command!" << endl;
+            }
 
-                cont = continueFunction();
+            cont = continueFunction();
 
         }while(cont == "y");
     }
