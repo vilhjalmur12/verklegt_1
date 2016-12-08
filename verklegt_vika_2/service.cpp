@@ -95,26 +95,67 @@ string Service::fixString(string before)
             *Til að vísindamaður sé til þurfa allar breytur að
             *vera þær sömu
  ****************************************************************************/
+bool Service::doesScientistExcist(string firstName, string lastName, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
+{
+    vector<Scientist> scientists = getScientists();
+    Scientist scientist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo);
+
+    for(unsigned int i = 0; i < scientists.size(); i++)
+    {
+        if(scientist == scientists[i])
+        {
+            throwError.invalidName(1);
+            return false;
+        }
+    }
+    return true;
+}
+
 bool Service::appendScientist(string firstName, string lastName, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
 {
     //_scientists = data.getScientists();
 
 
     Scientist tempScientist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo);
-    for(unsigned int i = 0; i < _scientists.size(); i++)
-    {
-        if(tempScientist == _scientists[i])
-        {
-            throwError.invalidName(1);
-            return false;
-        }
-    }
+
+    if(!doesScientistExcist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo))
+        return false;
 
     _scientists.push_back(tempScientist);  // Líklega óþarfi
 
     data.insertScientist(tempScientist, qUser); //--> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
 
     return true;
+}
+
+bool Service::appendComputer (string name, string cpuType, int yearBuilt, bool built)
+{
+    Computer tempComputer(name, cpuType, built, yearBuilt);
+   /*
+    for(unsigned int i = 0; i < _computers.size(); i++)
+    {
+        if(tempComputer == _computers[i])
+        {
+            throwError.invalidName(1);
+            return false;
+        }
+    }
+    */
+
+    _computers.push_back(tempComputer);  // Líklega óþarfi
+
+    data.insertComputer(tempComputer, qUser); //--> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
+
+    return true;
+}
+void Service::editComputer(int ID, Computer computer)
+{
+    data.editComputer(ID, computer);
+}
+
+void Service::editScientist(int ID, Scientist scientist)
+{
+    data.editScientist(ID, scientist);
 }
 
 /****************************************************************************
@@ -202,10 +243,9 @@ vector<Computer> Service::getComputers(string choice)
                                getLengthOfData()
                     skilar fjölda vísindamanna í gagnagrunni
  ****************************************************************************/
-int Service::getLengthOfData()
+int Service::getNumberOfScientists()
 {
-    return _scientists.size();
-    //Return data.numberOfScientistEntries();
+    return data.getNumberOfScientistEntries();
 }
 
 /****************************************************************************
@@ -254,6 +294,19 @@ bool Service::validName(string &name)
     name = fixString(name);
 
     bool containsDigits = !regex_match(name, regex("(^[A-Za-z.-]+[ ]*([A-Za-z.-]||[ ])*$)"));
+
+    if (containsDigits)
+    {
+        throwError.invalidName(2);
+        return false;
+    }
+    return true;
+}
+
+bool Service::validBuild(string &build)
+{
+
+    bool containsDigits = !regex_match(build, regex("(^[A-Za-z.-]+[ ]*([A-Za-z.-]||[ ])*$)"));
 
     if (containsDigits)
     {
@@ -334,6 +387,31 @@ bool Service::validYears(int birthYear, int deathYear)
     {
         throwError.invalidYear(5);
         return false;
+    }
+
+    return true;
+}
+
+bool Service::validBuildYear(int buildYear)
+{
+    //Pointer heldur utan um núverandi ár -1900
+    time_t t = time(NULL);
+    tm* timePtr = localtime(&t);
+
+    if(buildYear < -193000)
+    {
+        throwError.invalidYear(3);
+        return false;
+    }
+
+    if(buildYear > timePtr->tm_year + 1900)
+    {
+        throwError.invalidYear(2);
+        return false;
+    }
+    if(buildYear == maxDeathYear)
+    {
+        return true;
     }
 
     return true;

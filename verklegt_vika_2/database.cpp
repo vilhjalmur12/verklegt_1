@@ -75,7 +75,7 @@ vector<Scientist> database::pullScientists(string choice)
 
     vector<Scientist> scientists;
 
-    string command = "SELECT * FROM Scientists ORDER BY " + choice + ", last_name";
+    string command = "SELECT * FROM Scientists where deleted = 0 ORDER BY " + choice + ", last_name";
 
   //  QString Qchoice(choice.c_str());
     QString Qcommand(command.c_str());
@@ -84,10 +84,9 @@ vector<Scientist> database::pullScientists(string choice)
     query.exec(Qcommand);
 
     addFoundScientists(query, scientists);
-    databaseClose(myData);
     adddBuiltComputersToScientists(scientists);
 
-    //databaseClose(myData);
+    databaseClose(myData);
 
     return scientists;
 }
@@ -101,6 +100,7 @@ vector<Computer> database::pullComputers(string choice)
     string command = "SELECT c.ID, name, year_of_build, type, built_or_not FROM Computers c "
                      "INNER JOIN cpuType t "
                      "ON t.ID = c.CPU_type_ID "
+                     "where deleted = 0 "
                      "ORDER BY " + choice +", name";
 
     //QString Qchoice(choice.c_str());
@@ -110,12 +110,9 @@ vector<Computer> database::pullComputers(string choice)
     query.exec(Qcommand);
 
     addFoundComputers(query, computers);
-
-    databaseClose(myData);
-
     addBuildersToComputers(computers);
 
-    //databaseClose(myData);
+    databaseClose(myData);
 
     return computers;
 }
@@ -125,6 +122,8 @@ bool database::getUser(const QString& username, const QString& password)
     user = username;
     myData = QSqlDatabase::addDatabase("QSQLITE");
     myData.setDatabaseName("./users.sqlite");
+
+
 
     if (!myData.open())
     {
@@ -138,12 +137,17 @@ bool database::getUser(const QString& username, const QString& password)
         query.exec();
 
         QString qPass;
+        QString QEncPass;
         if (query.next())
         {
             qPass = query.value(0).toString();
+            string tmpPass = qPass.toUtf8().constData();
+            string encPass = decryptData(tmpPass);
+            QString QTmpPass(encPass.c_str());
+            QEncPass = QTmpPass;
         }
 
-        if (password == qPass)
+        if (password == QEncPass)
         {
 
             databaseClose(myData);
@@ -164,6 +168,10 @@ void database::createUser(const QString& username, const QString& password, cons
     myData = QSqlDatabase::addDatabase("QSQLITE");
     myData.setDatabaseName("./users.sqlite");
 
+    string tmpPass = password.toUtf8().constData();
+    string encPass = encryptData(tmpPass);
+    QString QEncPass(encPass.c_str());
+
     if (!myData.open())
     {
        qDebug() << "Error: connection with database fail";
@@ -180,7 +188,7 @@ void database::createUser(const QString& username, const QString& password, cons
         query.bindValue(":firstName", firstName);
         query.bindValue(":lastName", lastName);
         query.bindValue(":username", username);
-        query.bindValue(":password", password);
+        query.bindValue(":password", QEncPass);
         query.exec();
 
 
@@ -205,6 +213,7 @@ void database::initDatabase (const QString& username)
         QSqlQuery userQuery;
         userQuery.exec("PRAGMA foreign_keys = ON");
 
+        ///---------------------------------------------------------TODO: NOTA PREPAREE OG BIND-VALUE TIL AÐ HREINSA TIL----------------------------------------------------------
         userQuery.exec("CREATE  TABLE scientists "
                        "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
                         "First_name VARCHAR NOT NULL , Last_name VARCHAR NOT NULL , "
@@ -221,7 +230,8 @@ void database::initDatabase (const QString& username)
                         "Name VARCHAR NOT NULL, "
                         "Year_of_build INTEGER, "
                         "CPU_type_ID INTEGER, "
-                        "built_or_not BOOL, "
+                        "built_or_not BOOL,"
+                        "deleted DEFAULT (0), "
                         "FOREIGN KEY(CPU_type_ID) REFERENCES cpuType(ID))");
 
         userQuery.exec("CREATE TABLE scientist_computer_relations"
@@ -352,7 +362,64 @@ void database::insertComputer (Computer computer, QString tmpUser)
        databaseClose(myData);
 }
 
+void database::editComputer(int ID, Computer computer)
+{
+
+}
+
+void database::editScientist(int ID, Scientist scientist)
+{
+    databaseOpen();
+
+    QSqlQuery query;
+    query.prepare("UPDATE scientists "
+                  "SET first_name = :first, last_name = :last, gender = :gender, "
+                  "year_of_birth = :birth, year_of_death = :death, nationality = :nationality, "
+                  "information = :info "
+                  "WHERE ID = :ID");
+    query.bindValue(":first", QString::fromStdString(scientist.getFirstName()));
+    query.bindValue(":last", QString::fromStdString(scientist.getLastName()));
+    query.bindValue(":gender", QString::fromStdString(scientist.getSex()));
+    query.bindValue(":birth", scientist.getYearOfBirth());
+    query.bindValue(":death", scientist.getYearOfDeath());  ///SKOÐA BETUR EF VISINDAMADUR ER LIFANDI
+    query.bindValue(":nationality", QString::fromStdString(scientist.getNationality()));
+    query.bindValue(":info", QString::fromStdString(scientist.getFurtherInfo()));
+    query.bindValue(":ID", ID);
+    query.exec();
+
+    databaseClose(myData);
+}
+
 //------------------------------------------------------------------------------------------------Ný Search Fölll---------------------------------
+int database::getNumberOfComputerEntries()
+{
+    databaseOpen();
+
+    QSqlQuery query;
+    query.exec("SELECT MAX(ID) FROM computers");
+
+    query.next();
+    int ID = query.value(0).toInt();
+
+    databaseClose(myData);
+
+    return ID;
+}
+
+int database::getNumberOfScientistEntries()
+{
+  databaseOpen();
+
+  QSqlQuery query;
+  query.exec("SELECT MAX(ID), ID FROM scientists");
+
+  query.next();
+  int ID = query.value(0).toInt();
+
+  databaseClose(myData);
+
+  return ID;
+}
 
 QString database::generalizeQuery(string query)
 {
@@ -363,6 +430,8 @@ QString database::generalizeQuery(string query)
 
 void database::searchData(vector<Scientist> &scientists, vector<Computer> &computers, string sQuery)
 {
+    databaseOpen();
+
     if (string::npos != sQuery.find_first_of("0123456789"))
     {
         int year = stoi(sQuery);
@@ -379,47 +448,45 @@ void database::searchData(vector<Scientist> &scientists, vector<Computer> &compu
 
     addBuildersToComputers(computers);
     adddBuiltComputersToScientists(scientists);
+
+    databaseClose(myData);
 }
 
 void database::searchComputersForSubstring(vector<Computer> &computers, const string sQuery)
 {
     QString searchQuery = generalizeQuery(sQuery);
 
-    databaseOpen();
-
     QSqlQuery query;
     query.prepare("SELECT c.ID, Name, year_of_build, type, built_or_not FROM computers c "
                   "INNER JOIN cpuType t "
                   "ON t.ID = c.CPU_type_ID "
-                  "WHERE c.name like :string "
-                  "OR t.type like :string "
+                  "WHERE (c.name like :string "
+                  "OR t.type like :string)"
+                  "AND deleted = 0"
+                  "ORDER BY name "
                   );
     query.bindValue(":string", searchQuery);
     query.exec();
 
     addFoundComputers(query, computers);
-
-    databaseClose(myData);
 }
 
 void database::searchComputersForInt(vector<Computer> &computers, const int iQuery)
 {
-    databaseOpen();
-
     QSqlQuery query;
     query.prepare("Select c.ID, name, year_of_build, type, built_or_not FROM computers c "
                   "INNER JOIN cpuType t "
                   "ON t.ID = c.CPU_type_ID "
-                  "WHERE year_of_build = :int "
+                  "WHERE (year_of_build = :int "
                   "OR (year_of_build/100)*100 = :int "
-                  "OR (year_of_build/10)*10 = :int "
+                  "OR (year_of_build/10)*10 = :int) "
+                  "AND deleted = 0 "
+                  "ORDER BY name"
                 );
     query.bindValue(":int",iQuery);
     query.exec();
 
     addFoundComputers(query, computers);
-
-    databaseClose(myData);
 }
 
 void database::addFoundComputers(QSqlQuery& query, vector<Computer> &computers)
@@ -457,13 +524,12 @@ void database::addBuildersToComputers(vector<Computer> &computers)
     {
         int compID = computers[i].getID();
 
-        databaseOpen();
-
         QSqlQuery query;
         query.prepare("SELECT last_name FROM scientists s "
                       "LEFT OUTER JOIN scientist_computer_relations r "
                       "ON r.computerID = :ID "
-                      "WHERE ID = r.scientistID ");
+                      "WHERE ID = r.scientistID "
+                      "AND deleted = 0");
         query.bindValue(":ID", compID);
         query.exec();
 
@@ -473,8 +539,6 @@ void database::addBuildersToComputers(vector<Computer> &computers)
             string lastName = tempQ.toUtf8().constData();
             computers[i].addBuilder(lastName);
         }
-
-        databaseClose(myData);
     }
 }
 
@@ -482,43 +546,38 @@ void database::searchScientistsForSubstring(vector<Scientist> &scientists, const
 {
     QString searchQuery = generalizeQuery(sQuery);
 
-    databaseOpen();
-
     QSqlQuery query;
     query.prepare("SELECT * FROM scientists s "
-                  "WHERE s.first_name like :string "
+                  "WHERE (s.first_name like :string "
                   "OR s.last_name like :string "
                   "OR s.gender like :string "
                   "OR s.nationality like :string "
-                  "OR s.information like :string "
+                  "OR s.information like :string) "
+                  "AND deleted = 0 "
+                  "ORDER BY last_name "
                   );
     query.bindValue(":string", searchQuery);
     query.exec();
 
     addFoundScientists(query, scientists);
-
-    databaseClose(myData);
 }
 
 void database::searchScientistsForInt(vector<Scientist> &scientists, const int iQuery)
 {
-    databaseOpen();
-
     QSqlQuery query;
     query.prepare("Select * FROM scientists s "
-                  "WHERE year_of_birth = :int "
+                  "WHERE (year_of_birth = :int "
                   "OR (year_of_birth/100)*100 = :int "
                   "OR (year_of_birth/10)*10 = :int "
                   "OR  year_of_death = :int "
                   "OR (year_of_death/100)*100 = :int "
-                  "OR (year_of_death/10)*10 = :int "
+                  "OR (year_of_death/10)*10 = :int) "
+                  "AND deleted = 0 "
                 );
     query.bindValue(":int",iQuery);
     query.exec();
 
     addFoundScientists(query, scientists);
-
-    databaseClose(myData);
 }
 
 void database::addFoundScientists(QSqlQuery& query, vector<Scientist> &scientists)
@@ -567,13 +626,12 @@ void database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
     {
         int sciID = scientists[i].getID();
 
-        databaseOpen();
-
         QSqlQuery query;
         query.prepare("SELECT name FROM computers c "
                       "LEFT OUTER JOIN scientist_computer_relations r "
                       "ON r.ScientistID = :ID "
-                      "WHERE ID = r.computerID ");
+                      "WHERE ID = r.computerID "
+                      "AND deleted = 0 ");
         query.bindValue(":ID", sciID);
         query.exec();
 
@@ -583,14 +641,12 @@ void database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
             string computer = tempQ.toUtf8().constData();
             scientists[i].addComputerBuilt(computer);
         }
-
-        databaseClose(myData);
     }
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-void database::selectData ()
+void database::selectData()
 {
 
     QSqlQuery query("SELECT * FROM cpuType");
