@@ -148,6 +148,12 @@ bool Service::appendComputer (string name, string cpuType, int yearBuilt, bool b
 
     return true;
 }
+
+void Service::addRelations(int cID, int sID)
+{
+    data.addRelations(cID, sID);
+}
+
 void Service::editComputer(int ID, Computer computer)
 {
     data.editComputer(ID, computer);

@@ -71,6 +71,10 @@ private:
     void pushBackComputer();
     void createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo);  //Býr til nýjan vísindamann
     void createComputer(string &name, string &cpuType, int &yearBuilt, bool &built);
+    void addRelations();
+    void printRelationMenu();
+    void addScienRComp();
+    void addCompRScien();
     void readCpuName(string &name);
     void readCpuType(string &cpuType);
     void readYearBuilt(int& yearBuilt);

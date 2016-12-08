@@ -645,6 +645,20 @@ void database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+void database::addRelations(int cID, int sID)
+{
+    databaseOpen();
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO scientist_computer_relations(scientistID, computerID) "
+                  "VALUES (:sID, :cID)");
+    query.bindValue(":sID", sID);
+    query.bindValue(":cID", cID);
+    query.exec();
+
+    databaseClose(myData);
+}
+
 void database::selectData()
 {
 
@@ -714,7 +728,7 @@ void database::deleteAllFromComputerDatabase()
     databaseOpen();
 
     QSqlQuery query;
-    query.prepare("DELETE FROM computers, cpuType");
+    query.prepare("DELETE FROM computers");
     query.exec();
 
     databaseClose(myData);
@@ -742,6 +756,7 @@ void database::deleteAllFromScientistDatabase()
  ******************************************************************/
 
 void database::deleteScientist(int ID)
+
 {
     int doDeleted = 1;
 
