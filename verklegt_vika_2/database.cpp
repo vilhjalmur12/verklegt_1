@@ -736,3 +736,20 @@ void database::deleteAllFromScientistDatabase()
 
     databaseClose(myData);
 }
+
+void database::deleteScientist(int ID, Scientist scientist)
+{
+    int doDeleted = 1;
+
+    databaseOpen();
+
+    QSqlQuery query;
+    query.prepare("UPDATE scientists "
+                  "SET deleted = :deleted"
+                  "WHERE ID = :ID");
+    query.bindValue(":deleted", doDeleted);
+    query.bindValue(":ID", ID);
+    query.exec();
+
+    databaseClose(myData);
+}
