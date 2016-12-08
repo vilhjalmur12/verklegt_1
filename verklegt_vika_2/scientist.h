@@ -19,15 +19,16 @@ public:
 **************************************************/
 
     int getID() const;
-    string getFirstName() const;                    // Dregur fram nafn vísindamanns úr meðlimabreytum og skilar því til baka
+    string getFirstName() const;                // Dregur fram nafn vísindamanns úr meðlimabreytum og skilar því til baka
     string getLastName() const;
     string getSex() const;                      // Dregur fram kyn vísindamanns úr meðlimabreytum og skilar því til baka
     int getYearOfBirth() const;                 // Dregur fram fæðingarár vísindamanns úr meðlimabreytum og skilar því til baka
-    int getYearOfDeath() const;                 //regur fram dánarár vísindamanns úr meðlimabreytum og skilar því til baka
+    int getYearOfDeath() const;                 // Dregur fram dánarár vísindamanns úr meðlimabreytum og skilar því til baka
     string getYearOfDeathForPrinting() const ;  // Dregur fram dánarár vísindamanns úr meðlimabreytum og skilar því til baka sérstaklega fyrir töflu í útprentun fyrir console
     string getNationality() const;              // Dregur fram þjóðerni vísindamanns úr meðlimabreytum og skilar því til baka
     string getFurtherInfo() const;              // Dregur fram auka upplýsingar vísindamanns úr meðlimabreytum og skilar því til baka
     vector<string> getComputersBuilt() const;
+    bool getDeleted() const;
 
     void addComputerBuilt(string computer);
 
@@ -35,7 +36,7 @@ public:
                  Operator föll
 **************************************************/
     friend ostream& operator << (ostream& out, Scientist sc);       // Prentar út allar uppl um vísindamann í eina línu (aðskilið af tab-keypress)
-    friend bool operator == (Scientist lhs, Scientist rhs);     // Ber saman upplýsingarnar til að sjá hvor þær séu eins
+    friend bool operator == (Scientist lhs, Scientist rhs);         // Ber saman upplýsingarnar til að sjá hvor þær séu eins
 
 private:
 /**************************************************
@@ -50,6 +51,7 @@ private:
     string _nationality;
     string _info;
     vector<string> _computersBuilt;
-    };
+    bool _deleted;
+};
 
 #endif // SCIENTIST_H
