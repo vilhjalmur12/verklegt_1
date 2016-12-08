@@ -579,7 +579,7 @@ string Console::continueFunction()
 {
     string cont;
 
-    cout << "Would you like to view again?\t(y/n)" << endl << "-> ";
+    cout << "Would you like to repeat the action?\t(y/n)" << endl << "-> ";
     cont = choice();
 
     while(cont != "y" && cont != "n")
@@ -890,12 +890,12 @@ void Console::addCompRScien()
         vector<Computer> computers = scientistService.getComputers();
 
         printScientists(scientists);
-        cout << "Please insert the index of your scientist of choice: " << endl << "->";
+        cout << "Please insert the index of your scientist of choice: " << endl << "-> ";
         cin >> sIndex;
         sIndex = scientists[sIndex-1].getID();
 
         printComputers(computers);
-        cout << "Please insert the index of your computer of choice: " << endl << "->";
+        cout << "Please insert the index of your computer of choice: " << endl << "-> ";
         cin >> cIndex;
         cIndex = computers[cIndex-1].getID();
 
