@@ -756,7 +756,6 @@ void database::deleteAllFromScientistDatabase()
  ******************************************************************/
 
 void database::deleteScientist(int ID)
-
 {
     int doDeleted = 1;
 
