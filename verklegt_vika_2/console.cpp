@@ -520,7 +520,7 @@ void Console::choiceMade()
 
     if (choice_made == "v")
     {
-       viewOperation();
+        viewOperation();
     }
     else if (choice_made == "i")
     {
