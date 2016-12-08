@@ -463,6 +463,7 @@ bool Service::validNationality(string& nationality)
         throwError.invalidNation();
         return false;
     }
+
     return true;
 }
 

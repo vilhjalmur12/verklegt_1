@@ -2,6 +2,7 @@
 #include "service.h"
 #include "scientist.h"
 #include "errorhandling.h"
+#include "cputype.h"
 
 #include <iostream>
 #include <string>
@@ -247,6 +248,36 @@ void Console::insertMenu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::typeMenu(vector<cpuType> type)
+{
+    int size = type.size();
+
+    cout << "                     Select type of computer                       " << endl;
+    cout << "-------------------------------------------------------------------" << endl;
+    cout << "|                                                                 |" << endl;
+    printf( "|                    (choose between 1 - ‰d)                      |\n", size);
+    printf( "|                                                 |\n");
+
+    for(int i = 0; i < size; i+=2)
+    {
+            cpuType tmpCpuFirst = type[i];
+            cpuType tmpCpuSecond = type[i+1];
+
+            printf( "|        %-2d = %-10s             %-2d = %-10s      |\n", tmpCpuFirst.getId(), tmpCpuFirst.getType().c_str(), tmpCpuSecond.getId(), tmpCpuSecond.getType().c_str());
+
+            if ((size - i) == 1)
+            {
+                i++;
+                tmpCpuFirst = type[i];
+                printf( "|                                                 |\n");
+                printf( "|                   %-2d = %-10s          |\n", tmpCpuFirst.getId(), tmpCpuFirst.getType().c_str());
+                break;
+            }
+    }
+    cout << "|                                             |" << endl;
+    cout << "-----------------------------------------------" << endl;
+}
+
 void Console::printRelationMenu()
 {
     cout << endl;
@@ -277,7 +308,7 @@ void Console::callUser ()
     welcome();
     toContinue();
 
-    data.deleteAllFromScientistDatabase();
+    // data.deleteAllFromScientistDatabase();
 
     while (!runProgram)
     {
@@ -579,7 +610,7 @@ string Console::continueFunction()
 {
     string cont;
 
-    cout << "Would you like to view again?\t(y/n)" << endl << "-> ";
+    cout << "Would you like to repeat the action?\t(y/n)" << endl << "-> ";
     cont = choice();
 
     while(cont != "y" && cont != "n")
@@ -846,9 +877,9 @@ void Console::createComputer(string &name, string &cpuType, int &yearBuilt, bool
 
     readCpuName(name);
 
-    readCpuType(cpuType);
-
     readYearBuilt(yearBuilt);
+
+    readCpuType(cpuType);
 
     readBuilt(built);
 
@@ -890,12 +921,12 @@ void Console::addCompRScien()
         vector<Computer> computers = scientistService.getComputers();
 
         printScientists(scientists);
-        cout << "Please insert the index of your scientist of choice: " << endl << "->";
+        cout << "Please insert the index of your scientist of choice: " << endl << "-> ";
         cin >> sIndex;
         sIndex = scientists[sIndex-1].getID();
 
         printComputers(computers);
-        cout << "Please insert the index of your computer of choice: " << endl << "->";
+        cout << "Please insert the index of your computer of choice: " << endl << "-> ";
         cin >> cIndex;
         cIndex = computers[cIndex-1].getID();
 
@@ -1179,10 +1210,12 @@ void Console::readNationality(string &nationality)
 {
     do
     {
-    cout << scientistService.getErrorString();
-    cout << "Nationality: ";
-    cin.ignore();
-    getline(cin, nationality);
+        cout << scientistService.getErrorString();
+        cout << "Nationality: ";
+
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, nationality);
     }while(!scientistService.validNationality(nationality));
 
     if(nationality.length() > 0)
