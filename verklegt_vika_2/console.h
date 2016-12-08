@@ -66,7 +66,13 @@ private:
     void printPushBackMenu();                                                                                       //Birtir valmynd þegar nýr vísindamaður er settur í gagnagrunn
     void printEditMenu();                                                                                           //Birtir valmynd þegar edit-a á vísindamann
     void pushBackScientist();                                                                                       //Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
+    void pushBackComputer();
     void createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo);  //Býr til nýjan vísindamann
+    void createComputer(string &name, string &cpuType, int &yearBuilt, bool &built);
+    void readCpuName(string &name);
+    void readCpuType(string &cpuType);
+    void readYearBuilt(int& yearBuilt);
+    void readBuilt(bool &built);
     void readFirstName(string &firstName);                                                                          //Tekur inn fyrra nafn fyrir vísindamann
     void readLastName(string &lastName);                                                                            //Tekur inn seinna nafn fyrir vísindamann
     void readSex(string& sex);                                                                                      //Tekur inn kyn fyrir vísindamann

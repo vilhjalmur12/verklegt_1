@@ -572,7 +572,7 @@ void Console::choiceMade()
            }
            else if (choice_made == "c")
            {
-               cout << "bæta við tölvu" << endl;
+               pushBackComputer();
                tmp = "n";
            }
            else if (choice_made == "q")
@@ -771,6 +771,19 @@ void Console::pushBackScientist()
     }while(!scientistService.appendScientist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo));
 }
 
+void Console::pushBackComputer()
+{
+    printPushBackMenu();
+    string name, cpuType;
+    int yearBuilt;
+    bool built;
+
+    do
+    {
+        createComputer(name, cpuType, yearBuilt, built);
+    }while(!scientistService.appendComputer(name, cpuType, yearBuilt, built));
+}
+
 /******************************************************************
                       createScientist
     Býr til nýjan vísindamann í gagnagrunninn
@@ -799,6 +812,108 @@ void Console::createScientist(string &firstName, string &lastName, string &sex, 
 
     readYears(YOB, YOD);
 
+}
+
+void Console::createComputer(string &name, string &cpuType, int &yearBuilt, bool &built)
+{
+
+    readCpuName(name);
+
+    readCpuType(cpuType);
+
+    readYearBuilt(yearBuilt);
+
+    readBuilt(built);
+
+}
+
+void Console::readCpuName(string &name)
+{
+    do
+    {
+        cout << scientistService.getErrorString();
+        cout << "Computer Name: ";
+        cin.ignore();
+        do
+        {
+        getline(cin, name);
+        }while(name.length()<1);
+
+    }while(!scientistService.validName(name));
+}
+
+void Console::readCpuType(string &cpuType)
+{
+    do
+    {
+        cout << scientistService.getErrorString();
+        cout << "Computer Type: ";
+        do
+        {
+        cin >> cpuType;
+        }while(cpuType.length()<1);
+
+    }while(!scientistService.validName(cpuType));
+}
+
+void Console::readYearBuilt(int& yearBuilt)
+{
+    bool cont = false;
+    bool validYears = false;
+    do
+    {
+        cout << scientistService.getErrorString();
+        cont = false;
+        validYears = true;
+
+        cout << "Build Year: ";
+        cin >> yearBuilt;
+
+        if(cin.fail())
+        {
+            cin.clear();
+
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            scientistService.logYearError(4);
+            cont = true;
+            return;
+        }
+
+        if(yearBuilt < -2700)
+        {
+            cout << "Attention: your Computer Scientist will have to have been born before" << endl
+                 << "the invention of the abacus, the first known tool used for computation" << endl
+                 << "tip: enter an invalid Year of Death to re-input year of birth" << endl;
+        }
+
+        if(cont)
+            continue;
+
+        validYears = scientistService.validBuildYear(yearBuilt);
+    }while(!validYears || cont);
+}
+
+void Console::readBuilt(bool &built)
+{
+    cout << "Has the computer been built?  (Y/N) " << endl;
+    string choice;
+    do
+    {
+        cout << scientistService.getErrorString();
+        do
+        {
+            cout << "->";
+            cin >> choice;
+            if (choice == "y")
+            {
+                built = true;
+            }
+            else if (choice == "n")
+            {
+                built = false;
+            }
+        }while(choice.length()<1);
+    }while(choice != "y" && choice != "n");
 }
 
 /******************************************************************
@@ -912,6 +1027,8 @@ void Console::readBirthYear(int &YOB, bool &cont)
     }
     return;
 }
+
+
 
 /******************************************************************
                       readDeathYear
