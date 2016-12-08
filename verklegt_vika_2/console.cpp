@@ -524,36 +524,8 @@ void Console::choiceMade()
     }
     else if (choice_made == "i")
     {
-       insertMenu();
-       string tmp = "n";
-
-       do
-       {
-           cout << "-> ";
-           string choice_made = choice();
-
-           if (choice_made == "s")
-           {
-               pushBackScientist();
-               tmp = "n";
-           }
-           else if (choice_made == "c")
-           {
-               cout << "bæta við tölvu" << endl;
-               tmp = "n";
-           }
-           else if (choice_made == "q")
-           {
-               quit();
-               tmp = "n";
-           }
-           else
-           {
-               cout << "Please enter a valid command!" << endl;
-               tmp = "y";
-           }
-       }while (tmp == "y");
-   }
+       insertOperation();
+    }
    else if (choice_made == "s")
    {
        search();
@@ -1141,4 +1113,37 @@ void Console::viewOperation()
         cont = continueFunction();
 
     }while(cont == "y");
+}
+
+void Console::insertOperation()
+{
+    insertMenu();
+    string tmp = "n";
+
+    do
+    {
+        cout << "-> ";
+        string choice_made = choice();
+
+        if (choice_made == "s")
+        {
+            pushBackScientist();
+            tmp = "n";
+        }
+        else if (choice_made == "c")
+        {
+            cout << "bæta við tölvu" << endl;
+            tmp = "n";
+        }
+        else if (choice_made == "q")
+        {
+            quit();
+            tmp = "n";
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+            tmp = "y";
+        }
+    }while (tmp == "y");
 }
