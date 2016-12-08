@@ -513,6 +513,7 @@ void Console::editComputer()
             if(index <= 0 || index > computers.size() || cin.fail())
                 cout << "Please insert valid index!" << endl;
             }while(index <= 0 || index > computers.size() || cin.fail());
+            index -= 1;
         }
         else if(choice == "s")
         {
@@ -1539,9 +1540,7 @@ void Console::editOperation()
         }
         else if (choice_made == "c")
         {
-            //deleteScientist(int ID);
-            cout << "edit computers" << endl;
-            // TODO: edit fall fyrir tölvur
+            editComputer();
             tmp = "n";
         }
         else if (choice_made == "q")
