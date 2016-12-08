@@ -650,8 +650,8 @@ void database::addRelations(int cID, int sID)
     databaseOpen();
 
     QSqlQuery query;
-    query.prepare("INSERT INTO scientist_computer_relations "
-                  "(:sID, :cID");
+    query.prepare("INSERT INTO scientist_computer_relations(scientistID, computerID) "
+                  "VALUES (:sID, :cID)");
     query.bindValue(":sID", sID);
     query.bindValue(":cID", cID);
     query.exec();

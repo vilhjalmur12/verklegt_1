@@ -41,6 +41,7 @@ void Console::viewOrInsert()
     cout << "|            s - for search             |" << endl;
     cout << "|            e - for editing            |" << endl;
     cout << "|           d - for deleting            |" << endl;
+    cout << "|           r - for relating            |" << endl;
     cout << "|           q - for quitting            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -241,6 +242,21 @@ void Console::insertMenu()
     cout << "|                                       |" << endl;
     cout << "|         s - insert a scientist        |" << endl;
     cout << "|         c - insert a computer         |" << endl;
+    cout << "|           q - quit program            |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
+void Console::printRelationMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "|       What would you like to do?      |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|         c - select a computer to      |" << endl;
+    cout << "|           add a scientist to          |" << endl;
+    cout << "|         s - select a scientist to     |" << endl;
+    cout << "|           add a computer to           |" << endl;
     cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -645,6 +661,10 @@ void Console::choiceMade()
     {
         deleteOperation();
     }
+    else if(choice_made == "r")
+    {
+        addRelations();
+    }
     else if (choice_made == "q")
     {
         quit();
@@ -833,6 +853,60 @@ void Console::createComputer(string &name, string &cpuType, int &yearBuilt, bool
 }
 
 void Console::addRelations()
+{
+    string choice;
+    printRelationMenu();
+    do
+    {
+        cout << "-> ";
+        cin >> choice;
+        if((choice != "c" && choice != "s" && choice != "q") || cin.fail())
+            cout << "Please insert valid choice" << endl;
+    }while(choice != "c" && choice != "s" && choice != "q");
+    if(choice == "c")
+    {
+        addCompRScien();
+    }
+    else if(choice == "s")
+    {
+        addScienRComp();
+    }
+    else
+    {
+        quit();
+    }
+}
+
+void Console::addCompRScien()
+{
+    string choice;
+    do
+    {
+        int sIndex;
+        int cIndex;
+        vector<Scientist> scientists = scientistService.getScientists();
+        vector<Computer> computers = scientistService.getComputers();
+
+        printScientists(scientists);
+        cout << "Please insert the index of your scientist of choice: " << endl << "->";
+        cin >> sIndex;
+        sIndex = scientists[sIndex-1].getID();
+
+        printComputers(computers);
+        cout << "Please insert the index of your computer of choice: " << endl << "->";
+        cin >> cIndex;
+        cIndex = computers[cIndex-1].getID();
+
+        cout << endl << endl << cIndex << " " << sIndex << endl << endl;
+
+        scientistService.addRelations(cIndex, sIndex);
+
+        choice = continueFunction();
+
+    }while(choice == "y");
+}
+
+void Console::addScienRComp()
 {
 
 }
