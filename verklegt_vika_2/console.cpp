@@ -532,26 +532,26 @@ void Console::choiceMade()
                 sorting_menu();
                 str = stringChoice();
 
-                    sorting(str);
-                }
-                else if (choice_made == "c")
-                {
-                    string str;
-                    cpuSortingMenu();
-                    str = stringChoice();
+                sorting(str);
+            }
+            else if (choice_made == "c")
+            {
+                string str;
+                cpuSortingMenu();
+                str = stringChoice();
 
-                    cpuSorting(str);
-                }
-                else if (choice_made == "q")
-                {
-                    quit();
-                }
-                else
-                {
-                    cout << "Please enter a valid command!" << endl;
-                }
+                cpuSorting(str);
+            }
+            else if (choice_made == "q")
+            {
+                quit();
+            }
+            else
+            {
+                cout << "Please enter a valid command!" << endl;
+            }
 
-                cont = continueFunction();
+            cont = continueFunction();
 
         }while(cont == "y");
     }
@@ -1090,7 +1090,7 @@ void  Console::printComputers(vector<Computer> computers)
 {
     if(computers.size() == 0)
     {
-        cout << endl << "---------------------------------------------------No Computers Found-----------------------------------" << endl;
+        cout << endl << "-----------------------------------------------------------------------------No Computers Found------------------------------------------------------------------------------" << endl;
         return;
     }
     cout << endl << endl << "--------------------------------------------------Computers Found-------------------------------------------------" << endl << endl;

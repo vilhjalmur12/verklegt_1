@@ -44,6 +44,8 @@ public:
 
     void deleteAllFromDatabase();
     void deleteAllFromComputerDatabase();
+    void deleteAllFromScientistDatabase();
+
 
 private:
     QSqlDatabase myData;

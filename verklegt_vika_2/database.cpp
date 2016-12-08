@@ -641,12 +641,24 @@ void deleteAllFromDatabase()
 
 /******************************************************************
                       deleteAllFromComputerDatabase
-    Fall sem eyðir öllu út úr Database
+    Fall sem eyðir öllu út úr computer database
  ******************************************************************/
 
 void deleteAllFromComputerDatabase()
 {
     QSqlQuery query;
-    query.prepare("DELETE FROM computers");
+    query.prepare("DELETE FROM computers, cpuType");
+    query.exec();
+}
+
+/******************************************************************
+                      deleteAllFromScientistDatabase
+    Fall sem eyðir öllu út úr scientist Database
+ ******************************************************************/
+
+void deleteAllFromScientistDatabase()
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM scientists");
     query.exec();
 }
