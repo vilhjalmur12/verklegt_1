@@ -124,6 +124,18 @@ void Console::printEditMenu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::printEditComputerMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "|       What would you like to do?      |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|  l - see the full list of computers   |" << endl;
+    cout << "|      s - search for a computer        |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 void Console::quitMenu()
 {
     cout << endl;
@@ -356,7 +368,9 @@ void Console::run()
 void Console::edit()
 {
     string choice = "l";
-    int index;
+    unsigned int index;
+    vector<Scientist> scientists = scientistService.getScientists();
+
     printEditMenu();
     do
     {
@@ -368,17 +382,15 @@ void Console::edit()
 
     if(choice == "l")
     {
-        printScientists(scientistService.getScientists());
+        printScientists(scientists);
         do
         {
-            cout << "Insert index to edit: ";
-            cin.ignore();
-            cin >> index;
-            cin.clear();
-            if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
-                cout << "Please insert valid index!" << endl;
-        }while(index <= 0 || index > scientistService.getLengthOfData() || cin.fail());
-        index -= 1;
+        cout << "Insert index to edit: ";
+        cin >> index;
+        cin.clear();
+        if(index <= 0 || index > scientists.size() || cin.fail())
+            cout << "Please insert valid index!" << endl;
+        }while(index <= 0 || index > scientists.size() || cin.fail());
     }
     else
     {
@@ -386,14 +398,77 @@ void Console::edit()
         printSearchMenu();
         cout << "Query: ";
         cin >> query;
-        index = findIndexToEdit(query);
+        vector<Computer> computers;
+        scientists.clear();
+        scientistService.searchInDatabase(scientists, computers, query);
+        printScientists(scientists);
+        do
+        {
+        cout << "Insert index to edit: ";
+        cin >> index;
+        cin.clear();
+        if(index <= 0 || index > scientists.size() || cin.fail())
+            cout << "Please insert valid index!" << endl;
+        }while(index <= 0 || index > scientists.size() || cin.fail());
+        index -= 1;
     }
-    if(index > -1)
+    cout << endl << endl << "--------Insert new Information:---------" << endl;
+    int ID = scientists[index].getID();
+    Scientist scientist = makeNewScientist();
+    scientistService.editScientist(ID, scientist);
+}
+
+void Console::editComputer()
+{
+    string choice = "l";
+    unsigned int index;
+    vector<Computer> computers = scientistService.getComputers();
+
+    printEditComputerMenu();
+    do
     {
-        cout << "--------Insert new Information:---------" << endl;
-        pushBackScientist();
-        scientistService.moveLastTo(index);
+        cout << "-> ";
+        cin >> choice;
+        if((choice != "l" && choice != "s") || cin.fail())
+            cout << "Please insert valid choice" << endl;
+    }while(choice != "l" && choice != "s");
+
+    if(choice == "l")
+    {
+        printComputers(computers);
+        do
+        {
+        cout << "Insert index to edit: ";
+        cin >> index;
+        cin.clear();
+        if(index <= 0 || index > computers.size() || cin.fail())
+            cout << "Please insert valid index!" << endl;
+        }while(index <= 0 || index > computers.size() || cin.fail());
     }
+    else
+    {
+        string query;
+        printSearchMenu();
+        cout << "Query: ";
+        cin >> query;
+        vector<Scientist> scientists;
+        computers.clear();
+        scientistService.searchInDatabase(scientists, computers, query);
+        printComputers(computers);
+        do
+        {
+        cout << "Insert index to edit: ";
+        cin >> index;
+        cin.clear();
+        if(index <= 0 || index > computers.size() || cin.fail())
+            cout << "Please insert valid index!" << endl;
+        }while(index <= 0 || index > computers.size() || cin.fail());
+        index -= 1;
+    }
+    cout << endl << endl << "--------Insert new Information:---------" << endl;
+    int ID = computers[index].getID();
+  //  Computer computer = makeNewScientist();
+  //  scientistService.editComputer(ID, computer);
 }
 
 /******************************************************************************
@@ -640,6 +715,22 @@ int Console::findIndexToEdit(string oldName)
                       pushBackScientist
     Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
  ******************************************************************/
+
+Scientist Console::makeNewScientist()
+{
+    printPushBackMenu();
+    string firstName, lastName, sex, nationality, furtherInfo;
+    int YOB, YOD;
+
+    do
+    {
+        createScientist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo);
+    }while(!scientistService.doesScientistExcist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo));
+
+    Scientist sc(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo);
+
+    return sc;
+}
 
 void Console::pushBackScientist()
 {
@@ -1010,9 +1101,9 @@ void Console::changeOrDelete(vector<int> indexes)
         {
             cin.ignore();
             cin >> index;
-            if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
+            if(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail())
                 cout << "Please insert valid index!" << endl;
-        }while(index <= 0 || index > scientistService.getLengthOfData() || cin.fail());
+        }while(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());
         index -= 1;
         index = indexes[index];
         scientistService.removeScientist(index);
@@ -1026,9 +1117,9 @@ void Console::changeOrDelete(vector<int> indexes)
         {
             cin.ignore();
             cin >> index;
-            if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
+            if(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail())
                 cout << "Please insert valid index!" << endl;
-        }while(index <= 0 || index > scientistService.getLengthOfData() || cin.fail());
+        }while(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());
 
         index -= 1;
 
@@ -1191,6 +1282,7 @@ void Console::insertOperation()
         }
         else if (choice_made == "c")
         {
+            printCpuPushBackMenu();
             pushBackComputer();
             tmp = "n";
         }

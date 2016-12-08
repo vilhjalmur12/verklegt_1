@@ -19,6 +19,7 @@ public:
 **************************************************/
     void run();                     //Keyrir forrit í gang
     void edit();                    //Notandi sendur í edit glugga
+    void editComputer();
     void search();                  //Notandi sendur í leitar vél
     void viewDisplay();             //Notandi sendur i sorting_menu
     string continueFunction();      //Spyr hvort eigi að endurtaka aðgerð og geymir valið y/n
@@ -62,9 +63,10 @@ private:
 /**************************************************
                Hjálparföll við edit
 **************************************************/
-    int findIndexToEdit(string oldName);                                                                            //Finnur nr. á vísindamann sem á að edit-a
+    int  findIndexToEdit(string oldName);                                                                            //Finnur nr. á vísindamann sem á að edit-a
     void printPushBackMenu();                                                                                       //Birtir valmynd þegar nýr vísindamaður er settur í gagnagrunn
     void printEditMenu();                                                                                           //Birtir valmynd þegar edit-a á vísindamann
+    void printEditComputerMenu();
     void pushBackScientist();                                                                                       //Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
     void pushBackComputer();
     void createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo);  //Býr til nýjan vísindamann
@@ -73,6 +75,7 @@ private:
     void readCpuType(string &cpuType);
     void readYearBuilt(int& yearBuilt);
     void readBuilt(bool &built);
+    Scientist makeNewScientist();
     void readFirstName(string &firstName);                                                                          //Tekur inn fyrra nafn fyrir vísindamann
     void readLastName(string &lastName);                                                                            //Tekur inn seinna nafn fyrir vísindamann
     void readSex(string& sex);                                                                                      //Tekur inn kyn fyrir vísindamann

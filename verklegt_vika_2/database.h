@@ -27,10 +27,13 @@ public:
     void insertScientist (Scientist scientist, QString tmpUser);
     void insertComputer (Computer computer, QString tmpUser);
 
-    void openDataBaseConnection();
+    void editScientist(int ID, Scientist scientist);
+    void editComputer(int ID, Computer computer);
 
     void searchData(vector<Scientist> &scientists, vector<Computer> &computers, string sQuery);
     QString generalizeQuery(string query);
+    int getNumberOfScientistEntries();
+    int getNumberOfComputerEntries();
 
     void searchComputersForSubstring(vector<Computer> &computers, const string query);
     void searchComputersForInt(vector<Computer> &computers, const int iQuery);

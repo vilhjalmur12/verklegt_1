@@ -28,6 +28,7 @@ public:
     /**********************************************************
                          Vector aðgerðir
     **********************************************************/
+    bool doesScientistExcist(string firstName, string lastName, string sex, int birthYear, int deathYear, string nationality, string furtherInfo);
     bool appendScientist (string firstName, string lastName, string sex, int birthYear,         //Bætir vísindamanni aftast í meðlimavector og skilar boolean
                           int deathYear, string nationality, string furtherInfo);               // gildi sem útskýrir hvernig gekk.
     bool appendComputer (string name, string cpuType, int yearBuilt, bool built);         //Bætir vísindamanni aftast í meðlimavector og skilar boolean
@@ -35,7 +36,7 @@ public:
     void moveLastTo(int index);                                   //Færir aftasta vísindamann í stak sem index gefur til kynna
     vector<Scientist> getScientists(string choice = "na");                            //Skilar vector of vísindamönnum í núverandi röð
     vector<Computer> getComputers(string choice = "na");
-    int getLengthOfData();                                        //Segir til um hve margir vísindamenn eru í gagnagrunni
+    int getNumberOfScientists();                                        //Segir til um hve margir vísindamenn eru í gagnagrunni
   //  void sortScientistsBy(string choice = "na");                  //Raðar vísindamönnum í röð eftir vali sem er stafsrófsröð by default
 
 
@@ -57,7 +58,8 @@ public:
     /**********************************************************
                          Vistunarfall
     **********************************************************/
-
+    void editScientist(int ID, Scientist scientist);
+    void editComputer(int ID, Computer computer);
 
     /**********************************************************
                          Leitarfall
