@@ -1060,11 +1060,11 @@ void Console::viewOperation()
 
 void Console::insertOperation()
 {
-    insertMenu();
     string tmp = "n";
 
     do
     {
+        insertMenu();
         cout << "-> ";
         string choice_made = choice();
 
@@ -1094,10 +1094,10 @@ void Console::insertOperation()
 void Console::editOperation()
 {
     string tmp = "n";
-    editMenu();
 
     do
     {
+        editMenu();
         cout << "-> ";
         string choice_made = choice();
 
