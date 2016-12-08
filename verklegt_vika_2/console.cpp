@@ -261,6 +261,8 @@ void Console::callUser ()
     welcome();
     toContinue();
 
+    data.deleteAllFromScientistDatabase();
+
     while (!runProgram)
     {
         string tmpUser;

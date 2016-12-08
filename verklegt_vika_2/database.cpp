@@ -714,7 +714,7 @@ void database::deleteAllFromComputerDatabase()
     databaseOpen();
 
     QSqlQuery query;
-    query.prepare("DELETE FROM computers, cpuType");
+    query.prepare("DELETE FROM computers");
     query.exec();
 
     databaseClose(myData);
@@ -736,7 +736,7 @@ void database::deleteAllFromScientistDatabase()
     databaseClose(myData);
 }
 
-void database::deleteScientist(int ID, Scientist scientist)
+/*void database::deleteScientist(int ID, Scientist scientist)
 {
     int doDeleted = 1;
 
@@ -751,4 +751,4 @@ void database::deleteScientist(int ID, Scientist scientist)
     query.exec();
 
     databaseClose(myData);
-}
+}*/
