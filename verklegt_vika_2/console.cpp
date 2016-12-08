@@ -371,12 +371,12 @@ void Console::edit()
         printScientists(scientistService.getScientists());
         do
         {
-        cout << "Insert index to edit: ";
-        cin.ignore();
-        cin >> index;
-        cin.clear();
-        if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
-            cout << "Please insert valid index!" << endl;
+            cout << "Insert index to edit: ";
+            cin.ignore();
+            cin >> index;
+            cin.clear();
+            if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
+                cout << "Please insert valid index!" << endl;
         }while(index <= 0 || index > scientistService.getLengthOfData() || cin.fail());
         index -= 1;
     }
@@ -390,9 +390,9 @@ void Console::edit()
     }
     if(index > -1)
     {
-    cout << "--------Insert new Information:---------" << endl;
-    pushBackScientist();
-    scientistService.moveLastTo(index);
+        cout << "--------Insert new Information:---------" << endl;
+        pushBackScientist();
+        scientistService.moveLastTo(index);
     }
 }
 
@@ -405,18 +405,18 @@ void Console::edit()
 
 void Console::search()
 {
-  vector<Scientist> scientists;
-  vector<Computer> computers;
-  string query;
+    vector<Scientist> scientists;
+    vector<Computer> computers;
+    string query;
 
-  printSearchMenu();
-  cout << "Query: ";
-  cin >> query;
+    printSearchMenu();
+    cout << "Query: ";
+    cin >> query;
 
-  scientistService.searchInDatabase(scientists, computers, query);
-  printScientists(scientists);
-  printComputers(computers);
-  ///-------------------------------------------------------------------SKOÐA CHANGE/DELETE/LEITA AFTUR/MENU
+    scientistService.searchInDatabase(scientists, computers, query);
+    printScientists(scientists);
+    printComputers(computers);
+    ///-------------------------------------------------------------------SKOÐA CHANGE/DELETE/LEITA AFTUR/MENU
 }
 /*
 void Console::search() -- GAMLA FALLIÐ
@@ -474,9 +474,9 @@ void Console::quit()
 {
     quitMenu();
 
-   //  scientistService.saveData();
+    //  scientistService.saveData();
 
-   // cout << scientistService.getErrorString();
+    // cout << scientistService.getErrorString();
 
     exit(1);
 }
@@ -520,150 +520,32 @@ void Console::choiceMade()
 
     if (choice_made == "v")
     {
-        do
-        {
-            viewMenu();
-            cout << "-> ";
-            string choice_made = choice();
-
-            if (choice_made == "s")
-            {
-                string str;
-                sorting_menu();
-                str = stringChoice();
-
-                    sorting(str);
-                }
-                else if (choice_made == "c")
-                {
-                    string str;
-                    cpuSortingMenu();
-                    str = stringChoice();
-
-                    cpuSorting(str);
-                }
-                else if (choice_made == "q")
-                {
-                    quit();
-                }
-                else
-                {
-                    cout << "Please enter a valid command!" << endl;
-                }
-
-                cont = continueFunction();
-
-        }while(cont == "y");
+        viewOperation();
     }
     else if (choice_made == "i")
     {
-       insertMenu();
-       string tmp = "n";
-
-       do
-       {
-           cout << "-> ";
-           string choice_made = choice();
-
-           if (choice_made == "s")
-           {
-               pushBackScientist();
-               tmp = "n";
-           }
-           else if (choice_made == "c")
-           {
-               pushBackComputer();
-               tmp = "n";
-           }
-           else if (choice_made == "q")
-           {
-               quit();
-               tmp = "n";
-           }
-           else
-           {
-               cout << "Please enter a valid command!" << endl;
-               tmp = "y";
-           }
-       }while (tmp == "y");
-   }
-   else if (choice_made == "s")
-   {
-       search();
-   }
-   else if(choice_made == "e")
-   {
-       string tmp = "n";
-       editMenu();
-
-       do
-       {
-           cout << "-> ";
-           string choice_made = choice();
-
-           if (choice_made == "s")
-           {
-               edit();
-               tmp = "n";
-           }
-           else if (choice_made == "c")
-           {
-               cout << "edit computers" << endl;
-               // TODO: edit fall fyrir tölvur
-               tmp = "n";
-           }
-           else if (choice_made == "q")
-           {
-               quit();
-               tmp = "n";
-           }
-           else
-           {
-               cout << "Please enter a valid command!" << endl;
-               tmp = "y";
-           }
-       }while (tmp == "y");
-   }
-   else if (choice_made == "d")
-   {
-       string tmp = "n";
-
-       do
-       {
-           void deleteMenu();
-           cout << "-> ";
-           string choice_made = choice();
-
-           if (choice_made == "s")
-           {
-               cout << "delete scientists" << endl;
-               tmp = "n";
-           }
-           else if (choice_made == "c")
-           {
-               cout << "delete computers" << endl;
-               tmp = "n";
-           }
-           else if (choice_made == "q")
-           {
-               quit();
-               tmp = "n";
-           }
-           else
-           {
-               cout << "Please enter a valid command!" << endl;
-               tmp = "y";
-           }
-       }while(tmp == "y");
-   }
-   else if (choice_made == "q")
-   {
-       quit();
-   }
-   else
-   {
-       cout << "Please enter a valid command!" << endl;
-   }
+        insertOperation();
+    }
+    else if (choice_made == "s")
+    {
+        search();
+    }
+    else if (choice_made == "e")
+    {
+        editOperation();
+    }
+    else if (choice_made == "d")
+    {
+        deleteOperation();
+    }
+    else if (choice_made == "q")
+    {
+        quit();
+    }
+    else
+    {
+        cout << "Please enter a valid command!" << endl;
+    }
 }
 
 /******************************************************************************
@@ -736,17 +618,17 @@ int Console::findIndexToEdit(string oldName)
 {
     int index = 0;
 
-    //TODO: Leita og prenta vísindamenn bara
+    // TODO: Leita og prenta vísindamenn bara
 
     if(true /*indexesWithQuery.size() > 0  ÞARF AÐ AFKOMMENTA- KOMMENT BARA VEGNA WARNING*/)
     {
         int input;
         do
         {
-        cout << "Please enter the number of the entry you want to edit: ";
-        cin >> input;
+            cout << "Please enter the number of the entry you want to edit: ";
+            cin >> input;
         }while(cin.fail());
- //       index = indexesWithQuery[input-1];
+    // index = indexesWithQuery[input-1];
 
         return index;
     }
@@ -931,7 +813,7 @@ void Console::readFirstName(string &firstName)
         cin.ignore();
         do
         {
-        getline(cin, firstName);
+            getline(cin, firstName);
         }while(firstName.length()<1);
 
     }while(!scientistService.validName(firstName));
@@ -943,9 +825,10 @@ void Console::readLastName(string &lastName)
     {
         cout << scientistService.getErrorString();
         cout << "Last Name: ";
+
         do
         {
-        cin >> lastName;
+            cin >> lastName;
         }while(lastName.length()<1);
 
     }while(!scientistService.validName(lastName));
@@ -1174,12 +1057,12 @@ void Console::printScientists(vector<Scientist> allScientists)
 {
     if(allScientists.size() == 0)
     {
-        cout << endl << "-------------------------------------------------------------------------No Scientists Found-------------------------------------------------------------------------" << endl;
+        cout << endl << "---------------------------------------------------------------------------No Scientists Found------------------------------------------------------------------------------" << endl;
         return;
     }
     cout << endl << endl << "---------------------------------------------------------------------------Scientists Found---------------------------------------------------------------------------------" << endl << endl;
 
-    printf("%-5s%-25s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Designed");
+    printf("%-5s%-30s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Designed");
 
     cout <<"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
@@ -1198,7 +1081,7 @@ void Console::printScientists(vector<Scientist> allScientists)
 
         Scientist tmp = allScientists[i];
 
-        printf("%-5d%-10s%-15s%-15s%-16d%-16s%-14s%-40s%-20s\n",i+1, (tmp.getLastName()+",").c_str(), tmp.getFirstName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+        printf("%-5d%-15s%-15s%-15s%-16d%-16s%-14s%-40s%-20s\n",i+1, (tmp.getLastName()+",").c_str(), tmp.getFirstName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
                tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str(), computersString.c_str());
     }
 }
@@ -1207,7 +1090,7 @@ void  Console::printComputers(vector<Computer> computers)
 {
     if(computers.size() == 0)
     {
-        cout << endl << "---------------------------------------------------No Computers Found-----------------------------------" << endl;
+        cout << endl << "---------------------------------------------------------------------------No Computers Found-------------------------------------------------------------------------------" << endl;
         return;
     }
     cout << endl << endl << "--------------------------------------------------Computers Found-------------------------------------------------" << endl << endl;
@@ -1248,3 +1131,145 @@ void  Console::printComputers(vector<Computer> computers)
  ******************************************************************/
 
 
+/******************************************************************
+                    Hjálparföll fyrir choiceMade
+*****************************************************************/
+
+void Console::viewOperation()
+{
+    string cont;
+
+    do
+    {
+        viewMenu();
+        cout << "-> ";
+        string choice_made = choice();
+
+        if (choice_made == "s")
+        {
+            string str;
+            sorting_menu();
+            str = stringChoice();
+
+            sorting(str);
+            cont = continueFunction();
+        }
+        else if (choice_made == "c")
+        {
+            string str;
+            cpuSortingMenu();
+            str = stringChoice();
+
+            cpuSorting(str);
+            cont = continueFunction();
+        }
+        else if (choice_made == "q")
+        {
+            quit();
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+        }
+    }while(cont == "y");
+}
+
+void Console::insertOperation()
+{
+    string tmp = "n";
+
+    do
+    {
+        insertMenu();
+        cout << "-> ";
+        string choice_made = choice();
+
+        if (choice_made == "s")
+        {
+            pushBackScientist();
+            tmp = "n";
+        }
+        else if (choice_made == "c")
+        {
+            pushBackComputer();
+            tmp = "n";
+        }
+        else if (choice_made == "q")
+        {
+            quit();
+            tmp = "n";
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+            tmp = "y";
+        }
+    }while (tmp == "y");
+}
+
+void Console::editOperation()
+{
+    string tmp = "n";
+
+    do
+    {
+        editMenu();
+        cout << "-> ";
+        string choice_made = choice();
+
+        if (choice_made == "s")
+        {
+            edit();
+            tmp = "n";
+        }
+        else if (choice_made == "c")
+        {
+            cout << "edit computers" << endl;
+            // TODO: edit fall fyrir tölvur
+            tmp = "n";
+        }
+        else if (choice_made == "q")
+        {
+            quit();
+            tmp = "n";
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+            tmp = "y";
+        }
+    }while (tmp == "y");
+}
+
+void Console::deleteOperation()
+{
+    string tmp = "n";
+
+    do
+    {
+        deleteMenu();
+        cout << "-> ";
+        string choice_made = choice();
+
+        if (choice_made == "s")
+        {
+            cout << "delete scientists" << endl;
+            tmp = "n";
+        }
+        else if (choice_made == "c")
+        {
+            cout << "delete computers" << endl;
+            tmp = "n";
+        }
+        else if (choice_made == "q")
+        {
+            quit();
+            tmp = "n";
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+            tmp = "y";
+        }
+    }while(tmp == "y");
+}

@@ -84,9 +84,10 @@ vector<Scientist> database::pullScientists(string choice)
     query.exec(Qcommand);
 
     addFoundScientists(query, scientists);
+    databaseClose(myData);
     adddBuiltComputersToScientists(scientists);
 
-    databaseClose(myData);
+    //databaseClose(myData);
 
     return scientists;
 }
@@ -109,9 +110,12 @@ vector<Computer> database::pullComputers(string choice)
     query.exec(Qcommand);
 
     addFoundComputers(query, computers);
-    addBuildersToComputers(computers);
 
     databaseClose(myData);
+
+    addBuildersToComputers(computers);
+
+    //databaseClose(myData);
 
     return computers;
 }
@@ -636,4 +640,52 @@ string database::decryptData (string n)
         n[u]++;
     }
     return n;
+}
+
+/******************************************************************
+                      deleteAllFromDatabase
+    Fall sem eyðir öllu út úr Database
+ ******************************************************************/
+
+void database::deleteAllFromDatabase()
+{
+    databaseOpen();
+
+    QSqlQuery query;
+    query.prepare("DELETE FROM computers, cpuType, scientists");
+    query.exec();
+
+    databaseClose(myData);
+}
+
+/******************************************************************
+                      deleteAllFromComputerDatabase
+    Fall sem eyðir öllu út úr computer database
+ ******************************************************************/
+
+void database::deleteAllFromComputerDatabase()
+{
+    databaseOpen();
+
+    QSqlQuery query;
+    query.prepare("DELETE FROM computers, cpuType");
+    query.exec();
+
+    databaseClose(myData);
+}
+
+/******************************************************************
+                      deleteAllFromScientistDatabase
+    Fall sem eyðir öllu út úr scientist Database
+ ******************************************************************/
+
+void database::deleteAllFromScientistDatabase()
+{
+    databaseOpen();
+
+    QSqlQuery query;
+    query.prepare("DELETE FROM scientists");
+    query.exec();
+
+    databaseClose(myData);
 }
