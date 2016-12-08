@@ -1484,7 +1484,7 @@ void Console::editOperation()
 void Console::deleteOperation()
 {
     vector<Scientist> scientists = scientistService.getScientists();
-    scientists = scientistService.getScientists();
+    vector<Computer> computers = scientistService.getComputers();
     string tmp = "n";
 
     do
@@ -1498,17 +1498,17 @@ void Console::deleteOperation()
             printScientists(scientists);
 
             int ID;
-            cout << "ID -> ";
+            cout << "Nr. -> ";
             cin >> ID;
             scientistService.deleteScientist(ID);
             tmp = "n";
         }
         else if (choice_made == "c")
         {
-            printScientists(scientists);
+            printComputers(computers);
 
             int ID;
-            cout << "ID -> ";
+            cout << "Nr. -> ";
             cin >> ID;
             scientistService.deleteComputer(ID);
             tmp = "n";
