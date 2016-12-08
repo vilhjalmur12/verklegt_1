@@ -1074,7 +1074,8 @@ void Console::insertOperation()
         }
         else if (choice_made == "c")
         {
-            cout << "bæta við tölvu" << endl;
+            printCpuPushBackMenu();
+            cout << "adda tolvu" << endl;
             tmp = "n";
         }
         else if (choice_made == "q")
