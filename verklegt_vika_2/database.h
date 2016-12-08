@@ -49,7 +49,7 @@ public:
     void deleteAllFromComputerDatabase();
     void deleteAllFromScientistDatabase();
 
-    void deleteScientist(int ID, Scientist scientist);
+    void deleteScientist(int ID/*, Scientist scientist*/);
 
 
 private:
