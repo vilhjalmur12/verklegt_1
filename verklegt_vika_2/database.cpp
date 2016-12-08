@@ -110,9 +110,11 @@ vector<Computer> database::pullComputers(string choice)
     query.exec(Qcommand);
 
     addFoundComputers(query, computers);
+    databaseClose(myData);
+
     addBuildersToComputers(computers);
 
-    databaseClose(myData);
+    //databaseClose(myData);
 
     return computers;
 }
