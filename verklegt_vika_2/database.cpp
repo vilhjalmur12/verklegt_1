@@ -84,9 +84,10 @@ vector<Scientist> database::pullScientists(string choice)
     query.exec(Qcommand);
 
     addFoundScientists(query, scientists);
+    databaseClose(myData);
     adddBuiltComputersToScientists(scientists);
 
-    databaseClose(myData);
+    //databaseClose(myData);
 
     return scientists;
 }
