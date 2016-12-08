@@ -36,6 +36,7 @@ public:
                           int deathYear, string nationality, string furtherInfo);               // gildi sem útskýrir hvernig gekk.
     bool appendComputer (string name, string cpuType, int yearBuilt, bool built);         //Bætir vísindamanni aftast í meðlimavector og skilar boolean
     void addRelations(int cID, int sID);
+    void removeRelations(int cID, int sID);
     void removeScientist(int index);                              //Fjarlægjr vísindamann sem index gefur til kynna
     void moveLastTo(int index);                                   //Færir aftasta vísindamann í stak sem index gefur til kynna
     vector<Scientist> getScientists(string choice = "na");                            //Skilar vector of vísindamönnum í núverandi röð

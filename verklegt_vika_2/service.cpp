@@ -162,6 +162,11 @@ void Service::addRelations(int cID, int sID)
     data.addRelations(cID, sID);
 }
 
+void Service::removeRelations(int cID, int sID)
+{
+    data.removeRelations(cID, sID);
+}
+
 void Service::editComputer(int ID, Computer computer)
 {
     data.editComputer(ID, computer);

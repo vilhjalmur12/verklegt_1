@@ -284,10 +284,8 @@ void Console::printRelationMenu()
     cout << "-----------------------------------------" << endl;
     cout << "|       What would you like to do?      |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|         c - select a computer to      |" << endl;
-    cout << "|           add a scientist to          |" << endl;
-    cout << "|         s - select a scientist to     |" << endl;
-    cout << "|           add a computer to           |" << endl;
+    cout << "|         c - create new relation       |" << endl;
+    cout << "|      d - remove existing relation     |" << endl;
     cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -696,7 +694,7 @@ void Console::choiceMade()
     }
     else if(choice_made == "r")
     {
-        addRelations();
+        relate();
     }
     else if (choice_made == "q")
     {
@@ -765,35 +763,6 @@ void Console::cpuSorting(string str)
            str = stringChoice();
        }
    }
-}
-
-/********************************************************
-                    findIndexToEdit
-  Finnur það index af vísindamanni sem notandi vill edit-a
-  @parameter(string oldName) - leitarstrengur frá notenda
-  @return(int index) - tilvísun í ákveðin vísindamann í lista
-*********************************************************/
-
-int Console::findIndexToEdit(string oldName)
-{
-    int index = 0;
-
-    // TODO: Leita og prenta vísindamenn bara
-
-    if(true /*indexesWithQuery.size() > 0  ÞARF AÐ AFKOMMENTA- KOMMENT BARA VEGNA WARNING*/)
-    {
-        int input;
-        do
-        {
-            cout << "Please enter the number of the entry you want to edit: ";
-            cin >> input;
-        }while(cin.fail());
-    // index = indexesWithQuery[input-1];
-
-        return index;
-    }
-    else
-        return -1;
 }
 
 /******************************************************************
@@ -950,6 +919,26 @@ void Console::createComputer(string &name, string &cpuType, int &yearBuilt, bool
 
 }
 
+void Console::relate()
+{
+    string choice;
+    printRelationMenu();
+    do
+    {
+        cout << "-> ";
+        cin >> choice;
+        if(choice != "c" && choice != "d" && choice != "q")
+            cout << "Please enter a valid command!" << endl;
+    }while(choice != "c" && choice != "d" && choice != "q");
+
+    if(choice == "c")
+        addRelations();
+    else if(choice == "d")
+        removeRelations();
+    else if(choice == "q")
+        quit();
+}
+
 void Console::addRelations()
 {
     string choice;
@@ -991,6 +980,22 @@ void Console::addRelationsToSci(int sIndex)
         choice = continueFunction();
 
     }while(choice == "y");
+}
+
+void Console::removeRelations()
+{
+    string choice;
+    do
+    {
+        int sIndex = getScID();
+        int cIndex = getCpuID();
+
+        scientistService.removeRelations(cIndex, sIndex);
+
+        choice = continueFunction();
+
+    }while(choice == "y");
+
 }
 
 int Console::getCpuID()
@@ -1571,6 +1576,8 @@ void Console::deleteOperation()
             int ID;
             cout << "Nr. -> ";
             cin >> ID;
+
+            ID = scientists[ID-1].getID();
             scientistService.deleteScientist(ID);
             tmp = "n";
         }
@@ -1581,6 +1588,7 @@ void Console::deleteOperation()
             int ID;
             cout << "Nr. -> ";
             cin >> ID;
+            ID = computers[ID-1].getID();
             scientistService.deleteComputer(ID);
             tmp = "n";
         }
