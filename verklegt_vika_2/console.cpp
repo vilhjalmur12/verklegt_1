@@ -133,6 +133,7 @@ void Console::printEditComputerMenu()
     cout << "|                                       |" << endl;
     cout << "|  l - see the full list of computers   |" << endl;
     cout << "|      s - search for a computer        |" << endl;
+    cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
@@ -259,7 +260,6 @@ void Console::callUser ()
 
     welcome();
     toContinue();
-
 
     while (!runProgram)
     {

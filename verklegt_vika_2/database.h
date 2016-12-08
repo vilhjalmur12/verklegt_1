@@ -51,6 +51,8 @@ public:
     void deleteAllFromComputerDatabase();
     void deleteAllFromScientistDatabase();
 
+    void deleteScientist(int ID, Scientist scientist);
+
 
 private:
     QSqlDatabase myData;
@@ -62,6 +64,7 @@ private:
     void initDatabase (const QString& username);
     void databaseClose(QSqlDatabase &data);
     void databaseOpen();
+
 };
 
 #endif // DATABASE_H
