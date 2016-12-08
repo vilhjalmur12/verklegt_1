@@ -371,12 +371,12 @@ void Console::edit()
         printScientists(scientistService.getScientists());
         do
         {
-        cout << "Insert index to edit: ";
-        cin.ignore();
-        cin >> index;
-        cin.clear();
-        if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
-            cout << "Please insert valid index!" << endl;
+            cout << "Insert index to edit: ";
+            cin.ignore();
+            cin >> index;
+            cin.clear();
+            if(index <= 0 || index > scientistService.getLengthOfData() || cin.fail())
+                cout << "Please insert valid index!" << endl;
         }while(index <= 0 || index > scientistService.getLengthOfData() || cin.fail());
         index -= 1;
     }
@@ -390,9 +390,9 @@ void Console::edit()
     }
     if(index > -1)
     {
-    cout << "--------Insert new Information:---------" << endl;
-    pushBackScientist();
-    scientistService.moveLastTo(index);
+        cout << "--------Insert new Information:---------" << endl;
+        pushBackScientist();
+        scientistService.moveLastTo(index);
     }
 }
 
@@ -405,18 +405,18 @@ void Console::edit()
 
 void Console::search()
 {
-  vector<Scientist> scientists;
-  vector<Computer> computers;
-  string query;
+    vector<Scientist> scientists;
+    vector<Computer> computers;
+    string query;
 
-  printSearchMenu();
-  cout << "Query: ";
-  cin >> query;
+    printSearchMenu();
+    cout << "Query: ";
+    cin >> query;
 
-  scientistService.searchInDatabase(scientists, computers, query);
-  printScientists(scientists);
-  printComputers(computers);
-  ///-------------------------------------------------------------------SKOÐA CHANGE/DELETE/LEITA AFTUR/MENU
+    scientistService.searchInDatabase(scientists, computers, query);
+    printScientists(scientists);
+    printComputers(computers);
+    ///-------------------------------------------------------------------SKOÐA CHANGE/DELETE/LEITA AFTUR/MENU
 }
 /*
 void Console::search() -- GAMLA FALLIÐ
@@ -474,9 +474,9 @@ void Console::quit()
 {
     quitMenu();
 
-   //  scientistService.saveData();
+    //  scientistService.saveData();
 
-   // cout << scientistService.getErrorString();
+    // cout << scientistService.getErrorString();
 
     exit(1);
 }
@@ -703,17 +703,17 @@ int Console::findIndexToEdit(string oldName)
 {
     int index = 0;
 
-    //TODO: Leita og prenta vísindamenn bara
+    // TODO: Leita og prenta vísindamenn bara
 
     if(true /*indexesWithQuery.size() > 0  ÞARF AÐ AFKOMMENTA- KOMMENT BARA VEGNA WARNING*/)
     {
         int input;
         do
         {
-        cout << "Please enter the number of the entry you want to edit: ";
-        cin >> input;
+            cout << "Please enter the number of the entry you want to edit: ";
+            cin >> input;
         }while(cin.fail());
- //       index = indexesWithQuery[input-1];
+    // index = indexesWithQuery[input-1];
 
         return index;
     }
@@ -783,7 +783,7 @@ void Console::readFirstName(string &firstName)
         cin.ignore();
         do
         {
-        getline(cin, firstName);
+            getline(cin, firstName);
         }while(firstName.length()<1);
 
     }while(!scientistService.validName(firstName));
@@ -795,9 +795,10 @@ void Console::readLastName(string &lastName)
     {
         cout << scientistService.getErrorString();
         cout << "Last Name: ";
+
         do
         {
-        cin >> lastName;
+            cin >> lastName;
         }while(lastName.length()<1);
 
     }while(!scientistService.validName(lastName));
