@@ -68,6 +68,8 @@ public:
     vector<int> getIndexesWith(string query);                    //skilar indexum þeirra vísindamanna sem uppfylla leitunarskilyrði
     void searchInDatabase(vector<Scientist> &scientists, vector<Computer> &computers, string query);
 
+    void deleteScientist(int ID);
+
 private:
     /**********************************************************
                          Meðlimabreytur

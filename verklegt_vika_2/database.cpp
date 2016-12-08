@@ -750,7 +750,12 @@ void database::deleteAllFromScientistDatabase()
     databaseClose(myData);
 }
 
-void database::deleteScientist(int ID, Scientist scientist)
+/******************************************************************
+                          deleteScientist
+             Hægt er að velja hvaða scientist verður eytt
+ ******************************************************************/
+
+void database::deleteScientist(int ID)
 {
     int doDeleted = 1;
 
@@ -758,7 +763,7 @@ void database::deleteScientist(int ID, Scientist scientist)
 
     QSqlQuery query;
     query.prepare("UPDATE scientists "
-                  "SET deleted = :deleted"
+                  "SET deleted = :deleted "
                   "WHERE ID = :ID");
     query.bindValue(":deleted", doDeleted);
     query.bindValue(":ID", ID);

@@ -1429,6 +1429,7 @@ void Console::editOperation()
         }
         else if (choice_made == "c")
         {
+            //deleteScientist(int ID);
             cout << "edit computers" << endl;
             // TODO: edit fall fyrir tölvur
             tmp = "n";
@@ -1448,6 +1449,8 @@ void Console::editOperation()
 
 void Console::deleteOperation()
 {
+    vector<Scientist> scientists = scientistService.getScientists();
+    scientists = scientistService.getScientists();
     string tmp = "n";
 
     do
@@ -1458,6 +1461,12 @@ void Console::deleteOperation()
 
         if (choice_made == "s")
         {
+            printScientists(scientists);
+
+            int ID;
+            cout << "ID -> ";
+            cin >> ID;
+            scientistService.deleteScientist(ID);
             cout << "delete scientists" << endl;
             tmp = "n";
         }
