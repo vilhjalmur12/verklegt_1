@@ -163,6 +163,11 @@ void Service::deleteScientist(int ID)
     data.deleteScientist(ID);
 }
 
+void Service::deleteComputer(int ID)
+{
+    data.deleteComputer(ID);
+}
+
 void Service::editScientist(int ID, Scientist scientist)
 {
     data.editScientist(ID, scientist);
@@ -173,8 +178,7 @@ void Service::editScientist(int ID, Scientist scientist)
                      Eyðir og flaggar öllum vísindamönnum úr database-inu
  ****************************************************************************/
 
-void Service::deleteAllScientistDatabase()
-
+void Service::deleteAllScientistFromDatabase()
 {
     data.deleteAllFromScientistDatabase();
 }
@@ -443,6 +447,7 @@ bool Service::validNationality(string& nationality)
         throwError.invalidNation();
         return false;
     }
+
     return true;
 }
 
