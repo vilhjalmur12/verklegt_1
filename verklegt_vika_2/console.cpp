@@ -1035,6 +1035,7 @@ void Console::viewOperation()
             str = stringChoice();
 
             sorting(str);
+            cont = continueFunction();
         }
         else if (choice_made == "c")
         {
@@ -1043,6 +1044,7 @@ void Console::viewOperation()
             str = stringChoice();
 
             cpuSorting(str);
+            cont = continueFunction();
         }
         else if (choice_made == "q")
         {
@@ -1052,9 +1054,6 @@ void Console::viewOperation()
         {
             cout << "Please enter a valid command!" << endl;
         }
-
-        cont = continueFunction();
-
     }while(cont == "y");
 }
 
