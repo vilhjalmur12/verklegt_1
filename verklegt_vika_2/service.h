@@ -69,6 +69,7 @@ public:
     void searchInDatabase(vector<Scientist> &scientists, vector<Computer> &computers, string query);
 
     void deleteScientist(int ID);
+    void deleteAllScientistDatabase();
 
 private:
     /**********************************************************
