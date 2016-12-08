@@ -520,40 +520,7 @@ void Console::choiceMade()
 
     if (choice_made == "v")
     {
-        do
-        {
-            viewMenu();
-            cout << "-> ";
-            string choice_made = choice();
-
-            if (choice_made == "s")
-            {
-                string str;
-                sorting_menu();
-                str = stringChoice();
-
-                sorting(str);
-            }
-            else if (choice_made == "c")
-            {
-                string str;
-                cpuSortingMenu();
-                str = stringChoice();
-
-                cpuSorting(str);
-            }
-            else if (choice_made == "q")
-            {
-                quit();
-            }
-            else
-            {
-                cout << "Please enter a valid command!" << endl;
-            }
-
-            cont = continueFunction();
-
-        }while(cont == "y");
+        viewOperation();
     }
     else if (choice_made == "i")
     {
@@ -1131,3 +1098,46 @@ void  Console::printComputers(vector<Computer> computers)
  ******************************************************************/
 
 
+/******************************************************************
+                    Hjálparföll fyrir choiceMade
+*****************************************************************/
+
+void Console::viewOperation()
+{
+    string cont;
+
+    do
+    {
+        viewMenu();
+        cout << "-> ";
+        string choice_made = choice();
+
+        if (choice_made == "s")
+        {
+            string str;
+            sorting_menu();
+            str = stringChoice();
+
+            sorting(str);
+        }
+        else if (choice_made == "c")
+        {
+            string str;
+            cpuSortingMenu();
+            str = stringChoice();
+
+            cpuSorting(str);
+        }
+        else if (choice_made == "q")
+        {
+            quit();
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+        }
+
+        cont = continueFunction();
+
+    }while(cont == "y");
+}
