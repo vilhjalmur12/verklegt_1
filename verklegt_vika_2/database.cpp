@@ -626,3 +626,27 @@ string database::decryptData (string n)
     }
     return n;
 }
+
+/******************************************************************
+                      deleteAllFromDatabase
+    Fall sem eyðir öllu út úr Database
+ ******************************************************************/
+
+void deleteAllFromDatabase()
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM computers, cpuType, scientists");
+    query.exec();
+}
+
+/******************************************************************
+                      deleteAllFromComputerDatabase
+    Fall sem eyðir öllu út úr Database
+ ******************************************************************/
+
+void deleteAllFromComputerDatabase()
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM computers");
+    query.exec();
+}

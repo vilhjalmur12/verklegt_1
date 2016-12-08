@@ -42,6 +42,9 @@ public:
     void addFoundScientists(QSqlQuery &query, vector<Scientist> &scientists);
     void adddBuiltComputersToScientists(vector<Scientist> &scientists);
 
+    void deleteAllFromDatabase();
+    void deleteAllFromComputerDatabase();
+
 private:
     QSqlDatabase myData;
     QString user;
