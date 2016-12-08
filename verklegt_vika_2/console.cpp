@@ -261,7 +261,6 @@ void Console::callUser ()
     welcome();
     toContinue();
 
-
     while (!runProgram)
     {
         string tmpUser;
