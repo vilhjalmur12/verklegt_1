@@ -58,16 +58,7 @@ string Computer::getName() const
 /**************** BREYTA *********************/
 bool Computer::getBuilt() const
 {
-    // Verdur ad breyta ollu thessu falli eftir Console-vinnu
-    bool isItBuilt = "y";
-    if(isItBuilt)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return _built;
 }
 
 /****************************************************************************

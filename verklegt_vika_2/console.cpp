@@ -77,8 +77,8 @@ void Console::sorting_menu()
     cout << "|    Birth year, descending: bd         |" << endl;
     cout << "|     Death year, ascending: da         |" << endl;
     cout << "|    Death year, descending: dd         |" << endl;
-    cout << "|    Nationality, ascending: nta        |" << endl;
-    cout << "|   Nationality, descending: ntd        |" << endl;
+    cout << "|    Nationality, ascending: ca         |" << endl;
+    cout << "|   Nationality, descending: cd         |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
@@ -209,8 +209,8 @@ void Console::cpuSortingMenu()
     cout << "|                                       |" << endl;
     cout << "|           Name, ascending: na         |" << endl;
     cout << "|          Name, descending: nd         |" << endl;
-    cout << "|     Build year, ascending: ba         |" << endl;
-    cout << "|    Build year, descending: bd         |" << endl;
+    cout << "|     Build year, ascending: ya         |" << endl;
+    cout << "|    Build year, descending: yd         |" << endl;
     cout << "|  Computer type, ascending: ta         |" << endl;
     cout << "| Computer type, descending: td         |" << endl;
     cout << "|                Built, yes: by         |" << endl;
@@ -520,9 +520,6 @@ void Console::choiceMade()
 
     if (choice_made == "v")
     {
-        vector<Scientist> scientists;
-        vector<Computer> computers;
-
         do
         {
             viewMenu();
@@ -535,32 +532,27 @@ void Console::choiceMade()
                 sorting_menu();
                 str = stringChoice();
 
-                sorting(str);
+                    sorting(str);
+                }
+                else if (choice_made == "c")
+                {
+                    string str;
+                    cpuSortingMenu();
+                    str = stringChoice();
+
+                    cpuSorting(str);
+                }
+                else if (choice_made == "q")
+                {
+                    quit();
+                }
+                else
+                {
+                    cout << "Please enter a valid command!" << endl;
+                }
 
                 cont = continueFunction();
-            }
-            else if (choice_made == "c")
-            {
-                string str;
-                cpuSortingMenu();
-                str = stringChoice();
 
-                //cpuSorting(str); sem a eftir ad gera
-
-                cout << "listi yfir tolvur" << endl;
-
-                //TODO: sorta tölvur
-
-                cont = continueFunction();
-            }
-            else if (choice_made == "q")
-            {
-                quit();
-            }
-            else
-            {
-                cout << "Please enter a valid command!" << endl;
-            }
         }while(cont == "y");
     }
     else if (choice_made == "i")
@@ -674,7 +666,6 @@ void Console::choiceMade()
    }
 }
 
-
 /******************************************************************************
                          stringChoice
       Tekur á móti ákvörðun um hvernig notandi vill sorta lista.
@@ -698,23 +689,40 @@ string Console::stringChoice()
 
 void Console::sorting(string str)
 {
-    vector<Scientist> allScientists;
     bool isRunning = true;
 
     while (isRunning == true)
     {
-        if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd" || str == "nta" || str == "ntd")
+        if (str == "na" || str == "nd" || str == "gf" || str == "gm" || str == "ba" || str == "bd" || str == "da" || str == "dd" || str == "ca" || str == "cd")
         {
-            //scientistService.sortScientistsBy(str);
-            printScientists(scientistService.getScientists());
+            printScientists(scientistService.getScientists(str));
             isRunning = false;
         }
         else
         {
-            cout << "Enter a valid command" << endl;
+            cout << "Enter a valid command!" << endl;
             str = stringChoice();
         }
     }
+}
+
+void Console::cpuSorting(string str)
+{
+   bool isRunning = true;
+
+   while(isRunning)
+   {
+       if(str == "na" || str == "nd" || str == "ya" || str == "yd" || str == "ta" || str == "td" || str == "by" || str == "bn")
+       {
+           printComputers(scientistService.getComputers(str));
+           isRunning = false;
+       }
+       else
+       {
+           cout << "Enter a valid command!" << endl;
+           str = stringChoice();
+       }
+   }
 }
 
 /********************************************************
@@ -727,11 +735,10 @@ void Console::sorting(string str)
 int Console::findIndexToEdit(string oldName)
 {
     int index = 0;
-    vector<int> indexesWithQuery = (scientistService.getIndexesWith(oldName));
 
-    printTable(indexesWithQuery);
+    //TODO: Leita og prenta vísindamenn bara
 
-    if(indexesWithQuery.size() > 0)
+    if(true /*indexesWithQuery.size() > 0  ÞARF AÐ AFKOMMENTA- KOMMENT BARA VEGNA WARNING*/)
     {
         int input;
         do
@@ -739,7 +746,7 @@ int Console::findIndexToEdit(string oldName)
         cout << "Please enter the number of the entry you want to edit: ";
         cin >> input;
         }while(cin.fail());
-        index = indexesWithQuery[input-1];
+ //       index = indexesWithQuery[input-1];
 
         return index;
     }
@@ -1050,14 +1057,14 @@ void Console::printScientists(vector<Scientist> allScientists)
 {
     if(allScientists.size() == 0)
     {
-        cout << endl << "-----------------------------------------------------------------------------No Scientists Found-----------------------------------------------------------------------------" << endl;
+        cout << endl << "-------------------------------------------------------------------------No Scientists Found-------------------------------------------------------------------------" << endl;
         return;
     }
-    cout << endl << endl << "-------------------------------------------------------------------------------Scientists Found-------------------------------------------------------------------------------------" << endl << endl;
+    cout << endl << endl << "---------------------------------------------------------------------------Scientists Found---------------------------------------------------------------------------------" << endl << endl;
 
     printf("%-5s%-25s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Designed");
 
-    cout <<"------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout <<"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
     for (unsigned int i = 0; i < allScientists.size(); i++)
     {
@@ -1090,7 +1097,7 @@ void  Console::printComputers(vector<Computer> computers)
 
     printf("%-5s%-25s%-20s%-20s%-20s%-20s\n", "Nr.", "Name", "Year of build", "Type", "Built or not", "Creators");
 
-    cout <<"-------------------------------------------------------------------------------------------------" << endl;
+    cout <<"------------------------------------------------------------------------------------------------------------------" << endl;
 
     for (unsigned int i = 0; i < computers.size(); i++)
     {
@@ -1123,33 +1130,4 @@ void  Console::printComputers(vector<Computer> computers)
             vísindamönnum sem skulu prentast
  ******************************************************************/
 
-void Console::printTable (vector<int> indexesToPrint) // ÞAÐ ÞARF AÐ EYÐA ÞESSU FALLI OG KALLA ALLS STAÐAR Á PRINTSCIENTISTS(VECTOR) Í STAÐIN
-{
-    vector<Scientist> allScientists = scientistService.getScientists();
-    Scientist tmp;
 
-    if(indexesToPrint.size() == 0)
-    {
-        cout << endl;
-        cout << "No related indexes found" << endl;
-    }
-    else
-    {
-
-        printf("%-5s%-35s%-15s%-16s%-16s%-14s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information");
-
-        cout << endl;
-
-        cout <<"------------------------------------------------------------------------------------------------------------------------------" << endl;
-
-        for (unsigned int i = 0; i < indexesToPrint.size(); i++)
-        {
-            tmp = allScientists[indexesToPrint[i]];
-
-            printf("%-5d%-35s%-15s%-16s%-16d%-14s%-20s\n",i+1, tmp.getFirstName().c_str(), tmp.getLastName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
-                   tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str());
-
-        }
-        cout << endl;
-    }
-}
