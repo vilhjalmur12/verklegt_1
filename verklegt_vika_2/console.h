@@ -3,6 +3,7 @@
 
 #include "scientist.h"
 #include "service.h"
+#include "cputype.h"
 
 #include <vector>
 #include <string>
@@ -43,6 +44,7 @@ public:
     void quitMenu();                //Skjár segir bless þegar þú hættir í forriti
     void viewMenu();                //Spyr hvort það eigi að birta lista vísindamanna eða tölva
     void insertMenu();              //Spyr hvort það eigi að bæta við vísindamanni eða tölvu
+    void typeMenu(vector<cpuType> type);
 
 /**************************************************
                    Sorting föll

@@ -2,6 +2,7 @@
 #include "service.h"
 #include "scientist.h"
 #include "errorhandling.h"
+#include "cputype.h"
 
 #include <iostream>
 #include <string>
@@ -247,6 +248,36 @@ void Console::insertMenu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::typeMenu(vector<cpuType> type)
+{
+    int size = type.size();
+
+    cout << "                     Select type of computer                       " << endl;
+    cout << "-------------------------------------------------------------------" << endl;
+    cout << "|                                                                 |" << endl;
+    printf( "|                    (choose between 1 - ‰d)                      |\n", size);
+    printf( "|                                                 |\n");
+
+    for(int i = 0; i < size; i+=2)
+    {
+            cpuType tmpCpuFirst = type[i];
+            cpuType tmpCpuSecond = type[i+1];
+
+            printf( "|        %-2d = %-10s             %-2d = %-10s      |\n", tmpCpuFirst.getId(), tmpCpuFirst.getType().c_str(), tmpCpuSecond.getId(), tmpCpuSecond.getType().c_str());
+
+            if ((size - i) == 1)
+            {
+                i++;
+                tmpCpuFirst = type[i];
+                printf( "|                                                 |\n");
+                printf( "|                   %-2d = %-10s          |\n", tmpCpuFirst.getId(), tmpCpuFirst.getType().c_str());
+                break;
+            }
+    }
+    cout << "|                                             |" << endl;
+    cout << "-----------------------------------------------" << endl;
+}
+
 void Console::printRelationMenu()
 {
     cout << endl;
@@ -277,7 +308,7 @@ void Console::callUser ()
     welcome();
     toContinue();
 
-    // data.deleteAllFromScientistDatabase();
+    //data.deleteAllFromScientistDatabase();
 
     while (!runProgram)
     {
@@ -894,9 +925,9 @@ void Console::createComputer(string &name, string &cpuType, int &yearBuilt, bool
 
     readCpuName(name);
 
-    readCpuType(cpuType);
-
     readYearBuilt(yearBuilt);
+
+    readCpuType(cpuType);
 
     readBuilt(built);
 
@@ -1233,10 +1264,13 @@ void Console::readNationality(string &nationality)
 {
     do
     {
-    cout << scientistService.getErrorString();
-    cout << "Nationality: ";
-    cin.ignore();
-    getline(cin, nationality);
+        cout << scientistService.getErrorString();
+        cout << "Nationality: ";
+
+        cin.clear();
+        cin.ignore();
+
+        getline(cin, nationality);
     }while(!scientistService.validNationality(nationality));
 
     if(nationality.length() > 0)
@@ -1273,7 +1307,7 @@ void Console::changeOrDelete(vector<int> indexes)
         }while(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());
         index -= 1;
         index = indexes[index];
-        scientistService.removeScientist(index);
+        // scientistService.removeScientist(index);
     }
 
     else if(changeDeleteChoice == "e")
@@ -1504,7 +1538,7 @@ void Console::editOperation()
 void Console::deleteOperation()
 {
     vector<Scientist> scientists = scientistService.getScientists();
-    scientists = scientistService.getScientists();
+    vector<Computer> computers = scientistService.getComputers();
     string tmp = "n";
 
     do
@@ -1518,21 +1552,26 @@ void Console::deleteOperation()
             printScientists(scientists);
 
             int ID;
-            cout << "ID -> ";
+            cout << "Nr. -> ";
             cin >> ID;
             scientistService.deleteScientist(ID);
-            cout << "delete scientists" << endl;
             tmp = "n";
         }
         else if (choice_made == "c")
         {
-            cout << "delete computers" << endl;
+            printComputers(computers);
+
+            int ID;
+            cout << "Nr. -> ";
+            cin >> ID;
+            scientistService.deleteComputer(ID);
             tmp = "n";
         }
         else if (choice_made == "q")
         {
             quit();
             tmp = "n";
+
         }
         else
         {

@@ -319,7 +319,6 @@ void database::insertScientist (Scientist scientist, QString tmpUser)
        int tmpYOD = scientist.getYearOfDeath();
        QString tmpNation(scientist.getNationality().c_str());
        QString tmpInfo(scientist.getFurtherInfo().c_str());
-       //bool tmpDeleted(scientist.getDeleted());
 
        QSqlQuery query;
        query.prepare("INSERT INTO scientists"
@@ -332,7 +331,6 @@ void database::insertScientist (Scientist scientist, QString tmpUser)
        query.bindValue(":YOD", tmpYOD);
        query.bindValue(":nation", tmpNation);
        query.bindValue(":info", tmpInfo);
-       //query.bindValue(":deleted", tmpDeleted);
        query.exec();
 
        databaseClose(myData);
@@ -644,19 +642,20 @@ void database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------
-
 void database::addRelations(int cID, int sID)
 {
-    databaseOpen();
+   databaseOpen();
 
-    QSqlQuery query;
-    query.prepare("INSERT INTO scientist_computer_relations(scientistID, computerID) "
-                  "VALUES (:sID, :cID)");
-    query.bindValue(":sID", sID);
-    query.bindValue(":cID", cID);
-    query.exec();
 
-    databaseClose(myData);
+   QSqlQuery query;
+   query.prepare("INSERT INTO scientist_computer_relations(scientistID, computerID) "
+                 "VALUES (:sID, :cID)");
+   query.bindValue(":sID", sID);
+   query.bindValue(":cID", cID);
+   query.exec();
+
+
+   databaseClose(myData);
 }
 
 void database::selectData()
@@ -728,7 +727,7 @@ void database::deleteAllFromComputerDatabase()
     databaseOpen();
 
     QSqlQuery query;
-    query.prepare("DELETE FROM computers");
+    query.prepare("DELETE FROM computers, cpuType");
     query.exec();
 
     databaseClose(myData);
@@ -752,7 +751,7 @@ void database::deleteAllFromScientistDatabase()
 
 /******************************************************************
                           deleteScientist
-             Hægt er að velja hvaða scientist verður eytt
+             Hægt er að velja hvaða vísindamanni verður eytt
  ******************************************************************/
 
 void database::deleteScientist(int ID)
@@ -763,6 +762,28 @@ void database::deleteScientist(int ID)
 
     QSqlQuery query;
     query.prepare("UPDATE scientists "
+                  "SET deleted = :deleted "
+                  "WHERE ID = :ID");
+    query.bindValue(":deleted", doDeleted);
+    query.bindValue(":ID", ID);
+    query.exec();
+
+    databaseClose(myData);
+}
+
+/******************************************************************
+                          deleteComputer
+             Hægt er að velja hvaða tölvu verður eytt
+ ******************************************************************/
+
+void database::deleteComputer(int ID)
+{
+    int doDeleted = 1;
+
+    databaseOpen();
+
+    QSqlQuery query;
+    query.prepare("UPDATE computers "
                   "SET deleted = :deleted "
                   "WHERE ID = :ID");
     query.bindValue(":deleted", doDeleted);

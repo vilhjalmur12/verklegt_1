@@ -2,7 +2,6 @@
 #include <qsqldatabase.h>
 #include <QSqlQuery>
 
-// Ekki vinna med medlimabreytur heldur database-ið = getScientist stuff
 using namespace std;
 /****************************************************************************
                                Constructor
@@ -164,34 +163,24 @@ void Service::deleteScientist(int ID)
     data.deleteScientist(ID);
 }
 
+void Service::deleteComputer(int ID)
+{
+    data.deleteComputer(ID);
+}
+
 void Service::editScientist(int ID, Scientist scientist)
 {
     data.editScientist(ID, scientist);
 }
 
 /****************************************************************************
-                               removeScientist
-                     Fjarlægir vísindamann skv index
-            @parameter(const int index) - index þess sem eyða á
+                           deleteAllScientistDatabase()
+                     Eyðir og flaggar öllum vísindamönnum úr database-inu
  ****************************************************************************/
-void Service::removeScientist(int index) // Hvernig tek eg id inn her?
-// Remove og EDIT!
-// index er tekid inn i edit() fallinu i console
+
+void Service::deleteAllScientistFromDatabase()
 {
-    //data.remove(int index)
-    QSqlQuery query;
-
-    // Matcha id-id vid thad sem er valid
-    // query.prepare("UPDATE scientists set First Name = );
-    /* query.bindValue(":ID", ID);
-    success = query.exec();
-
-    if(!success)
-    {
-        qDebug() << "Error: user was not found. ";
-    }
-
-    // _scientists.erase(_scientists.begin()+index);*/
+    data.deleteAllFromScientistDatabase();
 }
 
 /****************************************************************************
@@ -463,6 +452,7 @@ bool Service::validNationality(string& nationality)
         throwError.invalidNation();
         return false;
     }
+
     return true;
 }
 
