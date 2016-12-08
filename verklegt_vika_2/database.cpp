@@ -123,6 +123,8 @@ bool database::getUser(const QString& username, const QString& password)
     myData = QSqlDatabase::addDatabase("QSQLITE");
     myData.setDatabaseName("./users.sqlite");
 
+
+
     if (!myData.open())
     {
        qDebug() << "Error: connection with database fail";
@@ -135,12 +137,17 @@ bool database::getUser(const QString& username, const QString& password)
         query.exec();
 
         QString qPass;
+        QString QEncPass;
         if (query.next())
         {
             qPass = query.value(0).toString();
+            string tmpPass = qPass.toUtf8().constData();
+            string encPass = decryptData(tmpPass);
+            QString QTmpPass(encPass.c_str());
+            QEncPass = QTmpPass;
         }
 
-        if (password == qPass)
+        if (password == QEncPass)
         {
 
             databaseClose(myData);
@@ -161,6 +168,10 @@ void database::createUser(const QString& username, const QString& password, cons
     myData = QSqlDatabase::addDatabase("QSQLITE");
     myData.setDatabaseName("./users.sqlite");
 
+    string tmpPass = password.toUtf8().constData();
+    string encPass = encryptData(tmpPass);
+    QString QEncPass(encPass.c_str());
+
     if (!myData.open())
     {
        qDebug() << "Error: connection with database fail";
@@ -177,7 +188,7 @@ void database::createUser(const QString& username, const QString& password, cons
         query.bindValue(":firstName", firstName);
         query.bindValue(":lastName", lastName);
         query.bindValue(":username", username);
-        query.bindValue(":password", password);
+        query.bindValue(":password", QEncPass);
         query.exec();
 
 

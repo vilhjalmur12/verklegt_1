@@ -20,6 +20,14 @@ Computer::Computer(int ID, string name, string cpuType, bool built, int yearBuil
     _yearBuilt = yearBuilt;
 }
 
+Computer::Computer(string name, string cpuType, bool built, int yearBuilt)
+{
+    _name = name;
+    _cpuType = cpuType;
+    _built = built;
+    _yearBuilt = yearBuilt;
+}
+
 Computer::~Computer() { }
 
 /****************************************************************************
