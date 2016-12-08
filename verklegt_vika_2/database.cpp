@@ -63,7 +63,7 @@ void database::getData(string selection, string table)
    else
    {
        // Byrjum að setja If setningar hér
-      //  vector<Scientist> scien = pullDataScientist();
+       // vector<Scientist> scien = pullDataScientist();
 
         databaseClose(myData);
    }
@@ -209,7 +209,7 @@ void database::initDatabase (const QString& username)
                        "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
                         "First_name VARCHAR NOT NULL , Last_name VARCHAR NOT NULL , "
                         "Gender VARCHAR, Year_of_birth INTEGER, Year_of_death INTEGER, "
-                        "Nationality VARCHAR, Information VARCHAR)");
+                        "Nationality VARCHAR, Information VARCHAR, Deleted BOOL DEFAULT (0))");
 
 
         userQuery.exec ("CREATE  TABLE cpuType "
@@ -310,11 +310,12 @@ void database::insertScientist (Scientist scientist, QString tmpUser)
        int tmpYOD = scientist.getYearOfDeath();
        QString tmpNation(scientist.getNationality().c_str());
        QString tmpInfo(scientist.getFurtherInfo().c_str());
+       //bool tmpDeleted(scientist.getDeleted());
 
        QSqlQuery query;
        query.prepare("INSERT INTO scientists"
-                     "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
-                     "VALUES (:firstName, :lastName, :gender, :YOB, :YOD, :nation, :info)");
+                     "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information, Deleted)"
+                     "VALUES (:firstName, :lastName, :gender, :YOB, :YOD, :nation, :info), :deleted");
        query.bindValue(":firstName", tmpFirstName);
        query.bindValue(":lastName", tmpLastName);
        query.bindValue(":gender", tmpGender);
@@ -322,6 +323,7 @@ void database::insertScientist (Scientist scientist, QString tmpUser)
        query.bindValue(":YOD", tmpYOD);
        query.bindValue(":nation", tmpNation);
        query.bindValue(":info", tmpInfo);
+       //query.bindValue(":deleted", tmpDeleted);
        query.exec();
 
        databaseClose(myData);
