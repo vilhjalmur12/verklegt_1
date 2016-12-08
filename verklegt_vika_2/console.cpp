@@ -1131,7 +1131,7 @@ void Console::deleteOperation()
 
     do
     {
-        void deleteMenu();
+        deleteMenu();
         cout << "-> ";
         string choice_made = choice();
 
