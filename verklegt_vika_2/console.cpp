@@ -120,6 +120,7 @@ void Console::printEditMenu()
     cout << "|                                       |" << endl;
     cout << "|  l - see the full list of scientists  |" << endl;
     cout << "|      s - search for a scientist       |" << endl;
+    cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
