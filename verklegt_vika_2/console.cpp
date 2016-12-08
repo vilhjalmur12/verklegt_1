@@ -532,36 +532,7 @@ void Console::choiceMade()
    }
    else if(choice_made == "e")
    {
-       string tmp = "n";
-       editMenu();
-
-       do
-       {
-           cout << "-> ";
-           string choice_made = choice();
-
-           if (choice_made == "s")
-           {
-               edit();
-               tmp = "n";
-           }
-           else if (choice_made == "c")
-           {
-               cout << "edit computers" << endl;
-               // TODO: edit fall fyrir tölvur
-               tmp = "n";
-           }
-           else if (choice_made == "q")
-           {
-               quit();
-               tmp = "n";
-           }
-           else
-           {
-               cout << "Please enter a valid command!" << endl;
-               tmp = "y";
-           }
-       }while (tmp == "y");
+       editOperation();
    }
    else if (choice_made == "d")
    {
@@ -1132,6 +1103,40 @@ void Console::insertOperation()
         else if (choice_made == "c")
         {
             cout << "bæta við tölvu" << endl;
+            tmp = "n";
+        }
+        else if (choice_made == "q")
+        {
+            quit();
+            tmp = "n";
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+            tmp = "y";
+        }
+    }while (tmp == "y");
+}
+
+void Console::editOperation()
+{
+    string tmp = "n";
+    editMenu();
+
+    do
+    {
+        cout << "-> ";
+        string choice_made = choice();
+
+        if (choice_made == "s")
+        {
+            edit();
+            tmp = "n";
+        }
+        else if (choice_made == "c")
+        {
+            cout << "edit computers" << endl;
+            // TODO: edit fall fyrir tölvur
             tmp = "n";
         }
         else if (choice_made == "q")
