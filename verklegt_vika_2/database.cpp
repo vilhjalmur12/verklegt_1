@@ -218,20 +218,19 @@ void database::initDatabase (const QString& username)
                        "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
                         "First_name VARCHAR NOT NULL , Last_name VARCHAR NOT NULL , "
                         "Gender VARCHAR, Year_of_birth INTEGER, Year_of_death INTEGER, "
-                        "Nationality VARCHAR, Information VARCHAR, Deleted BOOL DEFAULT (0))");
-
+                        "Nationality VARCHAR, Information VARCHAR, 'Deleted' BOOL DEFAULT (0))");
 
         userQuery.exec ("CREATE  TABLE cpuType "
                       "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
                       "type VARCHAR NOT NULL )");
 
         userQuery.exec ("CREATE TABLE computers "
-                        "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL, "
-                        "Name VARCHAR NOT NULL, "
-                        "Year_of_build INTEGER, "
-                        "CPU_type_ID INTEGER, "
-                        "built_or_not BOOL,"
-                        "deleted BOOL DEFAULT (0), "
+                        "('ID' INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL, "
+                        "'Name' VARCHAR NOT NULL, "
+                        "'Year_of_build' INTEGER, "
+                        "'CPU_type_ID' INTEGER, "
+                        "'built_or_not' BOOL, "
+                        "'deleted' BOOL DEFAULT (0), "
                         "FOREIGN KEY(CPU_type_ID) REFERENCES cpuType(ID))");
 
         userQuery.exec("CREATE TABLE scientist_computer_relations"
@@ -461,8 +460,8 @@ void database::searchComputersForSubstring(vector<Computer> &computers, const st
                   "INNER JOIN cpuType t "
                   "ON t.ID = c.CPU_type_ID "
                   "WHERE (c.name like :string "
-                  "OR t.type like :string)"
-                  "AND deleted = 0"
+                  "OR t.type like :string) "
+                  "AND deleted = 0 "
                   "ORDER BY name "
                   );
     query.bindValue(":string", searchQuery);
