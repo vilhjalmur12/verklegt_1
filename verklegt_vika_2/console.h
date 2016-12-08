@@ -28,36 +28,36 @@ public:
 /**************************************************
                     Opnunarföll
 **************************************************/
-    void welcome();         //Kallar á upphafsmynd
-    void toContinue();      //Notandi þarf að ýta á ENTER til að halda áfram
+    void welcome();                 //Kallar á upphafsmynd
+    void toContinue();              //Notandi þarf að ýta á ENTER til að halda áfram
 
 /**************************************************
                    Valmyndarföll
 **************************************************/
-    void viewOrInsert();        //Birta aðal valmynd
-    void loginMenu();           //Login menu
-    string choice();            //Geyma valmöguleika
-    void choiceMade();          //Kalla á framkvæmd eftir vali notanda
-    void printChangeDelete();   //Bjóða uppá að eiga við lista
-    void quitMenu();            //Skjár segir bless þegar þú hættir í forriti
-    void viewMenu();            //Spyr hvort það eigi að birta lista vísindamanna eða tölva
-    void insertMenu();          //Spyr hvort það eigi að bæta við vísindamanni eða tölvu
+    void viewOrInsert();            //Birta aðal valmynd
+    void loginMenu();               //Login menu
+    string choice();                //Geyma valmöguleika
+    void choiceMade();              //Kalla á framkvæmd eftir vali notanda
+    void printChangeDelete();       //Bjóða uppá að eiga við lista
+    void quitMenu();                //Skjár segir bless þegar þú hættir í forriti
+    void viewMenu();                //Spyr hvort það eigi að birta lista vísindamanna eða tölva
+    void insertMenu();              //Spyr hvort það eigi að bæta við vísindamanni eða tölvu
 
 /**************************************************
                    Sorting föll
 **************************************************/
-    void sorting_menu();        //Birta valmynd yfir möguleika til að raða lista um vísindamenn
-    string stringChoice();      //Geyma val notanda yfir hvernig hann vildi raða listanum
-    void sorting(string str);   //Birta raðaðann lista
-    void cpuSortingMenu();      //Birta valmynd yfir möguleika til að raða lista um tölvur
+    void sorting_menu();            //Birta valmynd yfir möguleika til að raða lista um vísindamenn
+    string stringChoice();          //Geyma val notanda yfir hvernig hann vildi raða listanum
+    void sorting(string str);       //Birta raðaðann lista
+    void cpuSortingMenu();          //Birta valmynd yfir möguleika til að raða lista um tölvur
     void cpuSorting(string str);
 
 private:
 /**************************************************
                    Meðlimabreytur
 **************************************************/
-    ErrorHandling throwError;   //Sendir forrit í villu tékk
-    Service scientistService;   //Heldur utan um upplýsingar frá gagnagrunni fyrir service hlutan
+    ErrorHandling throwError;       //Sendir forrit í villu tékk
+    Service scientistService;       //Heldur utan um upplýsingar frá gagnagrunni fyrir service hlutan
     QString user;
 /**************************************************
                Hjálparföll við edit
@@ -83,8 +83,8 @@ private:
 /**************************************************
               Hjálparföll við search
 **************************************************/
-    void printSearchMenu();                         //Birtir leitar valmynd
-    void changeOrDelete(vector<int> indexes);       //Tekur við ákvörðun frá notanda um edit
+    void printSearchMenu();                                  //Birtir leitar valmynd
+    void changeOrDelete(vector<int> indexes);                //Tekur við ákvörðun frá notanda um edit
 
 /**************************************************
            Hjálparföll við choiceMade
@@ -95,9 +95,9 @@ private:
 /**************************************************
                  Birta töflu
 **************************************************/
-    void printTable();                              //Birtir töflu af vísindamönnum
+    void printTable();                                       //Birtir töflu af vísindamönnum
     void printScientists(vector<Scientist> allScientists);
-    void printTable(vector<int> indexesToPrint);    //Birtir töflu af vísindamönnum fyrir edit
+    void printTable(vector<int> indexesToPrint);             //Birtir töflu af vísindamönnum fyrir edit
     void printComputers(vector<Computer> computers);
 };
 
