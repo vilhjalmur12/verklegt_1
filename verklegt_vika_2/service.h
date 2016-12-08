@@ -28,7 +28,10 @@ public:
     /**********************************************************
                          Vector aðgerðir
     **********************************************************/
-    bool doesScientistExcist(string firstName, string lastName, string sex, int birthYear, int deathYear, string nationality, string furtherInfo);
+    bool doesScientistExcist(string firstName, string lastName, string sex, int birthYear,
+                             int deathYear, string nationality, string furtherInfo);
+    bool doesComputerExcist(string name, string cpuType, int yearBuilt, bool built);
+
     bool appendScientist (string firstName, string lastName, string sex, int birthYear,         //Bætir vísindamanni aftast í meðlimavector og skilar boolean
                           int deathYear, string nationality, string furtherInfo);               // gildi sem útskýrir hvernig gekk.
     bool appendComputer (string name, string cpuType, int yearBuilt, bool built);         //Bætir vísindamanni aftast í meðlimavector og skilar boolean

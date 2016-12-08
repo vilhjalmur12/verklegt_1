@@ -84,6 +84,7 @@ private:
     void readYearBuilt(int& yearBuilt);
     void readBuilt(bool &built);
     Scientist makeNewScientist();
+    Computer makeNewComputer();
     void readFirstName(string &firstName);                                                                          //Tekur inn fyrra nafn fyrir vísindamann
     void readLastName(string &lastName);                                                                            //Tekur inn seinna nafn fyrir vísindamann
     void readSex(string& sex);                                                                                      //Tekur inn kyn fyrir vísindamann

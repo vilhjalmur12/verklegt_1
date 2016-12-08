@@ -548,8 +548,8 @@ void Console::editComputer()
     }while(cont);
     cout << endl << endl << "--------Insert new Information:---------" << endl;
     int ID = computers[index].getID();
-  //  Computer computer = makeNewScientist();
-  //  scientistService.editComputer(ID, computer);
+    Computer computer = makeNewComputer();
+    scientistService.editComputer(ID, computer);
 }
 
 /******************************************************************************
@@ -817,6 +817,60 @@ Scientist Console::makeNewScientist()
     return sc;
 }
 
+Computer Console::makeNewComputer()
+{
+    printCpuPushBackMenu();
+    string name, cpuType;
+    int yearBuilt;
+    bool built;
+
+    do
+    {
+        createComputer(name, cpuType, yearBuilt, built);
+    }while(!scientistService.doesComputerExcist(name, cpuType, yearBuilt, built));
+
+    Computer cpu(name, cpuType, built, yearBuilt);
+
+    return cpu;
+}
+
+void Console::pushBackComputer()
+{
+    printCpuPushBackMenu();
+    string name, cpuType;
+    int yearBuilt;
+    bool built;
+    string choice;
+
+    do
+    {
+        createComputer(name, cpuType, yearBuilt, built);
+    }while(!scientistService.appendComputer(name, cpuType, yearBuilt, built));
+
+    int index = scientistService.getNumberOfComputers();
+
+    do
+    {
+        cout << "Would you like to relate the computer to a scientist? (y/n)" << endl << "-> ";
+        cin >> choice;
+
+        if((choice != "y" && choice != "n") || cin.fail())
+        {
+            cout << "Please insert a valid command!";
+        }
+
+    }while((choice != "y" && choice != "n") || cin.fail());
+
+    if(choice == "y")
+    {
+    addRelationsToCpu(index);
+    }
+    else
+    {
+
+    }
+}
+
 void Console::pushBackScientist()
 {
     printPushBackMenu();
@@ -850,43 +904,6 @@ void Console::pushBackScientist()
     else
     {
         return;
-    }
-}
-
-void Console::pushBackComputer()
-{
-    printPushBackMenu();
-    string name, cpuType;
-    int yearBuilt;
-    bool built;
-    string choice;
-
-    do
-    {
-        createComputer(name, cpuType, yearBuilt, built);
-    }while(!scientistService.appendComputer(name, cpuType, yearBuilt, built));
-
-    int index = scientistService.getNumberOfComputers();
-
-    do
-    {
-        cout << "Would you like to relate the computer to a scientist? (y/n)" << endl << "-> ";
-        cin >> choice;
-
-        if((choice != "y" && choice != "n") || cin.fail())
-        {
-            cout << "Please insert a valid command!";
-        }
-
-    }while((choice != "y" && choice != "n") || cin.fail());
-
-    if(choice == "y")
-    {
-    addRelationsToCpu(index);
-    }
-    else
-    {
-
     }
 }
 
