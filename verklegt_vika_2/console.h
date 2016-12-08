@@ -89,9 +89,10 @@ private:
 /**************************************************
            Hjálparföll við choiceMade
 **************************************************/
-    void viewOperation();                           //Tekur ákvörðun um hvað sé gert hafi verið valið að view'a
-    void insertOperation();                         //Tekur ákvörðun um hvað sé gert hafi verið valið að inserta
-    void editOperation();                           //Tekur ákvörðun um hvað sé gert hafi verið valið að edit'a
+    void viewOperation();                                                                                             //Tekur ákvörðun um hvað sé gert hafi verið valið að view'a
+    void insertOperation();                                                                                           //Tekur ákvörðun um hvað sé gert hafi verið valið að inserta
+    void editOperation();                                                                                             //Tekur ákvörðun um hvað sé gert hafi verið valið að edit'a
+    void deleteOperation();                                                                                           //Tekur ákvörðun um hvað sé gert hafi verið valið að deleta
 
 /**************************************************
                  Birta töflu

@@ -524,56 +524,28 @@ void Console::choiceMade()
     }
     else if (choice_made == "i")
     {
-       insertOperation();
+        insertOperation();
     }
-   else if (choice_made == "s")
-   {
-       search();
-   }
-   else if(choice_made == "e")
-   {
-       editOperation();
-   }
-   else if (choice_made == "d")
-   {
-       string tmp = "n";
-
-       do
-       {
-           void deleteMenu();
-           cout << "-> ";
-           string choice_made = choice();
-
-           if (choice_made == "s")
-           {
-               cout << "delete scientists" << endl;
-               tmp = "n";
-           }
-           else if (choice_made == "c")
-           {
-               cout << "delete computers" << endl;
-               tmp = "n";
-           }
-           else if (choice_made == "q")
-           {
-               quit();
-               tmp = "n";
-           }
-           else
-           {
-               cout << "Please enter a valid command!" << endl;
-               tmp = "y";
-           }
-       }while(tmp == "y");
-   }
-   else if (choice_made == "q")
-   {
-       quit();
-   }
-   else
-   {
-       cout << "Please enter a valid command!" << endl;
-   }
+    else if (choice_made == "s")
+    {
+        search();
+    }
+    else if (choice_made == "e")
+    {
+        editOperation();
+    }
+    else if (choice_made == "d")
+    {
+        deleteOperation();
+    }
+    else if (choice_made == "q")
+    {
+        quit();
+    }
+    else
+    {
+        cout << "Please enter a valid command!" << endl;
+    }
 }
 
 /******************************************************************************
@@ -1151,4 +1123,37 @@ void Console::editOperation()
             tmp = "y";
         }
     }while (tmp == "y");
+}
+
+void Console::deleteOperation()
+{
+    string tmp = "n";
+
+    do
+    {
+        void deleteMenu();
+        cout << "-> ";
+        string choice_made = choice();
+
+        if (choice_made == "s")
+        {
+            cout << "delete scientists" << endl;
+            tmp = "n";
+        }
+        else if (choice_made == "c")
+        {
+            cout << "delete computers" << endl;
+            tmp = "n";
+        }
+        else if (choice_made == "q")
+        {
+            quit();
+            tmp = "n";
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+            tmp = "y";
+        }
+    }while(tmp == "y");
 }
