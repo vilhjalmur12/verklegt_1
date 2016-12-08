@@ -670,11 +670,15 @@ string database::decryptData (string n)
     Fall sem eyðir öllu út úr Database
  ******************************************************************/
 
-void deleteAllFromDatabase()
+void database::deleteAllFromDatabase()
 {
+    databaseOpen();
+
     QSqlQuery query;
     query.prepare("DELETE FROM computers, cpuType, scientists");
     query.exec();
+
+    databaseClose(myData);
 }
 
 /******************************************************************
@@ -682,11 +686,15 @@ void deleteAllFromDatabase()
     Fall sem eyðir öllu út úr computer database
  ******************************************************************/
 
-void deleteAllFromComputerDatabase()
+void database::deleteAllFromComputerDatabase()
 {
+    databaseOpen();
+
     QSqlQuery query;
     query.prepare("DELETE FROM computers, cpuType");
     query.exec();
+
+    databaseClose(myData);
 }
 
 /******************************************************************
@@ -694,9 +702,13 @@ void deleteAllFromComputerDatabase()
     Fall sem eyðir öllu út úr scientist Database
  ******************************************************************/
 
-void deleteAllFromScientistDatabase()
+void database::deleteAllFromScientistDatabase()
 {
+    databaseOpen();
+
     QSqlQuery query;
     query.prepare("DELETE FROM scientists");
     query.exec();
+
+    databaseClose(myData);
 }
