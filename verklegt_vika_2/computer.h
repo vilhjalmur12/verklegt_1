@@ -12,6 +12,7 @@ class Computer
 public:
     Computer();
     Computer(int ID, string name, string cpuType, bool built, int yearBuilt);           // Stillir smiðinn þegar hann er búinn til með breytum sem byrjanargildi
+    Computer(string name, string cpuType, bool built, int yearBuilt);
     virtual ~Computer();
     void pushComputer(string name, string cpuType, bool built, int yearBuilt);   // Stillir upplýsingar fyrir tölvur í meðlimabreytur
 
@@ -31,8 +32,8 @@ public:
 /**************************************************
                  Operator föll
 **************************************************/
-    friend ostream& operator << (ostream& out, Computer co);       // Prentar út allar uppl um tölvu í eina línu (aðskilið af tab-keypress)
-    friend bool operator == (Computer lhs, Computer rhs);         // Ber saman upplýsingarnar til að sjá hvor þær séu eins
+   // friend ostream& operator << (ostream& out, Computer co);       // Prentar út allar uppl um tölvu í eina línu (aðskilið af tab-keypress)
+   // friend bool operator == (Computer lhs, Computer rhs);         // Ber saman upplýsingarnar til að sjá hvor þær séu eins
 
 private:
 /**************************************************

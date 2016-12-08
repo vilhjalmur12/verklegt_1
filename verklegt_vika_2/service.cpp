@@ -128,6 +128,26 @@ bool Service::appendScientist(string firstName, string lastName, string sex, int
     return true;
 }
 
+bool Service::appendComputer (string name, string cpuType, int yearBuilt, bool built)
+{
+    Computer tempComputer(name, cpuType, built, yearBuilt);
+   /*
+    for(unsigned int i = 0; i < _computers.size(); i++)
+    {
+        if(tempComputer == _computers[i])
+        {
+            throwError.invalidName(1);
+            return false;
+        }
+    }
+    */
+
+    _computers.push_back(tempComputer);  // Líklega óþarfi
+
+    data.insertComputer(tempComputer, qUser); //--> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
+
+    return true;
+}
 void Service::editComputer(int ID, Computer computer)
 {
     data.editComputer(ID, computer);
@@ -283,6 +303,19 @@ bool Service::validName(string &name)
     return true;
 }
 
+bool Service::validBuild(string &build)
+{
+
+    bool containsDigits = !regex_match(build, regex("(^[A-Za-z.-]+[ ]*([A-Za-z.-]||[ ])*$)"));
+
+    if (containsDigits)
+    {
+        throwError.invalidName(2);
+        return false;
+    }
+    return true;
+}
+
 /****************************************************************************
                                validSex
                      tekur inn kyn og stækkar fyrsta stafinn
@@ -354,6 +387,31 @@ bool Service::validYears(int birthYear, int deathYear)
     {
         throwError.invalidYear(5);
         return false;
+    }
+
+    return true;
+}
+
+bool Service::validBuildYear(int buildYear)
+{
+    //Pointer heldur utan um núverandi ár -1900
+    time_t t = time(NULL);
+    tm* timePtr = localtime(&t);
+
+    if(buildYear < -193000)
+    {
+        throwError.invalidYear(3);
+        return false;
+    }
+
+    if(buildYear > timePtr->tm_year + 1900)
+    {
+        throwError.invalidYear(2);
+        return false;
+    }
+    if(buildYear == maxDeathYear)
+    {
+        return true;
     }
 
     return true;

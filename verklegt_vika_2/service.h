@@ -31,6 +31,7 @@ public:
     bool doesScientistExcist(string firstName, string lastName, string sex, int birthYear, int deathYear, string nationality, string furtherInfo);
     bool appendScientist (string firstName, string lastName, string sex, int birthYear,         //Bætir vísindamanni aftast í meðlimavector og skilar boolean
                           int deathYear, string nationality, string furtherInfo);               // gildi sem útskýrir hvernig gekk.
+    bool appendComputer (string name, string cpuType, int yearBuilt, bool built);         //Bætir vísindamanni aftast í meðlimavector og skilar boolean
     void removeScientist(int index);                              //Fjarlægjr vísindamann sem index gefur til kynna
     void moveLastTo(int index);                                   //Færir aftasta vísindamann í stak sem index gefur til kynna
     vector<Scientist> getScientists(string choice = "na");                            //Skilar vector of vísindamönnum í núverandi röð
@@ -50,6 +51,9 @@ public:
     string getErrorString();                                      //skilar núverandi villuboði ef það er til staðar
     void logYearError(int code);
 
+    bool validBuild(string &build);
+    bool validBuildYear(int buildYear);
+
 
     /**********************************************************
                          Vistunarfall
@@ -68,6 +72,7 @@ private:
                          Meðlimabreytur
     **********************************************************/
     vector<Scientist> _scientists;
+    vector<Computer> _computers;
     ErrorHandling throwError;
     database data;
     string user;
