@@ -308,7 +308,7 @@ void Console::callUser ()
     welcome();
     toContinue();
 
-    // data.deleteAllFromScientistDatabase();
+    //data.deleteAllFromScientistDatabase();
 
     while (!runProgram)
     {
@@ -1253,7 +1253,7 @@ void Console::changeOrDelete(vector<int> indexes)
         }while(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());
         index -= 1;
         index = indexes[index];
-        scientistService.removeScientist(index);
+        // scientistService.removeScientist(index);
     }
 
     else if(changeDeleteChoice == "e")
