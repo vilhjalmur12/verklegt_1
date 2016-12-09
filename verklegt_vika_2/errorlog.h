@@ -12,6 +12,7 @@ class errorLog
 {
 public:
     errorLog();
+    errorLog(string username, string tmpError);
     errorLog(string username, string tmpError, bool tmpBrute);
     ~errorLog();
     void openInStream();
@@ -22,7 +23,7 @@ private:
     string user;
     string error;
     string warning = "*WARNING*";
-    bool brute;
+    bool brute = false;
     ifstream errorInput;
     ofstream errorOutput;
     myTime time;

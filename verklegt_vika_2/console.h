@@ -4,6 +4,7 @@
 #include "scientist.h"
 #include "service.h"
 #include "cputype.h"
+#include "errorlog.h"
 
 using namespace std;
 

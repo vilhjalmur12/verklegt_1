@@ -4,6 +4,7 @@
 #include "errorhandling.h"
 #include "scientist.h"
 #include "database.h"
+#include "errorlog.h"
 
 #include <algorithm>
 #include <iostream>
@@ -56,6 +57,7 @@ public:
     bool validDeathYear(string deathYear);                        //segir til um hvort dánarár sé löglegt
     bool validNationality(string& nationality);                   //segir til um hvort þjóðerni sé löglegt
     string getErrorString();                                      //skilar núverandi villuboði ef það er til staðar
+    string getErrorString(bool brute);
     void logYearError(int code);
 
     bool validBuild(string &build);
@@ -93,6 +95,7 @@ private:
     database data;
     string user;
     QString qUser;
+
 
     /**********************************************************
                  Hjálparföll fyrir appendScientist

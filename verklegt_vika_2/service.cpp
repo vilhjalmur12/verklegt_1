@@ -17,8 +17,6 @@ Service::Service(const QString user)
 Service::~Service() { }
 
 
-
-
 /****************************************************************************
                                getErrorString
                      Sækir error message'ið sem er geymt í
@@ -28,6 +26,7 @@ Service::~Service() { }
  ****************************************************************************/
 string Service::getErrorString()
 {
+   // errorLog _errorLog(user, throwError.catchError());
     return throwError.catchError();
 }
 
