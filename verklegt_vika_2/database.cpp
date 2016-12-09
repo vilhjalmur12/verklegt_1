@@ -242,6 +242,10 @@ void database::initDatabase (const QString& username)
                        "FOREIGN KEY (scientistID) REFERENCES Scientists(ID) "
                        "PRIMARY KEY (computerID, scientistID)) ");
 
+        /**************************************
+                setja inn vísindamann
+        **************************************/
+
         userQuery.exec("INSERT INTO scientists "
                           "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
                           "VALUES ('Ada', 'Lovelace', 'Female', 1815, 1852, 'English', 'First computer programmer')");
@@ -258,6 +262,39 @@ void database::initDatabase (const QString& username)
                           "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
                           "VALUES ('Charles', 'Babbage', 'Male', 1791, 1871, 'English', 'Mechanical Engineer')");
 
+        userQuery.exec("INSERT INTO scientists "
+                          "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
+                          "VALUES ('Tommy', 'Flowers', 'Male', 1905, 1998, 'English', 'First programmable electronic computer')");
+
+        userQuery.exec("INSERT INTO scientists "
+                          "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
+                          "VALUES ('Freddie', 'Williams', 'Male', 1911, 1977, 'English', 'Engineer')");
+
+        userQuery.exec("INSERT INTO scientists "
+                          "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
+                          "VALUES ('Tom', 'Kilburn', 'Male', 1921, 2001, 'English', 'Mathematician and computer scientist')");
+
+        userQuery.exec("INSERT INTO scientists "
+                          "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
+                          "VALUES ('Gordon', 'Bell', 'Male', 1934, 200000000, 'American', 'Electrical engineer')");
+
+        userQuery.exec("INSERT INTO scientists "
+                          "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
+                          "VALUES ('Charles', 'Flint', 'Male', 1850, 1934, 'American', 'Financial capalist')");
+
+        userQuery.exec("INSERT INTO scientists "
+                          "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
+                          "VALUES ('Clive', 'Sinclair', 'Male', 1940, 200000000, 'English', 'Entrepreneur and inventor')");
+
+        userQuery.exec("INSERT INTO scientists "
+                          "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information)"
+                          "VALUES ('Steve', 'Jobs', 'Male', 1955, 2011, 'American', 'Co-founder Apple and more.')");
+
+
+        /**************************************
+                      setja inn type
+        **************************************/
+
         userQuery.exec("INSERT INTO cpuType "
                           "(Type)"
                           "VALUES ('Mechanic')");
@@ -270,9 +307,33 @@ void database::initDatabase (const QString& username)
                           "(Type)"
                           "VALUES ('Transistor Machine')");
 
+        userQuery.exec("INSERT INTO cpuType "
+                          "(Type)"
+                          "VALUES ('Mainframe computer')");
+
+        userQuery.exec("INSERT INTO cpuType "
+                          "(Type)"
+                          "VALUES ('Mini computer')");
+
+        userQuery.exec("INSERT INTO cpuType "
+                          "(Type)"
+                          "VALUES ('Personal computer')");
+
+        userQuery.exec("INSERT INTO cpuType "
+                          "(Type)"
+                          "VALUES ('Home computer')");
+
+        userQuery.exec("INSERT INTO cpuType "
+                          "(Type)"
+                          "VALUES ('Calculator')");
+
+        /**************************************
+                    setja inn tölvu
+        **************************************/
+
         userQuery.exec("INSERT INTO computers "
-                          "(Name, CPU_type_ID, built_or_not)"
-                          "VALUES ('Analytical engine', 1, 0)");
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not)"
+                          "VALUES ('Analytical engine', 200000000, 1, 0)");
 
         userQuery.exec("INSERT INTO computers "
                           "(Name, Year_of_build, CPU_type_ID, built_or_not) "
@@ -285,6 +346,42 @@ void database::initDatabase (const QString& username)
         userQuery.exec("INSERT INTO computers "
                           "(Name, Year_of_build, CPU_type_ID, built_or_not) "
                           "VALUES ('Difference Engine', 1991, 1, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('The Abacus', -2000, 8, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('Colossus', 1944, 2, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('The Manchester Baby', 1948, 2, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('IBM System 360', 1964, 4, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('DEC PDP-8', 1965, 5, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('IBM PC', 1981, 6, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('Sinclair ZX81', 1981, 7, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('Apple Macintosh', 1981, 6, 1)");
+
+        /**************************************
+                      setja inn vensl
+        **************************************/
 
         userQuery.exec("INSERT INTO scientist_computer_relations "
                        "(ScientistID, ComputerID) "
@@ -305,6 +402,39 @@ void database::initDatabase (const QString& username)
         userQuery.exec("INSERT INTO scientist_computer_relations "
                        "(ScientistID, ComputerID) "
                        "VALUES (4,4)");
+
+        userQuery.exec("INSERT INTO scientist_computer_relations "
+                       "(ScientistID, ComputerID) "
+                       "VALUES (5,6)");
+
+        userQuery.exec("INSERT INTO scientist_computer_relations "
+                       "(ScientistID, ComputerID) "
+                       "VALUES (6,7)");
+
+        userQuery.exec("INSERT INTO scientist_computer_relations "
+                       "(ScientistID, ComputerID) "
+                       "VALUES (7,7)");
+
+        userQuery.exec("INSERT INTO scientist_computer_relations "
+                       "(ScientistID, ComputerID) "
+                       "VALUES (8,9)");
+
+        userQuery.exec("INSERT INTO scientist_computer_relations "
+                       "(ScientistID, ComputerID) "
+                       "VALUES (9,8)");
+
+        userQuery.exec("INSERT INTO scientist_computer_relations "
+                       "(ScientistID, ComputerID) "
+                       "VALUES (9,10)");
+
+        userQuery.exec("INSERT INTO scientist_computer_relations "
+                       "(ScientistID, ComputerID) "
+                       "VALUES (10,11)");
+
+        userQuery.exec("INSERT INTO scientist_computer_relations "
+                       "(ScientistID, ComputerID) "
+                       "VALUES (11,12)");
+
         databaseClose(userData);
     }
 }

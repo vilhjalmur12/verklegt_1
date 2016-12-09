@@ -360,7 +360,7 @@ void  Console::printComputers(vector<Computer> computers)
                 buildersString += ", ";
         }
 
-        printf("%-5d%-25s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearForPrinting().c_str(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
+        printf("%-5d%-25s%-20s%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearForPrinting().c_str(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
     }
 }
 /****************************************************************************
@@ -999,7 +999,6 @@ void Console::pushBackScientist()
 
 void Console::createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo)
 {
-
     readFirstName(firstName);
 
     readLastName(lastName);
