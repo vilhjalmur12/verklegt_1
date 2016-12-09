@@ -944,7 +944,6 @@ void Console::pushBackComputer()
 
     }
 }
-
 /******************************************************************
                       pushBackScientist
     Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
@@ -986,19 +985,17 @@ void Console::pushBackScientist()
     }
 }
 
-/******************************************************************
+/**************************************************************************************
                       createScientist
-    Býr til nýjan vísindamann í gagnagrunninn
-            @parameter(string &firstName) - bendir á streng sem inniheldur nafn vísindamanns
-            @parameter(string &lastName) - bendir á streng sem inniheldur nafn vísindamanns
-            @parameter(int &sex) - bendir á streng sem inniheldur kyn vísindamanns
-            @parameter(int &YOB) - bendir á tölu sem inniheldur fæðingarár
-            @parameter(int &YOD) - bendir á tölu sem inniheldur dánarár
-            @parameter(string &furtherInfo) - bendir á streng sem
-                inniheldur auka upplýsingar notanda
-            @parameter(string &nationality) - bendir á streng sem
-                inniheldur þjóðernis geymslu notanda
- ******************************************************************/
+   Býr til nýjan vísindamann í gagnagrunninn
+       @parameter(string &firstName) - bendir á streng sem inniheldur nafn vísindamanns
+       @parameter(string &lastName) - bendir á streng sem inniheldur nafn vísindamanns
+       @parameter(int &sex) - bendir á streng sem inniheldur kyn vísindamanns
+       @parameter(int &YOB) - bendir á tölu sem inniheldur fæðingarár
+       @parameter(int &YOD) - bendir á tölu sem inniheldur dánarár
+       @parameter(string &furtherInfo) - bendir á streng sem inniheldur auka upplýsingar notanda
+       @parameter(string &nationality) - bendir á streng sem inniheldur þjóðernis geymslu notanda
+ **************************************************************************************/
 
 void Console::createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo)
 {
