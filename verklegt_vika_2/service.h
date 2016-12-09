@@ -41,7 +41,9 @@ public:
     void removeScientist(int index);                              //Fjarlægjr vísindamann sem index gefur til kynna
     void moveLastTo(int index);                                   //Færir aftasta vísindamann í stak sem index gefur til kynna
     vector<Scientist> getScientists(string choice = "na");                            //Skilar vector of vísindamönnum í núverandi röð
+    vector<Scientist> getDeletedScientists();
     vector<Computer> getComputers(string choice = "na");
+    vector<Computer> getDeletedComputers();
     vector<cpuType> getTypes(string choice = "t");
     int getNumberOfScientists();                                        //Segir til um hve margir vísindamenn eru í gagnagrunni
     int getNumberOfComputers();
@@ -65,6 +67,8 @@ public:
     bool validBuildYear(int buildYear);
 
 
+
+
     /**********************************************************
                          Vistunarföll
     **********************************************************/
@@ -85,6 +89,13 @@ public:
     void deleteAllComputersFromDatabase();
     void deleteScientist(int ID);
     void deleteComputer(int ID);
+
+    void restoreAllFromDatabase();
+    void restoreAllComputerFromDatabase();
+    void restoreAllScientistFromDatabase();
+
+    void restoreScientist(int ID);
+    void restoreComputer(int ID);
 
 private:
     /**********************************************************
