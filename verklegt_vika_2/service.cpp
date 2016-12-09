@@ -2,7 +2,6 @@
 #include <qsqldatabase.h>
 #include <QSqlQuery>
 
-// Ekki vinna med medlimabreytur heldur database-ið = getScientist stuff
 using namespace std;
 /****************************************************************************
                                Constructor
@@ -111,6 +110,22 @@ bool Service::doesScientistExcist(string firstName, string lastName, string sex,
     return true;
 }
 
+bool Service::doesComputerExcist(string name, string cpuType, int yearBuilt, bool built)
+{
+    vector<Computer> computers = getComputers();
+    Computer tempComputer(name, cpuType, yearBuilt, built);
+
+    for(unsigned int i = 0; i < computers.size(); i++)
+    {
+        if(tempComputer == computers[i])
+        {
+            throwError.invalidName(1);
+            return false;
+        }
+    }
+    return true;
+}
+
 bool Service::appendScientist(string firstName, string lastName, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
 {
     //_scientists = data.getScientists();
@@ -131,16 +146,9 @@ bool Service::appendScientist(string firstName, string lastName, string sex, int
 bool Service::appendComputer (string name, string cpuType, int yearBuilt, bool built)
 {
     Computer tempComputer(name, cpuType, built, yearBuilt);
-   /*
-    for(unsigned int i = 0; i < _computers.size(); i++)
-    {
-        if(tempComputer == _computers[i])
-        {
-            throwError.invalidName(1);
-            return false;
-        }
-    }
-    */
+
+    if(!doesComputerExcist(name, cpuType, yearBuilt, built))
+        return false;
 
     _computers.push_back(tempComputer);  // Líklega óþarfi
 
@@ -154,6 +162,11 @@ void Service::addRelations(int cID, int sID)
     data.addRelations(cID, sID);
 }
 
+void Service::removeRelations(int cID, int sID)
+{
+    data.removeRelations(cID, sID);
+}
+
 void Service::editComputer(int ID, Computer computer)
 {
     data.editComputer(ID, computer);
@@ -164,34 +177,24 @@ void Service::deleteScientist(int ID)
     data.deleteScientist(ID);
 }
 
+void Service::deleteComputer(int ID)
+{
+    data.deleteComputer(ID);
+}
+
 void Service::editScientist(int ID, Scientist scientist)
 {
     data.editScientist(ID, scientist);
 }
 
 /****************************************************************************
-                               removeScientist
-                     Fjarlægir vísindamann skv index
-            @parameter(const int index) - index þess sem eyða á
+                           deleteAllScientistDatabase()
+                     Eyðir og flaggar öllum vísindamönnum úr database-inu
  ****************************************************************************/
-void Service::removeScientist(int index) // Hvernig tek eg id inn her?
-// Remove og EDIT!
-// index er tekid inn i edit() fallinu i console
+
+void Service::deleteAllScientistFromDatabase()
 {
-    //data.remove(int index)
-    QSqlQuery query;
-
-    // Matcha id-id vid thad sem er valid
-    // query.prepare("UPDATE scientists set First Name = );
-    /* query.bindValue(":ID", ID);
-    success = query.exec();
-
-    if(!success)
-    {
-        qDebug() << "Error: user was not found. ";
-    }
-
-    // _scientists.erase(_scientists.begin()+index);*/
+    data.deleteAllFromScientistDatabase();
 }
 
 /****************************************************************************
@@ -257,6 +260,11 @@ vector<Computer> Service::getComputers(string choice)
 int Service::getNumberOfScientists()
 {
     return data.getNumberOfScientistEntries();
+}
+
+int Service::getNumberOfComputers()
+{
+    return data.getNumberOfComputerEntries();
 }
 
 /****************************************************************************

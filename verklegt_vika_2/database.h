@@ -48,12 +48,14 @@ public:
     void adddBuiltComputersToScientists(vector<Scientist> &scientists);
 
     void addRelations(int cID, int sID);
+    void removeRelations(int cID, int sID);
 
     void deleteAllFromDatabase();
     void deleteAllFromComputerDatabase();
     void deleteAllFromScientistDatabase();
 
-    void deleteScientist(int ID/*, Scientist scientist*/);
+    void deleteScientist(int ID);
+    void deleteComputer(int ID);
 
 
 private:

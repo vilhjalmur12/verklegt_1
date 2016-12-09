@@ -33,7 +33,7 @@ public:
                  Operator föll
 **************************************************/
    // friend ostream& operator << (ostream& out, Computer co);       // Prentar út allar uppl um tölvu í eina línu (aðskilið af tab-keypress)
-   // friend bool operator == (Computer lhs, Computer rhs);         // Ber saman upplýsingarnar til að sjá hvor þær séu eins
+    friend bool operator == (Computer lhs, Computer rhs);         // Ber saman upplýsingarnar til að sjá hvor þær séu eins
 
 private:
 /**************************************************

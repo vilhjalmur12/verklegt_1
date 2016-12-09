@@ -236,6 +236,7 @@ void database::initDatabase (const QString& username)
         userQuery.exec("CREATE TABLE scientist_computer_relations"
                        "(scientistID INTEGER, "
                        "computerID INTEGER, "
+                       "'deleted' BOOL DEFAULT (0), "
                        "FOREIGN KEY (computerID) REFERENCES Computers(ID), "
                        "FOREIGN KEY (scientistID) REFERENCES Scientists(ID) "
                        "PRIMARY KEY (computerID, scientistID)) ");
@@ -346,7 +347,6 @@ void database::insertScientist (Scientist scientist, QString tmpUser)
        int tmpYOD = scientist.getYearOfDeath();
        QString tmpNation(scientist.getNationality().c_str());
        QString tmpInfo(scientist.getFurtherInfo().c_str());
-       //bool tmpDeleted(scientist.getDeleted());
 
        QSqlQuery query;
        query.prepare("INSERT INTO scientists"
@@ -359,7 +359,6 @@ void database::insertScientist (Scientist scientist, QString tmpUser)
        query.bindValue(":YOD", tmpYOD);
        query.bindValue(":nation", tmpNation);
        query.bindValue(":info", tmpInfo);
-       //query.bindValue(":deleted", tmpDeleted);
        query.exec();
 
        databaseClose(myData);
@@ -437,7 +436,7 @@ int database::getNumberOfScientistEntries()
   databaseOpen();
 
   QSqlQuery query;
-  query.exec("SELECT MAX(ID), ID FROM scientists");
+  query.exec("SELECT MAX(ID) FROM scientists");
 
   query.next();
   int ID = query.value(0).toInt();
@@ -555,7 +554,9 @@ void database::addBuildersToComputers(vector<Computer> &computers)
                       "LEFT OUTER JOIN scientist_computer_relations r "
                       "ON r.computerID = :ID "
                       "WHERE ID = r.scientistID "
-                      "AND deleted = 0");
+                      "AND r.deleted = 0 "
+                      "AND s.deleted = 0 "
+                      "ORDER BY last_name ");
         query.bindValue(":ID", compID);
         query.exec();
 
@@ -657,7 +658,9 @@ void database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
                       "LEFT OUTER JOIN scientist_computer_relations r "
                       "ON r.ScientistID = :ID "
                       "WHERE ID = r.computerID "
-                      "AND deleted = 0 ");
+                      "AND c.deleted = 0 "
+                      "AND r.deleted = 0 "
+                      "ORDER BY name ");
         query.bindValue(":ID", sciID);
         query.exec();
 
@@ -671,17 +674,35 @@ void database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------
-
 void database::addRelations(int cID, int sID)
+{
+   databaseOpen();
+
+
+   QSqlQuery query;
+   query.prepare("INSERT INTO scientist_computer_relations(scientistID, computerID) "
+                 "VALUES (:sID, :cID)");
+   query.bindValue(":sID", sID);
+   query.bindValue(":cID", cID);
+   query.exec();
+
+
+   databaseClose(myData);
+}
+
+void database::removeRelations(int cID, int sID)
 {
     databaseOpen();
 
+
     QSqlQuery query;
-    query.prepare("INSERT INTO scientist_computer_relations(scientistID, computerID) "
-                  "VALUES (:sID, :cID)");
+    query.prepare("UPDATE scientist_computer_relations "
+                  "SET deleted = 1 "
+                  "WHERE(scientistID = :sID AND computerID = :cID)");
     query.bindValue(":sID", sID);
     query.bindValue(":cID", cID);
     query.exec();
+
 
     databaseClose(myData);
 }
@@ -755,7 +776,7 @@ void database::deleteAllFromComputerDatabase()
     databaseOpen();
 
     QSqlQuery query;
-    query.prepare("DELETE FROM computers");
+    query.prepare("DELETE FROM computers, cpuType");
     query.exec();
 
     databaseClose(myData);
@@ -779,7 +800,7 @@ void database::deleteAllFromScientistDatabase()
 
 /******************************************************************
                           deleteScientist
-             Hægt er að velja hvaða scientist verður eytt
+             Hægt er að velja hvaða vísindamanni verður eytt
  ******************************************************************/
 
 void database::deleteScientist(int ID)
@@ -790,6 +811,28 @@ void database::deleteScientist(int ID)
 
     QSqlQuery query;
     query.prepare("UPDATE scientists "
+                  "SET deleted = :deleted "
+                  "WHERE ID = :ID");
+    query.bindValue(":deleted", doDeleted);
+    query.bindValue(":ID", ID);
+    query.exec();
+
+    databaseClose(myData);
+}
+
+/******************************************************************
+                          deleteComputer
+             Hægt er að velja hvaða tölvu verður eytt
+ ******************************************************************/
+
+void database::deleteComputer(int ID)
+{
+    int doDeleted = 1;
+
+    databaseOpen();
+
+    QSqlQuery query;
+    query.prepare("UPDATE computers "
                   "SET deleted = :deleted "
                   "WHERE ID = :ID");
     query.bindValue(":deleted", doDeleted);
