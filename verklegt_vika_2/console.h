@@ -44,6 +44,8 @@ public:
     void quitMenu();                         //Skjár segir bless þegar þú hættir í forriti
     void viewMenu();                         //Spyr hvort það eigi að birta lista vísindamanna eða tölva
     void insertMenu();                       //Spyr hvort það eigi að bæta við vísindamanni eða tölvu
+    void viewRecycleMenu();
+    void viewRecycleEntryMenu();
     void printTypeMenu(vector<cpuType> type);
     void printPushBackMenu();                //Birtir valmynd þegar nýr vísindamaður er settur í gagnagrunn
     void printEditMenu();                    //Birtir valmynd þegar edit-a á vísindamann
@@ -69,6 +71,7 @@ private:
        Föll sem að setja gögn inn í gagnagrunninn
              eða hjálpa til við það
 **************************************************/
+
     void pushBackScientist();                       //Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
     void pushBackComputer();                        //Býr til nýja tölvu í gagnagrunninn og ýtir henni aftast í listann
     void createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo);  //Býr til nýjan vísindamann til að setjs í gagnagrunninn
@@ -78,11 +81,14 @@ private:
     void addRelations();                            //Notendi hefur valið að vensla saman tölvu og vísindamann og getur nú framkvæmt það
     void addRelationsToCpu(int cIndex);             //Venslum bætt við ákveðna tölvu
     void addRelationsToSci(int sIndex);             //Venslum bætt við ákveðinn vísindamann
-    void recycledBin();                             //
+    void recycledBin();
+    void recycleScientists();
+    void recycleComputers();
     void removeRelations();
     int getScID();
     int getCpuID();
     void idInput(unsigned int &index, unsigned int size);
+    void idInput(unsigned int &index, unsigned int size, bool canBeZero);
     void editOrDeleteInput(vector<int> indexes, int &index, int getNumber);
     void printRelationMenu();
     void readCpuName(string &name);
@@ -102,6 +108,8 @@ private:
     void printCpuPushBackMenu();                                                                                    //Birtir valmynd þegar ný tölva er settur í gagnagrunn
     void editMenu();                                                                                                //Spyr hvort það eigi að breyta vísindamanni eða tölvu
     void deleteMenu();                                                                                              //Spyr hvort það eigi að eyða vísindamanni eða tölvu
+    string getInput(string opt1, string opt2, string opt3);
+    string getInput(string opt1, string opt2, string opt3, string opt4);
 
 /**************************************************
               Hjálparföll við search

@@ -24,7 +24,9 @@ public:
     bool getUser (const QString& username, const QString& password);
     void createUser (const QString& username, const QString& password, const QString& firstName, const QString& lastName);
     vector<Scientist> pullScientists(string choice);
+    vector<Scientist> pullDeletedScientists();
     vector<Computer> pullComputers(string choice);
+    vector<Computer> pullDeletedComputers();
     vector<cpuType> pullTypes(string order);
     void insertScientist (Scientist scientist/*, QString tmpUser*/);
     void insertComputer (Computer computer, QString tmpUser);
@@ -58,6 +60,13 @@ public:
 
     void deleteScientist(int ID);
     void deleteComputer(int ID);
+
+    void restoreAllFromDatabase();
+    void restoreAllFromComputerDatabase();
+    void restoreAllFromScientistDatabase();
+
+    void restoreScientist(int ID);
+    void restoreComputer(int ID);
 
 
 private:
