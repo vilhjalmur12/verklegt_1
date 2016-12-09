@@ -487,6 +487,13 @@ void Console::edit()
     scientistService.editScientist(ID, scientist);
 }
 
+/******************************************************************************
+                         editComputer
+    Birtir edit valmynd fyrir tölvur og tekur við upplýsingum um
+    hvort notandi vill velja tölvu úr lista eða leita í
+    gagnagrunni að tölvu.
+ ******************************************************************************/
+
 void Console::editComputer()
 {
     string choice = "l";
@@ -557,9 +564,8 @@ void Console::editComputer()
 
 /******************************************************************************
                          search
-    Birtir leitar valmynd og tekur við leitar streng. Birtir síðan töflu af
-    vísindamönnum ásamt index-um og valmynd um þar sem notandi ákveður hvort
-    eigi að edit-a, eyða, leita aftur, fara aftur á aðvalmynd eða hætta keyrslu.
+    Birtir leitar valmynd og tekur við leitar streng. Leitar í öllum gagnagrunninum
+    bæði, tölvum og vísindamönnum.
  ******************************************************************************/
 
 void Console::search()
@@ -1458,39 +1464,47 @@ void  Console::printComputers(vector<Computer> computers)
 void Console::viewOperation()
 {
     string cont;
+    string tmp;
 
     do
     {
-        viewMenu();
-        cout << "-> ";
-        string choice_made = choice();
+        do
+        {
+            viewMenu();
+            cout << "-> ";
+            string choice_made = choice();
 
-        if (choice_made == "s")
-        {
-            string str;
-            sorting_menu();
-            str = stringChoice();
+            if (choice_made == "s")
+            {
+                string str;
+                sorting_menu();
+                str = stringChoice();
 
-            sorting(str);
-            cont = continueFunction();
-        }
-        else if (choice_made == "c")
-        {
-            string str;
-            cpuSortingMenu();
-            str = stringChoice();
+                sorting(str);
+                cont = continueFunction();
+                tmp = "n";
+            }
+            else if (choice_made == "c")
+            {
+                string str;
+                cpuSortingMenu();
+                str = stringChoice();
 
-            cpuSorting(str);
-            cont = continueFunction();
-        }
-        else if (choice_made == "q")
-        {
-            quit();
-        }
-        else
-        {
-            cout << "Please enter a valid command!" << endl;
-        }
+                cpuSorting(str);
+                cont = continueFunction();
+                tmp = "n";
+            }
+            else if (choice_made == "q")
+            {
+                quit();
+                tmp = "n";
+            }
+            else
+            {
+                cout << "Please enter a valid command!" << endl;
+                tmp = "y";
+            }
+        }while(tmp == "y");
     }while(cont == "y");
 }
 
