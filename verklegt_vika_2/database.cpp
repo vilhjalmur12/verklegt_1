@@ -611,6 +611,11 @@ void Database::editComputer(int ID, Computer computer)
     databaseClose(myData);
 }
 
+/******************************************************************
+                      editScientist
+     Edit fall fyrir vísindamann.
+ ******************************************************************/
+
 void Database::editScientist(int ID, Scientist scientist)
 {
     databaseOpen();
@@ -634,7 +639,11 @@ void Database::editScientist(int ID, Scientist scientist)
     databaseClose(myData);
 }
 
-//------------------------------------------------------------------------------------------------Ný Search Fölll---------------------------------
+/******************************************************************
+                      getNumberOfComputerEntries
+     Finnur fjölda af tölvum.
+ ******************************************************************/
+
 int Database::getNumberOfComputerEntries()
 {
     databaseOpen();
@@ -649,6 +658,11 @@ int Database::getNumberOfComputerEntries()
 
     return ID;
 }
+
+/******************************************************************
+                      getNumberOfScientistEntries
+     Finnur fjölda af vísindamönnum.
+ ******************************************************************/
 
 int Database::getNumberOfScientistEntries()
 {
@@ -665,12 +679,27 @@ int Database::getNumberOfScientistEntries()
   return ID;
 }
 
+/******************************************************************
+                      generalizeQuery
+     Tekur við leitar streng frá notenda og breytir í Qstring.
+     @parameter(string query) - Leitar strengur frá notanda
+     @return(QString searchQuery) - Qstrengur af leitarstreng
+ ******************************************************************/
+
 QString Database::generalizeQuery(string query)
 {
     string tempSQuery = "%"+ query +"%";
     QString searchQuery (tempSQuery.c_str());
     return searchQuery;
 }
+
+/******************************************************************
+                      searchData
+     Tekur við leitar streng frá notenda, ákveður hvað á að gera við hann.
+     @parameter(vector<Scientist> &scientists) - Vector af bendum á tölvur
+     @parameter(vector<Computer> &computers) - Vector af bendum á tölvur
+     @parameter(QSqlQuery& query) - QSqlQuery af leitarstreng
+ ******************************************************************/
 
 void Database::searchData(vector<Scientist> &scientists, vector<Computer> &computers, string sQuery)
 {
@@ -696,6 +725,13 @@ void Database::searchData(vector<Scientist> &scientists, vector<Computer> &compu
     databaseClose(myData);
 }
 
+/******************************************************************
+                      searchComputersForSubstring
+     Leitar í tölvum af leitarstreng
+     @parameter(vector<Computer> &computers) - Vector af bendum á tölvur
+     @parameter(QSqlQuery& query) - QSqlQuery af leitarstreng
+ ******************************************************************/
+
 void Database::searchComputersForSubstring(vector<Computer> &computers, const string sQuery)
 {
     QString searchQuery = generalizeQuery(sQuery);
@@ -714,6 +750,13 @@ void Database::searchComputersForSubstring(vector<Computer> &computers, const st
 
     addFoundComputers(query, computers);
 }
+
+/******************************************************************
+                      searchComputersForInt
+     Leitar í tölvum af integer
+     @parameter(vector<Computer> &computers) - Vector af bendum á tölvur
+     @parameter(QSqlQuery& query) - QSqlQuery af interger
+ ******************************************************************/
 
 void Database::searchComputersForInt(vector<Computer> &computers, const int iQuery)
 {
@@ -734,7 +777,7 @@ void Database::searchComputersForInt(vector<Computer> &computers, const int iQue
 }
 
 /******************************************************************
-                      addFoundScientists
+                      addFoundComputers
      Bætir tölvu sem fannst við leit í vektor
      @parameter(QSqlQuery& query) - Bendir á QSqlQuery af leitarstreng
      @parameter(vector<Scientist> &scientists) - Vector af bendum á vísindamenn
