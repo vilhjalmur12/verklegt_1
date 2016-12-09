@@ -26,7 +26,7 @@ public:
     vector<Scientist> pullScientists(string choice);
     vector<Computer> pullComputers(string choice);
     vector<cpuType> getCpuTypes();
-    void insertScientist (Scientist scientist, QString tmpUser);
+    void insertScientist (Scientist scientist/*, QString tmpUser*/);
     void insertComputer (Computer computer, QString tmpUser);
 
     void editScientist(int ID, Scientist scientist);

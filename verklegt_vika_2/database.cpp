@@ -336,9 +336,10 @@ vector<cpuType> database::getCpuTypes()
     return cpu;
 }
 
-void database::insertScientist (Scientist scientist, QString tmpUser)
+void database::insertScientist (Scientist scientist/*, QString tmpUser*/)
 {
-       user = tmpUser;
+       //user = tmpUser;
+
        databaseOpen();
 
        QString tmpFirstName(scientist.getFirstName().c_str());
@@ -350,9 +351,9 @@ void database::insertScientist (Scientist scientist, QString tmpUser)
        QString tmpInfo(scientist.getFurtherInfo().c_str());
 
        QSqlQuery query;
-       query.prepare("INSERT INTO scientists"
-                     "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information, Deleted)"
-                     "VALUES (:firstName, :lastName, :gender, :YOB, :YOD, :nation, :info), :deleted");
+       query.prepare("INSERT INTO scientists "
+                     "(First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information) "
+                     "VALUES (:firstName, :lastName, :gender, :YOB, :YOD, :nation, :info)");
        query.bindValue(":firstName", tmpFirstName);
        query.bindValue(":lastName", tmpLastName);
        query.bindValue(":gender", tmpGender);
@@ -377,7 +378,7 @@ void database::insertComputer (Computer computer, QString tmpUser)
 
        QSqlQuery query;
        query.prepare("INSERT INTO computers"
-                     "(Name, Year_of_build, CPU_type_ID, built_or_not)"
+                     "(Name, Year_of_build, CPU_type_ID, built_or_not) "
                      "VALUES (:name, :YOB, :type, :BON)");
        query.bindValue(":name", tmpName);
        query.bindValue(":YOB", tmpYB);
@@ -790,10 +791,14 @@ void database::deleteAllFromComputerDatabase()
 
 void database::deleteAllFromScientistDatabase()
 {
+    int doDeleted = 1;
+
     databaseOpen();
 
     QSqlQuery query;
-    query.prepare("DELETE FROM scientists");
+    query.prepare("UPDATE scientists"
+                  "SET deleted = :deleted");
+    query.bindValue(":deleted", doDeleted);
     query.exec();
 
     databaseClose(myData);
