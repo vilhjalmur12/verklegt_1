@@ -20,7 +20,8 @@ activityLog::~activityLog()
 void activityLog::openInStream()
 {
     string tmpUser = user;
-    tmpUser.erase(tmpUser.begin(), tmpUser.end());
+    tmpUser.erase(tmpUser.begin() + 0);
+    tmpUser.erase(tmpUser.begin() + tmpUser.size() - 1);
     string logName = "." + tmpUser + "_activity";
 
     activityInput.open(logName);
@@ -35,7 +36,8 @@ void activityLog::openInStream()
 void activityLog::openOutStream()
 {
     string tmpUser = user;
-    tmpUser.erase(tmpUser.begin(), tmpUser.end());
+    tmpUser.erase(tmpUser.begin() + 0);
+    tmpUser.erase(tmpUser.begin() + tmpUser.size() - 1);
     string logName = "." + tmpUser + "_activity";
     activityOutput.open(logName, std::ios::app);
     if (activityOutput.fail())
