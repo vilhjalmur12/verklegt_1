@@ -700,7 +700,7 @@ void Console::quit()
 {
     quitMenu();
 
-    scientistService.deleteAllFromDatabase();
+    //scientistService.deleteAllFromDatabase();
     //  scientistService.saveData();
 
     // cout << scientistService.getErrorString();
@@ -1780,7 +1780,7 @@ void Console::deleteOperation()
         }
         else if (choice_made == "as" || choice_made == "ac" || choice_made == "a" )
         {
-            deleteOperationHelper(choice_made);
+            //deleteOperationHelper(choice_made);
         }
         else
         {
@@ -1851,3 +1851,4 @@ void Console::deleteOperationHelper(string choice_made)
         cout << "Please enter a valid command!" << endl;
     }
 }
+
