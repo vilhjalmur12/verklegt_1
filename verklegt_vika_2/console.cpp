@@ -946,7 +946,7 @@ Computer Console::makeNewComputer()
                       askToRelate
     Spyr notandan hvort hann vilji tengja tölvuna/vísindamanninn við
     vísindamann/tölvu og gerir villutékk
-    @return(string option)
+    @return(string option) - tekur inn hvaða streng á að prenta út
  ******************************************************************/
 
 string Console::askToRelate(string option)
@@ -1087,13 +1087,13 @@ void Console::relate()
 {
     string choice;
     printRelationMenu();
-    do //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    do
     {
         cout << "-> ";
         cin >> choice;
         if(choice != "c" && choice != "d" && choice != "q")
             cout << "Please enter a valid command!" << endl;
-    }while(choice != "c" && choice != "d" && choice != "q");/////////////////////////////////////////////////////////////////////////////////////
+    }while(choice != "c" && choice != "d" && choice != "q");
 
     if(choice == "c")
         addRelations();
@@ -1272,7 +1272,8 @@ void Console::idInput(unsigned int &index, unsigned int size)
 {
     do
     {
-        cout << "-> ";
+        cout << endl;
+        cout << "Nr. -> ";
         cin.clear();
         cin.ignore();
 
@@ -1296,7 +1297,8 @@ void Console::idInputCanBeZero(unsigned int &index, unsigned int size)
 {
     do
     {
-        cout << "-> ";
+        cout << endl;
+        cout << "Nr. -> ";
         cin.clear();
         cin.ignore();
 
@@ -1724,13 +1726,13 @@ void Console::readNationality(string &nationality)
 
 void Console::editOrDeleteInput(vector<int> indexes, int &index, int getNumber)
 {
-    do/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    do
     {
         cin.ignore();
         cin >> index;
         if(index <= 0 || index > getNumber || cin.fail())
             cout << "Please insert valid index!" << endl;
-    }while(index <= 0 || index > getNumber || cin.fail());//////////////////////////////////////////////////////////////////////////////////////////////////////////
+    }while(index <= 0 || index > getNumber || cin.fail());
 
     index -= 1;
 
