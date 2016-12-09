@@ -700,7 +700,6 @@ void Console::quit()
 {
     quitMenu();
 
-    scientistService.deleteAllFromDatabase();
     //  scientistService.saveData();
 
     // cout << scientistService.getErrorString();
