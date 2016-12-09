@@ -252,6 +252,18 @@ vector<Computer> Service::getComputers(string choice)
     return data.pullComputers(columnOfChoice);
 }
 
+vector<cpuType> Service::getTypes(string choice)
+{
+    if(choice == "t")
+        choice = "type";
+    return data.pullTypes(choice);
+}
+
+void Service::addType(string type)
+{
+    data.insertType(type);
+}
+
 
 /****************************************************************************
                                getLengthOfData()
