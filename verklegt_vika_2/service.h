@@ -51,6 +51,7 @@ public:
                          Villucheckar föll
     **********************************************************/
     bool validName(string& name);                                 //segir til um hvort nafn sé löglegt
+    bool validCpuName(string &name);
     bool validSex(string& sex);                                   //segir til um hvort kyn sé löglegt
     bool validYears(int birthYear, int deathYear);                //segir til um hvort ár séu lögleg
     bool validDeathYear(string deathYear);                        //segir til um hvort dánarár sé löglegt
