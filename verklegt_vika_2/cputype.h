@@ -13,10 +13,19 @@ class cpuType
 public:
     cpuType();
     cpuType(int id, string type);
+    virtual ~cpuType();
+
+/***********************************************************
+       Föll til að ná upplýsingum um tegundir tölvanna
+***********************************************************/
+
     int getId ();
     string getType ();
 
 private:
+/***********************************************************
+                        Meðlimabreytur
+***********************************************************/
     int _ID;
     string _type;
 };

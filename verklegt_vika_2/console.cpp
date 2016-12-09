@@ -376,7 +376,6 @@ void Console::callUser ()
     bool runProgram = false;
 
     // scientistService.deleteAllFromDatabase();
-    // scientistService.deleteAllScientistsFromDatabase();
     // scientistService.deleteAllComputersFromDatabase();
     welcome();
 
@@ -447,6 +446,7 @@ void Console::callUser ()
             {
                 cout << "Invalid user or password" << endl << endl;
             }
+
         }
         else if (action == "q")
         {
@@ -710,6 +710,9 @@ void Console::quit()
 {
     quitMenu();
 
+    //scientistService.deleteAllScientistsFromDatabase();
+    //scientistService.deleteAllComputersFromDatabase();
+    scientistService.deleteAllFromDatabase();
     //  scientistService.saveData();
 
     // cout << scientistService.getErrorString();

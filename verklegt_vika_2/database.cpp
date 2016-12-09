@@ -938,11 +938,11 @@ void database::deleteAllFromDatabase()
 void database::deleteAllFromComputerDatabase()
 {
     int doDeleted = 1;
+
     databaseOpen();
 
     QSqlQuery query;
-    query.prepare("UPDATE computers "
-                  "SET deleted = :deleted " );
+    query.prepare("UPDATE computers SET deleted = :deleted " );
     query.bindValue(":deleted", doDeleted);
     query.exec();
 
@@ -961,8 +961,7 @@ void database::deleteAllFromScientistDatabase()
     databaseOpen();
 
     QSqlQuery query;
-    query.prepare("UPDATE scientists "
-                  "SET deleted = :deleted");
+    query.prepare("UPDATE scientists SET Deleted = :deleted " );
     query.bindValue(":deleted", doDeleted);
     query.exec();
 
