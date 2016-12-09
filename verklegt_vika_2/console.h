@@ -10,6 +10,8 @@
 
 using namespace std;
 
+const int maxBuildhYear = 200000000;
+
 class Console
 {
 public:
@@ -44,7 +46,7 @@ public:
     void quitMenu();                //Skjár segir bless þegar þú hættir í forriti
     void viewMenu();                //Spyr hvort það eigi að birta lista vísindamanna eða tölva
     void insertMenu();              //Spyr hvort það eigi að bæta við vísindamanni eða tölvu
-    void typeMenu(vector<cpuType> type);
+    void printTypeMenu(vector<cpuType> type);
 
 /**************************************************
                    Sorting föll
@@ -73,6 +75,7 @@ private:
     void pushBackComputer();
     void createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo);  //Býr til nýjan vísindamann
     void createComputer(string &name, string &cpuType, int &yearBuilt, bool &built);
+    void insertNewType();
     void relate();
     void addRelations();
     void addRelationsToCpu(int cIndex);
