@@ -19,6 +19,11 @@ CpuType::CpuType(int id, string type)
     _type = type;
 }
 
+CpuType::CpuType(string type)
+{
+    _type = type;
+}
+
 /****************************************************************************
                                 getID
         Dregur fram ID tölvutegundar úr meðlimabreytum og skilar því til baka

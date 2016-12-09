@@ -133,6 +133,8 @@ bool Service::appendScientist(string firstName, string lastName, string sex, int
         return false;
 
     _scientists.push_back(tempScientist);  // Líklega óþarfi
+    activityLog _activityLog(data.pullUser());
+    _activityLog.pushActivity("insert", tempScientist);
 
     data.insertScientist(tempScientist/*, qUser*/); //--> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
 
@@ -147,7 +149,8 @@ bool Service::appendComputer (string name, string cpuType, int yearBuilt, bool b
         return false;
 
     _computers.push_back(tempComputer);  // Líklega óþarfi
-
+    activityLog _activityLog(data.pullUser());
+    _activityLog.pushActivity("insert", tempComputer);
     data.insertComputer(tempComputer, qUser); //--> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
 
     return true;
@@ -311,6 +314,9 @@ vector<CpuType> Service::getTypes(string choice)
 
 void Service::addType(string type)
 {
+   CpuType _cpu(type);
+    activityLog _activityLog(user);
+    _activityLog.pushActivity("insert", _cpu);
     data.insertType(type);
 }
 

@@ -618,6 +618,8 @@ void Console::edit()
     cout << endl << endl << "--------Insert new Information:---------" << endl;
     int ID = scientists[index].getID();
     Scientist scientist = makeNewScientist();
+    activityLog _activityLog(user.toUtf8().constData());
+    _activityLog.pushActivity("edit", scientists[index], scientist);
     scientistService.editScientist(ID, scientist);
 }
 
@@ -681,6 +683,8 @@ void Console::editComputer()
     cout << endl << endl << "--------Insert new Information:---------" << endl;
     int ID = computers[index].getID();
     Computer computer = makeNewComputer();
+    activityLog _activityLog(user.toUtf8().constData());
+    _activityLog.pushActivity("edit", computers[index], computer);
     scientistService.editComputer(ID, computer);
 }
 
@@ -946,15 +950,16 @@ Computer Console::makeNewComputer()
                       askToRelate
     Spyr notandan hvort hann vilji tengja tölvuna/vísindamanninn við
     vísindamann/tölvu og gerir villutékk
-    @return(string option)
+    @return(string option) - tekur inn hvaða streng á að prenta út
  ******************************************************************/
 
 string Console::askToRelate(string option)
 {
     string choice;
+    string tmpOption = option;
     do
     {
-        cout << "Would you like to relate the computer to a scientist? (y/n)" << endl << "-> ";
+        cout << option << endl << "-> ";
         cin >> choice;
 
         if((choice != "y" && choice != "n") || cin.fail())
@@ -1087,13 +1092,13 @@ void Console::relate()
 {
     string choice;
     printRelationMenu();
-    do //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    do
     {
         cout << "-> ";
         cin >> choice;
         if(choice != "c" && choice != "d" && choice != "q")
             cout << "Please enter a valid command!" << endl;
-    }while(choice != "c" && choice != "d" && choice != "q");/////////////////////////////////////////////////////////////////////////////////////
+    }while(choice != "c" && choice != "d" && choice != "q");
 
     if(choice == "c")
         addRelations();
@@ -1272,7 +1277,8 @@ void Console::idInput(unsigned int &index, unsigned int size)
 {
     do
     {
-        cout << "-> ";
+        cout << endl;
+        cout << "Nr. -> ";
         cin.clear();
         cin.ignore();
 
@@ -1296,7 +1302,8 @@ void Console::idInputCanBeZero(unsigned int &index, unsigned int size)
 {
     do
     {
-        cout << "-> ";
+        cout << endl;
+        cout << "Nr. -> ";
         cin.clear();
         cin.ignore();
 
@@ -1352,11 +1359,11 @@ int Console::getScID()
 
 void Console::readCpuName(string &name)
 {
+    cin.ignore();
     do
     {
         cout << scientistService.getErrorString();
         cout << "Name: ";
-        cin.ignore();
         do
         {
             getline(cin, name);
@@ -1398,6 +1405,7 @@ void Console::readCpuType(string &cpuType)
     vector<CpuType> types = scientistService.getTypes();
     printTypeMenu(types);
     string choice;
+    int size = (int) types.size();
 
     do
     {
@@ -1412,10 +1420,12 @@ void Console::readCpuType(string &cpuType)
         }
         else if(!scientistService.validDeathYear(choice))
         {
-            cout << "Please insert valid input!" << endl << "-> ";
+            cout << "Please "
+                    ""
+                    " valid input!" << endl << "-> ";
             continue;
         }
-        else if(stoi(choice) > 0 && stoi(choice) <= types.size())
+        else if(stoi(choice) > 0 && stoi(choice) <= size)
         {
             cpuType = types[stoi(choice)-1].getType();
         }
@@ -1724,13 +1734,13 @@ void Console::readNationality(string &nationality)
 
 void Console::editOrDeleteInput(vector<int> indexes, int &index, int getNumber)
 {
-    do/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    do
     {
         cin.ignore();
         cin >> index;
         if(index <= 0 || index > getNumber || cin.fail())
             cout << "Please insert valid index!" << endl;
-    }while(index <= 0 || index > getNumber || cin.fail());//////////////////////////////////////////////////////////////////////////////////////////////////////////
+    }while(index <= 0 || index > getNumber || cin.fail());
 
     index -= 1;
 
@@ -1914,6 +1924,7 @@ void Console::editOperation()
 
 void Console::deleteOperation()
 {
+    string tmpUser = user.toUtf8().constData();
     vector<Scientist> scientists = scientistService.getScientists();
     vector<Computer> computers = scientistService.getComputers();
     string tmp = "n";
@@ -1932,6 +1943,8 @@ void Console::deleteOperation()
 
             idInput(ID, scientists.size());
 
+            activityLog _activityLog(tmpUser);
+            _activityLog.pushActivity("delete", scientists[ID-1]);
             ID = scientists[ID-1].getID();
             scientistService.deleteScientist(ID);
             tmp = "n";
@@ -1941,8 +1954,11 @@ void Console::deleteOperation()
             printComputers(computers);
 
             unsigned int ID;
-
             idInput(ID, computers.size());
+            cout << "Nr. -> ";
+            cin >> ID;
+            activityLog _activityLog(tmpUser);
+            _activityLog.pushActivity("delete", computers[ID-1]);
 
             ID = computers[ID-1].getID();
             scientistService.deleteComputer(ID);

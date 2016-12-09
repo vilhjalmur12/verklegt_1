@@ -28,7 +28,9 @@ void Database::databaseClose(QSqlDatabase &data)
 // ætti að fara inn í constructor: const QString& path ef við viljum útbúa spes path.
 void Database::getData(QString username, vector<Scientist> &scien)
 {
+
    user = username;
+   vector<Scientist> newScien =  scien;
    myData = QSqlDatabase::addDatabase("QSQLITE");
    myData.setDatabaseName("./" + user + ".sqlite");
 
@@ -44,7 +46,7 @@ void Database::getData(QString username, vector<Scientist> &scien)
    }
 }
 
-void Database::getData(string selection, string table)
+void Database::getData()
 {
    myData = QSqlDatabase::addDatabase("QSQLITE");
    myData.setDatabaseName("./" + user + ".sqlite");
@@ -182,15 +184,12 @@ bool Database::getUser(const QString& username, const QString& password)
         {
 
             databaseClose(myData);
-            getData("selection", "table");
+            getData();
             return true;
-        }
-        else
-        {
-            databaseClose(myData);
-            return false;
-        }
+        }      
     }
+    databaseClose(myData);
+    return false;
 }
 
 void Database::createUser(const QString& username, const QString& password, const QString& firstName, const QString& lastName)
@@ -1175,4 +1174,9 @@ void Database::restoreComputer(int ID)
     query.exec();
 
     databaseClose(myData);
+}
+
+string Database::pullUser()
+{
+    return user.toUtf8().constData();
 }
