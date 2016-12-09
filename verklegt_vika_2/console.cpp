@@ -37,14 +37,14 @@ void Console::viewOrInsert()
     cout << "-----------------------------------------" << endl;
     cout << "|           Choose procedure:           |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|            v - for Viewing            |" << endl;
-    cout << "|           i - for Inserting           |" << endl;
-    cout << "|           s - for Searching           |" << endl;
-    cout << "|            e - for Editing            |" << endl;
-    cout << "|           d - for Deleting            |" << endl;
-    cout << "|           r - for Relating            |" << endl;
+    cout << "|            v - for viewing            |" << endl;
+    cout << "|           i - for inserting           |" << endl;
+    cout << "|           s - for searching           |" << endl;
+    cout << "|            e - for editing            |" << endl;
+    cout << "|           d - for deleting            |" << endl;
+    cout << "|           r - for relating            |" << endl;
     cout << "|         b - for recycled Bin          |" << endl;
-    cout << "|           q - for Quitting            |" << endl;
+    cout << "|           q - for quitting            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
