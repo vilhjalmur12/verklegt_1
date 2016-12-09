@@ -196,8 +196,11 @@ void Console::deleteMenu()
     cout << "-----------------------------------------" << endl;
     cout << "|       What would you like to do?      |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|         s - delete a scientist        |" << endl;
     cout << "|         c - delete a computer         |" << endl;
+    cout << "|         s - delete a scientist        |" << endl;
+    cout << "|       ac - delete all computers       |" << endl;
+    cout << "|       as - delete all scientists      |" << endl;
+    cout << "|            a - delete all             |" << endl;
     cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -1769,7 +1772,18 @@ void Console::deleteOperation()
         {
             quit();
             tmp = "n";
-
+        }
+        else if (choice_made == "as")
+        {
+            //TODO: delete all scientists
+        }
+        else if (choice_made == "ac")
+        {
+            //TODO: delete all computers
+        }
+        else if (choice_made == "a")
+        {
+            //TODO: delete all
         }
         else
         {
