@@ -1152,8 +1152,20 @@ int Console::getCpuID()
     vector<Computer> computers = scientistService.getComputers();
 
     printComputers(computers);
-    cout << "Please insert the index of your computer of choice: " << endl << "-> ";
-    cin >> cIndex;
+    cout << "Please insert the index of your computer of choice: " << endl;
+    do
+    {
+        cout << "-> ";
+        cin.ignore();
+
+        cin >> cIndex;
+
+        if(cin.fail() || cIndex < 1 || cIndex > computers.size())
+        {
+            cout << "Please insert valid index!" << endl;
+        }
+
+    }while(cin.fail());
     return computers[cIndex-1].getID();
 }
 
@@ -1169,8 +1181,21 @@ int Console::getScID()
     vector<Scientist> scientists = scientistService.getScientists();
 
     printScientists(scientists);
-    cout << "Please insert the index of your scientist of choice: " << endl << "-> ";
-    cin >> sIndex;
+    cout << "Please insert the index of your scientist of choice: " << endl;
+    do
+    {
+        cout << "-> ";
+        cin.ignore();
+
+        cin >> sIndex;
+
+        if(cin.fail() || sIndex < 1 || sIndex > scientists.size())
+        {
+            cout << "Please insert valid index!" << endl;
+            cin.clear();
+        }
+
+    }while(cin.fail() || sIndex < 1 || sIndex >= scientists.size());
     return scientists[sIndex-1].getID();
 }
 
