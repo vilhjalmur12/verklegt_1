@@ -369,6 +369,7 @@ void Console::callUser ()
     string password;
     string action;
     bool runProgram = false;
+    int safeCount = 0;
 
     welcome();
     toContinue();
@@ -428,7 +429,6 @@ void Console::callUser ()
             QString qPassword(password.c_str());
 
             bool foundUser = data.getUser(user, qPassword);
-            int safeCount;
             string invalid = "Invalid user or password";
 
             if (foundUser == true)
@@ -443,6 +443,11 @@ void Console::callUser ()
                 {
                     bool brute = true;
                     errorLog _errorLog(tmpUser, invalid, brute);
+                    _errorLog.pushError();
+                }
+                else
+                {
+                    errorLog _errorLog(tmpUser, invalid);
                     _errorLog.pushError();
                 }
             }
