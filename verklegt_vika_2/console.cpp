@@ -920,7 +920,6 @@ void Console::pushBackScientist()
 
 void Console::createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo)
 {
-
     readFirstName(firstName);
 
     readLastName(lastName);
@@ -932,12 +931,10 @@ void Console::createScientist(string &firstName, string &lastName, string &sex, 
     readFurtherInfo(furtherInfo);
 
     readYears(YOB, YOD);
-
 }
 
 void Console::createComputer(string &name, string &cpuType, int &yearBuilt, bool &built)
 {
-
     readCpuName(name);
 
     readYearBuilt(yearBuilt);
@@ -945,7 +942,6 @@ void Console::createComputer(string &name, string &cpuType, int &yearBuilt, bool
     readCpuType(cpuType);
 
     readBuilt(built);
-
 }
 
 void Console::relate()

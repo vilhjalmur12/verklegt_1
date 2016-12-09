@@ -270,6 +270,26 @@ void database::initDatabase (const QString& username)
                           "(Type)"
                           "VALUES ('Transistor Machine')");
 
+        userQuery.exec("INSERT INTO cpuType "
+                          "(Type)"
+                          "VALUES ('Mainframe computer')");
+
+        userQuery.exec("INSERT INTO cpuType "
+                          "(Type)"
+                          "VALUES ('Mini computer')");
+
+        userQuery.exec("INSERT INTO cpuType "
+                          "(Type)"
+                          "VALUES ('Personal computer')");
+
+        userQuery.exec("INSERT INTO cpuType "
+                          "(Type)"
+                          "VALUES ('Home computer')");
+
+        userQuery.exec("INSERT INTO cpuType "
+                          "(Type)"
+                          "VALUES ('Calculator')");
+
         userQuery.exec("INSERT INTO computers "
                           "(Name, CPU_type_ID, built_or_not)"
                           "VALUES ('Analytical engine', 1, 0)");
@@ -285,6 +305,38 @@ void database::initDatabase (const QString& username)
         userQuery.exec("INSERT INTO computers "
                           "(Name, Year_of_build, CPU_type_ID, built_or_not) "
                           "VALUES ('Difference Engine', 1991, 1, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('The Abacus', -2000, 8, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('Colossus', 1944, 2, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('The Manchester Baby', 1948, 2, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('IBM System 360', 1964, 4, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('DEC PDP-8', 1965, 5, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('IBM PC', 1981, 6, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('Sinclair ZX81', 1981, 7, 1)");
+
+        userQuery.exec("INSERT INTO computers "
+                          "(Name, Year_of_build, CPU_type_ID, built_or_not) "
+                          "VALUES ('Apple Macintosh', 1981, 6, 1)");
 
         userQuery.exec("INSERT INTO scientist_computer_relations "
                        "(ScientistID, ComputerID) "
