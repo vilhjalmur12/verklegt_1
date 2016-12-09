@@ -274,8 +274,8 @@ void Console::typeMenu(vector<cpuType> type)
                 break;
             }
     }
-    cout << "|                                             |" << endl;
-    cout << "-----------------------------------------------" << endl;
+    cout << "|                                                                 |" << endl;
+    cout << "-------------------------------------------------------------------" << endl;
 }
 
 void Console::printRelationMenu()
@@ -964,6 +964,7 @@ void Console::readCpuType(string &cpuType)
     do
     {
         cout << scientistService.getErrorString();
+        // setja menuinn hér
         cout << "Computer Type: ";
         do
         {

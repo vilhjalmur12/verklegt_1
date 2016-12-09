@@ -9,6 +9,7 @@
 #include "computer.h"
 #include <qsqldatabase.h>
 #include <QDebug>
+#include "cputype.h"
 
 
 using namespace std;
@@ -26,6 +27,7 @@ public:
     vector<Computer> pullComputers(string choice);
     void insertScientist (Scientist scientist, QString tmpUser);
     void insertComputer (Computer computer, QString tmpUser);
+    vector<cpuType> getCpuTypes();
 
     void editScientist(int ID, Scientist scientist);
     void editComputer(int ID, Computer computer);

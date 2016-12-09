@@ -1,4 +1,4 @@
-#include "database.h"
+#include <database.h>
 #include <iostream>
 #include "scientist.h"
 #include <vector>
@@ -305,6 +305,33 @@ void database::initDatabase (const QString& username)
                        "VALUES (4,4)");
         databaseClose(userData);
     }
+}
+
+vector<cpuType> database::getCpuTypes()
+{
+    databaseOpen();
+
+    vector<cpuType> cpu;
+    cpuType tmpCpu;
+    QString QCpu;
+    string tmpCpuString;
+    int tmpID;
+    QSqlQuery query;
+
+    query.exec("SELECT * From cpuType");
+
+    while (query.next())
+    {
+        tmpID = query.value(0).toInt();
+        QCpu = query.value(1).toString();
+        tmpCpuString = QCpu.toUtf8().constData();
+        cpuType tmpCpu(tmpID, tmpCpuString);
+
+        cpu.push_back(tmpCpu);
+    }
+    databaseClose(myData);
+
+    return cpu;
 }
 
 void database::insertScientist (Scientist scientist, QString tmpUser)
