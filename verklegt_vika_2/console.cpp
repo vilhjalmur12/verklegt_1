@@ -1045,10 +1045,10 @@ void Console::readCpuType(string &cpuType)
         cout << "Computer Type: ";
         do
         {
-        cin >> cpuType;
+        cin >> cpuType;  //-> ÞARF AÐ KASTA TÍPU YFIR Í INT TIL AÐ SAMSVARA CPUTYPE TÖFLU Í GAGNAGRUNNI!
         }while(cpuType.length()<1);
 
-    }while(!scientistService.validName(cpuType));
+    }while(!scientistService.validName(cpuType)); //-> ÚTFÆRA TIL ÞESS AÐ PASSA UPP Á TÍPUR
 }
 
 void Console::readYearBuilt(int& yearBuilt)
