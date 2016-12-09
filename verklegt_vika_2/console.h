@@ -80,6 +80,7 @@ private:
     void createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo);  //Býr til nýjan vísindamann til að setjs í gagnagrunninn
     void createComputer(string &name, string &cpuType, int &yearBuilt, bool &built);    //Býr til nýja tölvu til að setja í gagnagrunninn
     void insertNewType();                                           //Leyfir notandanum að slá inn tegund tölvu til að setja inn í gagnagrunninn
+    string askToRelate(string option);
     void addRelations();                                            //Notendi hefur valið að vensla saman tölvu og vísindamann og getur nú framkvæmt það
     void addRelationsToCpu(int cIndex);                             //Venslum bætt við ákveðna tölvu
     void addRelationsToSci(int sIndex);                             //Venslum bætt við ákveðinn vísindamann
@@ -109,6 +110,9 @@ private:
 /**************************************************
         Recycled Bin og hjálparföll þess
 **************************************************/
+
+
+
     void recycledBin();
     void recycleScientists();
     void recycleComputers();

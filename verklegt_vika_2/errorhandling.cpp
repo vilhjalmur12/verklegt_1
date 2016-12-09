@@ -1,10 +1,9 @@
 #include "errorhandling.h"
 
-
 using namespace std;
 
 ErrorHandling::ErrorHandling() { }
-ErrorHandling::~ErrorHandling (){ }
+ErrorHandling::~ErrorHandling () { }
 
 /****************************************************************************
                         dataWriteError
@@ -95,6 +94,10 @@ void ErrorHandling::invalidYear (int errorCode)
     }
 }
 
+/****************************************************************************
+                        invalidNation
+    Skilar út villu skilaboðum á console glugga ef ekki er valið rétt þjóðerni
+ ****************************************************************************/
 
 void ErrorHandling::invalidNation()
 {
