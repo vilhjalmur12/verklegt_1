@@ -188,13 +188,33 @@ void Service::editScientist(int ID, Scientist scientist)
 }
 
 /****************************************************************************
-                           deleteAllScientistDatabase()
-                     Eyðir og flaggar öllum vísindamönnum úr database-inu
+                           deleteAllFromDatabase()
+          Flaggar allar tölvur og vísindamenn sem deleted í database-inu
  ****************************************************************************/
 
-void Service::deleteAllScientistFromDatabase()
+void Service::deleteAllFromDatabase()
+{
+    data.deleteAllFromDatabase();
+}
+
+/****************************************************************************
+                           deleteAllScientistDatabase()
+                     Flaggar alla vísindamennina sem deleted í database-inu
+ ****************************************************************************/
+
+void Service::deleteAllScientistsFromDatabase()
 {
     data.deleteAllFromScientistDatabase();
+}
+
+/****************************************************************************
+                           deleteAllFromDatabase()
+                    Flaggar allar tölvur sem deleted í database-inu
+ ****************************************************************************/
+
+void Service::deleteAllComputersFromDatabase()
+{
+    data.deleteAllFromComputerDatabase();
 }
 
 /****************************************************************************
@@ -431,13 +451,14 @@ bool Service::validBuildYear(int buildYear)
 
     if(buildYear < -193000)
     {
-        throwError.invalidYear(3);
+        throwError.invalidYear(9);
         return false;
     }
 
     if(buildYear > timePtr->tm_year + 1900)
     {
-        throwError.invalidYear(2);
+        cout << (timePtr->tm_year + 1900);
+        throwError.invalidYear(8);
         return false;
     }
     if(buildYear == maxDeathYear)
@@ -457,7 +478,7 @@ bool Service::validBuildYear(int buildYear)
  ****************************************************************************/
 bool Service::validDeathYear(string input)
 {
-    return regex_match(input, regex("^[0-9]+[0-9]*$"));
+    return regex_match(input, regex("^[-?]+[0-9]+[0-9]*$"));
 }
 
 /****************************************************************************

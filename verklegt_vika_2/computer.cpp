@@ -106,6 +106,13 @@ void Computer::addBuilder(string lastName)
     _builders.push_back(lastName);
 }
 
+string Computer::getYearForPrinting() const
+{
+    if(_yearBuilt == 200000000)
+        return "n/a";
+    else
+        return to_string(_yearBuilt);
+}
 /**************************************************
              Operator föll
 **************************************************/

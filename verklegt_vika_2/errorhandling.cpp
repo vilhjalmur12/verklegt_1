@@ -86,6 +86,12 @@ void ErrorHandling::invalidYear (int errorCode)
         case 7:
             errorMessage = "ERROR: Invalid characters in year of build! \n";
             break;
+        case 8:
+            errorMessage = "ERROR: The computer can not have been built in the future! \n";
+            break;
+        case 9:
+            errorMessage = "ERROR: Computer couldn't have been built before the ascent of Homo Sapiens!\n";
+            break;
     }
 }
 

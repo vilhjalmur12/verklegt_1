@@ -360,7 +360,7 @@ void  Console::printComputers(vector<Computer> computers)
                 buildersString += ", ";
         }
 
-        printf("%-5d%-25s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearBuilt(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
+        printf("%-5d%-25s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearForPrinting().c_str(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
     }
 }
 /****************************************************************************
@@ -375,10 +375,12 @@ void Console::callUser ()
     string action;
     bool runProgram = false;
 
+    // scientistService.deleteAllFromDatabase();
+    // scientistService.deleteAllScientistsFromDatabase();
+    // scientistService.deleteAllComputersFromDatabase();
     welcome();
-    toContinue();
 
-    data.deleteAllFromScientistDatabase();
+    toContinue();
 
     while (!runProgram)
     {
@@ -605,6 +607,7 @@ void Console::editComputer()
             scientistService.searchInDatabase(scientists, computers, query);
             if(computers.size() == 0)
             {
+                cout << "-----NO ENTRIES FOUND-----" << endl;
                 cont = true;
                 continue;
             }
@@ -632,7 +635,7 @@ void Console::editComputer()
 
 /******************************************************************************
                          search
-    Birtir leitar valmynd og tekur við leitar streng. Leitar í öllum gagnagrunninum
+    Birtir leitarvalmynd og tekur við leitarstreng. Leitar í öllum gagnagrunninum
     bæði, tölvum og vísindamönnum.
  ******************************************************************************/
 
@@ -741,7 +744,7 @@ string Console::choice()
 /******************************************************************************
                          choiceMade
       Tekur við ákvörðun frá notanda um hvað á að gera frá fyrstu valmynd.
-      v-skoða lista, i-bæta við nýjum, s-leita, e-edit,d-delete,
+      v-skoða lista, i-bæta við nýjum, s-leita, e-edit, d-delete,
       r-relation, q-hætta.
  ******************************************************************************/
 void Console::choiceMade()
@@ -867,7 +870,7 @@ Scientist Console::makeNewScientist()
     do
     {
         createScientist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo);
-    }while(!scientistService.doesScientistExcist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo));
+    }while(scientistService.doesScientistExcist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo));
 
     Scientist sc(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo);
 
@@ -890,7 +893,7 @@ Computer Console::makeNewComputer()
     do
     {
         createComputer(name, cpuType, yearBuilt, built);
-    }while(!scientistService.doesComputerExcist(name, cpuType, yearBuilt, built));
+    }while(scientistService.doesComputerExcist(name, cpuType, yearBuilt, built));
 
     Computer cpu(name, cpuType, built, yearBuilt);
 
@@ -1138,7 +1141,8 @@ void Console::removeRelations()
 
 /******************************************************************
                       getCpuID
-
+   Nær í ID tölvu í gagnagrunninn
+   @return computers[cIndex-1].getID - sækir ID tölvu
  ******************************************************************/
 
 int Console::getCpuID()
@@ -1155,7 +1159,8 @@ int Console::getCpuID()
 
 /******************************************************************
                       getSciID
-
+   Nær í ID vísindamanns í gagnagrunninn
+   @return scientists[cIndex-1].getID - ID vísindamanns
  ******************************************************************/
 
 int Console::getScID()
@@ -1193,6 +1198,12 @@ void Console::readCpuName(string &name)
     name.at(0) = toupper(name.at(0));
 }
 
+/******************************************************************
+                      insertNewType
+    Fall sem gerir notendanum kleift að slá inn tegund tölvu til að setja
+    í database-ið.
+ ******************************************************************/
+
 void Console::insertNewType()
 {
     string type;
@@ -1207,6 +1218,12 @@ void Console::insertNewType()
 
     scientistService.addType(type);
 }
+
+/********************************************************************
+                  readCpuType(string &CpuType)
+
+    @parameter(string &CpuType) - bendir á streng sem inniheldur tegund tölvunnar
+ ********************************************************************/
 
 void Console::readCpuType(string &CpuType)
 {
@@ -1266,7 +1283,7 @@ void Console::readYearBuilt(int& yearBuilt)
             yearBuilt = maxBuildhYear;
             return;
         }
-        if(!scientistService.validDeathYear(year))
+        else if(!scientistService.validDeathYear(year))
         {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -1274,29 +1291,33 @@ void Console::readYearBuilt(int& yearBuilt)
             cont = true;
             continue;
         }
+        else
+        {
+           yearBuilt =  stoi(year);
+        }
 
         if(yearBuilt < -1613)
         {
-            string choice;
-            cout << "Attention: your Computer would have been built beore the first recorded" << endl
-                 << "use of the word \"computer\" " << endl
-                 << "tip: enter an invalid Year of Death to re-input year of birth" << endl
-                 << "Re-input year? (y/n)" << endl
-                 << "-> ";
-            do
-            {
-                cin.ignore();
-                cin >> choice;
-                if(choice != "y" && choice != "n")
-                    cout << "Please insert valid input!" << endl;
-            }while (choice != "y" && choice != "n");
+           string choice;
+           cout << "Attention: your Computer would have been built beore the first recorded" << endl
+                << "use of the word \"computer\" " << endl
+                << "tip: enter an invalid Year of Death to re-input year of birth" << endl
+                << "Re-input year? (y/n)" << endl
+                << "-> ";
+           do
+           {
+               cin.ignore();
+               cin >> choice;
+               if(choice != "y" && choice != "n")
+                   cout << "Please insert valid input!" << endl;
+          }while (choice != "y" && choice != "n");
 
-            if(choice == "y")
-            {
-                cont = true;
-                continue;
-            }
-        }
+           if(choice == "y")
+           {
+               cont = true;
+               continue;
+           }
+         }
 
         validYears = scientistService.validBuildYear(yearBuilt);
     }while(!validYears || cont);
@@ -1335,7 +1356,7 @@ void Console::readBuilt(bool &built)
 /******************************************************************
                       readName
     Tekur inn nafn fyrir vísindamann
-            @parameter(int &name) - bendir á streng sem inniheldur nafn vísindamanns
+      @parameter(string &firstName) - bendir á streng sem inniheldur fyrra nafn vísindamanns
  ******************************************************************/
 
 void Console::readFirstName(string &firstName)
@@ -1352,6 +1373,13 @@ void Console::readFirstName(string &firstName)
 
     }while(!scientistService.validName(firstName));
 }
+
+
+/******************************************************************
+                      readLastName
+    Tekur inn seinna nafn fyrir vísindamann
+      @parameter(string &lastName) - bendir á streng sem inniheldur seinna nafn vísindamanns
+ ******************************************************************/
 
 void Console::readLastName(string &lastName)
 {
@@ -1371,7 +1399,8 @@ void Console::readLastName(string &lastName)
 /******************************************************************
                       readSex
     Tekur inn kyn fyrir vísindamann
-            @parameter(int &sex) - bendir á streng sem inniheldur kyn vísindamanns
+            @parameter(string &sex) - bendir á streng sem inniheldur
+             kyn vísindamanns
  ******************************************************************/
 
 void Console::readSex(string &sex)
@@ -1451,7 +1480,7 @@ void Console::readBirthYear(int &YOB, bool &cont)
                       readDeathYear
     Athugar dánar ár á vísindamanni
             @parameter(int &YOD) - bendir á tölu sem inniheldur dánarár
-            @parameter(bool &cont) - bendir á bool breytu sem segjir til
+            @parameter(bool &cont) - bendir á bool breytu sem segir til
             um hvort halda eigi áfram
  ******************************************************************/
 
@@ -1484,9 +1513,9 @@ void Console::readDeathYear(int &YOD, bool &cont)
 
 /******************************************************************
                       readFurtherInfo
-    Tekur inn auka upplýsingar fyrir vísindamann
+    Tekur inn aukaupplýsingar fyrir vísindamann
             @parameter(string &furtherInfo) - bendir á streng sem
-            inniheldur auka upplýsingar notanda
+            inniheldur aukaupplýsingar notanda
  ******************************************************************/
 
 void Console::readFurtherInfo(string &furtherInfo)
@@ -1583,21 +1612,6 @@ void Console::changeOrDelete(vector<int> indexes)
         search();
     };
 }
-
-/******************************************************************
-                      printTable
-    Prentar út alla vísindamenn í gagnagrunni með viðmóti.
- ******************************************************************/
-
-
-
-/******************************************************************
-                      printTable
-    Prentar út ákveðna valda vísindamenn í glugga með viðmóti
-            @parameter(vector<int> indexesToPrint) - vector (listi) af þeim
-            vísindamönnum sem skulu prentast
- ******************************************************************/
-
 
 /******************************************************************
                     Hjálparföll fyrir choiceMade
