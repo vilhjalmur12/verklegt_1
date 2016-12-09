@@ -543,7 +543,7 @@ string Console::getInput(string opt1, string opt2, string opt3) //--------------
         færibreytur sem notandinn slær inn til að velja hvað hann vill gera næst
  ****************************************************************************/
 
-string Console::getInput(string opt1, string opt2, string opt3, string opt4) //----------------------------------------<------------------<--------------------------<---------------<--------
+string Console::getInput(string opt1, string opt2, string opt3, string opt4)
 {
     string choice;
 
@@ -707,7 +707,6 @@ void Console::search()
     scientistService.searchInDatabase(scientists, computers, query);
     printScientists(scientists);
     printComputers(computers);
-    ///-------------------------------------------------------------------SKOÐA CHANGE/DELETE/LEITA AFTUR/MENU
 }
 
 /******************************************************************************
@@ -1344,6 +1343,8 @@ int Console::getCpuID()
     vector<Computer> computers = scientistService.getComputers();
 
     printComputers(computers);
+
+    cout << endl;
     cout << "Please insert the index of your computer of choice: " << endl;
     idInput(cIndex, computers.size());
     return computers[cIndex-1].getID();
@@ -1361,6 +1362,7 @@ int Console::getScID()
     vector<Scientist> scientists = scientistService.getScientists();
 
     printScientists(scientists);
+    cout << endl;
     cout << "Please insert the index of your scientist of choice: " << endl;
     idInput(sIndex, scientists.size());
     return scientists[sIndex-1].getID();
