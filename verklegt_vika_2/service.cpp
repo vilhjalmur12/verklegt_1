@@ -478,7 +478,7 @@ bool Service::validBuildYear(int buildYear)
  ****************************************************************************/
 bool Service::validDeathYear(string input)
 {
-    return regex_match(input, regex("^[0-9]+[0-9]*$"));
+    return regex_match(input, regex("^[-?]+[0-9]+[0-9]*$"));
 }
 
 /****************************************************************************
