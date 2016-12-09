@@ -946,7 +946,7 @@ string Console::askToRelate(string option)
     string choice;
     do
     {
-        cout << "Would you like to relate the computer to a scientist? (y/n)" << endl << "-> ";
+        cout << option << endl << "-> ";
         cin >> choice;
 
         if((choice != "y" && choice != "n") || cin.fail())
