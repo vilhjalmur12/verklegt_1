@@ -915,7 +915,8 @@ void Console::pushBackScientist()
 /******************************************************************
                       createScientist
     Býr til nýjan vísindamann í gagnagrunninn
-            @parameter(int &name) - bendir á streng sem inniheldur nafn vísindamanns
+            @parameter(string &firstName) - bendir á streng sem inniheldur nafn vísindamanns
+            @parameter(string &lastName) - bendir á streng sem inniheldur nafn vísindamanns
             @parameter(int &sex) - bendir á streng sem inniheldur kyn vísindamanns
             @parameter(int &YOB) - bendir á tölu sem inniheldur fæðingarár
             @parameter(int &YOD) - bendir á tölu sem inniheldur dánarár
@@ -1073,7 +1074,7 @@ void Console::removeRelations()
 
 /******************************************************************
                       getCpuID
-    Fjarlægir vensl milli tölvu og vísindamanns
+
  ******************************************************************/
 
 int Console::getCpuID()
@@ -1089,7 +1090,7 @@ int Console::getCpuID()
 
 /******************************************************************
                       getSciID
-    Fjarlægir vensl milli tölvu og vísindamanns
+
  ******************************************************************/
 
 int Console::getScID()
@@ -1102,6 +1103,12 @@ int Console::getScID()
     cin >> sIndex;
     return scientists[sIndex-1].getID();
 }
+
+/******************************************************************
+                      readCpuName
+     Les nafn á tölvu
+    @parameter(string &name) - bendir á streng sem inniheldur nafn tölvu
+ ******************************************************************/
 
 void Console::readCpuName(string &name)
 {
@@ -1118,6 +1125,12 @@ void Console::readCpuName(string &name)
     }while(!scientistService.validName(name));
 }
 
+/******************************************************************
+                      readCpuType
+     Les tegund á tölvu
+  @parameter(string &cpuType) - bendir á streng sem inniheldur tegund af tölvu
+ ******************************************************************/
+
 void Console::readCpuType(string &cpuType)
 {
     do
@@ -1132,6 +1145,13 @@ void Console::readCpuType(string &cpuType)
 
     }while(!scientistService.validName(cpuType)); //-> ÚTFÆRA TIL ÞESS AÐ PASSA UPP Á TÍPUR
 }
+
+/******************************************************************
+                      readYearBuilt
+     Les byggingar ár tölvu.
+  @parameter(int &yearBuilt) - bendir á int sem inniheldur byggingar
+    ár tölvu
+ ******************************************************************/
 
 void Console::readYearBuilt(int& yearBuilt)
 {
@@ -1156,10 +1176,10 @@ void Console::readYearBuilt(int& yearBuilt)
             return;
         }
 
-        if(yearBuilt < -2700)
+        if(yearBuilt < -1613)
         {
-            cout << "Attention: your Computer Scientist will have to have been born before" << endl
-                 << "the invention of the abacus, the first known tool used for computation" << endl
+            cout << "Attention: your Computer would have been built beore the first recorded" << endl
+                 << "use of the word \"computer\" " << endl
                  << "tip: enter an invalid Year of Death to re-input year of birth" << endl;
         }
 
@@ -1169,6 +1189,13 @@ void Console::readYearBuilt(int& yearBuilt)
         validYears = scientistService.validBuildYear(yearBuilt);
     }while(!validYears || cont);
 }
+
+/******************************************************************
+                      readBuilt
+     Les hvort tölva hafi verið byggð eða ekki.
+  @parameter(bool &built) - bendir á bool sem segir til hvort
+     tölva var byggð eða ekki.
+ ******************************************************************/
 
 void Console::readBuilt(bool &built)
 {
