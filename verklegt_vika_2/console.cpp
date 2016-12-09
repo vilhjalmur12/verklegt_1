@@ -639,14 +639,7 @@ void Console::editComputer()
                 continue;
             }
             printComputers(computers);
-            do/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            {
-            cout << "Insert index to edit: ";
-            cin >> index;
-            cin.clear();
-            if(index <= 0 || index > computers.size() || cin.fail())
-                cout << "Please insert valid index!" << endl;
-            }while(index <= 0 || index > computers.size() || cin.fail());/////////////////////////////////////////////////////////////////////////////
+            idInput(index, computers.size());
             index -= 1;
         }
         else

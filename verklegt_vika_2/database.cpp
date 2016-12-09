@@ -588,7 +588,24 @@ void database::insertType(string type)
 
 void database::editComputer(int ID, Computer computer)
 {
+    databaseOpen();
 
+    int type = getTypeId(QString::fromStdString(computer.getCpuType()));
+
+    QSqlQuery query;
+    query.prepare("UPDATE computers "
+                  "SET name = :name, cpu_type_ID = :type, "
+                  "year_of_build = :build, built_or_not = :built, nationality = :nationality, "
+                  "information = :info "
+                  "WHERE ID = :ID");
+    query.bindValue(":name", QString::fromStdString(computer.getName()));
+    query.bindValue(":type", type);
+    query.bindValue(":build", computer.getYearBuilt());
+    query.bindValue(":built", computer.getBuilt());
+    query.bindValue(":ID", ID);
+    query.exec();
+
+    databaseClose(myData);
 }
 
 void database::editScientist(int ID, Scientist scientist)
