@@ -85,7 +85,6 @@ private:
     int getCpuID();
     void idInput(unsigned int &index, unsigned int size);
     void editOrDeleteInput(vector<int> indexes, int &index, int getNumber);
-    void deleteAllAnswer(string &answer, int doDeleteAll);
     void printRelationMenu();
     void readCpuName(string &name);
     void readCpuType(string &cpuType);
