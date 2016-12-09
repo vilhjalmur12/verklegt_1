@@ -931,6 +931,25 @@ Computer Console::makeNewComputer()
     return cpu;
 }
 
+string Console::askToRelate(string option)
+{
+    string choice;
+    do
+    {
+        cout << "Would you like to relate the computer to a scientist? (y/n)" << endl << "-> ";
+        cin >> choice;
+
+        if((choice != "y" && choice != "n") || cin.fail())
+        {
+            cout << "Please insert a valid command!";
+        }
+
+    }while((choice != "y" && choice != "n") || cin.fail());
+
+    return choice;
+
+}
+
 /******************************************************************
                       pushBackComputer
     Býr til nýja tölvu í gagnagrunninn og ýtir henni aftast í listann
@@ -951,17 +970,7 @@ void Console::pushBackComputer()
 
     int index = scientistService.getNumberOfComputers();
 
-    do/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    {
-        cout << "Would you like to relate the computer to a scientist? (y/n)" << endl << "-> ";
-        cin >> choice;
-
-        if((choice != "y" && choice != "n") || cin.fail())
-        {
-            cout << "Please insert a valid command!";
-        }
-
-    }while((choice != "y" && choice != "n") || cin.fail());///////////////////////////////////////////////////////////////////////////////////
+    choice = askToRelate("Would you like to relate the computer to a scientist? (y/n)");
 
     if(choice == "y")
     {
@@ -992,17 +1001,7 @@ void Console::pushBackScientist()
 
     int index = scientistService.getNumberOfScientists();
 
-    do/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    {
-        cout << "Would you like to relate the scientist to a computer? (y/n)" << endl << "-> ";
-        cin >> choice;
-
-        if((choice != "y" && choice != "n") || cin.fail())
-        {
-            cout << "Please insert a valid command!";
-        }
-
-    }while((choice != "y" && choice != "n") || cin.fail());////////////////////////////////////////////////////////////////////////////
+    choice = askToRelate("Would you like to relate the scientist to a computer? (y/n)");
 
     if(choice == "y")
     {

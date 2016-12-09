@@ -73,6 +73,7 @@ private:
     void printEditComputerMenu();
     void pushBackScientist();                                                                                       //Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
     void pushBackComputer();
+    string askToRelate(string option);
     void createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo);  //Býr til nýjan vísindamann
     void createComputer(string &name, string &cpuType, int &yearBuilt, bool &built);
     void insertNewType();
