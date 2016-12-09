@@ -618,6 +618,8 @@ void Console::edit()
     cout << endl << endl << "--------Insert new Information:---------" << endl;
     int ID = scientists[index].getID();
     Scientist scientist = makeNewScientist();
+    activityLog _activityLog(user.toUtf8().constData());
+    _activityLog.pushActivity("edit", scientists[index], scientist);
     scientistService.editScientist(ID, scientist);
 }
 
@@ -681,6 +683,8 @@ void Console::editComputer()
     cout << endl << endl << "--------Insert new Information:---------" << endl;
     int ID = computers[index].getID();
     Computer computer = makeNewComputer();
+    activityLog _activityLog(user.toUtf8().constData());
+    _activityLog.pushActivity("edit", computers[index], computer);
     scientistService.editComputer(ID, computer);
 }
 
@@ -952,6 +956,7 @@ Computer Console::makeNewComputer()
 string Console::askToRelate(string option)
 {
     string choice;
+    string tmpOption = option;
     do
     {
         cout << option << endl << "-> ";
@@ -1415,6 +1420,7 @@ void Console::readCpuType(string &cpuType)
     vector<CpuType> types = scientistService.getTypes();
     printTypeMenu(types);
     string choice;
+    int size = (int) types.size();
 
     do
     {
@@ -1429,10 +1435,12 @@ void Console::readCpuType(string &cpuType)
         }
         else if(!scientistService.validDeathYear(choice))
         {
-            cout << "Please insert valid input!" << endl << "-> ";
+            cout << "Please "
+                    ""
+                    " valid input!" << endl << "-> ";
             continue;
         }
-        else if(stoi(choice) > 0 && stoi(choice) <= types.size())
+        else if(stoi(choice) > 0 && stoi(choice) <= size)
         {
             cpuType = types[stoi(choice)-1].getType();
         }
@@ -1931,6 +1939,7 @@ void Console::editOperation()
 
 void Console::deleteOperation()
 {
+    string tmpUser = user.toUtf8().constData();
     vector<Scientist> scientists = scientistService.getScientists();
     vector<Computer> computers = scientistService.getComputers();
     string tmp = "n";
@@ -1949,6 +1958,8 @@ void Console::deleteOperation()
 
             idInput(ID, scientists.size());
 
+            activityLog _activityLog(tmpUser);
+            _activityLog.pushActivity("delete", scientists[ID-1]);
             ID = scientists[ID-1].getID();
             scientistService.deleteScientist(ID);
             tmp = "n";
@@ -1958,8 +1969,11 @@ void Console::deleteOperation()
             printComputers(computers);
 
             unsigned int ID;
-
             idInput(ID, computers.size());
+            cout << "Nr. -> ";
+            cin >> ID;
+            activityLog _activityLog(tmpUser);
+            _activityLog.pushActivity("delete", computers[ID-1]);
 
             ID = computers[ID-1].getID();
             scientistService.deleteComputer(ID);

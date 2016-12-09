@@ -5,6 +5,7 @@
 #include "scientist.h"
 #include "database.h"
 #include "errorlog.h"
+#include "activitylog.h"
 
 #include <algorithm>
 #include <iostream>

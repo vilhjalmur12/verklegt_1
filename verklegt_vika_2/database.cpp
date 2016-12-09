@@ -28,7 +28,9 @@ void Database::databaseClose(QSqlDatabase &data)
 // ætti að fara inn í constructor: const QString& path ef við viljum útbúa spes path.
 void Database::getData(QString username, vector<Scientist> &scien)
 {
+
    user = username;
+   vector<Scientist> newScien =  scien;
    myData = QSqlDatabase::addDatabase("QSQLITE");
    myData.setDatabaseName("./" + user + ".sqlite");
 
@@ -44,7 +46,7 @@ void Database::getData(QString username, vector<Scientist> &scien)
    }
 }
 
-void Database::getData(string selection, string table)
+void Database::getData()
 {
    myData = QSqlDatabase::addDatabase("QSQLITE");
    myData.setDatabaseName("./" + user + ".sqlite");
@@ -182,15 +184,12 @@ bool Database::getUser(const QString& username, const QString& password)
         {
 
             databaseClose(myData);
-            getData("selection", "table");
+            getData();
             return true;
-        }
-        else
-        {
-            databaseClose(myData);
-            return false;
-        }
+        }      
     }
+    databaseClose(myData);
+    return false;
 }
 
 void Database::createUser(const QString& username, const QString& password, const QString& firstName, const QString& lastName)
@@ -827,6 +826,12 @@ void Database::searchScientistsForInt(vector<Scientist> &scientists, const int i
     addFoundScientists(query, scientists);
 }
 
+/******************************************************************
+                      addFoundScientists
+
+     @parameter(vector<Scientist> &scientists) - Vector af bendum á vísindamenn
+ ******************************************************************/
+
 void Database::addFoundScientists(QSqlQuery& query, vector<Scientist> &scientists)
 {
     while(query.next())
@@ -867,6 +872,12 @@ void Database::addFoundScientists(QSqlQuery& query, vector<Scientist> &scientist
     }
 }
 
+/******************************************************************
+                      adddBuiltComputersToScientists
+     Býður notenda upp á að búa til vensl milli nýrra tölva og vísindamanna
+     @parameter(vector<Scientist> &scientists) - Vector af bendum á vísindamenn
+ ******************************************************************/
+
 void Database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
 {
     for(unsigned int i = 0; i < scientists.size(); i++)
@@ -894,6 +905,14 @@ void Database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/******************************************************************
+                      addRelations
+     Býr til vensl á milli vísindamans og tölvu
+     @parameter(int cID) - ID fyrir tölvu
+     @parameter(int sID) - ID fyrir vísindamann
+ ******************************************************************/
+
 void Database::addRelations(int cID, int sID)
 {
    databaseOpen();
@@ -912,8 +931,9 @@ void Database::addRelations(int cID, int sID)
 
 /******************************************************************
                       removeRelations
-     @parameter(int cID) -
-     @parameter(int sID) -
+     Fjarlægir vensl á milli vísindamans og tölvu
+     @parameter(int cID) - ID fyrir tölvu
+     @parameter(int sID) - ID fyrir vísindamann
  ******************************************************************/
 void Database::removeRelations(int cID, int sID)
 {
@@ -1154,4 +1174,9 @@ void Database::restoreComputer(int ID)
     query.exec();
 
     databaseClose(myData);
+}
+
+string Database::pullUser()
+{
+    return user.toUtf8().constData();
 }

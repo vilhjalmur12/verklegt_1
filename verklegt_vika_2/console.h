@@ -5,6 +5,7 @@
 #include "service.h"
 #include "cputype.h"
 #include "errorlog.h"
+#include "activitylog.h"
 
 using namespace std;
 

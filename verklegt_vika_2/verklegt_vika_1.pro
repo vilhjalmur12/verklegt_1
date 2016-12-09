@@ -19,7 +19,8 @@ SOURCES += \
     computer.cpp \
     cputype.cpp \
     errorlog.cpp \
-    mytime.cpp
+    mytime.cpp \
+    activitylog.cpp
 
 HEADERS += \
     service.h \
@@ -31,7 +32,8 @@ HEADERS += \
     cputype.h \
     errorlog.h \
     dependances.h \
-    mytime.h
+    mytime.h \
+    activitylog.h
 
 DISTFILES += \
     data.db \
