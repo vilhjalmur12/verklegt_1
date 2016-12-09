@@ -61,7 +61,8 @@ void Console::sorting_menu()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
-    cout << "| In what order would you like to view? |" << endl;
+    cout << "|  In what order would you like to view |" << endl;
+    cout << "|            the  scientists ?          |" << endl;
     cout << "|                                       |" << endl;
     cout << "|           Name, ascending: na         |" << endl;
     cout << "|          Name, descending: nd         |" << endl;
@@ -206,6 +207,7 @@ void Console::viewMenu()
     cout << "|                                       |" << endl;
     cout << "|           s - view scientists         |" << endl;
     cout << "|           c - view computers          |" << endl;
+    cout << "|             b - view both             |" << endl;
     cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -229,7 +231,8 @@ void Console::cpuSortingMenu()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
-    cout << "| In what order would you like to view? |" << endl;
+    cout << "| In what order would you like to view  |" << endl;
+    cout << "|             the computers ?           |" << endl;
     cout << "|                                       |" << endl;
     cout << "|           Name, ascending: na         |" << endl;
     cout << "|          Name, descending: nd         |" << endl;
@@ -1518,11 +1521,11 @@ void Console::readBuilt(bool &built)
 
 void Console::readFirstName(string &firstName)
 {
+    cin.ignore();
     do
     {
         cout << scientistService.getErrorString();
         cout << "First Name (and middle and more): ";
-        cin.ignore();
         do
         {
             getline(cin, firstName);
@@ -1695,13 +1698,11 @@ void Console::readFurtherInfo(string &furtherInfo)
 
 void Console::readNationality(string &nationality)
 {
+    cin.ignore();
     do
     {
         cout << scientistService.getErrorString();
         cout << "Nationality: ";
-
-        cin.clear();
-        cin.ignore();
 
         getline(cin, nationality);
     }while(!scientistService.validNationality(nationality));
@@ -1811,6 +1812,22 @@ void Console::viewOperation()
                 str = stringChoice();
 
                 cpuSorting(str);
+                cont = continueFunction();
+                tmp = "n";
+            }
+            else if (choice_made == "b")
+            {
+                string cpuString;
+                cpuSortingMenu();
+                cpuString = stringChoice();
+
+                string sciString;
+                sorting_menu();
+                sciString = stringChoice();
+
+                sorting(sciString);
+                cpuSorting(cpuString);
+
                 cont = continueFunction();
                 tmp = "n";
             }
