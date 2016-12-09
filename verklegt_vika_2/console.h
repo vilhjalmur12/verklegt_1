@@ -77,6 +77,7 @@ private:
     void addRelations();
     void addRelationsToCpu(int cIndex);
     void addRelationsToSci(int sIndex);
+    void recycledBin();
     void removeRelations();
     int getScID();
     int getCpuID();

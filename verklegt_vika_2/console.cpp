@@ -770,6 +770,10 @@ void Console::choiceMade()
     {
         relate();
     }
+    else if(choice_made == "b")
+    {
+        recycledBin();
+    }
     else if (choice_made == "q")
     {
         quit();
@@ -1107,6 +1111,12 @@ void Console::addRelationsToSci(int sIndex)
         choice = continueFunction();
 
     }while(choice == "y");
+}
+
+void Console::recycledBin()
+{
+    string choice;
+    //choice =
 }
 
 /******************************************************************
