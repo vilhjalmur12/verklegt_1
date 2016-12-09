@@ -431,13 +431,14 @@ bool Service::validBuildYear(int buildYear)
 
     if(buildYear < -193000)
     {
-        throwError.invalidYear(3);
+        throwError.invalidYear(9);
         return false;
     }
 
     if(buildYear > timePtr->tm_year + 1900)
     {
-        throwError.invalidYear(2);
+        cout << (timePtr->tm_year + 1900);
+        throwError.invalidYear(8);
         return false;
     }
     if(buildYear == maxDeathYear)

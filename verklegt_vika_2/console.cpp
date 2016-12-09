@@ -360,7 +360,7 @@ void  Console::printComputers(vector<Computer> computers)
                 buildersString += ", ";
         }
 
-        printf("%-5d%-25s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearBuilt(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
+        printf("%-5d%-25s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearForPrinting().c_str(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
     }
 }
 /****************************************************************************
@@ -605,6 +605,7 @@ void Console::editComputer()
             scientistService.searchInDatabase(scientists, computers, query);
             if(computers.size() == 0)
             {
+                cout << "-----NO ENTRIES FOUND-----" << endl;
                 cont = true;
                 continue;
             }
@@ -867,7 +868,7 @@ Scientist Console::makeNewScientist()
     do
     {
         createScientist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo);
-    }while(!scientistService.doesScientistExcist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo));
+    }while(scientistService.doesScientistExcist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo));
 
     Scientist sc(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo);
 
@@ -890,7 +891,7 @@ Computer Console::makeNewComputer()
     do
     {
         createComputer(name, cpuType, yearBuilt, built);
-    }while(!scientistService.doesComputerExcist(name, cpuType, yearBuilt, built));
+    }while(scientistService.doesComputerExcist(name, cpuType, yearBuilt, built));
 
     Computer cpu(name, cpuType, built, yearBuilt);
 
@@ -1266,7 +1267,7 @@ void Console::readYearBuilt(int& yearBuilt)
             yearBuilt = maxBuildhYear;
             return;
         }
-        if(!scientistService.validDeathYear(year))
+        else if(!scientistService.validDeathYear(year))
         {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -1274,29 +1275,33 @@ void Console::readYearBuilt(int& yearBuilt)
             cont = true;
             continue;
         }
+        else
+        {
+           yearBuilt =  stoi(year);
+        }
 
         if(yearBuilt < -1613)
         {
-            string choice;
-            cout << "Attention: your Computer would have been built beore the first recorded" << endl
-                 << "use of the word \"computer\" " << endl
-                 << "tip: enter an invalid Year of Death to re-input year of birth" << endl
-                 << "Re-input year? (y/n)" << endl
-                 << "-> ";
-            do
-            {
-                cin.ignore();
-                cin >> choice;
-                if(choice != "y" && choice != "n")
-                    cout << "Please insert valid input!" << endl;
-            }while (choice != "y" && choice != "n");
+           string choice;
+           cout << "Attention: your Computer would have been built beore the first recorded" << endl
+                << "use of the word \"computer\" " << endl
+                << "tip: enter an invalid Year of Death to re-input year of birth" << endl
+                << "Re-input year? (y/n)" << endl
+                << "-> ";
+           do
+           {
+               cin.ignore();
+               cin >> choice;
+               if(choice != "y" && choice != "n")
+                   cout << "Please insert valid input!" << endl;
+          }while (choice != "y" && choice != "n");
 
-            if(choice == "y")
-            {
-                cont = true;
-                continue;
-            }
-        }
+           if(choice == "y")
+           {
+               cont = true;
+               continue;
+           }
+         }
 
         validYears = scientistService.validBuildYear(yearBuilt);
     }while(!validYears || cont);
