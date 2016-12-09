@@ -303,7 +303,7 @@ void Console::printTypeMenu(vector<cpuType> type)
             i+=2;
             tmpCpuFirst = type[i];
             cout << endl;
-            printf("\t\t %-2d = %-10s\n", i+1, tmpCpuFirst.getType().c_str());
+            printf("\t\t\t     %-2d = %-10s\n", i+1, tmpCpuFirst.getType().c_str());
             break;
         }
     }
