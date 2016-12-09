@@ -10,7 +10,7 @@ class myTime
 {
 public:
     myTime();
-    ~myTime();
+    virtual ~myTime();
 
     //kalla í allt
     string pullDate ();

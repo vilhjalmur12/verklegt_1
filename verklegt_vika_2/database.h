@@ -18,7 +18,7 @@ class database
 {
 public:
     database ();
-    ~database ();
+    virtual ~database ();
     void getData(QString username, vector<Scientist> &scien);
     void getData (string selection, string table);
     bool getUser (const QString& username, const QString& password);
