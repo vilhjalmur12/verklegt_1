@@ -950,7 +950,7 @@ Computer Console::makeNewComputer()
                       askToRelate
     Spyr notandan hvort hann vilji tengja tölvuna/vísindamanninn við
     vísindamann/tölvu og gerir villutékk
-    @return(string option) - tekur inn hvaða streng á að prenta út
+    @return(string option) - tekur inn strenginn sem á að prenta út
  ******************************************************************/
 
 string Console::askToRelate(string option)
@@ -1168,6 +1168,11 @@ void Console::addRelationsToSci(int sIndex)
     }while(choice == "y");
 }
 
+/******************************************************************
+                      recycleScientist
+         Setja inn vísindamann sem búið var að eyða
+ ******************************************************************/
+
 void Console::recycledBin()
 {
     string cont;
@@ -1198,6 +1203,11 @@ void Console::recycledBin()
     }while(cont == "y");
 }
 
+/******************************************************************
+                      recycleScientists
+         Setja inn vísindamann sem búið var að eyða
+ ******************************************************************/
+
 void Console::recycleScientists()
 {
     unsigned int index;
@@ -1221,6 +1231,11 @@ void Console::recycleScientists()
         scientistService.restoreScientist(index);
     }
 }
+
+/******************************************************************
+                      recycleComputers
+         Setja inn tölvu sem búið var að eyða
+ ******************************************************************/
 
 void Console::recycleComputers()
 {
