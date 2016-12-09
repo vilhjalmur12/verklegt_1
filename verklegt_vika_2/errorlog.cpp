@@ -8,10 +8,11 @@ ErrorLog::ErrorLog()
 /****************************************************************************
                         errorLog - smiður
     stillir smiðinn þegar hann er búinn til með breytum sem byrjanargildi
-            @parameter(string name) - nafn á tolvu
-            @parameter(string cpuType) - tegund tolvu
-            @parameter(bool built) - skialr true ef tolvan var byggd
-            @parameter(int yearBuilt) - byggingarar tolvu
+            @parameter(string username) - nafn á notanda
+          @parameter(string tmpError) - tegund tolvu
+                    Seinni smiður er auk þess með:
+          @parameter(bool tmpBrute) - skilar true eða false eftir því hvort er
+            verið að reyna að bruteforce-a password. 3x byrjar það að telja
  ****************************************************************************/
 
 ErrorLog::ErrorLog(string username, string tmpError)
@@ -33,6 +34,11 @@ ErrorLog::ErrorLog(string username, string tmpError, bool tmpBrute)
 }
 
 ErrorLog::~ErrorLog() {}
+
+/****************************************************************************
+                        openInStream
+    opnar errorlog skrána
+ ****************************************************************************/
 
 void ErrorLog::openInStream()
 {

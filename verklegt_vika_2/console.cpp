@@ -1919,7 +1919,7 @@ void Console::deleteOperation()
         }
         else if (choice_made == "as" || choice_made == "ac" || choice_made == "a" )
         {
-            //deleteOperationHelper(choice_made);
+            deleteOperationHelper(choice_made);
         }
         else
         {
