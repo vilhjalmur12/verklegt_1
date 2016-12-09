@@ -61,7 +61,8 @@ void Console::sorting_menu()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
-    cout << "| In what order would you like to view? |" << endl;
+    cout << "|  In what order would you like to view |" << endl;
+    cout << "|            the  scientists ?          |" << endl;
     cout << "|                                       |" << endl;
     cout << "|           Name, ascending: na         |" << endl;
     cout << "|          Name, descending: nd         |" << endl;
@@ -206,6 +207,7 @@ void Console::viewMenu()
     cout << "|                                       |" << endl;
     cout << "|           s - view scientists         |" << endl;
     cout << "|           c - view computers          |" << endl;
+    cout << "|             b - view both             |" << endl;
     cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -229,7 +231,8 @@ void Console::cpuSortingMenu()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
-    cout << "| In what order would you like to view? |" << endl;
+    cout << "| In what order would you like to view  |" << endl;
+    cout << "|             the computers ?           |" << endl;
     cout << "|                                       |" << endl;
     cout << "|           Name, ascending: na         |" << endl;
     cout << "|          Name, descending: nd         |" << endl;
@@ -1801,6 +1804,22 @@ void Console::viewOperation()
                 str = stringChoice();
 
                 cpuSorting(str);
+                cont = continueFunction();
+                tmp = "n";
+            }
+            else if (choice_made == "b")
+            {
+                string cpuString;
+                cpuSortingMenu();
+                cpuString = stringChoice();
+
+                string sciString;
+                sorting_menu();
+                sciString = stringChoice();
+
+                sorting(sciString);
+                cpuSorting(cpuString);
+
                 cont = continueFunction();
                 tmp = "n";
             }
