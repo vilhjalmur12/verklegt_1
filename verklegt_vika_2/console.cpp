@@ -564,6 +564,11 @@ void Console::edit()
         if(choice == "l")
         {
             printScientists(scientists);
+            if(scientists.size()==0)
+            {
+                cont = true;
+                continueFunction();
+            }
             cout << "Please insert the index you wish to edit: " << endl;
             idInput(index, scientists.size());
             index -= 1;
@@ -577,13 +582,12 @@ void Console::edit()
             vector<Computer> computers;
             scientists.clear();
             scientistService.searchInDatabase(scientists, computers, query);
+            printScientists(scientists);
             if(scientists.size() == 0)
             {
-                cout << "-----------No entries found------------";
                 cont = true;
                 continue;
             }
-            printScientists(scientists);
             cout << "Please insert the index you wish to edit: " << endl;
             idInput(index, scientists.size());
             index -= 1;
@@ -622,6 +626,11 @@ void Console::editComputer()
         if(choice == "l")
         {
             printComputers(computers);
+            if(computers.size() == 0)
+            {
+                cont = true;
+                continue;
+            }
             cout << "Please insert the index you wish to edit: " << endl;
             idInput(index, computers.size());
             index -= 1;
@@ -635,13 +644,12 @@ void Console::editComputer()
             vector<Scientist> scientists;
             computers.clear();
             scientistService.searchInDatabase(scientists, computers, query);
+            printComputers(computers);
             if(computers.size() == 0)
             {
-                cout << "-----NO ENTRIES FOUND-----" << endl;
                 cont = true;
                 continue;
             }
-            printComputers(computers);
             cout << "Please insert the index you wish to edit: " << endl;
             idInput(index, computers.size());
             index -= 1;
