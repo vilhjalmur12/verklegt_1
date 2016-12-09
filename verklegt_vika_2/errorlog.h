@@ -14,7 +14,7 @@ public:
     errorLog();
     errorLog(string username, string tmpError);
     errorLog(string username, string tmpError, bool tmpBrute);
-    ~errorLog();
+    virtual ~errorLog();
     void openInStream();
     void openOutStream();
     void pushError();
