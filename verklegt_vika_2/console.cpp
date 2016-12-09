@@ -785,8 +785,9 @@ void Console::cpuSorting(string str)
 }
 
 /******************************************************************
-                      pushBackScientist
-    Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
+                      makeNewScientist
+    Býr til nýjan vísindamann.
+    @return(Scientist sc) - nýtt eintak af vísindamanni
  ******************************************************************/
 
 Scientist Console::makeNewScientist()
@@ -804,6 +805,12 @@ Scientist Console::makeNewScientist()
 
     return sc;
 }
+
+/******************************************************************
+                      makeNewComputer
+    Býr til nýja tölvu
+    @return(Computer cpu) - nýtt eintak af tölvu
+ ******************************************************************/
 
 Computer Console::makeNewComputer()
 {
@@ -935,6 +942,15 @@ void Console::createScientist(string &firstName, string &lastName, string &sex, 
 
 }
 
+/******************************************************************
+                      createComputer
+    Býr til nýja tölvu í gagnagrunninn
+            @parameter(string &name) - bendir á streng sem inniheldur nafn á tölvu
+            @parameter(string &cpuType) - bendir á streng sem inniheldur tegund af tölvu
+            @parameter(int &yearBuilt) - bendir á tölu sem inniheldur byggingar ár
+            @parameter(bool &built) - bendir á bool sem segir til um hvort tölva hafi verið byggð
+ ******************************************************************/
+
 void Console::createComputer(string &name, string &cpuType, int &yearBuilt, bool &built)
 {
 
@@ -947,6 +963,12 @@ void Console::createComputer(string &name, string &cpuType, int &yearBuilt, bool
     readBuilt(built);
 
 }
+
+/******************************************************************
+                      relate
+    Birtir valmynd fyrir vensl milli tölva og vísindamanna og
+    tekur við ákvörðun um framhald frá notanda.
+ ******************************************************************/
 
 void Console::relate()
 {
@@ -968,6 +990,11 @@ void Console::relate()
         quit();
 }
 
+/******************************************************************
+                      addRelations
+    Notenadi venslar saman tölvu og vísindamann
+ ******************************************************************/
+
 void Console::addRelations()
 {
     string choice;
@@ -983,6 +1010,12 @@ void Console::addRelations()
     }while(choice == "y");
 }
 
+/******************************************************************
+                      addRelationsToCpu
+      Bætir við venslum við ákveðna tölvu
+      @parameter(int cIndex) - Index fyrir tölvu sem á að vensla við
+ ******************************************************************/
+
 void Console::addRelationsToCpu(int cIndex)
 {
     string choice;
@@ -997,6 +1030,12 @@ void Console::addRelationsToCpu(int cIndex)
     }while(choice == "y");
 }
 
+/******************************************************************
+                      addRelationsToSci
+      Bætir við venslum við ákveðin vísindamann
+      @parameter(int sIndex) - Index fyrir vísindamann sem á að vensla við
+ ******************************************************************/
+
 void Console::addRelationsToSci(int sIndex)
 {
     string choice;
@@ -1010,6 +1049,11 @@ void Console::addRelationsToSci(int sIndex)
 
     }while(choice == "y");
 }
+
+/******************************************************************
+                      removeRelations
+    Fjarlægir vensl milli tölvu og vísindamanns
+ ******************************************************************/
 
 void Console::removeRelations()
 {
@@ -1027,6 +1071,11 @@ void Console::removeRelations()
 
 }
 
+/******************************************************************
+                      getCpuID
+    Fjarlægir vensl milli tölvu og vísindamanns
+ ******************************************************************/
+
 int Console::getCpuID()
 {
     int cIndex;
@@ -1037,6 +1086,11 @@ int Console::getCpuID()
     cin >> cIndex;
     return computers[cIndex-1].getID();
 }
+
+/******************************************************************
+                      getSciID
+    Fjarlægir vensl milli tölvu og vísindamanns
+ ******************************************************************/
 
 int Console::getScID()
 {
