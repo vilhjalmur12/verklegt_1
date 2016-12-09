@@ -360,7 +360,7 @@ void  Console::printComputers(vector<Computer> computers)
                 buildersString += ", ";
         }
 
-        printf("%-5s%-25s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearForPrinting().c_str(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
+        printf("%-5d%-25s%-20s%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearForPrinting().c_str(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
     }
 }
 /****************************************************************************
@@ -1002,7 +1002,6 @@ void Console::pushBackScientist()
 
 void Console::createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo)
 {
-
     readFirstName(firstName);
 
     readLastName(lastName);
@@ -1155,8 +1154,20 @@ int Console::getCpuID()
     vector<Computer> computers = scientistService.getComputers();
 
     printComputers(computers);
-    cout << "Please insert the index of your computer of choice: " << endl << "-> ";
-    cin >> cIndex;
+    cout << "Please insert the index of your computer of choice: " << endl;
+    do
+    {
+        cout << "-> ";
+        cin.ignore();
+
+        cin >> cIndex;
+
+        if(cin.fail() || cIndex < 1 || cIndex > computers.size())
+        {
+            cout << "Please insert valid index!" << endl;
+        }
+
+    }while(cin.fail());
     return computers[cIndex-1].getID();
 }
 
@@ -1172,8 +1183,21 @@ int Console::getScID()
     vector<Scientist> scientists = scientistService.getScientists();
 
     printScientists(scientists);
-    cout << "Please insert the index of your scientist of choice: " << endl << "-> ";
-    cin >> sIndex;
+    cout << "Please insert the index of your scientist of choice: " << endl;
+    do
+    {
+        cout << "-> ";
+        cin.ignore();
+
+        cin >> sIndex;
+
+        if(cin.fail() || sIndex < 1 || sIndex > scientists.size())
+        {
+            cout << "Please insert valid index!" << endl;
+            cin.clear();
+        }
+
+    }while(cin.fail() || sIndex < 1 || sIndex >= scientists.size());
     return scientists[sIndex-1].getID();
 }
 
@@ -1303,7 +1327,6 @@ void Console::readYearBuilt(int& yearBuilt)
            string choice;
            cout << "Attention: your Computer would have been built beore the first recorded" << endl
                 << "use of the word \"computer\" " << endl
-                << "tip: enter an invalid Year of Death to re-input year of birth" << endl
                 << "Re-input year? (y/n)" << endl
                 << "-> ";
            do
