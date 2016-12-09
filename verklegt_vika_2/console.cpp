@@ -471,6 +471,21 @@ void Console::run()
     } while (programON == true);
 }
 
+string Console::getInput(string opt1, string opt2, string opt3) //----------------------------------------<------------------<--------------------------<---------------<--------
+{
+    string choice;
+
+    do
+    {
+        cout << "-> ";
+        cin >> choice;
+        if((choice != opt1 && choice != opt2 && choice != opt3 ) || cin.fail())
+            cout << "Please insert valid choice" << endl;
+    }while((choice != opt1 && choice != opt2 && choice != opt3) || cin.fail());
+
+    return choice;
+}
+
 /******************************************************************************
                          edit
     Birtir edit valmynd og tekur við upplýsingum um hvort notandi vill velja
@@ -489,25 +504,11 @@ void Console::edit()
         cont = false;
         scientists = scientistService.getScientists();
         printEditMenu();
-        do
-        {
-            cout << "-> ";
-            cin >> choice;
-            if((choice != "l" && choice != "s" && choice != "q" ) || cin.fail())
-                cout << "Please insert valid choice" << endl;
-        }while(choice != "l" && choice != "s" && choice != "q");
-
+        choice = getInput("l", "s", "q");
         if(choice == "l")
         {
             printScientists(scientists);
-            do
-            {
-            cout << "Insert index to edit: ";
-            cin >> index;
-            cin.clear();
-            if(index <= 0 || index > scientists.size() || cin.fail())
-                cout << "Please insert valid index!" << endl;
-            }while(index <= 0 || index > scientists.size() || cin.fail());
+            idInput(index, scientists.size());
             index -= 1;
         }
         else if(choice == "s")
@@ -526,14 +527,7 @@ void Console::edit()
                 continue;
             }
             printScientists(scientists);
-            do
-            {
-            cout << "Insert index to edit: ";
-            cin >> index;
-            cin.clear();
-            if(index <= 0 || index > scientists.size() || cin.fail())
-                cout << "Please insert valid index!" << endl;
-            }while(index <= 0 || index > scientists.size() || cin.fail());
+            idInput(index, scientists.size());
             index -= 1;
         }
         else
@@ -565,25 +559,12 @@ void Console::editComputer()
     {
         cont = false;
         printEditComputerMenu();
-        do
-        {
-            cout << "-> ";
-            cin >> choice;
-            if((choice != "l" && choice != "s" && choice != "q") || cin.fail())
-                cout << "Please insert valid choice" << endl;
-        }while(choice != "l" && choice != "s" && choice != "q");
+        choice = getInput("l", "s", "q");
 
         if(choice == "l")
         {
             printComputers(computers);
-            do
-            {
-            cout << "Insert index to edit: ";
-            cin >> index;
-            cin.clear();
-            if(index <= 0 || index > computers.size() || cin.fail())
-                cout << "Please insert valid index!" << endl;
-            }while(index <= 0 || index > computers.size() || cin.fail());
+            idInput(index, computers.size());
             index -= 1;
         }
         else if(choice == "s")
@@ -602,14 +583,14 @@ void Console::editComputer()
                 continue;
             }
             printComputers(computers);
-            do
+            do/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             {
             cout << "Insert index to edit: ";
             cin >> index;
             cin.clear();
             if(index <= 0 || index > computers.size() || cin.fail())
                 cout << "Please insert valid index!" << endl;
-            }while(index <= 0 || index > computers.size() || cin.fail());
+            }while(index <= 0 || index > computers.size() || cin.fail());/////////////////////////////////////////////////////////////////////////////
             index -= 1;
         }
         else
@@ -915,7 +896,7 @@ void Console::pushBackComputer()
 
     int index = scientistService.getNumberOfComputers();
 
-    do
+    do/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     {
         cout << "Would you like to relate the computer to a scientist? (y/n)" << endl << "-> ";
         cin >> choice;
@@ -925,7 +906,7 @@ void Console::pushBackComputer()
             cout << "Please insert a valid command!";
         }
 
-    }while((choice != "y" && choice != "n") || cin.fail());
+    }while((choice != "y" && choice != "n") || cin.fail());///////////////////////////////////////////////////////////////////////////////////
 
     if(choice == "y")
     {
@@ -956,7 +937,7 @@ void Console::pushBackScientist()
 
     int index = scientistService.getNumberOfScientists();
 
-    do
+    do/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     {
         cout << "Would you like to relate the scientist to a computer? (y/n)" << endl << "-> ";
         cin >> choice;
@@ -966,7 +947,7 @@ void Console::pushBackScientist()
             cout << "Please insert a valid command!";
         }
 
-    }while((choice != "y" && choice != "n") || cin.fail());
+    }while((choice != "y" && choice != "n") || cin.fail());////////////////////////////////////////////////////////////////////////////
 
     if(choice == "y")
     {
@@ -1037,13 +1018,13 @@ void Console::relate()
 {
     string choice;
     printRelationMenu();
-    do
+    do //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     {
         cout << "-> ";
         cin >> choice;
         if(choice != "c" && choice != "d" && choice != "q")
             cout << "Please enter a valid command!" << endl;
-    }while(choice != "c" && choice != "d" && choice != "q");
+    }while(choice != "c" && choice != "d" && choice != "q");/////////////////////////////////////////////////////////////////////////////////////
 
     if(choice == "c")
         addRelations();
@@ -1579,13 +1560,13 @@ void Console::readNationality(string &nationality)
 
 void Console::editOrDeleteInput(vector<int> indexes, int &index, int getNumber)
 {
-    do
+    do/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     {
         cin.ignore();
         cin >> index;
         if(index <= 0 || index > getNumber || cin.fail())
             cout << "Please insert valid index!" << endl;
-    }while(index <= 0 || index > getNumber || cin.fail());
+    }while(index <= 0 || index > getNumber || cin.fail());//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     index -= 1;
 

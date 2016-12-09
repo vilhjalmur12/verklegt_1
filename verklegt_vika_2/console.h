@@ -101,6 +101,7 @@ private:
     void printCpuPushBackMenu();                                                                                    //Birtir valmynd þegar ný tölva er settur í gagnagrunn
     void editMenu();                                                                                                //Spyr hvort það eigi að breyta vísindamanni eða tölvu
     void deleteMenu();                                                                                              //Spyr hvort það eigi að eyða vísindamanni eða tölvu
+    string getInput(string opt1, string opt2, string opt3);
 
 /**************************************************
               Hjálparföll við search
