@@ -2,8 +2,6 @@
 #define CPUTYPE_H
 
 #include <iostream>
-#include <database.h>
-#include "service.h"
 #include <vector>
 #include <QDebug>
 #include <QSqlQuery>

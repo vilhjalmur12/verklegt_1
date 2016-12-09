@@ -1,10 +1,11 @@
-#include <database.h>
+#include "database.h"
 #include <iostream>
 #include "scientist.h"
 #include <vector>
 #include <QDebug>
 #include <QSqlQuery>
 #include <QSqlRecord.h>
+
 
 
 using namespace std;
