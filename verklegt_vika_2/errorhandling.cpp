@@ -37,7 +37,7 @@ void ErrorHandling::invalidName (int errorCode)
     switch (errorCode)
     {
         case 1:
-            errorMessage = "ERROR: The name you entered already exists in the list!\n";
+            errorMessage = "ERROR: The entry you entered already exists in the list!\n";
             break;
         case 2:
             errorMessage = "ERROR: Name includes unsupported characters!\n";
