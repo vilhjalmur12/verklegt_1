@@ -608,7 +608,7 @@ void Console::viewDisplay()
 string Console::continueFunction()
 {
     string cont;
-
+    cout << endl;
     cout << "Would you like to repeat the action?\t(y/n)" << endl << "-> ";
     cont = choice();
 
