@@ -308,7 +308,7 @@ void Console::callUser ()
     welcome();
     toContinue();
 
-    //data.deleteAllFromScientistDatabase();
+    data.deleteAllFromScientistDatabase();
 
     while (!runProgram)
     {
