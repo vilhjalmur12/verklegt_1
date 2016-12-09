@@ -5,9 +5,6 @@
 #include "service.h"
 #include "cputype.h"
 
-#include <vector>
-#include <string>
-
 using namespace std;
 
 class Console

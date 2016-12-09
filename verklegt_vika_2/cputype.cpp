@@ -7,6 +7,11 @@ cpuType::cpuType()
 
 }
 
+cpuType::~cpuType()
+{
+
+}
+
 cpuType::cpuType(int id, string type)
 {
     _ID = id;

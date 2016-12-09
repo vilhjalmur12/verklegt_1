@@ -12,6 +12,7 @@ class cpuType
 {
 public:
     cpuType();
+    ~cpuType();
     cpuType(int id, string type);
     int getId ();
     string getType ();

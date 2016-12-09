@@ -1,13 +1,4 @@
 #include "console.h"
-#include "service.h"
-#include "scientist.h"
-#include "errorhandling.h"
-#include "cputype.h"
-
-#include <iostream>
-#include <string>
-#include <limits>
-#include <regex>
 
 Console::Console() { }
 

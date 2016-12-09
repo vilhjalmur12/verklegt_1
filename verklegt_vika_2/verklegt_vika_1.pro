@@ -17,7 +17,9 @@ SOURCES += \
     errorhandling.cpp \
     main.cpp \
     computer.cpp \
-    cputype.cpp
+    cputype.cpp \
+    errorlog.cpp \
+    mytime.cpp
 
 HEADERS += \
     service.h \
@@ -26,7 +28,10 @@ HEADERS += \
     scientist.h \
     errorhandling.h \
     computer.h \
-    cputype.h
+    cputype.h \
+    errorlog.h \
+    dependances.h \
+    mytime.h
 
 DISTFILES += \
     data.db \
