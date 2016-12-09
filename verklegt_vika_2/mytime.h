@@ -11,12 +11,16 @@ class MyTime
 public:
     MyTime();
     virtual ~MyTime();
+/**************************************************
 
-    //kalla í allt
+**************************************************/
     string pullDate ();
     string pullTime ();
 
 private:
+/**************************************************
+                 Meðlimabreytur
+**************************************************/
     time_t now;
     tm *ltm;
     int intMonth;

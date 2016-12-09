@@ -61,7 +61,8 @@ void Console::sorting_menu()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
-    cout << "| In what order would you like to view? |" << endl;
+    cout << "|  In what order would you like to view |" << endl;
+    cout << "|            the  scientists ?          |" << endl;
     cout << "|                                       |" << endl;
     cout << "|           Name, ascending: na         |" << endl;
     cout << "|          Name, descending: nd         |" << endl;
@@ -206,6 +207,7 @@ void Console::viewMenu()
     cout << "|                                       |" << endl;
     cout << "|           s - view scientists         |" << endl;
     cout << "|           c - view computers          |" << endl;
+    cout << "|             b - view both             |" << endl;
     cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -229,7 +231,8 @@ void Console::cpuSortingMenu()
 {
     cout << endl;
     cout << "-----------------------------------------" << endl;
-    cout << "| In what order would you like to view? |" << endl;
+    cout << "| In what order would you like to view  |" << endl;
+    cout << "|             the computers ?           |" << endl;
     cout << "|                                       |" << endl;
     cout << "|           Name, ascending: na         |" << endl;
     cout << "|          Name, descending: nd         |" << endl;
@@ -511,6 +514,13 @@ void Console::run()
     } while (programON == true);
 }
 
+/****************************************************************************
+                        getInput
+    Fall til að stytta kóðann, tekur inn þrjár færibreytur
+    @parameter (string opt1, string opt2, string opt3) - þrjár færibreytur
+        sem notandinn slær inn til að velja hvað hann vill gera næst
+ ****************************************************************************/
+
 string Console::getInput(string opt1, string opt2, string opt3) //----------------------------------------<------------------<--------------------------<---------------<--------
 {
     string choice;
@@ -525,6 +535,13 @@ string Console::getInput(string opt1, string opt2, string opt3) //--------------
 
     return choice;
 }
+
+/****************************************************************************
+                        getInput
+    Fall til að stytta kóðann, tekur inn þrjár færibreytur
+    @parameter (string opt1, string opt2, string opt3, string opt4) - fjórar
+        færibreytur sem notandinn slær inn til að velja hvað hann vill gera næst
+ ****************************************************************************/
 
 string Console::getInput(string opt1, string opt2, string opt3, string opt4) //----------------------------------------<------------------<--------------------------<---------------<--------
 {
@@ -555,6 +572,12 @@ void Console::edit()
     bool cont;
     vector<Scientist> scientists = scientistService.getScientists();
 
+    if(scientists.size()==0)
+    {
+        cout << "-------------------------------------------------The Database is Empty------------------------------------------------" << endl;
+        return;
+    }
+
     do
     {
         cont = false;
@@ -564,11 +587,6 @@ void Console::edit()
         if(choice == "l")
         {
             printScientists(scientists);
-            if(scientists.size()==0)
-            {
-                cont = true;
-                continueFunction();
-            }
             cout << "Please insert the index you wish to edit: " << endl;
             idInput(index, scientists.size());
             index -= 1;
@@ -619,6 +637,12 @@ void Console::editComputer()
     bool cont;
     vector<Computer> computers = scientistService.getComputers();
 
+    if(computers.size()==0)
+    {
+        cout << "------------------------------------The Database is Empty------------------------------------------" << endl;
+        return;
+    }
+
     do
     {
         cont = false;
@@ -628,11 +652,6 @@ void Console::editComputer()
         if(choice == "l")
         {
             printComputers(computers);
-            if(computers.size() == 0)
-            {
-                cont = true;
-                continue;
-            }
             cout << "Please insert the index you wish to edit: " << endl;
             idInput(index, computers.size());
             index -= 1;
@@ -690,19 +709,6 @@ void Console::search()
     printComputers(computers);
     ///-------------------------------------------------------------------SKOÐA CHANGE/DELETE/LEITA AFTUR/MENU
 }
-/*
-void Console::search() -- GAMLA FALLIÐ
-{
-    string query;
-    cout << "Query: ";
-    cin >> query;
-    cin.ignore();
-    vector<int> indexesToPrint = scientistService.getIndexesWith(query);
-    printTable(indexesToPrint);
-    printChangeDelete();
-    changeOrDelete(indexesToPrint);
-}
-*/
 
 /******************************************************************************
                          viewDisplay
@@ -940,13 +946,20 @@ Computer Console::makeNewComputer()
     return cpu;
 }
 
+/******************************************************************
+                      askToRelate
+    Spyr notandan hvort hann vilji tengja tölvuna/vísindamanninn við
+    vísindamann/tölvu og gerir villutékk
+    @return(string option) - tekur inn hvaða streng á að prenta út
+ ******************************************************************/
+
 string Console::askToRelate(string option)
 {
     string choice;
     string tmpOption = option;
     do
     {
-        cout << "Would you like to relate the computer to a scientist? (y/n)" << endl << "-> ";
+        cout << option << endl << "-> ";
         cin >> choice;
 
         if((choice != "y" && choice != "n") || cin.fail())
@@ -1079,13 +1092,13 @@ void Console::relate()
 {
     string choice;
     printRelationMenu();
-    do //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    do
     {
         cout << "-> ";
         cin >> choice;
         if(choice != "c" && choice != "d" && choice != "q")
             cout << "Please enter a valid command!" << endl;
-    }while(choice != "c" && choice != "d" && choice != "q");/////////////////////////////////////////////////////////////////////////////////////
+    }while(choice != "c" && choice != "d" && choice != "q");
 
     if(choice == "c")
         addRelations();
@@ -1264,7 +1277,8 @@ void Console::idInput(unsigned int &index, unsigned int size)
 {
     do
     {
-        cout << "-> ";
+        cout << endl;
+        cout << "Nr. -> ";
         cin.clear();
         cin.ignore();
 
@@ -1288,7 +1302,8 @@ void Console::idInputCanBeZero(unsigned int &index, unsigned int size)
 {
     do
     {
-        cout << "-> ";
+        cout << endl;
+        cout << "Nr. -> ";
         cin.clear();
         cin.ignore();
 
@@ -1344,11 +1359,11 @@ int Console::getScID()
 
 void Console::readCpuName(string &name)
 {
+    cin.ignore();
     do
     {
         cout << scientistService.getErrorString();
         cout << "Name: ";
-        cin.ignore();
         do
         {
             getline(cin, name);
@@ -1492,7 +1507,7 @@ void Console::readBuilt(bool &built)
         cout << scientistService.getErrorString();
         do
         {
-            cout << "->";
+            cout << "-> ";
             cin >> choice;
             if (choice == "y")
             {
@@ -1516,11 +1531,11 @@ void Console::readBuilt(bool &built)
 
 void Console::readFirstName(string &firstName)
 {
+    cin.ignore();
     do
     {
         cout << scientistService.getErrorString();
         cout << "First Name (and middle and more): ";
-        cin.ignore();
         do
         {
             getline(cin, firstName);
@@ -1693,13 +1708,11 @@ void Console::readFurtherInfo(string &furtherInfo)
 
 void Console::readNationality(string &nationality)
 {
+    cin.ignore();
     do
     {
         cout << scientistService.getErrorString();
         cout << "Nationality: ";
-
-        cin.clear();
-        cin.ignore();
 
         getline(cin, nationality);
     }while(!scientistService.validNationality(nationality));
@@ -1721,13 +1734,13 @@ void Console::readNationality(string &nationality)
 
 void Console::editOrDeleteInput(vector<int> indexes, int &index, int getNumber)
 {
-    do/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    do
     {
         cin.ignore();
         cin >> index;
         if(index <= 0 || index > getNumber || cin.fail())
             cout << "Please insert valid index!" << endl;
-    }while(index <= 0 || index > getNumber || cin.fail());//////////////////////////////////////////////////////////////////////////////////////////////////////////
+    }while(index <= 0 || index > getNumber || cin.fail());
 
     index -= 1;
 
@@ -1809,6 +1822,22 @@ void Console::viewOperation()
                 str = stringChoice();
 
                 cpuSorting(str);
+                cont = continueFunction();
+                tmp = "n";
+            }
+            else if (choice_made == "b")
+            {
+                string cpuString;
+                cpuSortingMenu();
+                cpuString = stringChoice();
+
+                string sciString;
+                sorting_menu();
+                sciString = stringChoice();
+
+                sorting(sciString);
+                cpuSorting(cpuString);
+
                 cont = continueFunction();
                 tmp = "n";
             }

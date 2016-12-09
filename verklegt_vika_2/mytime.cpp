@@ -1,5 +1,10 @@
 #include "mytime.h"
 
+/****************************************************************************
+                        MyTime - smiður
+    stillir smiðinn þegar hann er búinn til
+ ****************************************************************************/
+
 MyTime::MyTime()
 {
     now = time(0);
@@ -28,6 +33,12 @@ MyTime::MyTime()
 }
 
 MyTime::~MyTime() { }
+
+/****************************************************************************
+                             getMonth
+
+   @parameter(int choice) -
+ ****************************************************************************/
 
 void MyTime::getMonth(int choice)
 {
@@ -72,11 +83,21 @@ void MyTime::getMonth(int choice)
     }
 }
 
+/****************************************************************************
+                             pullDate
+   Fall sem dregur úr meðlimabreytunum dagsetninguna
+   @return(string date) - dagsetningin sem skilað er
+ ****************************************************************************/
+
 string MyTime::pullDate ()
 {
     return date;
 }
-
+/****************************************************************************
+                             pullTime
+   Fall sem dregur úr meðlimabreytunum tímasetninguna og skilar henni
+   @return(string wholeTime) - tímasetningin sem skilað er
+ ****************************************************************************/
 string MyTime::pullTime ()
 {
     return wholeTime;
