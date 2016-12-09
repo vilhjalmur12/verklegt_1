@@ -1,11 +1,20 @@
 #include "errorlog.h"
 
-errorLog::errorLog()
+ErrorLog::ErrorLog()
 {
 
 }
 
-errorLog::errorLog(string username, string tmpError)
+/****************************************************************************
+                        errorLog - smiður
+    stillir smiðinn þegar hann er búinn til með breytum sem byrjanargildi
+            @parameter(string name) - nafn á tolvu
+            @parameter(string cpuType) - tegund tolvu
+            @parameter(bool built) - skialr true ef tolvan var byggd
+            @parameter(int yearBuilt) - byggingarar tolvu
+ ****************************************************************************/
+
+ErrorLog::ErrorLog(string username, string tmpError)
 {
     user = "[" + username + "]";
     error = tmpError;
@@ -13,7 +22,7 @@ errorLog::errorLog(string username, string tmpError)
     timeNow = "[" + time.pullTime() + "]";
 }
 
-errorLog::errorLog(string username, string tmpError, bool tmpBrute)
+ErrorLog::ErrorLog(string username, string tmpError, bool tmpBrute)
 {
     user = "[" + username + "]";
     error = tmpError;
@@ -23,9 +32,9 @@ errorLog::errorLog(string username, string tmpError, bool tmpBrute)
     brute = tmpBrute;
 }
 
-errorLog::~errorLog() {}
+ErrorLog::~ErrorLog() {}
 
-void errorLog::openInStream()
+void ErrorLog::openInStream()
 {
     string logName = ".error_log";
 
@@ -38,7 +47,7 @@ void errorLog::openInStream()
     }
 }
 
-void errorLog::openOutStream()
+void ErrorLog::openOutStream()
 {
     string logName = ".error_log";
     errorOutput.open(logName, std::ios::app);
@@ -50,7 +59,7 @@ void errorLog::openOutStream()
     }
 }
 
-void errorLog::pushError ()
+void ErrorLog::pushError ()
 {
     openOutStream();
 

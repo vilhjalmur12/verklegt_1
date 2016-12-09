@@ -15,13 +15,13 @@ public:
     void pushActivity (string action, Scientist _scientistFrom);
     void pushActivity (string action, Computer _computerFrom, Computer _computerTo);
     void pushActivity (string action, Computer _computerFrom);
-    void pushActivity (string action, cpuType _cpuType);
+    void pushActivity (string action, CpuType _cpuType);
 
 private:
     string user;
     ifstream activityInput;
     ofstream activityOutput;
-    myTime time;
+    MyTime time;
     string date;
     string timeNow;
 

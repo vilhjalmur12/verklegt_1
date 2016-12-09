@@ -19,7 +19,9 @@ activityLog::~activityLog()
 
 void activityLog::openInStream()
 {
-    string logName = "." + user + "_activity";
+    string tmpUser = user;
+    tmpUser.erase(tmpUser.begin(), tmpUser.end());
+    string logName = "." + tmpUser + "_activity";
 
     activityInput.open(logName);
     if (activityInput.fail())
@@ -32,7 +34,9 @@ void activityLog::openInStream()
 
 void activityLog::openOutStream()
 {
-    string logName = "." + user + "_activity";
+    string tmpUser = user;
+    tmpUser.erase(tmpUser.begin(), tmpUser.end());
+    string logName = "." + tmpUser + "_activity";
     activityOutput.open(logName, std::ios::app);
     if (activityOutput.fail())
     {
@@ -88,7 +92,7 @@ void activityLog::pushActivity (string action, Computer _computerFrom)
     activityOutput.close();
 }
 
-void activityLog::pushActivity (string action, cpuType _cpuType)
+void activityLog::pushActivity (string action, CpuType _cpuType)
 {
     openOutStream();
     string actionOut = "[" + action +"]";
