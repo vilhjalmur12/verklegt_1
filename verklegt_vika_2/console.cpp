@@ -1811,6 +1811,14 @@ void Console::deleteOperationHelper(string choice_made)
         {
             scientistService.deleteAllScientistsFromDatabase();
         }
+        else if (answer == "n")
+        {
+
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+        }
     }
     else if(choice_made == "ac")
     {
@@ -1819,6 +1827,14 @@ void Console::deleteOperationHelper(string choice_made)
         if(answer == "y")
         {
             scientistService.deleteAllComputersFromDatabase();
+        }
+        else if (answer == "n")
+        {
+
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
         }
     }
     else if(choice_made == "a")
@@ -1829,6 +1845,15 @@ void Console::deleteOperationHelper(string choice_made)
         {
             scientistService.deleteAllFromDatabase();
         }
+        else if (answer == "n")
+        {
+
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+        }
+
     }
     else
     {
