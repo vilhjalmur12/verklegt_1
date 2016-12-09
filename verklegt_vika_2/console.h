@@ -83,7 +83,8 @@ private:
     void removeRelations();
     int getScID();
     int getCpuID();
-    void idInput(unsigned int &index, int size);
+    void idInput(unsigned int &index, unsigned int size);
+    void editOrDeleteInput(vector<int> indexes, int &index, int getNumber);
     void printRelationMenu();
     void readCpuName(string &name);
     void readCpuType(string &cpuType);

@@ -1138,13 +1138,13 @@ void Console::removeRelations()
     }while(choice == "y");
 
 }
-
 /******************************************************************
-                      getCpuID
-   Nær í ID tölvu í gagnagrunninn
-   @return computers[cIndex-1].getID - sækir ID tölvu
+                      idInput
+   Fall sem getCpuID og getSciID kalla í til þess að stytta
+   @parameter (unsigned int &index, int size) - sæki cIndex eða sIndex og
+                size sækir fjölda vísindamanna/tölva
  ******************************************************************/
-void Console::idInput(unsigned int &index, int size)
+void Console::idInput(unsigned int &index, unsigned int size)
 {
     do
     {
@@ -1159,6 +1159,11 @@ void Console::idInput(unsigned int &index, int size)
         }
     }while(cin.fail() || index < 1 || index > size);
 }
+/******************************************************************
+                      getCpuID
+   Nær í ID tölvu í gagnagrunninn
+   @return computers[cIndex-1].getID - sækir ID tölvu
+ ******************************************************************/
 
 
 int Console::getCpuID()
@@ -1185,20 +1190,7 @@ int Console::getScID()
 
     printScientists(scientists);
     cout << "Please insert the index of your scientist of choice: " << endl;
-    do////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    {
-        cout << "-> ";
-        cin.ignore();
-
-        cin >> sIndex;
-
-        if(cin.fail() || sIndex < 1 || sIndex > scientists.size())
-        {
-            cout << "Please insert valid index!" << endl;
-            cin.clear();
-        }
-
-    }while(cin.fail() || sIndex < 1 || sIndex > scientists.size()); ///////////////////////////////////////////////////////////////////////////////////////
+    idInput(sIndex, scientists.size());
     return scientists[sIndex-1].getID();
 }
 
@@ -1570,6 +1562,31 @@ void Console::readNationality(string &nationality)
         nationality.at(0) = toupper(nationality.at(0));
 }
 
+/******************************************************************
+                      editOrDeleteInput
+    Fall til að stytta changeOrDelete því það er endurtekning í edit
+    og delete hlutunum
+            @parameter(vector<int> indexes, int &index, int getNumber)
+            - vector (listi) af tölum sem segja til um stak vísindamanns
+              í gagnagrunni
+              index tekur inn töluna sem notandinn vil breyta/eyða
+              getNumber tekur inn fjölda vísindamanna/tölva
+ ******************************************************************/
+
+void Console::editOrDeleteInput(vector<int> indexes, int &index, int getNumber)
+{
+    do
+    {
+        cin.ignore();
+        cin >> index;
+        if(index <= 0 || index > getNumber || cin.fail())
+            cout << "Please insert valid index!" << endl;
+    }while(index <= 0 || index > getNumber || cin.fail());
+
+    index -= 1;
+
+    index = indexes[index];
+}
 
 /******************************************************************
                       changeOrDelete
@@ -1591,15 +1608,7 @@ void Console::changeOrDelete(vector<int> indexes)
     {
         int index;
         cout << "Insert the index you wish to delete: " << endl;
-        do///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        {
-            cin.ignore();
-            cin >> index;
-            if(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());
-                cout << "Please insert valid index!" << endl;
-        }while(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());///////////////////////////////////////////////////////////////////////////
-        index -= 1;
-        index = indexes[index];
+        editOrDeleteInput(indexes, index, scientistService.getNumberOfScientists());
         // scientistService.removeScientist(index);
     }
 
@@ -1607,19 +1616,7 @@ void Console::changeOrDelete(vector<int> indexes)
     {
         int index;
         cout << "Insert the index you wish to edit: " << endl;
-
-        do//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        {
-            cin.ignore();
-            cin >> index;
-            if(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail())
-                cout << "Please insert valid index!" << endl;
-        }while(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());/////////////////////////////////////////////////////////////////////////
-
-        index -= 1;
-
-        index = indexes[index];
-
+        editOrDeleteInput(indexes, index, scientistService.getNumberOfScientists());
         pushBackScientist();
         scientistService.moveLastTo(index);
     }
