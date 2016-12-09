@@ -831,9 +831,9 @@ void database::deleteAllFromScientistDatabase()
     databaseOpen();
 
     QSqlQuery query;
-    query.prepare("UPDATE scientists "
-                  "SET deleted = :deleted");
-    query.bindValue(":deleted", doDeleted);
+    query.prepare("UPDATE scientists SET Deleted = 1");
+    //              "SET deleted = :deleted");
+    //query.bindValue(":deleted", doDeleted);
     query.exec();
 
     databaseClose(myData);

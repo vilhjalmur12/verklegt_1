@@ -360,7 +360,7 @@ void  Console::printComputers(vector<Computer> computers)
                 buildersString += ", ";
         }
 
-        printf("%-5d%-25s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearForPrinting().c_str(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
+        printf("%-5s%-25s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearForPrinting().c_str(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
     }
 }
 /****************************************************************************
@@ -376,7 +376,6 @@ void Console::callUser ()
     bool runProgram = false;
 
     // scientistService.deleteAllFromDatabase();
-    // scientistService.deleteAllScientistsFromDatabase();
     // scientistService.deleteAllComputersFromDatabase();
     welcome();
 
@@ -447,6 +446,7 @@ void Console::callUser ()
             {
                 cout << "Invalid user or password" << endl << endl;
             }
+
         }
         else if (action == "q")
         {
@@ -710,6 +710,9 @@ void Console::quit()
 {
     quitMenu();
 
+    //scientistService.deleteAllScientistsFromDatabase();
+    //scientistService.deleteAllComputersFromDatabase();
+    scientistService.deleteAllFromDatabase();
     //  scientistService.saveData();
 
     // cout << scientistService.getErrorString();
