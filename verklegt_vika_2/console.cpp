@@ -555,6 +555,12 @@ void Console::edit()
     bool cont;
     vector<Scientist> scientists = scientistService.getScientists();
 
+    if(scientists.size()==0)
+    {
+        cout << "-------------------------------------------------The Database is Empty------------------------------------------------" << endl;
+        return;
+    }
+
     do
     {
         cont = false;
@@ -564,11 +570,6 @@ void Console::edit()
         if(choice == "l")
         {
             printScientists(scientists);
-            if(scientists.size()==0)
-            {
-                cont = true;
-                continueFunction();
-            }
             cout << "Please insert the index you wish to edit: " << endl;
             idInput(index, scientists.size());
             index -= 1;
@@ -617,6 +618,12 @@ void Console::editComputer()
     bool cont;
     vector<Computer> computers = scientistService.getComputers();
 
+    if(computers.size()==0)
+    {
+        cout << "------------------------------------The Database is Empty------------------------------------------" << endl;
+        return;
+    }
+
     do
     {
         cont = false;
@@ -626,11 +633,6 @@ void Console::editComputer()
         if(choice == "l")
         {
             printComputers(computers);
-            if(computers.size() == 0)
-            {
-                cont = true;
-                continue;
-            }
             cout << "Please insert the index you wish to edit: " << endl;
             idInput(index, computers.size());
             index -= 1;
