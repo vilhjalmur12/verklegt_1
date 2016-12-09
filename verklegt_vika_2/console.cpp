@@ -211,6 +211,20 @@ void Console::viewMenu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::viewRecycleMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "|       What would you like to do?      |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|           s - view scientists         |" << endl;
+    cout << "|           c - view computers          |" << endl;
+    cout << "|            r - restore all            |" << endl;
+    cout << "|           q - quit program            |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 void Console::cpuSortingMenu()
 {
     cout << endl;
@@ -255,6 +269,18 @@ void Console::printRelationMenu()
     cout << "-----------------------------------------" << endl;
 
 }
+
+void Console::viewRecycleEntryMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|      Insert entry to restore or       |" << endl;
+    cout << "|         type 0 to restore all         |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+}
+
 void Console::printTypeMenu(vector<cpuType> type)
 {
     int size = type.size();
@@ -494,6 +520,22 @@ string Console::getInput(string opt1, string opt2, string opt3) //--------------
 
     return choice;
 }
+
+string Console::getInput(string opt1, string opt2, string opt3, string opt4) //----------------------------------------<------------------<--------------------------<---------------<--------
+{
+    string choice;
+
+    do
+    {
+        cout << "-> ";
+        cin >> choice;
+        if((choice != opt1 && choice != opt2 && choice != opt3 && choice != opt4 ) || cin.fail())
+            cout << "Please insert valid choice" << endl;
+    }while((choice != opt1 && choice != opt2 && choice != opt3 && choice != opt4) || cin.fail());
+
+    return choice;
+}
+
 
 /******************************************************************************
                          edit
@@ -1104,8 +1146,81 @@ void Console::addRelationsToSci(int sIndex)
 
 void Console::recycledBin()
 {
-    string choice;
-    //choice =
+    string cont;
+    do
+    {
+        string choice;
+        viewRecycleMenu();
+
+        choice = getInput("s", "c", "q", "r");
+
+        if(choice == "s")
+        {
+            recycleScientists();
+        }
+        if(choice == "c")
+        {
+            //recycleComputers
+        }
+        if(choice == "r")
+        {
+            scientistService.restoreAllFromDatabase();
+        }
+        if(choice == "q")
+        {
+            quit();
+        }
+        cont = continueFunction();
+    }while(cont == "y");
+}
+
+void Console::recycleScientists()
+{
+    unsigned int index;
+    vector<Scientist> deletedScientists = scientistService.getDeletedScientists();
+    printScientists(deletedScientists);
+
+    if(deletedScientists.size() == 0)
+        return;
+
+    viewRecycleEntryMenu();
+
+    idInput(index, deletedScientists.size(), true);
+
+    if(index == 0)
+    {
+        scientistService.restoreAllScientistFromDatabase();
+    }
+    else
+    {
+        index = deletedScientists[index-1].getID();
+        scientistService.restoreScientist(index);
+    }
+}
+
+void Console::recycleComputers()
+{
+    unsigned int index;
+    vector <Computer> deletedComputers = scientistService.getDeletedComputers();
+    printComputers(deletedComputers);
+
+    if(deletedComputers.size() == 0)
+        return;
+
+    viewRecycleEntryMenu();
+
+
+    idInput(index, deletedComputers.size(), true);
+
+    if(index == 0)
+    {
+        scientistService.restoreAllComputerFromDatabase();
+    }
+    else
+    {
+        index = deletedComputers[index-1].getID();
+        scientistService.restoreComputer(index);
+    }
 }
 
 /******************************************************************
@@ -1149,6 +1264,23 @@ void Console::idInput(unsigned int &index, unsigned int size)
         }
     }while(cin.fail() || index < 1 || index > size);
 }
+
+void Console::idInput(unsigned int &index, unsigned int size, bool canBeZero)
+{
+    do
+    {
+        cout << "-> ";
+        cin.ignore();
+
+        cin >> index;
+
+        if(cin.fail() || index > size)
+        {
+            cout << "Please insert valid index!" << endl;
+        }
+    }while(cin.fail() || index > size);
+}
+
 /******************************************************************
                       getCpuID
    Nær í ID tölvu í gagnagrunninn

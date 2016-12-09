@@ -43,6 +43,8 @@ public:
     void printChangeDelete();       //Bjóða uppá að eiga við lista
     void quitMenu();                //Skjár segir bless þegar þú hættir í forriti
     void viewMenu();                //Spyr hvort það eigi að birta lista vísindamanna eða tölva
+    void viewRecycleMenu();
+    void viewRecycleEntryMenu();
     void insertMenu();              //Spyr hvort það eigi að bæta við vísindamanni eða tölvu
     void printTypeMenu(vector<cpuType> type);
 
@@ -79,10 +81,13 @@ private:
     void addRelationsToCpu(int cIndex);
     void addRelationsToSci(int sIndex);
     void recycledBin();
+    void recycleScientists();
+    void recycleComputers();
     void removeRelations();
     int getScID();
     int getCpuID();
     void idInput(unsigned int &index, unsigned int size);
+    void idInput(unsigned int &index, unsigned int size, bool canBeZero);
     void editOrDeleteInput(vector<int> indexes, int &index, int getNumber);
     void printRelationMenu();
     void readCpuName(string &name);
@@ -103,6 +108,7 @@ private:
     void editMenu();                                                                                                //Spyr hvort það eigi að breyta vísindamanni eða tölvu
     void deleteMenu();                                                                                              //Spyr hvort það eigi að eyða vísindamanni eða tölvu
     string getInput(string opt1, string opt2, string opt3);
+    string getInput(string opt1, string opt2, string opt3, string opt4);
 
 /**************************************************
               Hjálparföll við search

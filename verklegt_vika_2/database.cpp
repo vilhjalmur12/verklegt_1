@@ -70,7 +70,6 @@ vector<Scientist> database::pullScientists(string choice)
 
     string command = "SELECT * FROM Scientists where deleted = 0 ORDER BY " + choice + ", last_name";
 
-  //  QString Qchoice(choice.c_str());
     QString Qcommand(command.c_str());
 
     QSqlQuery query;
@@ -78,6 +77,25 @@ vector<Scientist> database::pullScientists(string choice)
 
     addFoundScientists(query, scientists);
     adddBuiltComputersToScientists(scientists);
+
+    databaseClose(myData);
+
+    return scientists;
+}
+
+vector<Scientist> database::pullDeletedScientists()
+{
+    databaseOpen();
+
+    vector<Scientist> scientists;
+
+    QSqlQuery query;
+
+    query.exec("SELECT * FROM scientists "
+               "WHERE deleted = 1 "
+               "ORDER BY last_name ");
+
+    addFoundScientists(query, scientists);
 
     databaseClose(myData);
 
@@ -104,6 +122,26 @@ vector<Computer> database::pullComputers(string choice)
 
     addFoundComputers(query, computers);
     addBuildersToComputers(computers);
+
+    databaseClose(myData);
+
+    return computers;
+}
+
+vector<Computer> database::pullDeletedComputers()
+{
+    databaseOpen();
+
+    vector<Computer> computers;
+
+    QSqlQuery query;
+    query.exec("SELECT c.ID, name, year_of_build, type, built_or_not FROM Computers c "
+               "INNER JOIN cpuType t "
+               "ON t.ID = c.CPU_type_ID "
+               "where deleted = 1 "
+               "ORDER BY name");
+
+    addFoundComputers(query, computers);
 
     databaseClose(myData);
 
@@ -987,6 +1025,32 @@ void database::deleteScientist(int ID)
              Hægt er að velja hvaða tölvu verður eytt
  ******************************************************************/
 
+void database::restoreAllFromDatabase()
+{
+    restoreAllFromComputerDatabase();
+    restoreAllFromScientistDatabase();
+}
+
+void database::restoreAllFromComputerDatabase()
+{
+    databaseOpen();
+
+    QSqlQuery query;
+    query.exec("UPDATE computers SET DELETED = 0");
+
+    databaseClose(myData);
+}
+
+void database::restoreAllFromScientistDatabase()
+{
+    databaseOpen();
+
+    QSqlQuery query;
+    query.exec("UPDATE scientists SET DELETED = 0");
+
+    databaseClose(myData);
+}
+
 void database::deleteComputer(int ID)
 {
     int doDeleted = 1;
@@ -998,6 +1062,34 @@ void database::deleteComputer(int ID)
                   "SET deleted = :deleted "
                   "WHERE ID = :ID");
     query.bindValue(":deleted", doDeleted);
+    query.bindValue(":ID", ID);
+    query.exec();
+
+    databaseClose(myData);
+}
+
+void database::restoreScientist(int ID)
+{
+    databaseOpen();
+
+    QSqlQuery query;
+    query.prepare("UPDATE scientists "
+                  "SET DELETED = (0) "
+                  "WHERE ID = :ID");
+    query.bindValue(":ID", ID);
+    query.exec();
+
+    databaseClose(myData);
+}
+
+void database::restoreComputer(int ID)
+{
+    databaseOpen();
+
+    QSqlQuery query;
+    query.prepare("UPDATE computers "
+                  "SET deleted = (0) "
+                  "WHERE ID = :ID");
     query.bindValue(":ID", ID);
     query.exec();
 
