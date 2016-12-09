@@ -8,9 +8,9 @@
 #include "scientist.h"
 #include "computer.h"
 #include <qsqldatabase.h>
+#include <QSqlRecord>
 #include <QDebug>
 #include "cputype.h"
-
 
 using namespace std;
 

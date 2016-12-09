@@ -1,13 +1,4 @@
 #include "console.h"
-#include "service.h"
-#include "scientist.h"
-#include "errorhandling.h"
-#include "cputype.h"
-
-#include <iostream>
-#include <string>
-#include <limits>
-#include <regex>
 
 Console::Console() { }
 
@@ -38,11 +29,12 @@ void Console::viewOrInsert()
     cout << "|           Choose procedure:           |" << endl;
     cout << "|                                       |" << endl;
     cout << "|            v - for viewing            |" << endl;
-    cout << "|           i - for insertion           |" << endl;
-    cout << "|            s - for search             |" << endl;
+    cout << "|           i - for inserting           |" << endl;
+    cout << "|           s - for searching           |" << endl;
     cout << "|            e - for editing            |" << endl;
     cout << "|           d - for deleting            |" << endl;
     cout << "|           r - for relating            |" << endl;
+    cout << "|         b - for recycled Bin          |" << endl;
     cout << "|           q - for quitting            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -212,8 +204,8 @@ void Console::viewMenu()
     cout << "-----------------------------------------" << endl;
     cout << "|       What would you like to do?      |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|          s - view a scientist         |" << endl;
-    cout << "|          c - view a computer          |" << endl;
+    cout << "|           s - view scientists         |" << endl;
+    cout << "|           c - view computers          |" << endl;
     cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -378,10 +370,7 @@ void Console::callUser ()
     string action;
     bool runProgram = false;
 
-    // scientistService.deleteAllFromDatabase();
-    // scientistService.deleteAllComputersFromDatabase();
     welcome();
-
     toContinue();
 
     while (!runProgram)
@@ -394,7 +383,6 @@ void Console::callUser ()
         if (action == "c")
         {
             string confirmPass = "password";
-
 
             cout << "Choose Username: ";
             cin >> tmpUser;
@@ -477,7 +465,6 @@ void Console::run()
     do
     {
         viewOrInsert();
-
         choiceMade();
         cin.ignore();
 
@@ -713,8 +700,6 @@ void Console::quit()
 {
     quitMenu();
 
-    //scientistService.deleteAllScientistsFromDatabase();
-    //scientistService.deleteAllComputersFromDatabase();
     scientistService.deleteAllFromDatabase();
     //  scientistService.saveData();
 
@@ -1144,12 +1129,33 @@ void Console::removeRelations()
     }while(choice == "y");
 
 }
+/******************************************************************
+                      idInput
+   Fall sem getCpuID og getSciID kalla í til þess að stytta
+   @parameter (unsigned int &index, int size) - sæki cIndex eða sIndex og
+                size sækir fjölda vísindamanna/tölva
+ ******************************************************************/
+void Console::idInput(unsigned int &index, unsigned int size)
+{
+    do
+    {
+        cout << "-> ";
+        cin.ignore();
 
+        cin >> index;
+
+        if(cin.fail() || index < 1 || index > size)
+        {
+            cout << "Please insert valid index!" << endl;
+        }
+    }while(cin.fail() || index < 1 || index > size);
+}
 /******************************************************************
                       getCpuID
    Nær í ID tölvu í gagnagrunninn
    @return computers[cIndex-1].getID - sækir ID tölvu
  ******************************************************************/
+
 
 int Console::getCpuID()
 {
@@ -1158,19 +1164,7 @@ int Console::getCpuID()
 
     printComputers(computers);
     cout << "Please insert the index of your computer of choice: " << endl;
-    do//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    {
-        cout << "-> ";
-        cin.ignore();
-
-        cin >> cIndex;
-
-        if(cin.fail() || cIndex < 1 || cIndex > computers.size())
-        {
-            cout << "Please insert valid index!" << endl;
-        }
-
-    }while(cin.fail() || cIndex < 1 || cIndex > computers.size());///////////////////////////////////////////////////////////////////////////////////////////////////
+    idInput(cIndex, computers.size());
     return computers[cIndex-1].getID();
 }
 
@@ -1187,20 +1181,7 @@ int Console::getScID()
 
     printScientists(scientists);
     cout << "Please insert the index of your scientist of choice: " << endl;
-    do////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    {
-        cout << "-> ";
-        cin.ignore();
-
-        cin >> sIndex;
-
-        if(cin.fail() || sIndex < 1 || sIndex > scientists.size())
-        {
-            cout << "Please insert valid index!" << endl;
-            cin.clear();
-        }
-
-    }while(cin.fail() || sIndex < 1 || sIndex > scientists.size()); ///////////////////////////////////////////////////////////////////////////////////////
+    idInput(sIndex, scientists.size());
     return scientists[sIndex-1].getID();
 }
 
@@ -1575,6 +1556,31 @@ void Console::readNationality(string &nationality)
         nationality.at(0) = toupper(nationality.at(0));
 }
 
+/******************************************************************
+                      editOrDeleteInput
+    Fall til að stytta changeOrDelete því það er endurtekning í edit
+    og delete hlutunum
+            @parameter(vector<int> indexes, int &index, int getNumber)
+            - vector (listi) af tölum sem segja til um stak vísindamanns
+              í gagnagrunni
+              index tekur inn töluna sem notandinn vil breyta/eyða
+              getNumber tekur inn fjölda vísindamanna/tölva
+ ******************************************************************/
+
+void Console::editOrDeleteInput(vector<int> indexes, int &index, int getNumber)
+{
+    do
+    {
+        cin.ignore();
+        cin >> index;
+        if(index <= 0 || index > getNumber || cin.fail())
+            cout << "Please insert valid index!" << endl;
+    }while(index <= 0 || index > getNumber || cin.fail());
+
+    index -= 1;
+
+    index = indexes[index];
+}
 
 /******************************************************************
                       changeOrDelete
@@ -1596,15 +1602,7 @@ void Console::changeOrDelete(vector<int> indexes)
     {
         int index;
         cout << "Insert the index you wish to delete: " << endl;
-        do///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        {
-            cin.ignore();
-            cin >> index;
-            if(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());
-                cout << "Please insert valid index!" << endl;
-        }while(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());///////////////////////////////////////////////////////////////////////////
-        index -= 1;
-        index = indexes[index];
+        editOrDeleteInput(indexes, index, scientistService.getNumberOfScientists());
         // scientistService.removeScientist(index);
     }
 
@@ -1612,19 +1610,7 @@ void Console::changeOrDelete(vector<int> indexes)
     {
         int index;
         cout << "Insert the index you wish to edit: " << endl;
-
-        do//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        {
-            cin.ignore();
-            cin >> index;
-            if(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail())
-                cout << "Please insert valid index!" << endl;
-        }while(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());/////////////////////////////////////////////////////////////////////////
-
-        index -= 1;
-
-        index = indexes[index];
-
+        editOrDeleteInput(indexes, index, scientistService.getNumberOfScientists());
         pushBackScientist();
         scientistService.moveLastTo(index);
     }
@@ -1790,22 +1776,14 @@ void Console::deleteOperation()
             scientistService.deleteComputer(ID);
             tmp = "n";
         }
-        else if (choice_made == "q")
+        else if (choice_made == "q" )
         {
             quit();
             tmp = "n";
         }
-        else if (choice_made == "as")
+        else if (choice_made == "as" || choice_made == "ac" || choice_made == "a" )
         {
-            //TODO: delete all scientists
-        }
-        else if (choice_made == "ac")
-        {
-            //TODO: delete all computers
-        }
-        else if (choice_made == "a")
-        {
-            //TODO: delete all
+            deleteOperationHelper(choice_made);
         }
         else
         {
@@ -1813,4 +1791,66 @@ void Console::deleteOperation()
             tmp = "y";
         }
     }while(tmp == "y");
+}
+
+void Console::deleteOperationHelper(string choice_made)
+{
+    string answer;
+
+    if(choice_made == "as")
+    {
+        cout << "Are you sure you want to delete all Computer Scientists from the database? (y/n) " << endl;
+        cin >> answer;
+        if(answer == "y")
+        {
+            scientistService.deleteAllScientistsFromDatabase();
+        }
+        else if (answer == "n")
+        {
+
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+        }
+    }
+    else if(choice_made == "ac")
+    {
+        cout << "Are you sure you want to delete all Computers from the database? (y/n) " << endl;
+        cin >> answer;
+        if(answer == "y")
+        {
+            scientistService.deleteAllComputersFromDatabase();
+        }
+        else if (answer == "n")
+        {
+
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+        }
+    }
+    else if(choice_made == "a")
+    {
+        cout << "Are you sure you want to delete everything from the database? (y/n) " << endl;
+        cin >> answer;
+        if(answer == "y")
+        {
+            scientistService.deleteAllFromDatabase();
+        }
+        else if (answer == "n")
+        {
+
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+        }
+
+    }
+    else
+    {
+        cout << "Please enter a valid command!" << endl;
+    }
 }
