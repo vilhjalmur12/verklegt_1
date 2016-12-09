@@ -110,6 +110,22 @@ bool Service::doesScientistExcist(string firstName, string lastName, string sex,
     return true;
 }
 
+bool Service::doesComputerExcist(string name, string cpuType, int yearBuilt, bool built)
+{
+    vector<Computer> computers = getComputers();
+    Computer tempComputer(name, cpuType, yearBuilt, built);
+
+    for(unsigned int i = 0; i < computers.size(); i++)
+    {
+        if(tempComputer == computers[i])
+        {
+            throwError.invalidName(1);
+            return false;
+        }
+    }
+    return true;
+}
+
 bool Service::appendScientist(string firstName, string lastName, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
 {
     //_scientists = data.getScientists();
@@ -130,16 +146,9 @@ bool Service::appendScientist(string firstName, string lastName, string sex, int
 bool Service::appendComputer (string name, string cpuType, int yearBuilt, bool built)
 {
     Computer tempComputer(name, cpuType, built, yearBuilt);
-   /*
-    for(unsigned int i = 0; i < _computers.size(); i++)
-    {
-        if(tempComputer == _computers[i])
-        {
-            throwError.invalidName(1);
-            return false;
-        }
-    }
-    */
+
+    if(!doesComputerExcist(name, cpuType, yearBuilt, built))
+        return false;
 
     _computers.push_back(tempComputer);  // Líklega óþarfi
 
@@ -151,6 +160,11 @@ bool Service::appendComputer (string name, string cpuType, int yearBuilt, bool b
 void Service::addRelations(int cID, int sID)
 {
     data.addRelations(cID, sID);
+}
+
+void Service::removeRelations(int cID, int sID)
+{
+    data.removeRelations(cID, sID);
 }
 
 void Service::editComputer(int ID, Computer computer)
@@ -246,6 +260,11 @@ vector<Computer> Service::getComputers(string choice)
 int Service::getNumberOfScientists()
 {
     return data.getNumberOfScientistEntries();
+}
+
+int Service::getNumberOfComputers()
+{
+    return data.getNumberOfComputerEntries();
 }
 
 /****************************************************************************

@@ -116,9 +116,9 @@ friend ostream& operator << (ostream& out, Computer co)     // Prentar út allar
     out << co.getName() << "\t" << co.getCpuType() << "\t" << co.getBuilt() << "\t" << co.getYearBuilt();
     return out;
 }
-
-friend bool operator == (Computer lhs, Computer rhs)     // Ber saman upplýsingarnar til að sjá hvor þær séu eins
-{
-    (lhs.getName() == rhs.getName() && lhs.getCpuType() == rhs.getCpuType() && lhs.getBuilt() == lhs.getBuilt() && lhs.getYearBuilt() == rhs.getYearBuilt());
-}
 */
+bool operator == (Computer lhs, Computer rhs)     // Ber saman upplýsingarnar til að sjá hvor þær séu eins
+{
+    return (lhs.getName() == rhs.getName() && lhs.getCpuType() == rhs.getCpuType() && lhs.getBuilt() == lhs.getBuilt() && lhs.getYearBuilt() == rhs.getYearBuilt());
+}
+

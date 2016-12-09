@@ -7,6 +7,7 @@
 #include <QSqlRecord.h>
 
 
+
 using namespace std;
 
 database::database () {}
@@ -236,6 +237,7 @@ void database::initDatabase (const QString& username)
         userQuery.exec("CREATE TABLE scientist_computer_relations"
                        "(scientistID INTEGER, "
                        "computerID INTEGER, "
+                       "'deleted' BOOL DEFAULT (0), "
                        "FOREIGN KEY (computerID) REFERENCES Computers(ID), "
                        "FOREIGN KEY (scientistID) REFERENCES Scientists(ID) "
                        "PRIMARY KEY (computerID, scientistID)) ");
@@ -305,6 +307,33 @@ void database::initDatabase (const QString& username)
                        "VALUES (4,4)");
         databaseClose(userData);
     }
+}
+
+vector<cpuType> database::getCpuTypes()
+{
+    databaseOpen();
+
+    vector<cpuType> cpu;
+    cpuType tmpCpu;
+    QString QCpu;
+    string tmpCpuString;
+    int tmpID;
+    QSqlQuery query;
+
+    query.exec("SELECT * From cpuType");
+
+    while (query.next())
+    {
+        tmpID = query.value(0).toInt();
+        QCpu = query.value(1).toString();
+        tmpCpuString = QCpu.toUtf8().constData();
+        cpuType tmpCpu(tmpID, tmpCpuString);
+
+        cpu.push_back(tmpCpu);
+    }
+    databaseClose(myData);
+
+    return cpu;
 }
 
 void database::insertScientist (Scientist scientist, QString tmpUser)
@@ -408,7 +437,7 @@ int database::getNumberOfScientistEntries()
   databaseOpen();
 
   QSqlQuery query;
-  query.exec("SELECT MAX(ID), ID FROM scientists");
+  query.exec("SELECT MAX(ID) FROM scientists");
 
   query.next();
   int ID = query.value(0).toInt();
@@ -526,7 +555,9 @@ void database::addBuildersToComputers(vector<Computer> &computers)
                       "LEFT OUTER JOIN scientist_computer_relations r "
                       "ON r.computerID = :ID "
                       "WHERE ID = r.scientistID "
-                      "AND deleted = 0");
+                      "AND r.deleted = 0 "
+                      "AND s.deleted = 0 "
+                      "ORDER BY last_name ");
         query.bindValue(":ID", compID);
         query.exec();
 
@@ -628,7 +659,9 @@ void database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
                       "LEFT OUTER JOIN scientist_computer_relations r "
                       "ON r.ScientistID = :ID "
                       "WHERE ID = r.computerID "
-                      "AND deleted = 0 ");
+                      "AND c.deleted = 0 "
+                      "AND r.deleted = 0 "
+                      "ORDER BY name ");
         query.bindValue(":ID", sciID);
         query.exec();
 
@@ -656,6 +689,23 @@ void database::addRelations(int cID, int sID)
 
 
    databaseClose(myData);
+}
+
+void database::removeRelations(int cID, int sID)
+{
+    databaseOpen();
+
+
+    QSqlQuery query;
+    query.prepare("UPDATE scientist_computer_relations "
+                  "SET deleted = 1 "
+                  "WHERE(scientistID = :sID AND computerID = :cID)");
+    query.bindValue(":sID", sID);
+    query.bindValue(":cID", cID);
+    query.exec();
+
+
+    databaseClose(myData);
 }
 
 void database::selectData()
