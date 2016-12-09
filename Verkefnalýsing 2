@@ -27,3 +27,23 @@ raða listanum. Valmöguleikar eru birtir í töflu (cpuSortingMenu()). Bætt va
 Um er að ræða user og password encryption, error log, activity log og recycled bin sem 
 bíður upp á restore á tölvum og vísindamönnum (og þeim venslum sem fyrir voru, sem gerist 
 sjálfkrafa). Þar að auki hefur hver og einn user sinn eigin gagnagrunn. 
+
+Bónusar til þess að skoða:
+*Recycled Bin
+    Restore all
+*Error log
+    verður til undir sömu möppu og forrit en er hidden: .error_log
+    skrifar t.d. ef notandi sló inn vitlaust lykilorð og hvenær
+    skrifar WARNING ef notandi sló inn vitlaust lykilorð 3 (brute force warning)
+*Activity log
+    verður til undir sömu möppu of forrit en er hidden: ."notendanafn"_activitylog
+    ef einhverjar breytingar verða á gagnagrunni skráist hvað gerðist og hvenær fyrir notanda
+*Delete All
+    Hægt að hreinsa gagnagrunn alveg
+*dulkóðuð lykilorð í notendagagnagrunni
+    Einfaldur ceasar shift, hægt að skoða í user gagnagrunni
+*villucheck fyrir fæðingarár og dánarár
+    getur ekki dáið áður en þú fæðist
+*computer type með sér reference ID
+*insert new computer type valmynd þegar þú "insertar" nýja tölvu eða "editar" nýja tölvu
+    hún breytist eftir því hvort magn týpa sé oddatala eða slétt tala 
