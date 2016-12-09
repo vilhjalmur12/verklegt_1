@@ -5,9 +5,6 @@
 #include "service.h"
 #include "cputype.h"
 
-#include <vector>
-#include <string>
-
 using namespace std;
 
 const int maxBuildhYear = 200000000;
@@ -84,7 +81,8 @@ private:
     void removeRelations();
     int getScID();
     int getCpuID();
-    void idInput(unsigned int &index, int size);
+    void idInput(unsigned int &index, unsigned int size);
+    void editOrDeleteInput(vector<int> indexes, int &index, int getNumber);
     void printRelationMenu();
     void readCpuName(string &name);
     void readCpuType(string &cpuType);
@@ -117,7 +115,7 @@ private:
     void insertOperation();                                                                                           //Tekur ákvörðun um hvað sé gert hafi verið valið að inserta
     void editOperation();                                                                                             //Tekur ákvörðun um hvað sé gert hafi verið valið að edit'a
     void deleteOperation();                                                                                           //Tekur ákvörðun um hvað sé gert hafi verið valið að deleta
-
+    void deleteOperationHelper(string choice);
 /**************************************************
                  Birta töflu
 **************************************************/

@@ -1,8 +1,5 @@
 #include "service.h"
-#include <qsqldatabase.h>
-#include <QSqlQuery>
 
-using namespace std;
 /****************************************************************************
                                Constructor
                         fyllir data objectinn og dælir gildum þaðan í
@@ -347,6 +344,20 @@ bool Service::validName(string &name)
     bool containsDigits = !regex_match(name, regex("(^[A-Za-z.-]+[ ]*([A-Za-z.-]||[ ])*$)"));
 
     if (containsDigits)
+    {
+        throwError.invalidName(2);
+        return false;
+    }
+    return true;
+}
+
+bool Service::validCpuName(string &name)
+{
+    name = fixString(name);
+
+    bool containsInvalidCharacter = !regex_match(name, regex("(^[A-Za-z0-9.-]+[ ]*([A-Za-z.-0-9]||[ ])*$)"));
+
+    if (containsInvalidCharacter)
     {
         throwError.invalidName(2);
         return false;
