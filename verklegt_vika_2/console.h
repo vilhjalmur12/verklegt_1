@@ -83,6 +83,7 @@ private:
     void removeRelations();
     int getScID();
     int getCpuID();
+    void idInput(unsigned int &index, int size);
     void printRelationMenu();
     void readCpuName(string &name);
     void readCpuType(string &cpuType);
@@ -101,7 +102,6 @@ private:
     void printCpuPushBackMenu();                                                                                    //Birtir valmynd þegar ný tölva er settur í gagnagrunn
     void editMenu();                                                                                                //Spyr hvort það eigi að breyta vísindamanni eða tölvu
     void deleteMenu();                                                                                              //Spyr hvort það eigi að eyða vísindamanni eða tölvu
-
 
 /**************************************************
               Hjálparföll við search

@@ -37,13 +37,14 @@ void Console::viewOrInsert()
     cout << "-----------------------------------------" << endl;
     cout << "|           Choose procedure:           |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|            v - for viewing            |" << endl;
-    cout << "|           i - for insertion           |" << endl;
-    cout << "|            s - for search             |" << endl;
-    cout << "|            e - for editing            |" << endl;
-    cout << "|           d - for deleting            |" << endl;
-    cout << "|           r - for relating            |" << endl;
-    cout << "|           q - for quitting            |" << endl;
+    cout << "|            v - for Viewing            |" << endl;
+    cout << "|           i - for Inserting           |" << endl;
+    cout << "|           s - for Searching           |" << endl;
+    cout << "|            e - for Editing            |" << endl;
+    cout << "|           d - for Deleting            |" << endl;
+    cout << "|           r - for Relating            |" << endl;
+    cout << "|         b - for recycled Bin          |" << endl;
+    cout << "|           q - for Quitting            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
@@ -209,8 +210,8 @@ void Console::viewMenu()
     cout << "-----------------------------------------" << endl;
     cout << "|       What would you like to do?      |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|          s - view a scientist         |" << endl;
-    cout << "|          c - view a computer          |" << endl;
+    cout << "|           s - view scientists         |" << endl;
+    cout << "|           c - view computers          |" << endl;
     cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -1147,6 +1148,22 @@ void Console::removeRelations()
    Nær í ID tölvu í gagnagrunninn
    @return computers[cIndex-1].getID - sækir ID tölvu
  ******************************************************************/
+void Console::idInput(unsigned int &index, int size)
+{
+    do
+    {
+        cout << "-> ";
+        cin.ignore();
+
+        cin >> index;
+
+        if(cin.fail() || index < 1 || index > size)
+        {
+            cout << "Please insert valid index!" << endl;
+        }
+    }while(cin.fail() || index < 1 || index > size);
+}
+
 
 int Console::getCpuID()
 {
@@ -1155,19 +1172,7 @@ int Console::getCpuID()
 
     printComputers(computers);
     cout << "Please insert the index of your computer of choice: " << endl;
-    do//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    {
-        cout << "-> ";
-        cin.ignore();
-
-        cin >> cIndex;
-
-        if(cin.fail() || cIndex < 1 || cIndex > computers.size())
-        {
-            cout << "Please insert valid index!" << endl;
-        }
-
-    }while(cin.fail() || cIndex < 1 || cIndex > computers.size());///////////////////////////////////////////////////////////////////////////////////////////////////
+    idInput(cIndex, computers.size());
     return computers[cIndex-1].getID();
 }
 
