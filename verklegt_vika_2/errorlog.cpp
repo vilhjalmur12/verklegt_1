@@ -1,5 +1,15 @@
 #include "errorlog.h"
 
+errorLog::errorLog(string username, string tmpError, bool tmpBrute)
+{
+    user = "[" + username + "]";
+    error = tmpError;
+    brute = tmpBrute;
+    date = "[" + time.pullDate() + "]";
+    timeNow = "[" + time.pullTime() + "]";
+
+}
+
 errorLog::errorLog()
 {
 
@@ -38,14 +48,14 @@ void errorLog::pushError ()
 
     if (brute)
     {
-       errorOutput << user << "\t";
+       errorOutput << user << "\t" << date << "\t" << timeNow << "\t" << error << "\t" << warning
+                   << "\t" << "Password brute force detected!" << endl;
     }
+    else
+    {
+        errorOutput << user << "\t" << date << "\t" << timeNow << "\t" << error << endl;
+    }
+    errorOutput.close();
 }
 
-void errorLog::storeError (string username, string tmpError, bool tmpBrute)
-{
-    user = "[" + username + "]";
-    error = tmpError;
-    brute = tmpBrute;
-}
 

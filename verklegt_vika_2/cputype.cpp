@@ -22,7 +22,6 @@ cpuType::cpuType(int id, string type)
     _type = type;
 }
 
-cpuType::~cpuType() {}
 
 /****************************************************************************
                                 getID

@@ -3,6 +3,7 @@
 
 #include "database.h"
 #include <fstream>
+#include "mytime.h"
 
 
 using namespace std;
@@ -11,11 +12,11 @@ class errorLog
 {
 public:
     errorLog();
+    errorLog(string username, string tmpError, bool tmpBrute);
     ~errorLog();
     void openInStream();
     void openOutStream();
     void pushError();
-    void storeError (string username, string tmpError, bool tmpBrute);
 
 private:
     string user;
@@ -24,6 +25,9 @@ private:
     bool brute;
     ifstream errorInput;
     ofstream errorOutput;
+    myTime time;
+    string date;
+    string timeNow;
 };
 
 #endif // ERRORLOG_H
