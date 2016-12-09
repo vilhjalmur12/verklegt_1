@@ -2,8 +2,9 @@
 
 myTime::myTime()
 {
-//    now = time(0);
-//    ltm = localtime(&now);
+
+    //now = time(0);
+    //ltm = localtime(&now);
     intMonth = 1 + (ltm->tm_mon);
     getMonth(intMonth);
     intDay = ltm->tm_mday;
@@ -11,10 +12,17 @@ myTime::myTime()
     intYear = 1900 + ltm->tm_year;
     sYear = to_string(intYear);
     date = day + "." + month + "." + sYear;
-    intHours = 1 + ltm->tm_hour;
+    intHours = ltm->tm_hour;
     hours = to_string(intHours);
     intMin = 1 + ltm->tm_min;
-    min = to_string(intMin);
+    if (intMin < 10)
+    {
+        min = "0"+to_string(intMin);
+    }
+    else
+    {
+       min = to_string(intMin);
+    }
     intSec = 1 + ltm->tm_sec;
     sec = to_string(intSec);
     wholeTime = hours + ":" + min;

@@ -395,6 +395,7 @@ void Console::callUser ()
     string password;
     string action;
     bool runProgram = false;
+    int safeCount = 0;
 
     welcome();
     toContinue();
@@ -454,7 +455,6 @@ void Console::callUser ()
             QString qPassword(password.c_str());
 
             bool foundUser = data.getUser(user, qPassword);
-            int safeCount;
             string invalid = "Invalid user or password";
 
             if (foundUser == true)
@@ -469,6 +469,11 @@ void Console::callUser ()
                 {
                     bool brute = true;
                     errorLog _errorLog(tmpUser, invalid, brute);
+                    _errorLog.pushError();
+                }
+                else
+                {
+                    errorLog _errorLog(tmpUser, invalid);
                     _errorLog.pushError();
                 }
             }
@@ -1261,7 +1266,14 @@ void Console::idInput(unsigned int &index, unsigned int size)
         }
     }while(cin.fail() || index < 1 || index > size);
 }
-
+/******************************************************************
+                      idInput
+   Fall sem "ruslatunnan" notar sem hjálparfall til að stytta sig,
+   hér er indexið sem vinna á með valið og villutjekkað
+   @parameter (unsigned int &index, int size) - sæki cIndex eða sIndex og
+                size sækir fjölda vísindamanna/tölva
+   @parameter (bool canBeZero) - segir til um hvort indexið megi vera núll
+ ******************************************************************/
 void Console::idInput(unsigned int &index, unsigned int size, bool canBeZero)
 {
     do
@@ -1315,7 +1327,7 @@ int Console::getScID()
 
 /******************************************************************
                       readCpuName
-     Les nafn á tölvu
+    Les nafn á tölvu
     @parameter(string &name) - bendir á streng sem inniheldur nafn tölvu
  ******************************************************************/
 
@@ -1358,8 +1370,8 @@ void Console::insertNewType()
 
 /********************************************************************
                   readCpuType(string &CpuType)
-
-    @parameter(string &CpuType) - bendir á streng sem inniheldur tegund tölvunnar
+     Hér getur notandi slegið inn tegund tölvu, innsláttur líka villutjekkaður
+        @parameter(string &CpuType) - bendir á streng sem inniheldur tegund tölvunnar
  ********************************************************************/
 
 void Console::readCpuType(string &CpuType)
@@ -1731,7 +1743,6 @@ void Console::changeOrDelete(vector<int> indexes)
         int index;
         cout << "Insert the index you wish to delete: " << endl;
         editOrDeleteInput(indexes, index, scientistService.getNumberOfScientists());
-        // scientistService.removeScientist(index);
     }
 
     else if(changeDeleteChoice == "e")
@@ -1869,6 +1880,7 @@ void Console::editOperation()
     }while (tmp == "y");
 }
 
+
 void Console::deleteOperation()
 {
     vector<Scientist> scientists = scientistService.getScientists();
@@ -1975,11 +1987,9 @@ void Console::deleteOperationHelper(string choice_made)
         {
             cout << "Please enter a valid command!" << endl;
         }
-
     }
     else
     {
         cout << "Please enter a valid command!" << endl;
     }
 }
-
