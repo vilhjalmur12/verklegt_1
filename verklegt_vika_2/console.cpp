@@ -281,7 +281,7 @@ void Console::viewRecycleEntryMenu()
     cout << "-----------------------------------------" << endl;
 }
 
-void Console::printTypeMenu(vector<cpuType> type)
+void Console::printTypeMenu(vector<CpuType> type)
 {
     int size = type.size();
 
@@ -293,8 +293,8 @@ void Console::printTypeMenu(vector<cpuType> type)
 
     for(int i = 0; i < size; i+=2)
     {
-        cpuType tmpCpuFirst = type[i];
-        cpuType tmpCpuSecond = type[i+1];
+        CpuType tmpCpuFirst = type[i];
+        CpuType tmpCpuSecond = type[i+1];
 
         printf( "\t %-2d = %-20s \t %-2d = %-15s\n", i+1, tmpCpuFirst.getType().c_str(), i+2, tmpCpuSecond.getType().c_str());
 
@@ -391,7 +391,7 @@ void  Console::printComputers(vector<Computer> computers)
 
 void Console::callUser ()
 {
-    database data;
+    Database data;
     string password;
     string action;
     bool runProgram = false;
@@ -468,12 +468,12 @@ void Console::callUser ()
                 if (safeCount >= 3)
                 {
                     bool brute = true;
-                    errorLog _errorLog(tmpUser, invalid, brute);
+                    ErrorLog _errorLog(tmpUser, invalid, brute);
                     _errorLog.pushError();
                 }
                 else
                 {
-                    errorLog _errorLog(tmpUser, invalid);
+                    ErrorLog _errorLog(tmpUser, invalid);
                     _errorLog.pushError();
                 }
             }
@@ -1370,7 +1370,7 @@ void Console::insertNewType()
 
 void Console::readCpuType(string &CpuType)
 {
-    vector<cpuType> types = scientistService.getTypes();
+    vector<CpuType> types = scientistService.getTypes();
     printTypeMenu(types);
     string choice;
 

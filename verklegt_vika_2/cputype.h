@@ -8,12 +8,12 @@
 
 using namespace std;
 
-class cpuType
+class CpuType
 {
 public:
-    cpuType();
-    cpuType(int id, string type);
-    virtual ~cpuType();
+    CpuType();
+    CpuType(int id, string type);
+    virtual ~CpuType();
 
 /***********************************************************
        Föll til að ná upplýsingum um tegundir tölvanna

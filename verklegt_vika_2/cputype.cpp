@@ -2,9 +2,9 @@
 
 using namespace std;
 
-cpuType::cpuType() { }
+CpuType::CpuType() { }
 
-cpuType::~cpuType() {}
+CpuType::~CpuType() {}
 
 /****************************************************************************
                         cpuType - smiður
@@ -13,7 +13,7 @@ cpuType::~cpuType() {}
             @parameter(string type) - tegund tölvu
  ****************************************************************************/
 
-cpuType::cpuType(int id, string type)
+CpuType::CpuType(int id, string type)
 {
     _ID = id;
     _type = type;
@@ -25,7 +25,7 @@ cpuType::cpuType(int id, string type)
                 @return(int _id) - skilar id tölvutegundar
  ****************************************************************************/
 
-int cpuType::getId ()
+int CpuType::getId ()
 {
     return _ID;
 }
@@ -36,7 +36,7 @@ int cpuType::getId ()
                 @return(string _type) - skilar tegund tölvu
  ****************************************************************************/
 
-string cpuType::getType ()
+string CpuType::getType ()
 {
     return _type;
 }

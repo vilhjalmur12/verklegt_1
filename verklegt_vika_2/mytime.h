@@ -6,11 +6,11 @@
 using namespace std;
 
 
-class myTime
+class MyTime
 {
 public:
-    myTime();
-    virtual ~myTime();
+    MyTime();
+    virtual ~MyTime();
 
     //kalla í allt
     string pullDate ();

@@ -46,7 +46,7 @@ public:
     void insertMenu();                       //Spyr hvort það eigi að bæta við vísindamanni eða tölvu
     void viewRecycleMenu();
     void viewRecycleEntryMenu();
-    void printTypeMenu(vector<cpuType> type);
+    void printTypeMenu(vector<CpuType> type);
     void printPushBackMenu();                //Birtir valmynd þegar nýr vísindamaður er settur í gagnagrunn
     void printEditMenu();                    //Birtir valmynd þegar edit-a á vísindamann
     void printEditComputerMenu();            //Birtir valmynd þegar edit-a á tölvu
@@ -78,7 +78,7 @@ private:
     void pushBackScientist();                                       //Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
     void pushBackComputer();                                        //Býr til nýja tölvu í gagnagrunninn og ýtir henni aftast í listann
     void createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo);  //Býr til nýjan vísindamann til að setjs í gagnagrunninn
-    void createComputer(string &name, string &cpuType, int &yearBuilt, bool &built);    //Býr til nýja tölvu til að setja í gagnagrunninn
+    void createComputer(string &name, string &CpuType, int &yearBuilt, bool &built);    //Býr til nýja tölvu til að setja í gagnagrunninn
     void insertNewType();                                           //Leyfir notandanum að slá inn tegund tölvu til að setja inn í gagnagrunninn
     string askToRelate(string option);
     void addRelations();                                            //Notendi hefur valið að vensla saman tölvu og vísindamann og getur nú framkvæmt það
@@ -90,7 +90,7 @@ private:
     void idInput(unsigned int &index, unsigned int size);           //Staðsetning á ID sem er sótt fyrir getSciID og getCpuID slegið inn og villutjekkað
     void editOrDeleteInput(vector<int> indexes, int &index, int getNumber); //Staðsetning valin á vísindamanni eða tölvu sem á að edit-a eða eyða
     void readCpuName(string &name);                                 //Nafn á tölvu slegið inn
-    void readCpuType(string &cpuType);                              //Tegund tölvu slegin inn og lesið
+    void readCpuType(string &CpuType);                              //Tegund tölvu slegin inn og lesið
     void readYearBuilt(int& yearBuilt);                             //Byggingarár tölvu slegið inn
     void readBuilt(bool &built);                                    //Notandi slær inn hvort tölvan hafi verið byggð eða ekki
     Scientist makeNewScientist();                                   //Nýr vísindamaður búinn til með hjálp createScientist fallinu, honum er hér skilað í Scientist klasann
@@ -110,8 +110,6 @@ private:
 /**************************************************
         Recycled Bin og hjálparföll þess
 **************************************************/
-
-
 
     void recycledBin();
     void recycleScientists();
