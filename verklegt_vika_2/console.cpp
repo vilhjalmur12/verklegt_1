@@ -1374,7 +1374,7 @@ void Console::insertNewType()
 
 void Console::readCpuType(string &CpuType)
 {
-    vector<CpuType> types = scientistService.getTypes();
+    vector<cpuType> types = scientistService.getTypes();
     printTypeMenu(types);
     string choice;
 
