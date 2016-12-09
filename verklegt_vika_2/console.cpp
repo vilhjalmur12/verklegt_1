@@ -971,7 +971,7 @@ void Console::pushBackComputer()
 
     if(choice == "y")
     {
-    addRelationsToCpu(index);
+        addRelationsToCpu(index);
     }
     else
     {
