@@ -25,7 +25,7 @@ public:
     bool getBuilt() const;              // Dregur fram hvort tolvan hafi verid byggd og skilar true eda false
     int getYearBuilt() const;           // Dregur fram arid sem tolvan var byggd og skilar því til baka
     string getCpuType() const;          // Dregur fram tegund tölvunnar og skilar henni til baka
-    string getYearForPrinting() const;
+    string getYearForPrinting() const;  // Dregur fram arid sem tölvan var byggð
     vector<string> getBuilders() const;   // Dregur fram hver byggdi tolvuna og skilar nafninu til baka i vector
 
     void addBuilder(string lastName);

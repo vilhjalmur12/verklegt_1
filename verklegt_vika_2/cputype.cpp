@@ -4,6 +4,8 @@ using namespace std;
 
 cpuType::cpuType() { }
 
+cpuType::~cpuType() {}
+
 /****************************************************************************
                         cpuType - smiður
     stillir smiðinn þegar hann er búinn til með breytum sem byrjanargildi
@@ -11,18 +13,11 @@ cpuType::cpuType() { }
             @parameter(string type) - tegund tölvu
  ****************************************************************************/
 
-cpuType::~cpuType()
-{
-
-}
-
 cpuType::cpuType(int id, string type)
 {
     _ID = id;
     _type = type;
 }
-
-cpuType::~cpuType() {}
 
 /****************************************************************************
                                 getID
