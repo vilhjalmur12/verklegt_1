@@ -564,6 +564,7 @@ void Console::edit()
         }
         else if(choice == "s")
         {
+
             string query;
             printSearchMenu();
             cout << "Query: ";
