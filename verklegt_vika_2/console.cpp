@@ -1354,11 +1354,11 @@ int Console::getScID()
 
 void Console::readCpuName(string &name)
 {
+    cin.ignore();
     do
     {
         cout << scientistService.getErrorString();
         cout << "Name: ";
-        cin.ignore();
         do
         {
             getline(cin, name);
