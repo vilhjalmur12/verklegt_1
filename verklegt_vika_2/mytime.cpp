@@ -4,12 +4,7 @@ myTime::myTime()
 {
     //now = time(0);
     //ltm = localtime(&now);
-<<<<<<< HEAD
-    /*
-    now = time(0);
-    ltm = localtime(&now);*/
-=======
->>>>>>> a4d308db68c0a083153029d120bac2b142f49b9b
+
     intMonth = 1 + (ltm->tm_mon);
     getMonth(intMonth);
     intDay = ltm->tm_mday;
