@@ -1026,15 +1026,12 @@ void Database::deleteAllFromScientistDatabase()
 
 void Database::deleteScientist(int ID)
 {
-    int doDeleted = 1;
-
     databaseOpen();
 
     QSqlQuery query;
     query.prepare("UPDATE scientists "
-                  "SET deleted = :deleted "
+                  "SET deleted = 1 "
                   "WHERE ID = :ID");
-    query.bindValue(":deleted", doDeleted);
     query.bindValue(":ID", ID);
     query.exec();
 
@@ -1074,15 +1071,12 @@ void Database::restoreAllFromScientistDatabase()
 
 void Database::deleteComputer(int ID)
 {
-    int doDeleted = 1;
-
     databaseOpen();
 
     QSqlQuery query;
     query.prepare("UPDATE computers "
-                  "SET deleted = :deleted "
+                  "SET deleted = 1 "
                   "WHERE ID = :ID");
-    query.bindValue(":deleted", doDeleted);
     query.bindValue(":ID", ID);
     query.exec();
 

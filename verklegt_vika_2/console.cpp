@@ -1893,9 +1893,9 @@ void Console::deleteOperation()
         {
             printScientists(scientists);
 
-            int ID;
-            cout << "Nr. -> ";
-            cin >> ID;
+            unsigned int ID;
+
+            idInput(ID, scientists.size());
 
             ID = scientists[ID-1].getID();
             scientistService.deleteScientist(ID);
@@ -1905,9 +1905,10 @@ void Console::deleteOperation()
         {
             printComputers(computers);
 
-            int ID;
-            cout << "Nr. -> ";
-            cin >> ID;
+            unsigned int ID;
+
+            idInput(ID, computers.size());
+
             ID = computers[ID-1].getID();
             scientistService.deleteComputer(ID);
             tmp = "n";
@@ -1919,7 +1920,7 @@ void Console::deleteOperation()
         }
         else if (choice_made == "as" || choice_made == "ac" || choice_made == "a" )
         {
-            //deleteOperationHelper(choice_made);
+            deleteOperationHelper(choice_made);
         }
         else
         {
