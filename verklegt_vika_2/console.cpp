@@ -1212,13 +1212,16 @@ int Console::getScID()
 
 void Console::readCpuName(string &name)
 {
-    cout << scientistService.getErrorString();
-    cout << "Name: ";
-    cin.ignore();
     do
     {
-        getline(cin, name);
-    }while(name.length()<1);
+        cout << scientistService.getErrorString();
+        cout << "Name: ";
+        cin.ignore();
+        do
+        {
+            getline(cin, name);
+        }while(name.length()<1);
+    }while(!scientistService.validCpuName(name));
 
     name.at(0) = toupper(name.at(0));
 }
