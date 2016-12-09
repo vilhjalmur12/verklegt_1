@@ -30,11 +30,11 @@ public:
     **********************************************************/
     bool doesScientistExcist(string firstName, string lastName, string sex, int birthYear,
                              int deathYear, string nationality, string furtherInfo);
-    bool doesComputerExcist(string name, string cpuType, int yearBuilt, bool built);
+    bool doesComputerExcist(string name, string CpuType, int yearBuilt, bool built);
 
     bool appendScientist (string firstName, string lastName, string sex, int birthYear,         //Bætir vísindamanni aftast í meðlimavector og skilar boolean
                           int deathYear, string nationality, string furtherInfo);               // gildi sem útskýrir hvernig gekk.
-    bool appendComputer (string name, string cpuType, int yearBuilt, bool built);         //Bætir vísindamanni aftast í meðlimavector og skilar boolean
+    bool appendComputer (string name, string CpuType, int yearBuilt, bool built);         //Bætir vísindamanni aftast í meðlimavector og skilar boolean
     void addRelations(int cID, int sID);
     void removeRelations(int cID, int sID);
     void addType(string type);
@@ -44,7 +44,7 @@ public:
     vector<Scientist> getDeletedScientists();
     vector<Computer> getComputers(string choice = "na");
     vector<Computer> getDeletedComputers();
-    vector<cpuType> getTypes(string choice = "t");
+    vector<CpuType> getTypes(string choice = "t");
     int getNumberOfScientists();                                        //Segir til um hve margir vísindamenn eru í gagnagrunni
     int getNumberOfComputers();
   //  void sortScientistsBy(string choice = "na");                  //Raðar vísindamönnum í röð eftir vali sem er stafsrófsröð by default
@@ -104,7 +104,7 @@ private:
     vector<Scientist> _scientists;
     vector<Computer> _computers;
     ErrorHandling throwError;
-    database data;
+    Database data;
     string user;
     QString qUser;
 

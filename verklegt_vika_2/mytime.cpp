@@ -1,6 +1,6 @@
 #include "mytime.h"
 
-myTime::myTime()
+MyTime::MyTime()
 {
 
     //now = time(0);
@@ -28,9 +28,9 @@ myTime::myTime()
     wholeTime = hours + ":" + min;
 }
 
-myTime::~myTime() { }
+MyTime::~MyTime() { }
 
-void myTime::getMonth(int choice)
+void MyTime::getMonth(int choice)
 {
     switch (choice)
     {
@@ -73,12 +73,12 @@ void myTime::getMonth(int choice)
     }
 }
 
-string myTime::pullDate ()
+string MyTime::pullDate ()
 {
     return date;
 }
 
-string myTime::pullTime ()
+string MyTime::pullTime ()
 {
     return wholeTime;
 }

@@ -5,28 +5,31 @@
 #include <fstream>
 #include "mytime.h"
 
-
 using namespace std;
 
-class errorLog
+class ErrorLog
 {
 public:
-    errorLog();
-    errorLog(string username, string tmpError);
-    errorLog(string username, string tmpError, bool tmpBrute);
-    ~errorLog();
+    ErrorLog();
+    ErrorLog(string username, string tmpError);
+    ErrorLog(string username, string tmpError, bool tmpBrute);
+    virtual ~ErrorLog();
+
     void openInStream();
     void openOutStream();
     void pushError();
 
 private:
+/**************************************************
+                  Meðlimabreytur
+ **************************************************/
     string user;
     string error;
     string warning = "*WARNING*";
     bool brute = false;
     ifstream errorInput;
     ofstream errorOutput;
-    myTime time;
+    MyTime time;
     string date;
     string timeNow;
 };

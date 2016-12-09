@@ -2,10 +2,10 @@
 
 using namespace std;
 
-database::database () {}
-database::~database () {}
+Database::Database () {}
+Database::~Database () {}
 
-void database::databaseOpen()
+void Database::databaseOpen()
 {
     myData = QSqlDatabase::addDatabase("QSQLITE");
     myData.setDatabaseName("./" + user + ".sqlite");
@@ -16,7 +16,7 @@ void database::databaseOpen()
     }
 }
 
-void database::databaseClose(QSqlDatabase &data)
+void Database::databaseClose(QSqlDatabase &data)
 {
     QString connection;
     connection = data.connectionName();
@@ -26,7 +26,7 @@ void database::databaseClose(QSqlDatabase &data)
 }
 
 // ætti að fara inn í constructor: const QString& path ef við viljum útbúa spes path.
-void database::getData(QString username, vector<Scientist> &scien)
+void Database::getData(QString username, vector<Scientist> &scien)
 {
    user = username;
    myData = QSqlDatabase::addDatabase("QSQLITE");
@@ -44,7 +44,7 @@ void database::getData(QString username, vector<Scientist> &scien)
    }
 }
 
-void database::getData(string selection, string table)
+void Database::getData(string selection, string table)
 {
    myData = QSqlDatabase::addDatabase("QSQLITE");
    myData.setDatabaseName("./" + user + ".sqlite");
@@ -62,7 +62,7 @@ void database::getData(string selection, string table)
    }
 }
 
-vector<Scientist> database::pullScientists(string choice)
+vector<Scientist> Database::pullScientists(string choice)
 {
     databaseOpen();
 
@@ -83,7 +83,7 @@ vector<Scientist> database::pullScientists(string choice)
     return scientists;
 }
 
-vector<Scientist> database::pullDeletedScientists()
+vector<Scientist> Database::pullDeletedScientists()
 {
     databaseOpen();
 
@@ -102,7 +102,7 @@ vector<Scientist> database::pullDeletedScientists()
     return scientists;
 }
 
-vector<Computer> database::pullComputers(string choice)
+vector<Computer> Database::pullComputers(string choice)
 {
     databaseOpen();
 
@@ -128,7 +128,7 @@ vector<Computer> database::pullComputers(string choice)
     return computers;
 }
 
-vector<Computer> database::pullDeletedComputers()
+vector<Computer> Database::pullDeletedComputers()
 {
     databaseOpen();
 
@@ -148,7 +148,7 @@ vector<Computer> database::pullDeletedComputers()
     return computers;
 }
 
-bool database::getUser(const QString& username, const QString& password)
+bool Database::getUser(const QString& username, const QString& password)
 {
     user = username;
     myData = QSqlDatabase::addDatabase("QSQLITE");
@@ -193,7 +193,7 @@ bool database::getUser(const QString& username, const QString& password)
     }
 }
 
-void database::createUser(const QString& username, const QString& password, const QString& firstName, const QString& lastName)
+void Database::createUser(const QString& username, const QString& password, const QString& firstName, const QString& lastName)
 {
     user = username;
     myData = QSqlDatabase::addDatabase("QSQLITE");
@@ -229,7 +229,7 @@ void database::createUser(const QString& username, const QString& password, cons
     }
 }
 
-void database::initDatabase (const QString& username)
+void Database::initDatabase (const QString& username)
 {
     QSqlDatabase userData = QSqlDatabase::addDatabase("QSQLITE");
     userData.setDatabaseName("./" + username + ".sqlite");
@@ -469,12 +469,12 @@ void database::initDatabase (const QString& username)
     }
 }
 
-vector<cpuType> database::pullTypes(string order)
+vector<CpuType> Database::pullTypes(string order)
 {
     databaseOpen();
 
-    vector<cpuType> cpu;
-    cpuType tmpCpu;
+    vector<CpuType> cpu;
+    CpuType tmpCpu;
     QString QCpu;
     QString Qorder(order.c_str());
     string tmpCpuString;
@@ -491,7 +491,7 @@ vector<cpuType> database::pullTypes(string order)
         tmpID = query.value(0).toInt();
         QCpu = query.value(1).toString();
         tmpCpuString = QCpu.toUtf8().constData();
-        cpuType tmpCpu(tmpID, tmpCpuString);
+        CpuType tmpCpu(tmpID, tmpCpuString);
 
         cpu.push_back(tmpCpu);
     }
@@ -501,7 +501,7 @@ vector<cpuType> database::pullTypes(string order)
     return cpu;
 }
 
-void database::insertScientist (Scientist scientist/*, QString tmpUser*/)
+void Database::insertScientist (Scientist scientist/*, QString tmpUser*/)
 {
        //user = tmpUser;
 
@@ -531,7 +531,7 @@ void database::insertScientist (Scientist scientist/*, QString tmpUser*/)
        databaseClose(myData);
 }
 
-void database::insertComputer (Computer computer, QString tmpUser)
+void Database::insertComputer (Computer computer, QString tmpUser)
 {
        user = tmpUser;
        databaseOpen();
@@ -555,7 +555,7 @@ void database::insertComputer (Computer computer, QString tmpUser)
        databaseClose(myData);
 }
 
-int database::getTypeId(QString type)
+int Database::getTypeId(QString type)
 {
     //TODO: TAKA INN TYPE FINNA ID
     QSqlQuery query2;
@@ -571,7 +571,7 @@ int database::getTypeId(QString type)
 
 }
 
-void database::insertType(string type)
+void Database::insertType(string type)
 {
     databaseOpen();
 
@@ -586,12 +586,33 @@ void database::insertType(string type)
     databaseClose(myData);
 }
 
-void database::editComputer(int ID, Computer computer)
+void Database::editComputer(int ID, Computer computer)
 {
+    databaseOpen();
 
+    int type = getTypeId(QString::fromStdString(computer.getCpuType()));
+    int built;
+    if(computer.getBuilt())
+        built = 1;
+    else
+        built = 0;
+
+    QSqlQuery query;
+    query.prepare("UPDATE computers "
+                  "SET name = :name, cpu_type_ID = :type, "
+                  "year_of_build = :build, built_or_not = :built "
+                  "WHERE ID = :ID");
+    query.bindValue(":name", QString::fromStdString(computer.getName()));
+    query.bindValue(":type", type);
+    query.bindValue(":build", computer.getYearBuilt());
+    query.bindValue(":built", built);
+    query.bindValue(":ID", ID);
+    query.exec();
+
+    databaseClose(myData);
 }
 
-void database::editScientist(int ID, Scientist scientist)
+void Database::editScientist(int ID, Scientist scientist)
 {
     databaseOpen();
 
@@ -615,7 +636,7 @@ void database::editScientist(int ID, Scientist scientist)
 }
 
 //------------------------------------------------------------------------------------------------Ný Search Fölll---------------------------------
-int database::getNumberOfComputerEntries()
+int Database::getNumberOfComputerEntries()
 {
     databaseOpen();
 
@@ -630,7 +651,7 @@ int database::getNumberOfComputerEntries()
     return ID;
 }
 
-int database::getNumberOfScientistEntries()
+int Database::getNumberOfScientistEntries()
 {
   databaseOpen();
 
@@ -645,14 +666,14 @@ int database::getNumberOfScientistEntries()
   return ID;
 }
 
-QString database::generalizeQuery(string query)
+QString Database::generalizeQuery(string query)
 {
     string tempSQuery = "%"+ query +"%";
     QString searchQuery (tempSQuery.c_str());
     return searchQuery;
 }
 
-void database::searchData(vector<Scientist> &scientists, vector<Computer> &computers, string sQuery)
+void Database::searchData(vector<Scientist> &scientists, vector<Computer> &computers, string sQuery)
 {
     databaseOpen();
 
@@ -676,7 +697,7 @@ void database::searchData(vector<Scientist> &scientists, vector<Computer> &compu
     databaseClose(myData);
 }
 
-void database::searchComputersForSubstring(vector<Computer> &computers, const string sQuery)
+void Database::searchComputersForSubstring(vector<Computer> &computers, const string sQuery)
 {
     QString searchQuery = generalizeQuery(sQuery);
 
@@ -695,7 +716,7 @@ void database::searchComputersForSubstring(vector<Computer> &computers, const st
     addFoundComputers(query, computers);
 }
 
-void database::searchComputersForInt(vector<Computer> &computers, const int iQuery)
+void Database::searchComputersForInt(vector<Computer> &computers, const int iQuery)
 {
     QSqlQuery query;
     query.prepare("Select c.ID, name, year_of_build, type, built_or_not FROM computers c "
@@ -713,7 +734,7 @@ void database::searchComputersForInt(vector<Computer> &computers, const int iQue
     addFoundComputers(query, computers);
 }
 
-void database::addFoundComputers(QSqlQuery& query, vector<Computer> &computers)
+void Database::addFoundComputers(QSqlQuery& query, vector<Computer> &computers)
 {
     while(query.next())
     {
@@ -742,7 +763,7 @@ void database::addFoundComputers(QSqlQuery& query, vector<Computer> &computers)
     }
 }
 
-void database::addBuildersToComputers(vector<Computer> &computers)
+void Database::addBuildersToComputers(vector<Computer> &computers)
 {
     for(unsigned int i = 0; i < computers.size(); i++)
     {
@@ -768,7 +789,7 @@ void database::addBuildersToComputers(vector<Computer> &computers)
     }
 }
 
-void database::searchScientistsForSubstring(vector<Scientist> &scientists, const string sQuery)
+void Database::searchScientistsForSubstring(vector<Scientist> &scientists, const string sQuery)
 {
     QString searchQuery = generalizeQuery(sQuery);
 
@@ -788,7 +809,7 @@ void database::searchScientistsForSubstring(vector<Scientist> &scientists, const
     addFoundScientists(query, scientists);
 }
 
-void database::searchScientistsForInt(vector<Scientist> &scientists, const int iQuery)
+void Database::searchScientistsForInt(vector<Scientist> &scientists, const int iQuery)
 {
     QSqlQuery query;
     query.prepare("Select * FROM scientists s "
@@ -806,7 +827,7 @@ void database::searchScientistsForInt(vector<Scientist> &scientists, const int i
     addFoundScientists(query, scientists);
 }
 
-void database::addFoundScientists(QSqlQuery& query, vector<Scientist> &scientists)
+void Database::addFoundScientists(QSqlQuery& query, vector<Scientist> &scientists)
 {
     while(query.next())
     {
@@ -846,7 +867,7 @@ void database::addFoundScientists(QSqlQuery& query, vector<Scientist> &scientist
     }
 }
 
-void database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
+void Database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
 {
     for(unsigned int i = 0; i < scientists.size(); i++)
     {
@@ -873,7 +894,7 @@ void database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------
-void database::addRelations(int cID, int sID)
+void Database::addRelations(int cID, int sID)
 {
    databaseOpen();
 
@@ -889,7 +910,7 @@ void database::addRelations(int cID, int sID)
    databaseClose(myData);
 }
 
-void database::removeRelations(int cID, int sID)
+void Database::removeRelations(int cID, int sID)
 {
     databaseOpen();
 
@@ -906,7 +927,7 @@ void database::removeRelations(int cID, int sID)
     databaseClose(myData);
 }
 
-void database::selectData()
+void Database::selectData()
 {
 
     QSqlQuery query("SELECT * FROM cpuType");
@@ -926,7 +947,7 @@ void database::selectData()
             @return(string n) - dulkóðaður strengur
  ******************************************************************/
 
-string database::encryptData (string n)
+string Database::encryptData (string n)
 {
     for(unsigned int u=0; u < n.size(); u++){
         n[u]--;
@@ -941,7 +962,7 @@ string database::encryptData (string n)
             @return(string n) - afkóðaður strengur
  ******************************************************************/
 
-string database::decryptData (string n)
+string Database::decryptData (string n)
 {
     for(unsigned int u=0; u < n.size(); u++){
         n[u]++;
@@ -954,7 +975,7 @@ string database::decryptData (string n)
     Fall sem eyðir öllu út úr Database
  ******************************************************************/
 
-void database::deleteAllFromDatabase()
+void Database::deleteAllFromDatabase()
 {
     deleteAllFromComputerDatabase();
     deleteAllFromScientistDatabase();
@@ -965,7 +986,7 @@ void database::deleteAllFromDatabase()
     Fall sem eyðir öllu út úr computer database
  ******************************************************************/
 
-void database::deleteAllFromComputerDatabase()
+void Database::deleteAllFromComputerDatabase()
 {
     int doDeleted = 1;
 
@@ -984,7 +1005,7 @@ void database::deleteAllFromComputerDatabase()
     Fall sem eyðir öllu út úr scientist Database
  ******************************************************************/
 
-void database::deleteAllFromScientistDatabase()
+void Database::deleteAllFromScientistDatabase()
 {
     int doDeleted = 1;
 
@@ -1003,7 +1024,7 @@ void database::deleteAllFromScientistDatabase()
              Hægt er að velja hvaða vísindamanni verður eytt
  ******************************************************************/
 
-void database::deleteScientist(int ID)
+void Database::deleteScientist(int ID)
 {
     int doDeleted = 1;
 
@@ -1025,13 +1046,13 @@ void database::deleteScientist(int ID)
              Hægt er að velja hvaða tölvu verður eytt
  ******************************************************************/
 
-void database::restoreAllFromDatabase()
+void Database::restoreAllFromDatabase()
 {
     restoreAllFromComputerDatabase();
     restoreAllFromScientistDatabase();
 }
 
-void database::restoreAllFromComputerDatabase()
+void Database::restoreAllFromComputerDatabase()
 {
     databaseOpen();
 
@@ -1041,7 +1062,7 @@ void database::restoreAllFromComputerDatabase()
     databaseClose(myData);
 }
 
-void database::restoreAllFromScientistDatabase()
+void Database::restoreAllFromScientistDatabase()
 {
     databaseOpen();
 
@@ -1051,7 +1072,7 @@ void database::restoreAllFromScientistDatabase()
     databaseClose(myData);
 }
 
-void database::deleteComputer(int ID)
+void Database::deleteComputer(int ID)
 {
     int doDeleted = 1;
 
@@ -1068,7 +1089,7 @@ void database::deleteComputer(int ID)
     databaseClose(myData);
 }
 
-void database::restoreScientist(int ID)
+void Database::restoreScientist(int ID)
 {
     databaseOpen();
 
@@ -1082,7 +1103,7 @@ void database::restoreScientist(int ID)
     databaseClose(myData);
 }
 
-void database::restoreComputer(int ID)
+void Database::restoreComputer(int ID)
 {
     databaseOpen();
 

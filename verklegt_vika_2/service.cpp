@@ -302,7 +302,7 @@ vector<Computer> Service::getDeletedComputers()
     return data.pullDeletedComputers();
 }
 
-vector<cpuType> Service::getTypes(string choice)
+vector<CpuType> Service::getTypes(string choice)
 {
     if(choice == "t")
         choice = "type";
