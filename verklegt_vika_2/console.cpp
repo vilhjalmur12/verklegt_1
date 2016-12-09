@@ -250,6 +250,19 @@ void Console::insertMenu()
     cout << "-----------------------------------------" << endl;
 }
 
+void Console::printRelationMenu()
+{
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "|       What would you like to do?      |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "|         c - create new relation       |" << endl;
+    cout << "|      d - remove existing relation     |" << endl;
+    cout << "|           q - quit program            |" << endl;
+    cout << "|                                       |" << endl;
+    cout << "-----------------------------------------" << endl;
+
+}
 void Console::printTypeMenu(vector<cpuType> type)
 {
     int size = type.size();
@@ -282,19 +295,6 @@ void Console::printTypeMenu(vector<cpuType> type)
     cout << endl;
     cout << "-------------------------------------------------------------------" << endl;
 
-}
-
-void Console::printRelationMenu()
-{
-    cout << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << "|       What would you like to do?      |" << endl;
-    cout << "|                                       |" << endl;
-    cout << "|         c - create new relation       |" << endl;
-    cout << "|      d - remove existing relation     |" << endl;
-    cout << "|           q - quit program            |" << endl;
-    cout << "|                                       |" << endl;
-    cout << "-----------------------------------------" << endl;
 }
 
 void Console::printScientists(vector<Scientist> allScientists)
@@ -363,7 +363,7 @@ void  Console::printComputers(vector<Computer> computers)
                 buildersString += ", ";
         }
 
-        printf("%-5d%-25s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearForPrinting().c_str(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
+        printf("%-5d%-25s%-20s%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearForPrinting().c_str(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
     }
 }
 /****************************************************************************
@@ -379,7 +379,6 @@ void Console::callUser ()
     bool runProgram = false;
 
     // scientistService.deleteAllFromDatabase();
-    // scientistService.deleteAllScientistsFromDatabase();
     // scientistService.deleteAllComputersFromDatabase();
     welcome();
 
@@ -450,6 +449,7 @@ void Console::callUser ()
             {
                 cout << "Invalid user or password" << endl << endl;
             }
+
         }
         else if (action == "q")
         {
@@ -713,6 +713,9 @@ void Console::quit()
 {
     quitMenu();
 
+    //scientistService.deleteAllScientistsFromDatabase();
+    //scientistService.deleteAllComputersFromDatabase();
+    scientistService.deleteAllFromDatabase();
     //  scientistService.saveData();
 
     // cout << scientistService.getErrorString();
@@ -1150,13 +1153,24 @@ void Console::removeRelations()
 
 int Console::getCpuID()
 {
-    int cIndex;
+    unsigned int cIndex;
     vector<Computer> computers = scientistService.getComputers();
 
     printComputers(computers);
-    cout << endl;
-    cout << "Please insert the index of your computer of choice: " << endl << "-> ";
-    cin >> cIndex;
+    cout << "Please insert the index of your computer of choice: " << endl;
+    do//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+        cout << "-> ";
+        cin.ignore();
+
+        cin >> cIndex;
+
+        if(cin.fail() || cIndex < 1 || cIndex > computers.size())
+        {
+            cout << "Please insert valid index!" << endl;
+        }
+
+    }while(cin.fail() || cIndex < 1 || cIndex > computers.size());///////////////////////////////////////////////////////////////////////////////////////////////////
     return computers[cIndex-1].getID();
 }
 
@@ -1168,13 +1182,25 @@ int Console::getCpuID()
 
 int Console::getScID()
 {
-    int sIndex;
+    unsigned int sIndex;
     vector<Scientist> scientists = scientistService.getScientists();
 
     printScientists(scientists);
-    cout << endl;
-    cout << "Please insert the index of your scientist of choice: " << endl << "-> ";
-    cin >> sIndex;
+    cout << "Please insert the index of your scientist of choice: " << endl;
+    do////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+        cout << "-> ";
+        cin.ignore();
+
+        cin >> sIndex;
+
+        if(cin.fail() || sIndex < 1 || sIndex > scientists.size())
+        {
+            cout << "Please insert valid index!" << endl;
+            cin.clear();
+        }
+
+    }while(cin.fail() || sIndex < 1 || sIndex > scientists.size()); ///////////////////////////////////////////////////////////////////////////////////////
     return scientists[sIndex-1].getID();
 }
 
@@ -1186,17 +1212,13 @@ int Console::getScID()
 
 void Console::readCpuName(string &name)
 {
+    cout << scientistService.getErrorString();
+    cout << "Name: ";
+    cin.ignore();
     do
     {
-        cout << scientistService.getErrorString();
-        cout << "Name: ";
-        cin.ignore();
-        do
-        {
-            getline(cin, name);
-        }while(name.length()<1);
-
-    }while(name.length() < 1);
+        getline(cin, name);
+    }while(name.length()<1);
 
     name.at(0) = toupper(name.at(0));
 }
@@ -1304,16 +1326,9 @@ void Console::readYearBuilt(int& yearBuilt)
            string choice;
            cout << "Attention: your Computer would have been built beore the first recorded" << endl
                 << "use of the word \"computer\" " << endl
-                << "tip: enter an invalid Year of Death to re-input year of birth" << endl
-                << "Re-input year? (y/n)" << endl
-                << "-> ";
-           do
-           {
-               cin.ignore();
-               cin >> choice;
-               if(choice != "y" && choice != "n")
-                   cout << "Please insert valid input!" << endl;
-          }while (choice != "y" && choice != "n");
+                << "tip: enter an invalid Year of Death to re-input year of birth" << endl;
+
+           choice = continueFunction();
 
            if(choice == "y")
            {
@@ -1335,7 +1350,7 @@ void Console::readYearBuilt(int& yearBuilt)
 
 void Console::readBuilt(bool &built)
 {
-    cout << "Has the computer been built?  (Y/N) " << endl;
+    cout << "Has the computer been built?  (y/n) " << endl;
     string choice;
     do
     {
@@ -1353,6 +1368,8 @@ void Console::readBuilt(bool &built)
                 built = false;
             }
         }while(choice.length()<1);
+        if(choice != "y" && choice != "n")
+            cout << "Please insert valid input!";
     }while(choice != "y" && choice != "n");
 }
 
@@ -1367,7 +1384,7 @@ void Console::readFirstName(string &firstName)
     do
     {
         cout << scientistService.getErrorString();
-        cout << "First Name: ";
+        cout << "First Name (and middle and more): ";
         cin.ignore();
         do
         {
@@ -1389,11 +1406,13 @@ void Console::readLastName(string &lastName)
     do
     {
         cout << scientistService.getErrorString();
-        cout << "Last Name: ";
+        cout << "Last Name (only the last name): ";
 
         do
         {
             cin >> lastName;
+            cin.clear();
+            cin.ignore();
         }while(lastName.length()<1);
 
     }while(!scientistService.validName(lastName));
@@ -1575,13 +1594,13 @@ void Console::changeOrDelete(vector<int> indexes)
     {
         int index;
         cout << "Insert the index you wish to delete: " << endl;
-        do
+        do///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         {
             cin.ignore();
             cin >> index;
-            if(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail())
+            if(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());
                 cout << "Please insert valid index!" << endl;
-        }while(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());
+        }while(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());///////////////////////////////////////////////////////////////////////////
         index -= 1;
         index = indexes[index];
         // scientistService.removeScientist(index);
@@ -1591,13 +1610,14 @@ void Console::changeOrDelete(vector<int> indexes)
     {
         int index;
         cout << "Insert the index you wish to edit: " << endl;
-        do
+
+        do//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         {
             cin.ignore();
             cin >> index;
             if(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail())
                 cout << "Please insert valid index!" << endl;
-        }while(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());
+        }while(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());/////////////////////////////////////////////////////////////////////////
 
         index -= 1;
 
