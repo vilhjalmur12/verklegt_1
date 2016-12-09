@@ -310,7 +310,7 @@ void Console::callUser ()
     welcome();
     toContinue();
 
-    //data.deleteAllFromScientistDatabase();
+    data.deleteAllFromScientistDatabase();
 
     while (!runProgram)
     {
@@ -658,8 +658,8 @@ void Console::toContinue()
 }
 
 /******************************************************************************
-                         toContinue
-      Tekur á móti ákvörðun frá notanda um hvað á að gera frá fyrstu valmynd.
+                         choice
+      Tekur á móti ákvörðun frá notanda um hvað á að gera út frá valmynd.
       @return(choice_made) - ákvörðun frá notenda
  ******************************************************************************/
 string Console::choice()
@@ -673,7 +673,8 @@ string Console::choice()
 /******************************************************************************
                          choiceMade
       Tekur við ákvörðun frá notanda um hvað á að gera frá fyrstu valmynd.
-      v-skoða lista, i-bæta við nýjum, s-leita, e-edit, q-hætta.
+      v-skoða lista, i-bæta við nýjum, s-leita, e-edit,d-delete,
+      r-relation, q-hætta.
  ******************************************************************************/
 void Console::choiceMade()
 {
@@ -733,8 +734,8 @@ string Console::stringChoice()
 
 /********************************************************
                     sorting
-  Tekur inn ávörðun frá notenda um hvernig hann skoðar listan.
-  Prentar lista út í samræmi.
+  Tekur inn ávörðun frá notenda um hvernig hann skoðar lista
+  af vísindamönnum. Prentar lista út í samræmi.
   @parameter(string str) - ákvörðun frá notenda
 *********************************************************/
 
@@ -756,6 +757,13 @@ void Console::sorting(string str)
         }
     }
 }
+
+/********************************************************
+                    cpuSorting
+  Tekur inn ávörðun frá notenda um hvernig hann skoðar lista
+  af tölvum. Prentar lista út í samræmi.
+  @parameter(string str) - ákvörðun frá notenda
+*********************************************************/
 
 void Console::cpuSorting(string str)
 {
@@ -814,6 +822,11 @@ Computer Console::makeNewComputer()
     return cpu;
 }
 
+/******************************************************************
+                      pushBackComputer
+    Býr til nýja tölvu í gagnagrunninn og ýtir henni aftast í listann
+ ******************************************************************/
+
 void Console::pushBackComputer()
 {
     printCpuPushBackMenu();
@@ -850,6 +863,11 @@ void Console::pushBackComputer()
 
     }
 }
+
+/******************************************************************
+                      pushBackScientist
+    Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
+ ******************************************************************/
 
 void Console::pushBackScientist()
 {

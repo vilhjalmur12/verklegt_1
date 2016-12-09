@@ -791,10 +791,14 @@ void database::deleteAllFromComputerDatabase()
 
 void database::deleteAllFromScientistDatabase()
 {
+    int doDeleted = 1;
+
     databaseOpen();
 
     QSqlQuery query;
-    query.prepare("DELETE FROM scientists");
+    query.prepare("UPDATE scientists"
+                  "SET deleted = :deleted");
+    query.bindValue(":deleted", doDeleted);
     query.exec();
 
     databaseClose(myData);
