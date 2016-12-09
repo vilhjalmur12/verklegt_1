@@ -511,6 +511,13 @@ void Console::run()
     } while (programON == true);
 }
 
+/****************************************************************************
+                        getInput
+    Fall til að stytta kóðann, tekur inn þrjár færibreytur
+    @parameter (string opt1, string opt2, string opt3) - þrjár færibreytur
+        sem notandinn slær inn til að velja hvað hann vill gera næst
+ ****************************************************************************/
+
 string Console::getInput(string opt1, string opt2, string opt3) //----------------------------------------<------------------<--------------------------<---------------<--------
 {
     string choice;
@@ -525,6 +532,13 @@ string Console::getInput(string opt1, string opt2, string opt3) //--------------
 
     return choice;
 }
+
+/****************************************************************************
+                        getInput
+    Fall til að stytta kóðann, tekur inn þrjár færibreytur
+    @parameter (string opt1, string opt2, string opt3, string opt4) - fjórar
+        færibreytur sem notandinn slær inn til að velja hvað hann vill gera næst
+ ****************************************************************************/
 
 string Console::getInput(string opt1, string opt2, string opt3, string opt4) //----------------------------------------<------------------<--------------------------<---------------<--------
 {
@@ -688,19 +702,6 @@ void Console::search()
     printComputers(computers);
     ///-------------------------------------------------------------------SKOÐA CHANGE/DELETE/LEITA AFTUR/MENU
 }
-/*
-void Console::search() -- GAMLA FALLIÐ
-{
-    string query;
-    cout << "Query: ";
-    cin >> query;
-    cin.ignore();
-    vector<int> indexesToPrint = scientistService.getIndexesWith(query);
-    printTable(indexesToPrint);
-    printChangeDelete();
-    changeOrDelete(indexesToPrint);
-}
-*/
 
 /******************************************************************************
                          viewDisplay
@@ -937,6 +938,13 @@ Computer Console::makeNewComputer()
 
     return cpu;
 }
+
+/******************************************************************
+                      askToRelate
+    Spyr notandan hvort hann vilji tengja tölvuna/vísindamanninn við
+    vísindamann/tölvu og gerir villutékk
+    @return(string option)
+ ******************************************************************/
 
 string Console::askToRelate(string option)
 {
@@ -1486,7 +1494,7 @@ void Console::readBuilt(bool &built)
         cout << scientistService.getErrorString();
         do
         {
-            cout << "->";
+            cout << "-> ";
             cin >> choice;
             if (choice == "y")
             {
