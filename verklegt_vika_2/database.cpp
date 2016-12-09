@@ -910,6 +910,11 @@ void Database::addRelations(int cID, int sID)
    databaseClose(myData);
 }
 
+/******************************************************************
+                      removeRelations
+     @parameter(int cID) -
+     @parameter(int sID) -
+ ******************************************************************/
 void Database::removeRelations(int cID, int sID)
 {
     databaseOpen();
@@ -926,6 +931,11 @@ void Database::removeRelations(int cID, int sID)
 
     databaseClose(myData);
 }
+
+/******************************************************************
+                      selectData
+
+ ******************************************************************/
 
 void Database::selectData()
 {
@@ -1021,7 +1031,8 @@ void Database::deleteAllFromScientistDatabase()
 
 /******************************************************************
                           deleteScientist
-             Hægt er að velja hvaða vísindamanni verður eytt
+         Hægt er að velja hvaða vísindamanni verður eytt
+             @parameter(int ID) - ID fyrir vísindamann sem á að eyða
  ******************************************************************/
 
 void Database::deleteScientist(int ID)
