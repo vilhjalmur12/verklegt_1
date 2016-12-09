@@ -483,6 +483,13 @@ void Console::edit()
     scientistService.editScientist(ID, scientist);
 }
 
+/******************************************************************************
+                         editComputer
+    Birtir edit valmynd fyrir tölvur og tekur við upplýsingum um
+    hvort notandi vill velja tölvu úr lista eða leita í
+    gagnagrunni að tölvu.
+ ******************************************************************************/
+
 void Console::editComputer()
 {
     string choice = "l";
@@ -553,9 +560,8 @@ void Console::editComputer()
 
 /******************************************************************************
                          search
-    Birtir leitar valmynd og tekur við leitar streng. Birtir síðan töflu af
-    vísindamönnum ásamt index-um og valmynd um þar sem notandi ákveður hvort
-    eigi að edit-a, eyða, leita aftur, fara aftur á aðvalmynd eða hætta keyrslu.
+    Birtir leitar valmynd og tekur við leitar streng. Leitar í öllum gagnagrunninum
+    bæði, tölvum og vísindamönnum.
  ******************************************************************************/
 
 void Console::search()
