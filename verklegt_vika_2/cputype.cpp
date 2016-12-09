@@ -11,13 +11,17 @@ cpuType::cpuType() { }
             @parameter(string type) - tegund tölvu
  ****************************************************************************/
 
+cpuType::~cpuType()
+{
+
+}
+
 cpuType::cpuType(int id, string type)
 {
     _ID = id;
     _type = type;
 }
 
-cpuType::~cpuType() {}
 
 /****************************************************************************
                                 getID

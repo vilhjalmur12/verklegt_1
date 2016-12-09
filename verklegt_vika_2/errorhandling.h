@@ -24,7 +24,6 @@ public:
     void invalidNation();
     string catchError();
 
-
 private:
     string errorMessage;
 };

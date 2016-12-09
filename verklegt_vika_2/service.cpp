@@ -1,8 +1,5 @@
 #include "service.h"
-#include <qsqldatabase.h>
-#include <QSqlQuery>
 
-using namespace std;
 /****************************************************************************
                                Constructor
                         fyllir data objectinn og dælir gildum þaðan í
