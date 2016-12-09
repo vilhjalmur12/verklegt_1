@@ -47,6 +47,12 @@ void Computer::pushComputer(string name, string cpuType, bool built, int yearBui
     _yearBuilt = yearBuilt;
 }
 
+/****************************************************************************
+                        getID
+        Dregur fram nafn ID úr meðlimabreytum og skilar því til baka
+                @return(int _ID) - skilar ID tölvu
+ ****************************************************************************/
+
 int Computer::getID() const
 {
     return _ID;
@@ -80,7 +86,7 @@ int Computer::getYearBuilt() const
     return _yearBuilt;
 }
 /****************************************************************************
-                        get cpuType
+                        getCpuType
         Dregur fram tegund tölvu úr meðlimabreytum og skilar henni til baka
                 @return(string _cpuType) - skilar tegund tölvu
  ****************************************************************************/
@@ -90,9 +96,9 @@ string Computer::getCpuType() const
 }
 
 /****************************************************************************
-                        get computerAuthor
+                        getBuilders
         Dregur fram hver byggdi tölvu úr meðlimabreytum og skilar því til baka
-                @return(vector<string> _computerAuthor) - skilar þeim sem
+                @return(vector<string> _builders) - skilar þeim sem
                                         byggði tölvuna í vector
  ****************************************************************************/
 
@@ -101,10 +107,22 @@ vector<string> Computer::getBuilders() const
     return _builders;
 }
 
+/****************************************************************************
+                        addBuilder
+    pushar þeim sem byggði tölvuna inn med thvi ad nota last name
+                @parameter(string builder) - seinna nafn byggingaraðila tölvu
+ ****************************************************************************/
+
 void Computer::addBuilder(string lastName)
 {
     _builders.push_back(lastName);
 }
+
+/****************************************************************************
+                        getYearForPrinting
+       Dregur fram úr meðlimabreytum hvaða ár tölvan var byggð
+                @return(string _yearBuilt) - árið sem tölvan var byggð
+ ****************************************************************************/
 
 string Computer::getYearForPrinting() const
 {
@@ -117,13 +135,6 @@ string Computer::getYearForPrinting() const
              Operator föll
 **************************************************/
 
-/*
-friend ostream& operator << (ostream& out, Computer co)     // Prentar út allar uppl um tölvu í eina línu (aðskilið af tab-keypress)
-{
-    out << co.getName() << "\t" << co.getCpuType() << "\t" << co.getBuilt() << "\t" << co.getYearBuilt();
-    return out;
-}
-*/
 bool operator == (Computer lhs, Computer rhs)     // Ber saman upplýsingarnar til að sjá hvor þær séu eins
 {
     return (lhs.getName() == rhs.getName() && lhs.getCpuType() == rhs.getCpuType() && lhs.getBuilt() == lhs.getBuilt() && lhs.getYearBuilt() == rhs.getYearBuilt());

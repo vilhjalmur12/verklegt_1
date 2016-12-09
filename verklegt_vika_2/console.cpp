@@ -770,6 +770,10 @@ void Console::choiceMade()
     {
         relate();
     }
+    else if(choice_made == "b")
+    {
+        recycledBin();
+    }
     else if (choice_made == "q")
     {
         quit();
@@ -1109,6 +1113,12 @@ void Console::addRelationsToSci(int sIndex)
     }while(choice == "y");
 }
 
+void Console::recycledBin()
+{
+    string choice;
+    //choice =
+}
+
 /******************************************************************
                       removeRelations
     Fjarlægir vensl milli tölvu og vísindamanns
@@ -1193,13 +1203,16 @@ int Console::getScID()
 
 void Console::readCpuName(string &name)
 {
-    cout << scientistService.getErrorString();
-    cout << "Name: ";
-    cin.ignore();
     do
     {
-        getline(cin, name);
-    }while(name.length()<1);
+        cout << scientistService.getErrorString();
+        cout << "Name: ";
+        cin.ignore();
+        do
+        {
+            getline(cin, name);
+        }while(name.length()<1);
+    }while(!scientistService.validCpuName(name));
 
     name.at(0) = toupper(name.at(0));
 }
