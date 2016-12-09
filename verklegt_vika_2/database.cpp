@@ -591,17 +591,21 @@ void database::editComputer(int ID, Computer computer)
     databaseOpen();
 
     int type = getTypeId(QString::fromStdString(computer.getCpuType()));
+    int built;
+    if(computer.getBuilt())
+        built = 1;
+    else
+        built = 0;
 
     QSqlQuery query;
     query.prepare("UPDATE computers "
                   "SET name = :name, cpu_type_ID = :type, "
-                  "year_of_build = :build, built_or_not = :built, nationality = :nationality, "
-                  "information = :info "
+                  "year_of_build = :build, built_or_not = :built "
                   "WHERE ID = :ID");
     query.bindValue(":name", QString::fromStdString(computer.getName()));
     query.bindValue(":type", type);
     query.bindValue(":build", computer.getYearBuilt());
-    query.bindValue(":built", computer.getBuilt());
+    query.bindValue(":built", built);
     query.bindValue(":ID", ID);
     query.exec();
 

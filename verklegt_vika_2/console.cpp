@@ -517,7 +517,7 @@ string Console::getInput(string opt1, string opt2, string opt3) //--------------
 
     do
     {
-        cout << "-> ";
+        cout <<  "-> ";
         cin >> choice;
         if((choice != opt1 && choice != opt2 && choice != opt3 ) || cin.fail())
             cout << "Please insert valid choice" << endl;
@@ -564,6 +564,7 @@ void Console::edit()
         if(choice == "l")
         {
             printScientists(scientists);
+            cout << "Please insert the index you wish to edit: " << endl;
             idInput(index, scientists.size());
             index -= 1;
         }
@@ -583,6 +584,7 @@ void Console::edit()
                 continue;
             }
             printScientists(scientists);
+            cout << "Please insert the index you wish to edit: " << endl;
             idInput(index, scientists.size());
             index -= 1;
         }
@@ -620,6 +622,7 @@ void Console::editComputer()
         if(choice == "l")
         {
             printComputers(computers);
+            cout << "Please insert the index you wish to edit: " << endl;
             idInput(index, computers.size());
             index -= 1;
         }
@@ -639,6 +642,7 @@ void Console::editComputer()
                 continue;
             }
             printComputers(computers);
+            cout << "Please insert the index you wish to edit: " << endl;
             idInput(index, computers.size());
             index -= 1;
         }
@@ -1373,7 +1377,7 @@ void Console::readCpuType(string &CpuType)
     cin.ignore();
     do
     {
-        getline(cin, choice);
+        cin >> choice;
 
         if(choice == "i")
         {
@@ -1381,15 +1385,13 @@ void Console::readCpuType(string &CpuType)
             types = scientistService.getTypes("ID");
             CpuType = types.back().getType();
         }
-
         else if(stoi(choice) > 0 && stoi(choice) <= types.size())
         {
             CpuType = types[stoi(choice)-1].getType();
         }
-
         else
         {
-            cout << "Please insert valid input!" << endl;
+            cout << "Please insert valid input!" << endl << "-> ";
             continue;
         }
     }while(CpuType.length()<1);
