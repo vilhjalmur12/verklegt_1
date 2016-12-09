@@ -1378,9 +1378,9 @@ void Console::readCpuType(string &CpuType)
     printTypeMenu(types);
     string choice;
 
-    cin.ignore();
     do
     {
+        cin.ignore();
         cin >> choice;
 
         if(choice == "i")
@@ -1389,14 +1389,14 @@ void Console::readCpuType(string &CpuType)
             types = scientistService.getTypes("ID");
             CpuType = types.back().getType();
         }
-        else if(stoi(choice) > 0 && stoi(choice) <= types.size())
-        {
-            CpuType = types[stoi(choice)-1].getType();
-        }
-        else
+        else if(!scientistService.validDeathYear(choice))
         {
             cout << "Please insert valid input!" << endl << "-> ";
             continue;
+        }
+        else if(stoi(choice) > 0 && stoi(choice) <= types.size())
+        {
+            CpuType = types[stoi(choice)-1].getType();
         }
     }while(CpuType.length()<1);
 
