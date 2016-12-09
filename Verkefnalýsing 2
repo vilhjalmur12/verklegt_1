@@ -1,0 +1,49 @@
+#Verkefnalýsing
+##Hópur 28
+
+Github linkur [https://github.com/vilhjalmur12/verklegt_1/]
+
+Um er að ræða endurbætta útgáfu af verkefni úr viku 1. Í þessu kerfi er til viðbótar hægt 
+að eiga við tölvur og hefur í öllum valmyndnum verið bætt við valmöguleika til þess að 
+velja hvort val notanda eigi við tölvunarfræðing eða tölvu og viðeigandi föll útfærð. 
+Útbúið var villucheck fyrir tölvunarfræðing og getur hann nú ekki dáið áður en hann fæðist.
+  Helstu breytingar eru þær að nú vistast allar breytingar beint í gagnagrunn og aldrei 
+unnið með meðlima vector í minni heldur alltaf lesið úr gagnagrunni og skrifað út í hann 
+jafn óðum. Þar að auki sér gagnagrunnur um mest alla vinnslu gagna, edit, sort, insert, 
+search og delete er nú unnið beint í og úr gagnagrunni. 
+  Í útfærslu fyrir tölvu er haldið er utan um nafn hennar, byggingarár, tegund og það hvort
+hún hafi verið byggð eða ekki. Útbúinn var valmöguleiki þar sem hægt er að vensla saman 
+einstaklinga og tölvur og er venslunum þá bætt við í venslatöflu í gagnagrunni. 
+Til þess að skoða þau í yfirliti er hægt að fara í main menu -> view. Þar koma þær tölvur 
+sem vísindamaður er venslaður við fyrir aftan upplýsingar um vísindamannin og öfugt. 
+Mögulegt er að eyða venslum. Þar að auki er boðið upp á að bæta venslum við tölvu eða 
+vísindamann við sköpun (insert). Í útfærslunni okkar ákváðum við að búa til sér töflu 
+(í gagnagrunni) yfir þekktar tegundir tölva. Þá er notanda boðið að velja týpu úr lista 
+þekktra týpna eða bæta við nýrri, sem er þá bætt í töfluna og lærir forritið að þekkja hana.
+  Velji notandi að sjá lista yfir tölvu er honum boðið að velja í hvernig röð hann vill 
+raða listanum. Valmöguleikar eru birtir í töflu (cpuSortingMenu()). Bætt var við virkni 
+þar sem hægt er að eyða tölvum og tölvunarfræðingum, öllum eða einum sér í lagi. 
+Í þessu verkefni voru útfærð nokkur atriði aukalega við grunnkröfur í verkefnalýsingu. 
+Um er að ræða user og password encryption, error log, activity log og recycled bin sem 
+bíður upp á restore á tölvum og vísindamönnum (og þeim venslum sem fyrir voru, sem gerist 
+sjálfkrafa). Þar að auki hefur hver og einn user sinn eigin gagnagrunn. 
+
+Bónusar til þess að skoða:
+*Recycled Bin
+    Restore all
+*Error log
+    verður til undir sömu möppu og forrit en er hidden: .error_log
+    skrifar t.d. ef notandi sló inn vitlaust lykilorð og hvenær
+    skrifar WARNING ef notandi sló inn vitlaust lykilorð 3 (brute force warning)
+*Activity log
+    verður til undir sömu möppu of forrit en er hidden: ."notendanafn"_activitylog
+    ef einhverjar breytingar verða á gagnagrunni skráist hvað gerðist og hvenær fyrir notanda
+*Delete All
+    Hægt að hreinsa gagnagrunn alveg
+*dulkóðuð lykilorð í notendagagnagrunni
+    Einfaldur ceasar shift, hægt að skoða í user gagnagrunni
+*villucheck fyrir fæðingarár og dánarár
+    getur ekki dáið áður en þú fæðist
+*computer type með sér reference ID
+*insert new computer type valmynd þegar þú "insertar" nýja tölvu eða "editar" nýja tölvu
+    hún breytist eftir því hvort magn týpa sé oddatala eða slétt tala 

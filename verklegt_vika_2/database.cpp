@@ -733,6 +733,13 @@ void Database::searchComputersForInt(vector<Computer> &computers, const int iQue
     addFoundComputers(query, computers);
 }
 
+/******************************************************************
+                      addFoundScientists
+     Bætir tölvu sem fannst við leit í vektor
+     @parameter(QSqlQuery& query) - Bendir á QSqlQuery af leitarstreng
+     @parameter(vector<Scientist> &scientists) - Vector af bendum á vísindamenn
+ ******************************************************************/
+
 void Database::addFoundComputers(QSqlQuery& query, vector<Computer> &computers)
 {
     while(query.next())
@@ -762,6 +769,12 @@ void Database::addFoundComputers(QSqlQuery& query, vector<Computer> &computers)
     }
 }
 
+/******************************************************************
+                      addBuildersToComputers
+     Bætir vísindamanni við tölvu
+     @parameter(vector<Scientist> &scientists) - Vector af bendum á vísindamenn
+ ******************************************************************/
+
 void Database::addBuildersToComputers(vector<Computer> &computers)
 {
     for(unsigned int i = 0; i < computers.size(); i++)
@@ -788,6 +801,13 @@ void Database::addBuildersToComputers(vector<Computer> &computers)
     }
 }
 
+/******************************************************************
+                      searchScientistsForSubstring
+     Leitar að vísindamönnum eftir leitar streng
+     @parameter(vector<Scientist> &scientists) - Vector af bendum á vísindamenn
+     @parameter(const string sQuery) - Leitarstrengur frá notenda
+ ******************************************************************/
+
 void Database::searchScientistsForSubstring(vector<Scientist> &scientists, const string sQuery)
 {
     QString searchQuery = generalizeQuery(sQuery);
@@ -808,6 +828,13 @@ void Database::searchScientistsForSubstring(vector<Scientist> &scientists, const
     addFoundScientists(query, scientists);
 }
 
+/******************************************************************
+                      searchScientistsForInt
+     Leitar í vísindamönnum eftir ártali(öld eða áratug)
+     @parameter(vector<Scientist> &scientists) - Vector af bendum á vísindamenn
+     @parameter(const int iQuery) - ártals leit frá notanda
+ ******************************************************************/
+
 void Database::searchScientistsForInt(vector<Scientist> &scientists, const int iQuery)
 {
     QSqlQuery query;
@@ -825,6 +852,13 @@ void Database::searchScientistsForInt(vector<Scientist> &scientists, const int i
 
     addFoundScientists(query, scientists);
 }
+
+/******************************************************************
+                      addFoundScientists
+     Bætir vísindamanni sem fannst við leit í vektor
+     @parameter(QSqlQuery& query) - Bendir á QSqlQuery af leitarstreng
+     @parameter(vector<Scientist> &scientists) - Vector af bendum á vísindamenn
+ ******************************************************************/
 
 void Database::addFoundScientists(QSqlQuery& query, vector<Scientist> &scientists)
 {
@@ -866,6 +900,12 @@ void Database::addFoundScientists(QSqlQuery& query, vector<Scientist> &scientist
     }
 }
 
+/******************************************************************
+                      adddBuiltComputersToScientists
+     Býður notenda upp á að búa til vensl milli nýrra tölva og vísindamanna
+     @parameter(vector<Scientist> &scientists) - Vector af bendum á vísindamenn
+ ******************************************************************/
+
 void Database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
 {
     for(unsigned int i = 0; i < scientists.size(); i++)
@@ -893,6 +933,14 @@ void Database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/******************************************************************
+                      addRelations
+     Býr til vensl á milli vísindamans og tölvu
+     @parameter(int cID) - ID fyrir tölvu
+     @parameter(int sID) - ID fyrir vísindamann
+ ******************************************************************/
+
 void Database::addRelations(int cID, int sID)
 {
    databaseOpen();
@@ -911,8 +959,9 @@ void Database::addRelations(int cID, int sID)
 
 /******************************************************************
                       removeRelations
-     @parameter(int cID) -
-     @parameter(int sID) -
+     Fjarlægir vensl á milli vísindamans og tölvu
+     @parameter(int cID) - ID fyrir tölvu
+     @parameter(int sID) - ID fyrir vísindamann
  ******************************************************************/
 void Database::removeRelations(int cID, int sID)
 {
