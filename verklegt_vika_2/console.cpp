@@ -1015,6 +1015,7 @@ int Console::getCpuID()
     vector<Computer> computers = scientistService.getComputers();
 
     printComputers(computers);
+    cout << endl;
     cout << "Please insert the index of your computer of choice: " << endl << "-> ";
     cin >> cIndex;
     return computers[cIndex-1].getID();
@@ -1026,6 +1027,7 @@ int Console::getScID()
     vector<Scientist> scientists = scientistService.getScientists();
 
     printScientists(scientists);
+    cout << endl;
     cout << "Please insert the index of your scientist of choice: " << endl << "-> ";
     cin >> sIndex;
     return scientists[sIndex-1].getID();
