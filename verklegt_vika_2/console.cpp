@@ -28,14 +28,14 @@ void Console::viewOrInsert()
     cout << "-----------------------------------------" << endl;
     cout << "|           Choose procedure:           |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|            v - for Viewing            |" << endl;
-    cout << "|           i - for Inserting           |" << endl;
-    cout << "|           s - for Searching           |" << endl;
-    cout << "|            e - for Editing            |" << endl;
-    cout << "|           d - for Deleting            |" << endl;
-    cout << "|           r - for Relating            |" << endl;
+    cout << "|            v - for viewing            |" << endl;
+    cout << "|           i - for inserting           |" << endl;
+    cout << "|           s - for searching           |" << endl;
+    cout << "|            e - for editing            |" << endl;
+    cout << "|           d - for deleting            |" << endl;
+    cout << "|           r - for relating            |" << endl;
     cout << "|         b - for recycled Bin          |" << endl;
-    cout << "|           q - for Quitting            |" << endl;
+    cout << "|           q - for quitting            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
@@ -709,7 +709,7 @@ void Console::quit()
 {
     quitMenu();
 
-    scientistService.deleteAllFromDatabase();
+    //scientistService.deleteAllFromDatabase();
     //  scientistService.saveData();
 
     // cout << scientistService.getErrorString();
@@ -778,6 +778,10 @@ void Console::choiceMade()
     else if(choice_made == "r")
     {
         relate();
+    }
+    else if(choice_made == "b")
+    {
+        recycledBin();
     }
     else if (choice_made == "q")
     {
@@ -1118,6 +1122,12 @@ void Console::addRelationsToSci(int sIndex)
     }while(choice == "y");
 }
 
+void Console::recycledBin()
+{
+    string choice;
+    //choice =
+}
+
 /******************************************************************
                       removeRelations
     Fjarlægir vensl milli tölvu og vísindamanns
@@ -1202,13 +1212,16 @@ int Console::getScID()
 
 void Console::readCpuName(string &name)
 {
-    cout << scientistService.getErrorString();
-    cout << "Name: ";
-    cin.ignore();
     do
     {
-        getline(cin, name);
-    }while(name.length()<1);
+        cout << scientistService.getErrorString();
+        cout << "Name: ";
+        cin.ignore();
+        do
+        {
+            getline(cin, name);
+        }while(name.length()<1);
+    }while(!scientistService.validCpuName(name));
 
     name.at(0) = toupper(name.at(0));
 }
@@ -1789,7 +1802,7 @@ void Console::deleteOperation()
         }
         else if (choice_made == "as" || choice_made == "ac" || choice_made == "a" )
         {
-            deleteOperationHelper(choice_made);
+            //deleteOperationHelper(choice_made);
         }
         else
         {
@@ -1811,6 +1824,14 @@ void Console::deleteOperationHelper(string choice_made)
         {
             scientistService.deleteAllScientistsFromDatabase();
         }
+        else if (answer == "n")
+        {
+
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+        }
     }
     else if(choice_made == "ac")
     {
@@ -1819,6 +1840,14 @@ void Console::deleteOperationHelper(string choice_made)
         if(answer == "y")
         {
             scientistService.deleteAllComputersFromDatabase();
+        }
+        else if (answer == "n")
+        {
+
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
         }
     }
     else if(choice_made == "a")
@@ -1829,9 +1858,19 @@ void Console::deleteOperationHelper(string choice_made)
         {
             scientistService.deleteAllFromDatabase();
         }
+        else if (answer == "n")
+        {
+
+        }
+        else
+        {
+            cout << "Please enter a valid command!" << endl;
+        }
+
     }
     else
     {
         cout << "Please enter a valid command!" << endl;
     }
 }
+
