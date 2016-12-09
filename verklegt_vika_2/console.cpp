@@ -428,6 +428,8 @@ void Console::callUser ()
             QString qPassword(password.c_str());
 
             bool foundUser = data.getUser(user, qPassword);
+            int safeCount;
+            string invalid = "Invalid user or password";
 
             if (foundUser == true)
             {
@@ -435,7 +437,14 @@ void Console::callUser ()
             }
             else
             {
-                cout << "Invalid user or password" << endl << endl;
+                cout << invalid << endl << endl;
+                safeCount++;
+                if (safeCount >= 3)
+                {
+                    bool brute = true;
+                    errorLog _errorLog(tmpUser, invalid, brute);
+                    _errorLog.pushError();
+                }
             }
 
         }
@@ -1792,7 +1801,7 @@ void Console::deleteOperation()
         }
         else if (choice_made == "as" || choice_made == "ac" || choice_made == "a" )
         {
-            deleteOperationHelper(choice_made);
+            //deleteOperationHelper(choice_made);
         }
         else
         {
@@ -1863,3 +1872,4 @@ void Console::deleteOperationHelper(string choice_made)
         cout << "Please enter a valid command!" << endl;
     }
 }
+

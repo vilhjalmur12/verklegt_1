@@ -110,7 +110,7 @@ vector<string> Computer::getBuilders() const
 /****************************************************************************
                         addBuilder
     pushar þeim sem byggði tölvuna inn med thvi ad nota last name
-                @parameter(string builder) - seinna nafn byggingaraðila tölvu
+                @parameter(string lastName) - seinna nafn byggingaraðila tölvu
  ****************************************************************************/
 
 void Computer::addBuilder(string lastName)
@@ -135,7 +135,7 @@ string Computer::getYearForPrinting() const
              Operator föll
 **************************************************/
 
-bool operator == (Computer lhs, Computer rhs)     // Ber saman upplýsingarnar til að sjá hvor þær séu eins
+bool operator == (Computer lhs, Computer rhs)
 {
     return (lhs.getName() == rhs.getName() && lhs.getCpuType() == rhs.getCpuType() && lhs.getBuilt() == lhs.getBuilt() && lhs.getYearBuilt() == rhs.getYearBuilt());
 }
