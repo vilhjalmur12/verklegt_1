@@ -827,6 +827,12 @@ void Database::searchScientistsForInt(vector<Scientist> &scientists, const int i
     addFoundScientists(query, scientists);
 }
 
+/******************************************************************
+                      addFoundScientists
+
+     @parameter(vector<Scientist> &scientists) - Vector af bendum á vísindamenn
+ ******************************************************************/
+
 void Database::addFoundScientists(QSqlQuery& query, vector<Scientist> &scientists)
 {
     while(query.next())
@@ -867,6 +873,12 @@ void Database::addFoundScientists(QSqlQuery& query, vector<Scientist> &scientist
     }
 }
 
+/******************************************************************
+                      adddBuiltComputersToScientists
+     Býður notenda upp á að búa til vensl milli nýrra tölva og vísindamanna
+     @parameter(vector<Scientist> &scientists) - Vector af bendum á vísindamenn
+ ******************************************************************/
+
 void Database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
 {
     for(unsigned int i = 0; i < scientists.size(); i++)
@@ -894,6 +906,14 @@ void Database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/******************************************************************
+                      addRelations
+     Býr til vensl á milli vísindamans og tölvu
+     @parameter(int cID) - ID fyrir tölvu
+     @parameter(int sID) - ID fyrir vísindamann
+ ******************************************************************/
+
 void Database::addRelations(int cID, int sID)
 {
    databaseOpen();
@@ -912,8 +932,9 @@ void Database::addRelations(int cID, int sID)
 
 /******************************************************************
                       removeRelations
-     @parameter(int cID) -
-     @parameter(int sID) -
+     Fjarlægir vensl á milli vísindamans og tölvu
+     @parameter(int cID) - ID fyrir tölvu
+     @parameter(int sID) - ID fyrir vísindamann
  ******************************************************************/
 void Database::removeRelations(int cID, int sID)
 {
