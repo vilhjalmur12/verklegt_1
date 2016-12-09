@@ -309,18 +309,22 @@ void database::initDatabase (const QString& username)
     }
 }
 
-vector<cpuType> database::getCpuTypes()
+vector<cpuType> database::pullTypes(string order)
 {
     databaseOpen();
 
     vector<cpuType> cpu;
     cpuType tmpCpu;
     QString QCpu;
+    QString Qorder(order.c_str());
     string tmpCpuString;
     int tmpID;
     QSqlQuery query;
 
-    query.exec("SELECT * From cpuType");
+    query.prepare("SELECT * From cpuType "
+               "ORDER BY :order");
+    query.bindValue(":order", Qorder);
+    query.exec();
 
     while (query.next())
     {
@@ -331,6 +335,7 @@ vector<cpuType> database::getCpuTypes()
 
         cpu.push_back(tmpCpu);
     }
+
     databaseClose(myData);
 
     return cpu;
@@ -373,20 +378,52 @@ void database::insertComputer (Computer computer, QString tmpUser)
 
        QString tmpName(computer.getName().c_str());
        QString tmpCpuType(computer.getCpuType().c_str());
+       int tmpType = getTypeId(tmpCpuType);
        int tmpYB = computer.getYearBuilt();
        bool tmpBuilt = computer.getBuilt();
 
        QSqlQuery query;
-       query.prepare("INSERT INTO computers"
+       query.prepare("INSERT INTO computers "
                      "(Name, Year_of_build, CPU_type_ID, built_or_not) "
                      "VALUES (:name, :YOB, :type, :BON)");
        query.bindValue(":name", tmpName);
        query.bindValue(":YOB", tmpYB);
-       query.bindValue(":type", tmpCpuType);
+       query.bindValue(":type", tmpType);
        query.bindValue(":BON", tmpBuilt);
        query.exec();
 
        databaseClose(myData);
+}
+
+int database::getTypeId(QString type)
+{
+    //TODO: TAKA INN TYPE FINNA ID
+    QSqlQuery query2;
+
+    query2.prepare("SELECT ID FROM cpuType "
+                   "WHERE type = :type ");
+    query2.bindValue(":type",type);
+    query2.exec();
+
+    query2.next();
+
+    return query2.value(0).toInt();
+
+}
+
+void database::insertType(string type)
+{
+    databaseOpen();
+
+    QString Qtype(type.c_str());
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO cpuType (type) "
+                  "VALUES (:type) ");
+    query.bindValue(":type", Qtype);
+    query.exec();
+
+    databaseClose(myData);
 }
 
 void database::editComputer(int ID, Computer computer)
