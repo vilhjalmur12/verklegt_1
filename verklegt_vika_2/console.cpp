@@ -255,27 +255,31 @@ void Console::typeMenu(vector<cpuType> type)
     cout << "                     Select type of computer                       " << endl;
     cout << "-------------------------------------------------------------------" << endl;
     cout << "|                                                                 |" << endl;
-    printf( "|                    (choose between 1 - ‰d)                      |\n", size);
-    printf( "|                                                 |\n");
+    cout << "|                    (choose between 1 - "; cout << size;  cout << ")                       |" << endl;
+    cout << "|                                                                 |" << endl;
 
     for(int i = 0; i < size; i+=2)
     {
-            cpuType tmpCpuFirst = type[i];
-            cpuType tmpCpuSecond = type[i+1];
+        cpuType tmpCpuFirst = type[i];
+        cpuType tmpCpuSecond = type[i+1];
 
-            printf( "|        %-2d = %-10s             %-2d = %-10s      |\n", tmpCpuFirst.getId(), tmpCpuFirst.getType().c_str(), tmpCpuSecond.getId(), tmpCpuSecond.getType().c_str());
+        printf( "|        %-2d = %-10s             %-2d = %-10s              |\n", i+1, tmpCpuFirst.getType().c_str(), i+2, tmpCpuSecond.getType().c_str());
 
-            if ((size - i) == 1)
-            {
-                i++;
-                tmpCpuFirst = type[i];
-                printf( "|                                                 |\n");
-                printf( "|                   %-2d = %-10s          |\n", tmpCpuFirst.getId(), tmpCpuFirst.getType().c_str());
-                break;
-            }
+        if ((size - i) == 3)
+        {
+            i+=2;
+            tmpCpuFirst = type[i];
+            printf( "|                                                                 |\n");
+            printf( "|                         %-2d = %-10s                         |\n", i+1, tmpCpuFirst.getType().c_str());
+            break;
+        }
     }
+
+    cout << "|                                                                 |" << endl;
+    cout << "|                    i - insert new type                          |" << endl;
     cout << "|                                                                 |" << endl;
     cout << "-------------------------------------------------------------------" << endl;
+
 }
 
 void Console::printRelationMenu()

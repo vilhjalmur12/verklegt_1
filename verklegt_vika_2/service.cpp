@@ -104,10 +104,10 @@ bool Service::doesScientistExcist(string firstName, string lastName, string sex,
         if(scientist == scientists[i])
         {
             throwError.invalidName(1);
-            return false;
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 bool Service::doesComputerExcist(string name, string cpuType, int yearBuilt, bool built)
@@ -120,10 +120,10 @@ bool Service::doesComputerExcist(string name, string cpuType, int yearBuilt, boo
         if(tempComputer == computers[i])
         {
             throwError.invalidName(1);
-            return false;
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 bool Service::appendScientist(string firstName, string lastName, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
@@ -133,12 +133,12 @@ bool Service::appendScientist(string firstName, string lastName, string sex, int
 
     Scientist tempScientist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo);
 
-    if(!doesScientistExcist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo))
+    if(doesScientistExcist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo))
         return false;
 
     _scientists.push_back(tempScientist);  // Líklega óþarfi
 
-    data.insertScientist(tempScientist, qUser); //--> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
+    data.insertScientist(tempScientist/*, qUser*/); //--> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
 
     return true;
 }
@@ -147,7 +147,7 @@ bool Service::appendComputer (string name, string cpuType, int yearBuilt, bool b
 {
     Computer tempComputer(name, cpuType, built, yearBuilt);
 
-    if(!doesComputerExcist(name, cpuType, yearBuilt, built))
+    if(doesComputerExcist(name, cpuType, yearBuilt, built))
         return false;
 
     _computers.push_back(tempComputer);  // Líklega óþarfi
