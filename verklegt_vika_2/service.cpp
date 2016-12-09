@@ -101,10 +101,10 @@ bool Service::doesScientistExcist(string firstName, string lastName, string sex,
         if(scientist == scientists[i])
         {
             throwError.invalidName(1);
-            return false;
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 bool Service::doesComputerExcist(string name, string cpuType, int yearBuilt, bool built)
@@ -117,10 +117,10 @@ bool Service::doesComputerExcist(string name, string cpuType, int yearBuilt, boo
         if(tempComputer == computers[i])
         {
             throwError.invalidName(1);
-            return false;
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 bool Service::appendScientist(string firstName, string lastName, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
@@ -130,12 +130,12 @@ bool Service::appendScientist(string firstName, string lastName, string sex, int
 
     Scientist tempScientist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo);
 
-    if(!doesScientistExcist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo))
+    if(doesScientistExcist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo))
         return false;
 
     _scientists.push_back(tempScientist);  // Líklega óþarfi
 
-    data.insertScientist(tempScientist, qUser); //--> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
+    data.insertScientist(tempScientist/*, qUser*/); //--> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
 
     return true;
 }
@@ -144,7 +144,7 @@ bool Service::appendComputer (string name, string cpuType, int yearBuilt, bool b
 {
     Computer tempComputer(name, cpuType, built, yearBuilt);
 
-    if(!doesComputerExcist(name, cpuType, yearBuilt, built))
+    if(doesComputerExcist(name, cpuType, yearBuilt, built))
         return false;
 
     _computers.push_back(tempComputer);  // Líklega óþarfi
@@ -185,13 +185,33 @@ void Service::editScientist(int ID, Scientist scientist)
 }
 
 /****************************************************************************
-                           deleteAllScientistDatabase()
-                     Eyðir og flaggar öllum vísindamönnum úr database-inu
+                           deleteAllFromDatabase()
+          Flaggar allar tölvur og vísindamenn sem deleted í database-inu
  ****************************************************************************/
 
-void Service::deleteAllScientistFromDatabase()
+void Service::deleteAllFromDatabase()
+{
+    data.deleteAllFromDatabase();
+}
+
+/****************************************************************************
+                           deleteAllScientistDatabase()
+                     Flaggar alla vísindamennina sem deleted í database-inu
+ ****************************************************************************/
+
+void Service::deleteAllScientistsFromDatabase()
 {
     data.deleteAllFromScientistDatabase();
+}
+
+/****************************************************************************
+                           deleteAllFromDatabase()
+                    Flaggar allar tölvur sem deleted í database-inu
+ ****************************************************************************/
+
+void Service::deleteAllComputersFromDatabase()
+{
+    data.deleteAllFromComputerDatabase();
 }
 
 /****************************************************************************
@@ -247,6 +267,18 @@ vector<Computer> Service::getComputers(string choice)
         columnOfChoice += " DESC";
 
     return data.pullComputers(columnOfChoice);
+}
+
+vector<cpuType> Service::getTypes(string choice)
+{
+    if(choice == "t")
+        choice = "type";
+    return data.pullTypes(choice);
+}
+
+void Service::addType(string type)
+{
+    data.insertType(type);
 }
 
 
@@ -416,13 +448,14 @@ bool Service::validBuildYear(int buildYear)
 
     if(buildYear < -193000)
     {
-        throwError.invalidYear(3);
+        throwError.invalidYear(9);
         return false;
     }
 
     if(buildYear > timePtr->tm_year + 1900)
     {
-        throwError.invalidYear(2);
+        cout << (timePtr->tm_year + 1900);
+        throwError.invalidYear(8);
         return false;
     }
     if(buildYear == maxDeathYear)
@@ -442,7 +475,7 @@ bool Service::validBuildYear(int buildYear)
  ****************************************************************************/
 bool Service::validDeathYear(string input)
 {
-    return regex_match(input, regex("^[0-9]+[0-9]*$"));
+    return regex_match(input, regex("^-?[0-9]*$"));
 }
 
 /****************************************************************************

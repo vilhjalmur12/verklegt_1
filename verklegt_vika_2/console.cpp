@@ -28,13 +28,14 @@ void Console::viewOrInsert()
     cout << "-----------------------------------------" << endl;
     cout << "|           Choose procedure:           |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|            v - for viewing            |" << endl;
-    cout << "|           i - for insertion           |" << endl;
-    cout << "|            s - for search             |" << endl;
-    cout << "|            e - for editing            |" << endl;
-    cout << "|           d - for deleting            |" << endl;
-    cout << "|           r - for relating            |" << endl;
-    cout << "|           q - for quitting            |" << endl;
+    cout << "|            v - for Viewing            |" << endl;
+    cout << "|           i - for Inserting           |" << endl;
+    cout << "|           s - for Searching           |" << endl;
+    cout << "|            e - for Editing            |" << endl;
+    cout << "|           d - for Deleting            |" << endl;
+    cout << "|           r - for Relating            |" << endl;
+    cout << "|         b - for recycled Bin          |" << endl;
+    cout << "|           q - for Quitting            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
 }
@@ -163,7 +164,6 @@ void Console::printCpuPushBackMenu()
     cout << "|                                       |" << endl;
     cout << "|             Name:   string            |" << endl;
     cout << "|       Build year:   YYYY              |" << endl;
-    cout << "|    Computer type:   string            |" << endl;
     cout << "|    Was it built?:   y/n               |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -188,8 +188,11 @@ void Console::deleteMenu()
     cout << "-----------------------------------------" << endl;
     cout << "|       What would you like to do?      |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|         s - delete a scientist        |" << endl;
     cout << "|         c - delete a computer         |" << endl;
+    cout << "|         s - delete a scientist        |" << endl;
+    cout << "|       ac - delete all computers       |" << endl;
+    cout << "|       as - delete all scientists      |" << endl;
+    cout << "|            a - delete all             |" << endl;
     cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -201,8 +204,8 @@ void Console::viewMenu()
     cout << "-----------------------------------------" << endl;
     cout << "|       What would you like to do?      |" << endl;
     cout << "|                                       |" << endl;
-    cout << "|          s - view a scientist         |" << endl;
-    cout << "|          c - view a computer          |" << endl;
+    cout << "|           s - view scientists         |" << endl;
+    cout << "|           c - view computers          |" << endl;
     cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
@@ -239,36 +242,6 @@ void Console::insertMenu()
     cout << "-----------------------------------------" << endl;
 }
 
-void Console::typeMenu(vector<cpuType> type)
-{
-    int size = type.size();
-
-    cout << "                     Select type of computer                       " << endl;
-    cout << "-------------------------------------------------------------------" << endl;
-    cout << "|                                                                 |" << endl;
-    printf( "|                    (choose between 1 - ‰d)                      |\n", size);
-    printf( "|                                                 |\n");
-
-    for(int i = 0; i < size; i+=2)
-    {
-            cpuType tmpCpuFirst = type[i];
-            cpuType tmpCpuSecond = type[i+1];
-
-            printf( "|        %-2d = %-10s             %-2d = %-10s      |\n", tmpCpuFirst.getId(), tmpCpuFirst.getType().c_str(), tmpCpuSecond.getId(), tmpCpuSecond.getType().c_str());
-
-            if ((size - i) == 1)
-            {
-                i++;
-                tmpCpuFirst = type[i];
-                printf( "|                                                 |\n");
-                printf( "|                   %-2d = %-10s          |\n", tmpCpuFirst.getId(), tmpCpuFirst.getType().c_str());
-                break;
-            }
-    }
-    cout << "|                                                                 |" << endl;
-    cout << "-------------------------------------------------------------------" << endl;
-}
-
 void Console::printRelationMenu()
 {
     cout << endl;
@@ -280,8 +253,111 @@ void Console::printRelationMenu()
     cout << "|           q - quit program            |" << endl;
     cout << "|                                       |" << endl;
     cout << "-----------------------------------------" << endl;
+
+}
+void Console::printTypeMenu(vector<cpuType> type)
+{
+    int size = type.size();
+
+    cout << "                     Select type of computer                       " << endl;
+    cout << "-------------------------------------------------------------------" << endl;
+    cout << endl;
+    cout << "                    (choose between 1 - " << size << ")" << endl;
+    cout << endl;
+
+    for(int i = 0; i < size; i+=2)
+    {
+        cpuType tmpCpuFirst = type[i];
+        cpuType tmpCpuSecond = type[i+1];
+
+        printf( "\t %-2d = %-20s \t %-2d = %-15s\n", i+1, tmpCpuFirst.getType().c_str(), i+2, tmpCpuSecond.getType().c_str());
+
+        if ((size - i) == 3)
+        {
+            i+=2;
+            tmpCpuFirst = type[i];
+            cout << endl;
+            printf("\t\t %-2d = %-10s\n", i+1, tmpCpuFirst.getType().c_str());
+            break;
+        }
+    }
+
+    cout << endl;
+    cout << "                    i - insert new type                          " << endl;
+    cout << endl;
+    cout << "-------------------------------------------------------------------" << endl;
+
 }
 
+void Console::printScientists(vector<Scientist> allScientists)
+{
+    if(allScientists.size() == 0)
+    {
+        cout << endl << "---------------------------------------------------------------------------No Scientists Found------------------------------------------------------------------------------" << endl;
+        return;
+    }
+    cout << endl << endl << "---------------------------------------------------------------------------Scientists Found---------------------------------------------------------------------------------" << endl << endl;
+
+    printf("%-5s%-30s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Designed");
+
+    cout <<"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+
+    for (unsigned int i = 0; i < allScientists.size(); i++)
+    {
+        string computersString;
+        vector <string> computers = allScientists[i].getComputersBuilt();
+
+        for(unsigned int j = 0; j < computers.size(); j++)
+        {
+            computersString += computers[j];
+
+            if(j != computers.size()-1)
+                computersString += ", ";
+        }
+
+        Scientist tmp = allScientists[i];
+
+        printf("%-5d%-15s%-15s%-15s%-16d%-16s%-14s%-40s%-20s\n",i+1, (tmp.getLastName()+",").c_str(), tmp.getFirstName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
+               tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str(), computersString.c_str());
+    }
+}
+
+void  Console::printComputers(vector<Computer> computers)
+{
+    if(computers.size() == 0)
+    {
+        cout << endl << "---------------------------------------------------------------------------No Computers Found-------------------------------------------------------------------------------" << endl;
+        return;
+    }
+    cout << endl << endl << "-----------------------------------------------------------------------------Computers Found--------------------------------------------------------------------------------" << endl << endl;
+
+    printf("%-5s%-25s%-20s%-20s%-20s%-20s\n", "Nr.", "Name", "Year of build", "Type", "Built or not", "Creators");
+
+    cout <<"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+
+    for (unsigned int i = 0; i < computers.size(); i++)
+    {
+        Computer tmp = computers[i];
+
+        string built;
+        if(tmp.getBuilt())
+            built = "Built";
+        else
+            built = "Not Built";
+
+        string buildersString;
+        vector<string> builders = computers[i].getBuilders();
+        for(unsigned int j = 0; j < builders.size(); j++)
+        {
+            buildersString += builders[j];
+
+            if(j != builders.size()-1)
+                buildersString += ", ";
+        }
+
+        printf("%-5d%-25s%-20s%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearForPrinting().c_str(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
+    }
+}
 /****************************************************************************
                         callUser
     Notandi hefur val á að skrá sig inn í forritið eða skrá nýjan notanda
@@ -297,8 +373,6 @@ void Console::callUser ()
     welcome();
     toContinue();
 
-    //data.deleteAllFromScientistDatabase();
-
     while (!runProgram)
     {
         string tmpUser;
@@ -309,7 +383,6 @@ void Console::callUser ()
         if (action == "c")
         {
             string confirmPass = "password";
-
 
             cout << "Choose Username: ";
             cin >> tmpUser;
@@ -364,6 +437,7 @@ void Console::callUser ()
             {
                 cout << "Invalid user or password" << endl << endl;
             }
+
         }
         else if (action == "q")
         {
@@ -391,7 +465,6 @@ void Console::run()
     do
     {
         viewOrInsert();
-
         choiceMade();
         cin.ignore();
 
@@ -474,6 +547,13 @@ void Console::edit()
     scientistService.editScientist(ID, scientist);
 }
 
+/******************************************************************************
+                         editComputer
+    Birtir edit valmynd fyrir tölvur og tekur við upplýsingum um
+    hvort notandi vill velja tölvu úr lista eða leita í
+    gagnagrunni að tölvu.
+ ******************************************************************************/
+
 void Console::editComputer()
 {
     string choice = "l";
@@ -517,6 +597,7 @@ void Console::editComputer()
             scientistService.searchInDatabase(scientists, computers, query);
             if(computers.size() == 0)
             {
+                cout << "-----NO ENTRIES FOUND-----" << endl;
                 cont = true;
                 continue;
             }
@@ -544,9 +625,8 @@ void Console::editComputer()
 
 /******************************************************************************
                          search
-    Birtir leitar valmynd og tekur við leitar streng. Birtir síðan töflu af
-    vísindamönnum ásamt index-um og valmynd um þar sem notandi ákveður hvort
-    eigi að edit-a, eyða, leita aftur, fara aftur á aðvalmynd eða hætta keyrslu.
+    Birtir leitarvalmynd og tekur við leitarstreng. Leitar í öllum gagnagrunninum
+    bæði, tölvum og vísindamönnum.
  ******************************************************************************/
 
 void Console::search()
@@ -599,7 +679,7 @@ void Console::viewDisplay()
 string Console::continueFunction()
 {
     string cont;
-
+    cout << endl;
     cout << "Would you like to repeat the action?\t(y/n)" << endl << "-> ";
     cont = choice();
 
@@ -620,6 +700,7 @@ void Console::quit()
 {
     quitMenu();
 
+    scientistService.deleteAllFromDatabase();
     //  scientistService.saveData();
 
     // cout << scientistService.getErrorString();
@@ -639,8 +720,8 @@ void Console::toContinue()
 }
 
 /******************************************************************************
-                         toContinue
-      Tekur á móti ákvörðun frá notanda um hvað á að gera frá fyrstu valmynd.
+                         choice
+      Tekur á móti ákvörðun frá notanda um hvað á að gera út frá valmynd.
       @return(choice_made) - ákvörðun frá notenda
  ******************************************************************************/
 string Console::choice()
@@ -654,7 +735,8 @@ string Console::choice()
 /******************************************************************************
                          choiceMade
       Tekur við ákvörðun frá notanda um hvað á að gera frá fyrstu valmynd.
-      v-skoða lista, i-bæta við nýjum, s-leita, e-edit, q-hætta.
+      v-skoða lista, i-bæta við nýjum, s-leita, e-edit, d-delete,
+      r-relation, q-hætta.
  ******************************************************************************/
 void Console::choiceMade()
 {
@@ -714,8 +796,8 @@ string Console::stringChoice()
 
 /********************************************************
                     sorting
-  Tekur inn ávörðun frá notenda um hvernig hann skoðar listan.
-  Prentar lista út í samræmi.
+  Tekur inn ávörðun frá notenda um hvernig hann skoðar lista
+  af vísindamönnum. Prentar lista út í samræmi.
   @parameter(string str) - ákvörðun frá notenda
 *********************************************************/
 
@@ -738,6 +820,13 @@ void Console::sorting(string str)
     }
 }
 
+/********************************************************
+                    cpuSorting
+  Tekur inn ávörðun frá notenda um hvernig hann skoðar lista
+  af tölvum. Prentar lista út í samræmi.
+  @parameter(string str) - ákvörðun frá notenda
+*********************************************************/
+
 void Console::cpuSorting(string str)
 {
    bool isRunning = true;
@@ -758,8 +847,9 @@ void Console::cpuSorting(string str)
 }
 
 /******************************************************************
-                      pushBackScientist
-    Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
+                      makeNewScientist
+    Býr til nýjan vísindamann.
+    @return(Scientist sc) - nýtt eintak af vísindamanni
  ******************************************************************/
 
 Scientist Console::makeNewScientist()
@@ -771,12 +861,18 @@ Scientist Console::makeNewScientist()
     do
     {
         createScientist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo);
-    }while(!scientistService.doesScientistExcist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo));
+    }while(scientistService.doesScientistExcist(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo));
 
     Scientist sc(firstName, lastName, sex, YOB, YOD, nationality, furtherInfo);
 
     return sc;
 }
+
+/******************************************************************
+                      makeNewComputer
+    Býr til nýja tölvu
+    @return(Computer cpu) - nýtt eintak af tölvu
+ ******************************************************************/
 
 Computer Console::makeNewComputer()
 {
@@ -788,12 +884,17 @@ Computer Console::makeNewComputer()
     do
     {
         createComputer(name, cpuType, yearBuilt, built);
-    }while(!scientistService.doesComputerExcist(name, cpuType, yearBuilt, built));
+    }while(scientistService.doesComputerExcist(name, cpuType, yearBuilt, built));
 
     Computer cpu(name, cpuType, built, yearBuilt);
 
     return cpu;
 }
+
+/******************************************************************
+                      pushBackComputer
+    Býr til nýja tölvu í gagnagrunninn og ýtir henni aftast í listann
+ ******************************************************************/
 
 void Console::pushBackComputer()
 {
@@ -831,6 +932,11 @@ void Console::pushBackComputer()
 
     }
 }
+
+/******************************************************************
+                      pushBackScientist
+    Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
+ ******************************************************************/
 
 void Console::pushBackScientist()
 {
@@ -871,7 +977,8 @@ void Console::pushBackScientist()
 /******************************************************************
                       createScientist
     Býr til nýjan vísindamann í gagnagrunninn
-            @parameter(int &name) - bendir á streng sem inniheldur nafn vísindamanns
+            @parameter(string &firstName) - bendir á streng sem inniheldur nafn vísindamanns
+            @parameter(string &lastName) - bendir á streng sem inniheldur nafn vísindamanns
             @parameter(int &sex) - bendir á streng sem inniheldur kyn vísindamanns
             @parameter(int &YOB) - bendir á tölu sem inniheldur fæðingarár
             @parameter(int &YOD) - bendir á tölu sem inniheldur dánarár
@@ -883,7 +990,6 @@ void Console::pushBackScientist()
 
 void Console::createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo)
 {
-
     readFirstName(firstName);
 
     readLastName(lastName);
@@ -895,21 +1001,33 @@ void Console::createScientist(string &firstName, string &lastName, string &sex, 
     readFurtherInfo(furtherInfo);
 
     readYears(YOB, YOD);
-
 }
+
+/******************************************************************
+                      createComputer
+    Býr til nýja tölvu í gagnagrunninn
+            @parameter(string &name) - bendir á streng sem inniheldur nafn á tölvu
+            @parameter(string &cpuType) - bendir á streng sem inniheldur tegund af tölvu
+            @parameter(int &yearBuilt) - bendir á tölu sem inniheldur byggingar ár
+            @parameter(bool &built) - bendir á bool sem segir til um hvort tölva hafi verið byggð
+ ******************************************************************/
 
 void Console::createComputer(string &name, string &cpuType, int &yearBuilt, bool &built)
 {
-
     readCpuName(name);
 
     readYearBuilt(yearBuilt);
 
-    readCpuType(cpuType);
-
     readBuilt(built);
 
+    readCpuType(cpuType);
 }
+
+/******************************************************************
+                      relate
+    Birtir valmynd fyrir vensl milli tölva og vísindamanna og
+    tekur við ákvörðun um framhald frá notanda.
+ ******************************************************************/
 
 void Console::relate()
 {
@@ -931,6 +1049,11 @@ void Console::relate()
         quit();
 }
 
+/******************************************************************
+                      addRelations
+    Notenadi venslar saman tölvu og vísindamann
+ ******************************************************************/
+
 void Console::addRelations()
 {
     string choice;
@@ -946,6 +1069,12 @@ void Console::addRelations()
     }while(choice == "y");
 }
 
+/******************************************************************
+                      addRelationsToCpu
+      Bætir við venslum við ákveðna tölvu
+      @parameter(int cIndex) - Index fyrir tölvu sem á að vensla við
+ ******************************************************************/
+
 void Console::addRelationsToCpu(int cIndex)
 {
     string choice;
@@ -960,6 +1089,12 @@ void Console::addRelationsToCpu(int cIndex)
     }while(choice == "y");
 }
 
+/******************************************************************
+                      addRelationsToSci
+      Bætir við venslum við ákveðin vísindamann
+      @parameter(int sIndex) - Index fyrir vísindamann sem á að vensla við
+ ******************************************************************/
+
 void Console::addRelationsToSci(int sIndex)
 {
     string choice;
@@ -973,6 +1108,11 @@ void Console::addRelationsToSci(int sIndex)
 
     }while(choice == "y");
 }
+
+/******************************************************************
+                      removeRelations
+    Fjarlægir vensl milli tölvu og vísindamanns
+ ******************************************************************/
 
 void Console::removeRelations()
 {
@@ -989,63 +1129,152 @@ void Console::removeRelations()
     }while(choice == "y");
 
 }
+/******************************************************************
+                      idInput
+   Fall sem getCpuID og getSciID kalla í til þess að stytta
+   @parameter (unsigned int &index, int size) - sæki cIndex eða sIndex og
+                size sækir fjölda vísindamanna/tölva
+ ******************************************************************/
+void Console::idInput(unsigned int &index, unsigned int size)
+{
+    do
+    {
+        cout << "-> ";
+        cin.ignore();
+
+        cin >> index;
+
+        if(cin.fail() || index < 1 || index > size)
+        {
+            cout << "Please insert valid index!" << endl;
+        }
+    }while(cin.fail() || index < 1 || index > size);
+}
+/******************************************************************
+                      getCpuID
+   Nær í ID tölvu í gagnagrunninn
+   @return computers[cIndex-1].getID - sækir ID tölvu
+ ******************************************************************/
+
 
 int Console::getCpuID()
 {
-    int cIndex;
+    unsigned int cIndex;
     vector<Computer> computers = scientistService.getComputers();
 
     printComputers(computers);
-    cout << "Please insert the index of your computer of choice: " << endl << "-> ";
-    cin >> cIndex;
+    cout << "Please insert the index of your computer of choice: " << endl;
+    idInput(cIndex, computers.size());
     return computers[cIndex-1].getID();
 }
 
+/******************************************************************
+                      getSciID
+   Nær í ID vísindamanns í gagnagrunninn
+   @return scientists[cIndex-1].getID - ID vísindamanns
+ ******************************************************************/
+
 int Console::getScID()
 {
-    int sIndex;
+    unsigned int sIndex;
     vector<Scientist> scientists = scientistService.getScientists();
 
     printScientists(scientists);
-    cout << "Please insert the index of your scientist of choice: " << endl << "-> ";
-    cin >> sIndex;
+    cout << "Please insert the index of your scientist of choice: " << endl;
+    idInput(sIndex, scientists.size());
     return scientists[sIndex-1].getID();
 }
 
+/******************************************************************
+                      readCpuName
+     Les nafn á tölvu
+    @parameter(string &name) - bendir á streng sem inniheldur nafn tölvu
+ ******************************************************************/
+
 void Console::readCpuName(string &name)
 {
+    cout << scientistService.getErrorString();
+    cout << "Name: ";
+    cin.ignore();
     do
     {
-        cout << scientistService.getErrorString();
-        cout << "Computer Name: ";
-        cin.ignore();
-        do
-        {
         getline(cin, name);
-        }while(name.length()<1);
+    }while(name.length()<1);
 
-    }while(!scientistService.validName(name));
+    name.at(0) = toupper(name.at(0));
 }
 
-void Console::readCpuType(string &cpuType)
+/******************************************************************
+                      insertNewType
+    Fall sem gerir notendanum kleift að slá inn tegund tölvu til að setja
+    í database-ið.
+ ******************************************************************/
+
+void Console::insertNewType()
 {
+    string type;
     do
     {
-        cout << scientistService.getErrorString();
-        // setja menuinn hér
-        cout << "Computer Type: ";
-        do
-        {
-        cin >> cpuType;
-        }while(cpuType.length()<1);
+    cout << scientistService.getErrorString();
 
-    }while(!scientistService.validName(cpuType));
+    cout << "Insert new type: "<< endl;
+    cout << "-> ";
+    cin >> type;
+    }while(!scientistService.validName(type));
+
+    scientistService.addType(type);
 }
+
+/********************************************************************
+                  readCpuType(string &CpuType)
+
+    @parameter(string &CpuType) - bendir á streng sem inniheldur tegund tölvunnar
+ ********************************************************************/
+
+void Console::readCpuType(string &CpuType)
+{
+    vector<cpuType> types = scientistService.getTypes();
+    printTypeMenu(types);
+    string choice;
+
+    cin.ignore();
+    do
+    {
+        getline(cin, choice);
+
+        if(choice == "i")
+        {
+            insertNewType();
+            types = scientistService.getTypes("ID");
+            CpuType = types.back().getType();
+        }
+
+        else if(stoi(choice) > 0 && stoi(choice) <= types.size())
+        {
+            CpuType = types[stoi(choice)-1].getType();
+        }
+
+        else
+        {
+            cout << "Please insert valid input!" << endl;
+            continue;
+        }
+    }while(CpuType.length()<1);
+
+}
+
+/******************************************************************
+                      readYearBuilt
+     Les byggingar ár tölvu.
+  @parameter(int &yearBuilt) - bendir á int sem inniheldur byggingar
+    ár tölvu
+ ******************************************************************/
 
 void Console::readYearBuilt(int& yearBuilt)
 {
     bool cont = false;
     bool validYears = false;
+    string year;
     do
     {
         cout << scientistService.getErrorString();
@@ -1053,35 +1282,55 @@ void Console::readYearBuilt(int& yearBuilt)
         validYears = true;
 
         cout << "Build Year: ";
-        cin >> yearBuilt;
+        cin >> year;
 
-        if(cin.fail())
+        if(year == "n/a")
         {
-            cin.clear();
-
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            scientistService.logYearError(4);
-            cont = true;
+            yearBuilt = maxBuildhYear;
             return;
         }
-
-        if(yearBuilt < -2700)
+        else if(!scientistService.validDeathYear(year))
         {
-            cout << "Attention: your Computer Scientist will have to have been born before" << endl
-                 << "the invention of the abacus, the first known tool used for computation" << endl
-                 << "tip: enter an invalid Year of Death to re-input year of birth" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            scientistService.logYearError(7);
+            cont = true;
+            continue;
+        }
+        else
+        {
+           yearBuilt =  stoi(year);
         }
 
-        if(cont)
-            continue;
+        if(yearBuilt < -1613)
+        {
+           string choice;
+           cout << "Attention: your Computer would have been built beore the first recorded" << endl
+                << "use of the word \"computer\" " << endl;
+
+           choice = continueFunction();
+
+           if(choice == "y")
+           {
+               cont = true;
+               continue;
+           }
+         }
 
         validYears = scientistService.validBuildYear(yearBuilt);
     }while(!validYears || cont);
 }
 
+/******************************************************************
+                      readBuilt
+     Les hvort tölva hafi verið byggð eða ekki.
+  @parameter(bool &built) - bendir á bool sem segir til hvort
+     tölva var byggð eða ekki.
+ ******************************************************************/
+
 void Console::readBuilt(bool &built)
 {
-    cout << "Has the computer been built?  (Y/N) " << endl;
+    cout << "Has the computer been built?  (y/n) " << endl;
     string choice;
     do
     {
@@ -1099,13 +1348,15 @@ void Console::readBuilt(bool &built)
                 built = false;
             }
         }while(choice.length()<1);
+        if(choice != "y" && choice != "n")
+            cout << "Please insert valid input!";
     }while(choice != "y" && choice != "n");
 }
 
 /******************************************************************
                       readName
     Tekur inn nafn fyrir vísindamann
-            @parameter(int &name) - bendir á streng sem inniheldur nafn vísindamanns
+      @parameter(string &firstName) - bendir á streng sem inniheldur fyrra nafn vísindamanns
  ******************************************************************/
 
 void Console::readFirstName(string &firstName)
@@ -1113,7 +1364,7 @@ void Console::readFirstName(string &firstName)
     do
     {
         cout << scientistService.getErrorString();
-        cout << "First Name: ";
+        cout << "First Name (and middle and more): ";
         cin.ignore();
         do
         {
@@ -1123,16 +1374,25 @@ void Console::readFirstName(string &firstName)
     }while(!scientistService.validName(firstName));
 }
 
+
+/******************************************************************
+                      readLastName
+    Tekur inn seinna nafn fyrir vísindamann
+      @parameter(string &lastName) - bendir á streng sem inniheldur seinna nafn vísindamanns
+ ******************************************************************/
+
 void Console::readLastName(string &lastName)
 {
     do
     {
         cout << scientistService.getErrorString();
-        cout << "Last Name: ";
+        cout << "Last Name (only the last name): ";
 
         do
         {
             cin >> lastName;
+            cin.clear();
+            cin.ignore();
         }while(lastName.length()<1);
 
     }while(!scientistService.validName(lastName));
@@ -1141,7 +1401,8 @@ void Console::readLastName(string &lastName)
 /******************************************************************
                       readSex
     Tekur inn kyn fyrir vísindamann
-            @parameter(int &sex) - bendir á streng sem inniheldur kyn vísindamanns
+            @parameter(string &sex) - bendir á streng sem inniheldur
+             kyn vísindamanns
  ******************************************************************/
 
 void Console::readSex(string &sex)
@@ -1221,7 +1482,7 @@ void Console::readBirthYear(int &YOB, bool &cont)
                       readDeathYear
     Athugar dánar ár á vísindamanni
             @parameter(int &YOD) - bendir á tölu sem inniheldur dánarár
-            @parameter(bool &cont) - bendir á bool breytu sem segjir til
+            @parameter(bool &cont) - bendir á bool breytu sem segir til
             um hvort halda eigi áfram
  ******************************************************************/
 
@@ -1254,9 +1515,9 @@ void Console::readDeathYear(int &YOD, bool &cont)
 
 /******************************************************************
                       readFurtherInfo
-    Tekur inn auka upplýsingar fyrir vísindamann
+    Tekur inn aukaupplýsingar fyrir vísindamann
             @parameter(string &furtherInfo) - bendir á streng sem
-            inniheldur auka upplýsingar notanda
+            inniheldur aukaupplýsingar notanda
  ******************************************************************/
 
 void Console::readFurtherInfo(string &furtherInfo)
@@ -1292,6 +1553,31 @@ void Console::readNationality(string &nationality)
         nationality.at(0) = toupper(nationality.at(0));
 }
 
+/******************************************************************
+                      editOrDeleteInput
+    Fall til að stytta changeOrDelete því það er endurtekning í edit
+    og delete hlutunum
+            @parameter(vector<int> indexes, int &index, int getNumber)
+            - vector (listi) af tölum sem segja til um stak vísindamanns
+              í gagnagrunni
+              index tekur inn töluna sem notandinn vil breyta/eyða
+              getNumber tekur inn fjölda vísindamanna/tölva
+ ******************************************************************/
+
+void Console::editOrDeleteInput(vector<int> indexes, int &index, int getNumber)
+{
+    do
+    {
+        cin.ignore();
+        cin >> index;
+        if(index <= 0 || index > getNumber || cin.fail())
+            cout << "Please insert valid index!" << endl;
+    }while(index <= 0 || index > getNumber || cin.fail());
+
+    index -= 1;
+
+    index = indexes[index];
+}
 
 /******************************************************************
                       changeOrDelete
@@ -1313,15 +1599,7 @@ void Console::changeOrDelete(vector<int> indexes)
     {
         int index;
         cout << "Insert the index you wish to delete: " << endl;
-        do
-        {
-            cin.ignore();
-            cin >> index;
-            if(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail())
-                cout << "Please insert valid index!" << endl;
-        }while(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());
-        index -= 1;
-        index = indexes[index];
+        editOrDeleteInput(indexes, index, scientistService.getNumberOfScientists());
         // scientistService.removeScientist(index);
     }
 
@@ -1329,18 +1607,7 @@ void Console::changeOrDelete(vector<int> indexes)
     {
         int index;
         cout << "Insert the index you wish to edit: " << endl;
-        do
-        {
-            cin.ignore();
-            cin >> index;
-            if(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail())
-                cout << "Please insert valid index!" << endl;
-        }while(index <= 0 || index > scientistService.getNumberOfScientists() || cin.fail());
-
-        index -= 1;
-
-        index = indexes[index];
-
+        editOrDeleteInput(indexes, index, scientistService.getNumberOfScientists());
         pushBackScientist();
         scientistService.moveLastTo(index);
     }
@@ -1355,129 +1622,53 @@ void Console::changeOrDelete(vector<int> indexes)
 }
 
 /******************************************************************
-                      printTable
-    Prentar út alla vísindamenn í gagnagrunni með viðmóti.
- ******************************************************************/
-
-
-void Console::printScientists(vector<Scientist> allScientists)
-{
-    if(allScientists.size() == 0)
-    {
-        cout << endl << "---------------------------------------------------------------------------No Scientists Found------------------------------------------------------------------------------" << endl;
-        return;
-    }
-    cout << endl << endl << "---------------------------------------------------------------------------Scientists Found---------------------------------------------------------------------------------" << endl << endl;
-
-    printf("%-5s%-30s%-15s%-16s%-16s%-14s%-40s%-20s\n", "Nr.", "Name", "Gender", "Year of Birth", "Year of Death", "Nationality", "Further Information", "Computers Designed");
-
-    cout <<"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
-
-    for (unsigned int i = 0; i < allScientists.size(); i++)
-    {
-        string computersString;
-        vector <string> computers = allScientists[i].getComputersBuilt();
-
-        for(unsigned int j = 0; j < computers.size(); j++)
-        {
-            computersString += computers[j];
-
-            if(j != computers.size()-1)
-                computersString += ", ";
-        }
-
-        Scientist tmp = allScientists[i];
-
-        printf("%-5d%-15s%-15s%-15s%-16d%-16s%-14s%-40s%-20s\n",i+1, (tmp.getLastName()+",").c_str(), tmp.getFirstName().c_str(), tmp.getSex().c_str(), tmp.getYearOfBirth(), tmp.getYearOfDeathForPrinting().c_str(),
-               tmp.getNationality().c_str(), tmp.getFurtherInfo().c_str(), computersString.c_str());
-    }
-}
-
-void  Console::printComputers(vector<Computer> computers)
-{
-    if(computers.size() == 0)
-    {
-        cout << endl << "---------------------------------------------------------------------------No Computers Found-------------------------------------------------------------------------------" << endl;
-        return;
-    }
-    cout << endl << endl << "-----------------------------------------------------------------------------Computers Found--------------------------------------------------------------------------------" << endl << endl;
-
-    printf("%-5s%-25s%-20s%-20s%-20s%-20s\n", "Nr.", "Name", "Year of build", "Type", "Built or not", "Creators");
-
-    cout <<"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
-
-    for (unsigned int i = 0; i < computers.size(); i++)
-    {
-        Computer tmp = computers[i];
-
-        string built;
-        if(tmp.getBuilt())
-            built = "Built";
-        else
-            built = "Not Built";
-
-        string buildersString;
-        vector<string> builders = computers[i].getBuilders();
-        for(unsigned int j = 0; j < builders.size(); j++)
-        {
-            buildersString += builders[j];
-
-            if(j != builders.size()-1)
-                buildersString += ", ";
-        }
-
-        printf("%-5d%-25s%-20d%-20s%-20s%-20s\n",i+1, tmp.getName().c_str(), tmp.getYearBuilt(), tmp.getCpuType().c_str(), built.c_str(), buildersString.c_str());
-    }
-}
-
-/******************************************************************
-                      printTable
-    Prentar út ákveðna valda vísindamenn í glugga með viðmóti
-            @parameter(vector<int> indexesToPrint) - vector (listi) af þeim
-            vísindamönnum sem skulu prentast
- ******************************************************************/
-
-
-/******************************************************************
                     Hjálparföll fyrir choiceMade
 *****************************************************************/
 
 void Console::viewOperation()
 {
     string cont;
+    string tmp;
 
     do
     {
-        viewMenu();
-        cout << "-> ";
-        string choice_made = choice();
+        do
+        {
+            viewMenu();
+            cout << "-> ";
+            string choice_made = choice();
 
-        if (choice_made == "s")
-        {
-            string str;
-            sorting_menu();
-            str = stringChoice();
+            if (choice_made == "s")
+            {
+                string str;
+                sorting_menu();
+                str = stringChoice();
 
-            sorting(str);
-            cont = continueFunction();
-        }
-        else if (choice_made == "c")
-        {
-            string str;
-            cpuSortingMenu();
-            str = stringChoice();
+                sorting(str);
+                cont = continueFunction();
+                tmp = "n";
+            }
+            else if (choice_made == "c")
+            {
+                string str;
+                cpuSortingMenu();
+                str = stringChoice();
 
-            cpuSorting(str);
-            cont = continueFunction();
-        }
-        else if (choice_made == "q")
-        {
-            quit();
-        }
-        else
-        {
-            cout << "Please enter a valid command!" << endl;
-        }
+                cpuSorting(str);
+                cont = continueFunction();
+                tmp = "n";
+            }
+            else if (choice_made == "q")
+            {
+                quit();
+                tmp = "n";
+            }
+            else
+            {
+                cout << "Please enter a valid command!" << endl;
+                tmp = "y";
+            }
+        }while(tmp == "y");
     }while(cont == "y");
 }
 
@@ -1498,7 +1689,6 @@ void Console::insertOperation()
         }
         else if (choice_made == "c")
         {
-            printCpuPushBackMenu();
             pushBackComputer();
             tmp = "n";
         }
@@ -1583,11 +1773,14 @@ void Console::deleteOperation()
             scientistService.deleteComputer(ID);
             tmp = "n";
         }
-        else if (choice_made == "q")
+        else if (choice_made == "q" )
         {
             quit();
             tmp = "n";
-
+        }
+        else if (choice_made == "as" || choice_made == "ac" || choice_made == "a" )
+        {
+            deleteOperationHelper(choice_made);
         }
         else
         {
@@ -1595,4 +1788,41 @@ void Console::deleteOperation()
             tmp = "y";
         }
     }while(tmp == "y");
+}
+
+void Console::deleteOperationHelper(string choice_made)
+{
+    string answer;
+
+    if(choice_made == "as")
+    {
+        cout << "Are you sure you want to delete all Computer Scientists from the database? (y/n) " << endl;
+        cin >> answer;
+        if(answer == "y")
+        {
+            scientistService.deleteAllScientistsFromDatabase();
+        }
+    }
+    else if(choice_made == "ac")
+    {
+        cout << "Are you sure you want to delete all Computers from the database? (y/n) " << endl;
+        cin >> answer;
+        if(answer == "y")
+        {
+            scientistService.deleteAllComputersFromDatabase();
+        }
+    }
+    else if(choice_made == "a")
+    {
+        cout << "Are you sure you want to delete everything from the database? (y/n) " << endl;
+        cin >> answer;
+        if(answer == "y")
+        {
+            scientistService.deleteAllFromDatabase();
+        }
+    }
+    else
+    {
+        cout << "Please enter a valid command!" << endl;
+    }
 }

@@ -7,6 +7,8 @@
 
 using namespace std;
 
+const int maxBuildhYear = 200000000;
+
 class Console
 {
 public:
@@ -41,7 +43,7 @@ public:
     void quitMenu();                //Skjár segir bless þegar þú hættir í forriti
     void viewMenu();                //Spyr hvort það eigi að birta lista vísindamanna eða tölva
     void insertMenu();              //Spyr hvort það eigi að bæta við vísindamanni eða tölvu
-    void typeMenu(vector<cpuType> type);
+    void printTypeMenu(vector<cpuType> type);
 
 /**************************************************
                    Sorting föll
@@ -70,6 +72,7 @@ private:
     void pushBackComputer();
     void createScientist(string &firstName, string &lastName, string &sex, int &YOB, int &YOD, string& nationality, string &furtherInfo);  //Býr til nýjan vísindamann
     void createComputer(string &name, string &cpuType, int &yearBuilt, bool &built);
+    void insertNewType();
     void relate();
     void addRelations();
     void addRelationsToCpu(int cIndex);
@@ -77,6 +80,8 @@ private:
     void removeRelations();
     int getScID();
     int getCpuID();
+    void idInput(unsigned int &index, unsigned int size);
+    void editOrDeleteInput(vector<int> indexes, int &index, int getNumber);
     void printRelationMenu();
     void readCpuName(string &name);
     void readCpuType(string &cpuType);
@@ -96,7 +101,6 @@ private:
     void editMenu();                                                                                                //Spyr hvort það eigi að breyta vísindamanni eða tölvu
     void deleteMenu();                                                                                              //Spyr hvort það eigi að eyða vísindamanni eða tölvu
 
-
 /**************************************************
               Hjálparföll við search
 **************************************************/
@@ -110,7 +114,7 @@ private:
     void insertOperation();                                                                                           //Tekur ákvörðun um hvað sé gert hafi verið valið að inserta
     void editOperation();                                                                                             //Tekur ákvörðun um hvað sé gert hafi verið valið að edit'a
     void deleteOperation();                                                                                           //Tekur ákvörðun um hvað sé gert hafi verið valið að deleta
-
+    void deleteOperationHelper(string choice);
 /**************************************************
                  Birta töflu
 **************************************************/

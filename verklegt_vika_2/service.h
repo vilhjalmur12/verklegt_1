@@ -36,10 +36,12 @@ public:
     bool appendComputer (string name, string cpuType, int yearBuilt, bool built);         //Bætir vísindamanni aftast í meðlimavector og skilar boolean
     void addRelations(int cID, int sID);
     void removeRelations(int cID, int sID);
+    void addType(string type);
     void removeScientist(int index);                              //Fjarlægjr vísindamann sem index gefur til kynna
     void moveLastTo(int index);                                   //Færir aftasta vísindamann í stak sem index gefur til kynna
     vector<Scientist> getScientists(string choice = "na");                            //Skilar vector of vísindamönnum í núverandi röð
     vector<Computer> getComputers(string choice = "na");
+    vector<cpuType> getTypes(string choice = "t");
     int getNumberOfScientists();                                        //Segir til um hve margir vísindamenn eru í gagnagrunni
     int getNumberOfComputers();
   //  void sortScientistsBy(string choice = "na");                  //Raðar vísindamönnum í röð eftir vali sem er stafsrófsröð by default
@@ -61,19 +63,24 @@ public:
 
 
     /**********************************************************
-                         Vistunarfall
+                         Vistunarföll
     **********************************************************/
     void editScientist(int ID, Scientist scientist);
     void editComputer(int ID, Computer computer);
 
     /**********************************************************
-                         Leitarfall
+                         Leitarföll
     **********************************************************/
     vector<int> getIndexesWith(string query);                    //skilar indexum þeirra vísindamanna sem uppfylla leitunarskilyrði
     void searchInDatabase(vector<Scientist> &scientists, vector<Computer> &computers, string query);
 
+    /**********************************************************
+                         Deleteföll
+    **********************************************************/
+    void deleteAllFromDatabase();
+    void deleteAllScientistsFromDatabase();
+    void deleteAllComputersFromDatabase();
     void deleteScientist(int ID);
-    void deleteAllScientistFromDatabase();
     void deleteComputer(int ID);
 
 private:

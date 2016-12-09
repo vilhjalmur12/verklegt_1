@@ -25,9 +25,11 @@ public:
     void createUser (const QString& username, const QString& password, const QString& firstName, const QString& lastName);
     vector<Scientist> pullScientists(string choice);
     vector<Computer> pullComputers(string choice);
-    vector<cpuType> getCpuTypes();
-    void insertScientist (Scientist scientist, QString tmpUser);
+    vector<cpuType> pullTypes(string order);
+    void insertScientist (Scientist scientist/*, QString tmpUser*/);
     void insertComputer (Computer computer, QString tmpUser);
+    int getTypeId(QString type);
+    void insertType(string type);
 
     void editScientist(int ID, Scientist scientist);
     void editComputer(int ID, Computer computer);
