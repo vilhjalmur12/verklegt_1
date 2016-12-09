@@ -1166,7 +1166,7 @@ void Console::recycledBin()
         }
         if(choice == "c")
         {
-            //recycleComputers
+            recycleComputers();
         }
         if(choice == "r")
         {
