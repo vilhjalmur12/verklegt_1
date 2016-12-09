@@ -1881,6 +1881,7 @@ void Console::editOperation()
 
 void Console::deleteOperation()
 {
+    string tmpUser = user.toUtf8().constData();
     vector<Scientist> scientists = scientistService.getScientists();
     vector<Computer> computers = scientistService.getComputers();
     string tmp = "n";
@@ -1899,6 +1900,8 @@ void Console::deleteOperation()
             cout << "Nr. -> ";
             cin >> ID;
 
+            activityLog _activityLog(tmpUser);
+            _activityLog.pushActivity("delete", scientists[ID-1]);
             ID = scientists[ID-1].getID();
             scientistService.deleteScientist(ID);
             tmp = "n";
@@ -1910,6 +1913,8 @@ void Console::deleteOperation()
             int ID;
             cout << "Nr. -> ";
             cin >> ID;
+            activityLog _activityLog(tmpUser);
+            _activityLog.pushActivity("delete", computers[ID-1]);
             ID = computers[ID-1].getID();
             scientistService.deleteComputer(ID);
             tmp = "n";

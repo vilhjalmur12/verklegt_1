@@ -12,6 +12,7 @@ class cpuType
 {
 public:
     cpuType();
+    cpuType(string type);
     cpuType(int id, string type);
     virtual ~cpuType();
 
