@@ -116,7 +116,7 @@ private:
     void insertOperation();                                                                                           //Tekur ákvörðun um hvað sé gert hafi verið valið að inserta
     void editOperation();                                                                                             //Tekur ákvörðun um hvað sé gert hafi verið valið að edit'a
     void deleteOperation();                                                                                           //Tekur ákvörðun um hvað sé gert hafi verið valið að deleta
-
+    void deleteOperationHelper(string choice);
 /**************************************************
                  Birta töflu
 **************************************************/

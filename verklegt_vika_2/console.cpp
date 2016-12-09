@@ -379,10 +379,7 @@ void Console::callUser ()
     string action;
     bool runProgram = false;
 
-    // scientistService.deleteAllFromDatabase();
-    // scientistService.deleteAllComputersFromDatabase();
     welcome();
-
     toContinue();
 
     while (!runProgram)
@@ -395,7 +392,6 @@ void Console::callUser ()
         if (action == "c")
         {
             string confirmPass = "password";
-
 
             cout << "Choose Username: ";
             cin >> tmpUser;
@@ -478,7 +474,6 @@ void Console::run()
     do
     {
         viewOrInsert();
-
         choiceMade();
         cin.ignore();
 
@@ -714,8 +709,6 @@ void Console::quit()
 {
     quitMenu();
 
-    //scientistService.deleteAllScientistsFromDatabase();
-    //scientistService.deleteAllComputersFromDatabase();
     scientistService.deleteAllFromDatabase();
     //  scientistService.saveData();
 
@@ -1792,22 +1785,14 @@ void Console::deleteOperation()
             scientistService.deleteComputer(ID);
             tmp = "n";
         }
-        else if (choice_made == "q")
+        else if (choice_made == "q" )
         {
             quit();
             tmp = "n";
         }
-        else if (choice_made == "as")
+        else if (choice_made == "as" || choice_made == "ac" || choice_made == "a" )
         {
-            //TODO: delete all scientists
-        }
-        else if (choice_made == "ac")
-        {
-            //TODO: delete all computers
-        }
-        else if (choice_made == "a")
-        {
-            //TODO: delete all
+            deleteOperationHelper(choice_made);
         }
         else
         {
@@ -1815,4 +1800,41 @@ void Console::deleteOperation()
             tmp = "y";
         }
     }while(tmp == "y");
+}
+
+void Console::deleteOperationHelper(string choice_made)
+{
+    string answer;
+
+    if(choice_made == "as")
+    {
+        cout << "Are you sure you want to delete all Computer Scientists from the database? (y/n) " << endl;
+        cin >> answer;
+        if(answer == "y")
+        {
+            scientistService.deleteAllScientistsFromDatabase();
+        }
+    }
+    else if(choice_made == "ac")
+    {
+        cout << "Are you sure you want to delete all Computers from the database? (y/n) " << endl;
+        cin >> answer;
+        if(answer == "y")
+        {
+            scientistService.deleteAllComputersFromDatabase();
+        }
+    }
+    else if(choice_made == "a")
+    {
+        cout << "Are you sure you want to delete everything from the database? (y/n) " << endl;
+        cin >> answer;
+        if(answer == "y")
+        {
+            scientistService.deleteAllFromDatabase();
+        }
+    }
+    else
+    {
+        cout << "Please enter a valid command!" << endl;
+    }
 }
