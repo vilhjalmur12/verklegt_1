@@ -501,9 +501,8 @@ vector<cpuType> database::pullTypes(string order)
     return cpu;
 }
 
-void database::insertScientist (Scientist scientist/*, QString tmpUser*/)
+void database::insertScientist (Scientist scientist)
 {
-       //user = tmpUser;
 
        databaseOpen();
 

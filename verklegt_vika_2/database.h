@@ -28,7 +28,7 @@ public:
     vector<Computer> pullComputers(string choice);
     vector<Computer> pullDeletedComputers();
     vector<cpuType> pullTypes(string order);
-    void insertScientist (Scientist scientist/*, QString tmpUser*/);
+    void insertScientist (Scientist scientist);
     void insertComputer (Computer computer, QString tmpUser);
     int getTypeId(QString type);
     void insertType(string type);

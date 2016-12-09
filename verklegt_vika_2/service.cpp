@@ -134,7 +134,7 @@ bool Service::appendScientist(string firstName, string lastName, string sex, int
 
     _scientists.push_back(tempScientist);  // Líklega óþarfi
 
-    data.insertScientist(tempScientist/*, qUser*/); //--> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
+    data.insertScientist(tempScientist); //--> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
 
     return true;
 }
@@ -178,16 +178,6 @@ void Service::deleteComputer(int ID)
     data.deleteComputer(ID);
 }
 
-void Service::restoreScientist(int ID)
-{
-    data.restoreScientist(ID);
-}
-
-void Service::restoreComputer(int ID)
-{
-    data.restoreComputer(ID);
-}
-
 void Service::editScientist(int ID, Scientist scientist)
 {
     data.editScientist(ID, scientist);
@@ -221,21 +211,6 @@ void Service::deleteAllScientistsFromDatabase()
 void Service::deleteAllComputersFromDatabase()
 {
     data.deleteAllFromComputerDatabase();
-}
-
-void Service::restoreAllFromDatabase()
-{
-    data.restoreAllFromDatabase();
-}
-
-void Service::restoreAllComputerFromDatabase()
-{
-    data.restoreAllFromComputerDatabase();
-}
-
-void Service::restoreAllScientistFromDatabase()
-{
-    data.restoreAllFromScientistDatabase();
 }
 
 /****************************************************************************
@@ -274,10 +249,6 @@ vector<Scientist> Service::getScientists(string choice/*="na"*/)
     //return data.getScientists();
 }
 
-vector<Scientist> Service::getDeletedScientists()
-{
-    return data.pullDeletedScientists();
-}
 
 vector<Computer> Service::getComputers(string choice)
 {
@@ -295,11 +266,6 @@ vector<Computer> Service::getComputers(string choice)
         columnOfChoice += " DESC";
 
     return data.pullComputers(columnOfChoice);
-}
-
-vector<Computer> Service::getDeletedComputers()
-{
-    return data.pullDeletedComputers();
 }
 
 vector<cpuType> Service::getTypes(string choice)
@@ -624,7 +590,7 @@ vector<int> Service::getIndexesWith(string query )
             {
                 foundScientists.push_back(i);
             }
-        }    
+        }
     }
     else
     {

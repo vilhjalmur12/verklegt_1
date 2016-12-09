@@ -1,8 +1,9 @@
 #include "mytime.h"
 
+
+
 myTime::myTime()
 {
-
     now = time(0);
     ltm = localtime(&now);
     intMonth = 1 + (ltm->tm_mon);
