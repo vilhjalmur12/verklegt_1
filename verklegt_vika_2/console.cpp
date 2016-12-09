@@ -1324,7 +1324,6 @@ void Console::readYearBuilt(int& yearBuilt)
            string choice;
            cout << "Attention: your Computer would have been built beore the first recorded" << endl
                 << "use of the word \"computer\" " << endl
-                << "tip: enter an invalid Year of Death to re-input year of birth" << endl
                 << "Re-input year? (y/n)" << endl
                 << "-> ";
            do
