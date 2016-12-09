@@ -188,13 +188,33 @@ void Service::editScientist(int ID, Scientist scientist)
 }
 
 /****************************************************************************
-                           deleteAllScientistDatabase()
-                     Eyðir og flaggar öllum vísindamönnum úr database-inu
+                           deleteAllFromDatabase()
+          Flaggar allar tölvur og vísindamenn sem deleted í database-inu
  ****************************************************************************/
 
-void Service::deleteAllScientistFromDatabase()
+void Service::deleteAllFromDatabase()
+{
+    data.deleteAllFromDatabase();
+}
+
+/****************************************************************************
+                           deleteAllScientistDatabase()
+                     Flaggar alla vísindamennina sem deleted í database-inu
+ ****************************************************************************/
+
+void Service::deleteAllScientistsFromDatabase()
 {
     data.deleteAllFromScientistDatabase();
+}
+
+/****************************************************************************
+                           deleteAllFromDatabase()
+                    Flaggar allar tölvur sem deleted í database-inu
+ ****************************************************************************/
+
+void Service::deleteAllComputersFromDatabase()
+{
+    data.deleteAllFromComputerDatabase();
 }
 
 /****************************************************************************

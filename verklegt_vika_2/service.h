@@ -64,19 +64,24 @@ public:
 
 
     /**********************************************************
-                         Vistunarfall
+                         Vistunarföll
     **********************************************************/
     void editScientist(int ID, Scientist scientist);
     void editComputer(int ID, Computer computer);
 
     /**********************************************************
-                         Leitarfall
+                         Leitarföll
     **********************************************************/
     vector<int> getIndexesWith(string query);                    //skilar indexum þeirra vísindamanna sem uppfylla leitunarskilyrði
     void searchInDatabase(vector<Scientist> &scientists, vector<Computer> &computers, string query);
 
+    /**********************************************************
+                         Deleteföll
+    **********************************************************/
+    void deleteAllFromDatabase();
+    void deleteAllScientistsFromDatabase();
+    void deleteAllComputersFromDatabase();
     void deleteScientist(int ID);
-    void deleteAllScientistFromDatabase();
     void deleteComputer(int ID);
 
 private:

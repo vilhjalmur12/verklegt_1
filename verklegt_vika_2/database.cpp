@@ -796,13 +796,8 @@ string database::decryptData (string n)
 
 void database::deleteAllFromDatabase()
 {
-    databaseOpen();
-
-    QSqlQuery query;
-    query.prepare("DELETE FROM computers, cpuType, scientists");
-    query.exec();
-
-    databaseClose(myData);
+    deleteAllFromComputerDatabase();
+    deleteAllFromScientistDatabase();
 }
 
 /******************************************************************
@@ -812,10 +807,13 @@ void database::deleteAllFromDatabase()
 
 void database::deleteAllFromComputerDatabase()
 {
+    int doDeleted = 1;
     databaseOpen();
 
     QSqlQuery query;
-    query.prepare("DELETE FROM computers, cpuType");
+    query.prepare("UPDATE computers "
+                  "SET deleted = :deleted " );
+    query.bindValue(":deleted", doDeleted);
     query.exec();
 
     databaseClose(myData);
@@ -833,7 +831,7 @@ void database::deleteAllFromScientistDatabase()
     databaseOpen();
 
     QSqlQuery query;
-    query.prepare("UPDATE scientists"
+    query.prepare("UPDATE scientists "
                   "SET deleted = :deleted");
     query.bindValue(":deleted", doDeleted);
     query.exec();
