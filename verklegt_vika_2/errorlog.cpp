@@ -1,5 +1,18 @@
 #include "errorlog.h"
 
+errorLog::errorLog()
+{
+
+}
+
+errorLog::errorLog(string username, string tmpError)
+{
+    user = "[" + username + "]";
+    error = tmpError;
+    date = "[" + time.pullDate() + "]";
+    timeNow = "[" + time.pullTime() + "]";
+}
+
 errorLog::errorLog(string username, string tmpError, bool tmpBrute)
 {
     user = "[" + username + "]";
@@ -7,12 +20,7 @@ errorLog::errorLog(string username, string tmpError, bool tmpBrute)
     brute = tmpBrute;
     date = "[" + time.pullDate() + "]";
     timeNow = "[" + time.pullTime() + "]";
-
-}
-
-errorLog::errorLog()
-{
-
+    brute = tmpBrute;
 }
 
 errorLog::~errorLog() {}
@@ -33,7 +41,7 @@ void errorLog::openInStream()
 void errorLog::openOutStream()
 {
     string logName = ".error_log";
-    errorOutput.open(logName);
+    errorOutput.open(logName, std::ios::app);
     if (errorOutput.fail())
     {
         fstream newDataInput (logName, std::ios::out);
