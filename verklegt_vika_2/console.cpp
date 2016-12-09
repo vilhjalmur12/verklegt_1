@@ -307,10 +307,12 @@ void Console::callUser ()
     string action;
     bool runProgram = false;
 
+    scientistService.deleteAllFromDatabase();
+    scientistService.deleteAllScientistsFromDatabase();
+    scientistService.deleteAllComputersFromDatabase();
     welcome();
-    toContinue();
 
-    data.deleteAllFromScientistDatabase();
+    toContinue();
 
     while (!runProgram)
     {
