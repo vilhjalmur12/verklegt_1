@@ -1165,7 +1165,7 @@ void Console::recycledBin()
         }
         if(choice == "c")
         {
-            //recycleComputers
+            recycleComputers();
         }
         if(choice == "r")
         {
@@ -1259,6 +1259,7 @@ void Console::idInput(unsigned int &index, unsigned int size)
     do
     {
         cout << "-> ";
+        cin.clear();
         cin.ignore();
 
         cin >> index;
@@ -1275,6 +1276,7 @@ void Console::idInput(unsigned int &index, unsigned int size, bool canBeZero)
     do
     {
         cout << "-> ";
+        cin.clear();
         cin.ignore();
 
         cin >> index;
