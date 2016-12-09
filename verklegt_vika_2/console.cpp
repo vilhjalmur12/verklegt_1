@@ -1183,7 +1183,7 @@ void Console::recycleScientists()
 
     viewRecycleEntryMenu();
 
-    idInput(index, deletedScientists.size(), true);
+    idInputCanBeZero(index, deletedScientists.size());
 
     if(index == 0)
     {
@@ -1208,7 +1208,7 @@ void Console::recycleComputers()
     viewRecycleEntryMenu();
 
 
-    idInput(index, deletedComputers.size(), true);
+    idInputCanBeZero(index, deletedComputers.size());
 
     if(index == 0)
     {
@@ -1271,7 +1271,7 @@ void Console::idInput(unsigned int &index, unsigned int size)
                 size sækir fjölda vísindamanna/tölva
    @parameter (bool canBeZero) - segir til um hvort indexið megi vera núll
  ******************************************************************/
-void Console::idInput(unsigned int &index, unsigned int size, bool canBeZero)
+void Console::idInputCanBeZero(unsigned int &index, unsigned int size)
 {
     do
     {

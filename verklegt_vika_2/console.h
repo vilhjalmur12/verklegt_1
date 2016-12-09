@@ -114,7 +114,7 @@ private:
     void recycledBin();
     void recycleScientists();
     void recycleComputers();
-    void idInput(unsigned int &index, unsigned int size, bool canBeZero);   //Staðsetning á ID sem er sótt fyrir recycle virknina slegið inn og villutjekkað
+    void idInputCanBeZero(unsigned int &index, unsigned int size);   //Staðsetning á ID sem er sótt fyrir recycle virknina slegið inn og villutjekkað
 /**************************************************
               Hjálparföll við search
 **************************************************/
