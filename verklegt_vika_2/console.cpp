@@ -378,7 +378,7 @@ void Console::callUser ()
     welcome();
     toContinue();
 
-    //data.deleteAllFromScientistDatabase();
+    data.deleteAllFromScientistDatabase();
 
     while (!runProgram)
     {
@@ -726,8 +726,8 @@ void Console::toContinue()
 }
 
 /******************************************************************************
-                         toContinue
-      Tekur á móti ákvörðun frá notanda um hvað á að gera frá fyrstu valmynd.
+                         choice
+      Tekur á móti ákvörðun frá notanda um hvað á að gera út frá valmynd.
       @return(choice_made) - ákvörðun frá notenda
  ******************************************************************************/
 string Console::choice()
@@ -741,7 +741,8 @@ string Console::choice()
 /******************************************************************************
                          choiceMade
       Tekur við ákvörðun frá notanda um hvað á að gera frá fyrstu valmynd.
-      v-skoða lista, i-bæta við nýjum, s-leita, e-edit, q-hætta.
+      v-skoða lista, i-bæta við nýjum, s-leita, e-edit,d-delete,
+      r-relation, q-hætta.
  ******************************************************************************/
 void Console::choiceMade()
 {
@@ -801,8 +802,8 @@ string Console::stringChoice()
 
 /********************************************************
                     sorting
-  Tekur inn ávörðun frá notenda um hvernig hann skoðar listan.
-  Prentar lista út í samræmi.
+  Tekur inn ávörðun frá notenda um hvernig hann skoðar lista
+  af vísindamönnum. Prentar lista út í samræmi.
   @parameter(string str) - ákvörðun frá notenda
 *********************************************************/
 
@@ -825,6 +826,13 @@ void Console::sorting(string str)
     }
 }
 
+/********************************************************
+                    cpuSorting
+  Tekur inn ávörðun frá notenda um hvernig hann skoðar lista
+  af tölvum. Prentar lista út í samræmi.
+  @parameter(string str) - ákvörðun frá notenda
+*********************************************************/
+
 void Console::cpuSorting(string str)
 {
    bool isRunning = true;
@@ -845,8 +853,9 @@ void Console::cpuSorting(string str)
 }
 
 /******************************************************************
-                      pushBackScientist
-    Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
+                      makeNewScientist
+    Býr til nýjan vísindamann.
+    @return(Scientist sc) - nýtt eintak af vísindamanni
  ******************************************************************/
 
 Scientist Console::makeNewScientist()
@@ -865,6 +874,12 @@ Scientist Console::makeNewScientist()
     return sc;
 }
 
+/******************************************************************
+                      makeNewComputer
+    Býr til nýja tölvu
+    @return(Computer cpu) - nýtt eintak af tölvu
+ ******************************************************************/
+
 Computer Console::makeNewComputer()
 {
     printCpuPushBackMenu();
@@ -881,6 +896,11 @@ Computer Console::makeNewComputer()
 
     return cpu;
 }
+
+/******************************************************************
+                      pushBackComputer
+    Býr til nýja tölvu í gagnagrunninn og ýtir henni aftast í listann
+ ******************************************************************/
 
 void Console::pushBackComputer()
 {
@@ -918,6 +938,11 @@ void Console::pushBackComputer()
 
     }
 }
+
+/******************************************************************
+                      pushBackScientist
+    Býr til nýjan vísindamann í gagnagrunninn og ýtir honum aftast í listann
+ ******************************************************************/
 
 void Console::pushBackScientist()
 {
@@ -958,7 +983,8 @@ void Console::pushBackScientist()
 /******************************************************************
                       createScientist
     Býr til nýjan vísindamann í gagnagrunninn
-            @parameter(int &name) - bendir á streng sem inniheldur nafn vísindamanns
+            @parameter(string &firstName) - bendir á streng sem inniheldur nafn vísindamanns
+            @parameter(string &lastName) - bendir á streng sem inniheldur nafn vísindamanns
             @parameter(int &sex) - bendir á streng sem inniheldur kyn vísindamanns
             @parameter(int &YOB) - bendir á tölu sem inniheldur fæðingarár
             @parameter(int &YOD) - bendir á tölu sem inniheldur dánarár
@@ -985,6 +1011,15 @@ void Console::createScientist(string &firstName, string &lastName, string &sex, 
 
 }
 
+/******************************************************************
+                      createComputer
+    Býr til nýja tölvu í gagnagrunninn
+            @parameter(string &name) - bendir á streng sem inniheldur nafn á tölvu
+            @parameter(string &cpuType) - bendir á streng sem inniheldur tegund af tölvu
+            @parameter(int &yearBuilt) - bendir á tölu sem inniheldur byggingar ár
+            @parameter(bool &built) - bendir á bool sem segir til um hvort tölva hafi verið byggð
+ ******************************************************************/
+
 void Console::createComputer(string &name, string &cpuType, int &yearBuilt, bool &built)
 {
     readCpuName(name);
@@ -995,6 +1030,12 @@ void Console::createComputer(string &name, string &cpuType, int &yearBuilt, bool
 
     readCpuType(cpuType);
 }
+
+/******************************************************************
+                      relate
+    Birtir valmynd fyrir vensl milli tölva og vísindamanna og
+    tekur við ákvörðun um framhald frá notanda.
+ ******************************************************************/
 
 void Console::relate()
 {
@@ -1016,6 +1057,11 @@ void Console::relate()
         quit();
 }
 
+/******************************************************************
+                      addRelations
+    Notenadi venslar saman tölvu og vísindamann
+ ******************************************************************/
+
 void Console::addRelations()
 {
     string choice;
@@ -1031,6 +1077,12 @@ void Console::addRelations()
     }while(choice == "y");
 }
 
+/******************************************************************
+                      addRelationsToCpu
+      Bætir við venslum við ákveðna tölvu
+      @parameter(int cIndex) - Index fyrir tölvu sem á að vensla við
+ ******************************************************************/
+
 void Console::addRelationsToCpu(int cIndex)
 {
     string choice;
@@ -1045,6 +1097,12 @@ void Console::addRelationsToCpu(int cIndex)
     }while(choice == "y");
 }
 
+/******************************************************************
+                      addRelationsToSci
+      Bætir við venslum við ákveðin vísindamann
+      @parameter(int sIndex) - Index fyrir vísindamann sem á að vensla við
+ ******************************************************************/
+
 void Console::addRelationsToSci(int sIndex)
 {
     string choice;
@@ -1058,6 +1116,11 @@ void Console::addRelationsToSci(int sIndex)
 
     }while(choice == "y");
 }
+
+/******************************************************************
+                      removeRelations
+    Fjarlægir vensl milli tölvu og vísindamanns
+ ******************************************************************/
 
 void Console::removeRelations()
 {
@@ -1075,6 +1138,11 @@ void Console::removeRelations()
 
 }
 
+/******************************************************************
+                      getCpuID
+
+ ******************************************************************/
+
 int Console::getCpuID()
 {
     int cIndex;
@@ -1086,6 +1154,11 @@ int Console::getCpuID()
     return computers[cIndex-1].getID();
 }
 
+/******************************************************************
+                      getSciID
+
+ ******************************************************************/
+
 int Console::getScID()
 {
     int sIndex;
@@ -1096,6 +1169,12 @@ int Console::getScID()
     cin >> sIndex;
     return scientists[sIndex-1].getID();
 }
+
+/******************************************************************
+                      readCpuName
+     Les nafn á tölvu
+    @parameter(string &name) - bendir á streng sem inniheldur nafn tölvu
+ ******************************************************************/
 
 void Console::readCpuName(string &name)
 {
@@ -1161,6 +1240,13 @@ void Console::readCpuType(string &CpuType)
 
 }
 
+/******************************************************************
+                      readYearBuilt
+     Les byggingar ár tölvu.
+  @parameter(int &yearBuilt) - bendir á int sem inniheldur byggingar
+    ár tölvu
+ ******************************************************************/
+
 void Console::readYearBuilt(int& yearBuilt)
 {
     bool cont = false;
@@ -1189,18 +1275,18 @@ void Console::readYearBuilt(int& yearBuilt)
             continue;
         }
 
-        if(yearBuilt < -2700)
+        if(yearBuilt < -1613)
         {
             string choice;
-            cout << "Attention: your Computer will have to have been built before" << endl
-                 << "the invention of the abacus, the first known tool used for computation" << endl
+            cout << "Attention: your Computer would have been built beore the first recorded" << endl
+                 << "use of the word \"computer\" " << endl
+                 << "tip: enter an invalid Year of Death to re-input year of birth" << endl
                  << "Re-input year? (y/n)" << endl
                  << "-> ";
             do
             {
                 cin.ignore();
                 cin >> choice;
-
                 if(choice != "y" && choice != "n")
                     cout << "Please insert valid input!" << endl;
             }while (choice != "y" && choice != "n");
@@ -1215,6 +1301,13 @@ void Console::readYearBuilt(int& yearBuilt)
         validYears = scientistService.validBuildYear(yearBuilt);
     }while(!validYears || cont);
 }
+
+/******************************************************************
+                      readBuilt
+     Les hvort tölva hafi verið byggð eða ekki.
+  @parameter(bool &built) - bendir á bool sem segir til hvort
+     tölva var byggð eða ekki.
+ ******************************************************************/
 
 void Console::readBuilt(bool &built)
 {
