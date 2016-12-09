@@ -931,24 +931,6 @@ Computer Console::makeNewComputer()
     return cpu;
 }
 
-string Console::askToRelate(string action)
-{
-    string choice;
-    do
-    {
-        cout << action << endl << "-> ";
-        cin >> choice;
-
-        if((choice != "y" && choice != "n") || cin.fail())
-        {
-            cout << "Please insert a valid command!";
-        }
-
-    }while((choice != "y" && choice != "n") || cin.fail());
-
-    return choice;
-}
-
 /******************************************************************
                       pushBackComputer
     Býr til nýja tölvu í gagnagrunninn og ýtir henni aftast í listann
@@ -969,15 +951,25 @@ void Console::pushBackComputer()
 
     int index = scientistService.getNumberOfComputers();
 
-    choice = askToRelate("Would you like to relate the computer to a scientist? (y/n)");
+    do/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+        cout << "Would you like to relate the computer to a scientist? (y/n)" << endl << "-> ";
+        cin >> choice;
+
+        if((choice != "y" && choice != "n") || cin.fail())
+        {
+            cout << "Please insert a valid command!";
+        }
+
+    }while((choice != "y" && choice != "n") || cin.fail());///////////////////////////////////////////////////////////////////////////////////
 
     if(choice == "y")
     {
-        addRelationsToCpu(index);
+    addRelationsToCpu(index);
     }
     else
     {
-        return;
+
     }
 }
 
@@ -1000,7 +992,17 @@ void Console::pushBackScientist()
 
     int index = scientistService.getNumberOfScientists();
 
-    choice = askToRelate("Would you like to relate the scientist to a computer? (y/n)");
+    do/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+        cout << "Would you like to relate the scientist to a computer? (y/n)" << endl << "-> ";
+        cin >> choice;
+
+        if((choice != "y" && choice != "n") || cin.fail())
+        {
+            cout << "Please insert a valid command!";
+        }
+
+    }while((choice != "y" && choice != "n") || cin.fail());////////////////////////////////////////////////////////////////////////////
 
     if(choice == "y")
     {
@@ -1071,7 +1073,13 @@ void Console::relate()
 {
     string choice;
     printRelationMenu();
-    choice = getInput("c", "d", "q");
+    do //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+        cout << "-> ";
+        cin >> choice;
+        if(choice != "c" && choice != "d" && choice != "q")
+            cout << "Please enter a valid command!" << endl;
+    }while(choice != "c" && choice != "d" && choice != "q");/////////////////////////////////////////////////////////////////////////////////////
 
     if(choice == "c")
         addRelations();
@@ -1984,3 +1992,4 @@ void Console::deleteOperationHelper(string choice_made)
         cout << "Please enter a valid command!" << endl;
     }
 }
+
