@@ -1510,11 +1510,11 @@ void Console::readBuilt(bool &built)
 
 void Console::readFirstName(string &firstName)
 {
+    cin.ignore();
     do
     {
         cout << scientistService.getErrorString();
         cout << "First Name (and middle and more): ";
-        cin.ignore();
         do
         {
             getline(cin, firstName);
@@ -1687,13 +1687,11 @@ void Console::readFurtherInfo(string &furtherInfo)
 
 void Console::readNationality(string &nationality)
 {
+    cin.ignore();
     do
     {
         cout << scientistService.getErrorString();
         cout << "Nationality: ";
-
-        cin.clear();
-        cin.ignore();
 
         getline(cin, nationality);
     }while(!scientistService.validNationality(nationality));
