@@ -1039,8 +1039,9 @@ void Database::deleteScientist(int ID)
 }
 
 /******************************************************************
-                          deleteComputer
-             Hægt er að velja hvaða tölvu verður eytt
+                     restoreAllFromDatabase
+             Kallar í föll til að setja setja allt sem hefur verið
+             eytt aftur í töflur
  ******************************************************************/
 
 void Database::restoreAllFromDatabase()
@@ -1048,6 +1049,12 @@ void Database::restoreAllFromDatabase()
     restoreAllFromComputerDatabase();
     restoreAllFromScientistDatabase();
 }
+
+/******************************************************************
+                   restoreAllFromComputerDatabase
+    Tekur allar tölvur sem búið er að flagga sem "deleted" og
+    og setur þær aftur í gagnagrunn
+ ******************************************************************/
 
 void Database::restoreAllFromComputerDatabase()
 {
@@ -1059,6 +1066,12 @@ void Database::restoreAllFromComputerDatabase()
     databaseClose(myData);
 }
 
+/******************************************************************
+                   restoreAllFromScientistDatabase
+    Tekur alla vísindamenn sem búið er að flagga sem "deleted" og
+    og setur þá aftur í gagnagrunn
+ ******************************************************************/
+
 void Database::restoreAllFromScientistDatabase()
 {
     databaseOpen();
@@ -1068,6 +1081,13 @@ void Database::restoreAllFromScientistDatabase()
 
     databaseClose(myData);
 }
+
+/******************************************************************
+                          deleteComputer
+    Tekur við ID-i fyrir tölvu sem á að flagga sem "deleted" og
+    og þar með fjarlægja úr gagnagrunn
+             @parameter(int ID) - ID fyrir tölvu sem á að af fjarlægja
+ ******************************************************************/
 
 void Database::deleteComputer(int ID)
 {
@@ -1083,6 +1103,13 @@ void Database::deleteComputer(int ID)
     databaseClose(myData);
 }
 
+/******************************************************************
+                          restoreScientist
+    Tekur við ID-i fyrir vísindamann sem búið er að flagga sem "deleted" og
+    og á að setja aftur í gagnagrunn
+             @parameter(int ID) - ID fyrir vísindamann sem á að af flagga
+ ******************************************************************/
+
 void Database::restoreScientist(int ID)
 {
     databaseOpen();
@@ -1096,6 +1123,13 @@ void Database::restoreScientist(int ID)
 
     databaseClose(myData);
 }
+
+/******************************************************************
+                          restoreComputer
+    Tekur við ID-i fyrir tölvu sem búið er að flagga sem "deleted" og
+    og á að setja aftur í gagnagrunn
+             @parameter(int ID) - ID fyrir tölvu sem á að af flagga
+ ******************************************************************/
 
 void Database::restoreComputer(int ID)
 {
