@@ -34,10 +34,14 @@ public:
     int getTypeId(QString type);                                                                //Sækir ID fyrir tölvu týpu
     void insertType(string type);                                                               //Bætir við nýrri týpu
     string pullUser();                                                                          //Sækir tiltekin notanda úr gagnagrunni
-
+    /**********************************************************
+                         Edit föll
+    **********************************************************/
     void editScientist(int ID, Scientist scientist);
     void editComputer(int ID, Computer computer);
-
+    /**********************************************************
+                         Leitar föll
+    **********************************************************/
     void searchData(vector<Scientist> &scientists, vector<Computer> &computers, string sQuery); //Tekur við leitarstreng og ákveður hvernig leit skal framkvæma
     QString generalizeQuery(string query);                                                      //Tekur við leitar streng frá notenda og breytir í Qstring
     int getNumberOfScientistEntries();                                                          //Skilar fjölda af vísindamönnum
@@ -46,27 +50,32 @@ public:
     void searchComputersForSubstring(vector<Computer> &computers, const string query);          //Leitar í tölvum eftir leitarstreng
     void searchComputersForInt(vector<Computer> &computers, const int iQuery);                  //Leitar í tölvum eftir tölu
     void addFoundComputers(QSqlQuery &query, vector<Computer> &computers);                      //Bætir fundum tölvum í vector
-    void addBuildersToComputers(vector<Computer> &computers);                                   //Bætir fundum vísindamönnum í vector
+    void addBuildersToComputers(vector<Computer> &computers);                                   //Bætir vísindamönnum við tölvur
 
     void searchScientistsForSubstring(vector<Scientist> &scientists, const string query);       //Leitar í vísindamönnum eftir leitarstreng
     void searchScientistsForInt(vector<Scientist> &scientists, const int iQuery);               //Leitar í vísindamönnum eftir tölu
     void addFoundScientists(QSqlQuery &query, vector<Scientist> &scientists);                   //Bætir fundum vísindamönnum í vector
-    void adddBuiltComputersToScientists(vector<Scientist> &scientists);                         //Bætir tölvu við vísindamann þegar nýr vísindamaður er búin til
+    void adddBuiltComputersToScientists(vector<Scientist> &scientists);                         //Bætir tölvum við vísindamenn
 
+    /**********************************************************
+                         Vensla föll
+    **********************************************************/
     void addRelations(int cID, int sID);                                                        //Bætir við venslum milli vísindamanna og tölva
     void removeRelations(int cID, int sID);                                                     //Fjarlægir vensl milli vísindamanna og tölva
-
+    /**********************************************************
+                        Delete föll
+    **********************************************************/
     void deleteAllFromDatabase();                                                               //Kallar á föll til að "eyða" úr gagnagrunni
     void deleteAllFromComputerDatabase();                                                       //Flaggar allar tölvur sem deleted
     void deleteAllFromScientistDatabase();                                                      //Flaggar alla vísindamenn sem deleted
-
     void deleteScientist(int ID);                                                               //Flaggar ákveðin vísindamann sem deleted
     void deleteComputer(int ID);                                                                //Flaggar ákveðna tölvu sem deleted
-
+    /**********************************************************
+                        Restore föll
+    **********************************************************/
     void restoreAllFromDatabase();                                                              //Tekur allt sem hefur verið eytt og af flaggar það
     void restoreAllFromComputerDatabase();                                                      //Framkvæmir restoreAll aðgerðina fyrir tölvur
     void restoreAllFromScientistDatabase();                                                     //Framkvæmir restoreAll aðgerðina fyrir vísindamenn
-
     void restoreScientist(int ID);                                                              //Af flaggar ákveðin vísindamann
     void restoreComputer(int ID);                                                               //Af flaggar ákveðna tölvu
 
