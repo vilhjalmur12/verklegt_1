@@ -4,13 +4,13 @@
 #include <stdio.h>
 #include <iostream>
 #include <vector>
-#include "errorhandling.h"
-#include "scientist.h"
-#include "computer.h"
+#include "../Domain/errorhandling.h"
+#include "../Domain/scientist.h"
+#include "../Domain/computer.h"
 #include <qsqldatabase.h>
 #include <QSqlRecord>
 #include <QDebug>
-#include "cputype.h"
+#include "../Domain/cputype.h"
 
 using namespace std;
 

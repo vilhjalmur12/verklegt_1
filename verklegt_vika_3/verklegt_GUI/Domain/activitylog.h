@@ -1,7 +1,7 @@
 #ifndef ACTIVITYLOG_H
 #define ACTIVITYLOG_H
 
-#include "database.h"
+#include "../DATA/database.h"
 #include <fstream>
 #include "mytime.h"
 

@@ -1,11 +1,11 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-#include "scientist.h"
-#include "service.h"
-#include "cputype.h"
-#include "errorlog.h"
-#include "activitylog.h"
+#include "../Domain/scientist.h"
+#include "../Domain/service.h"
+#include "../Domain/cputype.h"
+#include "../Domain/errorlog.h"
+#include "../Domain/activitylog.h"
 
 using namespace std;
 

@@ -1,7 +1,7 @@
 #ifndef ERRORLOG_H
 #define ERRORLOG_H
 
-#include "database.h"
+#include "../DATA/database.h"
 #include <fstream>
 #include "mytime.h"
 

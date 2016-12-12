@@ -1,7 +1,7 @@
 #ifndef MYTIME_H
 #define MYTIME_H
 
-#include <database.h>
+#include "../DATA/database.h"
 
 using namespace std;
 
