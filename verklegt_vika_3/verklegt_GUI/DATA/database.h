@@ -11,6 +11,7 @@
 #include <QSqlRecord>
 #include <QDebug>
 #include "../Domain/cputype.h"
+#include "../errorwindow.h"
 
 using namespace std;
 
@@ -73,6 +74,7 @@ public:
 private:
     QSqlDatabase myData;
     QString user;
+    errorwindow errorOut;
 
     void selectData ();
     string encryptData (string n);

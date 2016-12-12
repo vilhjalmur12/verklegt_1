@@ -152,22 +152,26 @@ vector<Computer> Database::pullDeletedComputers()
 
 bool Database::getUser(const QString& username, const QString& password)
 {
+
+
     user = username;
     myData = QSqlDatabase::addDatabase("QSQLITE");
-    myData.setDatabaseName("./users.sqlite");
-
-
+    myData.setDatabaseName("users.sqlite");
 
     if (!myData.open())
     {
-       qDebug() << "Error: connection with database fail";
+       errorOut.dataErrorFound();
     }
     else
     {
+        qDebug() << username;
+
         QSqlQuery query;
         query.prepare("SELECT password FROM users WHERE username = :user");
         query.bindValue(":user", username);
         query.exec();
+
+
 
         QString qPass;
         QString QEncPass;
@@ -178,6 +182,9 @@ bool Database::getUser(const QString& username, const QString& password)
             string encPass = decryptData(tmpPass);
             QString QTmpPass(encPass.c_str());
             QEncPass = QTmpPass;
+
+            cout << tmpPass << endl;
+            cout << encPass << endl;
         }
 
         if (password == QEncPass)

@@ -5,6 +5,7 @@
 #include <DATA/database.h>
 #include "Domain/errorlog.h"
 #include <string>
+#include "UI/createuserwindow.h"
 
 namespace Ui {
 class LoginWindow;
@@ -31,13 +32,14 @@ private:
      ErrorLog _errorLog;
      QString username;
      QString password;
+     createUserWindow create;
 
     // Test output
     QString invalid = "Invalid user or password";
     QString valid = "Password Valid, welcome!";
 
     void callUser (QString username, QString password);
-  //  void createUser ();
+    void createUser ();
 
 };
 
