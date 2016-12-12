@@ -29,6 +29,7 @@ void LoginWindow::on_pushButton_activateUser_clicked()
     }
     else
     {
+        main.setUserName(username);
         main.show();
         this->close();
     }

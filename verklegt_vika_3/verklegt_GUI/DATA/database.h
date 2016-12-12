@@ -20,6 +20,20 @@ class Database
 public:
     Database ();
     virtual ~Database ();
+
+    /**********************
+     *      Nýtt
+     * *********************/
+    void databaseOpen(QString username);
+    void databaseClose();
+    QSqlQuery showScientistData (QString username, QString searchString);
+    QSqlQuery showComputerData (QString username, QString searchString);
+
+
+
+    /****************************/
+
+
     void getData(QString username, vector<Scientist> &scien);
     void getData ();
     bool getUser (const QString& username, const QString& password);
