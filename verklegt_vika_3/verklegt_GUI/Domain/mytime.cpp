@@ -7,8 +7,8 @@
 
 MyTime::MyTime()
 {
-    now = time(0);
-    ltm = localtime(&now);
+    //now = time(0);
+    //ltm = localtime(&now);
     intMonth = 1 + (ltm->tm_mon);
     getMonth(intMonth);
     intDay = ltm->tm_mday;
