@@ -23,7 +23,9 @@ SOURCES += main.cpp\
     Domain/scientist.cpp \
     Domain/service.cpp \
     UI/console.cpp \
-    UI/loginwindow.cpp
+    UI/loginwindow.cpp \
+    UI/errorwindow.cpp \
+    UI/createuserwindow.cpp
 
 HEADERS  += \
     DATA/database.h \
@@ -37,10 +39,14 @@ HEADERS  += \
     Domain/scientist.h \
     Domain/service.h \
     UI/console.h \
-    UI/loginwindow.h
+    UI/loginwindow.h \
+    UI/errorwindow.h \
+    UI/createuserwindow.h
 
 FORMS    += \
-    UI/loginwindow.ui
+    UI/loginwindow.ui \
+    UI/errorwindow.ui \
+    UI/createuserwindow.ui
 
 DISTFILES +=
 

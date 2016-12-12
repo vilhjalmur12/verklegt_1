@@ -11,7 +11,7 @@
 #include <QSqlRecord>
 #include <QDebug>
 #include "../Domain/cputype.h"
-#include "../errorwindow.h"
+#include "../UI/errorwindow.h"
 
 using namespace std;
 
