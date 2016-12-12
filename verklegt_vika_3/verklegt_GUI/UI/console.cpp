@@ -1794,7 +1794,6 @@ void Console::changeOrDelete(vector<int> indexes)
         cout << "Insert the index you wish to edit: " << endl;
         editOrDeleteInput(indexes, index, scientistService.getNumberOfScientists());
         pushBackScientist();
-        scientistService.moveLastTo(index);
     }
     else if(changeDeleteChoice == "m")
     {
