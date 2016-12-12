@@ -949,7 +949,8 @@ Computer Console::makeNewComputer()
                       askToRelate
     Spyr notandan hvort hann vilji tengja tölvuna/vísindamanninn við
     vísindamann/tölvu og gerir villutékk
-    @return(string option) - tekur inn strenginn sem á að prenta út
+    @parameter(string option) - tekur inn strenginn sem á að prenta út
+    @return(choice) - skilar út hvort notandinn skrifar inn y eða n
  ******************************************************************/
 
 string Console::askToRelate(string option)
