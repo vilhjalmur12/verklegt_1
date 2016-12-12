@@ -415,10 +415,6 @@ void Database::initDatabase (const QString& username)
                           "(Name, Year_of_build, CPU_type_ID, built_or_not) "
                           "VALUES ('Apple Macintosh', 1981, 6, 1)");
 
-        /**************************************
-                      setja inn vensl
-        **************************************/
-
         userQuery.exec("INSERT INTO scientist_computer_relations "
                        "(ScientistID, ComputerID) "
                        "VALUES (1,1)");
@@ -475,6 +471,13 @@ void Database::initDatabase (const QString& username)
     }
 }
 
+/******************************************************************
+                      pullTypes
+     Sækir allar týpur af tölvum úr gagnagrunni
+     @parameter(string order) - ákvörðun frá notanda
+     @return(vector<CpuType>cpu) - vector af týpum
+ ******************************************************************/
+
 vector<CpuType> Database::pullTypes(string order)
 {
     databaseOpen();
@@ -507,10 +510,14 @@ vector<CpuType> Database::pullTypes(string order)
     return cpu;
 }
 
-void Database::insertScientist (Scientist scientist/*, QString tmpUser*/)
-{
-       //user = tmpUser;
+/******************************************************************
+                      insertScientist
+     Býr til nýtt eintak af vísindamanni í gagnagrunn
+     @parameter(Scientist scientist) - Eintak af computer
+ ******************************************************************/
 
+void Database::insertScientist (Scientist scientist)
+{
        databaseOpen();
 
        QString tmpFirstName(scientist.getFirstName().c_str());
@@ -539,9 +546,8 @@ void Database::insertScientist (Scientist scientist/*, QString tmpUser*/)
 
 /******************************************************************
                       insertComputer
-     Sækir ID fyrir ákveðna týpu af tölvu
+     Býr til nýtt eintak af tölvu í gagnagrunn
      @parameter(Computer computer) - Eintak af computer
-     @parameter(QString tmpUser) -
  ******************************************************************/
 
 void Database::insertComputer (Computer computer, QString tmpUser)
