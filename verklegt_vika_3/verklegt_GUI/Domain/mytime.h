@@ -2,9 +2,9 @@
 #define MYTIME_H
 
 #include "../DATA/database.h"
+#include <time.h>
 
 using namespace std;
-
 
 class MyTime
 {
@@ -21,6 +21,7 @@ private:
 /**************************************************
                  Meðlimabreytur
 **************************************************/
+
     time_t now;
     tm *ltm;
     int intMonth;
