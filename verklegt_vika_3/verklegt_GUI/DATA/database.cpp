@@ -530,6 +530,13 @@ void Database::insertScientist (Scientist scientist/*, QString tmpUser*/)
        databaseClose(myData);
 }
 
+/******************************************************************
+                      insertComputer
+     Sækir ID fyrir ákveðna týpu af tölvu
+     @parameter(Computer computer) - Eintak af computer
+     @parameter(QString tmpUser) -
+ ******************************************************************/
+
 void Database::insertComputer (Computer computer, QString tmpUser)
 {
        user = tmpUser;
@@ -554,9 +561,15 @@ void Database::insertComputer (Computer computer, QString tmpUser)
        databaseClose(myData);
 }
 
+/******************************************************************
+                      getTypeId
+     Sækir ID fyrir ákveðna týpu af tölvu
+     @parameter(QString type) - Nafn á týpu
+     @return(int query2.value(0).toInt();) - ID á týpu
+ ******************************************************************/
+
 int Database::getTypeId(QString type)
 {
-    //TODO: TAKA INN TYPE FINNA ID
     QSqlQuery query2;
 
     query2.prepare("SELECT ID FROM cpuType "
@@ -569,6 +582,12 @@ int Database::getTypeId(QString type)
     return query2.value(0).toInt();
 
 }
+
+/******************************************************************
+                      insertType
+     Notandi getur bætt við nýrri týpu af tölvu.
+     @parameter(string type) - Nafn á týpu
+ ******************************************************************/
 
 void Database::insertType(string type)
 {
@@ -584,6 +603,15 @@ void Database::insertType(string type)
 
     databaseClose(myData);
 }
+
+/******************************************************************
+                      editComputer
+     Tekur inn ID fyrir valin vísindamann og leyfir notenda að edit-a
+     upplýsingar um hann
+     Edit fall fyrir vísindamann.
+     @parameter(int ID) - ID fyrir tölvu
+     @parameter(Computer computer) - Eintak af computer
+ ******************************************************************/
 
 void Database::editComputer(int ID, Computer computer)
 {
@@ -613,7 +641,11 @@ void Database::editComputer(int ID, Computer computer)
 
 /******************************************************************
                       editScientist
+     Tekur inn ID fyrir valin vísindamann og leyfir notenda að edit-a
+     upplýsingar um hann
      Edit fall fyrir vísindamann.
+     @parameter(int ID) - ID fyrir vísindamann
+     @parameter(Scientist scientist) - Eintak af scientist
  ******************************************************************/
 
 void Database::editScientist(int ID, Scientist scientist)
@@ -642,6 +674,7 @@ void Database::editScientist(int ID, Scientist scientist)
 /******************************************************************
                       getNumberOfComputerEntries
      Finnur fjölda af tölvum.
+      @return(int ID) - fjöldi tölva
  ******************************************************************/
 
 int Database::getNumberOfComputerEntries()
@@ -662,6 +695,7 @@ int Database::getNumberOfComputerEntries()
 /******************************************************************
                       getNumberOfScientistEntries
      Finnur fjölda af vísindamönnum.
+     @return(int ID) - fjöldi vísindamanna
  ******************************************************************/
 
 int Database::getNumberOfScientistEntries()
@@ -727,7 +761,7 @@ void Database::searchData(vector<Scientist> &scientists, vector<Computer> &compu
 
 /******************************************************************
                       searchComputersForSubstring
-     Leitar í tölvum af leitarstreng
+     Leitar í tölvum eftir leitarstreng
      @parameter(vector<Computer> &computers) - Vector af bendum á tölvur
      @parameter(QSqlQuery& query) - QSqlQuery af leitarstreng
  ******************************************************************/
