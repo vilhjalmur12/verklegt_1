@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     UI/console.cpp \
     UI/loginwindow.cpp \
     UI/errorwindow.cpp \
-    UI/createuserwindow.cpp
+    UI/createuserwindow.cpp \
+    UI/mainwindow.cpp
 
 HEADERS  += \
     DATA/database.h \
@@ -41,12 +42,14 @@ HEADERS  += \
     UI/console.h \
     UI/loginwindow.h \
     UI/errorwindow.h \
-    UI/createuserwindow.h
+    UI/createuserwindow.h \
+    UI/mainwindow.h
 
 FORMS    += \
     UI/loginwindow.ui \
     UI/errorwindow.ui \
-    UI/createuserwindow.ui
+    UI/createuserwindow.ui \
+    UI/mainwindow.ui
 
 DISTFILES +=
 
