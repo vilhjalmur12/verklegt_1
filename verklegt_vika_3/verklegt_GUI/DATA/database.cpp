@@ -25,7 +25,6 @@ void Database::databaseClose(QSqlDatabase &data)
     QSqlDatabase::removeDatabase(connection);
 }
 
-// ætti að fara inn í constructor: const QString& path ef við viljum útbúa spes path.
 void Database::getData(QString username, vector<Scientist> &scien)
 {
 
@@ -40,11 +39,10 @@ void Database::getData(QString username, vector<Scientist> &scien)
    }
    else
    {
-     //  scien = pullDataScientist();
-
        databaseClose(myData);
    }
 }
+
 
 void Database::getData()
 {
@@ -57,12 +55,15 @@ void Database::getData()
    }
    else
    {
-       // Byrjum að setja If setningar hér
-       // vector<Scientist> scien = pullDataScientist();
-
         databaseClose(myData);
    }
 }
+
+/******************************************************************
+                      pullComputers
+     Sækir allar tölvur úr gagnagrunni
+     @return(vector<Scientist> scientists) - vector af vísindamönnum
+ ******************************************************************/
 
 vector<Scientist> Database::pullScientists(string choice)
 {
@@ -85,6 +86,13 @@ vector<Scientist> Database::pullScientists(string choice)
     return scientists;
 }
 
+/******************************************************************
+                      pullDeletedScientists
+     Sækir þá vísindamenn sem búið er að flagga sem deleted úr gagnagrunni
+     @return(vector<Scientist> scientists) - vector af vísindamönnum
+        sem búið er að eyða
+ ******************************************************************/
+
 vector<Scientist> Database::pullDeletedScientists()
 {
     databaseOpen();
@@ -103,6 +111,12 @@ vector<Scientist> Database::pullDeletedScientists()
 
     return scientists;
 }
+
+/******************************************************************
+                      pullComputers
+     Sækir allar tölvur úr gagnagrunni
+     @return(vector<Computer> computers) - vector af tölvum
+ ******************************************************************/
 
 vector<Computer> Database::pullComputers(string choice)
 {
@@ -130,6 +144,13 @@ vector<Computer> Database::pullComputers(string choice)
     return computers;
 }
 
+/******************************************************************
+                      pullDeletedComputers
+     Sækir þær tölvur sem búið er að flagga sem deleted úr gagnagrunni
+     @return(vector<Computer> computers) - vector af tölvum sem búið
+        er að eyða
+ ******************************************************************/
+
 vector<Computer> Database::pullDeletedComputers()
 {
     databaseOpen();
@@ -149,6 +170,13 @@ vector<Computer> Database::pullDeletedComputers()
 
     return computers;
 }
+
+/******************************************************************
+                      getUser
+     Sækir notenda og lykilorð úr gagnagrunni
+     @parameter(const QString& username) - bendir á notendanaf
+     @parameter(const QString& password) - bendir á lykilorð
+ ******************************************************************/
 
 bool Database::getUser(const QString& username, const QString& password)
 {
@@ -199,6 +227,15 @@ bool Database::getUser(const QString& username, const QString& password)
     return false;
 }
 
+/******************************************************************
+                      createUser
+     Býr til nýjan user í sér user gagnagrunn
+     @parameter(const QString& username) - bendir á notendanaf
+     @parameter(const QString& password) - bendir á lykilorð
+     @parameter(const QString& firstName) - bendir á fyrra nafn
+     @parameter(const QString& lastName) - notenda bendir á eftirnafn
+ ******************************************************************/
+
 void Database::createUser(const QString& username, const QString& password, const QString& firstName, const QString& lastName)
 {
     user = username;
@@ -235,6 +272,12 @@ void Database::createUser(const QString& username, const QString& password, cons
     }
 }
 
+/******************************************************************
+                      initDatabase
+     Frumstillir gagnagrunn fyrir sérhvern notanda sem búin er til
+     @parameter(const QString& username) - notenda nafn
+ ******************************************************************/
+
 void Database::initDatabase (const QString& username)
 {
     QSqlDatabase userData = QSqlDatabase::addDatabase("QSQLITE");
@@ -250,7 +293,6 @@ void Database::initDatabase (const QString& username)
         QSqlQuery userQuery;
         userQuery.exec("PRAGMA foreign_keys = ON");
 
-        ///---------------------------------------------------------TODO: NOTA PREPAREE OG BIND-VALUE TIL AÐ HREINSA TIL----------------------------------------------------------
         userQuery.exec("CREATE  TABLE scientists "
                        "(ID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
                         "First_name VARCHAR NOT NULL , Last_name VARCHAR NOT NULL , "
@@ -414,6 +456,10 @@ void Database::initDatabase (const QString& username)
         userQuery.exec("INSERT INTO computers "
                           "(Name, Year_of_build, CPU_type_ID, built_or_not) "
                           "VALUES ('Apple Macintosh', 1981, 6, 1)");
+
+        /**************************************
+                      setja inn vensl
+        **************************************/
 
         userQuery.exec("INSERT INTO scientist_computer_relations "
                        "(ScientistID, ComputerID) "
