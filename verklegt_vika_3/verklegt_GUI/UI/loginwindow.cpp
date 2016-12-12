@@ -25,11 +25,12 @@ void LoginWindow::on_pushButton_activateUser_clicked()
 
     if (runProgram == false)
     {
-        ui->label_login->setText(invalid + " " + username + " " + password);
+        ui->label_login->setText(invalid);
     }
     else
     {
-        ui->label_login->setText(valid);
+        main.show();
+        this->close();
     }
 
 }
