@@ -43,3 +43,6 @@ FORMS    += \
     UI/loginwindow.ui
 
 DISTFILES +=
+
+RESOURCES += \
+    Domain/resources.qrc
