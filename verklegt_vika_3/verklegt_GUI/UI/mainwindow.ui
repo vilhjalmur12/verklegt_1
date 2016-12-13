@@ -17,7 +17,6 @@
    <string>Database</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-<<<<<<< HEAD
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QTabWidget" name="tabWidget">
@@ -314,7 +313,6 @@
      <zorder>pushButton_editComputer</zorder>
     </widget>
    </widget>
->>>>>>> 4e2b7fa3407d6d719b113908749601c29d0d819c
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -322,11 +320,8 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-<<<<<<< HEAD
      <height>26</height>
-=======
      <height>21</height>
->>>>>>> 4e2b7fa3407d6d719b113908749601c29d0d819c
     </rect>
    </property>
   </widget>
