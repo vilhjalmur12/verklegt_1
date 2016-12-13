@@ -54,4 +54,4 @@ FORMS    += \
 DISTFILES +=
 
 RESOURCES += \
-    Domain/resources.qrc
+    resources.qrc

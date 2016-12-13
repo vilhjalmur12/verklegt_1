@@ -1,14 +1,1 @@
-<RCC>
-    <qresource prefix="/imagesOfScientists">
-        <file>Images/Ada_Lovelace_1838.jpg</file>
-        <file>Images/Charles_Babbage.jpg</file>
-        <file>Images/Clive_Sinclair.gif</file>
-        <file>Images/Frederic_Willia.jpg</file>
-        <file>Images/Gordon_Bell.jpg</file>
-        <file>Images/Heinz_Zemanek.jpg</file>
-        <file>Images/john_Eckert.jpg</file>
-        <file>Images/Steve_Jobs.jpg</file>
-        <file>Images/Tom_Kilburn.jpg</file>
-        <file>Images/Tommy_Flowers.jpg</file>
-    </qresource>
-</RCC>
+<RCC/>
