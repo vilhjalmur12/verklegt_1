@@ -13,13 +13,7 @@ editStudentDialog::editStudentDialog(QWidget *parent) :
     data = new Database;
     data->setUser("ketill"); /////////////////////////////////////////////////////// FINNA LEIÐ TIL AÐ PARSA INN NOTENDANAFNI OG ID TÖLU
 
-
     Scientist temp = data->getScientist(ID);
-
-//    Scientist temp(ID, "Ketill Antonius", "Agustsson", "Male", 1995, 200000000, "Icelandic", "Nemandi");
-//    temp.addComputerBuilt("ENIAC");
-//    temp.addComputerBuilt("Analytical Engine");
-
 
     string birth = to_string(temp.getYearOfBirth());
     string death = temp.getYearOfDeathForPrinting();

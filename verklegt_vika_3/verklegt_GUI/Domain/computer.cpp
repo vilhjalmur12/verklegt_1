@@ -75,6 +75,16 @@ bool Computer::getBuilt() const
     return _built;
 }
 
+string Computer::getBuiltForPrinting() const
+{
+    if(_built)
+        return "Built";
+    else
+        return "Not built";
+}
+
+
+
 /****************************************************************************
                         getYearBuilt
         Dregur fram byggingarár tölvu úr meðlimabreytum og skilar því til baka

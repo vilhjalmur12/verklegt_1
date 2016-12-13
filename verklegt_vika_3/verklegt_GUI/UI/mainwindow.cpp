@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "editstudentdialog.h"
+#include "editcomputerdialog.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -64,5 +67,12 @@ void MainWindow::on_pushButton_editScientist_clicked()
 {
     editStudentDialog edit;
     //Finna leið til að parsa inn ID
+    edit.exec();
+}
+
+void MainWindow::on_pushButton_editComputer_clicked()
+{
+    editComputerDialog edit;
+
     edit.exec();
 }

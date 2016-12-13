@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     UI/errorwindow.cpp \
     UI/createuserwindow.cpp \
     UI/mainwindow.cpp \
-    UI/editstudentdialog.cpp
+    UI/editstudentdialog.cpp \
+    UI/editcomputerdialog.cpp
 
 HEADERS  += \
     DATA/database.h \
@@ -45,14 +46,16 @@ HEADERS  += \
     UI/errorwindow.h \
     UI/createuserwindow.h \
     UI/mainwindow.h \
-    UI/editstudentdialog.h
+    UI/editstudentdialog.h \
+    UI/editcomputerdialog.h
 
 FORMS    += \
     UI/loginwindow.ui \
     UI/errorwindow.ui \
     UI/createuserwindow.ui \
     UI/mainwindow.ui \
-    UI/editstudentdialog.ui
+    UI/editstudentdialog.ui \
+    UI/editcomputerdialog.ui
 
 DISTFILES +=
 

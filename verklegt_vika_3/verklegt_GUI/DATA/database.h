@@ -34,8 +34,10 @@ public:
     Scientist getScientist(int ID);
 
     Scientist makeScientist(QSqlQuery &query);
+    Computer makeComputer(QSqlQuery &query);
 
-    void adddBuiltComputerToScientist(Scientist &scientist);
+    void adddBuiltComputersToScientist(Scientist &scientist);
+    void addBuildersToComputer(Computer &computer);
     /****************************/
 
 
