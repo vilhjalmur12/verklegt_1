@@ -514,16 +514,18 @@ bool Service::validYears(int birthYear, int deathYear)
         throwError.invalidYear(1);
         return false;
     }
-        //pointer + 1900 == núverandi ár
+
     if(birthYear > timePtr->tm_year + 1900)
     {
         throwError.invalidYear(2);
         return false;
     }
-    if(birthYear == maxDeathYear)
+
+    if(deathYear == maxDeathYear)
     {
         return true;
     }
+
     if(deathYear > timePtr->tm_year + 1900)
     {
         throwError.invalidYear(5);
@@ -576,7 +578,7 @@ bool Service::validBuildYear(int buildYear)
  ****************************************************************************/
 bool Service::validDeathYear(string input)
 {
-    return regex_match(input, regex("^-?[0-9]*$"));
+    return (regex_match(input, regex("^-?[0-9]*$")));
 }
 
 /****************************************************************************
