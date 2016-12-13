@@ -94,7 +94,7 @@ void Database::databaseClose()
 void Database::databaseOpen()
 {
     myData = QSqlDatabase::addDatabase("QSQLITE");
-    myData.setDatabaseName("./ketill.sqlite");
+    myData.setDatabaseName("./" + user + ".sqlite");
 
     if (!myData.open())
     {

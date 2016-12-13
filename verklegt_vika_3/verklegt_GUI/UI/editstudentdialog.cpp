@@ -2,6 +2,7 @@
 #include "ui_editstudentdialog.h"
 
 #include "Domain/service.h"
+#include <QMessageBox>
 
 editStudentDialog::editStudentDialog(QWidget *parent) :
     QDialog(parent),
@@ -58,9 +59,10 @@ void editStudentDialog::on_pushButton_update_clicked()
     string firstName = ui->lineEdit_first_name->text().toStdString();
     string lastName = ui->lineEdit_last_name->text().toStdString();
     string gender = ui->lineEdit_gender->text().toStdString();
-    int YOB = ui->lineEdit_YOB->text().toInt();
+    int YOB;
+    string sYOB = ui->lineEdit_YOB->text().toStdString();
     int YOD;
-    string sYOD = ui->lineEdit_YOB->text().toStdString();
+    string sYOD = ui->lineEdit_YOD->text().toStdString();
     string nationality = ui->lineEdit_nationality->text().toStdString();
     string further = ui->lineEdit_further->text().toStdString();
 
@@ -72,38 +74,53 @@ void editStudentDialog::on_pushButton_update_clicked()
     }
     else if(!scientistCheck.validDeathYear(sYOD))
     {
-        //INVALID DEATH YEAR
+        QMessageBox::warning(this, "Invalid Year", "ERROR: Invalid character in year of death");
+        return;
     }
     else
     {
         YOD = stoi(sYOD);
     }
 
+    if(!scientistCheck.validDeathYear(sYOB))
+    {
+        QMessageBox::warning(this, "Invalid Year", "ERROR: Invalid character in year of birth");
+        return;
+    }
+    else
+    {
+        YOB = stoi(sYOB);
+    }
 
     if(!scientistCheck.validName(firstName))
     {
-        //INVALID FIRST NAME
+        QMessageBox::warning(this, "Invalid Name", QString::fromStdString(scientistCheck.getErrorString()));
+        return;
     }
     if(!scientistCheck.validName(lastName))
     {
-        //INVALID LAST NAME
+       QMessageBox::warning(this, "Invalid Name", QString::fromStdString(scientistCheck.getErrorString()));
+       return;
     }
     if(!scientistCheck.validSex(gender))
     {
-        //INVALID GENDER
+        QMessageBox::warning(this, "Invalid Gender", QString::fromStdString(scientistCheck.getErrorString()));
+        return;
     }
     if(!scientistCheck.validYears(YOB, YOD))
     {
-        //INVALID YEARS
+        QMessageBox::warning(this, "Invalid Year", QString::fromStdString(scientistCheck.getErrorString()));
+        return;
     }
     if(!scientistCheck.validNationality(nationality))
     {
-        //INVALID NATIONALITY
+        QMessageBox::warning(this, "Invalid Nationality", QString::fromStdString(scientistCheck.getErrorString()));
+        return;
     }
 
     Scientist temp(firstName, lastName, gender, YOB, YOD, nationality, further);
 
-    scientistCheck.editScientist(ID, temp);
+    //scientistCheck.editScientist(ID, temp);
 
 
 
