@@ -5,7 +5,8 @@
 #include "editstudentdialog.h"
 #include <QSqlQueryModel>
 
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
 
