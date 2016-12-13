@@ -5,6 +5,91 @@ using namespace std;
 Database::Database () {}
 Database::~Database () {}
 
+/*****************************************
+ *
+ *  Þetta er allt nýtt
+ *
+ * ***************************************/
+
+QSqlQuery Database::showScientistData (QString username, QString searchString)
+{
+    string sSearch = searchString.toUtf8().constData();
+    databaseOpen(username);
+
+    string command = "SELECT First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information "
+                     "FROM scientists "
+                     "WHERE First_name LIKE \"%" + sSearch + "%\" "
+                     "OR "
+                     " Last_name LIKE \"%" + sSearch + "%\" "
+                     "OR "
+                     " Gender LIKE \"%" + sSearch + "%\" "
+                     "OR "
+                     " Year_of_birth LIKE \"%" + sSearch + "%\" "
+                     "OR "
+                     " Year_of_death LIKE \"%" + sSearch + "%\" "
+                     "OR "
+                     " Nationality LIKE \"%" + sSearch + "%\" "
+                     "OR "
+                     " Information LIKE \"%" + sSearch + "%\"";
+
+    QString Qcommand(command.c_str());
+
+    QSqlQuery query;
+    query.exec(Qcommand);
+
+    return query;
+}
+
+QSqlQuery Database::showComputerData (QString username, QString searchString)
+{
+    string sSearch = searchString.toUtf8().constData();
+    databaseOpen(username);
+
+    string command = "SELECT name, year_of_build, type, built_or_not "
+                     "FROM Computers c "
+                     "INNER JOIN cpuType t "
+                     "ON t.ID = c.CPU_type_ID "
+                     "where deleted = 0 "
+                     "AND "
+                     "name LIKE \"%" + sSearch + "%\" "
+                     "OR "
+                     "year_of_build LIKE \"%" + sSearch + "%\" "
+                     "OR "
+                     "type LIKE \"%" + sSearch + "%\" "
+                     "OR "
+                     "built_or_not LIKE \"%" + sSearch + "%\" ";
+
+    QString Qcommand(command.c_str());
+
+    QSqlQuery query;
+    query.exec(Qcommand);
+
+    return query;
+}
+
+void Database::databaseOpen(QString username)
+{
+    myData = QSqlDatabase::addDatabase("QSQLITE");
+    myData.setDatabaseName("./" + username + ".sqlite");
+
+    if (!myData.open())
+    {
+       qDebug() << "Error: connection with database fail";
+    }
+}
+
+void Database::databaseClose()
+{
+    QString connection;
+    connection = myData.connectionName();
+    myData.close();
+    myData = QSqlDatabase();
+    QSqlDatabase::removeDatabase(connection);
+}
+
+/**********************************************/
+
+
 void Database::databaseOpen()
 {
     myData = QSqlDatabase::addDatabase("QSQLITE");
@@ -595,7 +680,7 @@ void Database::insertScientist (Scientist scientist)
      Býr til nýtt eintak af tölvu í gagnagrunn
      @parameter(Computer computer) - Eintak af computer
  ******************************************************************/
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////SKOÐA USER
 void Database::insertComputer (Computer computer, QString tmpUser)
 {
        user = tmpUser;

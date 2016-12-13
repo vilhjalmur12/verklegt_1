@@ -82,11 +82,10 @@ string Service::fixString(string before)
 }
 
 /****************************************************************************
-                               appendScientist
-                     Býr til vísindamann með fylgibreytum
-                     (því sem hann tekur inn)
-                     @return true ef vísindamaður er ekki nú þegar til
-                     @return false ef vísindamaður er til
+                               doesScientistExcist
+                     Segir til um hvort vísindamaður sé til nú þegar
+                     @return true ef vísindamaður er nú þegar til
+                     @return false ef vísindamaður er ekki til
             *Til að vísindamaður sé til þurfa allar breytur að
             *vera þær sömu
  ****************************************************************************/
@@ -106,6 +105,14 @@ bool Service::doesScientistExcist(string firstName, string lastName, string sex,
     return false;
 }
 
+/****************************************************************************
+                               doesComputerExcist
+                     Segir til um hvort tölva sé til nú þegar
+                     @return true ef tölva er nú þegar til
+                     @return false ef tölva er ekki til
+            *Til að vísindamaður sé til þurfa allar breytur að
+            *vera þær sömu
+ ****************************************************************************/
 bool Service::doesComputerExcist(string name, string cpuType, int yearBuilt, bool built)
 {
     vector<Computer> computers = getComputers();
@@ -122,24 +129,33 @@ bool Service::doesComputerExcist(string name, string cpuType, int yearBuilt, boo
     return false;
 }
 
+/****************************************************************************
+                           appendScientist
+                  Bætir nýjum vísindamanni við gagnagrunn sé hún ekki til
+                  nú þegar og skilar boolean segð sem segir til um
+                  hvernig gekk
+ ****************************************************************************/
 bool Service::appendScientist(string firstName, string lastName, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
 {
-    //_scientists = data.getScientists();
-
-
     Scientist tempScientist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo);
 
     if(doesScientistExcist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo))
         return false;
 
-    _scientists.push_back(tempScientist);  // Líklega óþarfi
     activityLog _activityLog(data.pullUser());
     _activityLog.pushActivity("insert", tempScientist);
 
-    data.insertScientist(tempScientist/*, qUser*/); //--> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
+    data.insertScientist(tempScientist);
 
     return true;
 }
+
+/****************************************************************************
+                           appendComputer
+                  Bætir nýrri tölvu við gagnagrunn sé hún ekki til
+                  nú þegar og skilar boolean segð sem segir til um
+                  hvernig gekk
+ ****************************************************************************/
 
 bool Service::appendComputer (string name, string cpuType, int yearBuilt, bool built)
 {
@@ -148,29 +164,17 @@ bool Service::appendComputer (string name, string cpuType, int yearBuilt, bool b
     if(doesComputerExcist(name, cpuType, yearBuilt, built))
         return false;
 
-    _computers.push_back(tempComputer);  // Líklega óþarfi
     activityLog _activityLog(data.pullUser());
     _activityLog.pushActivity("insert", tempComputer);
-    data.insertComputer(tempComputer, qUser); //--> Ekki viss með nafnið a´fallinu en þetta verður sirka svona
+    data.insertComputer(tempComputer, qUser);
 
     return true;
 }
 
-void Service::addRelations(int cID, int sID)
-{
-    data.addRelations(cID, sID);
-}
-
-void Service::removeRelations(int cID, int sID)
-{
-    data.removeRelations(cID, sID);
-}
-
-void Service::editComputer(int ID, Computer computer)
-{
-    data.editComputer(ID, computer);
-}
-
+/****************************************************************************
+                           delete föll
+                  Flagga sem deletaða í gagnagrunni
+ ****************************************************************************/
 void Service::deleteScientist(int ID)
 {
     data.deleteScientist(ID);
@@ -181,6 +185,25 @@ void Service::deleteComputer(int ID)
     data.deleteComputer(ID);
 }
 
+void Service::deleteAllFromDatabase()
+{
+    data.deleteAllFromDatabase();
+}
+
+void Service::deleteAllScientistsFromDatabase()
+{
+    data.deleteAllFromScientistDatabase();
+}
+
+void Service::deleteAllComputersFromDatabase()
+{
+    data.deleteAllFromComputerDatabase();
+}
+
+/****************************************************************************
+                           Restore föll
+                  Flagga sem ekki deletað í gagnagrunni
+ ****************************************************************************/
 void Service::restoreScientist(int ID)
 {
     data.restoreScientist(ID);
@@ -189,46 +212,6 @@ void Service::restoreScientist(int ID)
 void Service::restoreComputer(int ID)
 {
     data.restoreComputer(ID);
-}
-
-void Service::editScientist(int ID, Scientist scientist)
-{
-    data.editScientist(ID, scientist);
-}
-
-/****************************************************************************
-                           deleteAllFromDatabase()
-          Flaggar allar tölvur og vísindamenn sem deleted í database-inu
- ****************************************************************************/
-
-void Service::deleteAllFromDatabase()
-{
-    data.deleteAllFromDatabase();
-}
-
-/****************************************************************************
-                           deleteAllScientistDatabase()
-                     Flaggar alla vísindamennina sem deleted í database-inu
- ****************************************************************************/
-
-void Service::deleteAllScientistsFromDatabase()
-{
-    data.deleteAllFromScientistDatabase();
-}
-
-/****************************************************************************
-                           deleteAllFromDatabase()
-                    Flaggar allar tölvur sem deleted í database-inu
- ****************************************************************************/
-
-void Service::deleteAllComputersFromDatabase()
-{
-    data.deleteAllFromComputerDatabase();
-}
-
-void Service::restoreAllFromDatabase()
-{
-    data.restoreAllFromDatabase();
 }
 
 void Service::restoreAllComputerFromDatabase()
@@ -241,19 +224,65 @@ void Service::restoreAllScientistFromDatabase()
     data.restoreAllFromScientistDatabase();
 }
 
-/****************************************************************************
-                               moveLastTo
-                     Færir aftasta mann í sæti index
-                     minnkar síðan vectorinn um einn
-            @parameter(int index) - index sem færa á í
- ****************************************************************************/
-void Service::moveLastTo(int index)
+void Service::restoreAllFromDatabase()
 {
-    //Skoða og finna leið til að hátta þessu fyrir SQL þ.a. hann update'i í hverju skrefi
-    _scientists[index] = _scientists.back();
-    _scientists.pop_back();
+    data.restoreAllFromDatabase();
 }
 
+/****************************************************************************
+                               editScientist
+                     update'ar vísindamann í stað ID
+                     @parameter ID: ID vísindamannsins sem skal uppfæra
+                     @parameter Scientist: Nýr vísindamaður
+ ****************************************************************************/
+void Service::editScientist(int ID, Scientist scientist)
+{
+    data.editScientist(ID, scientist);
+}
+
+/****************************************************************************
+                               editComputer
+                     update'ar tölvu í stað ID
+                     @parameter ID: ID tölvunnar sem skal uppfæra
+                     @parameter Computer: Ný tölva
+ ****************************************************************************/
+void Service::editComputer(int ID, Computer computer)
+{
+    data.editComputer(ID, computer);
+}
+
+/****************************************************************************
+                               addRelations
+                     Tengir saman tölvu og vísindamann
+                     @parameter cID: ID tölvu
+                     @parameter sID: ID vísindamanns
+ ****************************************************************************/
+void Service::addRelations(int cID, int sID)
+{
+    data.addRelations(cID, sID);
+}
+
+/****************************************************************************
+                               removeRelations
+                     Flaggat tengsl tölvu og vísindamanns sem delet'uð
+                     @parameter cID: ID tölvu
+                     @parameter sID: ID vísindamanns
+ ****************************************************************************/
+void Service::removeRelations(int cID, int sID)
+{
+    data.removeRelations(cID, sID);
+}
+
+
+
+/****************************************************************************
+                               getScientists
+           skilar vector vísindamanna í þeirri röð sem beðið er um
+                     @parameter choice: na/nd/gf/gm/...  segir til um uppröðun
+                     @return vector<Scientist>: Vector af Vísindamnann objectum
+       n -> name | g -> gender | b -> birth | d-> death | c -> country
+                        d -> Descending | m(ale) -> [gender] Descending
+ ****************************************************************************/
 vector<Scientist> Service::getScientists(string choice/*="na"*/)
 {
     string columnOfChoice;
@@ -277,11 +306,23 @@ vector<Scientist> Service::getScientists(string choice/*="na"*/)
     //return data.getScientists();
 }
 
+/****************************************************************************
+                               getDeletedScientists
+   Skilar vector af vísindamönnum sem flaggaðir eru deletaðir í stafrófsröð
+ ****************************************************************************/
 vector<Scientist> Service::getDeletedScientists()
 {
     return data.pullDeletedScientists();
 }
 
+/****************************************************************************
+                               getComputers
+           skilar vector af tölvum í þeirri röð sem beðið er um
+                     @parameter choice: na/nd/ya/td/by/bn...  segir til um uppröðun
+                     @return vector<Computers>: Vector af Tölvu objectum
+               n -> name | y -> year | t-> type | b -> built?
+                d -> Descending | y(es) -> [built?] Descending
+ ****************************************************************************/
 vector<Computer> Service::getComputers(string choice)
 {
     string columnOfChoice;
@@ -300,17 +341,30 @@ vector<Computer> Service::getComputers(string choice)
     return data.pullComputers(columnOfChoice);
 }
 
+/****************************************************************************
+                               getDeletedComputers
+     Skilar vector af tölvum sem flaggaðar eru deletaðar í stafrófsröð
+ ****************************************************************************/
 vector<Computer> Service::getDeletedComputers()
 {
     return data.pullDeletedComputers();
 }
 
+/****************************************************************************
+                               getTypes
+                 Skilar vector af þekktum týpum talvna
+ ****************************************************************************/
 vector<CpuType> Service::getTypes(string choice)
 {
     if(choice == "t")
         choice = "type";
     return data.pullTypes(choice);
 }
+
+/****************************************************************************
+                               addType
+                Bætir nýrri týpu af tölvu í gagnagrunninn
+ ****************************************************************************/
 
 void Service::addType(string type)
 {
@@ -322,7 +376,7 @@ void Service::addType(string type)
 
 
 /****************************************************************************
-                               getLengthOfData()
+                               getNumberOfScientists()
                     skilar fjölda vísindamanna í gagnagrunni
  ****************************************************************************/
 int Service::getNumberOfScientists()
@@ -330,43 +384,14 @@ int Service::getNumberOfScientists()
     return data.getNumberOfScientistEntries();
 }
 
+/****************************************************************************
+                               getNumberOfComputers()
+                    skilar fjölda talvna í gagnagrunni
+ ****************************************************************************/
 int Service::getNumberOfComputers()
 {
     return data.getNumberOfComputerEntries();
 }
-
-/****************************************************************************
-                        sortScientistsBy
-               Raðar vector vísindamanna í röð eftir því
-               sem notandi biður um
-        @parameter(string choice) - er "na" by default en annað ef notandi biður um annað
-            na=NameAscending, nd=NameDescending o.s.frv.
- ****************************************************************************/
-/*
-void Service::sortScientistsBy(string choice)
-{
-    if (choice == "na")
-        sortByNameAscending(); // Líklega þyrftu öll föllin að taka inn þennan vector
-    if (choice == "nd")
-        sortByNameDesending();
-    if (choice == "gf")
-        sortBySexF();
-    if (choice == "gm")
-        sortbySexM();
-    if (choice == "ba")
-        sortByBirthAscending();
-    if (choice == "bd")
-        sortByBirthDescending();
-    if (choice == "da")
-        sortByDeathAscending();
-    if (choice == "dd")
-        sortByDeathDescending();
-    if (choice == "nta")
-        sortByNationalityAscending();
-    if (choice == "ntd")
-        sortByNationalityDescending();
-}
-*/
 
 /****************************************************************************
                                validName
@@ -390,6 +415,14 @@ bool Service::validName(string &name)
     return true;
 }
 
+/****************************************************************************
+                               validCpuName
+                    Athugar hvort að nafn innihaldi skrítin tákn
+                    og stækkar fyrsta staf allra orða
+            @parameter(string& name) - nafnið, by reference til að breyta
+            @return true - ef nafnið er gilt
+            @return false - ef nafnið er ógilt
+ ****************************************************************************/
 bool Service::validCpuName(string &name)
 {
     name = fixString(name);
@@ -404,6 +437,13 @@ bool Service::validCpuName(string &name)
     return true;
 }
 
+/****************************************************************************
+                               validBuild
+                    Ár innihaldi annað en tölur
+            @parameter(string& build) - árið, by reference til að breyta
+            @return true - ef árið er gilt
+            @return false - ef árið er ógilt
+ ****************************************************************************/
 bool Service::validBuild(string &build)
 {
 
@@ -493,6 +533,14 @@ bool Service::validYears(int birthYear, int deathYear)
     return true;
 }
 
+/****************************************************************************
+                               validYears
+                     tekur inn bæði ártal og athugar villur
+
+                     @parameter(int buildYear) - innslegið ár
+                     @return true - ef ár eru gild
+                     @return false - ef ár eru ógild
+ ****************************************************************************/
 bool Service::validBuildYear(int buildYear)
 {
     //Pointer heldur utan um núverandi ár -1900
@@ -606,175 +654,14 @@ bool Service::findInString(string query, string String) //Jafnvel að endurskoð
 }
 
 /****************************************************************************
-                               getIndexesWith
-                     Finnur indexa alla þeirra vísindamanna
-                     sem uppfylla leitarskilyrði má vera tala eða strengur.
-                     @parameter(string query) - Strengur/tala sem leitað er að
-                     @return vector<int> - indexar allra þeirra vísindamanna sem uppfylltu skilyrði
+                               searchInDatabase
+                     leitar í öllum gagnagrunni að einhverju sem samsvarar leitarorði
+
+                     @parameter(Scientists): Call by reference vektor sem fylltur er af leitarniðurstöðum
+                     @parameter(Computers): Call by reference vektor sem fylltur er af leitarniðurstöðum
+                     @parameter(String query) - innslegin leitarstrengur
  ****************************************************************************/
-vector<int> Service::getIndexesWith(string query )
-{
-    /* vector<Scientist> _scientists = data.getScientists()
-     * Betra að finna leið til að láta þetta vinna beint í SQL
-     */
-
-    vector<int> foundScientists;
-
-    if (string::npos != query.find_first_of("0123456789"))
-    {
-        int year = stoi(query); // String í int
-
-        for (unsigned int i = 0; i < _scientists.size(); i++)
-        {
-            if (findInInt(year, _scientists[i].getYearOfBirth()) || findInInt(year, _scientists[i].getYearOfDeath()))
-            {
-                foundScientists.push_back(i);
-            }
-        }    
-    }
-    else
-    {
-        for (unsigned int i = 0; i < _scientists.size(); i++)
-        {
-            if (findInString(query, _scientists[i].getFirstName()) || findInString(query, _scientists[i].getLastName()) || findInString(query, _scientists[i].getSex()) || findInString(query, _scientists[i].getFurtherInfo()))
-            {
-                foundScientists.push_back(i);
-            }
-        }
-    }
-
-    return foundScientists;
-}
-
 void Service::searchInDatabase(vector<Scientist> &scientists, vector<Computer> &computers, string query)
 {
     data.searchData(scientists, computers, query);
 }
-
-/**********************************************************
-                   Struct til að sortera
-                 struct sem sort algorithm'inn
-                 þarf á að halda til að kunna að
-                 bera saman tvo vísindamenn.
-                 Tilgangur hvers er talin augljós
-                 útfrá nafni
-**********************************************************/
-/*
-struct nameAscending
-{
-  bool operator() (Scientist i, Scientist j) { return (i.getName()<j.getName());}
-};
-
-struct nameDescending
-{
-  bool operator() (Scientist i, Scientist j) { return (i.getName()>j.getName());}
-};
-
-struct sexFemale
-{
-  bool operator() (Scientist i, Scientist j) { return (i.getSex()<j.getSex());}
-};
-
-struct sexMale
-{
-  bool operator() (Scientist i, Scientist j) { return (i.getSex()>j.getSex());}
-};
-
-struct birthAscending
-{
-    bool operator() (Scientist i, Scientist j) { return (i.getYearOfBirth()<j.getYearOfBirth());}
-};
-
-struct birthDescending
-{
-    bool operator() (Scientist i, Scientist j) { return (i.getYearOfBirth()>j.getYearOfBirth());}
-};
-
-struct deathAscending
-{
-    bool operator() (Scientist i, Scientist j) { return (i.getYearOfDeath()<j.getYearOfDeath());}
-};
-
-struct deathDescending
-{
-    bool operator() (Scientist i, Scientist j) { return (i.getYearOfDeath()>j.getYearOfDeath());}
-};
-
-struct nationalityAscending
-{
-    bool operator() (Scientist i, Scientist j) { return (i.getNationality()<j.getNationality());}
-};
-
-struct nationalityDescending
-{
-    bool operator() (Scientist i, Scientist j) { return (i.getNationality()>j.getNationality());}
-};
-
-*/
-/**********************************************************
-              Sort föll
-              Þau föll sem kallað er í til að
-              raða meðlimavector í þá röð sem
-              nafn hvers falls segir til um
-**********************************************************/
-/*
-void Service::sortByNameAscending()  // Það þyrfti líklega að breyta öllum slíkum föllum á þennan máta
-{
-    nameAscending na;
-    sort(_scientists.begin(), _scientists.end(), na);
-}
-
-void Service::sortByNameDesending()
-{
-    nameDescending nd;
-    sort(_scientists.begin(), _scientists.end(), nd);
-}
-
-void Service::sortBySexF()
-{
-    sexFemale sf;
-    sort(_scientists.begin(), _scientists.end(), sf);
-}
-
-void Service::sortbySexM()
-{
-    sexMale sm;
-    sort(_scientists.begin(), _scientists.end(), sm);
-}
-
-void Service::sortByBirthAscending()
-{
-    birthAscending ba;
-    sort(_scientists.begin(), _scientists.end(), ba);
-}
-
-void Service::sortByBirthDescending()
-{
-    birthDescending bd;
-    sort(_scientists.begin(), _scientists.end(), bd);
-}
-
-void Service::sortByDeathAscending()
-{
-    deathAscending da;
-    sort(_scientists.begin(), _scientists.end(), da);
-}
-
-void Service::sortByDeathDescending()
-{
-    deathDescending de;
-    sort(_scientists.begin(), _scientists.end(), de);
-}
-
-void Service::sortByNationalityAscending()
-{
-    nationalityAscending nta;
-    sort(_scientists.begin(), _scientists.end(), nta);
-}
-
-void Service::sortByNationalityDescending()
-{
-    nationalityDescending ntd;
-    sort(_scientists.begin(), _scientists.end(), ntd);
-}
-*/

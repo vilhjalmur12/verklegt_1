@@ -169,11 +169,23 @@ string Scientist::getFurtherInfo() const
         return _info;
 }
 
+/****************************************************************************
+                        getComputersBuilt
+        Dregur fram tölvur vísindamanns úr meðlimabreytum og skilar því í vector
+                @return(string _getComputersBuilt) - skilar tölvum vísindamanns
+ ****************************************************************************/
+
 vector<string> Scientist::getComputersBuilt() const
 {
     return _computersBuilt;
 }
 
+/****************************************************************************
+                        addComputerBuilt
+        Dregur fram tölvur vísindamanns úr meðlimabreytum og skilar því í vector
+                @parameter(string computer) -
+                @return(string _getComputersBuilt) - skilar tölvum vísindamanns
+ ****************************************************************************/
 void Scientist::addComputerBuilt(string computer)
 {
     _computersBuilt.push_back(computer);
