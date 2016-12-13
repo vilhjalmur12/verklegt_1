@@ -73,6 +73,30 @@ void Database::setUser(QString username)
     user = username;
 }
 
+Computer Database::getComputer(int ID)
+{
+    databaseOpen();
+
+    QSqlQuery query;
+
+    query.prepare( "SELECT c.ID, name, year_of_build, type, built_or_not FROM Computers c "
+                     "INNER JOIN cpuType t "
+                     "ON t.ID = c.CPU_type_ID "
+                     "WHERE c.ID = :ID ");
+    query.bindValue(":ID", ID);
+    query.exec();
+
+    query.next();
+
+    Computer temp = makeComputer(query);
+    addBuildersToComputer(temp);
+
+    databaseClose();
+
+
+    return temp;
+}
+
 Scientist Database::getScientist(int ID)
 {
     databaseOpen();
@@ -88,7 +112,7 @@ Scientist Database::getScientist(int ID)
 
     Scientist temp = makeScientist(query);
 
-    adddBuiltComputerToScientist(temp);
+    adddBuiltComputersToScientist(temp);
 
     databaseClose();
 
@@ -133,7 +157,34 @@ Scientist Database::makeScientist(QSqlQuery &query)
     return temp;
 }
 
-void Database::adddBuiltComputerToScientist(Scientist &scientist)
+Computer Database::makeComputer(QSqlQuery &query)
+{
+    QString tempQ;
+
+    int ID;
+    string Name;
+    int YOB;
+    string cpuType;
+    bool built;
+
+    ID = query.value(0).toInt();
+
+    tempQ = query.value(1).toString();
+    Name = tempQ.toUtf8().constData();
+
+    YOB = query.value(2).toInt();
+
+    tempQ = query.value(3).toString();
+    cpuType = tempQ.toUtf8().constData();
+
+    built = query.value(4).toBool();
+
+    Computer temp(ID, Name, cpuType, built, YOB);
+
+    return temp;
+}
+
+void Database::adddBuiltComputersToScientist(Scientist &scientist)
 {
     int sciID = scientist.getID();
 
@@ -153,6 +204,29 @@ void Database::adddBuiltComputerToScientist(Scientist &scientist)
         QString tempQ = query.value(0).toString();
         string computer = tempQ.toUtf8().constData();
         scientist.addComputerBuilt(computer);
+    }
+}
+
+void Database::addBuildersToComputer(Computer &computer)
+{
+    int compID = computer.getID();
+
+    QSqlQuery query;
+    query.prepare("SELECT last_name FROM scientists s "
+                  "LEFT OUTER JOIN scientist_computer_relations r "
+                  "ON r.computerID = :ID "
+                  "WHERE ID = r.scientistID "
+                  "AND r.deleted = 0 "
+                  "AND s.deleted = 0 "
+                  "ORDER BY last_name ");
+    query.bindValue(":ID", compID);
+    query.exec();
+
+    while(query.next())
+    {
+        QString tempQ = query.value(0).toString();
+        string lastName = tempQ.toUtf8().constData();
+        computer.addBuilder(lastName);
     }
 }
 
@@ -1055,27 +1129,7 @@ void Database::addFoundComputers(QSqlQuery& query, vector<Computer> &computers)
 {
     while(query.next())
     {
-        QString tempQ;
-
-        int ID;
-        string Name;
-        int YOB;
-        string cpuType;
-        bool built;
-
-        ID = query.value(0).toInt();
-
-        tempQ = query.value(1).toString();
-        Name = tempQ.toUtf8().constData();
-
-        YOB = query.value(2).toInt();
-
-        tempQ = query.value(3).toString();
-        cpuType = tempQ.toUtf8().constData();
-
-        built = query.value(4).toBool();
-
-        Computer temp(ID, Name, cpuType, built, YOB);
+        Computer temp = makeComputer(query);
         computers.push_back(temp);
     }
 }
@@ -1090,25 +1144,7 @@ void Database::addBuildersToComputers(vector<Computer> &computers)
 {
     for(unsigned int i = 0; i < computers.size(); i++)
     {
-        int compID = computers[i].getID();
-
-        QSqlQuery query;
-        query.prepare("SELECT last_name FROM scientists s "
-                      "LEFT OUTER JOIN scientist_computer_relations r "
-                      "ON r.computerID = :ID "
-                      "WHERE ID = r.scientistID "
-                      "AND r.deleted = 0 "
-                      "AND s.deleted = 0 "
-                      "ORDER BY last_name ");
-        query.bindValue(":ID", compID);
-        query.exec();
-
-        while(query.next())
-        {
-            QString tempQ = query.value(0).toString();
-            string lastName = tempQ.toUtf8().constData();
-            computers[i].addBuilder(lastName);
-        }
+        addBuildersToComputer(computers[i]);
     }
 }
 
@@ -1190,7 +1226,7 @@ void Database::adddBuiltComputersToScientists(vector<Scientist> &scientists)
 {
     for(unsigned int i = 0; i < scientists.size(); i++)
     {
-        adddBuiltComputerToScientist(scientists[i]);
+        adddBuiltComputersToScientist(scientists[i]);
     }
 }
 

@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "editstudentdialog.h"
+#include "DATA/database.h"
 #include <QSqlQueryModel>
 
 namespace Ui
@@ -30,6 +30,8 @@ private slots:
     void on_pushButton_deleteScientist_clicked();
 
     void on_pushButton_editScientist_clicked();
+
+    void on_pushButton_editComputer_clicked();
 
 private:
     Ui::MainWindow *ui;
