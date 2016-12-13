@@ -11,4 +11,7 @@
         <file>Images/Tom_Kilburn.jpg</file>
         <file>Images/Tommy_Flowers.jpg</file>
     </qresource>
+    <qresource prefix="/icons">
+        <file>Images/DB.jpg</file>
+    </qresource>
 </RCC>
