@@ -492,7 +492,7 @@ void Console::callUser ()
         }
     }
     Service newScientistService(user);
-    scientistService = newScientistService;
+    //scientistService = newScientistService;
     run();
 }
 
