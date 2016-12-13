@@ -81,7 +81,7 @@
     <string>Welcome to database</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -130,6 +130,12 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>lineInput_username</tabstop>
+  <tabstop>lineInput_password</tabstop>
+  <tabstop>pushButton_activateUser</tabstop>
+  <tabstop>pushButton_createUser</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -681,7 +681,7 @@ void Database::insertScientist (Scientist scientist)
      Býr til nýtt eintak af tölvu í gagnagrunn
      @parameter(Computer computer) - Eintak af computer
  ******************************************************************/
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////SKOÐA USER
 void Database::insertComputer (Computer computer, QString tmpUser)
 {
        user = tmpUser;
