@@ -47,3 +47,15 @@ void MainWindow::on_pushButton_loadComputer_clicked()
 
     data.databaseClose();
 }
+
+void MainWindow::on_tableView_clicked(const QModelIndex &index)
+{
+    rowChosenScientist = ui->tableView->model()->data(index).toString();
+}
+
+
+
+void MainWindow::on_pushButton_deleteScientist_clicked()
+{
+    qDebug() << rowChosenScientist << endl;
+}

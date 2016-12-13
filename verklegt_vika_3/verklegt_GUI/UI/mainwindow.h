@@ -24,10 +24,15 @@ private slots:
 
     void on_pushButton_loadComputer_clicked();
 
+    void on_tableView_clicked(const QModelIndex &index);
+
+    void on_pushButton_deleteScientist_clicked();
+
 private:
     Ui::MainWindow *ui;
     Database data;
     QString username;
+    QString rowChosenScientist;
 
 };
 
