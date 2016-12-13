@@ -59,3 +59,10 @@ void MainWindow::on_pushButton_deleteScientist_clicked()
 {
     qDebug() << rowChosenScientist << endl;
 }
+
+void MainWindow::on_pushButton_editScientist_clicked()
+{
+    editStudentDialog edit;
+    //Finna leið til að parsa inn ID
+    edit.exec();
+}

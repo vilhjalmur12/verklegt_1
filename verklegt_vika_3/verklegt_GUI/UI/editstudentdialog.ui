@@ -11,29 +11,15 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Update Scientist</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="label_header_name">
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;ScientistName&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;update information&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
-   </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>First Name</string>
+        <string>        First Name</string>
        </property>
       </widget>
      </item>
@@ -47,7 +33,7 @@
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Last Name</string>
+        <string>        Last Name</string>
        </property>
       </widget>
      </item>
@@ -61,7 +47,7 @@
      <item>
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Gender</string>
+        <string>             Gender</string>
        </property>
       </widget>
      </item>
@@ -75,7 +61,7 @@
      <item>
       <widget class="QLabel" name="label_5">
        <property name="text">
-        <string>Year of Birth</string>
+        <string>     Year of Birth</string>
        </property>
       </widget>
      </item>
@@ -89,7 +75,7 @@
      <item>
       <widget class="QLabel" name="label_6">
        <property name="text">
-        <string>Year of Death</string>
+        <string>   Year of Death</string>
        </property>
       </widget>
      </item>
@@ -103,7 +89,7 @@
      <item>
       <widget class="QLabel" name="label_7">
        <property name="text">
-        <string>Nationality</string>
+        <string>        Nationality</string>
        </property>
       </widget>
      </item>
@@ -117,7 +103,7 @@
      <item>
       <widget class="QLabel" name="label_8">
        <property name="text">
-        <string>Further Info</string>
+        <string>     Further Info</string>
        </property>
       </widget>
      </item>
@@ -136,7 +122,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_relations"/>
+      <widget class="QLineEdit" name="lineEdit_relations">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_edit_relations">

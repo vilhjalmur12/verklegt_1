@@ -15,8 +15,14 @@ public:
     explicit editStudentDialog(QWidget *parent = 0);
     ~editStudentDialog();
 
+private slots:
+    void on_pushButton_back_clicked();
+
+    void on_pushButton_update_clicked();
+
 private:
     Ui::editStudentDialog *ui;
+    int ID;
 };
 
 #endif // EDITSTUDENTDIALOG_H
