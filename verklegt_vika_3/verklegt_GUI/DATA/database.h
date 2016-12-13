@@ -29,8 +29,13 @@ public:
     QSqlQuery showScientistData (QString username, QString searchString);
     QSqlQuery showComputerData (QString username, QString searchString);
 
+    void setUser(QString username);
+    Computer getComputer(int ID);
+    Scientist getScientist(int ID);
 
+    Scientist makeScientist(QSqlQuery &query);
 
+    void adddBuiltComputerToScientist(Scientist &scientist);
     /****************************/
 
 
