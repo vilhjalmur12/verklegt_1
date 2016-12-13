@@ -18,7 +18,8 @@ QSqlQuery Database::showScientistData (QString username, QString searchString)
 
     string command = "SELECT First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information "
                      "FROM scientists "
-                     "WHERE First_name LIKE \"%" + sSearch + "%\" "
+                     "where deleted = 0 "
+                     "AND First_name LIKE \"%" + sSearch + "%\" "
                      "OR "
                      " Last_name LIKE \"%" + sSearch + "%\" "
                      "OR "
