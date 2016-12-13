@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Database</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Scientists">
      <attribute name="title">
@@ -61,7 +61,7 @@
        <rect>
         <x>10</x>
         <y>400</y>
-        <width>141</width>
+        <width>181</width>
         <height>24</height>
        </rect>
       </property>
@@ -82,9 +82,9 @@
      <widget class="QPushButton" name="pushButton_loadScientist">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>220</x>
         <y>400</y>
-        <width>121</width>
+        <width>141</width>
         <height>24</height>
        </rect>
       </property>
