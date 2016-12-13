@@ -36,8 +36,8 @@ MyTime::~MyTime() { }
 
 /****************************************************************************
                              getMonth
-
-   @parameter(int choice) -
+                            Sækir mánuð
+   @parameter(int choice) - integer sem táknar mánuð
  ****************************************************************************/
 
 void MyTime::getMonth(int choice)
