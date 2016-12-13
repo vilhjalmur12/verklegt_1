@@ -98,6 +98,12 @@ public:
     void restoreScientist(int ID);
     void restoreComputer(int ID);
 
+    /**********************************************************
+                 Hjálparföll fyrir appendScientist
+    **********************************************************/
+    string removeSpaces(string before);                         //tekur inn streng og skilar honum án samliggjandi bila
+    string fixString(string before);                            //Stækkar fyrstu stafi allra orða
+
 private:
     /**********************************************************
                          Meðlimabreytur
@@ -110,11 +116,6 @@ private:
     QString qUser;
 
 
-    /**********************************************************
-                 Hjálparföll fyrir appendScientist
-    **********************************************************/
-    string removeSpaces(string before);                         //tekur inn streng og skilar honum án samliggjandi bila
-    string fixString(string before);                            //Stækkar fyrstu stafi allra orða
 
     /**********************************************************
                      Hjálparföll fyrir search

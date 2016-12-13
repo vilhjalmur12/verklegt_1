@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "DATA/database.h"
+#include "editstudentdialog.h"
 #include <QSqlQueryModel>
 
 namespace Ui
@@ -28,6 +29,8 @@ private slots:
     void on_tableView_clicked(const QModelIndex &index);
 
     void on_pushButton_deleteScientist_clicked();
+
+    void on_pushButton_editScientist_clicked();
 
 private:
     Ui::MainWindow *ui;
