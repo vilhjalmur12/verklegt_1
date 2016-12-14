@@ -96,3 +96,16 @@ void MainWindow::on_pushButton_editComputer_clicked()
     editComputerDialog edit(0, ID, username);
     edit.exec();
 }
+
+void MainWindow::on_pushButton_recycleBin_clicked()
+{
+    QSqlQueryModel *modal = new QSqlQueryModel();
+
+    QSqlQuery query = data.getRecycledComputers(username);
+
+    modal->setQuery(query);
+
+    ui->tableView_computers->setModel(modal);
+
+    data.databaseClose();
+}
