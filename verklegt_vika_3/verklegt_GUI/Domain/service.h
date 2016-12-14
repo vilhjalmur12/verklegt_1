@@ -26,6 +26,12 @@ public:
     Service(const QString user);
     virtual ~Service();
 
+    /**************************************************
+        Ný föll - Á EFTIR AÐ KOMMENTA
+    **************************************************/
+        void setUser(QString username);
+        Computer getComputer(int ID);
+
     /**********************************************************
                          Vector aðgerðir
     **********************************************************/

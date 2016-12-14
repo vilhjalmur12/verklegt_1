@@ -120,6 +120,24 @@ Computer Database::getComputer(int ID)
     return temp;
 }
 
+QSqlQuery Database::getRecycledComputers (QString username)
+{
+    databaseOpen(username);
+
+    string command1 = "SELECT name, year_of_build, type, built_or_not "
+                     "FROM Computers c "
+                     "INNER JOIN cpuType t "
+                     "ON t.ID = c.CPU_type_ID "
+                     "where deleted = 1 ";
+
+    QString Qcommand(command1.c_str());
+
+    QSqlQuery query;
+    query.exec(Qcommand);
+
+    return query;
+}
+
 Scientist Database::getScientist(int ID)
 {
     databaseOpen();
@@ -838,20 +856,20 @@ void Database::initDatabase (const QString& username)
 
 vector<CpuType> Database::pullTypes(string order)
 {
+    string execute = "SELECT * From cpuType "
+                     "ORDER BY " + order;
+
     databaseOpen();
 
     vector<CpuType> cpu;
     CpuType tmpCpu;
     QString QCpu;
-    QString Qorder(order.c_str());
+    QString Qorder(execute.c_str());
     string tmpCpuString;
     int tmpID;
     QSqlQuery query;
 
-    query.prepare("SELECT * From cpuType "
-               "ORDER BY :order");
-    query.bindValue(":order", Qorder);
-    query.exec();
+    query.exec(Qorder);
 
     while (query.next())
     {
