@@ -112,6 +112,19 @@ public:
     string removeSpaces(string before);                         //tekur inn streng og skilar honum án samliggjandi bila
     string fixString(string before);                            //Stækkar fyrstu stafi allra orða
 
+    /**********************************************************
+                     Villi að vesenast í nýju
+    ***********************************************************/
+    QSqlQuery showComputerData(QString username, QString searchString);
+    void closeDatabase();
+    QSqlQuery showScientistData(QString username, QString searchString);
+    void deleteScientist(QString username, QString name, QString lastName, QString year);
+    void deleteComputer(QString username, QString name, QString year);
+    QSqlQuery getRecycledComputers(QString username);
+    bool getUser(const QString& username, const QString& password);
+    bool createUser (const QString& username, const QString& password, const QString& firstName, const QString& lastName);
+
+
 private:
     /**********************************************************
                          Meðlimabreytur

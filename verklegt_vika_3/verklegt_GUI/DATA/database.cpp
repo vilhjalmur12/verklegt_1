@@ -613,7 +613,7 @@ bool Database::getUser(const QString& username, const QString& password)
      @parameter(const QString& lastName) - notenda bendir á eftirnafn
  ******************************************************************/
 
-void Database::createUser(const QString& username, const QString& password, const QString& firstName, const QString& lastName)
+bool Database::createUser(const QString& username, const QString& password, const QString& firstName, const QString& lastName)
 {
     user = username;
     myData = QSqlDatabase::addDatabase("QSQLITE");
@@ -628,12 +628,16 @@ void Database::createUser(const QString& username, const QString& password, cons
        qDebug() << "Error: connection with database fail";
     }
     else
-    {
+    {   
+        if(noUserInserted(username)||userExisting(username))
+        {
+            return false;
+        }
+
         QSqlQuery query;
 
         query.prepare("CREATE TABLE users(first_name VARCHAR NOT NULL, last_name VARCHAR NOT NULL, username VARCHAR NOT NULL, password VARCHAR NOT NULL)");
         query.exec();
-
 
         query.prepare("INSERT INTO users (first_name, last_name, username, password)" "VALUES (:firstName, :lastName, :username, :password)");
         query.bindValue(":firstName", firstName);
@@ -642,11 +646,38 @@ void Database::createUser(const QString& username, const QString& password, cons
         query.bindValue(":password", QEncPass);
         query.exec();
 
-
         databaseClose(myData);
 
         initDatabase(username);
     }
+    return true;
+}
+
+bool Database::userExisting(QString username)
+{
+
+    QSqlQuery query;
+    query.prepare("SELECT username FROM users WHERE username = :user");
+    query.bindValue(":user", username);
+    query.exec();
+
+    if(query.next())
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool Database::noUserInserted (QString username)
+{
+    QString tmp = "";
+
+    if (username == tmp)
+    {
+        return true;
+    }
+    return false;
 }
 
 /******************************************************************

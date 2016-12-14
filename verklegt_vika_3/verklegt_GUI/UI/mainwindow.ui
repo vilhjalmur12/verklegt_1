@@ -78,9 +78,6 @@
         <height>371</height>
        </rect>
       </property>
-      <property name="sortingEnabled">
-       <bool>true</bool>
-      </property>
      </widget>
      <widget class="QPushButton" name="pushButton_loadScientist">
       <property name="geometry">

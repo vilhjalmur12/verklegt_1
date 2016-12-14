@@ -16,6 +16,61 @@ Service::Service(const QString user)
 
 Service::~Service() { }
 
+/****************************************************************************
+                        Villi að vesenast í nýju
+
+
+*****************************************************************************/
+
+QSqlQuery Service::showComputerData(QString username, QString searchString)
+{
+
+    QSqlQuery query = data.showComputerData(username, searchString);
+
+
+    return query;
+}
+
+QSqlQuery Service::showScientistData(QString username, QString searchString)
+{
+    QSqlQuery query = data.showScientistData(username, searchString);
+
+    return query;
+}
+
+void Service::closeDatabase()
+{
+    data.databaseClose();
+}
+
+void Service::deleteScientist(QString username, QString name, QString lastName, QString year)
+{
+    data.deleteScientist(username, name, lastName, year);
+}
+
+void Service::deleteComputer(QString username, QString name, QString year)
+{
+    data.deleteComputer(username, name, year);
+}
+
+QSqlQuery Service::getRecycledComputers(QString username)
+{
+    QSqlQuery query = data.getRecycledComputers(username);
+
+    return query;
+}
+
+bool Service::getUser(const QString& username, const QString& password)
+{
+    bool tmp = data.getUser(username, password);
+
+    return tmp;
+}
+
+bool Service::createUser (const QString& username, const QString& password, const QString& firstName, const QString& lastName)
+{
+    return data.createUser(username, password, firstName, lastName);
+}
 void Service::setUser(QString username)
 {
     data.setUser(username);
@@ -24,6 +79,7 @@ void Service::setUser(QString username)
 Computer Service::getComputer(int ID)
 {
     return data.getComputer(ID);
+
 }
 
 vector<Computer> Service::getComputersRelatedTo(int ID)

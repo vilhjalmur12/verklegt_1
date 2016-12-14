@@ -1,3 +1,4 @@
+
 #ifndef EDITCOMPUTERDIALOG_H
 #define EDITCOMPUTERDIALOG_H
 
@@ -36,3 +37,4 @@ private:
 };
 
 #endif // EDITCOMPUTERDIALOG_H
+
