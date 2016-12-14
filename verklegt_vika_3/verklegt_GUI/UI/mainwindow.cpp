@@ -8,15 +8,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 }
 
+
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+
 void MainWindow::setUserName(QString user)
 {
     username = user;
 }
+
 
 void MainWindow::on_pushButton_loadScientist_clicked()
 {
@@ -33,6 +36,7 @@ void MainWindow::on_pushButton_loadScientist_clicked()
     data.databaseClose();
 }
 
+
 void MainWindow::on_pushButton_loadComputer_clicked()
 {
     QString searchString = ui->lineEdit_searchComputer->text();
@@ -48,14 +52,30 @@ void MainWindow::on_pushButton_loadComputer_clicked()
     data.databaseClose();
 }
 
+
 void MainWindow::on_tableView_clicked(const QModelIndex &index)
 {
-    rowChosenScientist = ui->tableView->model()->data(index).toString();
+       rowChosen = ui-> tableView->currentIndex().row();
+       name = index.sibling(rowChosen, 0).data().toString();
+       lastName = index.sibling(rowChosen, 1).data().toString();
+       year = index.sibling(rowChosen, 3).data().toString();
 }
-
-
 
 void MainWindow::on_pushButton_deleteScientist_clicked()
 {
-    qDebug() << rowChosenScientist << endl;
+        data.deleteScientist(username, name, lastName, year);
+}
+
+
+void MainWindow::on_pushButton_deleteComputer_clicked()
+{
+    data.deleteComputer(username, name, year);
+}
+
+
+void MainWindow::on_tableView_computers_clicked(const QModelIndex &index)
+{
+    rowChosen = ui-> tableView_computers->currentIndex().row();
+    name = index.sibling(rowChosen, 0).data().toString();
+    year = index.sibling(rowChosen, 1).data().toString();
 }

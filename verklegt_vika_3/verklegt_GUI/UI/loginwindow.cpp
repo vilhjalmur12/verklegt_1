@@ -18,7 +18,6 @@ void LoginWindow::on_pushButton_activateUser_clicked()
     username = ui->lineInput_username->text();
     password = ui->lineInput_password->text();
 
-
     callUser(username, password);
 
     ui->label_login->clear();

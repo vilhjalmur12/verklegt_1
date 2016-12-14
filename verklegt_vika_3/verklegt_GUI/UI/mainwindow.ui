@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Scientists">
      <attribute name="title">
@@ -120,7 +120,7 @@
        <string>Load Table</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="pushButton_deleteComputer">
       <property name="geometry">
        <rect>
         <x>510</x>
@@ -177,7 +177,7 @@
  <tabstops>
   <tabstop>lineEdit_searchComputer</tabstop>
   <tabstop>pushButton_loadComputer</tabstop>
-  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_deleteComputer</tabstop>
   <tabstop>pushButton_3</tabstop>
   <tabstop>lineEdit_search</tabstop>
   <tabstop>pushButton_loadScientist</tabstop>

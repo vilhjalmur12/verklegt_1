@@ -28,7 +28,9 @@ public:
     void databaseClose();
     QSqlQuery showScientistData (QString username, QString searchString);
     QSqlQuery showComputerData (QString username, QString searchString);
-
+    void deleteScientist(QString username, QString name, QString lastName, QString year);
+    void deleteComputer(QString username, QString name, QString year);
+    bool computerAlreadyDeleted(QString username, int ID);
 
 
     /****************************/
