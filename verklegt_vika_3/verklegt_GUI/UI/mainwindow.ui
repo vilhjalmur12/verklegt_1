@@ -20,13 +20,6 @@
    <string>Database</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-<<<<<<< HEAD
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="currentIndex">
-       <number>0</number>
-=======
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
@@ -176,7 +169,6 @@
       </property>
       <property name="placeholderText">
        <string>Search</string>
->>>>>>> c970f2d5d58385578dca07f790e782500da2ae33
       </property>
       <widget class="QWidget" name="Scientists">
        <attribute name="title">
@@ -389,10 +381,6 @@
        <zorder>horizontalSpacer_3</zorder>
       </widget>
      </widget>
-<<<<<<< HEAD
-    </item>
-   </layout>
-=======
      <widget class="QPushButton" name="pushButton_recycleBin">
       <property name="geometry">
        <rect>
@@ -428,7 +416,6 @@
      <zorder>pushButton_2</zorder>
     </widget>
    </widget>
->>>>>>> c970f2d5d58385578dca07f790e782500da2ae33
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
