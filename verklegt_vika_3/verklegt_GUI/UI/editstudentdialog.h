@@ -13,7 +13,7 @@ class editStudentDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit editStudentDialog(QWidget *parent = 0);
+    explicit editStudentDialog(QWidget *parent = 0, int id = 0, QString userName = "");
     ~editStudentDialog();
 
 private slots:
