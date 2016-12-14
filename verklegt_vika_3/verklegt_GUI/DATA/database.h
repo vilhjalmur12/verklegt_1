@@ -47,6 +47,8 @@ public:
 
     vector<Computer> getComputersRelatedTo(int ID);
     vector<Scientist> getScientistsRelatedTo(int ID);
+
+    void restoreRelations(int cID, int sID);
     /****************************/
 
 

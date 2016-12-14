@@ -11,28 +11,37 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Edit Related Scientists</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTableWidget" name="tableWidget_scientists">
      <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>190</number>
+      <number>380</number>
      </attribute>
      <column>
       <property name="text">
-       <string>Last Name</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>First Name</string>
+       <string>Scientist</string>
       </property>
      </column>
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="comboBox_scientists"/>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;- - - -  Scientists In Database - - - -&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="dropDown_scientists">
+     <property name="accessibleName">
+      <string/>
+     </property>
+     <property name="currentText">
+      <string/>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">

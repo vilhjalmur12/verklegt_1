@@ -318,6 +318,23 @@ vector<Scientist> Database::getScientistsRelatedTo(int ID)
     return scientists;
 }
 
+void Database::restoreRelations(int cID, int sID)
+{
+    databaseOpen();
+
+
+    QSqlQuery query;
+    query.prepare("UPDATE scientist_computer_relations "
+                  "SET deleted = 0 "
+                  "WHERE(scientistID = :sID AND computerID = :cID)");
+    query.bindValue(":sID", sID);
+    query.bindValue(":cID", cID);
+    query.exec();
+
+
+    databaseClose(myData);
+}
+
 void Database::databaseOpen(QString username)
 {
     user = username;

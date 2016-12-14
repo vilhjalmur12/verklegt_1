@@ -336,6 +336,7 @@ void Service::editComputer(int ID, Computer computer)
 void Service::addRelations(int cID, int sID)
 {
     data.addRelations(cID, sID);
+    data.restoreRelations(cID, sID);
 }
 
 /****************************************************************************
