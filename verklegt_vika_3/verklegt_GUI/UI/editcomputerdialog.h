@@ -23,9 +23,12 @@ private slots:
 
     void on_pushButton_addType_clicked();
 
+    void initializeDropDown();
+
 private:
     Ui::editComputerDialog *ui;
     Service *data;
+    Computer computer;
     int ID;
 };
 
