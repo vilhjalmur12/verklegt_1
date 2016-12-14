@@ -3,6 +3,7 @@
 
 #include <QMessageBox>
 #include <QInputDialog>
+#include "editcomputersrelations.h"
 
 editComputerDialog::editComputerDialog(QWidget *parent, int id, QString userName) :
     QDialog(parent),
@@ -10,6 +11,7 @@ editComputerDialog::editComputerDialog(QWidget *parent, int id, QString userName
 {   
     ui->setupUi(this);
     data = new Service;
+    username = userName;
     data->setUser(userName);
     ID = id;
 
@@ -113,4 +115,11 @@ void editComputerDialog::on_pushButton_addType_clicked()
     }
 
     initializeDropDown();
+}
+
+void editComputerDialog::on_pushButton_edit_relations_clicked()
+{
+    editComputersRelations editR(this, ID, username);
+
+    editR.exec();
 }

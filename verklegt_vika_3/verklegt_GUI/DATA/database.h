@@ -42,6 +42,9 @@ public:
 
     void adddBuiltComputersToScientist(Scientist &scientist);
     void addBuildersToComputer(Computer &computer);
+
+    vector<Computer> getComputersRelatedTo(int ID);
+    vector<Scientist> getScientistsRelatedTo(int ID);
     /****************************/
 
 

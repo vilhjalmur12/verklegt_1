@@ -86,14 +86,14 @@ void MainWindow::on_tableView_computers_clicked(const QModelIndex &index)
 void MainWindow::on_pushButton_editScientist_clicked()
 {
     int ID = ui->tableView_computers->currentIndex().row()+1;//////////////////////////////////////////////////////////skoða betur
-    editStudentDialog edit(0, ID, username);
+    editStudentDialog edit(this, ID, username);
     edit.exec();
 }
 
 void MainWindow::on_pushButton_editComputer_clicked()
 {
     int ID = ui->tableView_computers->currentIndex().row()+1;//////////////////////////////////////////////////////////skoða betur
-    editComputerDialog edit(0, ID, username);
+    editComputerDialog edit(this, ID, username);
     edit.exec();
 }
 

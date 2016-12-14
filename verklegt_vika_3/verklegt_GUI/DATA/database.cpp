@@ -271,6 +271,53 @@ void Database::addBuildersToComputer(Computer &computer)
     }
 }
 
+vector<Computer> Database::getComputersRelatedTo(int ID) ///////////////////////////////////////////////SKOÐA VEL
+{
+    vector<Computer> computers;
+
+    databaseOpen();
+
+    QSqlQuery query;
+
+    query.prepare("SELECT c.ID, name, year_of_build, type, built_or_not FROM computers c "
+                  "LEFT OUTER JOIN scientist_computer_relations r "
+                  "ON r.ScientistID = :ID "
+                  "WHERE ID = r.computerID "
+                  "AND c.deleted = 0 "
+                  "AND r.deleted = 0 "
+                  "ORDER BY name ");
+    query.bindValue(":ID", ID);
+    query.exec();
+
+    databaseClose();
+
+    return computers;
+}
+
+vector<Scientist> Database::getScientistsRelatedTo(int ID)
+{
+    databaseOpen();
+
+    vector<Scientist> scientists;
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM scientists s "
+                  "LEFT OUTER JOIN scientist_computer_relations r "
+                  "ON r.computerID = :ID "
+                  "WHERE ID = r.scientistID "
+                  "AND r.deleted = 0 "
+                  "AND s.deleted = 0 "
+                  "ORDER BY last_name ");
+    query.bindValue(":ID", ID);
+    query.exec();
+
+    addFoundScientists(query, scientists);
+
+    databaseClose();
+
+    return scientists;
+}
+
 void Database::databaseOpen(QString username)
 {
     user = username;

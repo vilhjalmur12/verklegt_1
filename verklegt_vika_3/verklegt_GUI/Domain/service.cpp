@@ -26,6 +26,16 @@ Computer Service::getComputer(int ID)
     return data.getComputer(ID);
 }
 
+vector<Computer> Service::getComputersRelatedTo(int ID)
+{
+    return data.getComputersRelatedTo(ID);
+}
+
+vector<Scientist> Service::getScientistsRelatedTo(int ID)
+{
+    return data.getScientistsRelatedTo(ID);
+}
+
 
 /****************************************************************************
                                getErrorString

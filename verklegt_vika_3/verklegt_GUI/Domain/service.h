@@ -31,6 +31,8 @@ public:
     **************************************************/
         void setUser(QString username);
         Computer getComputer(int ID);
+        vector<Computer> getComputersRelatedTo(int ID);
+        vector<Scientist> getScientistsRelatedTo(int ID);
 
     /**********************************************************
                          Vector aðgerðir

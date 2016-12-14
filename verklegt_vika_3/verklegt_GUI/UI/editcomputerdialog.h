@@ -25,10 +25,13 @@ private slots:
 
     void initializeDropDown();
 
+    void on_pushButton_edit_relations_clicked();
+
 private:
     Ui::editComputerDialog *ui;
     Service *data;
     Computer computer;
+    QString username;
     int ID;
 };
 
