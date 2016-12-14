@@ -18,21 +18,28 @@ void LoginWindow::on_pushButton_activateUser_clicked()
     username = ui->lineInput_username->text();
     password = ui->lineInput_password->text();
 
-    callUser(username, password);
-
-    ui->label_login->clear();
-
-    if (runProgram == false)
+    if (username == "")
     {
-        ui->label_login->setText(invalid);
+        errorWidget.nonUserInput();
+        errorWidget.show();
     }
     else
     {
-        main.setUserName(username);
-        main.show();
-        this->close();
-    }
+        callUser(username, password);
 
+        ui->label_login->clear();
+
+        if (runProgram == false)
+        {
+            ui->label_login->setText(invalid);
+        }
+        else
+        {
+            main.setUserName(username);
+            main.show();
+            this->close();
+        }
+    }
 }
 
 void LoginWindow::callUser (QString username, QString password)
@@ -41,8 +48,7 @@ void LoginWindow::callUser (QString username, QString password)
 
     string sUser = username.toUtf8().constData();
 
-    bool foundUser = data.getUser(username, password);
-
+    bool foundUser = _service.getUser(username, password);
 
             if (foundUser == true)
             {

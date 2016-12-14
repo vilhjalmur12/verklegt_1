@@ -16,6 +16,8 @@ public:
     ~errorwindow();
     void dataErrorFound ();
     void nonMatchPassword ();
+    void userExists();
+    void nonUserInput();
 
 private slots:
     void on_pushButton_cancel_clicked();
