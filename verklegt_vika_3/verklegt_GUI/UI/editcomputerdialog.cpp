@@ -1,19 +1,19 @@
 #include "editcomputerdialog.h"
 #include "ui_editcomputerdialog.h"
 
-#include "Domain/service.h"
 #include <QMessageBox>
+#include <QInputDialog>
 
 editComputerDialog::editComputerDialog(QWidget *parent, int id, QString userName) :
     QDialog(parent),
     ui(new Ui::editComputerDialog)
-{
+{   
     ui->setupUi(this);
-    data = new Database;
+    data = new Service;
     data->setUser(userName);
     ID = id;
 
-    Computer computer = data->getComputer(ID);
+    computer = data->getComputer(ID);
 
     string year = computer.getYearForPrinting();
     string scientists;
@@ -27,11 +27,26 @@ editComputerDialog::editComputerDialog(QWidget *parent, int id, QString userName
             scientists += ", ";
     }
 
+    initializeDropDown();
+
     ui->lineEdit_name->setText(QString::fromStdString(computer.getName()));
     ui->lineEdit_year->setText(QString::fromStdString(year));
-    ui->lineEdit_type->setText(QString::fromStdString(computer.getCpuType()));
-    ui->lineEdit_built->setText(QString::fromStdString(computer.getBuiltForPrinting()));
+    ui->checkBox_built->setChecked(computer.getBuilt());
     ui->lineEdit_builders->setText(QString::fromStdString(scientists));
+}
+
+void editComputerDialog::initializeDropDown()
+{
+    ui->dropdown_types->clear();
+
+    vector<CpuType> types = data->getTypes();
+
+    ui->dropdown_types->addItem(QString::fromStdString(computer.getCpuType()));
+    for(unsigned int i = 0; i < types.size(); i++)
+    {
+        if(types[i].getType() != computer.getCpuType())
+            ui->dropdown_types->addItem(QString::fromStdString(types[i].getType()));
+    }
 }
 
 editComputerDialog::~editComputerDialog()
@@ -47,58 +62,55 @@ void editComputerDialog::on_pushButton_back_clicked()
 
 void editComputerDialog::on_pushButton_update_clicked()
 {
-    Service service;
     string name = ui->lineEdit_name->text().toStdString();
     string sYear = ui->lineEdit_year->text().toStdString();
-    string type = ui->lineEdit_type->text().toStdString();
-    string sBuilt = ui->lineEdit_built->text().toStdString();
+    string type = ui->dropdown_types->currentText().toStdString();
+    bool built = ui->checkBox_built->isChecked();
 
     int year;
-    service.fixString(sBuilt);
-    qDebug() << QString::fromStdString(sBuilt);
-    bool built;
 
-    if(!service.validCpuName(name))
+    if(!data->validCpuName(name))
     {
-        QMessageBox::warning(this, "Invalid Name", QString::fromStdString(service.getErrorString()));
+        QMessageBox::warning(this, "Invalid Name", QString::fromStdString(data->getErrorString()));
         return;
     }
     if(sYear == "n/a")
     {
         year = maxDeathYear;
     }
-    else if(!service.validDeathYear(sYear))
+    else if(!data->validDeathYear(sYear))
     {
         // INVALID CHAR IN YEAR
-        QMessageBox::warning(this, "Invalid Year", QString::fromStdString(service.getErrorString()));
+        QMessageBox::warning(this, "Invalid Year", "ERROR: Invalid character in year");
         return;
     }
-    else if(!service.validBuildYear(stoi(sYear)))
+    else if(!data->validBuildYear(stoi(sYear)))
     {
         //INVALID YEAR
-        QMessageBox::warning(this, "Invalid Year", QString::fromStdString(service.getErrorString()));
+        QMessageBox::warning(this, "Invalid Year", QString::fromStdString(data->getErrorString()));
         return;
     }
     else
     {
         year = stoi(sYear);
     }
-    if(sBuilt != "Built" && sBuilt != "Not")
-    {
-        // INVALID BUILT
-        QMessageBox::warning(this, "Invalid Build", "Build must be \"built\" or \"not built\"");
-        return;
-    }
-    if(sBuilt == "Built")
-    {
-        built = true;
-    }
-    else
-    {
-        built = false;
-    }
 
     Computer cpu(name, type, built, year);
 
     data->editComputer(ID, cpu);
+}
+
+void editComputerDialog::on_pushButton_addType_clicked()
+{
+    bool ok;
+    QString text = QInputDialog::getText(this, tr("New Type"),
+                                         tr("Insert New Type:"), QLineEdit::Normal,
+                                         "", &ok);
+    if(ok)
+    {
+        string newType = text.toStdString();
+        data->addType(newType);
+    }
+
+    initializeDropDown();
 }

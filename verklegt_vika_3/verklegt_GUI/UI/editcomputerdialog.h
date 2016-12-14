@@ -1,7 +1,7 @@
 #ifndef EDITCOMPUTERDIALOG_H
 #define EDITCOMPUTERDIALOG_H
 
-#include "DATA/database.h"
+#include "Domain/service.h"
 #include <QDialog>
 
 namespace Ui {
@@ -21,9 +21,14 @@ private slots:
 
     void on_pushButton_update_clicked();
 
+    void on_pushButton_addType_clicked();
+
+    void initializeDropDown();
+
 private:
     Ui::editComputerDialog *ui;
-    Database *data;
+    Service *data;
+    Computer computer;
     int ID;
 };
 

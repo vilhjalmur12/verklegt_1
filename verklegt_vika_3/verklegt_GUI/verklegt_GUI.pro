@@ -67,3 +67,5 @@ DISTFILES +=
 
 RESOURCES += \
     resources.qrc
+
+STATECHARTS +=
