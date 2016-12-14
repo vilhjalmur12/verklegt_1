@@ -27,10 +27,22 @@ private slots:
     void recycledComputers();
     void recycledScientists();
 
+    void on_pushButton_deleteItem_clicked();
+
+    void on_pushButton_clearAll_clicked();
+
+    void on_tableView_deletedItems_clicked(const QModelIndex &index);
+
 private:
     Ui::recycledbin *ui;
     Service _service;
     QString user;
+    QString choiceMade;
+    errorwindow errorWidget;
+    int rowChosen;
+    QString name;
+    QString lastName;
+    QString year;
 };
 
 #endif // RECYCLEDBIN_H

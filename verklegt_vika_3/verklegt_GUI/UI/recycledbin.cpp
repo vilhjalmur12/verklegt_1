@@ -27,6 +27,7 @@ void recycledbin::on_buttonBox_rejected()
 void recycledbin::callRecycleBin (QString username, QString choice)
 {
     user = username;
+    choiceMade = choice;
 
     this->show();
     if (choice == "computers")
@@ -41,7 +42,14 @@ void recycledbin::callRecycleBin (QString username, QString choice)
 
 void recycledbin::on_pushButton_resetList_clicked()
 {
-
+    if (choiceMade == "computers")
+    {
+        recycledComputers();
+    }
+    else if (choiceMade == "scientists")
+    {
+        recycledScientists();
+    }
 }
 
 void recycledbin::recycledComputers()
@@ -70,3 +78,30 @@ void recycledbin::recycledScientists()
     _service.closeDatabase();
 }
 
+void recycledbin::on_pushButton_deleteItem_clicked()
+{
+
+}
+
+void recycledbin::on_pushButton_clearAll_clicked()
+{
+
+}
+
+void recycledbin::on_tableView_deletedItems_clicked(const QModelIndex &index)
+{
+    if (choiceMade == "computers")
+    {
+        rowChosen = ui-> tableView_deletedItems->currentIndex().row();
+        name = index.sibling(rowChosen, 0).data().toString();
+        year = index.sibling(rowChosen, 1).data().toString();
+    }
+    else if (choiceMade == "scientists")
+    {
+        rowChosen = ui-> tableView_deletedItems->currentIndex().row();
+        name = index.sibling(rowChosen, 0).data().toString();
+        lastName = index.sibling(rowChosen, 1).data().toString();
+        year = index.sibling(rowChosen, 3).data().toString();
+    }
+
+}
