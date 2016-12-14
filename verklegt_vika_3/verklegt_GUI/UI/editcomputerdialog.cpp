@@ -4,14 +4,14 @@
 #include "Domain/service.h"
 #include <QMessageBox>
 
-editComputerDialog::editComputerDialog(QWidget *parent) :
+editComputerDialog::editComputerDialog(QWidget *parent, int id, QString userName) :
     QDialog(parent),
     ui(new Ui::editComputerDialog)
 {
     ui->setupUi(this);
     data = new Database;
-    data->setUser("ketill");
-    ID = 3;
+    data->setUser(userName);
+    ID = id;
 
     Computer computer = data->getComputer(ID);
 
@@ -37,9 +37,15 @@ editComputerDialog::editComputerDialog(QWidget *parent) :
 editComputerDialog::~editComputerDialog()
 {
     delete ui;
+    delete data;
 }
 
 void editComputerDialog::on_pushButton_back_clicked()
 {
     this->done(0);
+}
+
+void editComputerDialog::on_editComputerDialog_accepted()
+{
+
 }

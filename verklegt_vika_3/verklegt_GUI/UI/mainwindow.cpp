@@ -72,7 +72,7 @@ void MainWindow::on_pushButton_editScientist_clicked()
 
 void MainWindow::on_pushButton_editComputer_clicked()
 {
-    editComputerDialog edit;
-
+    int ID = ui->tableView_computers->currentIndex().row()+1;
+    editComputerDialog edit(0, ID, username);
     edit.exec();
 }
