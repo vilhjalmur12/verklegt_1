@@ -31,7 +31,7 @@ editComputerDialog::editComputerDialog(QWidget *parent, int id, QString userName
 
     ui->lineEdit_name->setText(QString::fromStdString(computer.getName()));
     ui->lineEdit_year->setText(QString::fromStdString(year));
-    ui->lineEdit_built->setText(QString::fromStdString(computer.getBuiltForPrinting()));
+    ui->checkBox_built->setChecked(computer.getBuilt());
     ui->lineEdit_builders->setText(QString::fromStdString(scientists));
 }
 
@@ -65,12 +65,9 @@ void editComputerDialog::on_pushButton_update_clicked()
     string name = ui->lineEdit_name->text().toStdString();
     string sYear = ui->lineEdit_year->text().toStdString();
     string type = ui->dropdown_types->currentText().toStdString();
-    string sBuilt = ui->lineEdit_built->text().toStdString();
+    bool built = ui->checkBox_built->isChecked();
 
     int year;
-    sBuilt = data->fixString(sBuilt);
-    qDebug() << QString::fromStdString(sBuilt);
-    bool built;
 
     if(!data->validCpuName(name))
     {
@@ -96,20 +93,6 @@ void editComputerDialog::on_pushButton_update_clicked()
     else
     {
         year = stoi(sYear);
-    }
-    if(sBuilt != "Built" && sBuilt != "Not Built")
-    {
-        // INVALID BUILT
-        QMessageBox::warning(this, "Invalid Build", "Build must be \"built\" or \"not built\"");
-        return;
-    }
-    if(sBuilt == "Built")
-    {
-        built = true;
-    }
-    else
-    {
-        built = false;
     }
 
     Computer cpu(name, type, built, year);
