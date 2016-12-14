@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>Database</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../resources.qrc">
+    <normaloff>:/icons/Images/DB.jpg</normaloff>:/icons/Images/DB.jpg</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
 background-color: rgb(204, 217, 233)

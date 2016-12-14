@@ -34,6 +34,8 @@ public:
     QSqlQuery getRecycledComputers (QString username);
 
     void setUser(QString username);
+    bool userExisting(QString username);
+    bool noUserInserted (QString username);
     Computer getComputer(int ID);
     Scientist getScientist(int ID);
 
@@ -42,13 +44,16 @@ public:
 
     void adddBuiltComputersToScientist(Scientist &scientist);
     void addBuildersToComputer(Computer &computer);
+
+    vector<Computer> getComputersRelatedTo(int ID);
+    vector<Scientist> getScientistsRelatedTo(int ID);
     /****************************/
 
 
     void getData(QString username, vector<Scientist> &scien);
     void getData ();
     bool getUser (const QString& username, const QString& password);                            //Sækir notanda úr gagnagrunni
-    void createUser (const QString& username, const QString& password, const QString& firstName, const QString& lastName);  //Býr til notanda
+    bool createUser (const QString& username, const QString& password, const QString& firstName, const QString& lastName);  //Býr til notanda
     vector<Scientist> pullScientists(string choice);                                            //Sækir vísindamenn úr gagnagrunni
     vector<Scientist> pullDeletedScientists();                                                  //Sækir vísindamenn sem hafa verið eytt
     vector<Computer> pullComputers(string choice);                                              //Sækir tölvur úr gagnagrunni

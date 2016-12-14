@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "DATA/database.h"
 #include <QSqlQueryModel>
+#include "Domain/service.h"
 
 namespace Ui
 {
@@ -36,19 +36,19 @@ private slots:
 
     void on_pushButton_editComputer_clicked();
 
-
     void on_pushButton_recycleBin_clicked();
 
 private:
     Ui::MainWindow *ui;
     Database data;
     QString username;
-
+    Service _service;
 
     int rowChosen;
     QString year;
     QString name;
     QString lastName;
+
 
 };
 

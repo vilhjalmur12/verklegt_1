@@ -19,7 +19,6 @@
         <file>Images/800px-DM_IBM_S360.jpg</file>
         <file>Images/800px-ENIAC_Penn1.jpg</file>
         <file>Images/800px-IBM_PC_5150.jpg</file>
-        <file>Images/800px-Mailüfterl.jpg</file>
         <file>Images/800px-PDP-8.jpg</file>
         <file>Images/800px-Sinclair-ZX81.png</file>
         <file>Images/800px-SSEM_Manchester_museum.jpg</file>
@@ -27,5 +26,6 @@
         <file>Images/Boulier1.JPG</file>
         <file>Images/Colossus.jpg</file>
         <file>Images/Macintosh_128k_transparency.png</file>
+        <file>Images/800px-Mailufterl.jpg</file>
     </qresource>
 </RCC>

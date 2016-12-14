@@ -2,7 +2,7 @@
 #define LOGINWINDOW_H
 
 #include <QWidget>
-#include <DATA/database.h>
+#include "Domain/service.h"
 #include "Domain/errorlog.h"
 #include <string>
 #include "UI/createuserwindow.h"
@@ -30,11 +30,14 @@ private:
     int safeCount = 0;
     Database data;
     bool runProgram = false;
+    errorwindow errorWidget;
      ErrorLog _errorLog;
      QString username;
      QString password;
      createUserWindow create;
     MainWindow main;
+    Service _service;
+
 
     // Test output
     QString invalid = "Invalid user or password";
