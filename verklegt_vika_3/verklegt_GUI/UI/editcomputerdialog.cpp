@@ -18,7 +18,6 @@ editComputerDialog::editComputerDialog(QWidget *parent, int id, QString userName
     computer = data->getComputer(ID);
 
     initializeInfo();
-
 }
 
 void editComputerDialog::initializeDropDown()

@@ -215,13 +215,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_edit_relations">
-         <property name="text">
-          <string>Edit</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QPushButton" name="pushButton_back">
          <property name="text">
           <string>Back</string>
