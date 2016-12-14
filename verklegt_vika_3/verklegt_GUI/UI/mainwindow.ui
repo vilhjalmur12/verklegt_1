@@ -52,7 +52,11 @@
          </widget>
         </item>
         <item row="0" column="0" colspan="7">
-         <widget class="QTableView" name="tableView"/>
+         <widget class="QTableView" name="tableView">
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
         <item row="1" column="4">
          <widget class="QPushButton" name="pushButton_deleteScientist">
@@ -182,7 +186,11 @@
          </widget>
         </item>
         <item row="0" column="0" colspan="7">
-         <widget class="QTableView" name="tableView_computers"/>
+         <widget class="QTableView" name="tableView_computers">
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
         <item row="2" column="6">
          <widget class="QPushButton" name="pushButton_2">

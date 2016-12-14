@@ -34,6 +34,8 @@ private:
     Computer computer;
     QString username;
 
+    void initializeInfo();
+
     int ID;
 };
 

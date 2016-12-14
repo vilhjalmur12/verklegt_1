@@ -18,10 +18,16 @@ public:
 private slots:
     void on_pushButton_done_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_pushButton_add_clicked();
+
 private:
     Ui::editComputersRelations *ui;
     int ID;
     QString user;
+    std::vector<int> IDs;
+    std::vector<int> relatedIDs;
 
     void populateList();
 };
