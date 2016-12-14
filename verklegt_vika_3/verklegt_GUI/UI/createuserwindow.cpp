@@ -23,8 +23,22 @@ void createUserWindow::on_pushButton_clicked()
 
     if (comparePassword())
     {
-        data.createUser(username, password, firstName, lastName);
-        this->close();
+        if(!_service.createUser(username, password, firstName, lastName))
+        {
+            errorWidget.show();
+            if(username == "")
+            {
+                errorWidget.nonUserInput();
+            }
+            else
+            {
+               errorWidget.userExists();
+            }
+        }
+        else
+        {
+            this->close();
+        }
     }
     else
     {
@@ -44,41 +58,4 @@ bool createUserWindow::comparePassword()
 }
 
 
-/*
-if (action == "c")
-{
-    string confirmPass = "password";
 
-    cout << "Choose Username: ";
-    cin >> tmpUser;
-    QString tmpQUser(tmpUser.c_str());
-    user = tmpQUser;
-
-    while (password != confirmPass)
-    {
-        cout << "Choose Password: ";
-        cin >> password;
-        cout << "Confirm Password: ";
-        cin >> confirmPass;
-
-        if (password != confirmPass)
-        {
-            cout << "You didn't confirm the right password" << endl;
-        }
-    }
-    QString qPassword(password.c_str());
-
-    string firstName, lastName;
-    cout << "Enter your first name: ";
-    cin >> firstName;
-    cout << "Enter your last name: ";
-    cin >> lastName;
-
-    QString qFirstName(firstName.c_str());
-    QString qLastName(lastName.c_str());
-
-    data.createUser(user, qPassword, qFirstName, qLastName);
-    runProgram = true;
-
-}
-*/

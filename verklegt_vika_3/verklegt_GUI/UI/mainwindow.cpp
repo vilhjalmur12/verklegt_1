@@ -30,29 +30,30 @@ void MainWindow::on_pushButton_loadScientist_clicked()
 
     QSqlQueryModel *modal = new QSqlQueryModel();
 
-    QSqlQuery query = data.showScientistData(username, searchString);
+    QSqlQuery query = _service.showScientistData(username, searchString);
 
     modal->setQuery(query);
 
     ui->tableView->setModel(modal);
 
-    data.databaseClose();
+    _service.closeDatabase();
 }
 
 
 void MainWindow::on_pushButton_loadComputer_clicked()
 {
+
     QString searchString = ui->lineEdit_searchComputer->text();
 
     QSqlQueryModel *modal = new QSqlQueryModel();
 
-    QSqlQuery query = data.showComputerData(username, searchString);
+    QSqlQuery query = _service.showComputerData(username, searchString);
 
     modal->setQuery(query);
 
     ui->tableView_computers->setModel(modal);
 
-    data.databaseClose();
+    _service.closeDatabase();
 }
 
 
@@ -66,13 +67,13 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
 
 void MainWindow::on_pushButton_deleteScientist_clicked()
 {
-        data.deleteScientist(username, name, lastName, year);
+        _service.deleteScientist(username, name, lastName, year);
 }
 
 
 void MainWindow::on_pushButton_deleteComputer_clicked()
 {
-    data.deleteComputer(username, name, year);
+        _service.deleteComputer(username, name, year);
 }
 
 
@@ -101,11 +102,11 @@ void MainWindow::on_pushButton_recycleBin_clicked()
 {
     QSqlQueryModel *modal = new QSqlQueryModel();
 
-    QSqlQuery query = data.getRecycledComputers(username);
+    QSqlQuery query = _service.getRecycledComputers(username);
 
     modal->setQuery(query);
 
     ui->tableView_computers->setModel(modal);
 
-    data.databaseClose();
+    _service.closeDatabase();
 }

@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "errorwindow.h"
-#include "DATA/database.h"
+#include "Domain/service.h"
 
 namespace Ui {
 class createUserWindow;
@@ -23,7 +23,7 @@ private slots:
 private:
     Ui::createUserWindow *ui;
     errorwindow errorWidget;
-    Database data;
+    Service _service;
 
     QString username;
     QString password;
