@@ -18,20 +18,14 @@ QSqlQuery Database::showScientistData (QString username, QString searchString)
 
     string command = "SELECT First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information "
                      "FROM scientists "
-                     "where deleted = 0 "
-                     "AND First_name LIKE \"%" + sSearch + "%\" "
-                     "OR "
-                     " Last_name LIKE \"%" + sSearch + "%\" "
-                     "OR "
-                     " Gender LIKE \"%" + sSearch + "%\" "
-                     "OR "
-                     " Year_of_birth LIKE \"%" + sSearch + "%\" "
-                     "OR "
-                     " Year_of_death LIKE \"%" + sSearch + "%\" "
-                     "OR "
-                     " Nationality LIKE \"%" + sSearch + "%\" "
-                     "OR "
-                     " Information LIKE \"%" + sSearch + "%\"";
+                     "WHERE (First_name = '%" + sSearch + "%' "
+                     "OR Last_name LIKE '%" + sSearch + "%' "
+                     "OR Gender LIKE '%" + sSearch + "%' "
+                     "OR Year_of_birth LIKE '%" + sSearch + "%' "
+                     "OR Year_of_death LIKE '%" + sSearch + "%' "
+                     "OR Nationality LIKE '%" + sSearch + "%' "
+                     "OR Information LIKE '%" + sSearch + "%') "
+                     "AND (Deleted = '0')";
 
     QString Qcommand(command.c_str());
 
@@ -46,21 +40,22 @@ QSqlQuery Database::showComputerData (QString username, QString searchString)
     string sSearch = searchString.toUtf8().constData();
     databaseOpen(username);
 
-    string command = "SELECT name, year_of_build, type, built_or_not "
+    string command1 = "SELECT name, year_of_build, type, built_or_not "
                      "FROM Computers c "
                      "INNER JOIN cpuType t "
                      "ON t.ID = c.CPU_type_ID "
                      "where deleted = 0 "
-                     "AND "
+                     "AND ("
                      "name LIKE \"%" + sSearch + "%\" "
                      "OR "
                      "year_of_build LIKE \"%" + sSearch + "%\" "
                      "OR "
                      "type LIKE \"%" + sSearch + "%\" "
                      "OR "
-                     "built_or_not LIKE \"%" + sSearch + "%\" ";
+                     "built_or_not LIKE \"%" + sSearch + "%\")";
 
-    QString Qcommand(command.c_str());
+
+    QString Qcommand(command1.c_str());
 
     QSqlQuery query;
     query.exec(Qcommand);
@@ -68,6 +63,34 @@ QSqlQuery Database::showComputerData (QString username, QString searchString)
     return query;
 }
 
+bool Database::computerAlreadyDeleted(QString username, int ID)
+{
+
+    string sID = to_string(ID);
+    QString tmp;
+
+    string command1 = "SELECT ID, deleted "
+                     "FROM Computers "
+                     "Where ID = " + sID + " ";
+
+    QString Qcommand(command1.c_str());
+    QSqlQuery query;
+    query.exec(Qcommand);
+
+    while(query.next())
+    {
+        tmp = query.value(1).toString();
+    }
+
+    int intTmp = tmp.toInt();
+     if (intTmp == 1)
+     {
+
+         return true;
+     }
+
+     return false;
+}
 void Database::setUser(QString username)
 {
     user = username;
@@ -250,6 +273,45 @@ void Database::databaseClose()
     myData.close();
     myData = QSqlDatabase();
     QSqlDatabase::removeDatabase(connection);
+}
+
+void Database::deleteScientist(QString username, QString name, QString lastName, QString year)
+{
+    databaseOpen(username);
+
+
+    string sName = name.toUtf8().constData();
+    string sLastName = lastName.toUtf8().constData();
+    string sYear = year.toUtf8().constData();
+    QSqlQuery query;
+    string command = "UPDATE scientists "
+                     "SET Deleted = '1' "
+                     "WHERE First_name = \'" + sName + "\' "
+                     "AND Last_name = \'" + sLastName + "\' "
+                     "AND Year_of_birth = \'" + sYear + "\'";
+
+    QString qCommand(command.c_str());
+    query.exec(qCommand);
+
+    databaseClose();
+}
+
+void Database::deleteComputer(QString username, QString name, QString year)
+{
+    databaseOpen(username);
+    QSqlQuery query;
+
+    string sName = name.toUtf8().constData();
+    string sYear = year.toUtf8().constData();
+    string command = "UPDATE computers "
+                     "SET Deleted = '1' "
+                     "WHERE Name = \'" + sName + "\' "
+                     "AND Year_of_build = " + sYear + "";
+
+    QString qCommand(command.c_str());
+    query.exec(qCommand);
+
+    databaseClose();
 }
 
 /**********************************************/
