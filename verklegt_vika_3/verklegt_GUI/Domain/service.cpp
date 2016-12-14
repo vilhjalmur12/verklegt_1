@@ -16,6 +16,16 @@ Service::Service(const QString user)
 
 Service::~Service() { }
 
+void Service::setUser(QString username)
+{
+    data.setUser(username);
+}
+
+Computer Service::getComputer(int ID)
+{
+    return data.getComputer(ID);
+}
+
 
 /****************************************************************************
                                getErrorString
@@ -368,7 +378,9 @@ vector<CpuType> Service::getTypes(string choice)
 
 void Service::addType(string type)
 {
-   CpuType _cpu(type);
+    type = fixString(type);
+
+    CpuType _cpu(type);
     activityLog _activityLog(user);
     _activityLog.pushActivity("insert", _cpu);
     data.insertType(type);
@@ -427,7 +439,7 @@ bool Service::validCpuName(string &name)
 {
     name = fixString(name);
 
-    bool containsInvalidCharacter = !regex_match(name, regex("(^[A-Za-z0-9.-]+[ ]*([A-Za-z.-0-9]||[ ])*$)"));
+    bool containsInvalidCharacter = !regex_match(name, regex("(^[A-Za-z0-9.-]+[ ]*([A-Za-z.0-9]||[ ])*$)"));
 
     if (containsInvalidCharacter)
     {
@@ -557,7 +569,6 @@ bool Service::validBuildYear(int buildYear)
 
     if(buildYear > timePtr->tm_year + 1900)
     {
-        cout << (timePtr->tm_year + 1900);
         throwError.invalidYear(8);
         return false;
     }
