@@ -32,6 +32,7 @@ public:
     void deleteComputer(QString username, QString name, QString year);
     bool computerAlreadyDeleted(QString username, int ID);
     QSqlQuery getRecycledComputers (QString username);
+    QSqlQuery getRecycledScientists (QString username);
 
     void setUser(QString username);
     bool userExisting(QString username);

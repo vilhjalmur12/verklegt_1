@@ -121,6 +121,7 @@ public:
     void deleteScientist(QString username, QString name, QString lastName, QString year);
     void deleteComputer(QString username, QString name, QString year);
     QSqlQuery getRecycledComputers(QString username);
+    QSqlQuery getRecycledScientists(QString username);
     bool getUser(const QString& username, const QString& password);
     bool createUser (const QString& username, const QString& password, const QString& firstName, const QString& lastName);
 

@@ -138,6 +138,22 @@ QSqlQuery Database::getRecycledComputers (QString username)
     return query;
 }
 
+QSqlQuery Database::getRecycledScientists (QString username)
+{
+    databaseOpen(username);
+
+    string command1 = "SELECT First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information "
+                     "FROM scientists "
+                     "where Deleted = 1 ";
+
+    QString Qcommand(command1.c_str());
+
+    QSqlQuery query;
+    query.exec(Qcommand);
+
+    return query;
+}
+
 Scientist Database::getScientist(int ID)
 {
     databaseOpen();

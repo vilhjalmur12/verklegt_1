@@ -60,6 +60,13 @@ QSqlQuery Service::getRecycledComputers(QString username)
     return query;
 }
 
+QSqlQuery Service::getRecycledScientists(QString username)
+{
+    QSqlQuery query = data.getRecycledScientists(username);
+
+    return query;
+}
+
 bool Service::getUser(const QString& username, const QString& password)
 {
     bool tmp = data.getUser(username, password);

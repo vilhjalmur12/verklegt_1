@@ -98,15 +98,8 @@ void MainWindow::on_pushButton_editComputer_clicked()
     edit.exec();
 }
 
-void MainWindow::on_pushButton_recycleBin_clicked()
+void MainWindow::on_pushButton_recycleBinComputers_clicked()
 {
-    QSqlQueryModel *modal = new QSqlQueryModel();
-
-    QSqlQuery query = _service.getRecycledComputers(username);
-
-    modal->setQuery(query);
-
-    ui->tableView_computers->setModel(modal);
-
-    _service.closeDatabase();
+    QString choice = "computers";
+    recycleBin.callRecycleBin(username, choice);
 }

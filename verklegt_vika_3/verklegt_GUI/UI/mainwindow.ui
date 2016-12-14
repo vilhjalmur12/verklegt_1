@@ -24,7 +24,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="Scientists">
        <attribute name="title">
@@ -198,7 +198,7 @@
          </widget>
         </item>
         <item row="2" column="4">
-         <widget class="QPushButton" name="pushButton_recycleBin">
+         <widget class="QPushButton" name="pushButton_recycleBinComputers">
           <property name="minimumSize">
            <size>
             <width>120</width>
@@ -264,7 +264,7 @@
        <zorder>pushButton_deleteComputer</zorder>
        <zorder>lineEdit_searchComputer</zorder>
        <zorder>pushButton_editComputer</zorder>
-       <zorder>pushButton_recycleBin</zorder>
+       <zorder>pushButton_recycleBinComputers</zorder>
        <zorder>pushButton_2</zorder>
        <zorder>horizontalSpacer</zorder>
        <zorder>horizontalSpacer_2</zorder>
