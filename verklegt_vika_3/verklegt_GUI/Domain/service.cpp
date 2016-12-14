@@ -378,7 +378,9 @@ vector<CpuType> Service::getTypes(string choice)
 
 void Service::addType(string type)
 {
-   CpuType _cpu(type);
+    type = fixString(type);
+
+    CpuType _cpu(type);
     activityLog _activityLog(user);
     _activityLog.pushActivity("insert", _cpu);
     data.insertType(type);
