@@ -838,20 +838,20 @@ void Database::initDatabase (const QString& username)
 
 vector<CpuType> Database::pullTypes(string order)
 {
+    string execute = "SELECT * From cpuType "
+                     "ORDER BY " + order;
+
     databaseOpen();
 
     vector<CpuType> cpu;
     CpuType tmpCpu;
     QString QCpu;
-    QString Qorder(order.c_str());
+    QString Qorder(execute.c_str());
     string tmpCpuString;
     int tmpID;
     QSqlQuery query;
 
-    query.prepare("SELECT * From cpuType "
-               "ORDER BY :order");
-    query.bindValue(":order", Qorder);
-    query.exec();
+    query.exec(Qorder);
 
     while (query.next())
     {
