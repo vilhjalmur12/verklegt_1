@@ -1,8 +1,8 @@
-
 #ifndef EDITCOMPUTERDIALOG_H
 #define EDITCOMPUTERDIALOG_H
 
 #include "Domain/service.h"
+
 #include <QDialog>
 
 namespace Ui {
@@ -33,8 +33,8 @@ private:
     Service *data;
     Computer computer;
     QString username;
+
     int ID;
 };
 
 #endif // EDITCOMPUTERDIALOG_H
-
