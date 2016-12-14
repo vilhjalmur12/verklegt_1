@@ -4,14 +4,14 @@
 #include "Domain/service.h"
 #include <QMessageBox>
 
-editStudentDialog::editStudentDialog(QWidget *parent) :
+editStudentDialog::editStudentDialog(QWidget *parent, int id, QString userName) :
     QDialog(parent),
     ui(new Ui::editStudentDialog)
 {
     ui->setupUi(this);
-    ID = 3;
+    ID = id;
     data = new Database;
-    data->setUser("ketill"); /////////////////////////////////////////////////////// FINNA LEIÐ TIL AÐ PARSA INN NOTENDANAFNI OG ID TÖLU
+    data->setUser(userName);
 
     Scientist temp = data->getScientist(ID);
 

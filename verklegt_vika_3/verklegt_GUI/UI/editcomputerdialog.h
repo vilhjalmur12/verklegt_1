@@ -19,7 +19,7 @@ public:
 private slots:
     void on_pushButton_back_clicked();
 
-    void on_editComputerDialog_accepted();
+    void on_pushButton_update_clicked();
 
 private:
     Ui::editComputerDialog *ui;
