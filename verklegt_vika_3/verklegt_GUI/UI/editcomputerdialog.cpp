@@ -17,24 +17,8 @@ editComputerDialog::editComputerDialog(QWidget *parent, int id, QString userName
 
     computer = data->getComputer(ID);
 
-    string year = computer.getYearForPrinting();
-    string scientists;
+    initializeInfo();
 
-    vector<string> builders = computer.getBuilders();
-
-    for(unsigned int i = 0; i < builders.size(); i++)
-    {
-        scientists += builders[i];
-        if(i != (builders.size()-1))
-            scientists += ", ";
-    }
-
-    initializeDropDown();
-
-    ui->lineEdit_name->setText(QString::fromStdString(computer.getName()));
-    ui->lineEdit_year->setText(QString::fromStdString(year));
-    ui->checkBox_built->setChecked(computer.getBuilt());
-    ui->lineEdit_builders->setText(QString::fromStdString(scientists));
 }
 
 void editComputerDialog::initializeDropDown()
@@ -100,6 +84,8 @@ void editComputerDialog::on_pushButton_update_clicked()
     Computer cpu(name, type, built, year);
 
     data->editComputer(ID, cpu);
+
+    initializeInfo();
 }
 
 void editComputerDialog::on_pushButton_addType_clicked()
@@ -114,7 +100,7 @@ void editComputerDialog::on_pushButton_addType_clicked()
         data->addType(newType);
     }
 
-    initializeDropDown();
+    initializeInfo();
 }
 
 void editComputerDialog::on_pushButton_edit_relations_clicked()
@@ -122,4 +108,31 @@ void editComputerDialog::on_pushButton_edit_relations_clicked()
     editComputersRelations editR(this, ID, username);
 
     editR.exec();
+
+    initializeInfo();
+}
+
+void editComputerDialog::initializeInfo()
+{
+    computer = data->getComputer(ID);
+
+    string year = computer.getYearForPrinting();
+    string scientists;
+
+    vector<string> builders = computer.getBuilders();
+
+    for(unsigned int i = 0; i < builders.size(); i++)
+    {
+        scientists += builders[i];
+        if(i != (builders.size()-1))
+            scientists += ", ";
+    }
+
+    initializeDropDown();
+
+    ui->lineEdit_name->setText(QString::fromStdString(computer.getName()));
+    ui->lineEdit_year->setText(QString::fromStdString(year));
+    ui->checkBox_built->setChecked(computer.getBuilt());
+    ui->lineEdit_builders->setText(QString::fromStdString(scientists));
+
 }

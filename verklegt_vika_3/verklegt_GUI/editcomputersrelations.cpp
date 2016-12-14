@@ -27,6 +27,9 @@ void editComputersRelations::populateList()
     Service _data;
     _data.setUser(user);
 
+    relatedIDs.clear();
+    IDs.clear();
+
     vector<Scientist> relatedScientists = _data.getScientistsRelatedTo(ID);
     vector<Scientist> allScientists = _data.getScientists();
 
@@ -66,7 +69,7 @@ void editComputersRelations::on_pushButton_clicked()
     Service _data;
     _data.setUser(user);
 
-    int index = ui->tableWidget_scientists->currentIndex().row();
+    int index = ui->tableWidget_scientists->currentItem()->row();
     int sID = relatedIDs[index];
 
     _data.removeRelations(ID, sID);
