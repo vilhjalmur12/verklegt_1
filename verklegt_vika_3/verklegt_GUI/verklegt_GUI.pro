@@ -28,7 +28,9 @@ SOURCES += main.cpp\
     UI/createuserwindow.cpp \
     UI/mainwindow.cpp \
     UI/editstudentdialog.cpp \
-    UI/editcomputerdialog.cpp
+    UI/editcomputerdialog.cpp \
+    UI/recycledbin.cpp
+
 
 HEADERS  += \
     DATA/database.h \
@@ -47,7 +49,9 @@ HEADERS  += \
     UI/createuserwindow.h \
     UI/mainwindow.h \
     UI/editstudentdialog.h \
-    UI/editcomputerdialog.h
+    UI/editcomputerdialog.h \
+    UI/recycledbin.h
+
 
 FORMS    += \
     UI/loginwindow.ui \
@@ -55,7 +59,9 @@ FORMS    += \
     UI/createuserwindow.ui \
     UI/mainwindow.ui \
     UI/editstudentdialog.ui \
-    UI/editcomputerdialog.ui
+    UI/editcomputerdialog.ui \
+    UI/recycledbin.ui
+
 
 DISTFILES +=
 
