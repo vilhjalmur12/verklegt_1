@@ -37,10 +37,13 @@ private slots:
     void on_pushButton_editComputer_clicked();
 
 
+    void on_pushButton_recycleBin_clicked();
+
 private:
     Ui::MainWindow *ui;
     Database data;
     QString username;
+
 
     int rowChosen;
     QString year;
