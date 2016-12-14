@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,11 +17,155 @@
    <string>Database</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="Scientists">
+       <attribute name="title">
+        <string>Scientists</string>
+       </attribute>
+       <widget class="QPushButton" name="pushButton_deleteScientist">
+        <property name="geometry">
+         <rect>
+          <x>510</x>
+          <y>400</y>
+          <width>101</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Delete</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_editScientist">
+        <property name="geometry">
+         <rect>
+          <x>640</x>
+          <y>400</y>
+          <width>101</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Edit</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_search">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>400</y>
+          <width>161</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Search</string>
+        </property>
+       </widget>
+       <widget class="QTableView" name="tableView">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>1</y>
+          <width>761</width>
+          <height>371</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_loadScientist">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>400</y>
+          <width>141</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Load Table</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="Computers">
+       <attribute name="title">
+        <string>Computers</string>
+       </attribute>
+       <widget class="QTableView" name="tableView_computers">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>1</y>
+          <width>761</width>
+          <height>371</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_loadComputer">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>400</y>
+          <width>141</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Load Table</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="geometry">
+         <rect>
+          <x>510</x>
+          <y>400</y>
+          <width>101</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Delete</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="geometry">
+         <rect>
+          <x>640</x>
+          <y>400</y>
+          <width>101</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Edit</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_searchComputer">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>400</y>
+          <width>161</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Search</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
+      <y>20</y>
       <width>771</width>
       <height>471</height>
      </rect>
@@ -33,9 +180,9 @@
      <widget class="QPushButton" name="pushButton_deleteScientist">
       <property name="geometry">
        <rect>
-        <x>550</x>
+        <x>510</x>
         <y>400</y>
-        <width>80</width>
+        <width>101</width>
         <height>24</height>
        </rect>
       </property>
@@ -46,9 +193,9 @@
      <widget class="QPushButton" name="pushButton_editScientist">
       <property name="geometry">
        <rect>
-        <x>650</x>
+        <x>640</x>
         <y>400</y>
-        <width>80</width>
+        <width>101</width>
         <height>24</height>
        </rect>
       </property>
@@ -59,9 +206,9 @@
      <widget class="QLineEdit" name="lineEdit_search">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>400</y>
-        <width>181</width>
+        <width>161</width>
         <height>24</height>
        </rect>
       </property>
@@ -75,14 +222,14 @@
         <x>5</x>
         <y>1</y>
         <width>761</width>
-        <height>351</height>
+        <height>371</height>
        </rect>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_loadScientist">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>200</x>
         <y>400</y>
         <width>141</width>
         <height>24</height>
@@ -133,7 +280,7 @@
        <string>Delete</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="pushButton_editComputer">
       <property name="geometry">
        <rect>
         <x>640</x>
@@ -159,6 +306,11 @@
        <string>Search</string>
       </property>
      </widget>
+     <zorder>tableView_computers</zorder>
+     <zorder>pushButton_loadComputer</zorder>
+     <zorder>pushButton_deleteComputer</zorder>
+     <zorder>lineEdit_searchComputer</zorder>
+     <zorder>pushButton_editComputer</zorder>
     </widget>
    </widget>
   </widget>
@@ -168,7 +320,8 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -178,7 +331,11 @@
   <tabstop>lineEdit_searchComputer</tabstop>
   <tabstop>pushButton_loadComputer</tabstop>
   <tabstop>pushButton_deleteComputer</tabstop>
+
   <tabstop>pushButton_3</tabstop>
+
+  <tabstop>pushButton_editComputer</tabstop>
+
   <tabstop>lineEdit_search</tabstop>
   <tabstop>pushButton_loadScientist</tabstop>
   <tabstop>pushButton_deleteScientist</tabstop>

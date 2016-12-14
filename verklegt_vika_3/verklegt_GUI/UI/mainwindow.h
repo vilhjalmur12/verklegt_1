@@ -5,7 +5,8 @@
 #include "DATA/database.h"
 #include <QSqlQueryModel>
 
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
 
@@ -30,6 +31,11 @@ private slots:
     void on_pushButton_deleteComputer_clicked();
 
     void on_tableView_computers_clicked(const QModelIndex &index);
+
+    void on_pushButton_editScientist_clicked();
+
+    void on_pushButton_editComputer_clicked();
+
 
 private:
     Ui::MainWindow *ui;

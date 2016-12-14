@@ -32,7 +32,15 @@ public:
     void deleteComputer(QString username, QString name, QString year);
     bool computerAlreadyDeleted(QString username, int ID);
 
+    void setUser(QString username);
+    Computer getComputer(int ID);
+    Scientist getScientist(int ID);
 
+    Scientist makeScientist(QSqlQuery &query);
+    Computer makeComputer(QSqlQuery &query);
+
+    void adddBuiltComputersToScientist(Scientist &scientist);
+    void addBuildersToComputer(Computer &computer);
     /****************************/
 
 
