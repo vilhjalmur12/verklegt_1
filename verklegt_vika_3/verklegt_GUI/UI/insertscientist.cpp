@@ -32,6 +32,7 @@ insertScientist::insertScientist(QWidget *parent, QString username) :
     ui->lineEdit_gender->setValidator(gender);
     ui->lineEdit_YOB->setValidator(YOB);
     ui->lineEdit_YOD->setValidator(YOD);
+
 }
 
 insertScientist::~insertScientist()
