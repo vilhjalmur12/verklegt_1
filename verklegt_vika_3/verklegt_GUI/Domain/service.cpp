@@ -220,6 +220,9 @@ bool Service::doesComputerExcist(string name, string cpuType, int yearBuilt, boo
  ****************************************************************************/
 bool Service::appendScientist(string firstName, string lastName, string sex, int birthYear, int deathYear, string nationality, string furtherInfo)
 {
+    if(furtherInfo != "")
+        fixString(furtherInfo);
+
     Scientist tempScientist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo);
 
     if(doesScientistExcist(firstName, lastName, sex, birthYear, deathYear, nationality, furtherInfo))
@@ -675,6 +678,9 @@ bool Service::validDeathYear(string input)
  ****************************************************************************/
 bool Service::validNationality(string& nationality)
 {
+    if(nationality == "")
+        return true;
+
     nationality = fixString(nationality);
 
     bool containsDigits = !regex_match(nationality, regex("(^[A-Za-z]+[ ]*([A-Za-z]||[ ])*$)"));
