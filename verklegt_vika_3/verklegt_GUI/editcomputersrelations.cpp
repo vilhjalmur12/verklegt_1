@@ -15,6 +15,7 @@ editComputersRelations::editComputersRelations(QWidget *parent, int id, QString 
     data.setUser(user);
 
     populateList();
+
 }
 
 editComputersRelations::~editComputersRelations()
@@ -57,6 +58,8 @@ void editComputersRelations::populateList()
 
         ui->dropDown_scientists->addItem(QString::fromStdString(name));
     }
+
+    ui->pushButton->setEnabled(false);
 }
 
 void editComputersRelations::on_pushButton_done_clicked()
@@ -88,4 +91,9 @@ void editComputersRelations::on_pushButton_add_clicked()
     _data.addRelations(ID, sID);
 
     populateList();
+}
+
+void editComputersRelations::on_tableWidget_scientists_clicked(const QModelIndex &index)
+{
+    ui->pushButton->setEnabled(true);
 }
