@@ -3,6 +3,7 @@
 
 #include "editstudentdialog.h"
 #include "editcomputerdialog.h"
+#include "insertscientist.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -112,4 +113,11 @@ void MainWindow::on_pushButton_recycleBinComputers_clicked()
 {
     QString choice = "computers";
     recycleBin.callRecycleBin(username, choice);
+}
+
+void MainWindow::on_pushButton_insertScientist_clicked()
+{
+    insertScientist insert(this, username);
+
+    insert.exec();
 }
