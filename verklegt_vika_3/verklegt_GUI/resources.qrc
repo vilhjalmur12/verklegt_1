@@ -13,6 +13,8 @@
     </qresource>
     <qresource prefix="/icons">
         <file>Images/DB.jpg</file>
+        <file>Images/DBSimple.jpg</file>
+        <file>Images/DBSecondSimplest.jpg</file>
     </qresource>
     <qresource prefix="/imagesOfComputers">
         <file>Images/800px-Babbage_Difference_Engine.jpg</file>
