@@ -28,7 +28,7 @@ private slots:
 
     void on_pushButton_edit_relations_clicked();
 
-    void on_pushButton_browse_clicked();
+    void on_pushButton_browseImCpu_clicked();
 
 private:
     Ui::editComputerDialog *ui;

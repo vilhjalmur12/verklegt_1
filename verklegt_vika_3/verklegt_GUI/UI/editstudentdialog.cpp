@@ -185,7 +185,7 @@ void editStudentDialog::on_pushButton_edit_relations_clicked()
 
 }
 
-void editStudentDialog::on_pushButton_browse_clicked()
+void editStudentDialog::on_pushButton_browseImSci_clicked()
 {
     string imagePath = QFileDialog::getOpenFileName(
                 this,
