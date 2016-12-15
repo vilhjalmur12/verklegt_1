@@ -22,6 +22,8 @@ private slots:
 
     void on_pushButton_add_clicked();
 
+    void on_tableWidget_scientists_clicked(const QModelIndex &index);
+
 private:
     Ui::editComputersRelations *ui;
     int ID;
