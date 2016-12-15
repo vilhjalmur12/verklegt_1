@@ -19,13 +19,26 @@
   <property name="windowTitle">
    <string>Database</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../resources.qrc">
+    <normaloff>:/icons/Images/DBSimple.jpg</normaloff>:/icons/Images/DBSimple.jpg</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
 background-color: rgb(204, 217, 233);
 }
 
+QWidget::QTabWidget{
+color: rgb(204, 217, 233);
+background-color: rgb(204, 217, 233);
+}
+
 QTabWidget{
 background-color: rgb(204, 217, 233);
+}
+
+QTableView{
+background-color: white;
 }
 
 QLineEdit{
@@ -35,14 +48,26 @@ background-color: white;
 QPushButton{
 color: rgb(0, 0, 0);
 background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, stop:0 rgba(176, 176, 176, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
+}
+
+QPushButton::hover{
+background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0.318408 rgba(69, 69, 69, 255), stop:1 rgba(162, 162, 162, 255));
+}
+
+QPushButton::pressed{
+background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0.318408 rgba(69, 69, 69, 255), stop:1 rgba(162, 162, 162, 255));
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="Scientists">
        <attribute name="title">
@@ -325,7 +350,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, sto
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
@@ -344,6 +369,8 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, sto
   <tabstop>tabWidget</tabstop>
   <tabstop>tableView_computers</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
