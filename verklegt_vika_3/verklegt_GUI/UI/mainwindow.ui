@@ -54,7 +54,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, sto
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="Scientists">
        <attribute name="title">
@@ -365,6 +365,31 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, sto
             <height>0</height>
            </size>
           </property>
+          <column>
+           <property name="text">
+            <string>ID</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Year of Build</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Type</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Built or Not</string>
+           </property>
+          </column>
          </widget>
         </item>
        </layout>

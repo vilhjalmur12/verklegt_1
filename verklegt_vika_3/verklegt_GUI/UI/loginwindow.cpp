@@ -37,6 +37,8 @@ void LoginWindow::on_pushButton_activateUser_clicked()
         {
             main.setUserName(username);
             main.show();
+            main.displayScientists();
+            main.displayComputers();
             this->close();
         }
     }

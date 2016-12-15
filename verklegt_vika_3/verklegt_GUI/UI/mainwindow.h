@@ -16,9 +16,11 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = 0, QString user = "");
     virtual ~MainWindow();
     void setUserName(QString user);
+    void displayComputers();
+    void displayScientists();
 
 private slots:
     void on_tableView_scientists_clicked(const QModelIndex &index);
@@ -46,8 +48,6 @@ private:
     vector<Scientist> scientists;
     vector<Computer> computers;
 
-    void displayComputers();
-    void displayScientists();
 
 
 };
