@@ -10,6 +10,12 @@
     <height>562</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="minimumSize">
    <size>
     <width>800</width>
@@ -41,6 +47,12 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, sto
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
+      <property name="minimumSize">
+       <size>
+        <width>757</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -68,58 +80,6 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, sto
            <string>Edit</string>
           </property>
          </widget>
-        </item>
-        <item row="0" column="0" colspan="8">
-         <widget class="QTableView" name="tableView">
-          <property name="sortingEnabled">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="6">
-         <spacer name="horizontalSpacer_6">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Minimum</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="1" column="5">
-         <widget class="QPushButton" name="pushButton_deleteScientist">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Delete</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <spacer name="horizontalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Minimum</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
         </item>
         <item row="1" column="3">
          <widget class="QPushButton" name="pushButton_loadScientist">
@@ -153,6 +113,51 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, sto
           </property>
          </spacer>
         </item>
+        <item row="1" column="5">
+         <widget class="QPushButton" name="pushButton_deleteScientist">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Delete</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="6">
+         <spacer name="horizontalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="2">
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
         <item row="1" column="1">
          <widget class="QPushButton" name="pushButton_insertScientist">
           <property name="minimumSize">
@@ -164,6 +169,62 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, sto
           <property name="text">
            <string>Insert</string>
           </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="3">
+         <widget class="QTableWidget" name="tableView_scientists">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>760</width>
+            <height>0</height>
+           </size>
+          </property>
+          <column>
+           <property name="text">
+            <string>ID</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Last Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>First Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Gender</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Year of Birth</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Year of Death</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Nationality</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Further Info</string>
+           </property>
+          </column>
          </widget>
         </item>
        </layout>
@@ -219,13 +280,6 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, sto
           </property>
           <property name="text">
            <string>Edit</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" colspan="7">
-         <widget class="QTableView" name="tableView_computers">
-          <property name="sortingEnabled">
-           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -303,8 +357,17 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, sto
           </property>
          </spacer>
         </item>
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="tableView_computers">
+          <property name="minimumSize">
+           <size>
+            <width>757</width>
+            <height>0</height>
+           </size>
+          </property>
+         </widget>
+        </item>
        </layout>
-       <zorder>tableView_computers</zorder>
        <zorder>pushButton_loadComputer</zorder>
        <zorder>pushButton_deleteComputer</zorder>
        <zorder>lineEdit_searchComputer</zorder>
@@ -314,6 +377,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, sto
        <zorder>horizontalSpacer</zorder>
        <zorder>horizontalSpacer_2</zorder>
        <zorder>horizontalSpacer_3</zorder>
+       <zorder>tableView_computers</zorder>
       </widget>
      </widget>
     </item>
@@ -340,9 +404,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, sto
   <tabstop>pushButton_loadScientist</tabstop>
   <tabstop>pushButton_deleteScientist</tabstop>
   <tabstop>pushButton_editScientist</tabstop>
-  <tabstop>tableView</tabstop>
   <tabstop>tabWidget</tabstop>
-  <tabstop>tableView_computers</tabstop>
  </tabstops>
  <resources/>
  <connections/>

@@ -756,5 +756,7 @@ bool Service::findInString(string query, string String) //Jafnvel að endurskoð
  ****************************************************************************/
 void Service::searchInDatabase(vector<Scientist> &scientists, vector<Computer> &computers, string query)
 {
+    scientists.clear();
+    computers.clear();
     data.searchData(scientists, computers, query);
 }
