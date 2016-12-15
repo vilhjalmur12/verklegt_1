@@ -11,6 +11,27 @@ insertScientist::insertScientist(QWidget *parent, QString username) :
 {
     ui->setupUi(this);
     user = username;
+
+    QRegExp firstName("[A-Za-z][A-Za-z]*([.]?||[])([ ][A-Za-z]+([.]?||[-][A-Za-z]))*");
+    QValidator *firstNameValidator = new QRegExpValidator(firstName, this);
+
+    QRegExp lastName("([A-Za-z]+([-][A-Za-z][A-Za-z]*)?)");
+    QValidator *lastNameValidator = new QRegExpValidator(lastName, this);
+
+    QRegExp regGender("[fm]||(female||male)||(Female||Male)");
+    QValidator *gender = new QRegExpValidator(regGender, this);
+
+    QRegExp regYOB("-?[0-9]*");
+    QValidator *YOB = new QRegExpValidator(regYOB, this);
+
+    QRegExp regYOD("-?[0-9]*||(n/a)");
+    QValidator *YOD = new QRegExpValidator(regYOD, this);
+
+    ui->lineEdit_first_name->setValidator(firstNameValidator);
+    ui->lineEdit_last_name->setValidator(lastNameValidator);
+    ui->lineEdit_gender->setValidator(gender);
+    ui->lineEdit_YOB->setValidator(YOB);
+    ui->lineEdit_YOD->setValidator(YOD);
 }
 
 insertScientist::~insertScientist()
@@ -23,6 +44,22 @@ void insertScientist::on_pushButton_insert_clicked()
     Service scientistCheck;
     scientistCheck.setUser(user);
 
+    if(!ui->lineEdit_first_name->hasAcceptableInput())
+    {
+        QMessageBox::warning(this, "Invalid Name", "ERROR: Invalid format of first name");
+        return;
+    }
+    if(!ui->lineEdit_last_name->hasAcceptableInput())
+    {
+        QMessageBox::warning(this, "Invalid Name", "ERROR: Invalid format of last name");
+        return;
+    }
+    if(!ui->lineEdit_gender->hasAcceptableInput())
+    {
+        QMessageBox::warning(this, "Invalid Gender", "ERROR: Invalid format of gender");
+        return;
+    }
+
     string firstName = ui->lineEdit_first_name->text().toStdString();
     string lastName = ui->lineEdit_last_name->text().toStdString();
     string gender = ui->lineEdit_gender->text().toStdString();
@@ -33,11 +70,26 @@ void insertScientist::on_pushButton_insert_clicked()
     string nationality = ui->lineEdit_nationality->text().toStdString();
     string further = ui->lineEdit_further->text().toStdString();
 
-    scientistCheck.fixString(further);
+    if(gender == "")
+    {
+        QMessageBox::warning(this, "Invalid Gender", "ERROR: Gender can not be empty");
+        return;
+    }
+    if(firstName == "" || lastName == "")
+    {
+        QMessageBox::warning(this, "Invalid Name", "ERROR: First and Last names can not be empty");
+        return;
+    }
+    if(sYOB == "")
+    {
+        QMessageBox::warning(this, "Invalid Year", "ERROR: year of birth can not be empty");
+        return;
+    }
 
-    if(sYOD == "n/a")
+    if(sYOD == "n/a" || sYOD == "")
     {
         YOD = maxDeathYear;
+        sYOD = "n/a";
     }
     else if(!scientistCheck.validDeathYear(sYOD))
     {
@@ -90,4 +142,5 @@ void insertScientist::on_pushButton_insert_clicked()
         QMessageBox::warning(this, "Invalid Scientist", QString::fromStdString(scientistCheck.getErrorString()));
         return;
     }
+
 }
