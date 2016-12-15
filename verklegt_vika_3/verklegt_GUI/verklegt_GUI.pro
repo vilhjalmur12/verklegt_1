@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     UI/editstudentdialog.cpp \
     UI/editcomputerdialog.cpp \
     UI/recycledbin.cpp \
-    editcomputersrelations.cpp
+    editcomputersrelations.cpp \
+    UI/editscientistsrelations.cpp
 
 
 HEADERS  += \
@@ -52,7 +53,8 @@ HEADERS  += \
     UI/editstudentdialog.h \
     UI/editcomputerdialog.h \
     UI/recycledbin.h \
-    editcomputersrelations.h
+    editcomputersrelations.h \
+    UI/editscientistsrelations.h
 
 
 FORMS    += \
@@ -63,7 +65,8 @@ FORMS    += \
     UI/editstudentdialog.ui \
     UI/editcomputerdialog.ui \
     UI/recycledbin.ui \
-    editcomputersrelations.ui
+    editcomputersrelations.ui \
+    UI/editscientistsrelations.ui
 
 
 DISTFILES +=

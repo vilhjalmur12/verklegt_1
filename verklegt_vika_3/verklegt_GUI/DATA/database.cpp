@@ -287,7 +287,7 @@ void Database::addBuildersToComputer(Computer &computer)
     }
 }
 
-vector<Computer> Database::getComputersRelatedTo(int ID) ///////////////////////////////////////////////SKOÐA VEL
+vector<Computer> Database::getComputersRelatedTo(int ID)
 {
     vector<Computer> computers;
 
@@ -296,14 +296,18 @@ vector<Computer> Database::getComputersRelatedTo(int ID) ///////////////////////
     QSqlQuery query;
 
     query.prepare("SELECT c.ID, name, year_of_build, type, built_or_not FROM computers c "
+                  "INNER JOIN cpuType t "
+                  "ON t.ID = c.cpu_type_ID "
                   "LEFT OUTER JOIN scientist_computer_relations r "
-                  "ON r.ScientistID = :ID "
-                  "WHERE ID = r.computerID "
+                  "ON r.scientistID = :ID "
+                  "WHERE c.ID = r.computerID "
                   "AND c.deleted = 0 "
                   "AND r.deleted = 0 "
                   "ORDER BY name ");
     query.bindValue(":ID", ID);
     query.exec();
+
+    addFoundComputers(query, computers);
 
     databaseClose();
 

@@ -3,6 +3,7 @@
 
 #include "Domain/service.h"
 #include <QMessageBox>
+#include "editscientistsrelations.h"
 
 editStudentDialog::editStudentDialog(QWidget *parent, int id, QString userName) :
     QDialog(parent),
@@ -12,6 +13,7 @@ editStudentDialog::editStudentDialog(QWidget *parent, int id, QString userName) 
     ID = id;
     data = new Database;
     data->setUser(userName);
+    username = userName;
 
     Scientist temp = data->getScientist(ID);
 
@@ -120,5 +122,13 @@ void editStudentDialog::on_pushButton_update_clicked()
     data->editScientist(ID, temp);
 
 
+
+}
+
+void editStudentDialog::on_pushButton_edit_relations_clicked()
+{
+    editScientistsRelations edit(this, ID, username);
+
+    edit.exec();
 
 }

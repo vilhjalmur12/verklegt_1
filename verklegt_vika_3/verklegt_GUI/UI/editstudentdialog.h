@@ -21,10 +21,13 @@ private slots:
 
     void on_pushButton_update_clicked();
 
+    void on_pushButton_edit_relations_clicked();
+
 private:
     Ui::editStudentDialog *ui;
     int ID;
     Database *data;
+    QString username;
 };
 
 #endif // EDITSTUDENTDIALOG_H
