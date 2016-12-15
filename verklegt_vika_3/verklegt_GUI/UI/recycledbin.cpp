@@ -103,5 +103,4 @@ void recycledbin::on_tableView_deletedItems_clicked(const QModelIndex &index)
         lastName = index.sibling(rowChosen, 1).data().toString();
         year = index.sibling(rowChosen, 3).data().toString();
     }
-
 }

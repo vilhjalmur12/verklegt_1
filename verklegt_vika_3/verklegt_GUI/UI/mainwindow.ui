@@ -19,6 +19,24 @@
   <property name="windowTitle">
    <string>Database</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+background-color: rgb(204, 217, 233);
+}
+
+QTabWidget{
+background-color: rgb(204, 217, 233);
+}
+
+QLineEdit{
+background-color: white;
+}
+
+QPushButton{
+color: rgb(0, 0, 0);
+background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, stop:0 rgba(176, 176, 176, 255), stop:1 rgba(255, 255, 255, 255));
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
