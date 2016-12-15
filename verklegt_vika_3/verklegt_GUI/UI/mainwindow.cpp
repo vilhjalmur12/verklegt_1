@@ -3,12 +3,17 @@
 
 #include "editstudentdialog.h"
 #include "editcomputerdialog.h"
+#include "insertscientist.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->pushButton_editComputer->setEnabled(false);
+    ui->pushButton_editScientist->setEnabled(false);
+    ui->pushButton_deleteScientist->setEnabled(false);
+    ui->pushButton_deleteComputer->setEnabled(false);
 }
 
 
@@ -63,6 +68,9 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
        name = index.sibling(rowChosen, 0).data().toString();
        lastName = index.sibling(rowChosen, 1).data().toString();
        year = index.sibling(rowChosen, 3).data().toString();
+
+       ui->pushButton_editScientist->setEnabled(true);
+       ui->pushButton_deleteScientist->setEnabled(true);
 }
 
 void MainWindow::on_pushButton_deleteScientist_clicked()
@@ -82,11 +90,14 @@ void MainWindow::on_tableView_computers_clicked(const QModelIndex &index)
     rowChosen = ui-> tableView_computers->currentIndex().row();
     name = index.sibling(rowChosen, 0).data().toString();
     year = index.sibling(rowChosen, 1).data().toString();
+
+    ui->pushButton_editComputer->setEnabled(true);
+    ui->pushButton_deleteComputer->setEnabled(true);
 }
 
 void MainWindow::on_pushButton_editScientist_clicked()
 {
-    int ID = ui->tableView_computers->currentIndex().row()+1;//////////////////////////////////////////////////////////skoða betur
+    int ID = ui->tableView->currentIndex().row()+1;//////////////////////////////////////////////////////////skoða betur
     editStudentDialog edit(this, ID, username);
     edit.exec();
 }
@@ -102,4 +113,11 @@ void MainWindow::on_pushButton_recycleBinComputers_clicked()
 {
     QString choice = "computers";
     recycleBin.callRecycleBin(username, choice);
+}
+
+void MainWindow::on_pushButton_insertScientist_clicked()
+{
+    insertScientist insert(this, username);
+
+    insert.exec();
 }

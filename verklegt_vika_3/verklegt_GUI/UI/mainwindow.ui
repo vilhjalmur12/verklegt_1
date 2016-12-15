@@ -19,23 +19,48 @@
   <property name="windowTitle">
    <string>Database</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+background-color: rgb(204, 217, 233);
+}
+
+QTabWidget{
+background-color: rgb(204, 217, 233);
+}
+
+QLineEdit{
+background-color: white;
+}
+
+QPushButton{
+color: rgb(0, 0, 0);
+background-color: qlineargradient(spread:pad, x1:0, y1:0.619, x2:1, y2:0.58, stop:0 rgba(176, 176, 176, 255), stop:1 rgba(255, 255, 255, 255));
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="Scientists">
        <attribute name="title">
         <string>Scientists</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
-        <item row="1" column="6">
+        <item row="1" column="0">
+         <widget class="QLineEdit" name="lineEdit_search">
+          <property name="placeholderText">
+           <string>Search</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="7">
          <widget class="QPushButton" name="pushButton_editScientist">
           <property name="minimumSize">
            <size>
-            <width>120</width>
+            <width>100</width>
             <height>0</height>
            </size>
           </property>
@@ -44,64 +69,15 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLineEdit" name="lineEdit_search">
-          <property name="placeholderText">
-           <string>Search</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" colspan="7">
+        <item row="0" column="0" colspan="8">
          <widget class="QTableView" name="tableView">
           <property name="sortingEnabled">
            <bool>true</bool>
           </property>
          </widget>
         </item>
-        <item row="1" column="4">
-         <widget class="QPushButton" name="pushButton_deleteScientist">
-          <property name="minimumSize">
-           <size>
-            <width>120</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Delete</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <spacer name="horizontalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Minimum</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="pushButton_loadScientist">
-          <property name="minimumSize">
-           <size>
-            <width>120</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Load Table</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="3">
-         <spacer name="horizontalSpacer_5">
+        <item row="1" column="6">
+         <spacer name="horizontalSpacer_6">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -117,7 +93,20 @@
          </spacer>
         </item>
         <item row="1" column="5">
-         <spacer name="horizontalSpacer_6">
+         <widget class="QPushButton" name="pushButton_deleteScientist">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Delete</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <spacer name="horizontalSpacer_4">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -131,6 +120,51 @@
            </size>
           </property>
          </spacer>
+        </item>
+        <item row="1" column="3">
+         <widget class="QPushButton" name="pushButton_loadScientist">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Load Table</string>
+          </property>
+          <property name="autoDefault">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <spacer name="horizontalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="pushButton_insertScientist">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Insert</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -149,6 +183,9 @@
           </property>
           <property name="text">
            <string>Load Table</string>
+          </property>
+          <property name="autoDefault">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -288,7 +325,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
