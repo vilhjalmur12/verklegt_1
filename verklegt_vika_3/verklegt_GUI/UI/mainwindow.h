@@ -39,6 +39,8 @@ private slots:
 
     void on_pushButton_recycleBinComputers_clicked();
 
+    void on_pushButton_insertScientist_clicked();
+
 private:
     Ui::MainWindow *ui;
     Database data;

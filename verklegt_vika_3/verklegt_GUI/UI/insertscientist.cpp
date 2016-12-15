@@ -11,6 +11,11 @@ insertScientist::insertScientist(QWidget *parent, QString username) :
 {
     ui->setupUi(this);
     user = username;
+
+    QRegExp rx("[A-Za-z]+([.]?[ ])([A-Za-z]+([.]?[ ]||[-][A-Za-z]))*");
+    QValidator *nameValidator = new QRegExpValidator(rx, this);
+
+    ui->lineEdit_first_name->setValidator(nameValidator);
 }
 
 insertScientist::~insertScientist()
