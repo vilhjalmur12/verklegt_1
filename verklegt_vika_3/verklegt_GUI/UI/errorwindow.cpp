@@ -29,3 +29,22 @@ void errorwindow::nonMatchPassword ()
     QString error = "Passwords do not match";
     ui->label_errorLabel->setText(error);
 }
+
+void errorwindow::userExists()
+{
+    QString error = "Username already exists, pick another one";
+    ui->label_errorLabel->setText(error);
+}
+
+void errorwindow::nonUserInput()
+{
+    QString error = "Please insert username";
+    ui->label_errorLabel->setText(error);
+}
+
+bool errorwindow::confirmDeleteAll(bool OK)
+{
+    QString error = "Are you sure you want to clear your recycle bin?";
+    ui->label_errorLabel->setText(error);
+    this->show();
+}

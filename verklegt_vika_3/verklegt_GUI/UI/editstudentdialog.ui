@@ -10,148 +10,288 @@
     <height>440</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>440</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Update Scientist</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>        First Name</string>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_9">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>        First Name</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_first_name">
+           <property name="minimumSize">
+            <size>
+             <width>261</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>        Last Name</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_last_name">
+           <property name="minimumSize">
+            <size>
+             <width>261</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>             Gender</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_gender">
+           <property name="minimumSize">
+            <size>
+             <width>261</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>     Year of Birth</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_YOB">
+           <property name="minimumSize">
+            <size>
+             <width>261</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>   Year of Death</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_YOD">
+           <property name="minimumSize">
+            <size>
+             <width>261</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>        Nationality</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_nationality">
+           <property name="minimumSize">
+            <size>
+             <width>261</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_8">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>     Further Info</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_further">
+           <property name="minimumSize">
+            <size>
+             <width>262</width>
+             <height>0</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Computers Built</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLineEdit" name="lineEdit_relations">
+             <property name="minimumSize">
+              <size>
+               <width>132</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_edit_relations">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>33</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Edit</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_first_name"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>        Last Name</string>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
        </property>
-      </widget>
+      </spacer>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_last_name"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string>             Gender</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_gender"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
-     <item>
-      <widget class="QLabel" name="label_5">
-       <property name="text">
-        <string>     Year of Birth</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_YOB"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
-     <item>
-      <widget class="QLabel" name="label_6">
-       <property name="text">
-        <string>   Year of Death</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_YOD"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_6">
-     <item>
-      <widget class="QLabel" name="label_7">
-       <property name="text">
-        <string>        Nationality</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_nationality"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_7">
-     <item>
-      <widget class="QLabel" name="label_8">
-       <property name="text">
-        <string>     Further Info</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_further"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_8">
-     <item>
-      <widget class="QLabel" name="label_9">
-       <property name="text">
-        <string>Computers Built</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_relations">
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_edit_relations">
-       <property name="text">
-        <string>Edit</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_9">
-     <item>
-      <widget class="QPushButton" name="pushButton_update">
-       <property name="text">
-        <string>Update</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_back">
-       <property name="text">
-        <string>Back</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QPushButton" name="pushButton_update">
+         <property name="text">
+          <string>Update</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_back">
+         <property name="text">
+          <string>Back</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>

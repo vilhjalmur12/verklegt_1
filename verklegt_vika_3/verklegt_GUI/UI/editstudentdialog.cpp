@@ -4,19 +4,16 @@
 #include "Domain/service.h"
 #include <QMessageBox>
 
-editStudentDialog::editStudentDialog(QWidget *parent) :
+editStudentDialog::editStudentDialog(QWidget *parent, int id, QString userName) :
     QDialog(parent),
     ui(new Ui::editStudentDialog)
 {
     ui->setupUi(this);
-    ID = 2;
+    ID = id;
+    data = new Database;
+    data->setUser(userName);
 
-//útfæra getScientist fyrir ákveðið ID
-
-    Scientist temp(ID, "Ketill Antonius", "Agustsson", "Male", 1995, 200000000, "Icelandic", "Nemandi");
-    temp.addComputerBuilt("ENIAC");
-    temp.addComputerBuilt("Analytical Engine");
-
+    Scientist temp = data->getScientist(ID);
 
     string birth = to_string(temp.getYearOfBirth());
     string death = temp.getYearOfDeathForPrinting();
@@ -120,7 +117,7 @@ void editStudentDialog::on_pushButton_update_clicked()
 
     Scientist temp(firstName, lastName, gender, YOB, YOD, nationality, further);
 
-    //scientistCheck.editScientist(ID, temp);
+    data->editScientist(ID, temp);
 
 
 

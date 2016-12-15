@@ -23,6 +23,7 @@ public:
     int getID() const;
     string getName() const;             // Dregur fram nafn tolvunnar úr meðlimabreytum og skilar því til baka
     bool getBuilt() const;              // Dregur fram hvort tolvan hafi verid byggd og skilar true eda false
+    string getBuiltForPrinting() const;
     int getYearBuilt() const;           // Dregur fram arid sem tolvan var byggd og skilar því til baka
     string getCpuType() const;          // Dregur fram tegund tölvunnar og skilar henni til baka
     string getYearForPrinting() const;  // Dregur fram arid sem tölvan var byggð
