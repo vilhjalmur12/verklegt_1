@@ -1,59 +1,27 @@
-#include "editstudentdialog.h"
-#include "ui_editstudentdialog.h"
+#include "insertscientist.h"
+#include "ui_insertscientist.h"
 
 #include "Domain/service.h"
 #include <QMessageBox>
-#include "editscientistsrelations.h"
 
-editStudentDialog::editStudentDialog(QWidget *parent, int id, QString userName) :
+
+insertScientist::insertScientist(QWidget *parent, QString username) :
     QDialog(parent),
-    ui(new Ui::editStudentDialog)
+    ui(new Ui::insertScientist)
 {
     ui->setupUi(this);
-    ID = id;
-    data = new Database;
-    data->setUser(userName);
-    username = userName;
-
-    Scientist temp = data->getScientist(ID);
-
-    string birth = to_string(temp.getYearOfBirth());
-    string death = temp.getYearOfDeathForPrinting();
-    string computers;
-
-    vector<string> cpuS = temp.getComputersBuilt();
-
-    for(unsigned int i = 0; i < cpuS.size(); i++)
-    {
-        computers += cpuS[i];
-        if(i != (cpuS.size()-1))
-            computers += ", ";
-    }
-
-    ui->lineEdit_first_name->setText(QString::fromStdString(temp.getFirstName()));
-    ui->lineEdit_last_name->setText(QString::fromStdString(temp.getLastName()));
-    ui->lineEdit_gender->setText(QString::fromStdString(temp.getSex()));
-    ui->lineEdit_nationality->setText(QString::fromStdString(temp.getNationality()));
-    ui->lineEdit_YOB->setText(QString::fromStdString(birth));
-    ui->lineEdit_YOD->setText(QString::fromStdString(death));
-    ui->lineEdit_further->setText(QString::fromStdString(temp.getFurtherInfo()));
-    ui->lineEdit_relations->setText(QString::fromStdString(computers));
-
+    user = username;
 }
 
-editStudentDialog::~editStudentDialog()
+insertScientist::~insertScientist()
 {
     delete ui;
 }
 
-void editStudentDialog::on_pushButton_back_clicked()
-{
-    this->done(0);
-}
-
-void editStudentDialog::on_pushButton_update_clicked()
+void insertScientist::on_pushButton_insert_clicked()
 {
     Service scientistCheck;
+    scientistCheck.setUser(user);
 
     string firstName = ui->lineEdit_first_name->text().toStdString();
     string lastName = ui->lineEdit_last_name->text().toStdString();
@@ -117,16 +85,9 @@ void editStudentDialog::on_pushButton_update_clicked()
         return;
     }
 
-    Scientist temp(firstName, lastName, gender, YOB, YOD, nationality, further);
-
-    data->editScientist(ID, temp);
-
-}
-
-void editStudentDialog::on_pushButton_edit_relations_clicked()
-{
-    editScientistsRelations edit(this, ID, username);
-
-    edit.exec();
-
+    if(!scientistCheck.appendScientist(firstName, lastName, gender, YOB, YOD, nationality, further))
+    {
+        QMessageBox::warning(this, "Invalid Scientist", QString::fromStdString(scientistCheck.getErrorString()));
+        return;
+    }
 }
