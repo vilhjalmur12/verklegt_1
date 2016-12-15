@@ -187,14 +187,14 @@ void editStudentDialog::on_pushButton_edit_relations_clicked()
 
 void editStudentDialog::on_pushButton_browseImSci_clicked()
 {
-    string imagePath = QFileDialog::getOpenFileName(
+    string imageSciPath = QFileDialog::getOpenFileName(
                 this,
                 "Search for images",
                 "",
                 "Image files (*.png *.jpg)"
                 ).toStdString();
 
-    if (imagePath.length())
+    if (imageSciPath.length())
     {
         // user selected some file
     }

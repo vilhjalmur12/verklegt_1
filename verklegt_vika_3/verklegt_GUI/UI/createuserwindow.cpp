@@ -56,6 +56,3 @@ bool createUserWindow::comparePassword()
 
     return false;
 }
-
-
-

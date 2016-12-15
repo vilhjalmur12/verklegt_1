@@ -140,16 +140,16 @@ void editComputerDialog::initializeInfo()
 
 void editComputerDialog::on_pushButton_browseImCpu_clicked()
 {
-    string imagePath = QFileDialog::getOpenFileName(
+    string imageCpuPath = QFileDialog::getOpenFileName(
                 this,
                 "Search for images",
                 "",
                 "Image files (*.png *.jpg)"
                 ).toStdString();
 
-    if (imagePath.length())
+    if (imageCpuPath.length())
     {
-        QPixmap pixmap(QString::fromStdString(imagePath));
+        QPixmap pixmap(QString::fromStdString(imageCpuPath));
         ui->label_imCpu->setPixmap(pixmap);
     }
     else
