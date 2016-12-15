@@ -118,16 +118,7 @@ void editComputerDialog::initializeInfo()
     computer = data->getComputer(ID);
 
     string year = computer.getYearForPrinting();
-    string scientists;
-
-    vector<string> builders = computer.getBuilders();
-
-    for(unsigned int i = 0; i < builders.size(); i++)
-    {
-        scientists += builders[i];
-        if(i != (builders.size()-1))
-            scientists += ", ";
-    }
+    string scientists = computer.getBuilders();
 
     initializeDropDown();
 

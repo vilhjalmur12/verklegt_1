@@ -112,9 +112,17 @@ string Computer::getCpuType() const
                                         byggði tölvuna í vector
  ****************************************************************************/
 
-vector<string> Computer::getBuilders() const
+string Computer::getBuilders() const
 {
-    return _builders;
+    string builders;
+    for(unsigned int i = 0; i < _builders.size(); i++)
+    {
+        builders += _builders[i];
+
+        if(i != builders.size()-1)
+            builders += ", ";
+    }
+    return builders;
 }
 
 /****************************************************************************

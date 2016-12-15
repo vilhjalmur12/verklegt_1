@@ -175,9 +175,17 @@ string Scientist::getFurtherInfo() const
                 @return(string _getComputersBuilt) - skilar tölvum vísindamanns
  ****************************************************************************/
 
-vector<string> Scientist::getComputersBuilt() const
+string Scientist::getComputersBuilt() const
 {
-    return _computersBuilt;
+    string built;
+    for(unsigned int i = 0; i < _computersBuilt.size(); i++)
+    {
+        built += _computersBuilt[i];
+
+        if(i != _computersBuilt.size()-1)
+            built += ", ";
+    }
+    return built;
 }
 
 /****************************************************************************

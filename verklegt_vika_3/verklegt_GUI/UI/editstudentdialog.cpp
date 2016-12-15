@@ -21,16 +21,7 @@ editStudentDialog::editStudentDialog(QWidget *parent, int id, QString userName) 
 
     string birth = to_string(temp.getYearOfBirth());
     string death = temp.getYearOfDeathForPrinting();
-    string computers;
-
-    vector<string> cpuS = temp.getComputersBuilt();
-
-    for(unsigned int i = 0; i < cpuS.size(); i++)
-    {
-        computers += cpuS[i];
-        if(i != (cpuS.size()-1))
-            computers += ", ";
-    }
+    string computers = temp.getComputersBuilt();
 
     ui->lineEdit_first_name->setText(QString::fromStdString(temp.getFirstName()));
     ui->lineEdit_last_name->setText(QString::fromStdString(temp.getLastName()));

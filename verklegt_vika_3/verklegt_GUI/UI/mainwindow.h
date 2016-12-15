@@ -39,6 +39,10 @@ private slots:
 
     void on_pushButton_insertScientist_clicked();
 
+    void on_lineEdit_search_textChanged(const QString &arg1);
+
+    void on_lineEdit_searchComputer_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     Database data;

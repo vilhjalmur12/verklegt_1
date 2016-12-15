@@ -28,7 +28,7 @@ public:
     string getYearOfDeathForPrinting() const ;  // Dregur fram dánarár vísindamanns úr meðlimabreytum og skilar því til baka sérstaklega fyrir töflu í útprentun fyrir console
     string getNationality() const;              // Dregur fram þjóðerni vísindamanns úr meðlimabreytum og skilar því til baka
     string getFurtherInfo() const;              // Dregur fram auka upplýsingar vísindamanns úr meðlimabreytum og skilar því til baka
-    vector<string> getComputersBuilt() const;
+    string getComputersBuilt() const;
     bool getDeleted() const;
 
     void addComputerBuilt(string computer);

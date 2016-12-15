@@ -334,7 +334,7 @@ void Console::printScientists(vector<Scientist> allScientists)
     for (unsigned int i = 0; i < allScientists.size(); i++)
     {
         string computersString;
-        vector <string> computers = allScientists[i].getComputersBuilt();
+        vector <string> computers;// = allScientists[i].getComputersBuilt();
 
         for(unsigned int j = 0; j < computers.size(); j++)
         {
@@ -375,7 +375,7 @@ void  Console::printComputers(vector<Computer> computers)
             built = "Not Built";
 
         string buildersString;
-        vector<string> builders = computers[i].getBuilders();
+        vector<string> builders;// = computers[i].getBuilders();
         for(unsigned int j = 0; j < builders.size(); j++)
         {
             buildersString += builders[j];

@@ -13,10 +13,6 @@ MainWindow::MainWindow(QWidget *parent, QString user) :
     username = user;
     _service.setUser(user);
 
-    ui->pushButton_editComputer->setEnabled(false);
-    ui->pushButton_editScientist->setEnabled(false);
-    ui->pushButton_deleteScientist->setEnabled(false);
-    ui->pushButton_deleteComputer->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -39,16 +35,28 @@ void MainWindow::on_tableView_scientists_clicked(const QModelIndex &index)
 
 void MainWindow::on_pushButton_deleteScientist_clicked()
 {
+    ui->pushButton_editScientist->setEnabled(false);
+    ui->pushButton_deleteScientist->setEnabled(false);
+
     int row = ui->tableView_scientists->currentRow();
     int ID = ui->tableView_scientists->item(row, 0)->text().toInt();
     _service.deleteScientist(ID);
+
+    displayScientists();
+
+
 }
 
 void MainWindow::on_pushButton_deleteComputer_clicked()
 {
+    ui->pushButton_editComputer->setEnabled(false);
+    ui->pushButton_deleteComputer->setEnabled(false);
+
     int row = ui->tableView_computers->currentRow();
     int ID = ui->tableView_computers->item(row, 0)->text().toInt();
     _service.deleteComputer(ID);
+
+    displayComputers();
 }
 
 void MainWindow::on_tableView_computers_clicked(const QModelIndex &index)
@@ -59,19 +67,29 @@ void MainWindow::on_tableView_computers_clicked(const QModelIndex &index)
 
 void MainWindow::on_pushButton_editScientist_clicked()
 {
+    ui->pushButton_editScientist->setEnabled(false);
+    ui->pushButton_deleteScientist->setEnabled(false);
+
     int row = ui->tableView_scientists->currentRow();
     int ID = ui->tableView_scientists->item(row, 0)->text().toInt();
     editStudentDialog edit(this, ID, username);
     edit.exec();
+
+    displayScientists();
 }
 
 void MainWindow::on_pushButton_editComputer_clicked()
 {
+    ui->pushButton_editComputer->setEnabled(false);
+    ui->pushButton_deleteComputer->setEnabled(false);
+
     int row = ui->tableView_computers->currentRow();
     int ID = ui->tableView_computers->item(row, 0)->text().toInt();
 
     editComputerDialog edit(this, ID, username);
     edit.exec();
+
+    displayComputers();
 }
 
 void MainWindow::on_pushButton_recycleBinComputers_clicked()
@@ -85,10 +103,13 @@ void MainWindow::on_pushButton_insertScientist_clicked()
     insertScientist insert(this, username);
 
     insert.exec();
+
+    displayScientists();
 }
 
 void MainWindow::displayScientists()
 {
+    ui->tableView_scientists->setSortingEnabled(false);
     string query = ui->lineEdit_search->text().toStdString();
 
     if(query == "")
@@ -114,6 +135,7 @@ void MainWindow::displayScientists()
         QString YOB =         QString::fromStdString(to_string(scientists[i].getYearOfBirth()));
         QString YOD =         QString::fromStdString(scientists[i].getYearOfDeathForPrinting());
         QString nationality = QString::fromStdString(scientists[i].getNationality());
+        QString built =       QString::fromStdString(scientists[i].getComputersBuilt());
         QString further =     QString::fromStdString(scientists[i].getFurtherInfo());
 
         ui->tableView_scientists->setItem(i, 0, new QTableWidgetItem(id));
@@ -123,13 +145,19 @@ void MainWindow::displayScientists()
         ui->tableView_scientists->setItem(i, 4, new QTableWidgetItem(YOB));
         ui->tableView_scientists->setItem(i, 5, new QTableWidgetItem(YOD));
         ui->tableView_scientists->setItem(i, 6, new QTableWidgetItem(nationality));
-        ui->tableView_scientists->setItem(i, 7, new QTableWidgetItem(further));
+        ui->tableView_scientists->setItem(i, 7, new QTableWidgetItem(built));
+        ui->tableView_scientists->setItem(i, 8, new QTableWidgetItem(further));
     }
+    ui->pushButton_editScientist->setEnabled(false);
+    ui->pushButton_deleteScientist->setEnabled(false);
+
+    ui->tableView_scientists->setSortingEnabled(true);
 }
 
 void MainWindow::displayComputers()
 {
-    string query = ui->lineEdit_search->text().toStdString();
+    ui->tableView_computers->setSortingEnabled(false);
+    string query = ui->lineEdit_searchComputer->text().toStdString();
 
     if(query == "")
     {
@@ -152,11 +180,26 @@ void MainWindow::displayComputers()
         QString YOB =         QString::fromStdString(computers[i].getYearForPrinting());
         QString type =        QString::fromStdString(computers[i].getCpuType());
         QString built =       QString::fromStdString(computers[i].getBuiltForPrinting());
+        QString builders =    QString::fromStdString(computers[i].getBuilders());
 
         ui->tableView_computers->setItem(i, 0, new QTableWidgetItem(id));
         ui->tableView_computers->setItem(i, 1, new QTableWidgetItem(lastName));
         ui->tableView_computers->setItem(i, 2, new QTableWidgetItem(YOB));
         ui->tableView_computers->setItem(i, 3, new QTableWidgetItem(type));
         ui->tableView_computers->setItem(i, 4, new QTableWidgetItem(built));
+        ui->tableView_computers->setItem(i, 5, new QTableWidgetItem(builders));
     }
+    ui->pushButton_editComputer->setEnabled(false);
+    ui->pushButton_deleteComputer->setEnabled(false);
+    ui->tableView_computers->setSortingEnabled(true);
+}
+
+void MainWindow::on_lineEdit_search_textChanged(const QString &arg1)
+{
+    displayScientists();
+}
+
+void MainWindow::on_lineEdit_searchComputer_textChanged(const QString &arg1)
+{
+    displayComputers();
 }
