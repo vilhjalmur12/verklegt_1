@@ -4,6 +4,8 @@
 #include "Domain/service.h"
 #include <QMessageBox>
 #include "editscientistsrelations.h"
+#include <QFileDialog>
+#include <QPixmap>
 
 editStudentDialog::editStudentDialog(QWidget *parent, int id, QString userName) :
     QDialog(parent),
@@ -181,4 +183,23 @@ void editStudentDialog::on_pushButton_edit_relations_clicked()
 
     edit.exec();
 
+}
+
+void editStudentDialog::on_pushButton_browseImSci_clicked()
+{
+    string imageSciPath = QFileDialog::getOpenFileName(
+                this,
+                "Search for images",
+                "",
+                "Image files (*.png *.jpg)"
+                ).toStdString();
+
+    if (imageSciPath.length())
+    {
+        // user selected some file
+    }
+    else
+    {
+        // user did not select some file
+    }
 }

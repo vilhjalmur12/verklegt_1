@@ -4,6 +4,8 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include "editcomputersrelations.h"
+#include <QFileDialog>
+#include <QPixmap>
 
 editComputerDialog::editComputerDialog(QWidget *parent, int id, QString userName) :
     QDialog(parent),
@@ -134,4 +136,24 @@ void editComputerDialog::initializeInfo()
     ui->checkBox_built->setChecked(computer.getBuilt());
     ui->lineEdit_builders->setText(QString::fromStdString(scientists));
 
+}
+
+void editComputerDialog::on_pushButton_browseImCpu_clicked()
+{
+    string imageCpuPath = QFileDialog::getOpenFileName(
+                this,
+                "Search for images",
+                "",
+                "Image files (*.png *.jpg)"
+                ).toStdString();
+
+    if (imageCpuPath.length())
+    {
+        QPixmap pixmap(QString::fromStdString(imageCpuPath));
+        ui->label_imCpu->setPixmap(pixmap);
+    }
+    else
+    {
+        // user did not select some file
+    }
 }

@@ -23,6 +23,8 @@ private slots:
 
     void on_pushButton_edit_relations_clicked();
 
+    void on_pushButton_browseImSci_clicked();
+
 private:
     Ui::editStudentDialog *ui;
     int ID;
