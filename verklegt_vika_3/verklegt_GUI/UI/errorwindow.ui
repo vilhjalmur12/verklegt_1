@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../resources.qrc">
-    <normaloff>:/icons/Images/DB.jpg</normaloff>:/icons/Images/DB.jpg</iconset>
+    <normaloff>:/icons/Images/DBSimple.jpg</normaloff>:/icons/Images/DBSimple.jpg</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
