@@ -28,7 +28,7 @@
 background-color: rgb(204, 217, 233);
 }
 
-QWidget::QTabWidget{
+QTabWidget::tab{
 color: rgb(204, 217, 233);
 background-color: rgb(204, 217, 233);
 }
@@ -67,7 +67,7 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="Scientists">
        <attribute name="title">
