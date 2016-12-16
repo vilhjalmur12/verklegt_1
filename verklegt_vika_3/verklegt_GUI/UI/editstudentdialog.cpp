@@ -74,7 +74,8 @@ editStudentDialog::~editStudentDialog()
 }
 
 /******************************************************************
-                      Constructor / Destructor
+                 on_pushButton_back_clicked
+                      Lokar glugga
 *******************************************************************/
 
 void editStudentDialog::on_pushButton_back_clicked()

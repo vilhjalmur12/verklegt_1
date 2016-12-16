@@ -33,16 +33,19 @@ private slots:
 
     void on_tableView_deletedItems_clicked(const QModelIndex &index);
 
+    void on_pushButton_restoreItem_clicked();
+
+    void on_pushButton_restoreAll_clicked();
+
 private:
     Ui::recycledbin *ui;
     Service _service;
     QString user;
     QString choiceMade;
     errorwindow errorWidget;
-    int rowChosen;
-    QString name;
-    QString lastName;
-    QString year;
+    int row;
+    int ID;
+
 };
 
 #endif // RECYCLEDBIN_H

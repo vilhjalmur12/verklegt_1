@@ -105,6 +105,8 @@ public:
     void deleteAllComputersFromDatabase();
     void deleteScientist(int ID);
     void deleteComputer(int ID);
+    void deleteRecycledScientist(int ID);
+    void deleteRecycledComputer(int ID);
 
     void restoreAllFromDatabase();
     void restoreAllComputerFromDatabase();

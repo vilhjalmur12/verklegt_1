@@ -17,13 +17,13 @@ public:
     ~editStudentDialog();
 
 private slots:
-    void on_pushButton_back_clicked();
+    void on_pushButton_back_clicked();              //Lokar glugga
 
-    void on_pushButton_update_clicked();
+    void on_pushButton_update_clicked();            //Uppfærir upplýsingar um vísindamann
 
-    void on_pushButton_edit_relations_clicked();
+    void on_pushButton_edit_relations_clicked();    //Kallar á edit relations gluggan fyrir vísindamann
 
-    void on_pushButton_browseImSci_clicked();
+    void on_pushButton_browseImSci_clicked();       //Notandi velur slóð á mynd sem tengist vísindamanni
 
 private:
     Ui::editStudentDialog *ui;

@@ -109,6 +109,8 @@ public:
     void deleteAllFromScientistDatabase();                                                      //Flaggar alla vísindamenn sem deleted
     void deleteScientist(int ID);                                                               //Flaggar ákveðin vísindamann sem deleted
     void deleteComputer(int ID);                                                                //Flaggar ákveðna tölvu sem deleted
+    void deleteRecycledComputer(int ID);
+    void deleteRecycledScientist(int ID);
     /**********************************************************
                         Restore föll
     **********************************************************/
