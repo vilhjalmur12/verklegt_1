@@ -1,6 +1,10 @@
 #include "loginwindow.h"
 #include "ui_loginwindow.h"
 
+/******************************************************************
+                      Constructor / Destructor
+*******************************************************************/
+
 LoginWindow::LoginWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::LoginWindow)
@@ -12,6 +16,11 @@ LoginWindow::~LoginWindow()
 {
     delete ui;
 }
+
+/******************************************************************
+                on_pushButton_activateUser_clicked
+    Tekur við loggin upplýsingum frá notanada og keyrir forritið
+*******************************************************************/
 
 void LoginWindow::on_pushButton_activateUser_clicked()
 {
@@ -43,6 +52,14 @@ void LoginWindow::on_pushButton_activateUser_clicked()
         }
     }
 }
+
+/******************************************************************
+                         callUser
+    Sendir áfram notandanaf og lykilorð til að athuga hvort notandi
+    sé til í gagnagrunni
+    @parameter(QString username) - notandanafn slegið inn af notanda
+    @parameter(QString password) - lykilorð slegið inn af notanda
+*******************************************************************/
 
 void LoginWindow::callUser (QString username, QString password)
 {
@@ -79,6 +96,11 @@ void LoginWindow::callUser (QString username, QString password)
   //  run();
 }
 
+/******************************************************************
+                on_pushButton_createUser_clicked
+        Kallar á nýjan glugga til að búa til nýjan notanda þegar
+        ýtt er á "New user"
+*******************************************************************/
 
 void LoginWindow::on_pushButton_createUser_clicked()
 {
