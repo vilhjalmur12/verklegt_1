@@ -59,6 +59,8 @@ editStudentDialog::editStudentDialog(QWidget *parent, int id, QString userName) 
     ui->lineEdit_YOB->setValidator(YOB);
     ui->lineEdit_YOD->setValidator(YOD);
 
+    ui->label_image->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
 }
 
 editStudentDialog::~editStudentDialog()

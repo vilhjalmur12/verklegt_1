@@ -25,6 +25,8 @@ editComputerDialog::editComputerDialog(QWidget *parent, int id, QString userName
     computer = data->getComputer(ID);
 
     initializeInfo();
+
+    ui->label_imCpu->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 }
 
 editComputerDialog::~editComputerDialog()
