@@ -638,7 +638,10 @@ bool Database::getUser(const QString& username, const QString& password)
     }
     else
     {
-        //qDebug() << username;
+        if (password == "")
+        {
+            return false;
+        }
 
         QSqlQuery query;
         query.prepare("SELECT password FROM users WHERE username = :user");
