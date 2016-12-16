@@ -16,13 +16,13 @@ public:
     ~insertComputerDialog();
 
 private slots:
-    void on_checkBox_built_clicked();
+    void on_checkBox_built_clicked();       //Check box hvort tölva hafi verið byggð eða ekki
 
-    void on_pushButton_addType_clicked();
+    void on_pushButton_addType_clicked();   //Tekur við nýrri týpu af tölvu frá notanda
 
-    void on_pushButton_back_clicked();
+    void on_pushButton_back_clicked();      //Lokar insert glugga fyrir tölvu
 
-    void on_pushButton_insert_clicked();
+    void on_pushButton_insert_clicked();    //Tekur við upplýsingum um nýja tölvu frá notandan
 
 private:
     Ui::insertComputerDialog *ui;

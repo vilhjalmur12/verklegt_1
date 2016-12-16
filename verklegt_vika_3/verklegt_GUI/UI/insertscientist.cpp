@@ -4,6 +4,9 @@
 #include "Domain/service.h"
 #include <QMessageBox>
 
+/******************************************************************
+                      Constructor / Destructor
+*******************************************************************/
 
 insertScientist::insertScientist(QWidget *parent, QString username) :
     QDialog(parent),
@@ -39,6 +42,11 @@ insertScientist::~insertScientist()
 {
     delete ui;
 }
+
+/******************************************************************
+                  on_pushButton_insert_clicked
+        Tekur við upplýsingum um nýjan vísindamann frá notanda
+*******************************************************************/
 
 void insertScientist::on_pushButton_insert_clicked()
 {
@@ -147,6 +155,11 @@ void insertScientist::on_pushButton_insert_clicked()
     this->done(1);
 
 }
+
+/******************************************************************
+                  on_pushButton_back_clicked
+                    Lokar insert glugga
+*******************************************************************/
 
 void insertScientist::on_pushButton_back_clicked()
 {
