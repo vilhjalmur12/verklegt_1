@@ -59,6 +59,10 @@ private slots:
 
     void on_position_changed(qint64 position);
 
+    void on_tableView_computers_doubleClicked(const QModelIndex &index);
+
+    void on_tableView_scientists_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     Database data;
