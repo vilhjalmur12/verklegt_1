@@ -7,6 +7,12 @@ recycledbin::recycledbin(QWidget *parent) :
     ui(new Ui::recycledbin)
 {
     ui->setupUi(this);
+
+    ui->tableView_deletedItems->setColumnWidth(1,90);
+    ui->tableView_deletedItems->setColumnWidth(2,90);
+    ui->tableView_deletedItems->setColumnWidth(3,70);
+    ui->tableView_deletedItems->setColumnWidth(4,60);
+    ui->tableView_deletedItems->setColumnWidth(5,60);
 }
 
 recycledbin::~recycledbin()
@@ -32,6 +38,8 @@ void recycledbin::callRecycleBin (QString username, QString choice)
     this->show();
     if (choice == "computers")
     {
+
+
         recycledComputers();
     }
     else if (choice == "scientists")
@@ -80,16 +88,54 @@ void recycledbin::recycledScientists()
 
 void recycledbin::on_pushButton_deleteItem_clicked()
 {
-    _service.deleteRecycledComputer(ID);
+    if (choiceMade == "computers")
+    {
+        _service.deleteRecycledComputer(ID);
+    }
+    else if (choiceMade == "scientists")
+    {
+        _service.deleteRecycledScientist(ID);
+    }
 }
 
 void recycledbin::on_pushButton_clearAll_clicked()
 {
-    _service.deleteAllComputersFromDatabase();
+    if (choiceMade == "computers")
+    {
+        _service.deleteAllComputersFromDatabase();
+    }
+    else if (choiceMade == "scientists")
+    {
+        _service.deleteRecycledScientist(ID);
+    }
 }
 
 void recycledbin::on_tableView_deletedItems_clicked(const QModelIndex &index)
 {
     row = ui->tableView_deletedItems->currentIndex().row();
     ID = index.sibling(row, 0).data().toInt();
+}
+
+void recycledbin::on_pushButton_restoreItem_clicked()
+{
+    if (choiceMade == "computers")
+    {
+        _service.restoreComputer(ID);
+    }
+    else if (choiceMade == "scientists")
+    {
+        _service.restoreScientist(ID);
+    }
+}
+
+void recycledbin::on_pushButton_restoreAll_clicked()
+{
+    if (choiceMade == "computers")
+    {
+        _service.restoreAllComputerFromDatabase();
+    }
+    else if (choiceMade == "scientists")
+    {
+        _service.restoreAllScientistFromDatabase();
+    }
 }
