@@ -1104,9 +1104,8 @@ void Database::insertScientist (Scientist scientist)
      Býr til nýtt eintak af tölvu í gagnagrunn
      @parameter(Computer computer) - Eintak af computer
  ******************************************************************/
-void Database::insertComputer (Computer computer, QString tmpUser)
+void Database::insertComputer (Computer computer)
 {
-       user = tmpUser;
        databaseOpen();
 
        QString tmpName(computer.getName().c_str());
