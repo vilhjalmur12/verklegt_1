@@ -8,6 +8,10 @@
 #include <QPixmap>
 #include "Domain/service.h"
 
+/******************************************************************
+                      Constructor / Destructor
+*******************************************************************/
+
 insertComputerDialog::insertComputerDialog(QWidget *parent, QString username) :
     QDialog(parent),
     ui(new Ui::insertComputerDialog)
@@ -34,6 +38,11 @@ insertComputerDialog::~insertComputerDialog()
     delete ui;
 }
 
+/******************************************************************
+                      on_checkBox_built_clicked
+          Check box hvort tölva hafi verið byggð eða ekki
+*******************************************************************/
+
 void insertComputerDialog::on_checkBox_built_clicked()
 {
     if(ui->checkBox_built->isChecked())
@@ -47,6 +56,10 @@ void insertComputerDialog::on_checkBox_built_clicked()
     }
 }
 
+/******************************************************************
+                      on_pushButton_addType_clicked
+            Tekur við nýrri týpu af tölvu frá notanda
+*******************************************************************/
 
 void insertComputerDialog::on_pushButton_addType_clicked()
 {
@@ -65,10 +78,22 @@ void insertComputerDialog::on_pushButton_addType_clicked()
 
 }
 
+
+/******************************************************************
+                      on_pushButton_back_clicked
+                     Lokar insert glugga fyrir tölvu
+*******************************************************************/
+
 void insertComputerDialog::on_pushButton_back_clicked()
 {
     this->done(0);
 }
+
+/******************************************************************
+                      initializeDropDown
+       Fyllir fellivalmynd af týpum af tölvum sem notandi getur
+       valið úr
+*******************************************************************/
 
 void insertComputerDialog::initializeDropDown()
 {
@@ -84,6 +109,11 @@ void insertComputerDialog::initializeDropDown()
         ui->dropdown_types->addItem(QString::fromStdString(types[i].getType()));
     }
 }
+
+/******************************************************************
+                      on_pushButton_insert_clicked
+       Tekur við upplýsingum um nýja tölvu frá notandan
+*******************************************************************/
 
 void insertComputerDialog::on_pushButton_insert_clicked()
 {
