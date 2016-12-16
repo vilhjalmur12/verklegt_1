@@ -261,7 +261,7 @@ void MainWindow::on_sliderProgress_sliderMoved(int position)
 
 void MainWindow::on_startButton_clicked()
 {
-    player->setMedia(QUrl::fromLocalFile("/Users/asgeirn/Desktop/Skoli/Verklegt1/verklegt_1/verklegt_vika_3/LetItSnow.mp3"));
+    player->setMedia(QUrl::fromLocalFile("/Users/asgeirn/Desktop/Skoli/Verklegt1/verklegt_1/verklegt_vika_3/verklegt_GUI/media/LetItSnow.mp3"));
     player->play();
     qDebug() << player->errorString();
 }
