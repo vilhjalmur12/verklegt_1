@@ -69,7 +69,7 @@ public:
     vector<Computer> pullDeletedComputers();                                                    //Sækir tölvur sem hafa verið deleted
     vector<CpuType> pullTypes(string order);                                                    //Sækir týpur af tölvum
     void insertScientist (Scientist scientist);                                                 //Bætir við nýjum vísindamanni
-    void insertComputer (Computer computer, QString tmpUser);                                   //Bætir við nýrri tölvu
+    void insertComputer (Computer computer);                                                    //Bætir við nýrri tölvu
     int getTypeId(QString type);                                                                //Sækir ID fyrir tölvu týpu
     void insertType(string type);                                                               //Bætir við nýrri týpu
     string pullUser();                                                                          //Sækir tiltekin notanda úr gagnagrunni

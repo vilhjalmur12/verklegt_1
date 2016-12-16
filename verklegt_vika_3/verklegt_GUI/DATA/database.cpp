@@ -1104,9 +1104,8 @@ void Database::insertScientist (Scientist scientist)
      Býr til nýtt eintak af tölvu í gagnagrunn
      @parameter(Computer computer) - Eintak af computer
  ******************************************************************/
-void Database::insertComputer (Computer computer, QString tmpUser)
+void Database::insertComputer (Computer computer)
 {
-       user = tmpUser;
        databaseOpen();
 
        QString tmpName(computer.getName().c_str());
@@ -1125,7 +1124,7 @@ void Database::insertComputer (Computer computer, QString tmpUser)
        query.bindValue(":BON", tmpBuilt);
        query.exec();
 
-       databaseClose(myData);
+       databaseClose();
 }
 
 /******************************************************************
@@ -1138,16 +1137,13 @@ void Database::insertComputer (Computer computer, QString tmpUser)
 int Database::getTypeId(QString type)
 {
     QSqlQuery query2;
-
     query2.prepare("SELECT ID FROM cpuType "
-                   "WHERE type = :type ");
+                   "WHERE type like :type ");
     query2.bindValue(":type",type);
     query2.exec();
-
-    query2.next();
+    query2.first();
 
     return query2.value(0).toInt();
-
 }
 
 /******************************************************************
