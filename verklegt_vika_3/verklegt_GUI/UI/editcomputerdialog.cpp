@@ -211,7 +211,7 @@ void editComputerDialog::on_pushButton_browseImCpu_clicked()
 }
 
 /******************************************************************
-                on_pushButton_browseImCpu_clicked
+                on_checkBox_built_clicked
              Athugar hvort tölva hafði verið byggð eða ekki.
 *******************************************************************/
 
