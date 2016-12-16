@@ -210,6 +210,11 @@ void editComputerDialog::on_pushButton_browseImCpu_clicked()
     }
 }
 
+/******************************************************************
+                on_pushButton_browseImCpu_clicked
+             Athugar hvort tölva hafði verið byggð eða ekki.
+*******************************************************************/
+
 void editComputerDialog::on_checkBox_built_clicked()
 {
     if(ui->checkBox_built->isChecked())

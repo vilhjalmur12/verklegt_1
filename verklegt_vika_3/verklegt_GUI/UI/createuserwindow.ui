@@ -272,8 +272,12 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
   </layout>
  </widget>
  <tabstops>
+  <tabstop>lineEdit_userName</tabstop>
   <tabstop>lineEdit_password</tabstop>
   <tabstop>lineEdit_cPassword</tabstop>
+  <tabstop>lineEdit_firstName</tabstop>
+  <tabstop>lineEdit_lastName</tabstop>
+  <tabstop>pushButton</tabstop>
  </tabstops>
  <resources>
   <include location="../resources.qrc"/>

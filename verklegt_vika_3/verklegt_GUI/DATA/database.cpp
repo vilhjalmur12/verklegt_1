@@ -364,7 +364,7 @@ void Database::databaseOpen(QString username)
 
     if (!myData.open())
     {
-       qDebug() << "Error: connection with database fail";
+       //qDebug() << "Error: connection with database fail";
     }
 }
 
@@ -426,7 +426,7 @@ void Database::databaseOpen()
 
     if (!myData.open())
     {
-       qDebug() << "Error: connection with database fail";
+       //qDebug() << "Error: connection with database fail";
     }
 }
 
@@ -449,7 +449,7 @@ void Database::getData(QString username, vector<Scientist> &scien)
 
    if (!myData.open())
    {
-      qDebug() << "Error: connection with database fail";
+      //qDebug() << "Error: connection with database fail";
    }
    else
    {
@@ -465,7 +465,7 @@ void Database::getData()
 
    if (!myData.open())
    {
-      qDebug() << "Error: connection with database fail";
+      //qDebug() << "Error: connection with database fail";
    }
    else
    {
@@ -606,7 +606,7 @@ bool Database::getUser(const QString& username, const QString& password)
     }
     else
     {
-        qDebug() << username;
+        //qDebug() << username;
 
         QSqlQuery query;
         query.prepare("SELECT password FROM users WHERE username = :user");
@@ -625,7 +625,7 @@ bool Database::getUser(const QString& username, const QString& password)
             QString QTmpPass(encPass.c_str());
             QEncPass = QTmpPass;
 
-            cout << tmpPass << endl;
+            //cout << tmpPass << endl;
             cout << encPass << endl;
         }
 
@@ -662,7 +662,7 @@ bool Database::createUser(const QString& username, const QString& password, cons
 
     if (!myData.open())
     {
-       qDebug() << "Error: connection with database fail";
+       //qDebug() << "Error: connection with database fail";
     }
     else
     {   
@@ -731,7 +731,7 @@ void Database::initDatabase (const QString& username)
 
     if (!userData.open())
     {
-       qDebug() << "Error: connection with database fail";
+       //qDebug() << "Error: connection with database fail";
     }
     else
     {
@@ -1487,7 +1487,7 @@ void Database::selectData()
     while (query.next())
     {
        QString name = query.value(idName).toString();
-       qDebug() << name;
+       //qDebug() << name;
     }
 }
 
