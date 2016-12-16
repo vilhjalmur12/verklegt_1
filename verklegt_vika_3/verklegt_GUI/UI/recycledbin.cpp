@@ -38,12 +38,12 @@ void recycledbin::callRecycleBin (QString username, QString choice)
     this->show();
     if (choice == "computers")
     {
-
-
+        ui->label_head->setText("Deleted Computers");
         recycledComputers();
     }
     else if (choice == "scientists")
     {
+        ui->label_head->setText("Deleted Scientists");
         recycledScientists();
     }
 }

@@ -38,10 +38,7 @@ private:
     MainWindow main;
     Service _service;
 
-
-    // Test output
     QString invalid = "Invalid user or password";
-    QString valid = "Password Valid, welcome!";
 
     void callUser (QString username, QString password); //Sendir áfram notandanaf og lykilorð til að athuga hvort notandisé til í gagnagrunni
     //void createUser ();
