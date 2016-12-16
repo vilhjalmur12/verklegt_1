@@ -638,7 +638,10 @@ bool Database::getUser(const QString& username, const QString& password)
     }
     else
     {
-        //qDebug() << username;
+        if (password == "")
+        {
+            return false;
+        }
 
         QSqlQuery query;
         query.prepare("SELECT password FROM users WHERE username = :user");
@@ -1008,7 +1011,7 @@ void Database::initDatabase (const QString& username)
 
         userQuery.prepare("INSERT INTO pictures "
                           "(ComputerID, image) "
-                          "VALUES (:ID, :image) ");
+                          "VALUES (:ID,  :image) ");
         userQuery.bindValue(":ID", 1);
         userQuery.bindValue(":image", inByteArray);
         userQuery.exec();
@@ -1023,7 +1026,7 @@ void Database::initDatabase (const QString& username)
         userQuery.bindValue(":image", inByteArray2);
         userQuery.exec();
 
-        QString fileName3 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-Mailüfterl.jpg");
+        QString fileName3 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-Mailufterl.jpg");
         QFile file3(fileName3);
         file3.open(QIODevice::ReadOnly);
 
@@ -1103,7 +1106,7 @@ void Database::initDatabase (const QString& username)
         userQuery.bindValue(":image", inByteArray10);
         userQuery.exec();
 
-        QString fileName11 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-Sinclair-ZX81.jpg");
+        QString fileName11 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-Sinclair-ZX81.png");
         QFile file11(fileName11);
         file11.open(QIODevice::ReadOnly);
 
@@ -1219,18 +1222,16 @@ void Database::initDatabase (const QString& username)
         userQuery.bindValue(":ID", 9);
         userQuery.bindValue(":image", inByteArray09);
         userQuery.exec();
-        databaseClose(userData);
 
-        QString fileName010 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/Clive_sinclair.jpg");
+        QString fileName010 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/clive.jpg");
         QFile file010(fileName010);
         file010.open(QIODevice::ReadOnly);
 
         QByteArray inByteArray010 = file010.readAll();
 
-        userQuery.bindValue(":ID", 010);
+        userQuery.bindValue(":ID", 10);
         userQuery.bindValue(":image", inByteArray010);
         userQuery.exec();
-        databaseClose(userData);
 
         QString fileName011 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/Steve_Jobs.jpg");
         QFile file011(fileName011);

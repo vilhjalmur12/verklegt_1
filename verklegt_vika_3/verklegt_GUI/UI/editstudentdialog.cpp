@@ -8,6 +8,10 @@
 #include <QPixmap>
 #include <QBuffer>
 
+/******************************************************************
+                      Constructor / Destructor
+*******************************************************************/
+
 editStudentDialog::editStudentDialog(QWidget *parent, int id, QString userName) :
     QDialog(parent),
     ui(new Ui::editStudentDialog)
@@ -69,10 +73,19 @@ editStudentDialog::~editStudentDialog()
     delete data;
 }
 
+/******************************************************************
+                      Constructor / Destructor
+*******************************************************************/
+
 void editStudentDialog::on_pushButton_back_clicked()
 {
     this->done(0);
 }
+
+/******************************************************************
+                      on_pushButton_update_clicked
+                Uppfærir upplýsingar um vísindamann
+*******************************************************************/
 
 void editStudentDialog::on_pushButton_update_clicked()
 {
@@ -179,6 +192,11 @@ void editStudentDialog::on_pushButton_update_clicked()
 
 }
 
+/******************************************************************
+              on_pushButton_edit_relations_clicked
+         Kallar á edit relations gluggan fyrir vísindamann
+*******************************************************************/
+
 void editStudentDialog::on_pushButton_edit_relations_clicked()
 {
     editScientistsRelations edit(this, ID, username);
@@ -186,6 +204,11 @@ void editStudentDialog::on_pushButton_edit_relations_clicked()
     edit.exec();
 
 }
+
+/******************************************************************
+                on_pushButton_browseImSci_clicked
+         Notandi velur slóð á mynd sem tengist vísindamanni
+*******************************************************************/
 
 void editStudentDialog::on_pushButton_browseImSci_clicked()
 {

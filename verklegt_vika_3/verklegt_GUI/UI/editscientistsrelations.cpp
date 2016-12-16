@@ -3,6 +3,10 @@
 
 #include "Domain/service.h"
 
+/******************************************************************
+                      Constructor / Destructor
+*******************************************************************/
+
 editScientistsRelations::editScientistsRelations(QWidget *parent, int id, QString username) :
     QDialog(parent),
     ui(new Ui::editScientistsRelations)
@@ -22,10 +26,21 @@ editScientistsRelations::~editScientistsRelations()
     delete ui;
 }
 
+/******************************************************************
+                      on_pushButton_done_clicked
+                    Lokar edit relations glugga
+*******************************************************************/
+
 void editScientistsRelations::on_pushButton_done_clicked()
 {
     this->done(0);
 }
+
+/******************************************************************
+                           populateList
+         Fyllir lista af tölvum sem eru tengdir vil tiltekin
+         vísindamann
+*******************************************************************/
 
 void editScientistsRelations::populateList()
 {
@@ -68,6 +83,11 @@ void editScientistsRelations::populateList()
     ));
 }
 
+/******************************************************************
+                     on_pushButton_delete_clicked
+         Eyðir venslum við tölvu fyrir ákveðin vísindamann
+*******************************************************************/
+
 void editScientistsRelations::on_pushButton_delete_clicked()
 {
     Service _data;
@@ -81,6 +101,10 @@ void editScientistsRelations::on_pushButton_delete_clicked()
     populateList();
 }
 
+/******************************************************************
+                     on_pushButton_add_clicked
+         Bætir venslum við tölvu fyrir ákveðin vísindamann
+*******************************************************************/
 void editScientistsRelations::on_pushButton_add_clicked()
 {
     Service _data;

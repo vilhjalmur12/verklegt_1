@@ -280,3 +280,30 @@ void MainWindow::on_position_changed(qint64 position)
 {
     ui->sliderProgress->setValue(position);
 }
+
+void MainWindow::on_tableView_computers_doubleClicked(const QModelIndex &index)
+{
+    ui->pushButton_editComputer->setEnabled(false);
+    ui->pushButton_deleteComputer->setEnabled(false);
+
+    int row = ui->tableView_computers->currentRow();
+    int ID = ui->tableView_computers->item(row, 0)->text().toInt();
+
+    editComputerDialog edit(this, ID, username);
+    edit.exec();
+
+    displayComputers();
+}
+
+void MainWindow::on_tableView_scientists_doubleClicked(const QModelIndex &index)
+{
+    ui->pushButton_editScientist->setEnabled(false);
+    ui->pushButton_deleteScientist->setEnabled(false);
+
+    int row = ui->tableView_scientists->currentRow();
+    int ID = ui->tableView_scientists->item(row, 0)->text().toInt();
+    editStudentDialog edit(this, ID, username);
+    edit.exec();
+
+    displayScientists();
+}

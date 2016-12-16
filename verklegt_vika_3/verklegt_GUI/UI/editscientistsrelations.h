@@ -16,11 +16,11 @@ public:
     ~editScientistsRelations();
 
 private slots:
-    void on_pushButton_done_clicked();
+    void on_pushButton_done_clicked();      //Lokar edit relations glugga
 
-    void on_pushButton_delete_clicked();
+    void on_pushButton_delete_clicked();    //Eyðir venslum við vísindamann
 
-    void on_pushButton_add_clicked();
+    void on_pushButton_add_clicked();       //Bætir við venslum vísindamann
 
     void on_tableWidget_computers_clicked(const QModelIndex &index);
 
@@ -31,7 +31,7 @@ private:
     std::vector<int> IDs;
     std::vector<int> relatedIDs;
 
-    void populateList();
+    void populateList();                    //Fyllir lista af tölvum sem eru tengdir vil tiltekin vísindamann
 
 };
 
