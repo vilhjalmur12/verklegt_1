@@ -151,6 +151,13 @@ void MainWindow::displayScientists()
     ui->pushButton_editScientist->setEnabled(false);
     ui->pushButton_deleteScientist->setEnabled(false);
 
+    ui->pushButton_editScientist->setStyleSheet(QString::fromUtf8("QPushButton:disabled"
+    "{ color: gray }"
+    ));
+    ui->pushButton_deleteScientist->setStyleSheet(QString::fromUtf8("QPushButton:disabled"
+    "{ color: gray }"
+    ));
+
     ui->tableView_scientists->setSortingEnabled(true);
 }
 
