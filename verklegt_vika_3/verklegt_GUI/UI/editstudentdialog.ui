@@ -160,7 +160,7 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
             </size>
            </property>
            <property name="text">
-            <string>     Year of Birth</string>
+            <string>      Year of Birth</string>
            </property>
           </widget>
          </item>
