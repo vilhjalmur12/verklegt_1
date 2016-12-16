@@ -331,7 +331,7 @@ void MainWindow::on_pushButton_clicked()
 
 /******************************************************************
                  on_silderVolume_sliderMoved
-        Filterar tölfu út frá leitarstreng frá notanda
+        Slider sem sýnir og stillir hljóð á lagi
 *******************************************************************/
 
 void MainWindow::on_silderVolume_sliderMoved(int position)
@@ -339,35 +339,73 @@ void MainWindow::on_silderVolume_sliderMoved(int position)
     player->setVolume(position);
 }
 
+/******************************************************************
+                 on_sliderProgress_sliderMoved
+        Slider sem sýnir og stillir progress á lagi
+*******************************************************************/
+
 void MainWindow::on_sliderProgress_sliderMoved(int position)
 {
     player->setPosition(position);
 }
 
+/******************************************************************
+                 on_startButton_clicked
+        Load-ar lagi og hefur spilun
+*******************************************************************/
+
 void MainWindow::on_startButton_clicked()
 {
     QString loc =  qApp->applicationDirPath();
+    qDebug() << loc;
     player->setMedia(QUrl::fromLocalFile(loc + "/media/LetItSnow.mp3"));
     player->play();
     qDebug() << player->errorString();
 }
+
+/******************************************************************
+                 on_stopButton_clicked
+             Stoppar lagi í spilun
+*******************************************************************/
 
 void MainWindow::on_stopButton_clicked()
 {
     player->stop();
 }
 
+
+/******************************************************************
+                 on_duration_changed
+       Hversu mikið er búið af laginu
+       @parametet(qint64 position) - hversu mikið er búið af laginu
+*******************************************************************/
+
 void MainWindow::on_duration_changed(qint64 position)
 {
     ui->sliderProgress->setMaximum(position);
 }
+
+
+/******************************************************************
+                 on_position_changed
+             Stillir staðsetningu á lagi
+       @parametet(qint64 position) - hversu mikið er búið af laginu
+*******************************************************************/
 
 void MainWindow::on_position_changed(qint64 position)
 {
     ui->sliderProgress->setValue(position);
 }
 
+
+/******************************************************************
+                 on_tableView_computers_doubleClicked
+             Notandi getur doulbe klikkað á tölvu til að edita
+       @parametet(const QModelIndex &index) - index á tölvu
+*******************************************************************/
+
 void MainWindow::on_tableView_computers_doubleClicked()
+
 {
     ui->pushButton_editComputer->setEnabled(false);
     ui->pushButton_deleteComputer->setEnabled(false);
@@ -381,7 +419,15 @@ void MainWindow::on_tableView_computers_doubleClicked()
     displayComputers();
 }
 
+
+/******************************************************************
+                 on_tableView_scientists_doubleClicked
+             Notandi getur doulbe klikkað á vísindamann til að edita
+       @parametet(const QModelIndex &index) -index á vísindamanni
+*******************************************************************/
+
 void MainWindow::on_tableView_scientists_doubleClicked()
+
 {
     ui->pushButton_editScientist->setEnabled(false);
     ui->pushButton_deleteScientist->setEnabled(false);
