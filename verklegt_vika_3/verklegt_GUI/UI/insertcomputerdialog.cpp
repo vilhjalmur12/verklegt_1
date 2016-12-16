@@ -101,3 +101,53 @@ void insertComputerDialog::initializeDropDown()
         ui->dropdown_types->addItem(QString::fromStdString(types[i].getType()));
     }
 }
+
+void insertComputerDialog::on_pushButton_insert_clicked()
+{
+    Service _data;
+    _data.setUser(user);
+
+    string name = ui->lineEdit_name->text().toStdString();
+    string sYear = ui->lineEdit_year->text().toStdString();
+    string type = ui->dropdown_types->currentText().toStdString();
+    bool built = ui->checkBox_built->isChecked();
+
+    int year;
+
+    if(sYear=="" && ui->checkBox_built->isChecked())
+    {
+        QMessageBox::warning(this, "Invalid Year", "ERROR: Missing build year for built computer");
+        return;
+    }
+    if(name=="")
+    {
+        QMessageBox::warning(this, "Invalid Name", "ERROR: Name cannot be empty");
+        return;
+    }
+
+    if(sYear == "n/a" || sYear =="")
+    {
+        year = maxDeathYear;
+        sYear = "n/a";
+    }
+    else if(!_data.validDeathYear(sYear))
+    {
+        // INVALID CHAR IN YEAR
+        QMessageBox::warning(this, "Invalid Year", "ERROR: Invalid character in year");
+        return;
+    }
+    else if(!_data.validBuildYear(stoi(sYear)))
+    {
+        //INVALID YEAR
+        QMessageBox::warning(this, "Invalid Year", QString::fromStdString(_data.getErrorString()));
+        return;
+    }
+    else
+    {
+        year = stoi(sYear);
+    }
+
+    _data.appendComputer(name, type, year, built);
+    this->done(1);
+
+}

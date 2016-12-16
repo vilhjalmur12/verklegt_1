@@ -144,6 +144,8 @@ void insertScientist::on_pushButton_insert_clicked()
         return;
     }
 
+    this->done(1);
+
 }
 
 void insertScientist::on_pushButton_back_clicked()
