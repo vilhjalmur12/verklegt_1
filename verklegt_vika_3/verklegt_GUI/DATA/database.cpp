@@ -1115,8 +1115,6 @@ void Database::insertComputer (Computer computer, QString tmpUser)
        int tmpYB = computer.getYearBuilt();
        bool tmpBuilt = computer.getBuilt();
 
-       qDebug() << "ÞETTA GERIST HER RIGHT" << " " << tmpName << tmpCpuType << tmpType << tmpYB << " " << tmpBuilt;
-
        QSqlQuery query;
        query.prepare("INSERT INTO computers "
                      "(Name, Year_of_build, CPU_type_ID, built_or_not) "
@@ -1127,7 +1125,7 @@ void Database::insertComputer (Computer computer, QString tmpUser)
        query.bindValue(":BON", tmpBuilt);
        query.exec();
 
-       databaseClose(myData);
+       databaseClose();
 }
 
 /******************************************************************
@@ -1140,16 +1138,13 @@ void Database::insertComputer (Computer computer, QString tmpUser)
 int Database::getTypeId(QString type)
 {
     QSqlQuery query2;
-
     query2.prepare("SELECT ID FROM cpuType "
-                   "WHERE type = :type ");
+                   "WHERE type like :type ");
     query2.bindValue(":type",type);
     query2.exec();
-
-    query2.next();
+    query2.first();
 
     return query2.value(0).toInt();
-
 }
 
 /******************************************************************
