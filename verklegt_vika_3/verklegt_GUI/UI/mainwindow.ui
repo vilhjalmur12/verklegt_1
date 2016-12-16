@@ -262,7 +262,7 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="1" column="4">
-         <widget class="QPushButton" name="pushButton_editComputer">
+         <widget class="QPushButton" name="pushButton">
           <property name="minimumSize">
            <size>
             <width>120</width>
@@ -270,60 +270,27 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
            </size>
           </property>
           <property name="text">
-           <string>Edit</string>
+           <string>Insert</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="3">
-         <widget class="QPushButton" name="pushButton_deleteComputer">
-          <property name="minimumSize">
-           <size>
-            <width>120</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Delete</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <spacer name="horizontalSpacer">
+        <item row="1" column="5">
+         <spacer name="horizontalSpacer_2">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
           <property name="sizeType">
-           <enum>QSizePolicy::Minimum</enum>
+           <enum>QSizePolicy::Preferred</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>40</width>
+            <width>20</width>
             <height>20</height>
            </size>
           </property>
          </spacer>
         </item>
-        <item row="1" column="0" rowspan="2">
-         <widget class="QLineEdit" name="lineEdit_searchComputer">
-          <property name="placeholderText">
-           <string>Search</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="pushButton_recycleBinComputers">
-          <property name="minimumSize">
-           <size>
-            <width>120</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Recycle Bin</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" colspan="5">
+        <item row="0" column="0" colspan="9">
          <widget class="QTableWidget" name="tableView_computers">
           <property name="minimumSize">
            <size>
@@ -390,13 +357,94 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
           </column>
          </widget>
         </item>
+        <item row="1" column="0" rowspan="2">
+         <widget class="QLineEdit" name="lineEdit_searchComputer">
+          <property name="placeholderText">
+           <string>Search</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="8">
+         <widget class="QPushButton" name="pushButton_editComputer">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Edit</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="6">
+         <widget class="QPushButton" name="pushButton_deleteComputer">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Delete</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="pushButton_recycleBinComputers">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Recycle Bin</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="7">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Preferred</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="3">
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Preferred</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
        </layout>
        <zorder>pushButton_deleteComputer</zorder>
        <zorder>lineEdit_searchComputer</zorder>
        <zorder>pushButton_editComputer</zorder>
-       <zorder>horizontalSpacer</zorder>
        <zorder>tableView_computers</zorder>
        <zorder>pushButton_recycleBinComputers</zorder>
+       <zorder>horizontalSpacer</zorder>
+       <zorder>pushButton</zorder>
+       <zorder>horizontalSpacer_2</zorder>
+       <zorder>horizontalSpacer_3</zorder>
       </widget>
      </widget>
     </item>
@@ -408,7 +456,7 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
      <x>0</x>
      <y>0</y>
      <width>959</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

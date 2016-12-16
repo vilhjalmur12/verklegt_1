@@ -4,6 +4,7 @@
 #include "editstudentdialog.h"
 #include "editcomputerdialog.h"
 #include "insertscientist.h"
+#include "insertcomputerdialog.h"
 
 MainWindow::MainWindow(QWidget *parent, QString user) :
     QMainWindow(parent),
@@ -233,5 +234,13 @@ void MainWindow::on_lineEdit_search_textChanged(const QString &arg1)
 
 void MainWindow::on_lineEdit_searchComputer_textChanged(const QString &arg1)
 {
+    displayComputers();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    insertComputerDialog insert(this, username);
+
+    insert.exec();
     displayComputers();
 }

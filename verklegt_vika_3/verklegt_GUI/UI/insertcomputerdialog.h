@@ -18,8 +18,6 @@ public:
 private slots:
     void on_checkBox_built_clicked();
 
-    void on_pushButton_browseImCpu_clicked();
-
     void on_pushButton_addType_clicked();
 
     void on_pushButton_back_clicked();

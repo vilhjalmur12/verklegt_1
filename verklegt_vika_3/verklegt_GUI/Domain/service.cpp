@@ -277,6 +277,7 @@ bool Service::appendComputer (string name, string cpuType, int yearBuilt, bool b
 
     activityLog _activityLog(data.pullUser());
     _activityLog.pushActivity("insert", tempComputer);
+
     data.insertComputer(tempComputer, qUser);
 
     return true;
