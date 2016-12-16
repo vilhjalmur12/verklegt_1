@@ -22,7 +22,6 @@ SOURCES += main.cpp\
     Domain/mytime.cpp \
     Domain/scientist.cpp \
     Domain/service.cpp \
-    UI/console.cpp \
     UI/loginwindow.cpp \
     UI/errorwindow.cpp \
     UI/createuserwindow.cpp \
@@ -47,7 +46,6 @@ HEADERS  += \
     Domain/mytime.h \
     Domain/scientist.h \
     Domain/service.h \
-    UI/console.h \
     UI/loginwindow.h \
     UI/errorwindow.h \
     UI/createuserwindow.h \
