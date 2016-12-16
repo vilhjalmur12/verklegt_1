@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QSqlQueryModel>
+#include <QMediaPlayer>
+#include <QDebug>
 #include "Domain/service.h"
 #include "recycledbin.h"
 
@@ -44,6 +46,18 @@ private slots:
     void on_lineEdit_searchComputer_textChanged(const QString &arg1);
 
     void on_pushButton_clicked();
+
+    void on_silderVolume_sliderMoved(int position);
+
+    void on_sliderprogress_sliderMoved(int position);
+
+    void on_startButton_clicked();
+
+    void on_stopButton_clicked();
+
+    void on_duration_changed(qint64);
+
+    void on_position_changed(qint64);
 
 private:
     Ui::MainWindow *ui;
