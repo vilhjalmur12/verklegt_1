@@ -29,4 +29,7 @@
         <file>Images/Macintosh_128k_transparency.png</file>
         <file>Images/800px-Mailufterl.jpg</file>
     </qresource>
+    <qresource prefix="/media">
+        <file>Media/LetItSnow.mp3</file>
+    </qresource>
 </RCC>
