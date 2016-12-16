@@ -152,10 +152,10 @@ void MainWindow::displayScientists()
     ui->pushButton_deleteScientist->setEnabled(false);
 
     ui->pushButton_editScientist->setStyleSheet(QString::fromUtf8("QPushButton:disabled"
-    "{ color: gray }"
+    "{color: gray}"
     ));
     ui->pushButton_deleteScientist->setStyleSheet(QString::fromUtf8("QPushButton:disabled"
-    "{ color: gray }"
+    "{color: gray}"
     ));
 
     ui->tableView_scientists->setSortingEnabled(true);
@@ -198,6 +198,14 @@ void MainWindow::displayComputers()
     }
     ui->pushButton_editComputer->setEnabled(false);
     ui->pushButton_deleteComputer->setEnabled(false);
+
+    ui->pushButton_editComputer->setStyleSheet(QString::fromUtf8("QPushButton:disabled"
+    "{color: gray}"
+    ));
+    ui->pushButton_deleteComputer->setStyleSheet(QString::fromUtf8("QPushButton:disabled"
+    "{color: gray}"
+    ));
+
     ui->tableView_computers->setSortingEnabled(true);
 }
 
