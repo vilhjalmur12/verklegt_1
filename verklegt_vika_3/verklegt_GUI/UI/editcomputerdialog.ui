@@ -20,7 +20,7 @@
    <string>Dialog</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="../resources.qrc">
     <normaloff>:/icons/Images/DBSimple.jpg</normaloff>:/icons/Images/DBSimple.jpg</iconset>
   </property>
   <property name="styleSheet">
@@ -277,6 +277,20 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
    </item>
   </layout>
  </widget>
- <resources/>
+ <tabstops>
+  <tabstop>lineEdit_name</tabstop>
+  <tabstop>dropdown_types</tabstop>
+  <tabstop>pushButton_addType</tabstop>
+  <tabstop>checkBox_built</tabstop>
+  <tabstop>lineEdit_year</tabstop>
+  <tabstop>lineEdit_builders</tabstop>
+  <tabstop>pushButton_edit_relations</tabstop>
+  <tabstop>pushButton_browseImCpu</tabstop>
+  <tabstop>pushButton_update</tabstop>
+  <tabstop>pushButton_back</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
