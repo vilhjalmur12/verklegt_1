@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1038</width>
+    <width>1059</width>
     <height>551</height>
    </rect>
   </property>
@@ -56,7 +56,7 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
     <rect>
      <x>30</x>
      <y>70</y>
-     <width>821</width>
+     <width>971</width>
      <height>451</height>
     </rect>
    </property>
@@ -153,6 +153,9 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
          </colorrole>
         </disabled>
        </palette>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
       </property>
       <property name="alternatingRowColors">
        <bool>true</bool>
@@ -311,7 +314,7 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
   <widget class="QLabel" name="label_head">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>300</x>
      <y>20</y>
      <width>411</width>
      <height>41</height>
