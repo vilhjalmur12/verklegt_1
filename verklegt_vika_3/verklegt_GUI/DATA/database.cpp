@@ -996,13 +996,10 @@ void Database::initDatabase (const QString& username)
                        "(ScientistID, ComputerID) "
                        "VALUES (11,12)");
 
-        QString fileName = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-Babbage_Difference_Engine.jpg");
-        //QFile file("/../../verklegt_GUI/Images/800px-Babbage_Difference_Engine.jpg");
+        QString fileName = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/AnalyticalMachine_Babbage_London.jpg");
         QFile file(fileName);
-        if (!file.open(QIODevice::ReadOnly))
-        {
-            qDebug() << "DAMMMMMMIT";
-        }
+        file.open(QIODevice::ReadOnly);
+
         QByteArray inByteArray = file.readAll();
 
         userQuery.prepare("INSERT INTO pictures "
@@ -1011,6 +1008,18 @@ void Database::initDatabase (const QString& username)
         userQuery.bindValue(":ID", 1);
         userQuery.bindValue(":image", inByteArray);
         userQuery.exec();
+
+        QString fileName2 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-ENIAC_Penn1.jpg");
+        QFile file2(fileName2);
+        file2.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray2 = file2.readAll();
+
+        userQuery.bindValue(":ID", 2);
+        userQuery.bindValue(":image", inByteArray2);
+        userQuery.exec();
+
+
 
         databaseClose(userData);
     }
