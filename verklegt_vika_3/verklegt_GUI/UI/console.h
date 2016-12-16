@@ -115,26 +115,26 @@ private:
     void recycledBin();
     void recycleScientists();
     void recycleComputers();
-    void idInputCanBeZero(unsigned int &index, unsigned int size);   //Staðsetning á ID sem er sótt fyrir recycle virknina slegið inn og villutjekkað
+    void idInputCanBeZero(unsigned int &index, unsigned int size);      //Staðsetning á ID sem er sótt fyrir recycle virknina slegið inn og villutjekkað
 /**************************************************
               Hjálparföll við search
 **************************************************/
-    void printSearchMenu();                                                 //Birtir leitar valmynd
-    void changeOrDelete(vector<int> indexes);                               //Tekur við ákvörðun frá notanda um edit
+    void printSearchMenu();                                             //Birtir leitar valmynd
+    void changeOrDelete(vector<int> indexes);                           //Tekur við ákvörðun frá notanda um edit
 
 /**************************************************
            Hjálparföll við choiceMade
 **************************************************/
-    void viewOperation();                                                  //Tekur ákvörðun um hvað sé gert hafi verið valið að view'a
-    void insertOperation();                                                //Tekur ákvörðun um hvað sé gert hafi verið valið að inserta
-    void editOperation();                                                  //Tekur ákvörðun um hvað sé gert hafi verið valið að edit'a
-    void deleteOperation();                                                //Tekur ákvörðun um hvað sé gert hafi verið valið að deleta
+    void viewOperation();                                               //Tekur ákvörðun um hvað sé gert hafi verið valið að view'a
+    void insertOperation();                                             //Tekur ákvörðun um hvað sé gert hafi verið valið að inserta
+    void editOperation();                                               //Tekur ákvörðun um hvað sé gert hafi verið valið að edit'a
+    void deleteOperation();                                             //Tekur ákvörðun um hvað sé gert hafi verið valið að deleta
     void deleteOperationHelper(string choice);
 /**************************************************
                  Birta töflu
 **************************************************/
-    void printScientists(vector<Scientist> allScientists);   //Athugar hvort vísindamenn fundust, ef fundust þá prentaðir út
-    void printComputers(vector<Computer> computers);         //Athugar hvort tölvur fundust, ef fundust þá prentaðar út
+    void printScientists(vector<Scientist> allScientists);              //Athugar hvort vísindamenn fundust, ef fundust þá prentaðir út
+    void printComputers(vector<Computer> computers);                    //Athugar hvort tölvur fundust, ef fundust þá prentaðar út
 };
 
 #endif // CONSOLE_H
