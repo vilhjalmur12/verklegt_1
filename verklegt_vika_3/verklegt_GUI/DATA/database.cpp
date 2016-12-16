@@ -98,16 +98,16 @@ QSqlQuery Database::getRecycledComputers (QString username)
 {
     databaseOpen(username);
 
-    string command1 = "SELECT name, year_of_build, type, built_or_not "
-                     "FROM Computers c "
-                     "INNER JOIN cpuType t "
-                     "ON t.ID = c.CPU_type_ID "
-                     "where deleted = 1 ";
+    string command1 = "SELECT c.ID, name, year_of_build, type, built_or_not FROM Computers c "
+                      "INNER JOIN cpuType t "
+                      "ON t.ID = c.CPU_type_ID "
+                      "WHERE c.deleted = 1 ";
 
     QString Qcommand(command1.c_str());
 
     QSqlQuery query;
     query.exec(Qcommand);
+
 
     return query;
 }
@@ -116,7 +116,7 @@ QSqlQuery Database::getRecycledScientists (QString username)
 {
     databaseOpen(username);
 
-    string command1 = "SELECT First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information "
+    string command1 = "SELECT ID, First_name, Last_name, Gender, Year_of_birth, Year_of_death, Nationality, Information "
                      "FROM scientists "
                      "where Deleted = 1 ";
 
@@ -1825,7 +1825,7 @@ void Database::deleteAllFromComputerDatabase()
     databaseOpen();
 
     QSqlQuery query;
-    query.prepare("UPDATE computers SET deleted = :deleted " );
+    query.prepare("DELETE FROM computers WHERE deleted = :deleted " );
     query.bindValue(":deleted", doDeleted);
     query.exec();
 
@@ -1844,7 +1844,7 @@ void Database::deleteAllFromScientistDatabase()
     databaseOpen();
 
     QSqlQuery query;
-    query.prepare("UPDATE scientists SET Deleted = :deleted " );
+    query.prepare("DELETE FROM scientists WHERE deleted = :deleted " );
     query.bindValue(":deleted", doDeleted);
     query.exec();
 
@@ -1862,11 +1862,35 @@ void Database::deleteScientist(int ID)
     databaseOpen();
 
     QSqlQuery query;
+
+
     query.prepare("UPDATE scientists "
                   "SET deleted = 1 "
                   "WHERE ID = :ID");
     query.bindValue(":ID", ID);
     query.exec();
+
+    databaseClose(myData);
+}
+
+/******************************************************************
+                          deleteRecycledScientist
+    Tekur við ID-i fyrir scientist og eyðir alveg úr gagnagrunni
+             @parameter(int ID) - ID fyrir tölvu sem á að af fjarlægja
+ ******************************************************************/
+
+void Database::deleteRecycledScientist(int ID)
+{
+
+    databaseOpen();
+
+    string sID = to_string(ID);
+
+    QSqlQuery query;
+    string command = ("DELETE FROM scientists "
+                      "WHERE ID = " + sID +" ");
+    QString qCommand(command.c_str());
+    query.exec(qCommand);
 
     databaseClose(myData);
 }
@@ -1923,7 +1947,7 @@ void Database::restoreAllFromScientistDatabase()
  ******************************************************************/
 
 void Database::deleteComputer(int ID)
-{
+{    
     databaseOpen();
 
     QSqlQuery query;
@@ -1935,6 +1959,30 @@ void Database::deleteComputer(int ID)
 
     databaseClose(myData);
 }
+
+/******************************************************************
+                          deleteRecycledComputer
+    Tekur við ID-i fyrir tölvu og eyðir alveg úr gagnagrunni
+             @parameter(int ID) - ID fyrir tölvu sem á að af fjarlægja
+ ******************************************************************/
+
+void Database::deleteRecycledComputer(int ID)
+{
+
+    databaseOpen();
+
+    string sID = to_string(ID);
+
+    QSqlQuery query;
+    string command = ("DELETE FROM computers "
+                      "WHERE ID = " + sID +" ");
+    QString qCommand(command.c_str());
+    query.exec(qCommand);
+
+    databaseClose(myData);
+}
+
+
 
 /******************************************************************
                           restoreScientist

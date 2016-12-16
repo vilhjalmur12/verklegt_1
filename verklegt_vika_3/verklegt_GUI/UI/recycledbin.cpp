@@ -80,27 +80,16 @@ void recycledbin::recycledScientists()
 
 void recycledbin::on_pushButton_deleteItem_clicked()
 {
-
+    _service.deleteRecycledComputer(ID);
 }
 
 void recycledbin::on_pushButton_clearAll_clicked()
 {
-
+    _service.deleteAllComputersFromDatabase();
 }
 
 void recycledbin::on_tableView_deletedItems_clicked(const QModelIndex &index)
 {
-    if (choiceMade == "computers")
-    {
-        rowChosen = ui-> tableView_deletedItems->currentIndex().row();
-        name = index.sibling(rowChosen, 0).data().toString();
-        year = index.sibling(rowChosen, 1).data().toString();
-    }
-    else if (choiceMade == "scientists")
-    {
-        rowChosen = ui-> tableView_deletedItems->currentIndex().row();
-        name = index.sibling(rowChosen, 0).data().toString();
-        lastName = index.sibling(rowChosen, 1).data().toString();
-        year = index.sibling(rowChosen, 3).data().toString();
-    }
+    row = ui->tableView_deletedItems->currentIndex().row();
+    ID = index.sibling(row, 0).data().toInt();
 }

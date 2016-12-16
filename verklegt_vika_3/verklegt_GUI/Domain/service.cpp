@@ -292,9 +292,19 @@ void Service::deleteScientist(int ID)
     data.deleteScientist(ID);
 }
 
+void Service::deleteRecycledScientist(int ID)
+{
+    data.deleteRecycledScientist(ID);
+}
+
 void Service::deleteComputer(int ID)
 {
     data.deleteComputer(ID);
+}
+
+void Service::deleteRecycledComputer(int ID)
+{
+    data.deleteRecycledComputer(ID);
 }
 
 void Service::deleteAllFromDatabase()

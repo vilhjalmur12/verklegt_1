@@ -39,10 +39,9 @@ private:
     QString user;
     QString choiceMade;
     errorwindow errorWidget;
-    int rowChosen;
-    QString name;
-    QString lastName;
-    QString year;
+    int row;
+    int ID;
+
 };
 
 #endif // RECYCLEDBIN_H
