@@ -1,5 +1,7 @@
 #include "database.h"
-
+#include <QFile>
+#include <QDir>
+#include <QApplication>
 using namespace std;
 
 Database::Database () {}
@@ -63,34 +65,6 @@ QSqlQuery Database::showComputerData (QString username, QString searchString)
     return query;
 }
 
-bool Database::computerAlreadyDeleted(QString username, int ID)
-{
-
-    string sID = to_string(ID);
-    QString tmp;
-
-    string command1 = "SELECT ID, deleted "
-                     "FROM Computers "
-                     "Where ID = " + sID + " ";
-
-    QString Qcommand(command1.c_str());
-    QSqlQuery query;
-    query.exec(Qcommand);
-
-    while(query.next())
-    {
-        tmp = query.value(1).toString();
-    }
-
-    int intTmp = tmp.toInt();
-     if (intTmp == 1)
-     {
-
-         return true;
-     }
-
-     return false;
-}
 void Database::setUser(QString username)
 {
     user = username;
@@ -1021,6 +995,31 @@ void Database::initDatabase (const QString& username)
         userQuery.exec("INSERT INTO scientist_computer_relations "
                        "(ScientistID, ComputerID) "
                        "VALUES (11,12)");
+
+        QString fileName = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/AnalyticalMachine_Babbage_London.jpg");
+        QFile file(fileName);
+        file.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray = file.readAll();
+
+        userQuery.prepare("INSERT INTO pictures "
+                          "(ComputerID, image) "
+                          "VALUES (:ID, :image) ");
+        userQuery.bindValue(":ID", 1);
+        userQuery.bindValue(":image", inByteArray);
+        userQuery.exec();
+
+        QString fileName2 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-ENIAC_Penn1.jpg");
+        QFile file2(fileName2);
+        file2.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray2 = file2.readAll();
+
+        userQuery.bindValue(":ID", 2);
+        userQuery.bindValue(":image", inByteArray2);
+        userQuery.exec();
+
+
 
         databaseClose(userData);
     }
