@@ -5,6 +5,7 @@
 #include <QSqlQueryModel>
 #include <QMediaPlayer>
 #include <QDebug>
+#include <QFile>
 #include "Domain/service.h"
 #include "recycledbin.h"
 
