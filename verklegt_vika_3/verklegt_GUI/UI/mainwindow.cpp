@@ -235,3 +235,33 @@ void MainWindow::on_lineEdit_searchComputer_textChanged(const QString &arg1)
 {
     displayComputers();
 }
+
+void MainWindow::on_sildeProgress_sliderMoved(int position)
+{
+
+}
+
+void MainWindow::on_slideVolume_sliderMoved(int position)
+{
+
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+
+}
+
+void MainWindow::on_positionChanged(qint64 position)
+{
+
+}
+
+void MainWindow::on_durationChanged(qint64 position)
+{
+
+}
