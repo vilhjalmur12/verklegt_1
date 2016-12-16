@@ -21,9 +21,9 @@ public:
     ~LoginWindow();
 
 private slots:
-    void on_pushButton_activateUser_clicked();
+    void on_pushButton_activateUser_clicked();          //Tekur við loggin upplýsingum frá notanada og keyrir forritið
 
-    void on_pushButton_createUser_clicked();
+    void on_pushButton_createUser_clicked();            //Kallar á nýjan glugga til að búa til nýjan notanda þegarýtt er á "New user"
 
 private:
     Ui::LoginWindow *ui;
@@ -43,8 +43,8 @@ private:
     QString invalid = "Invalid user or password";
     QString valid = "Password Valid, welcome!";
 
-    void callUser (QString username, QString password);
-    void createUser ();
+    void callUser (QString username, QString password); //Sendir áfram notandanaf og lykilorð til að athuga hvort notandisé til í gagnagrunni
+    //void createUser ();
 
 };
 
