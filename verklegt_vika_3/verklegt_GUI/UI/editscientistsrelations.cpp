@@ -63,6 +63,9 @@ void editScientistsRelations::populateList()
         ui->dropDown_computers->addItem(QString::fromStdString(name));
     }
     ui->pushButton_delete->setEnabled(false);
+    ui->pushButton_delete->setStyleSheet(QString::fromUtf8("QPushButton:disabled"
+    "{color: gray}"
+    ));
 }
 
 void editScientistsRelations::on_pushButton_delete_clicked()

@@ -30,6 +30,8 @@ private slots:
 
     void on_pushButton_browseImCpu_clicked();
 
+    void on_checkBox_built_clicked();
+
 private:
     Ui::editComputerDialog *ui;
     Service *data;

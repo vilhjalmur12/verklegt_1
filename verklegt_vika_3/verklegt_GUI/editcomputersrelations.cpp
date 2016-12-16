@@ -60,6 +60,9 @@ void editComputersRelations::populateList()
     }
 
     ui->pushButton->setEnabled(false);
+    ui->pushButton->setStyleSheet(QString::fromUtf8("QPushButton:disabled"
+    "{color: gray}"
+    ));
 }
 
 void editComputersRelations::on_pushButton_done_clicked()
