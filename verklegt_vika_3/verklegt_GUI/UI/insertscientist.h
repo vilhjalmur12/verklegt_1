@@ -16,9 +16,9 @@ public:
     ~insertScientist();
 
 private slots:
-    void on_pushButton_insert_clicked();
+    void on_pushButton_insert_clicked();    //Tekur við upplýsingum um nýjan vísindamann frá notanda
 
-    void on_pushButton_back_clicked();
+    void on_pushButton_back_clicked();      //Lokar insert glugga
 
 private:
     Ui::insertScientist *ui;

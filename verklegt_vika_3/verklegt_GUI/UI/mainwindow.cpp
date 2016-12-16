@@ -6,6 +6,10 @@
 #include "insertscientist.h"
 #include "insertcomputerdialog.h"
 
+/******************************************************************
+                      Constructor / Destructor
+*******************************************************************/
+
 MainWindow::MainWindow(QWidget *parent, QString user) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -42,18 +46,31 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/******************************************************************
+                       setUserName
+*******************************************************************/
+
 void MainWindow::setUserName(QString user)
 {
     username = user;
     _service.setUser(username);
 }
 
+/******************************************************************
+             on_tableView_scientists_clicked
+    Notandi getur edit-að vísindamann með því að klikka á hann
+*******************************************************************/
 
 void MainWindow::on_tableView_scientists_clicked(const QModelIndex &index)
 {
        ui->pushButton_editScientist->setEnabled(true);
        ui->pushButton_deleteScientist->setEnabled(true);
 }
+
+/******************************************************************
+           on_pushButton_deleteScientist_clicked
+    Notandi getur edit-að vísindamann með því að klikka á hann
+*******************************************************************/
 
 void MainWindow::on_pushButton_deleteScientist_clicked()
 {
@@ -65,8 +82,6 @@ void MainWindow::on_pushButton_deleteScientist_clicked()
     _service.deleteScientist(ID);
 
     displayScientists();
-
-
 }
 
 void MainWindow::on_pushButton_deleteComputer_clicked()
