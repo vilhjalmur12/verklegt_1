@@ -358,7 +358,8 @@ void MainWindow::on_startButton_clicked()
 {
     QString loc =  qApp->applicationDirPath();
     qDebug() << loc;
-    player->setMedia(QUrl::fromLocalFile(loc + "/media/LetItSnow.mp3"));
+    player->setMedia(QUrl::fromLocalFile(":/media/Media/LetItSnow.mp3"));
+    //player->setMedia(QUrl::fromLocalFile(loc + "res/media/LetItSnow.mp3"));
     player->play();
     qDebug() << player->errorString();
 }
