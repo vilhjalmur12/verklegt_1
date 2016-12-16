@@ -49,6 +49,7 @@ void editComputerDialog::on_pushButton_back_clicked()
 
 void editComputerDialog::on_pushButton_update_clicked()
 {
+
     string name = ui->lineEdit_name->text().toStdString();
     string sYear = ui->lineEdit_year->text().toStdString();
     string type = ui->dropdown_types->currentText().toStdString();
@@ -56,14 +57,26 @@ void editComputerDialog::on_pushButton_update_clicked()
 
     int year;
 
+    if(sYear=="" && ui->checkBox_built->isChecked())
+    {
+        QMessageBox::warning(this, "Invalid Year", "ERROR: Missing build year for built computer");
+        return;
+    }
+    if(name=="")
+    {
+        QMessageBox::warning(this, "Invalid Name", "ERROR: Name cannot be empty");
+        return;
+    }
+
     if(!data->validCpuName(name))
     {
         QMessageBox::warning(this, "Invalid Name", QString::fromStdString(data->getErrorString()));
         return;
     }
-    if(sYear == "n/a")
+    if(sYear == "n/a" || sYear =="")
     {
         year = maxDeathYear;
+        sYear = "n/a";
     }
     else if(!data->validDeathYear(sYear))
     {
@@ -127,6 +140,19 @@ void editComputerDialog::initializeInfo()
     ui->checkBox_built->setChecked(computer.getBuilt());
     ui->lineEdit_builders->setText(QString::fromStdString(scientists));
 
+    ui->lineEdit_year->setEnabled((ui->checkBox_built->isChecked()));
+
+    QRegExp name("[A-Za-z0-9.- ]*");
+    QValidator *nameValidator = new QRegExpValidator(name, this);
+
+    QRegExp cpuYear("-?[0-9]*");
+    QValidator *yearValidator = new QRegExpValidator(cpuYear, this);
+
+    ui->lineEdit_name->setValidator(nameValidator);
+    ui->lineEdit_year->setValidator(yearValidator);
+
+
+
 }
 
 void editComputerDialog::on_pushButton_browseImCpu_clicked()
@@ -146,5 +172,18 @@ void editComputerDialog::on_pushButton_browseImCpu_clicked()
     else
     {
         // user did not select some file
+    }
+}
+
+void editComputerDialog::on_checkBox_built_clicked()
+{
+    if(ui->checkBox_built->isChecked())
+    {
+        ui->lineEdit_year->setEnabled(true);
+    }
+    else
+    {
+        ui->lineEdit_year->clear();
+        ui->lineEdit_year->setEnabled(false);
     }
 }

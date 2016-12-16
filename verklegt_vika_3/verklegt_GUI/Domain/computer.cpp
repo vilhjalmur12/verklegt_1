@@ -119,7 +119,7 @@ string Computer::getBuilders() const
     {
         builders += _builders[i];
 
-        if(i != builders.size()-1)
+        if(i != _builders.size()-1)
             builders += ", ";
     }
     return builders;

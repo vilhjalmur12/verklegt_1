@@ -56,7 +56,59 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout">
-     <item row="2" column="0">
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_imCpu">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>              Picture</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_browseImCpu">
+         <property name="text">
+          <string>Browse</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="minimumSize">
+          <size>
+           <width>77</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>           Name</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_name">
+         <property name="minimumSize">
+          <size>
+           <width>255</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_6">
        <item>
         <widget class="QLabel" name="label_3">
@@ -112,52 +164,7 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
        </item>
       </layout>
      </item>
-     <item row="1" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout_7">
-       <item> // her
-        <widget class="QLabel" name="label_2">
-         <property name="minimumSize">
-          <size>
-           <width>77</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Year of Build</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="lineEdit_year">
-         <property name="minimumSize">
-          <size>
-           <width>255</width>
-           <height>0</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="5" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QLabel" name="label_6">
-         <property name="text">
-          <string>              Picture</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_browseImCpu">
-         <property name="text">
-          <string>Browse</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="4" column="0">
+     <item row="3" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
         <widget class="QLabel" name="label_5">
@@ -198,7 +205,7 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
        </item>
       </layout>
      </item>
-     <item row="3" column="0">
+     <item row="2" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
         <widget class="QLabel" name="label_4">
@@ -236,9 +243,35 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
          </property>
         </spacer>
        </item>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="minimumSize">
+          <size>
+           <width>77</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Year of Build</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_year">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>255</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
-     <item row="7" column="0">
+     <item row="6" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_9">
        <item>
         <widget class="QPushButton" name="pushButton_update">
@@ -255,40 +288,6 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
         </widget>
        </item>
       </layout>
-     </item>
-     <item row="0" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout_8">
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="minimumSize">
-          <size>
-           <width>77</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>           Name</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="lineEdit_name">
-         <property name="minimumSize">
-          <size>
-           <width>255</width>
-           <height>0</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="6" column="0">
-      <widget class="QLabel" name="label_imCpu">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
      </item>
     </layout>
    </item>
