@@ -1,5 +1,7 @@
 #include "database.h"
 #include <QFile>
+#include <QDir>
+#include <QApplication>
 using namespace std;
 
 Database::Database () {}
@@ -994,8 +996,13 @@ void Database::initDatabase (const QString& username)
                        "(ScientistID, ComputerID) "
                        "VALUES (11,12)");
 
-        QFile file("800px-Babbage_Difference_Engine.jpg");
-        if (!file.open(QIODevice::ReadOnly)) return;
+        QString fileName = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-Babbage_Difference_Engine.jpg");
+        //QFile file("/../../verklegt_GUI/Images/800px-Babbage_Difference_Engine.jpg");
+        QFile file(fileName);
+        if (!file.open(QIODevice::ReadOnly))
+        {
+            qDebug() << "DAMMMMMMIT";
+        }
         QByteArray inByteArray = file.readAll();
 
         userQuery.prepare("INSERT INTO pictures "
@@ -1003,6 +1010,7 @@ void Database::initDatabase (const QString& username)
                           "VALUES (:ID, :image) ");
         userQuery.bindValue(":ID", 1);
         userQuery.bindValue(":image", inByteArray);
+        userQuery.exec();
 
         databaseClose(userData);
     }
