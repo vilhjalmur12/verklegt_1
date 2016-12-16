@@ -18,7 +18,7 @@ public:
     ~createUserWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_pushButton_clicked();   //Tekur við upplýsingum fyrir nýjan notanada.
 
 
 private:
@@ -32,7 +32,7 @@ private:
     QString firstName;
     QString lastName;
 
-    bool comparePassword();
+    bool comparePassword();         //Ber saman lykilorðið og staðfestinguna á því frá notanada
 
 };
 
