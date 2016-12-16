@@ -13,6 +13,23 @@ MainWindow::MainWindow(QWidget *parent, QString user) :
     username = user;
     _service.setUser(user);
 
+    ui->tableView_scientists->setColumnWidth(1,90);
+    ui->tableView_scientists->setColumnWidth(2,90);
+    ui->tableView_scientists->setColumnWidth(3,70);
+    ui->tableView_scientists->setColumnWidth(4,60);
+    ui->tableView_scientists->setColumnWidth(5,60);
+    ui->tableView_scientists->setColumnWidth(6,90);
+    ui->tableView_scientists->setColumnWidth(7,180);
+    ui->tableView_scientists->setColumnWidth(8,20);
+
+    ui->tableView_computers->setColumnWidth(1,190);
+    ui->tableView_computers->setColumnWidth(2,90);
+    ui->tableView_computers->setColumnWidth(3,160);
+    ui->tableView_computers->setColumnWidth(4,100);
+    ui->tableView_computers->setColumnWidth(5,20);
+
+
+
 }
 
 MainWindow::~MainWindow()
