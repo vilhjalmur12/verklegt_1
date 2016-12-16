@@ -7,6 +7,10 @@
 #include <QFileDialog>
 #include <QPixmap>
 
+/******************************************************************
+                      Constructor / Destructor
+*******************************************************************/
+
 editComputerDialog::editComputerDialog(QWidget *parent, int id, QString userName) :
     QDialog(parent),
     ui(new Ui::editComputerDialog)
@@ -22,6 +26,17 @@ editComputerDialog::editComputerDialog(QWidget *parent, int id, QString userName
     initializeInfo();
 }
 
+editComputerDialog::~editComputerDialog()
+{
+    delete ui;
+    delete data;
+}
+
+/******************************************************************
+                      initializeDropDown
+       Fyllir upp í fellivalmynd fyrir týpur af tölvu.
+*******************************************************************/
+
 void editComputerDialog::initializeDropDown()
 {
     ui->dropdown_types->clear();
@@ -36,16 +51,20 @@ void editComputerDialog::initializeDropDown()
     }
 }
 
-editComputerDialog::~editComputerDialog()
-{
-    delete ui;
-    delete data;
-}
+/******************************************************************
+                   on_pushButton_back_clicked
+                     Lokar edit valmynd.
+*******************************************************************/
 
 void editComputerDialog::on_pushButton_back_clicked()
 {
     this->done(0);
 }
+
+/******************************************************************
+                  on_pushButton_update_clicked
+   Uppfærir upplýsingar um tölvu þegar ýtt er á update takkann.
+*******************************************************************/
 
 void editComputerDialog::on_pushButton_update_clicked()
 {
@@ -89,6 +108,11 @@ void editComputerDialog::on_pushButton_update_clicked()
     initializeInfo();
 }
 
+/******************************************************************
+                  on_pushButton_addType_clicked
+                 Bættir við nýrri týpu á tölvu.
+*******************************************************************/
+
 void editComputerDialog::on_pushButton_addType_clicked()
 {
     bool ok;
@@ -104,6 +128,11 @@ void editComputerDialog::on_pushButton_addType_clicked()
     initializeInfo();
 }
 
+/******************************************************************
+              on_pushButton_edit_relations_clicked
+      Tengir vísindamann við tölvuna sem verið er að edit-a.
+*******************************************************************/
+
 void editComputerDialog::on_pushButton_edit_relations_clicked()
 {
     editComputersRelations editR(this, ID, username);
@@ -112,6 +141,12 @@ void editComputerDialog::on_pushButton_edit_relations_clicked()
 
     initializeInfo();
 }
+
+/******************************************************************
+                        initializeInfo
+   Byrtir þær upplýsingar sem eru nú þegar til staðar um tölvuna
+   sem verið er að edit-a
+*******************************************************************/
 
 void editComputerDialog::initializeInfo()
 {
@@ -128,6 +163,11 @@ void editComputerDialog::initializeInfo()
     ui->lineEdit_builders->setText(QString::fromStdString(scientists));
 
 }
+
+/******************************************************************
+                on_pushButton_browseImCpu_clicked
+                 Finnur slóð að mynd af tölvu
+*******************************************************************/
 
 void editComputerDialog::on_pushButton_browseImCpu_clicked()
 {
