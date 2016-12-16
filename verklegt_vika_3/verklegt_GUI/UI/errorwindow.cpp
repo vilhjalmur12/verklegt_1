@@ -48,3 +48,8 @@ bool errorwindow::confirmDeleteAll(bool OK)
     ui->label_errorLabel->setText(error);
     this->show();
 }
+
+void errorwindow::on_pushButton_ok_clicked()
+{
+   this->close();
+}

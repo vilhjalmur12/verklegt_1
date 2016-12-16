@@ -261,19 +261,6 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
         <string>Computers</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="1" column="4">
-         <widget class="QPushButton" name="pushButton">
-          <property name="minimumSize">
-           <size>
-            <width>120</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Insert</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="5">
          <spacer name="horizontalSpacer_2">
           <property name="orientation">
@@ -289,6 +276,19 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
            </size>
           </property>
          </spacer>
+        </item>
+        <item row="1" column="4">
+         <widget class="QPushButton" name="pushButton">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Insert</string>
+          </property>
+         </widget>
         </item>
         <item row="0" column="0" colspan="9">
          <widget class="QTableWidget" name="tableView_computers">
@@ -364,19 +364,6 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
           </property>
          </widget>
         </item>
-        <item row="1" column="8">
-         <widget class="QPushButton" name="pushButton_editComputer">
-          <property name="minimumSize">
-           <size>
-            <width>120</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Edit</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="6">
          <widget class="QPushButton" name="pushButton_deleteComputer">
           <property name="minimumSize">
@@ -389,35 +376,6 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
            <string>Delete</string>
           </property>
          </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="pushButton_recycleBinComputers">
-          <property name="minimumSize">
-           <size>
-            <width>120</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Recycle Bin</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="7">
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Preferred</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
         </item>
         <item row="1" column="3">
          <spacer name="horizontalSpacer_3">
@@ -435,6 +393,99 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
           </property>
          </spacer>
         </item>
+        <item row="1" column="7">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Preferred</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="pushButton_recycleBinComputers">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Recycle Bin</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="8">
+         <widget class="QPushButton" name="pushButton_editComputer">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Edit</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QSlider" name="silderVolume">
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="value">
+           <number>100</number>
+          </property>
+          <property name="sliderPosition">
+           <number>100</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QSlider" name="sliderprogress">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="4">
+         <widget class="QPushButton" name="startButton">
+          <property name="text">
+           <string>Start</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="4">
+         <widget class="QPushButton" name="stopButton">
+          <property name="text">
+           <string>Stop</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QLabel" name="volumeLabel">
+          <property name="text">
+           <string>Volume</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="QLabel" name="progressLabel">
+          <property name="text">
+           <string>Progress</string>
+          </property>
+         </widget>
+        </item>
        </layout>
        <zorder>pushButton_deleteComputer</zorder>
        <zorder>lineEdit_searchComputer</zorder>
@@ -445,6 +496,12 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
        <zorder>pushButton</zorder>
        <zorder>horizontalSpacer_2</zorder>
        <zorder>horizontalSpacer_3</zorder>
+       <zorder>silderVolume</zorder>
+       <zorder>sliderprogress</zorder>
+       <zorder>startButton</zorder>
+       <zorder>stopButton</zorder>
+       <zorder>volumeLabel</zorder>
+       <zorder>progressLabel</zorder>
       </widget>
      </widget>
     </item>
@@ -456,7 +513,7 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
      <x>0</x>
      <y>0</y>
      <width>959</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -473,7 +530,6 @@ background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0
   <tabstop>pushButton_recycleBinComputers</tabstop>
   <tabstop>pushButton_deleteComputer</tabstop>
   <tabstop>pushButton_editComputer</tabstop>
-  <tabstop>tabWidget</tabstop>
  </tabstops>
  <resources>
   <include location="../resources.qrc"/>
