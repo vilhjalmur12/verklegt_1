@@ -999,6 +999,10 @@ void Database::initDatabase (const QString& username)
                        "(ScientistID, ComputerID) "
                        "VALUES (11,12)");
 
+        /**************************************
+                   myndir af tölvum
+        **************************************/
+
         QString fileName = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/AnalyticalMachine_Babbage_London.jpg");
         QFile file(fileName);
         file.open(QIODevice::ReadOnly);
@@ -1022,9 +1026,226 @@ void Database::initDatabase (const QString& username)
         userQuery.bindValue(":image", inByteArray2);
         userQuery.exec();
 
+        QString fileName3 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-Mailüfterl.jpg");
+        QFile file3(fileName3);
+        file3.open(QIODevice::ReadOnly);
 
+        QByteArray inByteArray3 = file3.readAll();
 
+        userQuery.bindValue(":ID", 3);
+        userQuery.bindValue(":image", inByteArray3);
+        userQuery.exec();
+
+        QString fileName4 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-Babbage_Difference_Engine.jpg");
+        QFile file4(fileName4);
+        file4.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray4 = file4.readAll();
+
+        userQuery.bindValue(":ID", 4);
+        userQuery.bindValue(":image", inByteArray4);
+        userQuery.exec();
+
+        QString fileName5 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/Boulier1.JPG");
+        QFile file5(fileName5);
+        file5.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray5 = file5.readAll();
+
+        userQuery.bindValue(":ID", 5);
+        userQuery.bindValue(":image", inByteArray5);
+        userQuery.exec();
+
+        QString fileName6 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/Colossus.jpg");
+        QFile file6(fileName6);
+        file6.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray6 = file6.readAll();
+
+        userQuery.bindValue(":ID", 6);
+        userQuery.bindValue(":image", inByteArray6);
+        userQuery.exec();
+
+        QString fileName7 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-SSEM_Manchester_museum.jpg");
+        QFile file7(fileName7);
+        file7.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray7 = file7.readAll();
+
+        userQuery.bindValue(":ID", 7);
+        userQuery.bindValue(":image", inByteArray7);
+        userQuery.exec();
+
+        QString fileName8 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-DM_IBM_S360.jpg");
+        QFile file8(fileName8);
+        file8.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray8 = file8.readAll();
+
+        userQuery.bindValue(":ID", 8);
+        userQuery.bindValue(":image", inByteArray8);
+        userQuery.exec();
+
+        QString fileName9 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-PDP-8.jpg");
+        QFile file9(fileName9);
+        file9.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray9 = file9.readAll();
+
+        userQuery.bindValue(":ID", 9);
+        userQuery.bindValue(":image", inByteArray9);
+        userQuery.exec();
+
+        QString fileName10 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-IBM_PC_5150.jpg");
+        QFile file10(fileName10);
+        file10.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray10 = file10.readAll();
+
+        userQuery.bindValue(":ID", 10);
+        userQuery.bindValue(":image", inByteArray10);
+        userQuery.exec();
+
+        QString fileName11 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/800px-Sinclair-ZX81.jpg");
+        QFile file11(fileName11);
+        file11.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray11 = file11.readAll();
+
+        userQuery.bindValue(":ID", 11);
+        userQuery.bindValue(":image", inByteArray11);
+        userQuery.exec();
+
+        QString fileName12 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/Macintosh_128k_transparency.png");
+        QFile file12(fileName12);
+        file12.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray12 = file12.readAll();
+
+        userQuery.bindValue(":ID", 12);
+        userQuery.bindValue(":image", inByteArray12);
+        userQuery.exec();
+
+        /**************************************
+               myndir af vísindamönnum
+        **************************************/
+
+        QString fileName01 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/Ada_Lovelace_1838.jpg");
+        QFile file01(fileName01);
+        file01.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray01 = file01.readAll();
+
+        userQuery.prepare("INSERT INTO pictures "
+                          "(ScientistID, image) "
+                          "VALUES (:ID, :image) ");
+        userQuery.bindValue(":ID", 1);
+        userQuery.bindValue(":image", inByteArray01);
+        userQuery.exec();
+
+        QString fileName02 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/john_Eckert.jpg");
+        QFile file02(fileName02);
+        file02.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray02 = file02.readAll();
+
+        userQuery.bindValue(":ID", 2);
+        userQuery.bindValue(":image", inByteArray02);
+        userQuery.exec();
+
+        QString fileName03 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/Heinz_Zemanek.jpg");
+        QFile file03(fileName03);
+        file03.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray03 = file03.readAll();
+
+        userQuery.bindValue(":ID", 3);
+        userQuery.bindValue(":image", inByteArray03);
+        userQuery.exec();
+
+        QString fileName04 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/Charles_Babbage.jpg");
+        QFile file04(fileName04);
+        file04.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray04 = file04.readAll();
+
+        userQuery.bindValue(":ID", 4);
+        userQuery.bindValue(":image", inByteArray04);
+        userQuery.exec();
+
+        QString fileName05 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/Tommy_Flowers.jpg");
+        QFile file05(fileName05);
+        file05.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray05 = file05.readAll();
+
+        userQuery.bindValue(":ID", 5);
+        userQuery.bindValue(":image", inByteArray05);
+        userQuery.exec();
+
+        QString fileName06 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/Frederic_Willia.jpg");
+        QFile file06(fileName06);
+        file06.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray06 = file06.readAll();
+
+        userQuery.bindValue(":ID", 6);
+        userQuery.bindValue(":image", inByteArray06);
+        userQuery.exec();
+
+        QString fileName07 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/Tom_Kilburn.jpg");
+        QFile file07(fileName07);
+        file07.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray07 = file07.readAll();
+
+        userQuery.bindValue(":ID", 7);
+        userQuery.bindValue(":image", inByteArray07);
+        userQuery.exec();
+
+        QString fileName08 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/Gordon_Bell.jpg");
+        QFile file08(fileName08);
+        file08.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray08 = file08.readAll();
+
+        userQuery.bindValue(":ID", 8);
+        userQuery.bindValue(":image", inByteArray08);
+        userQuery.exec();
+
+        QString fileName09 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/220px-Charles_Ranlett_Flint.jpg");
+        QFile file09(fileName09);
+        file09.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray09 = file09.readAll();
+
+        userQuery.bindValue(":ID", 9);
+        userQuery.bindValue(":image", inByteArray09);
+        userQuery.exec();
         databaseClose(userData);
+
+        QString fileName010 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/Clive_sinclair.jpg");
+        QFile file010(fileName010);
+        file010.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray010 = file010.readAll();
+
+        userQuery.bindValue(":ID", 010);
+        userQuery.bindValue(":image", inByteArray010);
+        userQuery.exec();
+        databaseClose(userData);
+
+        QString fileName011 = QDir(qApp->applicationDirPath()).absoluteFilePath("../../verklegt_GUI/Images/Steve_Jobs.jpg");
+        QFile file011(fileName011);
+        file011.open(QIODevice::ReadOnly);
+
+        QByteArray inByteArray011 = file011.readAll();
+
+        userQuery.bindValue(":ID", 11);
+        userQuery.bindValue(":image", inByteArray011);
+        userQuery.exec();
+        databaseClose(userData);
+
     }
 }
 
