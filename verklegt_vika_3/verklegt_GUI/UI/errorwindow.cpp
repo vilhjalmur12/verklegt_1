@@ -42,13 +42,6 @@ void errorwindow::nonUserInput()
     ui->label_errorLabel->setText(error);
 }
 
-bool errorwindow::confirmDeleteAll(bool OK)
-{
-    QString error = "Are you sure you want to clear your recycle bin?";
-    ui->label_errorLabel->setText(error);
-    this->show();
-}
-
 void errorwindow::on_pushButton_ok_clicked()
 {
    this->close();

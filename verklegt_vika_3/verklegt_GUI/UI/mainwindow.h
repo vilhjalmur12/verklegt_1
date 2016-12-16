@@ -25,13 +25,13 @@ public:
     void displayScientists();
 
 private slots:
-    void on_tableView_scientists_clicked(const QModelIndex &index);
+    void on_tableView_scientists_clicked();
 
     void on_pushButton_deleteScientist_clicked();
 
     void on_pushButton_deleteComputer_clicked();
 
-    void on_tableView_computers_clicked(const QModelIndex &index);
+    void on_tableView_computers_clicked();
 
     void on_pushButton_editScientist_clicked();
 
@@ -41,9 +41,9 @@ private slots:
 
     void on_pushButton_insertScientist_clicked();
 
-    void on_lineEdit_search_textChanged(const QString &arg1);
+    void on_lineEdit_search_textChanged();
 
-    void on_lineEdit_searchComputer_textChanged(const QString &arg1);
+    void on_lineEdit_searchComputer_textChanged();
 
     void on_pushButton_clicked();
 
@@ -59,9 +59,11 @@ private slots:
 
     void on_position_changed(qint64 position);
 
-    void on_tableView_computers_doubleClicked(const QModelIndex &index);
+    void on_tableView_computers_doubleClicked();
 
-    void on_tableView_scientists_doubleClicked(const QModelIndex &index);
+    void on_tableView_scientists_doubleClicked();
+
+    void on_pushButton_recycledScientists_clicked();
 
 private:
     Ui::MainWindow *ui;

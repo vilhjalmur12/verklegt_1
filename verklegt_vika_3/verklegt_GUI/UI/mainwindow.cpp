@@ -62,7 +62,7 @@ void MainWindow::setUserName(QString user)
     í lista
 *******************************************************************/
 
-void MainWindow::on_tableView_scientists_clicked(const QModelIndex &index)
+void MainWindow::on_tableView_scientists_clicked()
 {
        ui->pushButton_editScientist->setEnabled(true);
        ui->pushButton_deleteScientist->setEnabled(true);
@@ -108,7 +108,7 @@ void MainWindow::on_pushButton_deleteComputer_clicked()
     í lista
 *******************************************************************/
 
-void MainWindow::on_tableView_computers_clicked(const QModelIndex &index)
+void MainWindow::on_tableView_computers_clicked()
 {
     ui->pushButton_editComputer->setEnabled(true);
     ui->pushButton_deleteComputer->setEnabled(true);
@@ -161,6 +161,17 @@ void MainWindow::on_pushButton_editComputer_clicked()
 void MainWindow::on_pushButton_recycleBinComputers_clicked()
 {
     QString choice = "computers";
+    recycleBin.callRecycleBin(username, choice);
+}
+
+/******************************************************************
+           on_pushButton_recycleBinComputers_clicked
+         Opnar glugga fyrir recycle bin fyrir tölvu
+*******************************************************************/
+
+void MainWindow::on_pushButton_recycledScientists_clicked()
+{
+    QString choice = "scientists";
     recycleBin.callRecycleBin(username, choice);
 }
 
@@ -295,7 +306,7 @@ void MainWindow::displayComputers()
         Filterar tölfu út frá leitarstreng frá notanda
 *******************************************************************/
 
-void MainWindow::on_lineEdit_search_textChanged(const QString &arg1)
+void MainWindow::on_lineEdit_search_textChanged()
 {
     displayScientists();
 }
@@ -305,7 +316,7 @@ void MainWindow::on_lineEdit_search_textChanged(const QString &arg1)
         Filterar tölfu út frá leitarstreng frá notanda
 *******************************************************************/
 
-void MainWindow::on_lineEdit_searchComputer_textChanged(const QString &arg1)
+void MainWindow::on_lineEdit_searchComputer_textChanged()
 {
     displayComputers();
 }
@@ -356,7 +367,7 @@ void MainWindow::on_position_changed(qint64 position)
     ui->sliderProgress->setValue(position);
 }
 
-void MainWindow::on_tableView_computers_doubleClicked(const QModelIndex &index)
+void MainWindow::on_tableView_computers_doubleClicked()
 {
     ui->pushButton_editComputer->setEnabled(false);
     ui->pushButton_deleteComputer->setEnabled(false);
@@ -370,7 +381,7 @@ void MainWindow::on_tableView_computers_doubleClicked(const QModelIndex &index)
     displayComputers();
 }
 
-void MainWindow::on_tableView_scientists_doubleClicked(const QModelIndex &index)
+void MainWindow::on_tableView_scientists_doubleClicked()
 {
     ui->pushButton_editScientist->setEnabled(false);
     ui->pushButton_deleteScientist->setEnabled(false);
@@ -382,3 +393,5 @@ void MainWindow::on_tableView_scientists_doubleClicked(const QModelIndex &index)
 
     displayScientists();
 }
+
+

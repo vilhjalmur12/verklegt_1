@@ -18,7 +18,6 @@ public:
     void nonMatchPassword ();
     void userExists();
     void nonUserInput();
-    bool confirmDeleteAll(bool OK);
 
 private slots:
     void on_pushButton_cancel_clicked();
@@ -27,7 +26,7 @@ private slots:
 
 private:
     Ui::errorwindow *ui;
-    bool okDelete = false;
+
 };
 
 #endif // ERRORWINDOW_H

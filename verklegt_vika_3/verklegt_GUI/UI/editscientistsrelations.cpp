@@ -118,7 +118,7 @@ void editScientistsRelations::on_pushButton_add_clicked()
     populateList();
 }
 
-void editScientistsRelations::on_tableWidget_computers_clicked(const QModelIndex &index)
+void editScientistsRelations::on_tableWidget_computers_clicked()
 {
     ui->pushButton_delete->setEnabled(true);
 }

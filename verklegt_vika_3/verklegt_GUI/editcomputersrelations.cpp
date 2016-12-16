@@ -96,7 +96,7 @@ void editComputersRelations::on_pushButton_add_clicked()
     populateList();
 }
 
-void editComputersRelations::on_tableWidget_scientists_clicked(const QModelIndex &index)
+void editComputersRelations::on_tableWidget_scientists_clicked()
 {
     ui->pushButton->setEnabled(true);
 }

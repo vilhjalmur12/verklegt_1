@@ -22,7 +22,7 @@ private slots:
 
     void on_pushButton_add_clicked();
 
-    void on_tableWidget_scientists_clicked(const QModelIndex &index);
+    void on_tableWidget_scientists_clicked();
 
 private:
     Ui::editComputersRelations *ui;

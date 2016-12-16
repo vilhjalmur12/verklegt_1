@@ -22,7 +22,7 @@ private slots:
 
     void on_pushButton_add_clicked();       //Bætir við venslum vísindamann
 
-    void on_tableWidget_computers_clicked(const QModelIndex &index);
+    void on_tableWidget_computers_clicked();
 
 private:
     Ui::editScientistsRelations *ui;
