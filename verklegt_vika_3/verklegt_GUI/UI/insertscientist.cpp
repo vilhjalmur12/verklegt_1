@@ -119,8 +119,8 @@ void insertScientist::on_pushButton_insert_clicked()
     }
     if(!scientistCheck.validName(lastName))
     {
-       QMessageBox::warning(this, "Invalid Name", QString::fromStdString(scientistCheck.getErrorString()));
-       return;
+        QMessageBox::warning(this, "Invalid Name", QString::fromStdString(scientistCheck.getErrorString()));
+         return;
     }
     if(!scientistCheck.validSex(gender))
     {
