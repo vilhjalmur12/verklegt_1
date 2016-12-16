@@ -166,6 +166,8 @@ void editStudentDialog::on_pushButton_update_clicked()
 
     data->editScientist(ID, temp);
 
+    this->done(1);
+
 }
 
 void editStudentDialog::on_pushButton_edit_relations_clicked()

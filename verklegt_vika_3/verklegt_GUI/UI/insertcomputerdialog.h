@@ -24,6 +24,8 @@ private slots:
 
     void on_pushButton_back_clicked();
 
+    void on_pushButton_insert_clicked();
+
 private:
     Ui::insertComputerDialog *ui;
     QString user;

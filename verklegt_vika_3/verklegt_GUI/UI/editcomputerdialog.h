@@ -24,8 +24,6 @@ private slots:
 
     void on_pushButton_addType_clicked();       //Bættir við nýrri týpu á tölvu.
 
-    void initializeDropDown();                  //Fyllir upp í fellivalmynd fyrir týpur af tölvu
-
     void on_pushButton_edit_relations_clicked();//Tengir vísindamann við tölvuna sem verið er að edit-a.
 
     void on_pushButton_browseImCpu_clicked();   //Finnur slóð að mynd af tölvu
@@ -38,6 +36,7 @@ private:
     Computer computer;
     QString username;
 
+    void initializeDropDown();                  //Fyllir upp í fellivalmynd fyrir týpur af tölvu
     void initializeInfo();                      //Byrtir þær upplýsingar sem eru nú þegar til staðar um tölvuna sem verið er að edit-a
 
     int ID;

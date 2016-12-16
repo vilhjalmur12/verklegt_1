@@ -113,7 +113,7 @@ void editComputerDialog::on_pushButton_update_clicked()
 
     data->editComputer(ID, cpu);
 
-    initializeInfo();
+    this->done(1);
 }
 
 /******************************************************************
