@@ -58,7 +58,8 @@ void MainWindow::setUserName(QString user)
 
 /******************************************************************
              on_tableView_scientists_clicked
-    Notandi getur edit-að vísindamann með því að klikka á hann
+    Notandi getur edit-að eða eitt þeim vísindamann sem valin er
+    í lista
 *******************************************************************/
 
 void MainWindow::on_tableView_scientists_clicked(const QModelIndex &index)
@@ -69,7 +70,7 @@ void MainWindow::on_tableView_scientists_clicked(const QModelIndex &index)
 
 /******************************************************************
            on_pushButton_deleteScientist_clicked
-    Notandi getur edit-að vísindamann með því að klikka á hann
+    Notandi eyðir vísindamanni með því að ýta á delete takka
 *******************************************************************/
 
 void MainWindow::on_pushButton_deleteScientist_clicked()
@@ -84,6 +85,11 @@ void MainWindow::on_pushButton_deleteScientist_clicked()
     displayScientists();
 }
 
+/******************************************************************
+           on_pushButton_deleteComputer_clicked
+    Notandi eyðir tölvu með því að ýta á delete takka
+*******************************************************************/
+
 void MainWindow::on_pushButton_deleteComputer_clicked()
 {
     ui->pushButton_editComputer->setEnabled(false);
@@ -96,11 +102,23 @@ void MainWindow::on_pushButton_deleteComputer_clicked()
     displayComputers();
 }
 
+/******************************************************************
+           on_tableView_computers_clicked
+    Notandi getur edit-að eða eitt þeim vísindamann sem valin er
+    í lista
+*******************************************************************/
+
 void MainWindow::on_tableView_computers_clicked(const QModelIndex &index)
 {
     ui->pushButton_editComputer->setEnabled(true);
     ui->pushButton_deleteComputer->setEnabled(true);
 }
+
+/******************************************************************
+           on_pushButton_editScientist_clicked
+    Notandi getur edit-að vísindamann sem valin er
+    með því að ýta á edit takka
+*******************************************************************/
 
 void MainWindow::on_pushButton_editScientist_clicked()
 {
@@ -114,6 +132,12 @@ void MainWindow::on_pushButton_editScientist_clicked()
 
     displayScientists();
 }
+
+/******************************************************************
+           on_pushButton_editComputer_clicked
+    Notandi getur edit-að tölvu sem valin er
+    með því að ýta á edit takka
+*******************************************************************/
 
 void MainWindow::on_pushButton_editComputer_clicked()
 {
@@ -129,11 +153,21 @@ void MainWindow::on_pushButton_editComputer_clicked()
     displayComputers();
 }
 
+/******************************************************************
+           on_pushButton_recycleBinComputers_clicked
+         Opnar glugga fyrir recycle bin fyrir tölvu
+*******************************************************************/
+
 void MainWindow::on_pushButton_recycleBinComputers_clicked()
 {
     QString choice = "computers";
     recycleBin.callRecycleBin(username, choice);
 }
+
+/******************************************************************
+          on_pushButton_insertScientist_clicked
+         Opnar glugga fyrir insert fyrir vísindamann
+*******************************************************************/
 
 void MainWindow::on_pushButton_insertScientist_clicked()
 {
@@ -143,6 +177,11 @@ void MainWindow::on_pushButton_insertScientist_clicked()
 
     displayScientists();
 }
+
+/******************************************************************
+                       displayScientists
+        Sækir upplýsingar um vísindamann og byrtir í töflu
+*******************************************************************/
 
 void MainWindow::displayScientists()
 {
@@ -198,6 +237,11 @@ void MainWindow::displayScientists()
     ui->tableView_scientists->setSortingEnabled(true);
 }
 
+/******************************************************************
+                       displayComputers
+        Sækir upplýsingar um tölvur og byrtir í töflu
+*******************************************************************/
+
 void MainWindow::displayComputers()
 {
     ui->tableView_computers->setSortingEnabled(false);
@@ -246,10 +290,20 @@ void MainWindow::displayComputers()
     ui->tableView_computers->setSortingEnabled(true);
 }
 
+/******************************************************************
+                 on_lineEdit_search_textChanged
+        Filterar tölfu út frá leitarstreng frá notanda
+*******************************************************************/
+
 void MainWindow::on_lineEdit_search_textChanged(const QString &arg1)
 {
     displayScientists();
 }
+
+/******************************************************************
+                 on_lineEdit_searchComputer_textChanged
+        Filterar tölfu út frá leitarstreng frá notanda
+*******************************************************************/
 
 void MainWindow::on_lineEdit_searchComputer_textChanged(const QString &arg1)
 {
@@ -264,6 +318,11 @@ void MainWindow::on_pushButton_clicked()
     displayComputers();
 }
 
+/******************************************************************
+                 on_silderVolume_sliderMoved
+        Filterar tölfu út frá leitarstreng frá notanda
+*******************************************************************/
+
 void MainWindow::on_silderVolume_sliderMoved(int position)
 {
     player->setVolume(position);
@@ -271,12 +330,13 @@ void MainWindow::on_silderVolume_sliderMoved(int position)
 
 void MainWindow::on_sliderProgress_sliderMoved(int position)
 {
-    player->setVolume(position);
+    player->setPosition(position);
 }
 
 void MainWindow::on_startButton_clicked()
 {
-    player->setMedia(QUrl::fromLocalFile("/Users/asgeirn/Desktop/Skoli/Verklegt1/verklegt_1/verklegt_vika_3/verklegt_GUI/media/LetItSnow.mp3"));
+    QString loc =  qApp->applicationDirPath();
+    player->setMedia(QUrl::fromLocalFile(loc + "/media/LetItSnow.mp3"));
     player->play();
     qDebug() << player->errorString();
 }
