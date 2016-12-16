@@ -244,3 +244,33 @@ void MainWindow::on_pushButton_clicked()
     insert.exec();
     displayComputers();
 }
+
+void MainWindow::on_silderVolume_sliderMoved(int position)
+{
+
+}
+
+void MainWindow::on_sliderprogress_sliderMoved(int position)
+{
+
+}
+
+void MainWindow::on_startButton_clicked()
+{
+
+}
+
+void MainWindow::on_stopButton_clicked()
+{
+
+}
+
+void MainWindow::on_duration_changed(qint64)
+{
+
+}
+
+void MainWindow::on_position_changed(qint64)
+{
+
+}
