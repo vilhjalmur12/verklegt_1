@@ -1,5 +1,5 @@
 #include "database.h"
-
+#include <QFile>
 using namespace std;
 
 Database::Database () {}
@@ -63,34 +63,6 @@ QSqlQuery Database::showComputerData (QString username, QString searchString)
     return query;
 }
 
-bool Database::computerAlreadyDeleted(QString username, int ID)
-{
-
-    string sID = to_string(ID);
-    QString tmp;
-
-    string command1 = "SELECT ID, deleted "
-                     "FROM Computers "
-                     "Where ID = " + sID + " ";
-
-    QString Qcommand(command1.c_str());
-    QSqlQuery query;
-    query.exec(Qcommand);
-
-    while(query.next())
-    {
-        tmp = query.value(1).toString();
-    }
-
-    int intTmp = tmp.toInt();
-     if (intTmp == 1)
-     {
-
-         return true;
-     }
-
-     return false;
-}
 void Database::setUser(QString username)
 {
     user = username;
@@ -1021,6 +993,16 @@ void Database::initDatabase (const QString& username)
         userQuery.exec("INSERT INTO scientist_computer_relations "
                        "(ScientistID, ComputerID) "
                        "VALUES (11,12)");
+
+        QFile file("800px-Babbage_Difference_Engine.jpg");
+        if (!file.open(QIODevice::ReadOnly)) return;
+        QByteArray inByteArray = file.readAll();
+
+        userQuery.prepare("INSERT INTO pictures "
+                          "(ComputerID, image) "
+                          "VALUES (:ID, :image) ");
+        userQuery.bindValue(":ID", 1);
+        userQuery.bindValue(":image", inByteArray);
 
         databaseClose(userData);
     }
