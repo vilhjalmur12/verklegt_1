@@ -319,7 +319,7 @@ void MainWindow::on_pushButton_clicked()
 }
 
 /******************************************************************
-                 on_lineEdit_searchComputer_textChanged
+                 on_silderVolume_sliderMoved
         Filterar tölfu út frá leitarstreng frá notanda
 *******************************************************************/
 
@@ -335,7 +335,8 @@ void MainWindow::on_sliderProgress_sliderMoved(int position)
 
 void MainWindow::on_startButton_clicked()
 {
-    player->setMedia(QUrl::fromLocalFile("/Users/asgeirn/Desktop/Skoli/Verklegt1/verklegt_1/verklegt_vika_3/verklegt_GUI/media/LetItSnow.mp3"));
+    QString loc =  qApp->applicationDirPath();
+    player->setMedia(QUrl::fromLocalFile(loc + "/media/LetItSnow.mp3"));
     player->play();
     qDebug() << player->errorString();
 }
