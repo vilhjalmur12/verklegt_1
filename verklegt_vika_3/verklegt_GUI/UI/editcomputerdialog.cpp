@@ -14,7 +14,7 @@
 editComputerDialog::editComputerDialog(QWidget *parent, int id, QString userName) :
     QDialog(parent),
     ui(new Ui::editComputerDialog)
-{   
+{
     ui->setupUi(this);
     data = new Service;
     username = userName;
@@ -87,11 +87,6 @@ void editComputerDialog::on_pushButton_update_clicked()
         return;
     }
 
-    if(!data->validCpuName(name))
-    {
-        QMessageBox::warning(this, "Invalid Name", QString::fromStdString(data->getErrorString()));
-        return;
-    }
     if(sYear == "n/a" || sYear =="")
     {
         year = maxDeathYear;

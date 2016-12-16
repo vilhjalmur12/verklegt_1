@@ -24,7 +24,6 @@ private slots:
 
     void on_pushButton_addType_clicked();
 
-    void initializeDropDown();
 
     void on_pushButton_edit_relations_clicked();
 
@@ -39,6 +38,7 @@ private:
     QString username;
 
     void initializeInfo();
+    void initializeDropDown();
 
     int ID;
 };
