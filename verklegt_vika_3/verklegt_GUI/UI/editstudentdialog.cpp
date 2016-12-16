@@ -32,6 +32,7 @@ editStudentDialog::editStudentDialog(QWidget *parent, int id, QString userName) 
     ui->lineEdit_YOD->setText(QString::fromStdString(death));
     ui->lineEdit_further->setText(QString::fromStdString(temp.getFurtherInfo()));
     ui->lineEdit_relations->setText(QString::fromStdString(computers));
+    ui->label_image ->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     QPixmap pixmap = QPixmap();
     pixmap.loadFromData(data->getImageForScientist(ID));
     int w = ui->label_image->width();
@@ -59,13 +60,13 @@ editStudentDialog::editStudentDialog(QWidget *parent, int id, QString userName) 
     ui->lineEdit_YOB->setValidator(YOB);
     ui->lineEdit_YOD->setValidator(YOD);
 
-    ui->label_image->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
 }
 
 editStudentDialog::~editStudentDialog()
 {
     delete ui;
+    delete data;
 }
 
 void editStudentDialog::on_pushButton_back_clicked()
