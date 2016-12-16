@@ -1115,6 +1115,8 @@ void Database::insertComputer (Computer computer, QString tmpUser)
        int tmpYB = computer.getYearBuilt();
        bool tmpBuilt = computer.getBuilt();
 
+       qDebug() << "ÞETTA GERIST HER RIGHT" << " " << tmpName << tmpCpuType << tmpType << tmpYB << " " << tmpBuilt;
+
        QSqlQuery query;
        query.prepare("INSERT INTO computers "
                      "(Name, Year_of_build, CPU_type_ID, built_or_not) "

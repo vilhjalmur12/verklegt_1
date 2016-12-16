@@ -25,6 +25,8 @@ insertComputerDialog::insertComputerDialog(QWidget *parent, QString username) :
     ui->lineEdit_name->setValidator(nameValidator);
     ui->lineEdit_year->setValidator(yearValidator);
 
+    initializeDropDown();
+
 }
 
 insertComputerDialog::~insertComputerDialog()
@@ -45,25 +47,6 @@ void insertComputerDialog::on_checkBox_built_clicked()
     }
 }
 
-void insertComputerDialog::on_pushButton_browseImCpu_clicked()
-{
-    string imageCpuPath = QFileDialog::getOpenFileName(
-                this,
-                "Search for images",
-                "",
-                "Image files (*.png *.jpg)"
-                ).toStdString();
-
-    if (imageCpuPath.length())
-    {
-        QPixmap pixmap(QString::fromStdString(imageCpuPath));
-        ui->label_imCpu->setPixmap(pixmap);
-    }
-    else
-    {
-        // user did not select some file
-    }
-}
 
 void insertComputerDialog::on_pushButton_addType_clicked()
 {

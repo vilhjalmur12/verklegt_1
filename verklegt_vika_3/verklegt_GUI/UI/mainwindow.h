@@ -43,6 +43,8 @@ private slots:
 
     void on_lineEdit_searchComputer_textChanged(const QString &arg1);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Database data;
