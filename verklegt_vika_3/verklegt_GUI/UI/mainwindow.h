@@ -49,15 +49,15 @@ private slots:
 
     void on_silderVolume_sliderMoved(int position);
 
-    void on_sliderprogress_sliderMoved(int position);
+    void on_sliderProgress_sliderMoved(int position);
 
     void on_startButton_clicked();
 
     void on_stopButton_clicked();
 
-    void on_duration_changed(qint64);
+    void on_duration_changed(qint64 position);
 
-    void on_position_changed(qint64);
+    void on_position_changed(qint64 position);
 
 private:
     Ui::MainWindow *ui;
@@ -67,6 +67,7 @@ private:
     recycledbin recycleBin;
     vector<Scientist> scientists;
     vector<Computer> computers;
+    QMediaPlayer* player;
 
 
 
