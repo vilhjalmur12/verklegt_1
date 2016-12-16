@@ -38,7 +38,7 @@ private:
     Computer computer;
     QString username;
 
-    void initializeInfo();
+    void initializeInfo();                      //Byrtir þær upplýsingar sem eru nú þegar til staðar um tölvuna sem verið er að edit-a
 
     int ID;
 };

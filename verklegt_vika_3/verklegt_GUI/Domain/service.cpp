@@ -516,7 +516,7 @@ bool Service::validCpuName(string &name)
 {
     name = fixString(name);
 
-    bool containsInvalidCharacter = !regex_match(name, regex("(^[A-Za-z0-9.-]+[ ]*([A-Za-z.0-9]||[ ])*$)"));
+    bool containsInvalidCharacter = !regex_match(name, regex("^[A-Za-z0-9.- ]*$)"));
 
     if (containsInvalidCharacter)
     {
