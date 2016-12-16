@@ -31,8 +31,15 @@ public:
     **************************************************/
         void setUser(QString username);
         Computer getComputer(int ID);
+        Scientist getScientist(int ID);
         vector<Computer> getComputersRelatedTo(int ID);
         vector<Scientist> getScientistsRelatedTo(int ID);
+
+        void addImageToComputer(int ID, QByteArray array);
+        void addImageToScientist(int ID, QByteArray array);
+
+        QByteArray getImageForComputer(int ID);
+        QByteArray getImageForScientist(int ID);
 
     /**********************************************************
                          Vector aðgerðir

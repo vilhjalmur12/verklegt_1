@@ -6,6 +6,7 @@
 #include "editscientistsrelations.h"
 #include <QFileDialog>
 #include <QPixmap>
+#include <QBuffer>
 
 editStudentDialog::editStudentDialog(QWidget *parent, int id, QString userName) :
     QDialog(parent),
@@ -13,7 +14,7 @@ editStudentDialog::editStudentDialog(QWidget *parent, int id, QString userName) 
 {
     ui->setupUi(this);
     ID = id;
-    data = new Database;
+    data = new Service;
     data->setUser(userName);
     username = userName;
 
@@ -31,6 +32,11 @@ editStudentDialog::editStudentDialog(QWidget *parent, int id, QString userName) 
     ui->lineEdit_YOD->setText(QString::fromStdString(death));
     ui->lineEdit_further->setText(QString::fromStdString(temp.getFurtherInfo()));
     ui->lineEdit_relations->setText(QString::fromStdString(computers));
+    QPixmap pixmap = QPixmap();
+    pixmap.loadFromData(data->getImageForScientist(ID));
+    int w = ui->label_image->width();
+    int h = ui->label_image->height();
+    ui->label_image->setPixmap(pixmap.scaled(w, h, Qt::KeepAspectRatio));
 
     QRegExp firstName("[A-Za-z][A-Za-z]*([.]?||[])([ ][A-Za-z]+([.]?||[-][A-Za-z]))*");
     QValidator *firstNameValidator = new QRegExpValidator(firstName, this);
@@ -180,19 +186,30 @@ void editStudentDialog::on_pushButton_edit_relations_clicked()
 
 void editStudentDialog::on_pushButton_browseImSci_clicked()
 {
-    string imageSciPath = QFileDialog::getOpenFileName(
+    string imageCpuPath = QFileDialog::getOpenFileName(
                 this,
                 "Search for images",
                 "",
                 "Image files (*.png *.jpg)"
                 ).toStdString();
 
-    if (imageSciPath.length())
+    if (imageCpuPath.length())
     {
-        // user selected some file
+        QPixmap pixmap(QString::fromStdString(imageCpuPath));
+        int w = ui->label_image->width();
+        int h = ui->label_image->height();
+        ui->label_image->setPixmap(pixmap.scaled(w, h, Qt::KeepAspectRatio));
+
+        QByteArray inByteArray;
+        QBuffer inBuffer( &inByteArray );
+        inBuffer.open( QIODevice::WriteOnly );
+        pixmap.save( &inBuffer, "PNG" );
+
+        data->addImageToScientist(ID, inByteArray);
     }
     else
     {
-        // user did not select some file
+        ui->label_image->setText("No Picture Selected");
+        return;
     }
 }

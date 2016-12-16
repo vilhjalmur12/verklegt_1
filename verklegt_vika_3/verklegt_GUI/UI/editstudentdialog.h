@@ -1,7 +1,7 @@
 #ifndef EDITSTUDENTDIALOG_H
 #define EDITSTUDENTDIALOG_H
 
-#include "DATA/database.h"
+#include "Domain/service.h"
 #include <QDialog>
 
 namespace Ui {
@@ -28,7 +28,7 @@ private slots:
 private:
     Ui::editStudentDialog *ui;
     int ID;
-    Database *data;
+    Service *data;
     QString username;
 };
 

@@ -355,6 +355,64 @@ void Database::restoreRelations(int cID, int sID)
     databaseClose(myData);
 }
 
+void Database::addPictureToScientist(int ID, QByteArray array)
+{
+    databaseOpen();
+    QSqlQuery query;
+    query.prepare("INSERT INTO pictures (scientistID, image) VALUES (:ID, :image)");
+    query.bindValue(":ID", ID);
+    query.bindValue(":image", array);
+    query.exec();
+    databaseClose();
+}
+
+void Database::addPictureToComputer(int ID, QByteArray array)
+{
+    databaseOpen();
+    QSqlQuery query;
+    query.prepare("INSERT INTO pictures (computerID, image) VALUES (:ID, :image)");
+    query.bindValue(":ID", ID);
+    query.bindValue(":image", array);
+    query.exec();
+    databaseClose();
+}
+
+QByteArray Database::getPictureForScientist(int ID)
+{
+    databaseOpen();
+
+    QSqlQuery query;
+    query.prepare("SELECT image FROM pictures "
+                  "WHERE scientistID = :ID");
+    query.bindValue(":ID", ID);
+    query.exec();
+
+    query.first();
+    QByteArray array = query.value(0).toByteArray();
+
+    databaseClose();
+
+    return array;
+}
+
+QByteArray Database::getPictureForComputer(int ID)
+{
+    databaseOpen();
+
+    QSqlQuery query;
+    query.prepare("SELECT image FROM pictures "
+                  "WHERE computerID = :ID");
+    query.bindValue(":ID", ID);
+    query.exec();
+
+    query.first();
+    QByteArray array = query.value(0).toByteArray();
+
+    databaseClose();
+
+    return array;
+}
+
 void Database::databaseOpen(QString username)
 {
     user = username;
@@ -764,6 +822,12 @@ void Database::initDatabase (const QString& username)
                        "FOREIGN KEY (computerID) REFERENCES Computers(ID), "
                        "FOREIGN KEY (scientistID) REFERENCES Scientists(ID) "
                        "PRIMARY KEY (computerID, scientistID)) ");
+        userQuery.exec("CREATE TABLE Pictures "
+                       "(ScientistID INTEGER, "
+                       "ComputerID INTEGER, "
+                       "image BLOB, "
+                       "FOREIGN KEY (ScientistID) REFERENCES scientists(ID), "
+                       "FOREIGN KEY (ComputerID) REFERENCES computers(ID))");
 
         /**************************************
                 setja inn vísindamann

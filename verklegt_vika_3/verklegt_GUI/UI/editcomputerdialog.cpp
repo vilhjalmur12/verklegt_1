@@ -6,6 +6,7 @@
 #include "editcomputersrelations.h"
 #include <QFileDialog>
 #include <QPixmap>
+#include <QBuffer>
 
 /******************************************************************
                       Constructor / Destructor
@@ -169,6 +170,11 @@ void editComputerDialog::initializeInfo()
     ui->lineEdit_year->setText(QString::fromStdString(year));
     ui->checkBox_built->setChecked(computer.getBuilt());
     ui->lineEdit_builders->setText(QString::fromStdString(scientists));
+    QPixmap pixmap = QPixmap();
+    pixmap.loadFromData(data->getImageForComputer(ID));
+    int w = ui->label_imCpu->width();
+    int h = ui->label_imCpu->height();
+    ui->label_imCpu->setPixmap(pixmap.scaled(w, h, Qt::KeepAspectRatio));
 
     ui->lineEdit_year->setEnabled((ui->checkBox_built->isChecked()));
 
@@ -202,11 +208,21 @@ void editComputerDialog::on_pushButton_browseImCpu_clicked()
     if (imageCpuPath.length())
     {
         QPixmap pixmap(QString::fromStdString(imageCpuPath));
-        ui->label_imCpu->setPixmap(pixmap);
+        int w = ui->label_imCpu->width();
+        int h = ui->label_imCpu->height();
+        ui->label_imCpu->setPixmap(pixmap.scaled(w, h, Qt::KeepAspectRatio));
+
+        QByteArray inByteArray;
+        QBuffer inBuffer( &inByteArray );
+        inBuffer.open( QIODevice::WriteOnly );
+        pixmap.save( &inBuffer, "PNG" );
+
+        data->addImageToComputer(ID, inByteArray);
     }
     else
     {
-        // user did not select some file
+        ui->label_imCpu->setText("No Picture Selected");
+        return;
     }
 }
 

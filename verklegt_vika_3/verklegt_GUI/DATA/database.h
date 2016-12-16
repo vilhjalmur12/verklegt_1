@@ -50,6 +50,12 @@ public:
     vector<Scientist> getScientistsRelatedTo(int ID);
 
     void restoreRelations(int cID, int sID);
+
+    void addPictureToScientist(int ID, QByteArray array);
+    void addPictureToComputer(int ID, QByteArray array);
+
+    QByteArray getPictureForScientist(int ID);
+    QByteArray getPictureForComputer(int ID);
     /****************************/
 
 

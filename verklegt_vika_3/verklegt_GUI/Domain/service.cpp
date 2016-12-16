@@ -89,6 +89,11 @@ Computer Service::getComputer(int ID)
 
 }
 
+Scientist Service::getScientist(int ID)
+{
+    return data.getScientist(ID);
+}
+
 vector<Computer> Service::getComputersRelatedTo(int ID)
 {
     return data.getComputersRelatedTo(ID);
@@ -97,6 +102,26 @@ vector<Computer> Service::getComputersRelatedTo(int ID)
 vector<Scientist> Service::getScientistsRelatedTo(int ID)
 {
     return data.getScientistsRelatedTo(ID);
+}
+
+void Service::addImageToComputer(int ID, QByteArray array)
+{
+    data.addPictureToComputer(ID, array);
+}
+
+void Service::addImageToScientist(int ID, QByteArray array)
+{
+    data.addPictureToScientist(ID, array);
+}
+
+QByteArray Service::getImageForComputer(int ID)
+{
+    return data.getPictureForComputer(ID);
+}
+
+QByteArray Service::getImageForScientist(int ID)
+{
+    return data.getPictureForScientist(ID);
 }
 
 
