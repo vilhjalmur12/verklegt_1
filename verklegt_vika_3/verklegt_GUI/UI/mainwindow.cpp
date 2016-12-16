@@ -29,6 +29,10 @@ MainWindow::MainWindow(QWidget *parent, QString user) :
     ui->tableView_computers->setColumnWidth(4,100);
     ui->tableView_computers->setColumnWidth(5,20);
 
+    player = new QMediaPlayer(this);
+
+    connect(player, &QMediaPlayer::positionChanged, this, &MainWindow::on_position_changed);
+    connect(player, &QMediaPlayer::durationChanged, this, &MainWindow::on_duration_changed);
 
 
 }
@@ -247,30 +251,32 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_silderVolume_sliderMoved(int position)
 {
-
+    player->setVolume(position);
 }
 
-void MainWindow::on_sliderprogress_sliderMoved(int position)
+void MainWindow::on_sliderProgress_sliderMoved(int position)
 {
-
+    player->setVolume(position);
 }
 
 void MainWindow::on_startButton_clicked()
 {
-
+    player->setMedia(QUrl::fromLocalFile("/Users/asgeirn/Desktop/Skoli/Verklegt1/verklegt_1/verklegt_vika_3/LetItSnow.mp3"));
+    player->play();
+    qDebug() << player->errorString();
 }
 
 void MainWindow::on_stopButton_clicked()
 {
-
+    player->stop();
 }
 
-void MainWindow::on_duration_changed(qint64)
+void MainWindow::on_duration_changed(qint64 position)
 {
-
+    ui->sliderProgress->setMaximum(position);
 }
 
-void MainWindow::on_position_changed(qint64)
+void MainWindow::on_position_changed(qint64 position)
 {
-
+    ui->sliderProgress->setValue(position);
 }
